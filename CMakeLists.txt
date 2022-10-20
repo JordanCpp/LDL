@@ -12,4 +12,4 @@ add_library(LDL STATIC
 "source/Core/TestEqual.cpp" 
 "source/Core/RuntimeError.cpp")
 
-add_subdirectory("test/Graphics")
+add_subdirectory("test")
