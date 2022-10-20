@@ -5,3 +5,9 @@ target_link_libraries(Point2u LDL)
 
 add_executable(Point2i "Point2i.cpp")
 target_link_libraries(Point2i LDL)
+
+add_executable(Rect2u "Rect2u.cpp")
+target_link_libraries(Rect2u LDL)
+
+add_executable(Rect2i "Rect2i.cpp")
+target_link_libraries(Rect2i LDL)
