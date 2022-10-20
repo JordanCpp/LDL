@@ -1,3 +1,5 @@
+Greetings!
+
 # LDL
 Free cross-platform library.
 
@@ -9,8 +11,6 @@ Free cross-platform library.
 4. We support old and new platforms.
 5. Cross-platform.
 6. Static link.
-
-Greetings!
 
 # The main idea is to write an analogue of the SDL library. 
 Accessible to everyone, without exception. 
