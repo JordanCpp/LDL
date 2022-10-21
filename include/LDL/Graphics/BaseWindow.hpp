@@ -15,7 +15,7 @@ namespace LDL
 			const LDL::Graphics::Point2u& Pos();
 			const LDL::Graphics::Point2u& Size();
 			const std::string& Title();
-			void Title(const char* source);
+			void Title(const std::string& source);
 		private:
 			LDL::Graphics::Point2u _Pos;
 			LDL::Graphics::Point2u _Size;

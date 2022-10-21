@@ -22,7 +22,7 @@ const std::string& LDL::Graphics::BaseWindow::Title()
     return _Title;
 }
 
-void LDL::Graphics::BaseWindow::Title(const char* source)
+void LDL::Graphics::BaseWindow::Title(const std::string& source)
 {
     _Title = source;
 }
