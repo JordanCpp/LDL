@@ -11,3 +11,6 @@ target_link_libraries(Rect2u LDL)
 
 add_executable(Rect2i "Rect2i.cpp")
 target_link_libraries(Rect2i LDL)
+
+add_executable(BaseWindow "BaseWindow.cpp")
+target_link_libraries(BaseWindow LDL)

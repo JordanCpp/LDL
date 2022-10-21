@@ -10,7 +10,8 @@ include_directories("include")
 
 add_library(LDL STATIC
 "source/Core/TestEqual.cpp" 
-"source/Core/RuntimeError.cpp")
+"source/Core/RuntimeError.cpp"
+"source/Graphics/BaseWindow.cpp")
 
 if (WIN32)
   target_sources(LDL PRIVATE
