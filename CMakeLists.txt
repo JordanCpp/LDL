@@ -12,7 +12,8 @@ add_library(LDL STATIC
 "source/Core/TestEqual.cpp" 
 "source/Core/RuntimeError.cpp"
 "source/Graphics/BaseWindow.cpp"
-"source/Events/Eventer.cpp")
+"source/Events/Eventer.cpp"
+"source/Allocators/FixedLinear.cpp")
 
 if (WIN32)
   target_sources(LDL PRIVATE
