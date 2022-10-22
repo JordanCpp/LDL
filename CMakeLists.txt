@@ -11,8 +11,8 @@ include_directories("include")
 add_library(LDL STATIC
 "source/Core/TestEqual.cpp" 
 "source/Core/RuntimeError.cpp"
-"source/Graphics/BaseWindow.cpp"
-"source/Graphics/BaseRender.cpp"
+"source/Graphics/Base/BaseWindow.cpp"
+"source/Graphics/Base/BaseRender.cpp"
 "source/Graphics/Primitives/Color.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp")
