@@ -17,3 +17,6 @@ target_link_libraries(BaseWindow LDL)
 
 add_executable(Window "Window.cpp")
 target_link_libraries(Window LDL)
+
+add_executable(Color "Color.cpp")
+target_link_libraries(Color LDL)
