@@ -1,8 +1,8 @@
 #ifndef LDL_Graphics_BaseRender_hpp
 #define LDL_Graphics_BaseRender_hpp
 
-#include <LDL/Graphics/Color.hpp>
-#include <LDL/Graphics/Point2u.hpp>
+#include <LDL/Graphics/Primitives/Color.hpp>
+#include <LDL/Graphics/Primitives/Point2u.hpp>
 
 namespace LDL
 {

@@ -1,5 +1,5 @@
 #include <LDL/Core/TestEqual.hpp>
-#include <LDL/Graphics/Color.hpp>
+#include <LDL/Graphics/Primitives/Color.hpp>
 
 void Default()
 {

@@ -12,7 +12,7 @@ target_link_libraries(Rect2u LDL)
 add_executable(Rect2i "Rect2i.cpp")
 target_link_libraries(Rect2i LDL)
 
-add_executable(BaseWindow "BaseWindow.cpp")
+add_executable(BaseWindow "Base/BaseWindow.cpp")
 target_link_libraries(BaseWindow LDL)
 
 add_executable(Window "Window.cpp")
@@ -21,5 +21,5 @@ target_link_libraries(Window LDL)
 add_executable(Color "Color.cpp")
 target_link_libraries(Color LDL)
 
-add_executable(BaseRender "BaseRender.cpp")
+add_executable(BaseRender "Base/BaseRender.cpp")
 target_link_libraries(BaseRender LDL)

@@ -1,4 +1,4 @@
-#include <LDL/Graphics/BaseWindow.hpp>
+#include <LDL/Graphics/Base/BaseWindow.hpp>
 
 LDL::Graphics::BaseWindow::BaseWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title):
     _Pos(pos),

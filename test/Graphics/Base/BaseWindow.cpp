@@ -1,5 +1,5 @@
 #include <LDL/Core/TestEqual.hpp>
-#include <LDL/Graphics/BaseWindow.hpp>
+#include <LDL/Graphics/Base/BaseWindow.hpp>
 
 void Init()
 {

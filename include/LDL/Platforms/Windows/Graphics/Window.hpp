@@ -2,7 +2,7 @@
 #define LDL_Platforms_Windows_Graphics_Window_hpp
 
 #include <Windows.h>
-#include <LDL/Graphics/BaseWindow.hpp>
+#include <LDL/Graphics/Base/BaseWindow.hpp>
 #include <LDL/Events/Eventer.hpp>
 
 namespace LDL

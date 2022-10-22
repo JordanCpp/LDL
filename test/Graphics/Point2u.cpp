@@ -1,5 +1,5 @@
 #include <LDL/Core/TestEqual.hpp>
-#include <LDL/Graphics/Point2u.hpp>
+#include <LDL/Graphics/Primitives/Point2u.hpp>
 
 void DefaultInit()
 {

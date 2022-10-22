@@ -1,4 +1,4 @@
-#include <LDL/Graphics/Color.hpp>
+#include <LDL/Graphics/Primitives/Color.hpp>
 
 LDL::Graphics::Color::Color() :
 	_Red(0),
