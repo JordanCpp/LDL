@@ -20,3 +20,6 @@ target_link_libraries(Window LDL)
 
 add_executable(Color "Color.cpp")
 target_link_libraries(Color LDL)
+
+add_executable(BaseRender "BaseRender.cpp")
+target_link_libraries(BaseRender LDL)

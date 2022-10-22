@@ -12,6 +12,7 @@ add_library(LDL STATIC
 "source/Core/TestEqual.cpp" 
 "source/Core/RuntimeError.cpp"
 "source/Graphics/BaseWindow.cpp"
+"source/Graphics/BaseRender.cpp"
 "source/Graphics/Color.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp")
