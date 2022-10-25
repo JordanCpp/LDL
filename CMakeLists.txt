@@ -16,7 +16,8 @@ add_library(LDL STATIC
 "source/Graphics/CpuImage.cpp"
 "source/Graphics/Primitives/Color.cpp"
 "source/Events/Eventer.cpp"
-"source/Allocators/FixedLinear.cpp")
+"source/Allocators/FixedLinear.cpp"
+"source/Loaders/ImageBufferLoader.cpp")
 
 if (WIN32)
   target_sources(LDL PRIVATE
