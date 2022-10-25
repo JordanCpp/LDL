@@ -1,5 +1,5 @@
-#ifndef LDL_Platforms_Linux_Graphics_Window_hpp
-#define LDL_Platforms_Linux_Graphics_Window_hpp
+#ifndef LDL_Platforms_Linux_Graphics_MainWindow_hpp
+#define LDL_Platforms_Linux_Graphics_MainWindow_hpp
 
 namespace LDL
 {
@@ -7,7 +7,7 @@ namespace LDL
 	{
 		namespace Linux
 		{
-			class Window
+			class MainWindow
 			{
 			public:
 			private:

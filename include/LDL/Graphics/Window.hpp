@@ -2,12 +2,12 @@
 #define LDL_Graphics_Window_hpp
 
 #if (_WIN32 || _WIN64)
-#include <LDL/Platforms/Windows/Graphics/Window.hpp>
+#include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 namespace LDL
 {
 	namespace Graphics
 	{
-		typedef LDL::Graphics::Windows::Window Window;
+		typedef LDL::Graphics::Windows::MainWindow Window;
 	}
 }
 #else

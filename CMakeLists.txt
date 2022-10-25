@@ -21,7 +21,7 @@ add_library(LDL STATIC
 
 if (WIN32)
   target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/Window.cpp")
+  "source/Platforms/Windows/Graphics/MainWindow.cpp")
 elseif(UNIX AND NOT APPLE)
   target_sources(LDL PRIVATE
   "source/Platforms/Linux/Graphics/Window.cpp")

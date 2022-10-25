@@ -1,5 +1,5 @@
-#ifndef LDL_Platforms_Windows_Graphics_Window_hpp
-#define LDL_Platforms_Windows_Graphics_Window_hpp
+#ifndef LDL_Platforms_Windows_Graphics_MainWindow_hpp
+#define LDL_Platforms_Windows_Graphics_MainWindow_hpp
 
 #include <Windows.h>
 #include <LDL/Graphics/Base/BaseWindow.hpp>
@@ -11,11 +11,11 @@ namespace LDL
 	{
 		namespace Windows
 		{
-			class Window
+			class MainWindow
 			{
 			public:
-				Window(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title);
-				~Window();
+				MainWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title);
+				~MainWindow();
 				bool GetEvent(LDL::Events::Event& event);
 				bool WaitEvent(LDL::Events::Event& event);
 				void StopEvent();
