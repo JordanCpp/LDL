@@ -23,3 +23,6 @@ target_link_libraries(Color LDL)
 
 add_executable(BaseRender "Base/BaseRender.cpp")
 target_link_libraries(BaseRender LDL)
+
+add_executable(CpuImage "CpuImage.cpp")
+target_link_libraries(CpuImage LDL)
