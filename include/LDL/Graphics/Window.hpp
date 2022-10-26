@@ -1,7 +1,7 @@
 #ifndef LDL_Graphics_Window_hpp
 #define LDL_Graphics_Window_hpp
 
-#include <LDL/Graphics/GL1Window.hpp>
+#include <LDL/Graphics/GL1/GL1Window.hpp>
 
 namespace LDL
 {
