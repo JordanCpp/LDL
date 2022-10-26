@@ -75,7 +75,7 @@ LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::WndProc(HWND Hwnd, UINT Mes
     LRESULT result;
 
 #ifdef _WIN64
-    LDL::Graphics::Windows::Window* This = (LDL::Graphics::Windows::Window*)GetWindowLongPtr(Hwnd, GWLP_USERDATA);
+    LDL::Graphics::Windows::MainWindow* This = (LDL::Graphics::Windows::MainWindow*)GetWindowLongPtr(Hwnd, GWLP_USERDATA);
 #elif _WIN32
     LDL::Graphics::Windows::MainWindow* This = (LDL::Graphics::Windows::MainWindow*)GetWindowLong(Hwnd, GWL_USERDATA);
 #endif  
