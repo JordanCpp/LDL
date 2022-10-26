@@ -12,7 +12,7 @@ namespace LDL
 			class GL1Window
 			{
 			public:
-				GL1Window(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const char* title);
+				GL1Window(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title);
 				~GL1Window();
 				void Present();
 				bool GetEvent(LDL::Events::Event& event);
