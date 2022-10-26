@@ -3,6 +3,7 @@
 
 #include <LDL/Graphics/Base/BaseRender.hpp>
 #include <LDL/Graphics/Window.hpp>
+#include <LDL/Graphics/Image.hpp>
 
 namespace LDL
 {
@@ -20,6 +21,8 @@ namespace LDL
 			void Pixel(const LDL::Graphics::Point2u& pos);
 			void Fill(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
 			void Line(const LDL::Graphics::Point2u& pos1, const LDL::Graphics::Point2u& pos2);
+			void Draw(LDL::Graphics::GL1Image* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
+			void Draw(LDL::Graphics::GL1Image* image, const LDL::Graphics::Point2u& pos);
 		private:
 			LDL::Graphics::GL1Window* _Window;
 			LDL::Graphics::BaseRender _BaseRender;
