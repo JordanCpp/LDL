@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.8)
 
-add_subdirectory("01_WindowAndRender")
-add_subdirectory("02_Color")
-add_subdirectory("03_Line")
-add_subdirectory("04_Rect")
-add_subdirectory("05_Image")
+add_subdirectory("01_Gpu_WindowAndRender")
+add_subdirectory("02_Gpu_Color")
+add_subdirectory("03_Gpu_Line")
+add_subdirectory("04_Gpu_Rect")
+add_subdirectory("05_Gpu_Image")
