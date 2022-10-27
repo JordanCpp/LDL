@@ -14,6 +14,7 @@ add_library(LDL STATIC
 "source/Graphics/Base/BaseWindow.cpp"
 "source/Graphics/Base/BaseRender.cpp"
 "source/Graphics/CpuImage.cpp"
+"source/Graphics/CpuRender.cpp"
 "source/Graphics/Primitives/Color.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"

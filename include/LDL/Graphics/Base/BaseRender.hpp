@@ -15,7 +15,7 @@ namespace LDL
 			const LDL::Graphics::Point2u& Size();
 			const LDL::Graphics::Color& Color();
 			void Color(const LDL::Graphics::Color& color);
-		private:
+		public:
 			LDL::Graphics::Point2u _Size;
 			LDL::Graphics::Color _Current;
 		};

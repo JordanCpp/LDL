@@ -1,4 +1,4 @@
-#include <LDL/Graphics/CpuImage.hpp>
+#include <LDL/Graphics/Cpu/CpuImage.hpp>
 #include <cassert>
 
 LDL::Graphics::CpuImage::CpuImage(const LDL::Graphics::Point2u& size, size_t bytesPerPixel, uint8_t* pixels) :

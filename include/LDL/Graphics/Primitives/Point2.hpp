@@ -38,7 +38,7 @@ namespace LDL
 				_PosX = x;
 				_PosY = y;
 			}
-		private:
+		public:
 			TYPE _PosX;
 			TYPE _PosY;
 		};

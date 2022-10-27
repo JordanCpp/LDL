@@ -1,5 +1,5 @@
 #include <LDL/Core/TestEqual.hpp>
-#include <LDL/Graphics/CpuImage.hpp>
+#include <LDL/Graphics/Cpu/CpuImage.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 
 void Init()
