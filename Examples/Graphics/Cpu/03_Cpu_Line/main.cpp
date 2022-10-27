@@ -9,7 +9,7 @@ const size_t bytesBuffer = windowSize.PosX() * windowSize.PosY() * 4;
 int main()
 {
 	try
-	{ 
+	{
 		LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
 
 		uint8_t* pixels = (uint8_t*)allocator.Allocate(bytesBuffer);
@@ -24,10 +24,17 @@ int main()
 
 		while (window.GetEvent(report))
 		{
+			render.Color(LDL::Graphics::Color(0, 162, 232));
+			render.Clear();
+
 			if (report.Type == LDL::Events::IsQuit)
 			{
 				window.StopEvent();
 			}
+
+			render.Color(LDL::Graphics::Color(237, 28, 36));
+			render.Line(LDL::Graphics::Point2u(0, 0), render.Size());
+			render.Line(LDL::Graphics::Point2u(render.Size().PosX(), 0), LDL::Graphics::Point2u(0, render.Size().PosY()));
 
 			render.Present();
 		}
