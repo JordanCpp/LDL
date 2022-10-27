@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.8)
 
 project(LibLdl)
 
+set(LDL_GPU_SUPPORT_OPENGL1 true)
+
 if (MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
@@ -18,21 +20,29 @@ add_library(LDL STATIC
 "source/Graphics/Primitives/Color.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
-"source/Loaders/ImageBufferLoader.cpp"
-"source/Graphics/GL1/GL1Render.cpp"
-"source/Graphics/GL1/GL1Image.cpp")
+"source/Loaders/ImageBufferLoader.cpp")
+
+if (LDL_GPU_SUPPORT_OPENGL1)
+  target_sources(LDL PRIVATE
+  "source/Graphics/GL1/GL1Render.cpp"
+  "source/Graphics/GL1/GL1Image.cpp")
+endif() 
+
+if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)
+  target_sources(LDL PRIVATE
+  "source/Platforms/Windows/Graphics/GL1Window.cpp"
+  "source/Platforms/Windows/Graphics/CpuWindow.cpp")
+endif() 
 
 if (WIN32)
   target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/MainWindow.cpp"
-  "source/Platforms/Windows/Graphics/GL1Window.cpp"
-  "source/Platforms/Windows/Graphics/CpuWindow.cpp")
+  "source/Platforms/Windows/Graphics/MainWindow.cpp")
 elseif(UNIX AND NOT APPLE)
   target_sources(LDL PRIVATE
   "source/Platforms/Linux/Graphics/Window.cpp")
 endif() 
 
-if (WIN32)
+if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)
   target_link_libraries(LDL opengl32)
 endif()
 
