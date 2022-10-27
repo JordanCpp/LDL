@@ -10,7 +10,7 @@ namespace LDL
 		class CpuImage
 		{
 		public:
-			CpuImage();
+			CpuImage(const LDL::Graphics::Point2u& size, size_t bytesPerPixel, uint8_t* pixels);
 			const LDL::Graphics::Point2u& Size();
 			size_t BytesPerPixel();
 			uint8_t* Pixels();
