@@ -2,8 +2,8 @@
 #define LDL_Graphics_GL1Render_hpp
 
 #include <LDL/Graphics/Base/BaseRender.hpp>
-#include <LDL/Graphics/Window.hpp>
-#include <LDL/Graphics/Image.hpp>
+#include <LDL/Graphics/Gpu/GpuWindow.hpp>
+#include <LDL/Graphics/Gpu/GpuImage.hpp>
 
 namespace LDL
 {

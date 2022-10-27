@@ -1,4 +1,4 @@
-#include <LDL/Graphics/Render.hpp>
+#include <LDL/Graphics/Gpu/GpuRender.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageBufferLoader.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
@@ -8,9 +8,9 @@ int main()
 {
 	try
 	{
-		LDL::Graphics::Window window(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
+		LDL::Graphics::GpuWindow window(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
 
-		LDL::Graphics::Render render(&window);
+		LDL::Graphics::GpuRender render(&window);
 
 		LDL::Events::Event report;
 
@@ -18,7 +18,7 @@ int main()
 		LDL::Loaders::ImageBufferLoader loader(&allocator);
 
 		loader.Load("trehmachtovyiy-korabl-kartina-maslom-60x50_512x.jpg");
-		LDL::Graphics::Image image(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
+		LDL::Graphics::GpuImage image(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
 
 		while (window.GetEvent(report))
 		{

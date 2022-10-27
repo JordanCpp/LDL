@@ -1,7 +1,7 @@
 #include <iostream>
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Core/RuntimeError.hpp>
-#include <LDL/Graphics/Window.hpp>
+#include <LDL/Graphics/Gpu/GpuWindow.hpp>
 
 int main()
 {
@@ -9,7 +9,7 @@ int main()
 	{
 		const std::string title = "LDL Window title!";
 
-		LDL::Graphics::Window window(LDL::Graphics::Point2u(1, 2), LDL::Graphics::Point2u(640, 480), title);
+		LDL::Graphics::GpuWindow window(LDL::Graphics::Point2u(1, 2), LDL::Graphics::Point2u(640, 480), title);
 
 		LDL_TEST_EQUAL(window.Pos().PosX() == 1);
 		LDL_TEST_EQUAL(window.Pos().PosY() == 2);

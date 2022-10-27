@@ -1,4 +1,4 @@
-#include <LDL/Graphics/Render.hpp>
+#include <LDL/Graphics/Gpu/GpuRender.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <iostream>
 
@@ -6,9 +6,9 @@ int main()
 {
 	try
 	{
-		LDL::Graphics::Window window(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
+		LDL::Graphics::GpuWindow window(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
 
-		LDL::Graphics::Render render(&window);
+		LDL::Graphics::GpuRender render(&window);
 
 		LDL::Events::Event report;
 

@@ -15,7 +15,7 @@ target_link_libraries(Rect2i LDL)
 add_executable(BaseWindow "Base/BaseWindow.cpp")
 target_link_libraries(BaseWindow LDL)
 
-add_executable(Window "Window.cpp")
+add_executable(Window "GpuWindow.cpp")
 target_link_libraries(Window LDL)
 
 add_executable(Color "Color.cpp")
@@ -28,5 +28,5 @@ add_executable(CpuImage "CpuImage.cpp")
 target_link_libraries(CpuImage LDL)
 
 
-add_executable(Render "Render.cpp")
+add_executable(Render "GpuRender.cpp")
 target_link_libraries(Render LDL)
