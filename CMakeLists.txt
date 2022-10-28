@@ -39,8 +39,7 @@ endif()
 
 if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/GL1Window.cpp"
-  "source/Platforms/Windows/Graphics/CpuWindow.cpp")
+  "source/Platforms/Windows/Graphics/GL1Window.cpp")
 endif()
 
 if (LDL_GPU_SUPPORT_DIRECTX9)
@@ -56,7 +55,8 @@ endif()
 
 if (WIN32)
   target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/MainWindow.cpp")
+  "source/Platforms/Windows/Graphics/MainWindow.cpp"
+  "source/Platforms/Windows/Graphics/CpuWindow.cpp")
 elseif(UNIX AND NOT APPLE)
   target_sources(LDL PRIVATE
   "source/Platforms/Linux/Graphics/Window.cpp")
