@@ -64,17 +64,8 @@ void LDL::Loaders::ImageBufferLoader::Load(const std::string& path)
 
 	_Pixels = stbi_load(path.c_str(), &width, &height, &bytesPerPixel, 0);
 
-	if (width <= 0)
-		throw LDL::Core::RuntimeError("Width image <= 0");
-
-	if (height <= 0)
-		throw LDL::Core::RuntimeError("Height image <= 0");
-
-	if (bytesPerPixel <= 0)
-		throw LDL::Core::RuntimeError("Bytes per pixel image <= 0");
-
-	if (_Pixels == nullptr)
-		throw LDL::Core::RuntimeError("Pixels image not load");
+	if (width <= 0 || height <= 0 || bytesPerPixel <= 0 || _Pixels == nullptr)
+		throw LDL::Core::RuntimeError("stbi_load " + path + " failed");
 
 	_Size = LDL::Graphics::Point2u(width, height);
 	_BytesPerPixel = bytesPerPixel;
