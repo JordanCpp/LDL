@@ -1,6 +1,7 @@
 #include <iostream>
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Graphics/Gpu/GpuWindow.hpp>
 #include <LDL/Graphics/Gpu/GpuRender.hpp>
 
 int main()

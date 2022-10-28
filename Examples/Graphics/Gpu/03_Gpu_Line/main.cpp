@@ -1,3 +1,4 @@
+#include <LDL/Graphics/Gpu/GpuWindow.hpp>
 #include <LDL/Graphics/Gpu/GpuRender.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <iostream>

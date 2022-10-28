@@ -2,8 +2,11 @@ cmake_minimum_required(VERSION 3.8)
 
 project(LibLdl)
 
-set(LDL_GPU_SUPPORT_OPENGL1 true)
-#set(LDL_GPU_SUPPORT_DIRECTX9 true)
+#set(LDL_GPU_SUPPORT_OPENGL1 true)
+#add_definitions(-DLDL_GPU_SUPPORT_OPENGL1)
+
+set(LDL_GPU_SUPPORT_DIRECTX9 true)
+add_definitions(-DLDL_GPU_SUPPORT_DIRECTX9)
 
 if (MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
@@ -38,6 +41,17 @@ if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
   "source/Platforms/Windows/Graphics/GL1Window.cpp"
   "source/Platforms/Windows/Graphics/CpuWindow.cpp")
+endif()
+
+if (LDL_GPU_SUPPORT_DIRECTX9)
+  target_sources(LDL PRIVATE
+  "source/Graphics/DX9/DX9Render.cpp"
+  "source/Graphics/DX9/DX9Image.cpp")
+endif() 
+
+if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX9)
+  target_sources(LDL PRIVATE
+  "source/Platforms/Windows/Graphics/DX9Window.cpp")
 endif() 
 
 if (WIN32)
@@ -50,6 +64,10 @@ endif()
 
 if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)
   target_link_libraries(LDL opengl32)
+endif()
+
+if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX9)
+  target_link_libraries(LDL d3d9)
 endif()
 
 add_subdirectory("test")
