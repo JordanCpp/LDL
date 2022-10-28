@@ -158,11 +158,14 @@ bool LDL::Graphics::Windows::MainWindow::WaitEvent(LDL::Events::Event& event)
 
     if (_Eventer.Running())
     {
-        if ((result = GetMessage(&_MSG, _HWND, NULL, NULL)) != 0)
+        result = GetMessage(&_MSG, _HWND, 0, 0);
+        
+        if (result == -1)
         {
-            if (result == -1)
-                throw LDL::Core::RuntimeError("((result = GetMessage(&_MSG, _HWND, NULL, NULL)) != 0)");
-
+            throw LDL::Core::RuntimeError("((result = GetMessage(&_MSG, _HWND, NULL, NULL)) != 0)");
+        }
+        else
+        {
             _Eventer.Pop(event);
 
             TranslateMessage(&_MSG);
