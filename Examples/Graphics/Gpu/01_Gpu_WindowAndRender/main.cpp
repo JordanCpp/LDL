@@ -15,12 +15,14 @@ int main()
 
 		while (window.GetEvent(report))
 		{
+			render.Begin();
+
 			if (report.Type == LDL::Events::IsQuit)
 			{
 				window.StopEvent();
 			}
 
-			render.Present();
+			render.End();
 		}
 	}
 	catch (const LDL::Core::RuntimeError& error)

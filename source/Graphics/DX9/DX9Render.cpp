@@ -52,6 +52,22 @@ LDL::Graphics::DX9Render::~DX9Render()
     }
 }
 
+void LDL::Graphics::DX9Render::Begin()
+{
+    HRESULT result = _Direct3DDevice->TestCooperativeLevel();
+
+    if (result == D3DERR_DEVICELOST)
+        throw LDL::Core::RuntimeError("TestCooperativeLevel");
+
+    _Direct3DDevice->BeginScene();
+}
+
+void LDL::Graphics::DX9Render::End()
+{
+    _Direct3DDevice->EndScene();
+    _Direct3DDevice->Present(NULL, NULL, NULL, NULL);
+}
+
 const LDL::Graphics::Point2u& LDL::Graphics::DX9Render::Size()
 {
 	return _BaseRender.Size();
@@ -70,18 +86,6 @@ void LDL::Graphics::DX9Render::Clear()
 void LDL::Graphics::DX9Render::Color(const LDL::Graphics::Color& color)
 {
 	_BaseRender.Color(color);
-}
-
-void LDL::Graphics::DX9Render::Present()
-{
-    HRESULT result = _Direct3DDevice->TestCooperativeLevel();
-
-    if (result == D3DERR_DEVICELOST)
-        throw LDL::Core::RuntimeError("TestCooperativeLevel");
-
-    _Direct3DDevice->BeginScene();
-    _Direct3DDevice->EndScene();
-    _Direct3DDevice->Present(NULL, NULL, NULL, NULL);
 }
 
 void LDL::Graphics::DX9Render::Pixel(const LDL::Graphics::Point2u& pos)

@@ -5,11 +5,20 @@ LDL::Graphics::GL1Render::GL1Render(LDL::Graphics::GL1Window* window) :
 	_Window(window),
 	_BaseRender(_Window->Size())
 {
+}
+
+void LDL::Graphics::GL1Render::Begin()
+{
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(0.0f, (GLdouble)_Window->Size().PosX(), (GLdouble)_Window->Size().PosY(), 0.0f, 0.0f, 1.0f);
 	glMatrixMode(GL_MODELVIEW);
 	glEnable(GL_TEXTURE_2D);
+}
+
+void LDL::Graphics::GL1Render::End()
+{
+	_Window->Present();
 }
 
 const LDL::Graphics::Point2u& LDL::Graphics::GL1Render::Size()
@@ -36,11 +45,6 @@ void LDL::Graphics::GL1Render::Clear()
 void LDL::Graphics::GL1Render::Color(const LDL::Graphics::Color& color)
 {
 	_BaseRender.Color(color);
-}
-
-void LDL::Graphics::GL1Render::Present()
-{
-	_Window->Present();
 }
 
 void LDL::Graphics::GL1Render::Pixel(const LDL::Graphics::Point2u& pos)

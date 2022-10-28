@@ -17,6 +17,8 @@ int main()
 
 		while (window.GetEvent(report))
 		{
+			render.Begin();
+
 			render.Clear();
 
 			if (report.Type == LDL::Events::IsQuit)
@@ -24,7 +26,7 @@ int main()
 				window.StopEvent();
 			}
 
-			render.Present();
+			render.End();
 		}
 	}
 	catch (const LDL::Core::RuntimeError& error)

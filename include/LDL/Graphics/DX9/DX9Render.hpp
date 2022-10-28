@@ -18,11 +18,12 @@ namespace LDL
 		public:
 			DX9Render(LDL::Graphics::DX9Window* window);
 			~DX9Render();
+			void Begin();
+			void End();
 			const LDL::Graphics::Point2u& Size();
 			const LDL::Graphics::Color& Color();
 			void Clear();
 			void Color(const LDL::Graphics::Color& color);
-			void Present();
 			void Pixel(const LDL::Graphics::Point2u& pos);
 			void Fill(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
 			void Line(const LDL::Graphics::Point2u& pos1, const LDL::Graphics::Point2u& pos2);

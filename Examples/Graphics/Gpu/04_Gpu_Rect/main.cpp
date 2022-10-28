@@ -15,6 +15,8 @@ int main()
 
 		while (window.GetEvent(report))
 		{
+			render.Begin();
+
 			render.Color(LDL::Graphics::Color(0, 162, 232));
 			render.Clear();
 
@@ -26,7 +28,7 @@ int main()
 			render.Color(LDL::Graphics::Color(237, 28, 36));
 			render.Fill(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(400, 300));
 
-			render.Present();
+			render.End();
 		}
 	}
 	catch (const LDL::Core::RuntimeError& error)
