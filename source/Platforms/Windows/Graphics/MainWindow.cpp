@@ -1,7 +1,7 @@
 #include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 
-const char AppName[] = "Lt::Graphics::MainWindow";
+static const char AppName[] = "MainWindow";
 
 LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 {
@@ -92,7 +92,13 @@ LDL::Graphics::Windows::MainWindow::MainWindow(const LDL::Graphics::Point2u& pos
     _BaseWindow(pos, size, title)
 {
     ZeroMemory(&_WNDCLASS, sizeof(WNDCLASS));
+    ZeroMemory(&_HINSTANCE, sizeof(HINSTANCE));
     ZeroMemory(&_MSG, sizeof(MSG));
+    ZeroMemory(&_ATOM, sizeof(ATOM));
+    ZeroMemory(&_HWND, sizeof(HWND));
+    ZeroMemory(&_HDC, sizeof(HDC));
+
+    _HINSTANCE = GetModuleHandle(NULL);
 
     _WNDCLASS.hInstance = _HINSTANCE;
     _WNDCLASS.lpszClassName = AppName;
