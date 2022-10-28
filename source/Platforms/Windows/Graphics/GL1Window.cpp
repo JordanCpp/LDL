@@ -8,9 +8,10 @@ LDL::Graphics::Windows::GL1Window::GL1Window(const Point2u& pos, const Point2u& 
 
     ZeroMemory(&pfd, sizeof(PIXELFORMATDESCRIPTOR));
 
-    int format = 0;
-
     _Window._HDC = GetDC(_Window._HWND);
+
+    if (_Window._HDC == NULL)
+        throw LDL::Core::RuntimeError("GetDC failed");
 
     pfd.nSize = sizeof(pfd);
     pfd.nVersion = 1;
@@ -20,14 +21,21 @@ LDL::Graphics::Windows::GL1Window::GL1Window(const Point2u& pos, const Point2u& 
     pfd.cDepthBits = 16;
     pfd.iLayerType = PFD_MAIN_PLANE;
 
-    format = ChoosePixelFormat(_Window._HDC, &pfd);
+    int format = ChoosePixelFormat(_Window._HDC, &pfd);
 
     if (format == 0)
-        throw LDL::Core::RuntimeError("ChoosePixelFormat");
+        throw LDL::Core::RuntimeError("ChoosePixelFormat failed");
 
-    SetPixelFormat(_Window._HDC, format, &pfd);
+    if (!SetPixelFormat(_Window._HDC, format, &pfd))
+        throw LDL::Core::RuntimeError("SetPixelFormat failed");
+
     _HGLRC = wglCreateContext(_Window._HDC);
-    wglMakeCurrent(_Window._HDC, _HGLRC);
+
+    if (_HGLRC == NULL)
+        throw LDL::Core::RuntimeError("wglCreateContext failed");
+
+    if (!wglMakeCurrent(_Window._HDC, _HGLRC))
+        throw LDL::Core::RuntimeError("wglMakeCurrent failed");
 }
 
 LDL::Graphics::Windows::GL1Window::~GL1Window()
@@ -39,7 +47,8 @@ LDL::Graphics::Windows::GL1Window::~GL1Window()
 
 void LDL::Graphics::Windows::GL1Window::Present()
 {
-    SwapBuffers(_Window._HDC);
+    if (!SwapBuffers(_Window._HDC))
+        throw LDL::Core::RuntimeError("SwapBuffers failed");
 }
 
 const LDL::Graphics::Point2u& LDL::Graphics::Windows::GL1Window::Size()
