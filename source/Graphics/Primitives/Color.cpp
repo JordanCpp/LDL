@@ -16,13 +16,13 @@ LDL::Graphics::Color::Color() :
 
 LDL::Graphics::Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha) :
 #if (_WIN32 || _WIN64)
-	_Blue(0),
-	_Green(0),
-	_Red(0),
+	_Blue(blue),
+	_Green(green),
+	_Red(red),
 #else
-	_Red(0),
-	_Green(0),
-	_Blue(0),
+	_Red(red),
+	_Green(green),
+	_Blue(blue),
 #endif
 	_Alpha(alpha)
 {
