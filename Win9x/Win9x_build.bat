@@ -1,7 +1,7 @@
 call "C:\Downloads\codeblocks-12.11mingw-setup\MinGW\mingwvars.bat"
 
 cd ../
-g++ -O3 -std=c++11 -o Win9x\%1 -DLDL_GPU_SUPPORT_OPENGL1 %2 ^
+g++ -Wall -O3 -std=c++11 -o Win9x\%1 -DLDL_GPU_SUPPORT_OPENGL1 %2 ^
 source\Allocators\*.cpp ^
 source\Core\*.cpp ^
 source\Events\*.cpp ^

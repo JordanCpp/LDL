@@ -36,7 +36,6 @@ void LDL::Graphics::GL1Render::Clear()
 	GLclampf r = _BaseRender.Color().Red() / 255.0f;
 	GLclampf g = _BaseRender.Color().Green() / 255.0f;
 	GLclampf b = _BaseRender.Color().Blue() / 255.0f;
-	GLclampf a = _BaseRender.Color().Alpha() / 255.0f;
 
 	glClearColor(r, g, b, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
