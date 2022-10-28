@@ -13,7 +13,7 @@ namespace LDL
 			GL1Image(const LDL::Graphics::Point2u & size, size_t bytesPerPixel, uint8_t* pixels);
 			~GL1Image();
 			const LDL::Graphics::Point2u& Size();
-			const size_t Id();
+			size_t Id();
 		private:
 			size_t _Id;
 			LDL::Graphics::Point2u _Size;

@@ -4,7 +4,9 @@
 LDL::Graphics::Windows::GL1Window::GL1Window(const Point2u& pos, const Point2u& size, const std::string& title) :
     _Window(pos, size, title)
 {
-    PIXELFORMATDESCRIPTOR pfd = { 0 };
+    PIXELFORMATDESCRIPTOR pfd;
+
+    ZeroMemory(&pfd, sizeof(PIXELFORMATDESCRIPTOR));
 
     int format = 0;
 

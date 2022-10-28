@@ -39,7 +39,7 @@ const LDL::Graphics::Point2u& LDL::Graphics::GL1Image::Size()
 	return _Size;
 }
 
-const size_t LDL::Graphics::GL1Image::Id()
+size_t LDL::Graphics::GL1Image::Id()
 {
 	return _Id;
 }
