@@ -2,6 +2,7 @@
 #define LDL_Allocators_Allocator_hpp
 
 #include <cstdint>
+#include <cstddef>
 
 namespace LDL
 {

@@ -23,7 +23,7 @@ namespace LDL
 				const LDL::Graphics::Point2u& Pos();
 			private:
 				LDL::Graphics::Windows::MainWindow _Window;
-				BITMAPINFO _BITMAPINFO = { 0 };
+				BITMAPINFO _BITMAPINFO;
 			};
 		}
 	}

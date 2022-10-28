@@ -2,6 +2,7 @@
 #define LDL_Events_Event_hpp
 
 #include <cstdint>
+#include <cstddef>
 
 namespace LDL
 {

@@ -2,6 +2,7 @@
 #define LDL_Graphics_Point2_hpp
 
 #include <cstdint>
+#include <cstddef>
 
 namespace LDL
 {

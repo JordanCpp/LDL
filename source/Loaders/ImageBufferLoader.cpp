@@ -8,6 +8,7 @@ static LDL::Allocators::Allocator* StbImageAllocator;
 #define STBI_FREE(p)           StbImageAllocator->Deallocate(p) 
 
 #define STB_IMAGE_IMPLEMENTATION
+#define STBI_NO_THREAD_LOCALS
 #include "../dependencies/stb/stb_image.h"  
 
 LDL::Loaders::ImageBufferLoader::ImageBufferLoader(LDL::Allocators::Allocator* allocator) :

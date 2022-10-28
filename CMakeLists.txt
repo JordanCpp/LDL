@@ -2,11 +2,11 @@ cmake_minimum_required(VERSION 3.8)
 
 project(LibLdl)
 
-#set(LDL_GPU_SUPPORT_OPENGL1 true)
-#add_definitions(-DLDL_GPU_SUPPORT_OPENGL1)
+set(LDL_GPU_SUPPORT_OPENGL1 true)
+add_definitions(-DLDL_GPU_SUPPORT_OPENGL1)
 
-set(LDL_GPU_SUPPORT_DIRECTX9 true)
-add_definitions(-DLDL_GPU_SUPPORT_DIRECTX9)
+#set(LDL_GPU_SUPPORT_DIRECTX9 true)
+#add_definitions(-DLDL_GPU_SUPPORT_DIRECTX9)
 
 if (MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
