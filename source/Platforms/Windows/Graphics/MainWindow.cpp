@@ -111,12 +111,12 @@ LDL::Graphics::Windows::MainWindow::MainWindow(const LDL::Graphics::Point2u& pos
     _ATOM = RegisterClass(&_WNDCLASS);
 
     if (_ATOM == INVALID_ATOM)
-        throw LDL::Core::RuntimeError("ATOM == INVALID_ATOM");
+        throw LDL::Core::RuntimeError("RegisterClass failed");
 
     _HWND = CreateWindow(AppName, "", WS_OVERLAPPEDWINDOW, (int)_BaseWindow.Pos().PosX(), (int)_BaseWindow.Pos().PosY(), (int)_BaseWindow.Size().PosX(), (int)_BaseWindow.Size().PosY(), 0, 0, _HINSTANCE, 0);
 
     if (_HWND == INVALID_HANDLE_VALUE)
-        throw LDL::Core::RuntimeError("HWND == INVALID_HANDLE_VALUE");
+        throw LDL::Core::RuntimeError("CreateWindow failed");
 
 #ifdef _WIN64
     SetWindowLongPtr(_HWND, GWLP_WNDPROC, (LONG_PTR)WndProc);
@@ -129,7 +129,7 @@ LDL::Graphics::Windows::MainWindow::MainWindow(const LDL::Graphics::Point2u& pos
     _HDC = GetDC(_HWND);
 
     if (_HDC == INVALID_HANDLE_VALUE)
-        throw LDL::Core::RuntimeError("HDC == INVALID_HANDLE_VALUE");
+        throw LDL::Core::RuntimeError("GetDC failed");
 
     Title(title);
     ShowWindow(_HWND, SW_SHOW);
@@ -168,7 +168,7 @@ bool LDL::Graphics::Windows::MainWindow::WaitEvent(LDL::Events::Event& event)
         
         if (result == -1)
         {
-            throw LDL::Core::RuntimeError("((result = GetMessage(&_MSG, _HWND, NULL, NULL)) != 0)");
+            throw LDL::Core::RuntimeError("GetMessage failed");
         }
         else
         {

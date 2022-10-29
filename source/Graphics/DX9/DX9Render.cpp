@@ -8,7 +8,7 @@ LDL::Graphics::DX9Render::DX9Render(LDL::Graphics::DX9Window* window) :
     _Direct3D = Direct3DCreate9(D3D_SDK_VERSION);
 
     if (_Direct3D == NULL)
-        throw LDL::Core::RuntimeError("Direct3DCreate9");
+        throw LDL::Core::RuntimeError("Direct3DCreate9 failed");
 
     HRESULT result = NULL;
 
@@ -17,7 +17,7 @@ LDL::Graphics::DX9Render::DX9Render(LDL::Graphics::DX9Window* window) :
     result = _Direct3D->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &displayMode);
 
     if (FAILED(result))
-        throw LDL::Core::RuntimeError("GetAdapterDisplayMode");
+        throw LDL::Core::RuntimeError("GetAdapterDisplayMode failed");
 
     D3DPRESENT_PARAMETERS parameters = { 0 };
 
@@ -34,7 +34,7 @@ LDL::Graphics::DX9Render::DX9Render(LDL::Graphics::DX9Window* window) :
     result = _Direct3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, _Window->Hwnd(), D3DCREATE_HARDWARE_VERTEXPROCESSING, &parameters, &_Direct3DDevice);
 
     if (FAILED(result))
-        throw LDL::Core::RuntimeError("CreateDevice");
+        throw LDL::Core::RuntimeError("CreateDevice failed");
 }
 
 LDL::Graphics::DX9Render::~DX9Render()
@@ -57,7 +57,7 @@ void LDL::Graphics::DX9Render::Begin()
     HRESULT result = _Direct3DDevice->TestCooperativeLevel();
 
     if (result == D3DERR_DEVICELOST)
-        throw LDL::Core::RuntimeError("TestCooperativeLevel");
+        throw LDL::Core::RuntimeError("TestCooperativeLevel failed");
 
     _Direct3DDevice->BeginScene();
 }
