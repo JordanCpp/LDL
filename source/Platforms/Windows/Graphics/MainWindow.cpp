@@ -99,6 +99,9 @@ LDL::Graphics::Windows::MainWindow::MainWindow(const LDL::Graphics::Point2u& pos
     ZeroMemory(&_HDC, sizeof(HDC));
 
     _HINSTANCE = GetModuleHandle(NULL);
+    
+    if (_HINSTANCE == NULL)
+        throw LDL::Core::RuntimeError("GetModuleHandle failed");
 
     _WNDCLASS.hInstance = _HINSTANCE;
     _WNDCLASS.lpszClassName = AppName;
