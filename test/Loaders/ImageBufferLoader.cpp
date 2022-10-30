@@ -17,7 +17,7 @@ void Init()
 	LDL_TEST_EQUAL(imageBufferLoader.Pixels()        == nullptr);
 }
 
-void Load()
+void LoadJpg()
 {
 	LDL::Allocators::FixedLinear allocator(bytes);
 	LDL::Loaders::ImageBufferLoader imageBufferLoader(&allocator);
@@ -29,6 +29,20 @@ void Load()
 	LDL_TEST_EQUAL(imageBufferLoader.Size().PosY()   == 438);
 	LDL_TEST_EQUAL(imageBufferLoader.Pixels()        != nullptr);
 	LDL_TEST_EQUAL(allocator.UsedBytes()             >= 600 * 438 * 3);
+}
+
+void LoadPng()
+{
+	LDL::Allocators::FixedLinear allocator(bytes);
+	LDL::Loaders::ImageBufferLoader imageBufferLoader(&allocator);
+
+	LDL_TEST_EXCEPTION(imageBufferLoader.Load("TestFiles/Gorgosaurus_BW_transparent.png"));
+
+	LDL_TEST_EQUAL(imageBufferLoader.BytesPerPixel() == 4);
+	LDL_TEST_EQUAL(imageBufferLoader.Size().PosX() == 700);
+	LDL_TEST_EQUAL(imageBufferLoader.Size().PosY() == 476);
+	LDL_TEST_EQUAL(imageBufferLoader.Pixels() != nullptr);
+	LDL_TEST_EQUAL(allocator.UsedBytes() >= 700 * 476 * 4);
 }
 
 void Clear()
@@ -50,7 +64,8 @@ void Clear()
 int main()
 {
 	Init();
-	Load();
+	LoadJpg();
+	LoadPng();
 	Clear();
 
 	return 0;
