@@ -12,8 +12,8 @@ namespace LDL
 		public:
 			GL1Screen(const LDL::Graphics::Point2u& size);
 			~GL1Screen();
-			void LDL::Graphics::GL1Screen::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
-			void LDL::Graphics::GL1Screen::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos);
+			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
+			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos);
 		private:
 			LDL::Graphics::Point2u _Size;
 			size_t _Screen;
