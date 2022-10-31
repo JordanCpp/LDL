@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_Loaders_ImageBufferLoader_hpp
-#define LDL_Graphics_Loaders_ImageBufferLoader_hpp
+#ifndef LDL_Loaders_ImageBufferLoader_hpp
+#define LDL_Loaders_ImageBufferLoader_hpp
 
 #include <LDL/Graphics/Primitives/Point2u.hpp>
 #include <LDL/Allocators/Allocator.hpp>

@@ -8,7 +8,6 @@ LDL::Time::FpsCounter::FpsCounter() :
 {
 }
 
-
 void LDL::Time::FpsCounter::Start()
 {
 	_Current = clock();
