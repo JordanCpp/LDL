@@ -3,7 +3,8 @@
 
 LDL::Graphics::GL1Render::GL1Render(LDL::Graphics::GL1Window* window) :
 	_Window(window),
-	_BaseRender(_Window->Size())
+	_BaseRender(_Window->Size()),
+	_Screen(_Window->Size())
 {
 }
 
@@ -120,4 +121,14 @@ void LDL::Graphics::GL1Render::Draw(LDL::Graphics::GL1Image* image, const LDL::G
 void LDL::Graphics::GL1Render::Draw(LDL::Graphics::GL1Image* image, const LDL::Graphics::Point2u& pos)
 {
 	Draw(image, pos, image->Size());
+}
+
+void LDL::Graphics::GL1Render::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+{
+	_Screen.Draw(image, pos, size);
+}
+
+void LDL::Graphics::GL1Render::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos)
+{
+	_Screen.Draw(image, pos);
 }

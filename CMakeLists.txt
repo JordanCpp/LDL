@@ -36,7 +36,8 @@ add_library(LDL STATIC
 if (LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
   "source/Graphics/GL1/GL1Render.cpp"
-  "source/Graphics/GL1/GL1Image.cpp")
+  "source/Graphics/GL1/GL1Image.cpp"
+  "source/Graphics/GL1/GL1Screen.cpp")
 endif() 
 
 if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)
