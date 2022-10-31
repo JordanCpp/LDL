@@ -5,6 +5,7 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++11 -o Win9x\%1 -DLDL_GPU_SUPPORT_OPENGL1
 source\Allocators\*.cpp ^
 source\Core\*.cpp ^
 source\Events\*.cpp ^
+source\Time\*.cpp ^
 source\Platforms\Windows\Graphics\MainWindow.cpp   ^
 source\Platforms\Windows\Graphics\CpuWindow.cpp   ^
 source\Platforms\Windows\Graphics\GL1Window.cpp    ^

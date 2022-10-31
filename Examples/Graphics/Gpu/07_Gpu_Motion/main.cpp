@@ -4,6 +4,8 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageBufferLoader.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
+#include <LDL/Time/FpsCounter.hpp>
+#include <LDL/Core/IntegerToString.hpp>
 #include <iostream>
 
 int main()
@@ -25,8 +27,13 @@ int main()
 		size_t x = 0;
 		size_t y = 0;
 
+		LDL::Time::FpsCounter fpsCounter;
+		LDL::Core::IntegerToString convert;
+
 		while (window.GetEvent(report))
 		{
+			fpsCounter.Start();
+
 			render.Begin();
 
 			render.Color(LDL::Graphics::Color(0, 162, 232));
@@ -46,6 +53,16 @@ int main()
 			render.Draw(&image, LDL::Graphics::Point2u(x, y), LDL::Graphics::Point2u(150, 150));
 
 			render.End();
+
+			if (fpsCounter.Calc())
+			{
+				if (convert.Convert(fpsCounter.Fps()))
+				{
+					window.Title(convert.Result());
+				}
+
+				fpsCounter.Clear();
+			}
 		}
 	}
 	catch (const LDL::Core::RuntimeError& error)

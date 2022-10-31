@@ -22,6 +22,7 @@ endif()
 add_library(LDL STATIC
 "source/Core/TestEqual.cpp" 
 "source/Core/RuntimeError.cpp"
+"source/Core/IntegerToString.cpp"
 "source/Graphics/Base/BaseWindow.cpp"
 "source/Graphics/Base/BaseRender.cpp"
 "source/Graphics/CpuImage.cpp"
@@ -29,7 +30,8 @@ add_library(LDL STATIC
 "source/Graphics/Primitives/Color.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
-"source/Loaders/ImageBufferLoader.cpp")
+"source/Loaders/ImageBufferLoader.cpp"
+"source/Time/FpsCounter.cpp")
 
 if (LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
