@@ -2,6 +2,8 @@
 #include <LDL/Graphics/Cpu/CpuRender.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <iostream>
+#include <LDL/Time/FpsCounter.hpp>
+#include <LDL/Core/IntegerToString.hpp>
 
 const LDL::Graphics::Point2u windowSize = LDL::Graphics::Point2u(800, 600);
 const size_t bytesBuffer = windowSize.PosX() * windowSize.PosY() * 4;
@@ -22,10 +24,15 @@ int main()
 
 		LDL::Events::Event report;
 
+		LDL::Time::FpsCounter fpsCounter;
+		LDL::Core::IntegerToString convert;
+
 		render.Color(LDL::Graphics::Color(0, 162, 232));
 
 		while (window.GetEvent(report))
 		{
+			fpsCounter.Start();
+
 			render.Clear();
 
 			if (report.Type == LDL::Events::IsQuit)
@@ -34,6 +41,16 @@ int main()
 			}
 
 			render.Present();
+
+			if (fpsCounter.Calc())
+			{
+				if (convert.Convert(fpsCounter.Fps()))
+				{
+					window.Title(convert.Result());
+				}
+
+				fpsCounter.Clear();
+			}
 		}
 	}
 	catch (const LDL::Core::RuntimeError& error)
