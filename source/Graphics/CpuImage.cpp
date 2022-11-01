@@ -26,3 +26,10 @@ uint8_t* LDL::Graphics::CpuImage::Pixels()
 {
 	return _Pixels;
 }
+
+LDL::Graphics::Color LDL::Graphics::CpuImage::Pixel(const LDL::Graphics::Point2u& pos)
+{
+	size_t i = ((Size().PosX() * pos.PosY()) + pos.PosX()) * _BytesPerPixel;
+
+	return LDL::Graphics::Color(_Pixels[i], _Pixels[i + 1], _Pixels[i + 2]);
+}

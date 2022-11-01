@@ -2,6 +2,7 @@
 #define LDL_Graphics_CpuImage_hpp
 
 #include <LDL/Graphics/Primitives/Point2u.hpp>
+#include <LDL/Graphics/Primitives/Color.hpp>
 
 namespace LDL
 {
@@ -14,6 +15,7 @@ namespace LDL
 			const LDL::Graphics::Point2u& Size();
 			size_t BytesPerPixel();
 			uint8_t* Pixels();
+			LDL::Graphics::Color LDL::Graphics::CpuImage::Pixel(const LDL::Graphics::Point2u& pos);
 		private:
 			LDL::Graphics::Point2u _Size;
 			size_t _BytesPerPixel;

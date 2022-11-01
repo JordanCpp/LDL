@@ -28,6 +28,7 @@ add_library(LDL STATIC
 "source/Graphics/CpuImage.cpp"
 "source/Graphics/CpuRender.cpp"
 "source/Graphics/Primitives/Color.cpp"
+"source/Graphics/PixelConverter.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
 "source/Loaders/ImageBufferLoader.cpp"

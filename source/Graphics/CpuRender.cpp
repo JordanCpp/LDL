@@ -160,3 +160,21 @@ size_t LDL::Graphics::CpuRender::BytesPerPixel()
 {
 	return _Canvas->BytesPerPixel();
 }
+
+void LDL::Graphics::CpuRender::Draw(LDL::Graphics::CpuImage& image, const LDL::Graphics::Point2u& pos)
+{
+	uint8_t* dstPixels = Pixels();
+	uint8_t* srcPixels = image.Pixels();
+
+	size_t pitch = image.Size().PosX() * 4;
+		
+	size_t srcStride = image.Size().PosX() * 4;
+	size_t dstStride = _BaseRender.Size().PosX() * 4;
+
+	for (size_t i = 0; i < _BaseRender.Size().PosY(); i++)
+	{
+		std::memcpy(dstPixels, srcPixels, pitch);
+		srcPixels += srcStride;
+		dstPixels += dstStride;
+	}
+}
