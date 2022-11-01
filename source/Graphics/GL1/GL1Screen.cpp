@@ -7,7 +7,7 @@ LDL::Graphics::GL1Screen::GL1Screen(const LDL::Graphics::Point2u& size) :
 {
 	glGenTextures(1, (GLuint*)&_Screen);
 
-	glBindTexture(GL_TEXTURE_2D, _Screen);
+	glBindTexture(GL_TEXTURE_2D, (GLuint)_Screen);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -22,7 +22,7 @@ LDL::Graphics::GL1Screen::~GL1Screen()
 
 void LDL::Graphics::GL1Screen::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
 {
-	glBindTexture(GL_TEXTURE_2D, _Screen);
+	glBindTexture(GL_TEXTURE_2D, (GLuint)_Screen);
 
 	GLint x = (GLint)pos.PosX();
 	GLint y = (GLint)pos.PosY();
@@ -40,14 +40,14 @@ void LDL::Graphics::GL1Screen::Draw(LDL::Graphics::CpuImage* image, const LDL::G
 	glVertex2i(x + w, y + h);
 	glEnd();
 
-	int format = 0;
+	GLenum format = 0;
 
 	if (image->BytesPerPixel() == 4)
 		format = GL_RGBA;
 	else
 		format = GL_RGB;
 
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, image->Size().PosX(), image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels());
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, (GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels());
 }
 
 void LDL::Graphics::GL1Screen::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos)
