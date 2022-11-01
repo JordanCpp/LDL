@@ -15,10 +15,9 @@ void LDL::Time::FpsCounter::Start()
 
 bool LDL::Time::FpsCounter::Calc()
 {
-	_Delta = clock() - _Current;
+	_Fps++;
 
-	if (_Delta > 0)
-		_Fps = CLOCKS_PER_SEC / _Delta;
+	_Delta = clock() - _Current;
 
 	_Old += _Delta;
 
