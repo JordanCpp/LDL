@@ -2,6 +2,8 @@
 #include <LDL/Graphics/Gpu/GpuRender.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <iostream>
+#include <LDL/Time/FpsCounter.hpp>
+#include <LDL/Core/IntegerToString.hpp>
 
 int main()
 {
@@ -13,8 +15,13 @@ int main()
 
 		LDL::Events::Event report;
 
+		LDL::Time::FpsCounter fpsCounter;
+		LDL::Core::IntegerToString convert;
+
 		while (window.GetEvent(report))
 		{
+			fpsCounter.Start();
+
 			render.Begin();
 
 			render.Color(LDL::Graphics::Color(0, 162, 232));
@@ -30,6 +37,16 @@ int main()
 			render.Line(LDL::Graphics::Point2u(render.Size().PosX(), 0), LDL::Graphics::Point2u(0, render.Size().PosY()));
 
 			render.End();
+
+			if (fpsCounter.Calc())
+			{
+				if (convert.Convert(fpsCounter.Fps()))
+				{
+					window.Title(convert.Result());
+				}
+
+				fpsCounter.Clear();
+			}
 		}
 	}
 	catch (const LDL::Core::RuntimeError& error)
