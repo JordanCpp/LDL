@@ -1,7 +1,7 @@
 #ifndef LDL_Time_FpsCounter_hpp
 #define LDL_Time_FpsCounter_hpp
 
-#include <ctime>
+#include <LDL/Time/Ticks.hpp>
 
 namespace LDL
 {
@@ -16,10 +16,10 @@ namespace LDL
 			size_t Fps();
 			void Clear();
 		private:
-			clock_t _Current;
-			clock_t	_Delta;
-			clock_t	_Old;
-			clock_t _Fps;
+			size_t _Current;
+			size_t	_Delta;
+			size_t	_Old;
+			size_t _Fps;
 		};
 	}
 }

@@ -7,6 +7,7 @@
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/IntegerToString.hpp>
 #include <iostream>
+#include <LDL/Time/FpsLimiter.hpp>
 
 int main()
 {
@@ -26,9 +27,12 @@ int main()
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
+		LDL::Time::FpsLimiter fpsLimiter;
 
 		while (window.GetEvent(report))
 		{
+			fpsLimiter.Mark();
+
 			fpsCounter.Start();
 
 			render.Begin();
@@ -45,6 +49,8 @@ int main()
 
 			render.End();
 
+			fpsLimiter.Throttle();
+
 			if (fpsCounter.Calc())
 			{
 				if (convert.Convert(fpsCounter.Fps()))
@@ -54,6 +60,8 @@ int main()
 
 				fpsCounter.Clear();
 			}
+
+			
 		}
 	}
 	catch (const LDL::Core::RuntimeError& error)

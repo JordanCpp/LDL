@@ -10,18 +10,18 @@ LDL::Time::FpsCounter::FpsCounter() :
 
 void LDL::Time::FpsCounter::Start()
 {
-	_Current = clock();
+	_Current = LDL::Time::Ticks();
 }
 
 bool LDL::Time::FpsCounter::Calc()
 {
 	_Fps++;
 
-	_Delta = clock() - _Current;
+	_Delta = LDL::Time::Ticks() - _Current;
 
 	_Old += _Delta;
 
-	if (_Old >= CLOCKS_PER_SEC)
+	if (_Old >= 1000)
 	{
 		return  true;
 	}
