@@ -70,3 +70,35 @@ void LDL::Loaders::ImageBufferLoader::Load(const std::string& path)
 	_Size = LDL::Graphics::Point2u(width, height);
 	_BytesPerPixel = bytesPerPixel;
 }
+
+void LDL::Loaders::ImageBufferLoader::Load(const LDL::Graphics::Color& color, const std::string& path)
+{
+	Load(path);
+
+	uint8_t* srcPixels = Pixels();
+
+	size_t bytes = Size().PosX() * Size().PosY() * 4;
+
+	uint8_t* dstPixels = (uint8_t*)_Allocator->Allocate(bytes);
+
+	for (size_t i = 0; i < bytes; i++)
+	{
+		if (srcPixels[3 * i + 0] == color.Red() && srcPixels[3 * i + 1] == color.Green() && srcPixels[3 * i + 2] == color.Blue())
+		{
+			dstPixels[4 * i + 0] = 0;
+			dstPixels[4 * i + 1] = 0;
+			dstPixels[4 * i + 2] = 0;
+			dstPixels[4 * i + 3] = 0;
+		}
+		else
+		{
+			dstPixels[4 * i + 0] = srcPixels[3 * i + 0];
+			dstPixels[4 * i + 1] = srcPixels[3 * i + 1];
+			dstPixels[4 * i + 2] = srcPixels[3 * i + 2];
+			dstPixels[4 * i + 3] = 255;
+		}
+
+		_Pixels = dstPixels;
+		_BytesPerPixel = 4;
+	}
+}

@@ -7,5 +7,6 @@ call Win9x_build.bat 05_Gpu_Image.exe           Examples\Graphics\Gpu\05_Gpu_Ima
 call Win9x_build.bat 06_Gpu_Click.exe           Examples\Graphics\Gpu\06_Gpu_Click\main.cpp
 call Win9x_build.bat 07_Gpu_Motion.exe          Examples\Graphics\Gpu\07_Gpu_Motion\main.cpp
 call Win9x_build.bat 08_Gpu_CpuImage.exe        Examples\Graphics\Gpu\08_Gpu_CpuImage\main.cpp
+call Win9x_build.bat 09_Gpu_ColorKey.exe        Examples\Graphics\Gpu\09_Gpu_ColorKey\main.cpp
 
 pause
