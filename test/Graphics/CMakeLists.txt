@@ -27,6 +27,8 @@ target_link_libraries(BaseRender LDL)
 add_executable(CpuImage "CpuImage.cpp")
 target_link_libraries(CpuImage LDL)
 
-
 add_executable(Render "GpuRender.cpp")
 target_link_libraries(Render LDL)
+
+add_executable(PixelConverter "PixelConverter.cpp")
+target_link_libraries(PixelConverter LDL)
