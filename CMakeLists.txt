@@ -32,7 +32,8 @@ add_library(LDL STATIC
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
 "source/Loaders/ImageBufferLoader.cpp"
-"source/Time/FpsCounter.cpp")
+"source/Time/FpsCounter.cpp"
+"source/Time/FpsLimiter.cpp")
 
 if (LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
