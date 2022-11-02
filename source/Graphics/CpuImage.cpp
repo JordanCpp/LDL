@@ -1,7 +1,7 @@
 #include <LDL/Graphics/Cpu/CpuImage.hpp>
 #include <cassert>
 
-LDL::Graphics::CpuImage::CpuImage(const LDL::Graphics::Point2u& size, size_t bytesPerPixel, uint8_t* pixels) :
+LDL::Graphics::CpuImage::CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel, uint8_t* pixels) :
 	_Size(size),
 	_BytesPerPixel(bytesPerPixel),
 	_Pixels(pixels)
@@ -17,7 +17,7 @@ const LDL::Graphics::Point2u& LDL::Graphics::CpuImage::Size()
 	return _Size;
 }
 
-size_t LDL::Graphics::CpuImage::BytesPerPixel()
+uint8_t LDL::Graphics::CpuImage::BytesPerPixel()
 {
 	return _BytesPerPixel;
 }

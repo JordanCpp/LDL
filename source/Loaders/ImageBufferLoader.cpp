@@ -39,7 +39,7 @@ const LDL::Graphics::Point2u& LDL::Loaders::ImageBufferLoader::Size()
 	return _Size;
 }
 
-size_t LDL::Loaders::ImageBufferLoader::BytesPerPixel()
+uint8_t LDL::Loaders::ImageBufferLoader::BytesPerPixel()
 {
 	return _BytesPerPixel;
 }

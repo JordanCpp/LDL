@@ -16,13 +16,13 @@ namespace LDL
 			~ImageBufferLoader();
 			void Clear();
 			const LDL::Graphics::Point2u& Size();
-			size_t BytesPerPixel();
+			uint8_t BytesPerPixel();
 			uint8_t* Pixels();
 			void Load(const std::string& path);
 		private:
 			LDL::Allocators::Allocator* _Allocator;
 			LDL::Graphics::Point2u _Size;
-			size_t _BytesPerPixel;
+			uint8_t _BytesPerPixel;
 			uint8_t* _Pixels;
 		};
 	}

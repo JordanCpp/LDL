@@ -11,14 +11,14 @@ namespace LDL
 		class CpuImage
 		{
 		public:
-			CpuImage(const LDL::Graphics::Point2u& size, size_t bytesPerPixel, uint8_t* pixels);
+			CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel, uint8_t* pixels);
 			const LDL::Graphics::Point2u& Size();
-			size_t BytesPerPixel();
+			uint8_t BytesPerPixel();
 			uint8_t* Pixels();
 			LDL::Graphics::Color LDL::Graphics::CpuImage::Pixel(const LDL::Graphics::Point2u& pos);
 		private:
 			LDL::Graphics::Point2u _Size;
-			size_t _BytesPerPixel;
+			uint8_t _BytesPerPixel;
 			uint8_t* _Pixels;
 		};
 	}
