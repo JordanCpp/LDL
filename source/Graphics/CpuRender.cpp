@@ -167,13 +167,28 @@ void LDL::Graphics::CpuRender::Draw(LDL::Graphics::CpuImage& image, const LDL::G
 	uint8_t* srcPixels = image.Pixels();
 
 	size_t pitch = image.Size().PosX() * 4;
-		
+
 	size_t srcStride = image.Size().PosX() * 4;
 	size_t dstStride = _BaseRender.Size().PosX() * 4;
 
-	for (size_t i = 0; i < _BaseRender.Size().PosY(); i++)
+	for (size_t y = 0; y < image.Size().PosY(); ++y)
 	{
-		std::memcpy(dstPixels, srcPixels, pitch);
+		for (size_t x = 0; x < image.Size().PosX(); ++x)
+		{
+			uint8_t* src = srcPixels + x * 4;
+			uint8_t* dst = dstPixels + x * 4;
+
+#if defined(WIN32) || defined(WIN64)
+			dst[0] = src[2];
+			dst[1] = src[1];
+			dst[2] = src[0];
+#else 
+			dst[0] = src[0];
+			dst[1] = src[1];
+			dst[2] = src[2];
+#endif
+		}
+
 		srcPixels += srcStride;
 		dstPixels += dstStride;
 	}
