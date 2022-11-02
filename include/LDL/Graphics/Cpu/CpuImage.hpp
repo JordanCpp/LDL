@@ -15,7 +15,7 @@ namespace LDL
 			const LDL::Graphics::Point2u& Size();
 			uint8_t BytesPerPixel();
 			uint8_t* Pixels();
-			LDL::Graphics::Color LDL::Graphics::CpuImage::Pixel(const LDL::Graphics::Point2u& pos);
+			LDL::Graphics::Color Pixel(const LDL::Graphics::Point2u& pos);
 		private:
 			LDL::Graphics::Point2u _Size;
 			uint8_t _BytesPerPixel;

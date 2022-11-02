@@ -166,8 +166,6 @@ void LDL::Graphics::CpuRender::Draw(LDL::Graphics::CpuImage& image, const LDL::G
 	uint8_t* dstPixels = Pixels();
 	uint8_t* srcPixels = image.Pixels();
 
-	size_t pitch = image.Size().PosX() * 4;
-
 	size_t srcStride = image.Size().PosX() * 4;
 	size_t dstStride = _BaseRender.Size().PosX() * 4;
 
