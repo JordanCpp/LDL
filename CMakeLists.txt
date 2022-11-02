@@ -60,7 +60,8 @@ endif()
 if (WIN32)
   target_sources(LDL PRIVATE
   "source/Platforms/Windows/Graphics/MainWindow.cpp"
-  "source/Platforms/Windows/Graphics/CpuWindow.cpp")
+  "source/Platforms/Windows/Graphics/CpuWindow.cpp"
+  "source/Platforms/Windows/Time/Ticks.cpp")
 elseif(UNIX AND NOT APPLE)
   target_sources(LDL PRIVATE
   "source/Platforms/Linux/Graphics/Window.cpp")
