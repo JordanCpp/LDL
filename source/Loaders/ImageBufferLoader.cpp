@@ -3,9 +3,9 @@
 
 static LDL::Allocators::Allocator* StbImageAllocator;
 
-#define STBI_MALLOC(sz)        StbImageAllocator->Allocate(sz);
-#define STBI_REALLOC(p,newsz)  StbImageAllocator->Reallocate(p,newsz)
-#define STBI_FREE(p)           StbImageAllocator->Deallocate(p) 
+#define STBI_MALLOC(sz)                    StbImageAllocator->Allocate(sz);
+#define STBI_REALLOC_SIZED(p,oldsz,newsz)  StbImageAllocator->ReallocateSized(p, oldsz, newsz)
+#define STBI_FREE(p)                       StbImageAllocator->Deallocate(p) 
 
 #define STB_IMAGE_IMPLEMENTATION
 #define STBI_NO_THREAD_LOCALS

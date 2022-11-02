@@ -61,6 +61,30 @@ void* LDL::Allocators::FixedLinear::Reallocate(void* ptr, size_t bytes)
 	}
 }
 
+void* LDL::Allocators::FixedLinear::ReallocateSized(void* ptr, size_t Oldbytes, size_t Newbytes)
+{
+	void* result = NULL;
+
+	if (!ptr) 
+	{
+		result = Allocate(Newbytes);
+	}
+	else
+	{
+		if (Oldbytes < Newbytes) 
+		{
+			result = Allocate(Newbytes);
+			memcpy(result, ptr, Oldbytes);
+		}
+		else 
+		{
+			result = ptr;
+		}
+	}
+
+	return result;
+}
+
 void LDL::Allocators::FixedLinear::Deallocate(void* ptr)
 {
 }
