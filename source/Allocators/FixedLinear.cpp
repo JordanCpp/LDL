@@ -87,6 +87,7 @@ void* LDL::Allocators::FixedLinear::ReallocateSized(void* ptr, size_t Oldbytes, 
 
 void LDL::Allocators::FixedLinear::Deallocate(void* ptr)
 {
+	assert(ptr != nullptr);
 }
 
 size_t LDL::Allocators::FixedLinear::UsedBytes()
