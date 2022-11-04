@@ -2,9 +2,6 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include <cstdio>
 
-#define STB_TRUETYPE_IMPLEMENTATION 
-#include "../dependencies/stb/stb_truetype.h"
-
 LDL::Loaders::FontBufferLoader::FontBufferLoader(LDL::Allocators::Allocator* allocator) :
     _Allocator(allocator),
 	_Buffer(nullptr)

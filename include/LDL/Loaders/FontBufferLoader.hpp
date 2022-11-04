@@ -1,10 +1,8 @@
 #ifndef LDL_Loaders_FontBufferLoader_hpp
 #define LDL_Loaders_FontBufferLoader_hpp
 
-#include <cstddef>
-#include <cstdint>
-#include <string>
 #include <LDL/Allocators/Allocator.hpp>
+#include <string>
 
 namespace LDL
 {
