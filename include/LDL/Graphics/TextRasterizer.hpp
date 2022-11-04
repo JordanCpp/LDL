@@ -3,6 +3,7 @@
 
 #include <LDL/Allocators/Allocator.hpp>
 #include <LDL/Graphics/Cpu/CpuImage.hpp>
+#include <LDL/Loaders/FontBufferLoader.hpp>
 
 namespace LDL
 {
@@ -14,6 +15,7 @@ namespace LDL
 			TextRasterizer(LDL::Allocators::Allocator* allocator);
 			~TextRasterizer();
 			LDL::Graphics::CpuImage* Result();
+			void Create(LDL::Loaders::FontBufferLoader * fontBufferLoader, const std::string& text);
 		private:
 			LDL::Allocators::Allocator* _Allocator;
 			LDL::Graphics::CpuImage* _Result;
