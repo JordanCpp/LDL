@@ -43,7 +43,8 @@ if (LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
   "source/Graphics/GL1/GL1Render.cpp"
   "source/Graphics/GL1/GL1Image.cpp"
-  "source/Graphics/GL1/GL1Screen.cpp")
+  "source/Graphics/GL1/GL1Screen.cpp"
+  "source/Graphics/GL1/GL1Screenshoter.cpp")
 endif() 
 
 if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)

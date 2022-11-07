@@ -1,5 +1,5 @@
 #include <LDL/Graphics/GL1/GL1Render.hpp>
-#include <gl/GL.h>
+#include <LDL/Graphics/OpenGL.hpp>
 
 LDL::Graphics::GL1Render::GL1Render(LDL::Graphics::GL1Window* window) :
 	_Window(window),

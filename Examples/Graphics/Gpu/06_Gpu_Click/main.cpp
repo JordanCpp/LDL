@@ -7,6 +7,7 @@
 #include <iostream>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/IntegerToString.hpp>
+#include <LDL/Graphics/Gpu/GpuScreenshoter.hpp>
 
 int main()
 {
@@ -18,7 +19,7 @@ int main()
 
 		LDL::Events::Event report;
 
-		LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
+		LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 8);
 		LDL::Loaders::ImageBufferLoader loader(&allocator);
 
 		loader.Load("Gorgosaurus_BW_transparent.png");
@@ -29,6 +30,9 @@ int main()
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
+
+		LDL::Graphics::CpuImage screenshot(LDL::Graphics::Point2u(800, 600), 4, (uint8_t*)allocator.Allocate(800 * 600 * 4));
+		LDL::Graphics::GpuScreenshoter screenshoter("", "06_Gpu_Click", &render, &screenshot);
 
 		while (window.GetEvent(report))
 		{
@@ -44,13 +48,15 @@ int main()
 				window.StopEvent();
 			}
 
+			render.Draw(&image, LDL::Graphics::Point2u(x, y), LDL::Graphics::Point2u(150, 150));
+
 			if (report.Type == LDL::Events::IsMouseClick)
 			{
 				x = report.Mouse.PosX;
 				y = report.Mouse.PosY;
-			}
 
-			render.Draw(&image, LDL::Graphics::Point2u(x, y), LDL::Graphics::Point2u(150, 150));
+				screenshoter.Shot();
+			}
 
 			render.End();
 

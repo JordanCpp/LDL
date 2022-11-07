@@ -2,6 +2,7 @@
 #define LDL_Graphics_BaseScreenshoter_hpp
 
 #include <string>
+#include <LDL/Core/IntegerToString.hpp>
 
 namespace LDL
 {
@@ -13,6 +14,7 @@ namespace LDL
 			const std::string Prefix();
 		private:
 			std::string _Prefix;
+			LDL::Core::IntegerToString _Converter;
 		};
 	}
 }

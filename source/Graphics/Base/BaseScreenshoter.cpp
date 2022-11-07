@@ -11,17 +11,30 @@ const std::string LDL::Graphics::BaseScreenshoter::Prefix()
 
     _Prefix.clear();
 
-    _Prefix += timeinfo->tm_mday;
+    if (_Converter.Convert(timeinfo->tm_mday))
+    _Prefix += _Converter.Result();
+
     _Prefix += '.';
-    _Prefix += timeinfo->tm_mon + 1;
+
+    if (_Converter.Convert(timeinfo->tm_mon + 1))
+        _Prefix += _Converter.Result();
+
     _Prefix += '.';
-    _Prefix += timeinfo->tm_year + 1900;
+
+    if (_Converter.Convert(timeinfo->tm_year + 1900))
+        _Prefix += _Converter.Result();
+
     _Prefix += '-';
-    _Prefix += timeinfo->tm_hour;
+    if (_Converter.Convert(timeinfo->tm_hour))
+        _Prefix += _Converter.Result();
+
     _Prefix += '.';
-    _Prefix += timeinfo->tm_min;
+    if (_Converter.Convert(timeinfo->tm_min))
+        _Prefix += _Converter.Result();
+
     _Prefix += '.';
-    _Prefix += timeinfo->tm_sec;
+    if (_Converter.Convert(timeinfo->tm_sec))
+        _Prefix += _Converter.Result();
 
     return _Prefix;
 }
