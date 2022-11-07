@@ -23,6 +23,7 @@ add_library(LDL STATIC
 "source/Core/TestEqual.cpp" 
 "source/Core/RuntimeError.cpp"
 "source/Core/IntegerToString.cpp"
+"source/Core/FileInfo.cpp"
 "source/Graphics/Base/BaseWindow.cpp"
 "source/Graphics/Base/BaseRender.cpp"
 "source/Graphics/Cpu/CpuImage.cpp"
@@ -64,7 +65,8 @@ if (WIN32)
   target_sources(LDL PRIVATE
   "source/Platforms/Windows/Graphics/MainWindow.cpp"
   "source/Platforms/Windows/Graphics/CpuWindow.cpp"
-  "source/Platforms/Windows/Time/Ticks.cpp")
+  "source/Platforms/Windows/Time/Ticks.cpp"
+  "source/Platforms/Windows/Core/Directory.cpp")
 elseif(UNIX AND NOT APPLE)
   target_sources(LDL PRIVATE
   "source/Platforms/Linux/Graphics/Window.cpp")
