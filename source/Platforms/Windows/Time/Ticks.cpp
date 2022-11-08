@@ -3,11 +3,7 @@
 
 size_t LDL::Time::Ticks()
 {
-#if defined(WIN64)
-	return GetTickCount64();
-#else
-	return GetTickCount();
-#endif  
+	return timeGetTime();
 }
 
 void LDL::Time::Delay(size_t count)

@@ -74,6 +74,10 @@ elseif(UNIX AND NOT APPLE)
   "source/Platforms/Linux/Graphics/Window.cpp")
 endif() 
 
+if (WIN32)
+  target_link_libraries(LDL winmm)
+endif() 
+
 if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)
   target_link_libraries(LDL opengl32)
 endif()
