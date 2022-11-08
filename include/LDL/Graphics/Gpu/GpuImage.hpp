@@ -19,6 +19,15 @@ namespace LDL
 		typedef LDL::Graphics::DX9Image GpuImage;
 	}
 }
+#elif defined(LDL_GPU_SUPPORT_DIRECTX5)
+#include <LDL/Graphics/DX5/DX5Image.hpp>
+namespace LDL
+{
+	namespace Graphics
+	{
+		typedef LDL::Graphics::DX5Image GpuImage;
+	}
+}
 #else
 #error Not implementation: Graphics::GpuWindow
 #endif

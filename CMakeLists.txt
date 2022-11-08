@@ -8,6 +8,9 @@ add_definitions(-DLDL_GPU_SUPPORT_OPENGL1)
 #set(LDL_GPU_SUPPORT_DIRECTX9 true)
 #add_definitions(-DLDL_GPU_SUPPORT_DIRECTX9)
 
+#set(LDL_GPU_SUPPORT_DIRECTX5 true)
+#add_definitions(-DLDL_GPU_SUPPORT_DIRECTX5)
+
 if (MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
@@ -17,6 +20,11 @@ include_directories("include")
 if (LDL_GPU_SUPPORT_DIRECTX9)
   include_directories("dependencies/dx9sdk/Include")
   link_directories("dependencies/dx9sdk/Lib/x86")
+endif() 
+
+if (LDL_GPU_SUPPORT_DIRECTX5)
+  include_directories("dependencies/dx5sdk/Include")
+  link_directories("dependencies/dx5sdk/Lib")
 endif() 
 
 add_library(LDL STATIC
@@ -58,9 +66,21 @@ if (LDL_GPU_SUPPORT_DIRECTX9)
   "source/Graphics/DX9/DX9Image.cpp")
 endif() 
 
+if (LDL_GPU_SUPPORT_DIRECTX5)
+  target_sources(LDL PRIVATE
+  "source/Graphics/DX5/DX5Render.cpp"
+  "source/Graphics/DX5/DX5Image.cpp"
+  "source/Graphics/DX5/DX5Screenshoter.cpp")
+endif() 
+
 if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX9)
   target_sources(LDL PRIVATE
   "source/Platforms/Windows/Graphics/DX9Window.cpp")
+endif() 
+
+if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX5)
+  target_sources(LDL PRIVATE
+  "source/Platforms/Windows/Graphics/DX5Window.cpp")
 endif() 
 
 if (WIN32)
@@ -84,6 +104,10 @@ endif()
 
 if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX9)
   target_link_libraries(LDL d3d9)
+endif()
+
+if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX5)
+  target_link_libraries(LDL d3drm ddraw)
 endif()
 
 add_subdirectory("test")
