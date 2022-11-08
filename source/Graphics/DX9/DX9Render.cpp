@@ -35,10 +35,21 @@ LDL::Graphics::DX9Render::DX9Render(LDL::Graphics::DX9Window* window) :
 
     if (FAILED(result))
         throw LDL::Core::RuntimeError("CreateDevice failed");
+
+    result = D3DXCreateLine(_Direct3DDevice, &_Line);
+
+    if (FAILED(result))
+        throw LDL::Core::RuntimeError("D3DXCreateLine failed");
 }
 
 LDL::Graphics::DX9Render::~DX9Render()
 {
+    if (_Line != NULL)
+    {
+        _Line->Release();
+        _Line = NULL;
+    }
+
     if (_Direct3DDevice != NULL)
     {
         _Direct3DDevice->Release();
@@ -94,6 +105,9 @@ void LDL::Graphics::DX9Render::Pixel(const LDL::Graphics::Point2u& pos)
 
 void LDL::Graphics::DX9Render::Line(const LDL::Graphics::Point2u& pos1, const LDL::Graphics::Point2u& pos2)
 {
+    D3DXVECTOR2 vec[] = { D3DXVECTOR2((float)pos1.PosX(), (float)pos1.PosY()), D3DXVECTOR2((float)pos2.PosX(), (float)pos2.PosY()) };
+
+    _Line->Draw(vec, 2, D3DCOLOR_XRGB(_BaseRender.Color().Red(), _BaseRender.Color().Green(), _BaseRender.Color().Blue()));
 }
 
 void LDL::Graphics::DX9Render::Fill(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)

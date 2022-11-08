@@ -104,7 +104,7 @@ if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)
 endif()
 
 if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX9)
-  target_link_libraries(LDL d3d9)
+  target_link_libraries(LDL d3d9 d3dx9)
 endif()
 
 if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX5)

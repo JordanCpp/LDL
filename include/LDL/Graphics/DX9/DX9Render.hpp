@@ -37,6 +37,7 @@ namespace LDL
 			LDL::Graphics::BaseRender _BaseRender;
 			IDirect3D9* _Direct3D = NULL;
 			IDirect3DDevice9* _Direct3DDevice = NULL;
+			ID3DXLine* _Line = NULL;
 		};
 	}
 }
