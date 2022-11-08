@@ -63,7 +63,8 @@ endif()
 if (LDL_GPU_SUPPORT_DIRECTX9)
   target_sources(LDL PRIVATE
   "source/Graphics/DX9/DX9Render.cpp"
-  "source/Graphics/DX9/DX9Image.cpp")
+  "source/Graphics/DX9/DX9Image.cpp"
+  "source/Graphics/DX9/DX9Screenshoter.cpp")
 endif() 
 
 if (LDL_GPU_SUPPORT_DIRECTX5)

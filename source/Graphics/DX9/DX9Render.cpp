@@ -108,3 +108,13 @@ void LDL::Graphics::DX9Render::Draw(LDL::Graphics::DX9Image* image, const LDL::G
 {
 	Draw(image, pos, image->Size());
 }
+
+void LDL::Graphics::DX9Render::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+{
+
+}
+
+void LDL::Graphics::DX9Render::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos)
+{
+
+}

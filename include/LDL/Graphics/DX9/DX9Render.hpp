@@ -4,6 +4,7 @@
 #include <LDL/Graphics/Base/BaseRender.hpp>
 #include <LDL/Graphics/DX9/DX9Window.hpp>
 #include <LDL/Graphics/DX9/DX9Image.hpp>
+#include <LDL/Graphics/Cpu/CpuImage.hpp>
 
 #include <windows.h>
 #include <d3d9.h>
@@ -29,6 +30,8 @@ namespace LDL
 			void Line(const LDL::Graphics::Point2u& pos1, const LDL::Graphics::Point2u& pos2);
 			void Draw(LDL::Graphics::DX9Image* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
 			void Draw(LDL::Graphics::DX9Image* image, const LDL::Graphics::Point2u& pos);
+			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
+			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos);
 		private:
 			LDL::Graphics::DX9Window* _Window;
 			LDL::Graphics::BaseRender _BaseRender;
