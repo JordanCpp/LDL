@@ -13,7 +13,7 @@ namespace LDL
 		class CpuImage
 		{
 		public:
-			CpuImage(LDL::Loaders::ImageLoader* imageBufferLoader);
+			CpuImage(LDL::Loaders::ImageLoader* imageLoader);
 			CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel);
 			~CpuImage();
 			const LDL::Graphics::Point2u& Size();
@@ -21,6 +21,7 @@ namespace LDL
 			uint8_t* Pixels();
 			LDL::Graphics::Color Pixel(const LDL::Graphics::Point2u& pos);
 		private:
+			void Copy(LDL::Loaders::ImageLoader* imageLoader);
 			LDL::Graphics::Point2u _Size;
 			uint8_t _BytesPerPixel;
 			uint8_t* _Pixels;
