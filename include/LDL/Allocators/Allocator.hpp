@@ -1,8 +1,8 @@
 #ifndef LDL_Allocators_Allocator_hpp
 #define LDL_Allocators_Allocator_hpp
 
-#include <cstdint>
-#include <cstddef>
+#include <stdint.h>
+#include <stddef.h>
 
 namespace LDL
 {

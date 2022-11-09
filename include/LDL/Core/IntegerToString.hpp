@@ -1,8 +1,8 @@
 #ifndef LDL_Core_IntegerToString_hpp
 #define LDL_Core_IntegerToString_hpp
 
-#include <cstddef>
-#include <cstdint>
+#include <stddef.h>
+#include <stdint.h>
 
 namespace LDL
 {

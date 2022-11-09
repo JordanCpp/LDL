@@ -1,5 +1,5 @@
 #include <LDL/Graphics/Cpu/CpuImage.hpp>
-#include <cassert>
+#include <assert.h>
 
 LDL::Graphics::CpuImage::CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel, uint8_t* pixels) :
 	_Size(size),

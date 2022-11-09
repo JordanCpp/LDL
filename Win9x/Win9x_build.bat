@@ -19,6 +19,7 @@ source\Loaders\*.cpp ^
 -Iinclude\ ^
 -lgdi32 ^
 -lopengl32 ^
+-lwinmm ^
 -static
 
 cd Win9x

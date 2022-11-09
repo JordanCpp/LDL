@@ -1,7 +1,7 @@
 #ifndef LDL_Graphics_Color_hpp
 #define LDL_Graphics_Color_hpp
 
-#include <cstdint>
+#include <stdint.h>
 
 namespace LDL
 {

@@ -1,5 +1,5 @@
 #include <LDL/Graphics/DX9/DX9Image.hpp>
-#include <cassert>
+#include <assert.h>
 
 LDL::Graphics::DX9Image::DX9Image(const LDL::Graphics::Point2u& size, size_t bytesPerPixel, uint8_t* pixels):
 	_Id(0)
