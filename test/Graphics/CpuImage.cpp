@@ -15,7 +15,7 @@ void Init()
 	LDL_TEST_EQUAL(cpuImage.Size().PosX() == 640);
 	LDL_TEST_EQUAL(cpuImage.Size().PosY() == 480);
 	LDL_TEST_EQUAL(cpuImage.BytesPerPixel() == 4);
-	LDL_TEST_EQUAL(cpuImage.Pixels() == pixels);
+	LDL_TEST_EQUAL(cpuImage.Pixels() != NULL);
 }
 
 int main()
