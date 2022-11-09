@@ -1,32 +1,24 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Graphics/Cpu/CpuRender.hpp>
-#include <LDL/Allocators/FixedLinear.hpp>
 #include <iostream>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/IntegerToString.hpp>
-#include <LDL/Loaders/ImageBufferLoader.hpp>
+#include <LDL/Loaders/ImageLoader.hpp>
 
 const LDL::Graphics::Point2u windowSize = LDL::Graphics::Point2u(800, 600);
-const size_t bytesBuffer = windowSize.PosX() * windowSize.PosY() * 4;
 
 int main()
 {
 	try
 	{
-		LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
-
-		uint8_t* pixels = (uint8_t*)allocator.Allocate(bytesBuffer);
-
-		LDL::Graphics::CpuImage buffer(windowSize, 4, pixels);
-
 		LDL::Graphics::CpuWindow window(LDL::Graphics::Point2u(0, 0), windowSize, "05_Cpu_Image");
 
 		LDL::Graphics::CpuRender render(&window);
 
-		LDL::Loaders::ImageBufferLoader loader(&allocator);
+		LDL::Loaders::ImageLoader loader;
 
 		loader.Load("Gorgosaurus_BW_transparent.png");
-		LDL::Graphics::CpuImage image(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
+		LDL::Graphics::CpuImage image(&loader);
 
 		LDL::Events::Event report;
 

@@ -1,21 +1,27 @@
 #include <LDL/Graphics/Cpu/CpuImage.hpp>
 #include <assert.h>
+#include <string.h>
 
-LDL::Graphics::CpuImage::CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel, uint8_t* pixels) :
-	_Size(size),
-	_BytesPerPixel(bytesPerPixel),
+LDL::Graphics::CpuImage::CpuImage(LDL::Loaders::ImageLoader* imageBufferLoader) :
+	_BytesPerPixel(0),
 	_Pixels(NULL)
 {
+	assert(imageBufferLoader != NULL);
+
+	_Size = imageBufferLoader->Size();
+	_BytesPerPixel = imageBufferLoader->BytesPerPixel();
+	_Pixels = imageBufferLoader->Pixels();
+
 	assert(_Size.PosX() > 0);
 	assert(_Size.PosY() > 0);
 	assert(_BytesPerPixel > 0);
-	assert(pixels != NULL);
+	assert(imageBufferLoader->Pixels() != NULL);
 
 	size_t bytes = _Size.PosX() * _Size.PosY() * _BytesPerPixel;
 
 	_Pixels = new uint8_t[bytes];
 
-	memcpy(_Pixels, pixels, bytes);
+	memcpy(_Pixels, imageBufferLoader->Pixels(), bytes);
 }
 
 LDL::Graphics::CpuImage::CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel) :

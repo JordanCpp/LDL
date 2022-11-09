@@ -2,8 +2,7 @@
 #include <LDL/Graphics/Gpu/GpuImage.hpp>
 #include <LDL/Graphics/Gpu/GpuRender.hpp>
 #include <LDL/Core/RuntimeError.hpp>
-#include <LDL/Loaders/ImageBufferLoader.hpp>
-#include <LDL/Allocators/FixedLinear.hpp>
+#include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/IntegerToString.hpp>
 #include <iostream>
@@ -19,11 +18,10 @@ int main()
 
 		LDL::Events::Event report;
 
-		LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 8);
-		LDL::Loaders::ImageBufferLoader loader(&allocator);
+		LDL::Loaders::ImageLoader loader;
 
 		loader.Load(LDL::Graphics::Color(163, 73, 164), "Gorgosaurus_BW_transparent.bmp");
-		LDL::Graphics::CpuImage image(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
+		LDL::Graphics::CpuImage image(&loader);
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;

@@ -2,8 +2,7 @@
 #include <LDL/Graphics/Gpu/GpuImage.hpp>
 #include <LDL/Graphics/Gpu/GpuRender.hpp>
 #include <LDL/Core/RuntimeError.hpp>
-#include <LDL/Loaders/ImageBufferLoader.hpp>
-#include <LDL/Allocators/FixedLinear.hpp>
+#include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/IntegerToString.hpp>
 #include <iostream>
@@ -18,8 +17,7 @@ int main()
 
 		LDL::Events::Event report;
 
-		LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
-		LDL::Loaders::ImageBufferLoader loader(&allocator);
+		LDL::Loaders::ImageLoader loader;
 
 		loader.Load("trehmachtovyiy-korabl-kartina-maslom-60x50_512x.jpg");
 		LDL::Graphics::GpuImage image(loader.Size(), loader.BytesPerPixel(), loader.Pixels());

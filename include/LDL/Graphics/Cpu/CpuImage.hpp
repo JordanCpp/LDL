@@ -3,6 +3,7 @@
 
 #include <LDL/Graphics/Primitives/Point2u.hpp>
 #include <LDL/Graphics/Primitives/Color.hpp>
+#include <LDL/Loaders/ImageLoader.hpp>
 #include <string>
 
 namespace LDL
@@ -12,7 +13,7 @@ namespace LDL
 		class CpuImage
 		{
 		public:
-			CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel, uint8_t* pixels);
+			CpuImage(LDL::Loaders::ImageLoader* imageBufferLoader);
 			CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel);
 			~CpuImage();
 			const LDL::Graphics::Point2u& Size();

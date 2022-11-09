@@ -10,7 +10,7 @@ void Init()
 
 	uint8_t* pixels = (uint8_t*)allocator.Allocate(size.PosX() * size.PosX() * 4);
 
-	LDL::Graphics::CpuImage cpuImage(size, 4, pixels);
+	LDL::Graphics::CpuImage cpuImage(size, 4);
 
 	LDL_TEST_EQUAL(cpuImage.Size().PosX() == 640);
 	LDL_TEST_EQUAL(cpuImage.Size().PosY() == 480);
