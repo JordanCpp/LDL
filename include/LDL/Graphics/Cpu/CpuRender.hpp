@@ -12,7 +12,7 @@ namespace LDL
 		class CpuRender
 		{
 		public:
-			CpuRender(LDL::Graphics::CpuWindow* window, LDL::Graphics::CpuImage* canvas);
+			CpuRender(LDL::Graphics::CpuWindow* window);
 			const LDL::Graphics::Point2u& Size();
 			const LDL::Graphics::Color& Color();
 			void Clear();
@@ -30,7 +30,7 @@ namespace LDL
 		private:
 			LDL::Graphics::CpuWindow* _Window;
 			LDL::Graphics::BaseRender _BaseRender;
-			LDL::Graphics::CpuImage* _Canvas;
+			LDL::Graphics::CpuImage _Canvas;
 		};
 	}
 }

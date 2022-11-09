@@ -4,12 +4,35 @@
 LDL::Graphics::CpuImage::CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel, uint8_t* pixels) :
 	_Size(size),
 	_BytesPerPixel(bytesPerPixel),
-	_Pixels(pixels)
+	_Pixels(NULL)
 {
 	assert(_Size.PosX() > 0);
 	assert(_Size.PosY() > 0);
 	assert(_BytesPerPixel > 0);
-	assert(_Pixels != NULL);
+	assert(pixels != NULL);
+
+	size_t bytes = _Size.PosX() * _Size.PosY() * _BytesPerPixel;
+
+	_Pixels = new uint8_t[bytes];
+
+	memcpy(_Pixels, pixels, bytes);
+}
+
+LDL::Graphics::CpuImage::CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel) :
+	_Size(size),
+	_BytesPerPixel(bytesPerPixel),
+	_Pixels(NULL)
+{
+	assert(_Size.PosX() > 0);
+	assert(_Size.PosY() > 0);
+	assert(_BytesPerPixel > 0);
+
+	_Pixels = new uint8_t[_Size.PosX() * _Size.PosY() * _BytesPerPixel];
+}
+
+LDL::Graphics::CpuImage::~CpuImage()
+{
+	delete[] _Pixels;
 }
 
 const LDL::Graphics::Point2u& LDL::Graphics::CpuImage::Size()

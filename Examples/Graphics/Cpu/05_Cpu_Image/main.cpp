@@ -21,7 +21,7 @@ int main()
 
 		LDL::Graphics::CpuWindow window(LDL::Graphics::Point2u(0, 0), windowSize, "05_Cpu_Image");
 
-		LDL::Graphics::CpuRender render(&window, &buffer);
+		LDL::Graphics::CpuRender render(&window);
 
 		LDL::Loaders::ImageBufferLoader loader(&allocator);
 

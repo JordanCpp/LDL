@@ -1,9 +1,9 @@
 #include <LDL/Graphics/Cpu/CpuRender.hpp>
 
-LDL::Graphics::CpuRender::CpuRender(LDL::Graphics::CpuWindow* window, LDL::Graphics::CpuImage* canvas) :
+LDL::Graphics::CpuRender::CpuRender(LDL::Graphics::CpuWindow* window) :
 	_Window(window),
 	_BaseRender(_Window->Size()),
-	_Canvas(canvas)
+	_Canvas(_Window->Size(), 4)
 {
 }
 
@@ -19,9 +19,9 @@ const LDL::Graphics::Color& LDL::Graphics::CpuRender::Color()
 
 void LDL::Graphics::CpuRender::Clear()
 {
-	LDL::Graphics::Color* pixels = (LDL::Graphics::Color*)_Canvas->Pixels();
+	LDL::Graphics::Color* pixels = (LDL::Graphics::Color*)_Canvas.Pixels();
 
-	size_t size = _Canvas->Size().PosX() * _Canvas->Size().PosY();
+	size_t size = _Canvas.Size().PosX() * _Canvas.Size().PosY();
 
 	for (size_t i = 0; i < size; i++)
 	{
@@ -36,12 +36,12 @@ void LDL::Graphics::CpuRender::Color(const LDL::Graphics::Color& color)
 
 void LDL::Graphics::CpuRender::Present()
 {
-	_Window->Present(_Canvas->Pixels());
+	_Window->Present(_Canvas.Pixels());
 }
 
 LDL::Graphics::CpuImage* LDL::Graphics::CpuRender::Canvas()
 {
-	return _Canvas;
+	return &_Canvas;
 }
 
 void LDL::Graphics::CpuRender::Pixel(const LDL::Graphics::Point2u& pos)
@@ -50,7 +50,7 @@ void LDL::Graphics::CpuRender::Pixel(const LDL::Graphics::Point2u& pos)
 
 	if (i < _BaseRender._Size._PosX * _BaseRender._Size._PosY)
 	{
-		LDL::Graphics::Color* pixels = (LDL::Graphics::Color*)_Canvas->Pixels();
+		LDL::Graphics::Color* pixels = (LDL::Graphics::Color*)_Canvas.Pixels();
 
 		pixels[i] = _BaseRender._Current;
 	}
@@ -60,7 +60,7 @@ const LDL::Graphics::Color& LDL::Graphics::CpuRender::GetPixel(const LDL::Graphi
 {
 	size_t i = (Size().PosX() * pos.PosY()) + pos.PosX();
 
-	LDL::Graphics::Color* pixels = (LDL::Graphics::Color*)_Canvas->Pixels();
+	LDL::Graphics::Color* pixels = (LDL::Graphics::Color*)_Canvas.Pixels();
 
 	return	pixels[i];
 }
@@ -153,12 +153,12 @@ void LDL::Graphics::CpuRender::Line(const LDL::Graphics::Point2u& pos1, const LD
 
 uint8_t* LDL::Graphics::CpuRender::Pixels()
 {
-	return _Canvas->Pixels();
+	return _Canvas.Pixels();
 }
 
 size_t LDL::Graphics::CpuRender::BytesPerPixel()
 {
-	return _Canvas->BytesPerPixel();
+	return _Canvas.BytesPerPixel();
 }
 
 void LDL::Graphics::CpuRender::Draw(LDL::Graphics::CpuImage& image, const LDL::Graphics::Point2u& pos)
