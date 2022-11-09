@@ -8,7 +8,7 @@ LDL::Graphics::GL1Image::GL1Image(const LDL::Graphics::Point2u& size, size_t byt
 	assert(size.PosX() > 0);
 	assert(size.PosY() > 0);
 	assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
-	assert(pixels != nullptr);
+	assert(pixels != NULL);
 
 	_Size = size;
 

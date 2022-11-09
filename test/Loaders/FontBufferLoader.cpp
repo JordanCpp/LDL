@@ -11,7 +11,7 @@ void Init()
 	LDL::Allocators::FixedLinear allocator(bytes);
 	LDL::Loaders::FontBufferLoader fontBufferLoader(&allocator);
 
-	LDL_TEST_EQUAL(fontBufferLoader.Font() == nullptr);
+	LDL_TEST_EQUAL(fontBufferLoader.Font() == NULL);
 	LDL_TEST_EQUAL(fontBufferLoader.Size() == 0);
 }
 
@@ -22,7 +22,7 @@ void Load()
 
 	LDL_TEST_EXCEPTION(fontBufferLoader.Load("TestFiles/cmunrm.ttf"));
 
-	LDL_TEST_EQUAL(fontBufferLoader.Font() != nullptr);
+	LDL_TEST_EQUAL(fontBufferLoader.Font() != NULL);
 	LDL_TEST_EQUAL(fontBufferLoader.Size() == 235656);
 }
 
@@ -35,7 +35,7 @@ void Clear()
 
 	fontBufferLoader.Clear();
 
-	LDL_TEST_EQUAL(fontBufferLoader.Font() == nullptr);
+	LDL_TEST_EQUAL(fontBufferLoader.Font() == NULL);
 	LDL_TEST_EQUAL(fontBufferLoader.Size() == 0);
 }
 

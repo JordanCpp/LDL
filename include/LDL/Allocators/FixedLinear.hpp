@@ -10,7 +10,7 @@ namespace LDL
 		class FixedLinear : public LDL::Allocators::Allocator
 		{
 		public:
-			FixedLinear(size_t bytes, LDL::Allocators::Allocator* allocator = nullptr);
+			FixedLinear(size_t bytes, LDL::Allocators::Allocator* allocator = NULL);
 			~FixedLinear();
 			void* Allocate(size_t bytes);
 			void* Reallocate(void* ptr, size_t bytes);

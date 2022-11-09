@@ -14,9 +14,9 @@ static LDL::Allocators::Allocator* StbImageAllocator;
 LDL::Loaders::ImageBufferLoader::ImageBufferLoader(LDL::Allocators::Allocator* allocator) :
 	_Allocator(allocator),
 	_BytesPerPixel(0),
-	_Pixels(nullptr)
+	_Pixels(NULL)
 {
-	assert(allocator != nullptr);
+	assert(allocator != NULL);
 
 	StbImageAllocator = _Allocator;
 }
@@ -29,7 +29,7 @@ LDL::Loaders::ImageBufferLoader::~ImageBufferLoader()
 void LDL::Loaders::ImageBufferLoader::Clear()
 {
 	_Allocator->Reset();
-	_Pixels = nullptr;
+	_Pixels = NULL;
 	_Size = LDL::Graphics::Point2u(0, 0);
 	_BytesPerPixel = 0;
 }
@@ -64,7 +64,7 @@ void LDL::Loaders::ImageBufferLoader::Load(const std::string& path)
 
 	_Pixels = stbi_load(path.c_str(), &width, &height, &bytesPerPixel, 0);
 
-	if (width <= 0 || height <= 0 || bytesPerPixel <= 0 || _Pixels == nullptr)
+	if (width <= 0 || height <= 0 || bytesPerPixel <= 0 || _Pixels == NULL)
 		throw LDL::Core::RuntimeError("stbi_load " + path + " failed");
 
 	_Size = LDL::Graphics::Point2u(width, height);

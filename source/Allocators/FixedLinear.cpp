@@ -5,7 +5,7 @@
 LDL::Allocators::FixedLinear::FixedLinear(size_t bytes, LDL::Allocators::Allocator* allocator):
 	_Capacity(bytes),
 	_Position(0),
-	_Content(nullptr),
+	_Content(NULL),
 	_Allocator(allocator)
 {
 	if (_Allocator)
@@ -37,9 +37,9 @@ void* LDL::Allocators::FixedLinear::Allocate(size_t bytes)
 
 void* LDL::Allocators::FixedLinear::Reallocate(void* ptr, size_t bytes)
 {
-	void* result = nullptr;
+	void* result = NULL;
 
-	if (ptr == nullptr)
+	if (ptr == NULL)
 	{
 		result = Allocate(bytes);
 
@@ -49,7 +49,7 @@ void* LDL::Allocators::FixedLinear::Reallocate(void* ptr, size_t bytes)
 	{
 		Deallocate(ptr);
 
-		return nullptr;
+		return NULL;
 	}
 	else
 	{

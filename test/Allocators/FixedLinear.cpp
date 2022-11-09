@@ -20,7 +20,7 @@ void Allocate()
 	{
 		void* p = allocator.Allocate(1);
 
-		LDL_TEST_EQUAL(p != nullptr);
+		LDL_TEST_EQUAL(p != NULL);
 		LDL_TEST_EQUAL(allocator.UsedBytes() == i + 1);
 	}
 }
@@ -33,12 +33,12 @@ void Reallocate()
 
 	void* ptr = allocator.Allocate(128);
 
-	LDL_TEST_EQUAL(ptr != nullptr);
+	LDL_TEST_EQUAL(ptr != NULL);
 	LDL_TEST_EQUAL(allocator.UsedBytes() == 128);
 
 	ptr = allocator.Reallocate(ptr, 256);
 
-	LDL_TEST_EQUAL(ptr != nullptr);
+	LDL_TEST_EQUAL(ptr != NULL);
 	LDL_TEST_EQUAL(allocator.UsedBytes() == 128 + 256);
 }
 
@@ -50,7 +50,7 @@ void Reset()
 
 	void* ptr = allocator.Allocate(1024);
 
-	LDL_TEST_EQUAL(ptr != nullptr);
+	LDL_TEST_EQUAL(ptr != NULL);
 	LDL_TEST_EQUAL(allocator.UsedBytes() == 1024);
 
 	allocator.Reset();

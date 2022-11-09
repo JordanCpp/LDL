@@ -9,7 +9,7 @@ LDL::Graphics::CpuImage::CpuImage(const LDL::Graphics::Point2u& size, uint8_t by
 	assert(_Size.PosX() > 0);
 	assert(_Size.PosY() > 0);
 	assert(_BytesPerPixel > 0);
-	assert(_Pixels != nullptr);
+	assert(_Pixels != NULL);
 }
 
 const LDL::Graphics::Point2u& LDL::Graphics::CpuImage::Size()

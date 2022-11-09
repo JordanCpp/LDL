@@ -4,7 +4,7 @@
 
 LDL::Loaders::FontBufferLoader::FontBufferLoader(LDL::Allocators::Allocator* allocator) :
     _Allocator(allocator),
-	_Buffer(nullptr)
+	_Buffer(NULL)
 {
 }
 
@@ -14,7 +14,7 @@ LDL::Loaders::FontBufferLoader::~FontBufferLoader()
 
 void LDL::Loaders::FontBufferLoader::Clear()
 {
-    _Buffer = nullptr;
+    _Buffer = NULL;
     _Allocator->Reset();
 }
 
@@ -25,7 +25,7 @@ void LDL::Loaders::FontBufferLoader::Load(const std::string& path)
 
     FILE* file = fopen(path.c_str(), "rb");
 
-    if (file == nullptr)
+    if (file == NULL)
         throw LDL::Core::RuntimeError("Not load " + path);
 
     fseek(file, 0, SEEK_END);

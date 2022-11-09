@@ -11,8 +11,8 @@ static LDL::Allocators::Allocator* StbTrueTypeAllocator;
 
 LDL::Graphics::TextRasterizer::TextRasterizer(LDL::Allocators::Allocator* allocator) :
 	_Allocator(allocator),
-	_Result(nullptr),
-	_Bitmap(nullptr)
+	_Result(NULL),
+	_Bitmap(NULL)
 {
 	StbTrueTypeAllocator = _Allocator;
 }

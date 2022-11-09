@@ -80,7 +80,7 @@ LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::WndProc(HWND Hwnd, UINT Mes
     LDL::Graphics::Windows::MainWindow* This = (LDL::Graphics::Windows::MainWindow*)GetWindowLong(Hwnd, GWL_USERDATA);
 #endif  
 
-    if (This != nullptr)
+    if (This != NULL)
         result = This->Handler(Message, WParam, LParam);
     else
         result = DefWindowProc(Hwnd, Message, WParam, LParam);

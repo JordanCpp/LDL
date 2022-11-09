@@ -7,7 +7,7 @@ LDL::Graphics::DX9Image::DX9Image(const LDL::Graphics::Point2u& size, size_t byt
 	assert(size.PosX() > 0);
 	assert(size.PosY() > 0);
 	assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
-	assert(pixels != nullptr);
+	assert(pixels != NULL);
 }
 
 LDL::Graphics::DX9Image::~DX9Image()
