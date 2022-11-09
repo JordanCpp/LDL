@@ -1,8 +1,7 @@
 #ifndef LDL_Events_Event_hpp
 #define LDL_Events_Event_hpp
 
-#include <stdint.h>
-#include <stddef.h>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {

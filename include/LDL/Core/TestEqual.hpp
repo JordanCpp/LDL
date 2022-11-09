@@ -1,7 +1,7 @@
 #ifndef LDL_Core_TestEqual_hpp
 #define LDL_Core_TestEqual_hpp
 
-#include <stdint.h>
+#include <LDL/Core/Types.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 
 namespace LDL

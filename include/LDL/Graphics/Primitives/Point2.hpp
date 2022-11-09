@@ -1,8 +1,7 @@
 #ifndef LDL_Graphics_Point2_hpp
 #define LDL_Graphics_Point2_hpp
 
-#include <stdint.h>
-#include <stddef.h>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {

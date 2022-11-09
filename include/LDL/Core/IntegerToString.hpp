@@ -1,8 +1,7 @@
 #ifndef LDL_Core_IntegerToString_hpp
 #define LDL_Core_IntegerToString_hpp
 
-#include <stddef.h>
-#include <stdint.h>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {
