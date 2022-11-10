@@ -91,19 +91,19 @@ void LDL::Graphics::CpuRender::Rect(const LDL::Graphics::Point2u& pos, const LDL
 		Pixel(LDL::Graphics::Point2u(x + i, y));
 	}
 
-	for (size_t i = 0; i < w; i++)
+	for (size_t j = 0; j < w; j++)
 	{
-		Pixel(LDL::Graphics::Point2u(x + i, y + h));
+		Pixel(LDL::Graphics::Point2u(x + j, y + h));
 	}
 
-	for (size_t i = 0; i < h; i++)
+	for (size_t k = 0; k < h; k++)
 	{
-		Pixel(LDL::Graphics::Point2u(x, y + i));
+		Pixel(LDL::Graphics::Point2u(x, y + k));
 	}
 
-	for (size_t i = 0; i < h; i++)
+	for (size_t g = 0; g < h; g++)
 	{
-		Pixel(LDL::Graphics::Point2u(x + w, y + i));
+		Pixel(LDL::Graphics::Point2u(x + w, y + g));
 	}
 }
 

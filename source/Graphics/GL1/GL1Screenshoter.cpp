@@ -17,7 +17,7 @@ void LDL::Graphics::GL1Screenshoter::Shot()
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
 	glReadPixels(0, 0, (GLsizei)_Image->Size().PosX(), (GLsizei)_Image->Size().PosY(), GL_RGBA, GL_UNSIGNED_BYTE, _Image->Pixels());
 
-	_FullPath.clear();
+	_FullPath = "";
 
 	_FullPath += _ShortPath;
 	_FullPath += _Name;

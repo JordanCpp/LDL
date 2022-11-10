@@ -1,6 +1,7 @@
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 
+#define STBI_NO_SIMD
 #define STB_IMAGE_IMPLEMENTATION
 #define STBI_NO_THREAD_LOCALS
 #include "../dependencies/stb/stb_image.h"  

@@ -9,7 +9,7 @@ const std::string LDL::Graphics::BaseScreenshoter::Prefix()
     time(&rawtime);
     timeinfo = localtime(&rawtime);
 
-    _Prefix.clear();
+    _Prefix = "";
 
     if (_Converter.Convert(timeinfo->tm_mday))
     _Prefix += _Converter.Result();
