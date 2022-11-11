@@ -19,6 +19,7 @@ namespace LDL
 		public:
 			DX9Render(LDL::Graphics::DX9Window* window);
 			~DX9Render();
+			void Mode2D();
 			void Begin();
 			void End();
 			const LDL::Graphics::Point2u& Size();
@@ -33,6 +34,8 @@ namespace LDL
 			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
 			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos);
 		private:
+			void Initialization();
+			void Deinitialization();
 			LDL::Graphics::DX9Window* _Window;
 			LDL::Graphics::BaseRender _BaseRender;
 			IDirect3D9* _Direct3D = NULL;

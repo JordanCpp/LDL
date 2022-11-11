@@ -5,62 +5,22 @@ LDL::Graphics::DX9Render::DX9Render(LDL::Graphics::DX9Window* window) :
 	_Window(window),
 	_BaseRender(_Window->Size())
 {
-    _Direct3D = Direct3DCreate9(D3D_SDK_VERSION);
+    Initialization();
 
-    if (_Direct3D == NULL)
-        throw LDL::Core::RuntimeError("Direct3DCreate9 failed");
-
-    HRESULT result = NULL;
-
-    D3DDISPLAYMODE displayMode = { 0 };
-
-    result = _Direct3D->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &displayMode);
-
-    if (FAILED(result))
-        throw LDL::Core::RuntimeError("GetAdapterDisplayMode failed");
-
-    D3DPRESENT_PARAMETERS parameters = { 0 };
-
-    parameters.hDeviceWindow = _Window->Hwnd();
-    parameters.Windowed = true;
-    parameters.BackBufferWidth = _Window->Size().PosX();
-    parameters.BackBufferHeight = _Window->Size().PosY();
-    parameters.BackBufferCount = 1;
-    parameters.EnableAutoDepthStencil = true;
-    parameters.AutoDepthStencilFormat = D3DFMT_D16;
-    parameters.SwapEffect = D3DSWAPEFFECT_FLIP;
-    parameters.BackBufferFormat = displayMode.Format;
-
-    result = _Direct3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, _Window->Hwnd(), D3DCREATE_HARDWARE_VERTEXPROCESSING, &parameters, &_Direct3DDevice);
-
-    if (FAILED(result))
-        throw LDL::Core::RuntimeError("CreateDevice failed");
-
-    result = D3DXCreateLine(_Direct3DDevice, &_Line);
-
-    if (FAILED(result))
-        throw LDL::Core::RuntimeError("D3DXCreateLine failed");
+    Mode2D();
 }
 
 LDL::Graphics::DX9Render::~DX9Render()
 {
-    if (_Line != NULL)
-    {
-        _Line->Release();
-        _Line = NULL;
-    }
+    Deinitialization();
+}
 
-    if (_Direct3DDevice != NULL)
-    {
-        _Direct3DDevice->Release();
-        _Direct3DDevice = NULL;
-    }
+void LDL::Graphics::DX9Render::Mode2D()
+{
+    D3DXMATRIX projection;
+    D3DXMatrixOrthoLH(&projection, (FLOAT)_Window->Size().PosX(), (FLOAT)_Window->Size().PosY(), 0.0f, 0.0f);
 
-    if (_Direct3D != NULL)
-    {
-        _Direct3D->Release();
-        _Direct3D = NULL;
-    }
+    _Direct3DDevice->SetTransform(D3DTS_PROJECTION, &projection);
 }
 
 void LDL::Graphics::DX9Render::Begin()
@@ -131,4 +91,64 @@ void LDL::Graphics::DX9Render::Draw(LDL::Graphics::CpuImage* image, const LDL::G
 void LDL::Graphics::DX9Render::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos)
 {
 
+}
+
+void LDL::Graphics::DX9Render::Initialization()
+{
+    _Direct3D = Direct3DCreate9(D3D_SDK_VERSION);
+
+    if (_Direct3D == NULL)
+        throw LDL::Core::RuntimeError("Direct3DCreate9 failed");
+
+    HRESULT result = NULL;
+
+    D3DDISPLAYMODE displayMode = { 0 };
+
+    result = _Direct3D->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &displayMode);
+
+    if (FAILED(result))
+        throw LDL::Core::RuntimeError("GetAdapterDisplayMode failed");
+
+    D3DPRESENT_PARAMETERS parameters = { 0 };
+
+    parameters.hDeviceWindow = _Window->Hwnd();
+    parameters.Windowed = true;
+    parameters.BackBufferWidth = _Window->Size().PosX();
+    parameters.BackBufferHeight = _Window->Size().PosY();
+    parameters.BackBufferCount = 1;
+    parameters.EnableAutoDepthStencil = true;
+    parameters.AutoDepthStencilFormat = D3DFMT_D16;
+    parameters.SwapEffect = D3DSWAPEFFECT_FLIP;
+    parameters.BackBufferFormat = displayMode.Format;
+
+    result = _Direct3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, _Window->Hwnd(), D3DCREATE_HARDWARE_VERTEXPROCESSING, &parameters, &_Direct3DDevice);
+
+    if (FAILED(result))
+        throw LDL::Core::RuntimeError("CreateDevice failed");
+
+    result = D3DXCreateLine(_Direct3DDevice, &_Line);
+
+    if (FAILED(result))
+        throw LDL::Core::RuntimeError("D3DXCreateLine failed");
+}
+
+void LDL::Graphics::DX9Render::Deinitialization()
+{
+    if (_Line != NULL)
+    {
+        _Line->Release();
+        _Line = NULL;
+    }
+
+    if (_Direct3DDevice != NULL)
+    {
+        _Direct3DDevice->Release();
+        _Direct3DDevice = NULL;
+    }
+
+    if (_Direct3D != NULL)
+    {
+        _Direct3D->Release();
+        _Direct3D = NULL;
+    }
 }
