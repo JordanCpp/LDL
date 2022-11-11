@@ -1,9 +1,10 @@
+#include <iostream>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Graphics/Cpu/CpuRender.hpp>
-#include <iostream>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/IntegerToString.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
+#include <LDL/Allocators/FixedLinear.hpp>
 
 const LDL::Graphics::Point2u windowSize = LDL::Graphics::Point2u(800, 600);
 
@@ -15,7 +16,8 @@ int main()
 
 		LDL::Graphics::CpuRender render(&window);
 
-		LDL::Loaders::ImageLoader loader;
+		LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
+		LDL::Loaders::ImageLoader loader(&allocator);
 
 		loader.Load("Gorgosaurus_BW_transparent.png");
 		LDL::Graphics::CpuImage image(&loader);

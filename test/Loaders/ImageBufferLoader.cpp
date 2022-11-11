@@ -1,11 +1,15 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Allocators/FixedLinear.hpp>
 #include <iostream>
+
+const size_t bytes = LDL::Allocators::Allocator::Mb * 4;
 
 void Init()
 {
-	LDL::Loaders::ImageLoader imageLoader;
+	LDL::Allocators::FixedLinear allocator(bytes);
+	LDL::Loaders::ImageLoader imageLoader(&allocator);
 
 	LDL_TEST_EQUAL(imageLoader.BytesPerPixel() == 0);
 	LDL_TEST_EQUAL(imageLoader.Size().PosX()   == 0);
@@ -15,7 +19,8 @@ void Init()
 
 void LoadJpg()
 {
-	LDL::Loaders::ImageLoader imageLoader;
+	LDL::Allocators::FixedLinear allocator(bytes);
+	LDL::Loaders::ImageLoader imageLoader(&allocator);
 
 	LDL_TEST_EXCEPTION(imageLoader.Load("TestFiles/359500_600.jpg"));
 
@@ -27,7 +32,8 @@ void LoadJpg()
 
 void LoadPng()
 {
-	LDL::Loaders::ImageLoader imageLoader;
+	LDL::Allocators::FixedLinear allocator(bytes);
+	LDL::Loaders::ImageLoader imageLoader(&allocator);
 
 	LDL_TEST_EXCEPTION(imageLoader.Load("TestFiles/Gorgosaurus_BW_transparent.png"));
 
@@ -39,7 +45,8 @@ void LoadPng()
 
 void Clear()
 {
-	LDL::Loaders::ImageLoader imageLoader;
+	LDL::Allocators::FixedLinear allocator(bytes);
+	LDL::Loaders::ImageLoader imageLoader(&allocator);
 	
 	LDL_TEST_EXCEPTION(imageLoader.Load("TestFiles/359500_600.jpg"));
 

@@ -1,4 +1,4 @@
 
-call Tests.bat x86-Release
+call Tests.bat x86-Debug
 
 pause

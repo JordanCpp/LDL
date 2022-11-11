@@ -1,6 +1,8 @@
 #include "Engine.hpp"
 
 Game::Engine::Engine(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title) :
+	_Allocator(LDL::Allocators::Allocator::Mb * 4),
+	_ImageLoader(&_Allocator),
 	_Window(pos, size, title),
 	_Render(&_Window)
 {

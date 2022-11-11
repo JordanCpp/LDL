@@ -1,7 +1,8 @@
-#ifndef LDL_Loaders_ImageBufferLoader_hpp
-#define LDL_Loaders_ImageBufferLoader_hpp
+#ifndef LDL_Loaders_ImageLoader_hpp
+#define LDL_Loaders_ImageLoader_hpp
 
 #include <LDL/Graphics/Primitives/Point2u.hpp>
+#include <LDL/Allocators/Allocator.hpp>
 #include <LDL/Graphics/Primitives/Color.hpp>
 #include <string>
 
@@ -12,10 +13,8 @@ namespace LDL
 		class ImageLoader
 		{
 		public:
-			ImageLoader();
+			ImageLoader(LDL::Allocators::Allocator* allocator);
 			~ImageLoader();
-			bool IsKey();
-			const LDL::Graphics::Color& Key();
 			void Clear();
 			const LDL::Graphics::Point2u& Size();
 			uint8_t BytesPerPixel();
@@ -23,8 +22,7 @@ namespace LDL
 			void Load(const std::string& path);
 			void Load(const LDL::Graphics::Color& color, const std::string& path);
 		private:
-			bool _IsKey;
-			LDL::Graphics::Color _Key;
+			LDL::Allocators::Allocator* _Allocator;
 			LDL::Graphics::Point2u _Size;
 			uint8_t _BytesPerPixel;
 			uint8_t* _Pixels;
@@ -32,4 +30,4 @@ namespace LDL
 	}
 }
 
-#endif     
+#endif      
