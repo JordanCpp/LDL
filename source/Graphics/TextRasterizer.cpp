@@ -28,7 +28,7 @@ LDL::Graphics::CpuImage* LDL::Graphics::TextRasterizer::Result()
 	return _Result;
 }
 
-void LDL::Graphics::TextRasterizer::Create(LDL::Loaders::FontBufferLoader* fontBufferLoader, size_t size, const std::string& text)
+void LDL::Graphics::TextRasterizer::Create(LDL::Loaders::FontLoader* fontBufferLoader, size_t size, const std::string& text)
 {
 	stbtt_fontinfo info;
 

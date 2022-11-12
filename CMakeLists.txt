@@ -43,7 +43,7 @@ add_library(LDL STATIC
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
 "source/Loaders/ImageLoader.cpp"
-"source/Loaders/FontBufferLoader.cpp"
+"source/Loaders/FontLoader.cpp"
 "source/Time/FpsCounter.cpp"
 "source/Time/FpsLimiter.cpp")
 

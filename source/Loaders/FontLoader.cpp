@@ -1,24 +1,24 @@
-#include <LDL/Loaders/FontBufferLoader.hpp>
+#include <LDL/Loaders/FontLoader.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <cstdio>
 
-LDL::Loaders::FontBufferLoader::FontBufferLoader(LDL::Allocators::Allocator* allocator) :
+LDL::Loaders::FontLoader::FontLoader(LDL::Allocators::Allocator* allocator) :
     _Allocator(allocator),
 	_Buffer(NULL)
 {
 }
 
-LDL::Loaders::FontBufferLoader::~FontBufferLoader()
+LDL::Loaders::FontLoader::~FontLoader()
 {
 }
 
-void LDL::Loaders::FontBufferLoader::Clear()
+void LDL::Loaders::FontLoader::Clear()
 {
     _Buffer = NULL;
     _Allocator->Reset();
 }
 
-void LDL::Loaders::FontBufferLoader::Load(const std::string& path)
+void LDL::Loaders::FontLoader::Load(const std::string& path)
 {
     if (path.empty())
         throw LDL::Core::RuntimeError("Argument path is empty");
@@ -39,12 +39,12 @@ void LDL::Loaders::FontBufferLoader::Load(const std::string& path)
     fclose(file);
 }
 
-uint8_t* LDL::Loaders::FontBufferLoader::Font()
+uint8_t* LDL::Loaders::FontLoader::Font()
 {
     return _Buffer;
 }
 
-size_t LDL::Loaders::FontBufferLoader::Size()
+size_t LDL::Loaders::FontLoader::Size()
 {
     return _Allocator->UsedBytes();
 }

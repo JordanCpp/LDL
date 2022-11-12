@@ -1,5 +1,5 @@
-#ifndef LDL_Loaders_FontBufferLoader_hpp
-#define LDL_Loaders_FontBufferLoader_hpp
+#ifndef LDL_Loaders_FontLoader_hpp
+#define LDL_Loaders_FontLoader_hpp
 
 #include <LDL/Allocators/Allocator.hpp>
 #include <string>
@@ -8,11 +8,11 @@ namespace LDL
 {
 	namespace Loaders
 	{
-		class FontBufferLoader
+		class FontLoader
 		{
 		public:
-			FontBufferLoader(LDL::Allocators::Allocator* allocator);
-			~FontBufferLoader();
+			FontLoader(LDL::Allocators::Allocator* allocator);
+			~FontLoader();
 			void Clear();
 			void Load(const std::string& path);
 			uint8_t* Font();
