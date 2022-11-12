@@ -11,11 +11,12 @@ namespace LDL
 		class TextRasterizer
 		{
 		public:
-			TextRasterizer();
+			TextRasterizer(LDL::Allocators::Allocator* allocator);
 			~TextRasterizer();
 			LDL::Graphics::CpuImage* Result();
 			void Create(LDL::Loaders::FontBufferLoader * fontBufferLoader, size_t size, const std::string& text);
 		private:
+			LDL::Allocators::Allocator* _Allocator;
 			LDL::Graphics::CpuImage* _Result;
 			uint8_t* _Bitmap;
 		};
