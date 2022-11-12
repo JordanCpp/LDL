@@ -61,8 +61,6 @@ void LDL::Loaders::ImageLoader::Load(const std::string& path)
 	int height = 0;
 	int bytesPerPixel = 0;
 
-	stbi_set_flip_vertically_on_load(true);
-
 	_Pixels = stbi_load(path.c_str(), &width, &height, &bytesPerPixel, 0);
 
 	if (width <= 0 || height <= 0 || bytesPerPixel <= 0 || _Pixels == NULL)
