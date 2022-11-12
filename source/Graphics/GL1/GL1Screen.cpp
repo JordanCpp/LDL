@@ -47,7 +47,7 @@ void LDL::Graphics::GL1Screen::Draw(LDL::Graphics::CpuImage* image, const LDL::G
 	else
 		format = GL_RGB;
 
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, (GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels());
+	glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, (GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels());
 }
 
 void LDL::Graphics::GL1Screen::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos)
