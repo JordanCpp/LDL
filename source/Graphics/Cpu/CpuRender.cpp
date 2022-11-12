@@ -176,15 +176,18 @@ void LDL::Graphics::CpuRender::Draw(LDL::Graphics::CpuImage& image, const LDL::G
 			uint8_t* src = srcPixels + x * 4;
 			uint8_t* dst = dstPixels + x * 4;
 
+			if (src[4] != 0)
+			{
 #if defined(WIN32) || defined(WIN64)
-			dst[0] = src[2];
-			dst[1] = src[1];
-			dst[2] = src[0];
+				dst[0] = src[2];
+				dst[1] = src[1];
+				dst[2] = src[0];
 #else 
-			dst[0] = src[0];
-			dst[1] = src[1];
-			dst[2] = src[2];
+				dst[0] = src[0];
+				dst[1] = src[1];
+				dst[2] = src[2];
 #endif
+			}
 		}
 
 		srcPixels += srcStride;
