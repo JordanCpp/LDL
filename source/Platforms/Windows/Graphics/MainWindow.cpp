@@ -24,8 +24,8 @@ LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::Handler(UINT Message, WPARA
 
     case WM_LBUTTONDOWN:
         event.Type = Events::IsMouseClick;
-        event.Mouse.State = Events::Mouse::StateDown;
-        event.Mouse.Button = Events::Mouse::ButtonLeft;
+        event.Mouse.State = Events::Mouse::Down;
+        event.Mouse.Button = Events::Mouse::Left;
         event.Mouse.PosX = LOWORD(LParam);
         event.Mouse.PosY = HIWORD(LParam);
         _Eventer.Push(event);
@@ -33,8 +33,8 @@ LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::Handler(UINT Message, WPARA
 
     case WM_LBUTTONUP:
         event.Type = Events::IsMouseClick;
-        event.Mouse.State = Events::Mouse::StateUp;
-        event.Mouse.Button = Events::Mouse::ButtonLeft;
+        event.Mouse.State = Events::Mouse::Up;
+        event.Mouse.Button = Events::Mouse::Left;
         event.Mouse.PosX = LOWORD(LParam);
         event.Mouse.PosY = HIWORD(LParam);
         _Eventer.Push(event);
@@ -42,8 +42,8 @@ LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::Handler(UINT Message, WPARA
 
     case WM_RBUTTONDOWN:
         event.Type = Events::IsMouseClick;
-        event.Mouse.State = Events::Mouse::StateDown;
-        event.Mouse.Button = Events::Mouse::ButtonRight;
+        event.Mouse.State = Events::Mouse::Down;
+        event.Mouse.Button = Events::Mouse::Right;
         event.Mouse.PosX = LOWORD(LParam);
         event.Mouse.PosY = HIWORD(LParam);
         _Eventer.Push(event);
@@ -51,8 +51,8 @@ LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::Handler(UINT Message, WPARA
 
     case WM_RBUTTONUP:
         event.Type = Events::IsMouseClick;
-        event.Mouse.State = Events::Mouse::StateUp;
-        event.Mouse.Button = Events::Mouse::ButtonRight;
+        event.Mouse.State = Events::Mouse::Up;
+        event.Mouse.Button = Events::Mouse::Right;
         event.Mouse.PosX = LOWORD(LParam);
         event.Mouse.PosY = HIWORD(LParam);
         _Eventer.Push(event);

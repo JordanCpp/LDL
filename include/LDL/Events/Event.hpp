@@ -2,6 +2,8 @@
 #define LDL_Events_Event_hpp
 
 #include <LDL/Core/Types.hpp>
+#include <LDL/Events/Mouse.hpp>
+#include <LDL/Events/Quit.hpp>
 
 namespace LDL
 {
@@ -14,43 +16,14 @@ namespace LDL
 			IsMouseClick
 		};
 
-		class Quit
-		{
-		public:
-			uint8_t Type;
-		};
-
-		class Mouse
-		{
-
-		public:
-			enum
-			{
-				ButtonLeft,
-				ButtonRight
-			};
-
-			enum
-			{
-				StateUp,
-				StateDown
-			};
-
-			uint8_t Type;
-			size_t PosX;
-			size_t PosY;
-			uint8_t State;
-			uint8_t Button;
-		};
-
 		class Event
 		{
 		public:
 			union
 			{
 				uint8_t Type;
-				Events::Quit Quit;
-				Events::Mouse Mouse;
+				LDL::Events::Quit Quit;
+				LDL::Events::Mouse Mouse;
 			};
 		};
 	}
