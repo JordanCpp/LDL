@@ -1,6 +1,6 @@
 #include <LDL/Loaders/FontLoader.hpp>
 #include <LDL/Core/RuntimeError.hpp>
-#include <cstdio>
+#include <stdio.h>
 
 LDL::Loaders::FontLoader::FontLoader(LDL::Allocators::Allocator* allocator) :
     _Allocator(allocator),

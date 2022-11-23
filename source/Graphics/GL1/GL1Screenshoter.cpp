@@ -2,6 +2,7 @@
 #include <LDL/Graphics/OpenGL.hpp>
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
+#undef __STDC_LIB_EXT1__
 #include "../dependencies/stb/stb_image_write.h"  
 
 LDL::Graphics::GL1Screenshoter::GL1Screenshoter(const std::string& path, const std::string& name, LDL::Graphics::GL1Render* render, LDL::Graphics::CpuImage* image) :

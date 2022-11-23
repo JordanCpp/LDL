@@ -1,7 +1,7 @@
 #ifndef LDL_Time_Ticks_hpp
 #define LDL_Time_Ticks_hpp
 
-#include <cstddef>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {

@@ -1,5 +1,5 @@
 #include <LDL/Graphics/Base/BaseScreenshoter.hpp>
-#include <ctime>
+#include <time.h>
 
 const std::string LDL::Graphics::BaseScreenshoter::Prefix()
 {
