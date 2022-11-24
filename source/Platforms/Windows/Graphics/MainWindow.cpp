@@ -59,6 +59,9 @@ LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::Handler(UINT Message, WPARA
         break;
 
     case WM_SIZE:
+        event.Type = Events::IsResize;
+        event.Resize.Width  = LOWORD(LParam);
+        event.Resize.Height = HIWORD(LParam);
         break;
 
     case WM_CLOSE:

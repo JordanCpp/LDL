@@ -4,6 +4,7 @@
 #include <LDL/Core/Types.hpp>
 #include <LDL/Events/Mouse.hpp>
 #include <LDL/Events/Quit.hpp>
+#include <LDL/Events/Resize.hpp>
 
 namespace LDL
 {
@@ -13,7 +14,8 @@ namespace LDL
 		{
 			IsQuit = 1,
 			IsMouseMove,
-			IsMouseClick
+			IsMouseClick,
+			IsResize
 		};
 
 		class Event
@@ -24,6 +26,7 @@ namespace LDL
 				uint8_t Type;
 				LDL::Events::Quit Quit;
 				LDL::Events::Mouse Mouse;
+				LDL::Events::Resize Resize;
 			};
 		};
 	}
