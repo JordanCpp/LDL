@@ -1,7 +1,7 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Input/Display.hpp>
 
-void Init()
+void Modes()
 {
 	LDL::Input::Display display;
 	
@@ -17,9 +17,21 @@ void Init()
 	}
 }
 
+void Current()
+{
+	LDL::Input::Display display;
+
+	LDL::Graphics::VideoMode current = display.Current();
+
+	LDL_TEST_EQUAL(current.Size().PosX() > 0);
+	LDL_TEST_EQUAL(current.Size().PosY() > 0);
+	LDL_TEST_EQUAL(current.BitsPerPixel() > 0);
+}
+
 int main()
 {
-	Init();
+	Modes();
+	Current();
 
 	return 0;
 }

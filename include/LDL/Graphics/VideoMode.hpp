@@ -14,6 +14,7 @@ namespace LDL
 			{
 				Limit = 32
 			};
+			VideoMode();
 			VideoMode(const LDL::Graphics::Point2u& size, size_t bytesPerPixel);
 			const LDL::Graphics::Point2u& Size();
 			const size_t BitsPerPixel();

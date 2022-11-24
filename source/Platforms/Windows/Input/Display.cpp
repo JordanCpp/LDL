@@ -1,5 +1,6 @@
 #include <LDL/Platforms/Windows/Input/Display.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
+#include <LDL/Core/RuntimeError.hpp>
 
 LDL::Input::Windows::Display::Display()
 {
@@ -22,4 +23,20 @@ LDL::Input::Windows::Display::Display()
 const std::vector<LDL::Graphics::VideoMode>& LDL::Input::Windows::Display::Modes()
 {
 	return _VideoModes;
+}
+
+const LDL::Graphics::VideoMode& LDL::Input::Windows::Display::Current()
+{
+	HDC hdc = GetDC(NULL);
+
+	if (hdc == NULL)
+		throw LDL::Core::RuntimeError("GetDC failed");
+
+	int width  = GetDeviceCaps(hdc, HORZSIZE);
+	int height = GetDeviceCaps(hdc, VERTSIZE);
+	int bpp    = GetDeviceCaps(hdc, BITSPIXEL);
+
+	_VideoMode = LDL::Graphics::VideoMode(LDL::Graphics::Point2u(width, height), bpp);
+
+	return _VideoMode;
 }
