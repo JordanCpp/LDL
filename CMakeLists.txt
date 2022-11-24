@@ -39,6 +39,7 @@ add_library(LDL STATIC
 "source/Graphics/Primitives/Color.cpp"
 "source/Graphics/PixelConverter.cpp"
 "source/Graphics/TextRasterizer.cpp"
+"source/Graphics/VideoMode.cpp"
 "source/Graphics/Base/BaseScreenshoter.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
@@ -89,7 +90,8 @@ if (WIN32)
   "source/Platforms/Windows/Graphics/MainWindow.cpp"
   "source/Platforms/Windows/Graphics/CpuWindow.cpp"
   "source/Platforms/Windows/Time/Ticks.cpp"
-  "source/Platforms/Windows/Core/Directory.cpp")
+  "source/Platforms/Windows/Core/Directory.cpp"
+  "source/Platforms/Windows/Input/Display.cpp")
 elseif(UNIX AND NOT APPLE)
   target_sources(LDL PRIVATE
   "source/Platforms/Linux/Graphics/Window.cpp")

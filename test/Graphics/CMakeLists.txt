@@ -35,3 +35,6 @@ target_link_libraries(PixelConverter LDL)
 
 add_executable(BaseScreenshoter "Base/BaseScreenshoter.cpp")
 target_link_libraries(BaseScreenshoter LDL)
+
+add_executable(VideoMode "VideoMode.cpp")
+target_link_libraries(VideoMode LDL)
