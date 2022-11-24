@@ -91,7 +91,8 @@ if (WIN32)
   "source/Platforms/Windows/Graphics/CpuWindow.cpp"
   "source/Platforms/Windows/Time/Ticks.cpp"
   "source/Platforms/Windows/Core/Directory.cpp"
-  "source/Platforms/Windows/Input/Display.cpp")
+  "source/Platforms/Windows/Input/Display.cpp"
+  "source/Platforms/Windows/Input/Mouse.cpp")
 elseif(UNIX AND NOT APPLE)
   target_sources(LDL PRIVATE
   "source/Platforms/Linux/Graphics/Window.cpp")

@@ -16,6 +16,7 @@ source\Graphics\Cpu\*.cpp ^
 source\Graphics\GL1\*.cpp ^
 source\Graphics\Primitives\*.cpp ^
 source\Loaders\*.cpp ^
+source\Input\*.cpp ^
 -Iinclude\ ^
 -lgdi32 ^
 -lopengl32 ^
