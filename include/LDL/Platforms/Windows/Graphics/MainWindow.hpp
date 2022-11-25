@@ -25,6 +25,7 @@ namespace LDL
 				const LDL::Graphics::Point2u& Size();
 				const LDL::Graphics::Point2u& Pos();
 			private:
+				size_t ConvertKey(size_t key);
 				static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 				LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
 				LDL::Graphics::BaseWindow _BaseWindow;

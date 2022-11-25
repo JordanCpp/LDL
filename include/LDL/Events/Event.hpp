@@ -5,6 +5,7 @@
 #include <LDL/Events/Mouse.hpp>
 #include <LDL/Events/Quit.hpp>
 #include <LDL/Events/Resize.hpp>
+#include <LDL/Events/Keyboard.hpp>
 
 namespace LDL
 {
@@ -15,7 +16,8 @@ namespace LDL
 			IsQuit = 1,
 			IsMouseMove,
 			IsMouseClick,
-			IsResize
+			IsResize,
+			IsKeyboard
 		};
 
 		class Event
@@ -27,6 +29,7 @@ namespace LDL
 				LDL::Events::Quit Quit;
 				LDL::Events::Mouse Mouse;
 				LDL::Events::Resize Resize;
+				LDL::Events::Keyboard Keyboard;
 			};
 		};
 	}

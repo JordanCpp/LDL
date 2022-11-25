@@ -1,7 +1,126 @@
 #include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 #include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Enums/KeyboardKey.hpp>
 
 static const char AppName[] = "MainWindow";
+
+size_t LDL::Graphics::Windows::MainWindow::ConvertKey(size_t key)
+{
+    size_t result = 0;
+
+    switch (key)
+    {
+    case VK_ESCAPE:
+        result = LDL::Enums::KeyboardKey::Escape;
+        break;
+
+    case 'A':
+        result = LDL::Enums::KeyboardKey::A;
+        break;
+
+    case 'B':
+        result = LDL::Enums::KeyboardKey::B;
+        break;
+
+    case'C':
+        result = LDL::Enums::KeyboardKey::C;
+        break;
+
+    case 'D':
+        result = LDL::Enums::KeyboardKey::D;
+        break;
+
+    case 'E':
+        result = LDL::Enums::KeyboardKey::E;
+        break;
+
+    case 'F':
+        result = LDL::Enums::KeyboardKey::F;
+        break;
+
+    case 'G':
+        result = LDL::Enums::KeyboardKey::G;
+        break;
+
+    case 'H':
+        result = LDL::Enums::KeyboardKey::H;
+        break;
+
+    case 'I':
+        result = LDL::Enums::KeyboardKey::I;
+        break;
+
+    case 'J':
+        result = LDL::Enums::KeyboardKey::J;
+        break;
+
+    case 'K':
+        result = LDL::Enums::KeyboardKey::K;
+        break;
+
+    case 'L':
+        result = LDL::Enums::KeyboardKey::L;
+        break;
+
+    case 'M':
+        result = LDL::Enums::KeyboardKey::M;
+        break;
+
+    case 'N':
+        result = LDL::Enums::KeyboardKey::N;
+        break;
+
+    case 'O':
+        result = LDL::Enums::KeyboardKey::O;
+        break;
+
+    case 'P':
+        result = LDL::Enums::KeyboardKey::P;
+        break;
+
+    case 'Q':
+        result = LDL::Enums::KeyboardKey::Q;
+        break;
+
+    case 'R':
+        result = LDL::Enums::KeyboardKey::R;
+        break;
+
+    case 'S':
+        result = LDL::Enums::KeyboardKey::S;
+        break;
+
+    case 'T':
+        result = LDL::Enums::KeyboardKey::T;
+        break;
+
+    case 'U':
+        result = LDL::Enums::KeyboardKey::U;
+        break;
+
+    case 'V':
+        result = LDL::Enums::KeyboardKey::V;
+        break;
+
+    case 'W':
+        result = LDL::Enums::KeyboardKey::W;
+        break;
+
+    case 'X':
+        result = LDL::Enums::KeyboardKey::X;
+        break;
+
+    case 'Y':
+        result = LDL::Enums::KeyboardKey::Y;
+        break;
+
+    case 'Z':
+        result = LDL::Enums::KeyboardKey::Z;
+        break;
+    }
+
+    return result;
+}
 
 LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 {
@@ -69,6 +188,18 @@ LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::Handler(UINT Message, WPARA
     case WM_CLOSE:
         event.Type = Events::IsQuit;
         _Eventer.Push(event);
+        break;
+
+    case WM_KEYDOWN:
+        event.Type = LDL::Events::IsKeyboard;
+        event.Keyboard.State = LDL::Enums::ButtonState::Pressed;
+        event.Keyboard.Key = ConvertKey(WParam);
+        break;
+
+    case WM_KEYUP:
+        event.Type = LDL::Events::IsKeyboard;
+        event.Keyboard.State = LDL::Enums::ButtonState::Released;
+        event.Keyboard.Key = ConvertKey(WParam);
         break;
     }
 
