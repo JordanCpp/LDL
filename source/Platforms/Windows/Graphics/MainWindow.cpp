@@ -93,7 +93,7 @@ LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::WndProc(HWND Hwnd, UINT Mes
     return result;
 }
 
-LDL::Graphics::Windows::MainWindow::MainWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title) :
+LDL::Graphics::Windows::MainWindow::MainWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, LDL::Enums::WindowMode mode) :
     _BaseWindow(pos, size, title)
 {
     ZeroMemory(&_WNDCLASS, sizeof(WNDCLASS));
@@ -120,8 +120,17 @@ LDL::Graphics::Windows::MainWindow::MainWindow(const LDL::Graphics::Point2u& pos
 
     if (_ATOM == INVALID_ATOM)
         throw LDL::Core::RuntimeError("RegisterClass failed");
+    
+    DWORD style = 0;
+    
+    if (mode == LDL::Enums::WindowMode::Fixed)
+        style = WS_OVERLAPPED | WS_SYSMENU;
+    else if (mode == LDL::Enums::WindowMode::Resized)
+        style = WS_OVERLAPPEDWINDOW;
+    else
+        throw LDL::Core::RuntimeError("WindowMode failed");
 
-    _HWND = CreateWindow(AppName, "", WS_OVERLAPPEDWINDOW, (int)_BaseWindow.Pos().PosX(), (int)_BaseWindow.Pos().PosY(), (int)_BaseWindow.Size().PosX(), (int)_BaseWindow.Size().PosY(), 0, 0, _HINSTANCE, 0);
+    _HWND = CreateWindow(AppName, "", style, (int)_BaseWindow.Pos().PosX(), (int)_BaseWindow.Pos().PosY(), (int)_BaseWindow.Size().PosX(), (int)_BaseWindow.Size().PosY(), 0, 0, _HINSTANCE, 0);
 
     if (_HWND == INVALID_HANDLE_VALUE)
         throw LDL::Core::RuntimeError("CreateWindow failed");

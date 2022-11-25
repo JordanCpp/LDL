@@ -1,10 +1,10 @@
 #ifndef LDL_Platforms_Windows_Graphics_MainWindow_hpp
 #define LDL_Platforms_Windows_Graphics_MainWindow_hpp
 
-
 #include <LDL/Platforms/Windows/Windows.hpp>
 #include <LDL/Graphics/Base/BaseWindow.hpp>
 #include <LDL/Events/Eventer.hpp>
+#include <LDL/Enums/WindowMode.hpp>
 
 namespace LDL
 {
@@ -15,7 +15,7 @@ namespace LDL
 			class MainWindow
 			{
 			public:
-				MainWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title);
+				MainWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, LDL::Enums::WindowMode mode);
 				~MainWindow();
 				bool GetEvent(LDL::Events::Event& event);
 				bool WaitEvent(LDL::Events::Event& event);

@@ -1,7 +1,7 @@
 #include <LDL/Platforms/Windows/Graphics/CpuWindow.hpp>
 
-LDL::Graphics::Windows::CpuWindow::CpuWindow(const Point2u& pos, const Point2u& size, const std::string& title) :
-    _Window(pos, size, title)
+LDL::Graphics::Windows::CpuWindow::CpuWindow(const Point2u& pos, const Point2u& size, const std::string& title, LDL::Enums::WindowMode mode) :
+    _Window(pos, size, title, mode)
 {
 }
 

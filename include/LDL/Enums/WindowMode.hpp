@@ -9,8 +9,7 @@ namespace LDL
 		{
 			Resized = 1,
 			Fixed,
-			FullScreen,
-			Windowed
+			FullScreen
 		};
 	}
 }
