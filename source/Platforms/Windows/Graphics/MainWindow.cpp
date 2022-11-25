@@ -7,6 +7,8 @@ LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::Handler(UINT Message, WPARA
 {
     LDL::Events::Event event;
 
+    ZeroMemory(&event, sizeof(event));
+
     switch (Message)
     {
     case WM_PAINT:
@@ -16,50 +18,50 @@ LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::Handler(UINT Message, WPARA
         break;
 
     case WM_MOUSEMOVE:
-        event.Type = Events::IsMouseMove;
+        event.Type       = Events::IsMouseMove;
         event.Mouse.PosX = LOWORD(LParam);
         event.Mouse.PosY = HIWORD(LParam);
         _Eventer.Push(event);
         break;
 
     case WM_LBUTTONDOWN:
-        event.Type = Events::IsMouseClick;
-        event.Mouse.State = Events::Mouse::Down;
-        event.Mouse.Button = Events::Mouse::Left;
-        event.Mouse.PosX = LOWORD(LParam);
-        event.Mouse.PosY = HIWORD(LParam);
+        event.Type         = Events::IsMouseClick;
+        event.Mouse.State  = LDL::Enums::ButtonState::Pressed;
+        event.Mouse.Button = LDL::Enums::MouseButton::Left;
+        event.Mouse.PosX   = LOWORD(LParam);
+        event.Mouse.PosY   = HIWORD(LParam);
         _Eventer.Push(event);
         break;
 
     case WM_LBUTTONUP:
-        event.Type = Events::IsMouseClick;
-        event.Mouse.State = Events::Mouse::Up;
-        event.Mouse.Button = Events::Mouse::Left;
-        event.Mouse.PosX = LOWORD(LParam);
-        event.Mouse.PosY = HIWORD(LParam);
+        event.Type         = Events::IsMouseClick;
+        event.Mouse.State  = LDL::Enums::ButtonState::Released;
+        event.Mouse.Button = LDL::Enums::MouseButton::Left;
+        event.Mouse.PosX   = LOWORD(LParam);
+        event.Mouse.PosY   = HIWORD(LParam);
         _Eventer.Push(event);
         break;
 
     case WM_RBUTTONDOWN:
-        event.Type = Events::IsMouseClick;
-        event.Mouse.State = Events::Mouse::Down;
-        event.Mouse.Button = Events::Mouse::Right;
-        event.Mouse.PosX = LOWORD(LParam);
-        event.Mouse.PosY = HIWORD(LParam);
+        event.Type         = Events::IsMouseClick;
+        event.Mouse.State  = LDL::Enums::ButtonState::Pressed;
+        event.Mouse.Button = LDL::Enums::MouseButton::Right;
+        event.Mouse.PosX   = LOWORD(LParam);
+        event.Mouse.PosY   = HIWORD(LParam);
         _Eventer.Push(event);
         break;
 
     case WM_RBUTTONUP:
-        event.Type = Events::IsMouseClick;
-        event.Mouse.State = Events::Mouse::Up;
-        event.Mouse.Button = Events::Mouse::Right;
-        event.Mouse.PosX = LOWORD(LParam);
-        event.Mouse.PosY = HIWORD(LParam);
+        event.Type         = Events::IsMouseClick;
+        event.Mouse.State  = LDL::Enums::ButtonState::Released;
+        event.Mouse.Button = LDL::Enums::MouseButton::Right;
+        event.Mouse.PosX   = LOWORD(LParam);
+        event.Mouse.PosY   = HIWORD(LParam);
         _Eventer.Push(event);
         break;
 
     case WM_SIZE:
-        event.Type = Events::IsResize;
+        event.Type          = Events::IsResize;
         event.Resize.Width  = LOWORD(LParam);
         event.Resize.Height = HIWORD(LParam);
         break;

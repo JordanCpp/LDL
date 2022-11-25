@@ -2,6 +2,8 @@
 #define LDL_Events_Mouse_hpp
 
 #include <LDL/Core/Types.hpp>
+#include <LDL/Enums/MouseButton.hpp>
+#include <LDL/Enums/ButtonState.hpp>
 
 namespace LDL
 {
@@ -10,13 +12,6 @@ namespace LDL
 		class Mouse
 		{
 		public:
-			enum
-			{
-				Left,
-				Right,
-				Up,
-				Down
-			};
 			uint8_t Type;
 			size_t PosX;
 			size_t PosY;
