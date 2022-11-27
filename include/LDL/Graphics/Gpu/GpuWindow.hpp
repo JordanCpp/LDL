@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_GpuWindow_hpp
-#define LDL_Graphics_GpuWindow_hpp
+#ifndef LDL_Graphics_Gpu_GpuWindow_hpp
+#define LDL_Graphics_Gpu_GpuWindow_hpp
 
 #if defined(LDL_GPU_SUPPORT_OPENGL1)
 #include <LDL/Graphics/GL1/GL1Window.hpp>
