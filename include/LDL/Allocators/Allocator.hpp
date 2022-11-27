@@ -17,8 +17,6 @@ namespace LDL
 				Gb = Mb * 1024
 			};
 			virtual void* Allocate(size_t bytes) = 0;
-			virtual void* Reallocate(void* ptr, size_t bytes) = 0;
-			virtual void* ReallocateSized(void* ptr, size_t Oldbytes, size_t Newbytes) = 0;
 			virtual void Deallocate(void* ptr) = 0;
 			virtual size_t UsedBytes() = 0;
 			virtual void Reset() = 0;

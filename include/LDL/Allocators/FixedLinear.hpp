@@ -13,8 +13,6 @@ namespace LDL
 			FixedLinear(size_t bytes, LDL::Allocators::Allocator* allocator = NULL);
 			~FixedLinear();
 			void* Allocate(size_t bytes);
-			void* Reallocate(void* ptr, size_t bytes);
-			void* ReallocateSized(void* ptr, size_t Oldbytes, size_t Newbytes);
 			void Deallocate(void* ptr);
 			void Reset();
 			size_t UsedBytes();

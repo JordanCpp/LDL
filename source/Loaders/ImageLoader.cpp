@@ -4,8 +4,33 @@
 static LDL::Allocators::Allocator* StbImageAllocator;
 
 #define STBI_MALLOC(sz)                    StbImageAllocator->Allocate(sz);
-#define STBI_REALLOC_SIZED(p,oldsz,newsz)  StbImageAllocator->ReallocateSized(p, oldsz, newsz)
 #define STBI_FREE(p)                       StbImageAllocator->Deallocate(p) 
+
+void* ReallocateSized(void* ptr, size_t Oldbytes, size_t Newbytes)
+{
+	void* result = NULL;
+
+	if (!ptr)
+	{
+		result = StbImageAllocator->Allocate(Newbytes);
+	}
+	else
+	{
+		if (Oldbytes < Newbytes)
+		{
+			result = StbImageAllocator->Allocate(Newbytes);
+			memcpy(result, ptr, Oldbytes);
+		}
+		else
+		{
+			result = ptr;
+		}
+	}
+
+	return result;
+}
+
+#define STBI_REALLOC_SIZED(p,oldsz,newsz)  ReallocateSized(p, oldsz, newsz)
 
 #define STB_IMAGE_IMPLEMENTATION
 #define STBI_NO_THREAD_LOCALS

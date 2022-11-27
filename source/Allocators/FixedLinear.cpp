@@ -35,56 +35,6 @@ void* LDL::Allocators::FixedLinear::Allocate(size_t bytes)
 	return result;
 }
 
-void* LDL::Allocators::FixedLinear::Reallocate(void* ptr, size_t bytes)
-{
-	void* result = NULL;
-
-	if (ptr == NULL)
-	{
-		result = Allocate(bytes);
-
-		return result;
-	}
-	else if (bytes == 0)
-	{
-		Deallocate(ptr);
-
-		return NULL;
-	}
-	else
-	{
-		result = Allocate(bytes);
-
-		memcpy(result, ptr, bytes);
-
-		return result;
-	}
-}
-
-void* LDL::Allocators::FixedLinear::ReallocateSized(void* ptr, size_t Oldbytes, size_t Newbytes)
-{
-	void* result = NULL;
-
-	if (!ptr) 
-	{
-		result = Allocate(Newbytes);
-	}
-	else
-	{
-		if (Oldbytes < Newbytes) 
-		{
-			result = Allocate(Newbytes);
-			memcpy(result, ptr, Oldbytes);
-		}
-		else 
-		{
-			result = ptr;
-		}
-	}
-
-	return result;
-}
-
 void LDL::Allocators::FixedLinear::Deallocate(void* ptr)
 {
 }
