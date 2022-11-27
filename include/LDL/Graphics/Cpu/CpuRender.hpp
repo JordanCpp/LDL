@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_CpuRender_hpp
-#define LDL_Graphics_CpuRender_hpp
+#ifndef LDL_Graphics_Cpu_CpuRender_hpp
+#define LDL_Graphics_Cpu_CpuRender_hpp
 
 #include <LDL/Graphics/Base/BaseRender.hpp>
 #include <LDL/Graphics/Cpu/CpuWindow.hpp>

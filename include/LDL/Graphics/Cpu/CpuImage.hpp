@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_CpuImage_hpp
-#define LDL_Graphics_CpuImage_hpp
+#ifndef LDL_Graphics_Cpu_CpuImage_hpp
+#define LDL_Graphics_Cpu_CpuImage_hpp
 
 #include <LDL/Graphics/Primitives/Point2u.hpp>
 #include <LDL/Graphics/Primitives/Color.hpp>

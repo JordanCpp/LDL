@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_CpuWindow_hpp
-#define LDL_Graphics_CpuWindow_hpp
+#ifndef LDL_Graphics_Cpu_CpuWindow_hpp
+#define LDL_Graphics_Cpu_CpuWindow_hpp
 
 #if (_WIN32 || _WIN64)
 #include <LDL/Platforms/Windows/Graphics/CpuWindow.hpp>
