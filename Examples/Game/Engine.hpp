@@ -1,9 +1,7 @@
 #ifndef Game_Engine_hpp
 #define Game_Engine_hpp
 
-#include <LDL/Graphics/Gpu/GpuWindow.hpp>
-#include <LDL/Graphics/Gpu/GpuImage.hpp>
-#include <LDL/Graphics/Gpu/GpuRender.hpp>
+#include <LDL/Creators/GraphicsCreator.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
@@ -19,10 +17,11 @@ namespace Game
 		Engine(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title);
 		void Run();
 	private:
+		LDL::Creators::GraphicsCreator _Graphics;
 		LDL::Allocators::FixedLinear _Allocator;
 		LDL::Loaders::ImageLoader _ImageLoader;
-		LDL::Graphics::GpuWindow _Window;
-		LDL::Graphics::GpuRender _Render;
+		LDL::Graphics::IGpuWindow* _Window;
+		LDL::Graphics::IGpuRender* _Render;
 		LDL::Time::FpsCounter _FpsCounter;
 		LDL::Core::IntegerToString _Convert;
 		LDL::Time::FpsLimiter _FpsLimiter;

@@ -1,7 +1,7 @@
-#include <LDL/Platforms/Windows/Graphics/DX9Window.hpp>
+#include "DX9Window.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
-LDL::Graphics::Windows::DX9Window::DX9Window(const Point2u& pos, const Point2u& size, const std::string& title) :
+LDL::Graphics::Windows::DX9Window::DX9Window(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
     _Window(pos, size, title)
 {
 }

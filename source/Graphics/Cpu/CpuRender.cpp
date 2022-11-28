@@ -1,6 +1,6 @@
 #include <LDL/Graphics/Cpu/CpuRender.hpp>
 
-LDL::Graphics::CpuRender::CpuRender(LDL::Graphics::CpuWindow* window) :
+LDL::Graphics::CpuRender::CpuRender(LDL::Graphics::ICpuWindow* window) :
 	_Window(window),
 	_BaseRender(_Window->Size()),
 	_Canvas(_Window->Size(), 4)

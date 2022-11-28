@@ -1,4 +1,4 @@
-#include <LDL/Platforms/Windows/Graphics/GL1Window.hpp>
+#include "GL1Window.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
 LDL::Graphics::Windows::GL1Window::GL1Window(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :

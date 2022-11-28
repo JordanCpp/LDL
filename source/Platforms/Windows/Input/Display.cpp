@@ -1,8 +1,8 @@
-#include <LDL/Platforms/Windows/Input/Display.hpp>
-#include <LDL/Platforms/Windows/Windows.hpp>
+#include <LDL/Input/Display.hpp>
+#include "../Windows.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
-LDL::Input::Windows::Display::Display()
+LDL::Input::Display::Display()
 {
 	_VideoModes.reserve(LDL::Graphics::VideoMode::Limit);
 
@@ -20,12 +20,12 @@ LDL::Input::Windows::Display::Display()
 	}
 }
 
-const std::vector<LDL::Graphics::VideoMode>& LDL::Input::Windows::Display::Modes()
+const std::vector<LDL::Graphics::VideoMode>& LDL::Input::Display::Modes()
 {
 	return _VideoModes;
 }
 
-const LDL::Graphics::VideoMode& LDL::Input::Windows::Display::Current()
+const LDL::Graphics::VideoMode& LDL::Input::Display::Current()
 {
 	HDC hdc = GetDC(NULL);
 

@@ -1,7 +1,5 @@
 #include <iostream>
-#include <LDL/Graphics/Gpu/GpuWindow.hpp>
-#include <LDL/Graphics/Gpu/GpuImage.hpp>
-#include <LDL/Graphics/Gpu/GpuRender.hpp>
+#include <LDL/Creators/GraphicsCreator.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
@@ -12,9 +10,11 @@ int main()
 {
 	try
 	{
-		LDL::Graphics::GpuWindow window(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
+		LDL::Creators::GraphicsCreator graphics;
 
-		LDL::Graphics::GpuRender render(&window);
+		LDL::Graphics::IGpuWindow* window = graphics.CreateGpuWindow(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
+
+		LDL::Graphics::IGpuRender* render = graphics.CreateGpuRender(window);
 
 		LDL::Events::Event report;
 
@@ -22,7 +22,7 @@ int main()
 		LDL::Loaders::ImageLoader loader(&allocator);
 
 		loader.Load("Gorgosaurus_BW_transparent.png");
-		LDL::Graphics::GpuImage image(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
+		LDL::Graphics::IGpuImage* image = graphics.CreateGpuImage(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
 
 		size_t x = 0;
 		size_t y = 0;
@@ -30,18 +30,18 @@ int main()
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
 
-		while (window.GetEvent(report))
+		while (window->GetEvent(report))
 		{
 			fpsCounter.Start();
 
-			render.Begin();
+			render->Begin();
 
-			render.Color(LDL::Graphics::Color(0, 162, 232));
-			render.Clear();
+			render->Color(LDL::Graphics::Color(0, 162, 232));
+			render->Clear();
 
 			if (report.Type == LDL::Events::IsQuit)
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 
 			if (report.Type == LDL::Events::IsMouseMove)
@@ -50,15 +50,15 @@ int main()
 				y = report.Mouse.PosY;
 			}
 
-			render.Draw(&image, LDL::Graphics::Point2u(x, y), LDL::Graphics::Point2u(150, 150));
+			render->Draw(image, LDL::Graphics::Point2u(x, y), LDL::Graphics::Point2u(150, 150));
 
-			render.End();
+			render->End();
 
 			if (fpsCounter.Calc())
 			{
 				if (convert.Convert(fpsCounter.Fps()))
 				{
-					window.Title(convert.Result());
+					window->Title(convert.Result());
 				}
 
 				fpsCounter.Clear();

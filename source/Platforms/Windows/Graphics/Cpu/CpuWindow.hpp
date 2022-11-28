@@ -1,7 +1,8 @@
 #ifndef LDL_Platforms_Windows_Graphics_CpuWindow_hpp
 #define LDL_Platforms_Windows_Graphics_CpuWindow_hpp
 
-#include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
+#include <LDL/Graphics/ICpuWindow.hpp>
+#include "../MainWindow.hpp"
 
 namespace LDL
 {
@@ -9,7 +10,7 @@ namespace LDL
 	{
 		namespace Windows
 		{
-			class CpuWindow
+			class CpuWindow: public LDL::Graphics::ICpuWindow
 			{
 			public:
 				CpuWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);

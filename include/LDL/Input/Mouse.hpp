@@ -1,17 +1,20 @@
 #ifndef LDL_Input_Mouse_hpp
 #define LDL_Input_Mouse_hpp
 
-#if defined(WIN32) || defined(WIN64)
-#include <LDL/Platforms/Windows/Input/Mouse.hpp>
+#include <LDL/Graphics/Primitives/Point2u.hpp>
+
 namespace LDL
 {
 	namespace Input
 	{
-		typedef LDL::Input::Windows::Mouse Mouse;
+		class Mouse
+		{
+		public:
+			const LDL::Graphics::Point2u& Pos();
+		private:
+			LDL::Graphics::Point2u _Pos;
+		};
 	}
 }
-#else
-#error Not implementation: Input::Mouse
-#endif
 
-#endif 
+#endif     

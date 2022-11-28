@@ -1,8 +1,8 @@
-#include <LDL/Platforms/Windows/Input/Mouse.hpp>
-#include <LDL/Platforms/Windows/Windows.hpp>
+#include <LDL/Input/Mouse.hpp>
+#include "../Windows.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
-const LDL::Graphics::Point2u& LDL::Input::Windows::Mouse::Pos()
+const LDL::Graphics::Point2u& LDL::Input::Mouse::Pos()
 {
     POINT point;
 

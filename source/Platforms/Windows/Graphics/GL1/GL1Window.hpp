@@ -1,7 +1,8 @@
-#ifndef LDL_Platforms_Windows_Graphics_DX9Window_hpp
-#define LDL_Platforms_Windows_Graphics_DX9Window_hpp
+#ifndef LDL_Platforms_Windows_Graphics_GL1Window_hpp
+#define LDL_Platforms_Windows_Graphics_GL1Window_hpp
 
-#include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
+#include <LDL/Graphics/IGpuWindow.hpp>
+#include "../MainWindow.hpp"
 
 namespace LDL
 {
@@ -9,11 +10,11 @@ namespace LDL
 	{
 		namespace Windows
 		{
-			class DX9Window
+			class GL1Window: public LDL::Graphics::IGpuWindow
 			{
 			public:
-				DX9Window(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title);
-				~DX9Window();
+				GL1Window(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
+				~GL1Window();
 				void Present();
 				bool GetEvent(LDL::Events::Event& event);
 				bool WaitEvent(LDL::Events::Event& event);
@@ -22,9 +23,9 @@ namespace LDL
 				const std::string& Title();
 				const LDL::Graphics::Point2u& Size();
 				const LDL::Graphics::Point2u& Pos();
-				HWND Hwnd();
 			private:
 				LDL::Graphics::Windows::MainWindow _Window;
+				HGLRC _HGLRC;
 			};
 		}
 	}

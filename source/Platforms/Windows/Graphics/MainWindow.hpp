@@ -1,7 +1,7 @@
 #ifndef LDL_Platforms_Windows_Graphics_MainWindow_hpp
 #define LDL_Platforms_Windows_Graphics_MainWindow_hpp
 
-#include <LDL/Platforms/Windows/Windows.hpp>
+#include "../Windows.hpp"
 #include <LDL/Graphics/Base/BaseWindow.hpp>
 #include <LDL/Events/Eventer.hpp>
 #include <LDL/Enums/WindowMode.hpp>

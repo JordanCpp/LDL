@@ -1,5 +1,5 @@
-#include <LDL/Graphics/GL1/GL1Image.hpp>
-#include <LDL/Graphics/OpenGL.hpp>
+#include "GL1Image.hpp"
+#include "OpenGL.hpp"
 #include <assert.h>
 
 LDL::Graphics::GL1Image::GL1Image(const LDL::Graphics::Point2u& size, size_t bytesPerPixel, uint8_t* pixels):

@@ -1,7 +1,5 @@
 #include <iostream>
-#include <LDL/Graphics/Gpu/GpuWindow.hpp>
-#include <LDL/Graphics/Gpu/GpuImage.hpp>
-#include <LDL/Graphics/Gpu/GpuRender.hpp>
+#include <LDL/Creators/GraphicsCreator.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
@@ -13,9 +11,11 @@ int main()
 {
 	try
 	{
-		LDL::Graphics::GpuWindow window(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
+		LDL::Creators::GraphicsCreator graphics;
 
-		LDL::Graphics::GpuRender render(&window);
+		LDL::Graphics::IGpuWindow* window = graphics.CreateGpuWindow(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
+
+		LDL::Graphics::IGpuRender* render = graphics.CreateGpuRender(window);
 
 		LDL::Events::Event report;
 
@@ -29,25 +29,25 @@ int main()
 		LDL::Core::IntegerToString convert;
 		LDL::Time::FpsLimiter fpsLimiter;
 
-		while (window.GetEvent(report))
+		while (window->GetEvent(report))
 		{
 			fpsLimiter.Mark();
 
 			fpsCounter.Start();
 
-			render.Begin();
+			render->Begin();
 
-			render.Color(LDL::Graphics::Color(0, 162, 232));
-			render.Clear();
+			render->Color(LDL::Graphics::Color(0, 162, 232));
+			render->Clear();
 
 			if (report.Type == LDL::Events::IsQuit)
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 
-			render.Draw(&image, window.Pos(), window.Size());
+			render->Draw(&image, window->Pos(), window->Size());
 
-			render.End();
+			render->End();
 
 			fpsLimiter.Throttle();
 
@@ -55,7 +55,7 @@ int main()
 			{
 				if (convert.Convert(fpsCounter.Fps()))
 				{
-					window.Title(convert.Result());
+					window->Title(convert.Result());
 				}
 
 				fpsCounter.Clear();

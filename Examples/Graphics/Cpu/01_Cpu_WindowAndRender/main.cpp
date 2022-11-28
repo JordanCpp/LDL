@@ -3,6 +3,7 @@
 #include <LDL/Graphics/Cpu/CpuRender.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/IntegerToString.hpp>
+#include <LDL/Creators/GraphicsCreator.hpp>
 
 const LDL::Graphics::Point2u windowSize = LDL::Graphics::Point2u(800, 600);
 
@@ -10,22 +11,24 @@ int main()
 {
 	try
 	{ 
-		LDL::Graphics::CpuWindow window(LDL::Graphics::Point2u(0, 0), windowSize, "01_Cpu_WindowAndRender");
+		LDL::Creators::GraphicsCreator graphics;
 
-		LDL::Graphics::CpuRender render(&window);
+		LDL::Graphics::ICpuWindow* window = graphics.CreateCpuWindow(LDL::Graphics::Point2u(0, 0), windowSize, "01_Cpu_WindowAndRender");
+
+		LDL::Graphics::CpuRender render(window);
 
 		LDL::Events::Event report;
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
 
-		while (window.GetEvent(report))
+		while (window->GetEvent(report))
 		{
 			fpsCounter.Start();
 
 			if (report.Type == LDL::Events::IsQuit)
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 
 			render.Present();
@@ -34,7 +37,7 @@ int main()
 			{
 				if (convert.Convert(fpsCounter.Fps()))
 				{
-					window.Title(convert.Result());
+					window->Title(convert.Result());
 				}
 
 				fpsCounter.Clear();

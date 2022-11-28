@@ -1,5 +1,5 @@
 #include <LDL/Time/Ticks.hpp>
-#include <LDL/Platforms/Windows/Windows.hpp>
+#include "../Windows.hpp"
 
 size_t LDL::Time::Ticks()
 {

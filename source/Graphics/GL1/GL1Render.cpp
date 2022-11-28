@@ -1,7 +1,7 @@
-#include <LDL/Graphics/GL1/GL1Render.hpp>
-#include <LDL/Graphics/OpenGL.hpp>
+#include "GL1Render.hpp"
+#include "OpenGL.hpp"
 
-LDL::Graphics::GL1Render::GL1Render(LDL::Graphics::GL1Window* window) :
+LDL::Graphics::GL1Render::GL1Render(LDL::Graphics::IGpuWindow* window) :
 	_Window(window),
 	_BaseRender(_Window->Size()),
 	_Screen(_Window->Size())
@@ -99,9 +99,11 @@ void LDL::Graphics::GL1Render::Fill(const LDL::Graphics::Point2u& pos, const LDL
 	glEnd();
 }
 
-void LDL::Graphics::GL1Render::Draw(LDL::Graphics::GL1Image* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void LDL::Graphics::GL1Render::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
 {
-	glBindTexture(GL_TEXTURE_2D, (GLuint)image->Id());
+	LDL::Graphics::GL1Image* img = (LDL::Graphics::GL1Image*)image;
+
+	glBindTexture(GL_TEXTURE_2D, (GLuint)img->Id());
 
 	GLint x = (GLint)pos.PosX();
 	GLint y = (GLint)pos.PosY();
@@ -120,7 +122,7 @@ void LDL::Graphics::GL1Render::Draw(LDL::Graphics::GL1Image* image, const LDL::G
 	glEnd();
 }
 
-void LDL::Graphics::GL1Render::Draw(LDL::Graphics::GL1Image* image, const LDL::Graphics::Point2u& pos)
+void LDL::Graphics::GL1Render::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos)
 {
 	Draw(image, pos, image->Size());
 }

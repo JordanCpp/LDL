@@ -7,8 +7,8 @@ CL -GX /I..\include /DLDL_GPU_SUPPORT_OPENGL1 ..\%2  ^
 ..\source\Events\*.cpp ^
 ..\source\Time\*.cpp ^
 ..\source\Platforms\Windows\Graphics\MainWindow.cpp ^
-..\source\Platforms\Windows\Graphics\CpuWindow.cpp ^
-..\source\Platforms\Windows\Graphics\GL1Window.cpp ^
+..\source\Platforms\Windows\Graphics\Cpu\CpuWindow.cpp ^
+..\source\Platforms\Windows\Graphics\Gl1\GL1Window.cpp ^
 ..\source\Platforms\Windows\Time\Ticks.cpp ^
 ..\source\Graphics\*.cpp ^
 ..\source\Graphics\Base\*.cpp ^
@@ -16,6 +16,7 @@ CL -GX /I..\include /DLDL_GPU_SUPPORT_OPENGL1 ..\%2  ^
 ..\source\Graphics\GL1\*.cpp ^
 ..\source\Graphics\Primitives\*.cpp ^
 ..\source\Loaders\*.cpp  ^
+..\source\Creators\*.cpp  ^
 ..\source\Platforms\Windows\Input\*.cpp  ^
 gdi32.lib ^
 opengl32.lib ^

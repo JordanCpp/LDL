@@ -1,4 +1,4 @@
-#include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
+#include "MainWindow.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
 

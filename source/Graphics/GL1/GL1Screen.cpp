@@ -1,5 +1,5 @@
-#include <LDL/Graphics/GL1/GL1Screen.hpp>
-#include <LDL/Graphics/OpenGL.hpp>
+#include "GL1Screen.hpp"
+#include "OpenGL.hpp"
 
 LDL::Graphics::GL1Screen::GL1Screen(const LDL::Graphics::Point2u& size) :
 	_Size(size),

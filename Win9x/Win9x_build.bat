@@ -7,8 +7,8 @@ source\Core\*.cpp ^
 source\Events\*.cpp ^
 source\Time\*.cpp ^
 source\Platforms\Windows\Graphics\MainWindow.cpp ^
-source\Platforms\Windows\Graphics\CpuWindow.cpp ^
-source\Platforms\Windows\Graphics\GL1Window.cpp ^
+source\Platforms\Windows\Graphics\Cpu\CpuWindow.cpp ^
+source\Platforms\Windows\Graphics\GL1\GL1Window.cpp ^
 source\Platforms\Windows\Time\Ticks.cpp ^
 source\Platforms\Windows\Input\*.cpp ^
 source\Graphics\*.cpp ^
@@ -17,6 +17,7 @@ source\Graphics\Cpu\*.cpp ^
 source\Graphics\GL1\*.cpp ^
 source\Graphics\Primitives\*.cpp ^
 source\Loaders\*.cpp ^
+source\Creators\*.cpp ^
 -Iinclude\ ^
 -lgdi32 ^
 -lopengl32 ^
