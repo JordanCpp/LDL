@@ -15,7 +15,7 @@ namespace LDL
 			class MainWindow
 			{
 			public:
-				MainWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, LDL::Enums::WindowMode mode);
+				MainWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode);
 				~MainWindow();
 				bool GetEvent(LDL::Events::Event& event);
 				bool WaitEvent(LDL::Events::Event& event);

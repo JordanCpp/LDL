@@ -224,7 +224,7 @@ LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::WndProc(HWND Hwnd, UINT Mes
     return result;
 }
 
-LDL::Graphics::Windows::MainWindow::MainWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, LDL::Enums::WindowMode mode) :
+LDL::Graphics::Windows::MainWindow::MainWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode) :
     _BaseWindow(pos, size, title)
 {
     ZeroMemory(&_WNDCLASS, sizeof(WNDCLASS));

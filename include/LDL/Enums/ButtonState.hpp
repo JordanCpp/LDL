@@ -5,10 +5,14 @@ namespace LDL
 {
 	namespace Enums
 	{
-		enum ButtonState
+		class ButtonState
 		{
-			Pressed = 1,
-			Released
+		public:
+			enum
+			{
+				Pressed = 1,
+				Released
+			};
 		};
 	}
 }

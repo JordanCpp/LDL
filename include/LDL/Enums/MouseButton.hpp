@@ -5,11 +5,15 @@ namespace LDL
 {
 	namespace Enums
 	{
-		enum MouseButton
+		class MouseButton
 		{
-			Left = 1,
-			Right,
-			Middle
+		public:
+			enum 
+			{
+				Left = 1,
+				Right,
+				Middle
+			};
 		};
 	}
 }

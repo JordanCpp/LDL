@@ -1,6 +1,5 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <assert.h>
-#include <string.h>
 
 LDL::Allocators::FixedLinear::FixedLinear(size_t bytes, LDL::Allocators::Allocator* allocator):
 	_Capacity(bytes),

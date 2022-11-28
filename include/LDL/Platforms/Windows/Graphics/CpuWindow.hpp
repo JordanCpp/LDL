@@ -12,7 +12,7 @@ namespace LDL
 			class CpuWindow
 			{
 			public:
-				CpuWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, LDL::Enums::WindowMode mode = LDL::Enums::WindowMode::Resized);
+				CpuWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
 				~CpuWindow();
 				void Present(uint8_t* pixels);
 				bool GetEvent(LDL::Events::Event& event);

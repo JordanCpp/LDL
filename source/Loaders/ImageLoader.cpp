@@ -1,5 +1,6 @@
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Core/RuntimeError.hpp>
+#include <string.h>
 
 static LDL::Allocators::Allocator* StbImageAllocator;
 

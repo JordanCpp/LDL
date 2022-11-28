@@ -5,11 +5,15 @@ namespace LDL
 {
 	namespace Enums
 	{
-		enum WindowMode
+		class WindowMode
 		{
-			Resized = 1,
-			Fixed,
-			FullScreen
+		public:
+			enum
+			{
+				Resized = 1,
+				Fixed,
+				FullScreen
+			};
 		};
 	}
 }

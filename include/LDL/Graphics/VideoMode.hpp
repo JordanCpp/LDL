@@ -17,7 +17,7 @@ namespace LDL
 			VideoMode();
 			VideoMode(const LDL::Graphics::Point2u& size, size_t bytesPerPixel);
 			const LDL::Graphics::Point2u& Size();
-			const size_t BitsPerPixel();
+			size_t BitsPerPixel();
 		private:
 			LDL::Graphics::Point2u _Size;
 			size_t _BitsPerPixel;

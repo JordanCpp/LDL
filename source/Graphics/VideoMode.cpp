@@ -16,7 +16,7 @@ const LDL::Graphics::Point2u& LDL::Graphics::VideoMode::Size()
 	return _Size;
 }
 
-const size_t LDL::Graphics::VideoMode::BitsPerPixel()
+size_t LDL::Graphics::VideoMode::BitsPerPixel()
 {
 	return _BitsPerPixel;
 }
