@@ -1,6 +1,6 @@
-#include <LDL/Graphics/DX9/DX9Screenshoter.hpp>
+#include "DX9Screenshoter.hpp"
 
-LDL::Graphics::DX9Screenshoter::DX9Screenshoter(const std::string& path, const std::string& name, LDL::Graphics::DX9Render* render, LDL::Graphics::CpuImage* image) :
+LDL::Graphics::DX9Screenshoter::DX9Screenshoter(const std::string& path, const std::string& name, LDL::Graphics::IGpuRender* render, LDL::Graphics::CpuImage* image) :
 	_ShortPath(path),
 	_Name(name),
 	_Render(render),

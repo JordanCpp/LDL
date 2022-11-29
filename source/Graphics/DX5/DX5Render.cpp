@@ -1,7 +1,8 @@
-#include <LDL/Graphics/DX5/DX5Render.hpp>
+#include "DX5Render.hpp"
 #include <LDL/Core/RuntimeError.hpp>
+#include "../../Platforms/Windows/Graphics/DX5/DX5Window.hpp"
 
-LDL::Graphics::DX5Render::DX5Render(LDL::Graphics::DX5Window* window) :
+LDL::Graphics::DX5Render::DX5Render(LDL::Graphics::IGpuWindow* window) :
 	_Window(window),
 	_BaseRender(_Window->Size())
 {
@@ -17,7 +18,9 @@ LDL::Graphics::DX5Render::DX5Render(LDL::Graphics::DX5Window* window) :
 	if (FAILED(result))
 		throw LDL::Core::RuntimeError("DirectDrawCreateClipper failed");
 
-	result = _DirectDrawClipper->SetHWnd(NULL, _Window->Hwnd());
+	LDL::Graphics::Windows::DX5Window* w = (LDL::Graphics::Windows::DX5Window*)_Window;
+
+	result = _DirectDrawClipper->SetHWnd(NULL, w->Hwnd());
 
 	if (FAILED(result))
 		throw LDL::Core::RuntimeError("SetHWnd failed");
@@ -88,11 +91,11 @@ void LDL::Graphics::DX5Render::Fill(const LDL::Graphics::Point2u& pos, const LDL
 {
 }
 
-void LDL::Graphics::DX5Render::Draw(LDL::Graphics::DX5Image* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void LDL::Graphics::DX5Render::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
 {
 }
 
-void LDL::Graphics::DX5Render::Draw(LDL::Graphics::DX5Image* image, const LDL::Graphics::Point2u& pos)
+void LDL::Graphics::DX5Render::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos)
 {
 	Draw(image, pos, image->Size());
 }

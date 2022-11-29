@@ -1,9 +1,10 @@
 #ifndef LDL_Graphics_DX9Render_hpp
 #define LDL_Graphics_DX9Render_hpp
 
+#include <LDL/Graphics/IGpuRender.hpp>
+#include <LDL/Graphics/IGpuWindow.hpp>
+#include <LDL/Graphics/IGpuImage.hpp>
 #include <LDL/Graphics/Base/BaseRender.hpp>
-#include <LDL/Graphics/DX9/DX9Window.hpp>
-#include <LDL/Graphics/DX9/DX9Image.hpp>
 #include <LDL/Graphics/Cpu/CpuImage.hpp>
 
 #include <windows.h>
@@ -14,10 +15,10 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class DX9Render
+		class DX9Render: public LDL::Graphics::IGpuRender
 		{
 		public:
-			DX9Render(LDL::Graphics::DX9Window* window);
+			DX9Render(LDL::Graphics::IGpuWindow* window);
 			~DX9Render();
 			void Mode2D();
 			void Begin();
@@ -29,14 +30,14 @@ namespace LDL
 			void Pixel(const LDL::Graphics::Point2u& pos);
 			void Fill(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
 			void Line(const LDL::Graphics::Point2u& pos1, const LDL::Graphics::Point2u& pos2);
-			void Draw(LDL::Graphics::DX9Image* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
-			void Draw(LDL::Graphics::DX9Image* image, const LDL::Graphics::Point2u& pos);
+			void Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
+			void Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos);
 			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
 			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos);
 		private:
 			void Initialization();
 			void Deinitialization();
-			LDL::Graphics::DX9Window* _Window;
+			LDL::Graphics::IGpuWindow* _Window;
 			LDL::Graphics::BaseRender _BaseRender;
 			IDirect3D9* _Direct3D = NULL;
 			IDirect3DDevice9* _Direct3DDevice = NULL;

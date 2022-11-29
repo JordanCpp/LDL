@@ -1,4 +1,4 @@
-#include <LDL/Graphics/DX5/DX5Image.hpp>
+#include "DX5Image.hpp"
 #include <assert.h>
 
 LDL::Graphics::DX5Image::DX5Image(const LDL::Graphics::Point2u& size, size_t bytesPerPixel, uint8_t* pixels):

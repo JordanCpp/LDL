@@ -1,6 +1,7 @@
 #ifndef LDL_Platforms_Windows_Core_Directory_hpp
 #define LDL_Platforms_Windows_Core_Directory_hpp
 
+#include <LDL/Core/IDirectory.hpp>
 #include <Windows.h>
 #include <LDL/Core/FileInfo.hpp>
 
@@ -10,7 +11,7 @@ namespace LDL
 	{
 		namespace Windows
 		{
-			class Directory
+			class Directory: public LDL::Core::IDirectory
 			{
 			public:
 				bool Create(const std::string& path);

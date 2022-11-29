@@ -1,7 +1,8 @@
-#include <LDL/Graphics/DX9/DX9Render.hpp>
+#include "DX9Render.hpp"
 #include <LDL/Core/RuntimeError.hpp>
+#include "../../Platforms/Windows/Graphics/DX9/DX9Window.hpp"
 
-LDL::Graphics::DX9Render::DX9Render(LDL::Graphics::DX9Window* window) :
+LDL::Graphics::DX9Render::DX9Render(LDL::Graphics::IGpuWindow* window) :
 	_Window(window),
 	_BaseRender(_Window->Size())
 {
@@ -74,11 +75,11 @@ void LDL::Graphics::DX9Render::Fill(const LDL::Graphics::Point2u& pos, const LDL
 {
 }
 
-void LDL::Graphics::DX9Render::Draw(LDL::Graphics::DX9Image* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void LDL::Graphics::DX9Render::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
 {
 }
 
-void LDL::Graphics::DX9Render::Draw(LDL::Graphics::DX9Image* image, const LDL::Graphics::Point2u& pos)
+void LDL::Graphics::DX9Render::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos)
 {
 	Draw(image, pos, image->Size());
 }
@@ -111,17 +112,19 @@ void LDL::Graphics::DX9Render::Initialization()
 
     D3DPRESENT_PARAMETERS parameters = { 0 };
 
-    parameters.hDeviceWindow = _Window->Hwnd();
+    LDL::Graphics::Windows::DX9Window* window = (LDL::Graphics::Windows::DX9Window*)_Window;
+
+    parameters.hDeviceWindow = window->Hwnd();
     parameters.Windowed = true;
-    parameters.BackBufferWidth = _Window->Size().PosX();
-    parameters.BackBufferHeight = _Window->Size().PosY();
+    parameters.BackBufferWidth = (UINT)_Window->Size().PosX();
+    parameters.BackBufferHeight = (UINT)_Window->Size().PosY();
     parameters.BackBufferCount = 1;
     parameters.EnableAutoDepthStencil = true;
     parameters.AutoDepthStencilFormat = D3DFMT_D16;
     parameters.SwapEffect = D3DSWAPEFFECT_FLIP;
     parameters.BackBufferFormat = displayMode.Format;
 
-    result = _Direct3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, _Window->Hwnd(), D3DCREATE_HARDWARE_VERTEXPROCESSING, &parameters, &_Direct3DDevice);
+    result = _Direct3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, window->Hwnd(), D3DCREATE_HARDWARE_VERTEXPROCESSING, &parameters, &_Direct3DDevice);
 
     if (FAILED(result))
         throw LDL::Core::RuntimeError("CreateDevice failed");

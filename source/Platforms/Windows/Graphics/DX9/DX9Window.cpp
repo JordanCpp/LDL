@@ -2,7 +2,7 @@
 #include <LDL/Core/RuntimeError.hpp>
 
 LDL::Graphics::Windows::DX9Window::DX9Window(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
-    _Window(pos, size, title)
+    _Window(pos, size, title, mode)
 {
 }
 

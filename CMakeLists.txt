@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.8)
 
-project(LibLdl)
+project(LibLDL)
 
 set(LDL_GPU_SUPPORT_OPENGL1 true)
 add_definitions(-DLDL_GPU_SUPPORT_OPENGL1)
@@ -41,6 +41,7 @@ add_library(LDL STATIC
 "source/Graphics/TextRasterizer.cpp"
 "source/Graphics/VideoMode.cpp"
 "source/Creators/GraphicsCreator.cpp"
+"source/Creators/CoreCreator.cpp"
 "source/Graphics/Base/BaseScreenshoter.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
@@ -78,12 +79,12 @@ endif()
 
 if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX9)
   target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/DX9Window.cpp")
+  "source/Platforms/Windows/Graphics/DX9/DX9Window.cpp")
 endif() 
 
 if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX5)
   target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/DX5Window.cpp")
+  "source/Platforms/Windows/Graphics/DX5/DX5Window.cpp")
 endif() 
 
 if (WIN32)

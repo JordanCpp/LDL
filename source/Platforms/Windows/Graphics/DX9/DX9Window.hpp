@@ -3,7 +3,7 @@
 
 #include <LDL/Graphics/IGpuWindow.hpp>
 #include <LDL/Enums/WindowMode.hpp>
-#include "MainWindow.hpp"
+#include "../MainWindow.hpp"
 
 namespace LDL
 {

@@ -1,8 +1,8 @@
-#include <LDL/Platforms/Windows/Graphics/DX5Window.hpp>
+#include "DX5Window.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
-LDL::Graphics::Windows::DX5Window::DX5Window(const Point2u& pos, const Point2u& size, const std::string& title) :
-    _Window(pos, size, title)
+LDL::Graphics::Windows::DX5Window::DX5Window(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
+    _Window(pos, size, title, mode)
 {
 }
 

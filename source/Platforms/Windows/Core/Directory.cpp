@@ -1,4 +1,4 @@
-#include <LDL/Platforms/Windows/Core/Directory.hpp>
+#include "Directory.hpp"
 
 bool LDL::Core::Windows::Directory::Create(const std::string& path)
 {

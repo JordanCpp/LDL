@@ -1,7 +1,9 @@
 #ifndef LDL_Platforms_Windows_Graphics_DX5Window_hpp
 #define LDL_Platforms_Windows_Graphics_DX5Window_hpp
 
-#include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
+#include <LDL/Graphics/IGpuWindow.hpp>
+#include <LDL/Enums/WindowMode.hpp>
+#include "../MainWindow.hpp"
 
 namespace LDL
 {
@@ -9,10 +11,10 @@ namespace LDL
 	{
 		namespace Windows
 		{
-			class DX5Window
+			class DX5Window : public LDL::Graphics::IGpuWindow
 			{
 			public:
-				DX5Window(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title);
+				DX5Window(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode);
 				~DX5Window();
 				void Present();
 				bool GetEvent(LDL::Events::Event& event);
