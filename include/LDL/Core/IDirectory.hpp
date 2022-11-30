@@ -16,6 +16,7 @@ namespace LDL
 		virtual	bool Open(const std::string& path) = 0;
 		virtual	void Close() = 0;
 		virtual	bool Next(LDL::Core::FileInfo& fileInfo) = 0;
+		virtual ~IDirectory() {};
 		};
 	}
 }

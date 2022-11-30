@@ -17,6 +17,7 @@ namespace Game
 		Engine(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title);
 		void Run();
 	private:
+		LDL::Allocators::FixedLinear _GraphicsAllocator;
 		LDL::Creators::GraphicsCreator _Graphics;
 		LDL::Allocators::FixedLinear _Allocator;
 		LDL::Loaders::ImageLoader _ImageLoader;

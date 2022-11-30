@@ -2,8 +2,8 @@
 #define LDL_Platforms_Windows_Core_Directory_hpp
 
 #include <LDL/Core/IDirectory.hpp>
-#include <Windows.h>
 #include <LDL/Core/FileInfo.hpp>
+#include "../Windows.hpp"
 
 namespace LDL
 {

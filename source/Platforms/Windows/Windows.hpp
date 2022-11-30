@@ -13,4 +13,8 @@
 #define INVALID_ATOM ((ATOM)0)
 #endif
 
+#if !defined INVALID_FILE_ATTRIBUTES
+#define INVALID_FILE_ATTRIBUTES ((DWORD)-1)
+#endif
+
 #endif  

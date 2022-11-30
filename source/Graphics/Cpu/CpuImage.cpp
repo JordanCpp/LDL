@@ -3,6 +3,7 @@
 #include <string.h>
 
 LDL::Graphics::CpuImage::CpuImage(LDL::Loaders::ImageLoader* imageLoader) :
+	_Allocator(NULL),
 	_BytesPerPixel(0),
 	_Pixels(NULL)
 {
@@ -21,6 +22,7 @@ LDL::Graphics::CpuImage::CpuImage(LDL::Loaders::ImageLoader* imageLoader) :
 }
 
 LDL::Graphics::CpuImage::CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel) :
+	_Allocator(NULL),
 	_Size(size),
 	_BytesPerPixel(bytesPerPixel),
 	_Pixels(NULL)
@@ -34,7 +36,10 @@ LDL::Graphics::CpuImage::CpuImage(const LDL::Graphics::Point2u& size, uint8_t by
 
 LDL::Graphics::CpuImage::~CpuImage()
 {
-	delete[] _Pixels;
+	if (_Allocator != NULL)
+		_Allocator->Deallocate(_Pixels);
+	else
+		delete[] _Pixels;
 }
 
 const LDL::Graphics::Point2u& LDL::Graphics::CpuImage::Size()

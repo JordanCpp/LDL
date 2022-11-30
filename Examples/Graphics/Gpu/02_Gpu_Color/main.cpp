@@ -3,12 +3,15 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/IntegerToString.hpp>
+#include <LDL/Allocators/FixedLinear.hpp>
 
 int main()
 {
 	try
 	{
-		LDL::Creators::GraphicsCreator graphics;
+		LDL::Allocators::FixedLinear graphicsAllocator(LDL::Allocators::Allocator::Mb * 1);
+
+		LDL::Creators::GraphicsCreator graphics(&graphicsAllocator);
 
 		LDL::Graphics::IGpuWindow* window = graphics.CreateGpuWindow(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
 

@@ -20,7 +20,9 @@
 
 #include <assert.h>
 
-LDL::Creators::GraphicsCreator::GraphicsCreator() :
+LDL::Creators::GraphicsCreator::GraphicsCreator(LDL::Allocators::Allocator* allocator) :
+	_Allocator(allocator),
+	_GpuImages(_Allocator),
 	_GpuWindow(NULL),
 	_GpuRender(NULL),
 	_CpuWindow(NULL)
@@ -94,6 +96,8 @@ LDL::Graphics::IGpuImage* LDL::Creators::GraphicsCreator::CreateGpuImage(const L
 void LDL::Creators::GraphicsCreator::Destroy(LDL::Graphics::IGpuImage* gpuImage)
 {
 	assert(gpuImage != NULL);
+
+	_GpuImages.Free((LDL::Graphics::IGpuImage**)gpuImage);
 
 	delete gpuImage;
 }

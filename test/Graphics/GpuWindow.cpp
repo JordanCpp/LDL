@@ -2,12 +2,15 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Creators/GraphicsCreator.hpp>
+#include <LDL/Allocators/FixedLinear.hpp>
 
 int main()
 {
 	try
 	{
-		LDL::Creators::GraphicsCreator graphics;
+		LDL::Allocators::FixedLinear graphicsAllocator(LDL::Allocators::Allocator::Mb * 1);
+
+		LDL::Creators::GraphicsCreator graphics(&graphicsAllocator);
 
 		const std::string title = "LDL Window title!";
 
