@@ -12,7 +12,8 @@ namespace LDL
 		public:
 			enum
 			{
-				Buckets = 16
+				Buckets = 6,
+				Overflow = UINT_MAX
 			};
 
 			class Node
@@ -36,6 +37,7 @@ namespace LDL
 			void* Allocate(size_t bytes);
 			void Deallocate(void* ptr);
 			Node* ToNode(void* ptr);
+			size_t CalckSize(size_t bytes);
 		private:
 			void Append(List* list, Node* node);
 			void Remove(List* list, Node* node);

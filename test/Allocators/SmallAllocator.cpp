@@ -2,9 +2,18 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Allocators/SmallAllocator.hpp>
 
+const size_t bytes = LDL::Allocators::Allocator::Mb * 1;
+
+void CalcBucket()
+{
+	LDL::Allocators::FixedLinear allocator(bytes);
+
+	LDL::Allocators::SmallAllocator smallAllocator(&allocator);
+}
+
 int main()
 {
-	const size_t bytes = LDL::Allocators::Allocator::Mb * 1;
+	CalcBucket();
 
 	LDL::Allocators::FixedLinear allocator(bytes);
 
