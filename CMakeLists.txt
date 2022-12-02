@@ -45,6 +45,7 @@ add_library(LDL STATIC
 "source/Graphics/Base/BaseScreenshoter.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
+"source/Allocators/SmallAllocator.cpp"
 "source/Loaders/ImageLoader.cpp"
 "source/Loaders/FontLoader.cpp"
 "source/Time/FpsCounter.cpp"

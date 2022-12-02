@@ -8,3 +8,6 @@ target_link_libraries(FixedLinear LDL)
 
 add_executable(ObjectPool "ObjectPool.cpp")
 target_link_libraries(ObjectPool LDL)
+
+add_executable(SmallAllocator "SmallAllocator.cpp")
+target_link_libraries(SmallAllocator LDL)
