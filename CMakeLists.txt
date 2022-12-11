@@ -32,6 +32,7 @@ add_library(LDL STATIC
 "source/Core/RuntimeError.cpp"
 "source/Core/IntegerToString.cpp"
 "source/Core/FileInfo.cpp"
+"source/Core/Directory.cpp"
 "source/Graphics/Base/BaseWindow.cpp"
 "source/Graphics/Base/BaseRender.cpp"
 "source/Graphics/Cpu/CpuImage.cpp"
@@ -41,7 +42,7 @@ add_library(LDL STATIC
 "source/Graphics/TextRasterizer.cpp"
 "source/Graphics/VideoMode.cpp"
 "source/Creators/GraphicsCreator.cpp"
-"source/Creators/CoreCreator.cpp"
+
 "source/Graphics/Base/BaseScreenshoter.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
@@ -93,7 +94,7 @@ if (WIN32)
   "source/Platforms/Windows/Graphics/MainWindow.cpp"
   "source/Platforms/Windows/Graphics/Cpu/CpuWindow.cpp"
   "source/Platforms/Windows/Time/Ticks.cpp"
-  "source/Platforms/Windows/Core/Directory.cpp"
+  "source/Platforms/Windows/Core/DirectoryImpl.cpp"
   "source/Platforms/Windows/Input/Display.cpp"
   "source/Platforms/Windows/Input/Mouse.cpp")
 elseif(UNIX AND NOT APPLE)
