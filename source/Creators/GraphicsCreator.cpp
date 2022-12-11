@@ -23,36 +23,17 @@
 LDL::Creators::GraphicsCreator::GraphicsCreator(LDL::Allocators::Allocator* allocator) :
 	_Allocator(allocator),
 	_GpuImages(_Allocator),
-	_GpuWindow(NULL),
 	_GpuRender(NULL)
 {
 }
 
 LDL::Creators::GraphicsCreator::~GraphicsCreator()
 {
-	if (_GpuWindow)
-		delete _GpuWindow;
-
 	if (_GpuRender)
 		delete _GpuRender;
 }
 
-LDL::Graphics::IGpuWindow* LDL::Creators::GraphicsCreator::CreateGpuWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode)
-{
-	assert(_GpuWindow == NULL);
-
-#if (LDL_GPU_SUPPORT_OPENGL1)
-	_GpuWindow = new LDL::Graphics::GpuWindowImpl(pos, size, title, mode);
-#elif (LDL_GPU_SUPPORT_DIRECTX9)
-	_GpuWindow = new LDL::Graphics::Windows::DX9Window(pos, size, title, mode);
-#elif (LDL_GPU_SUPPORT_DIRECTX5)
-	_GpuWindow = new LDL::Graphics::Windows::DX5Window(pos, size, title, mode);
-#endif
-
-	return _GpuWindow;
-}
-
-LDL::Graphics::IGpuRender* LDL::Creators::GraphicsCreator::CreateGpuRender(LDL::Graphics::IGpuWindow* gpuWindow)
+LDL::Graphics::IGpuRender* LDL::Creators::GraphicsCreator::CreateGpuRender(LDL::Graphics::GpuWindow* gpuWindow)
 {
 	assert(_GpuRender == NULL);
 

@@ -3,7 +3,7 @@
 
 #include <LDL/Graphics/IGpuRender.hpp>
 #include <LDL/Graphics/Base/BaseRender.hpp>
-#include <LDL/Graphics/IGpuWindow.hpp>
+#include <LDL/Graphics/GpuWindow.hpp>
 #include "GL1Image.hpp"
 #include "GL1Screen.hpp"
 
@@ -14,7 +14,7 @@ namespace LDL
 		class GL1Render: public LDL::Graphics::IGpuRender
 		{
 		public:
-			GL1Render(LDL::Graphics::IGpuWindow* window);
+			GL1Render(LDL::Graphics::GpuWindow* window);
 			void Begin();
 			void End();
 			const LDL::Graphics::Point2u& Size();
@@ -29,7 +29,7 @@ namespace LDL
 			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
 			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos);
 		private:
-			LDL::Graphics::IGpuWindow* _Window;
+			LDL::Graphics::GpuWindow* _Window;
 			LDL::Graphics::BaseRender _BaseRender;
 			LDL::Graphics::GL1Screen _Screen;
 		};

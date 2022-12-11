@@ -5,6 +5,7 @@
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/IntegerToString.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
+#include <LDL/Graphics/GpuWindow.hpp>
 
 int main()
 {
@@ -14,9 +15,9 @@ int main()
 
 		LDL::Creators::GraphicsCreator graphics(&graphicsAllocator);
 
-		LDL::Graphics::IGpuWindow* window = graphics.CreateGpuWindow(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
+		LDL::Graphics::GpuWindow window(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
 
-		LDL::Graphics::IGpuRender* render = graphics.CreateGpuRender(window);
+		LDL::Graphics::IGpuRender* render = graphics.CreateGpuRender(&window);
 
 		LDL::Events::Event report;
 
@@ -29,7 +30,7 @@ int main()
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
 
-		while (window->GetEvent(report))
+		while (window.GetEvent(report))
 		{
 			fpsCounter.Start();
 
@@ -40,10 +41,10 @@ int main()
 
 			if (report.Type == LDL::Events::IsQuit)
 			{
-				window->StopEvent();
+				window.StopEvent();
 			}
 
-			render->Draw(image, window->Pos(), window->Size());
+			render->Draw(image, window.Pos(), window.Size());
 
 			render->End();
 
@@ -51,7 +52,7 @@ int main()
 			{
 				if (convert.Convert(fpsCounter.Fps()))
 				{
-					window->Title(convert.Result());
+					window.Title(convert.Result());
 				}
 
 				fpsCounter.Clear();

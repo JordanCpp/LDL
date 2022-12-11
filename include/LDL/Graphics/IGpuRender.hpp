@@ -3,7 +3,7 @@
 
 #include <LDL/Graphics/Base/BaseRender.hpp>
 #include <LDL/Graphics/Cpu/CpuImage.hpp>
-#include <LDL/Graphics/IGpuWindow.hpp>
+#include <LDL/Graphics/GpuWindow.hpp>
 #include <LDL/Graphics/IGpuImage.hpp>
 
 namespace LDL

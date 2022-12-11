@@ -1,7 +1,7 @@
 #include "GL1Render.hpp"
 #include "OpenGL.hpp"
 
-LDL::Graphics::GL1Render::GL1Render(LDL::Graphics::IGpuWindow* window) :
+LDL::Graphics::GL1Render::GL1Render(LDL::Graphics::GpuWindow* window) :
 	_Window(window),
 	_BaseRender(_Window->Size()),
 	_Screen(_Window->Size())

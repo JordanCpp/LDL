@@ -1,5 +1,6 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Creators/GraphicsCreator.hpp>
+#include <LDL/Graphics/GpuWindow.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 
 LDL::Allocators::FixedLinear graphicsAllocator(LDL::Allocators::Allocator::Mb * 1);
@@ -7,10 +8,9 @@ LDL::Creators::GraphicsCreator graphicsCreator(&graphicsAllocator);
 
 void CreateGpuRender()
 {
-	LDL::Graphics::IGpuWindow* window = graphicsCreator.CreateGpuWindow(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
-	LDL_TEST_EQUAL(window != NULL);
+	LDL::Graphics::GpuWindow window(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
 
-	LDL::Graphics::IGpuRender* render = graphicsCreator.CreateGpuRender(window);
+	LDL::Graphics::IGpuRender* render = graphicsCreator.CreateGpuRender(&window);
 	LDL_TEST_EQUAL(render != NULL);
 
 	LDL::Graphics::Point2u size = LDL::Graphics::Point2u(800, 600);

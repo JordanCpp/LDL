@@ -4,15 +4,18 @@
 #include <string>
 #include <LDL/Events/Event.hpp>
 #include <LDL/Graphics/Primitives/Point2u.hpp>
+#include <LDL/Enums/WindowMode.hpp>
 
 namespace LDL
 {
 	namespace Graphics
 	{
+		class GpuWindowImpl;
+
 		class GpuWindow
 		{
 		public:
-			GpuWindow();
+			GpuWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
 			~GpuWindow();
 			void Present();
 			bool GetEvent(LDL::Events::Event& event);
@@ -22,6 +25,8 @@ namespace LDL
 			const std::string& Title();
 			const LDL::Graphics::Point2u& Size();
 			const LDL::Graphics::Point2u& Pos();
+		private:
+			GpuWindowImpl* _GpuWindowImpl;
 		};
 	}
 }

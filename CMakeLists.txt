@@ -42,6 +42,7 @@ add_library(LDL STATIC
 "source/Graphics/PixelConverter.cpp"
 "source/Graphics/TextRasterizer.cpp"
 "source/Graphics/VideoMode.cpp"
+"source/Graphics/GpuWindow.cpp"
 "source/Creators/GraphicsCreator.cpp"
 "source/Graphics/Base/BaseScreenshoter.cpp"
 "source/Events/Eventer.cpp"

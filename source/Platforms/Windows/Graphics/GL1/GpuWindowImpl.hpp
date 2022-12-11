@@ -1,14 +1,14 @@
 #ifndef LDL_Platforms_Windows_Graphics_GpuWindowImpl_hpp
 #define LDL_Platforms_Windows_Graphics_GpuWindowImpl_hpp
 
-#include <LDL/Graphics/IGpuWindow.hpp>
+#include <LDL/Graphics/GpuWindow.hpp>
 #include "../MainWindow.hpp"
 
 namespace LDL
 {
 	namespace Graphics
 	{
-		class GpuWindowImpl : public LDL::Graphics::IGpuWindow
+		class GpuWindowImpl
 		{
 		public:
 			GpuWindowImpl(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
