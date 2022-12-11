@@ -33,6 +33,7 @@ add_library(LDL STATIC
 "source/Core/IntegerToString.cpp"
 "source/Core/FileInfo.cpp"
 "source/Core/Directory.cpp"
+"source/Core/FastPimpl.cpp"
 "source/Graphics/Base/BaseWindow.cpp"
 "source/Graphics/Base/BaseRender.cpp"
 "source/Graphics/Cpu/CpuImage.cpp"

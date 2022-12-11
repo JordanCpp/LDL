@@ -5,6 +5,7 @@
 #include <LDL/Events/Event.hpp>
 #include <LDL/Graphics/Primitives/Point2u.hpp>
 #include <LDL/Enums/WindowMode.hpp>
+#include <LDL/Core/FastPimpl.hpp>
 
 namespace LDL
 {
@@ -12,7 +13,7 @@ namespace LDL
 	{
 		class GpuWindowImpl;
 
-		class GpuWindow
+		class GpuWindow : public LDL::Core::FastPimpl
 		{
 		public:
 			GpuWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);

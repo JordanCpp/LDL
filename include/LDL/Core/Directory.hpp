@@ -2,6 +2,7 @@
 #define LDL_Core_Directory_hpp
 
 #include <LDL/Core/FileInfo.hpp>
+#include <LDL/Core/FastPimpl.hpp>
 
 namespace LDL
 {
@@ -9,7 +10,7 @@ namespace LDL
 	{
 		class DirectoryImpl;
 
-		class Directory
+		class Directory: public LDL::Core::FastPimpl
 		{
 		public:
 			Directory();

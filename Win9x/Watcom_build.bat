@@ -8,8 +8,8 @@ wcl386.exe ..\Examples\Graphics\Gpu\05_Gpu_Image\main.cpp -i="C:\WATCOM/h;C:\WAT
 ..\source\Events\*.cpp ^
 ..\source\Time\*.cpp ^
 ..\source\Platforms\Windows\Graphics\MainWindow.cpp ^
-..\source\Platforms\Windows\Graphics\Cpu\CpuWindow.cpp ^
-..\source\Platforms\Windows\Graphics\Gl1\GL1Window.cpp ^
+..\source\Platforms\Windows\Graphics\Cpu\CpuWindowImpl.cpp ^
+..\source\Platforms\Windows\Graphics\Gl1\GpuWindowImpl.cpp ^
 ..\source\Platforms\Windows\Time\Ticks.cpp ^
 ..\source\Platforms\Windows\Core\*.cpp ^
 ..\source\Graphics\*.cpp ^
