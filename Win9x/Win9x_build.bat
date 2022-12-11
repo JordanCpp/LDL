@@ -7,7 +7,7 @@ source\Core\*.cpp ^
 source\Events\*.cpp ^
 source\Time\*.cpp ^
 source\Platforms\Windows\Graphics\MainWindow.cpp ^
-source\Platforms\Windows\Graphics\Cpu\CpuWindow.cpp ^
+source\Platforms\Windows\Graphics\Cpu\CpuWindowImpl.cpp ^
 source\Platforms\Windows\Graphics\GL1\GL1Window.cpp ^
 source\Platforms\Windows\Time\Ticks.cpp ^
 source\Platforms\Windows\Core\*.cpp ^

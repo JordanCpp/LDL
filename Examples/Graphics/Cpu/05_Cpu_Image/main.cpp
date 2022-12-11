@@ -6,6 +6,7 @@
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Creators/GraphicsCreator.hpp>
+#include <LDL/Graphics/Cpu/CpuWindow.hpp>
 
 const LDL::Graphics::Point2u windowSize = LDL::Graphics::Point2u(800, 600);
 
@@ -17,9 +18,9 @@ int main()
 
 		LDL::Creators::GraphicsCreator graphics(&graphicsAllocator);
 
-		LDL::Graphics::ICpuWindow* window = graphics.CreateCpuWindow(LDL::Graphics::Point2u(0, 0), windowSize, "05_Cpu_Image");
+		LDL::Graphics::CpuWindow window(LDL::Graphics::Point2u(0, 0), windowSize, "05_Cpu_Image");
 
-		LDL::Graphics::CpuRender render(window);
+		LDL::Graphics::CpuRender render(&window);
 
 		LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
 		LDL::Loaders::ImageLoader loader(&allocator);
@@ -32,7 +33,7 @@ int main()
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
 
-		while (window->GetEvent(report))
+		while (window.GetEvent(report))
 		{
 			fpsCounter.Start();
 
@@ -41,7 +42,7 @@ int main()
 
 			if (report.Type == LDL::Events::IsQuit)
 			{
-				window->StopEvent();
+				window.StopEvent();
 			}
 
 			render.Draw(image, LDL::Graphics::Point2u(0, 0));
@@ -52,7 +53,7 @@ int main()
 			{
 				if (convert.Convert(fpsCounter.Fps()))
 				{
-					window->Title(convert.Result());
+					window.Title(convert.Result());
 				}
 
 				fpsCounter.Clear();

@@ -7,7 +7,7 @@ CL -GX /I..\include /DLDL_GPU_SUPPORT_OPENGL1 ..\%2  ^
 ..\source\Events\*.cpp ^
 ..\source\Time\*.cpp ^
 ..\source\Platforms\Windows\Graphics\MainWindow.cpp ^
-..\source\Platforms\Windows\Graphics\Cpu\CpuWindow.cpp ^
+..\source\Platforms\Windows\Graphics\Cpu\CpuWindowImpl.cpp ^
 ..\source\Platforms\Windows\Graphics\Gl1\GL1Window.cpp ^
 ..\source\Platforms\Windows\Time\Ticks.cpp ^
 ..\source\Platforms\Windows\Core\*.cpp ^

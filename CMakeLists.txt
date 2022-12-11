@@ -37,12 +37,12 @@ add_library(LDL STATIC
 "source/Graphics/Base/BaseRender.cpp"
 "source/Graphics/Cpu/CpuImage.cpp"
 "source/Graphics/Cpu/CpuRender.cpp"
+"source/Graphics/Cpu/CpuWindow.cpp"
 "source/Graphics/Primitives/Color.cpp"
 "source/Graphics/PixelConverter.cpp"
 "source/Graphics/TextRasterizer.cpp"
 "source/Graphics/VideoMode.cpp"
 "source/Creators/GraphicsCreator.cpp"
-
 "source/Graphics/Base/BaseScreenshoter.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
@@ -92,7 +92,7 @@ endif()
 if (WIN32)
   target_sources(LDL PRIVATE
   "source/Platforms/Windows/Graphics/MainWindow.cpp"
-  "source/Platforms/Windows/Graphics/Cpu/CpuWindow.cpp"
+  "source/Platforms/Windows/Graphics/Cpu/CpuWindowImpl.cpp"
   "source/Platforms/Windows/Time/Ticks.cpp"
   "source/Platforms/Windows/Core/DirectoryImpl.cpp"
   "source/Platforms/Windows/Input/Display.cpp"

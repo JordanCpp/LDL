@@ -3,7 +3,7 @@
 #if (LDL_GPU_SUPPORT_OPENGL1)
 #include "../Graphics/GL1/GL1Render.hpp"
 #include "../Platforms/Windows/Graphics/GL1/GL1Window.hpp"
-#include "../Platforms/Windows/Graphics/Cpu/CpuWindow.hpp"
+#include "../Platforms/Windows/Graphics/Cpu/CpuWindowImpl.hpp"
 #elif (LDL_GPU_SUPPORT_DIRECTX9)
 #include "../Graphics/DX9/DX9Render.hpp"
 #include "../Platforms/Windows/Graphics/DX9/DX9Window.hpp"
@@ -24,16 +24,12 @@ LDL::Creators::GraphicsCreator::GraphicsCreator(LDL::Allocators::Allocator* allo
 	_Allocator(allocator),
 	_GpuImages(_Allocator),
 	_GpuWindow(NULL),
-	_GpuRender(NULL),
-	_CpuWindow(NULL)
+	_GpuRender(NULL)
 {
 }
 
 LDL::Creators::GraphicsCreator::~GraphicsCreator()
 {
-	if (_CpuWindow)
-		delete _CpuWindow;
-
 	if (_GpuWindow)
 		delete _GpuWindow;
 
@@ -54,15 +50,6 @@ LDL::Graphics::IGpuWindow* LDL::Creators::GraphicsCreator::CreateGpuWindow(const
 #endif
 
 	return _GpuWindow;
-}
-
-LDL::Graphics::ICpuWindow* LDL::Creators::GraphicsCreator::CreateCpuWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode)
-{
-	assert(_CpuWindow == NULL);
-
-	_CpuWindow = new LDL::Graphics::Windows::CpuWindow(pos, size, title, mode);
-
-	return _CpuWindow;
 }
 
 LDL::Graphics::IGpuRender* LDL::Creators::GraphicsCreator::CreateGpuRender(LDL::Graphics::IGpuWindow* gpuWindow)

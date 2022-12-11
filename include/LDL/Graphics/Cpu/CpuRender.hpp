@@ -2,7 +2,7 @@
 #define LDL_Graphics_Cpu_CpuRender_hpp
 
 #include <LDL/Graphics/Base/BaseRender.hpp>
-#include <LDL/Graphics/ICpuWindow.hpp>
+#include <LDL/Graphics/Cpu/CpuWindow.hpp>
 #include <LDL/Graphics/Cpu/CpuImage.hpp>
 
 namespace LDL
@@ -12,7 +12,7 @@ namespace LDL
 		class CpuRender
 		{
 		public:
-			CpuRender(LDL::Graphics::ICpuWindow* window);
+			CpuRender(LDL::Graphics::CpuWindow* window);
 			const LDL::Graphics::Point2u& Size();
 			const LDL::Graphics::Color& Color();
 			void Clear();
@@ -28,7 +28,7 @@ namespace LDL
 			size_t BytesPerPixel();
 			void Draw(LDL::Graphics::CpuImage& image, const LDL::Graphics::Point2u& pos);
 		private:
-			LDL::Graphics::ICpuWindow* _Window;
+			LDL::Graphics::CpuWindow* _Window;
 			LDL::Graphics::BaseRender _BaseRender;
 			LDL::Graphics::CpuImage _Canvas;
 		};
