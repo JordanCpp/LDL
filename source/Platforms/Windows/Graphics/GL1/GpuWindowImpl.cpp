@@ -1,7 +1,7 @@
-#include "GL1Window.hpp"
+#include "GpuWindowImpl.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
-LDL::Graphics::Windows::GL1Window::GL1Window(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
+LDL::Graphics::GpuWindowImpl::GpuWindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
     _Window(pos, size, title, mode)
 {
     PIXELFORMATDESCRIPTOR pfd;
@@ -38,50 +38,50 @@ LDL::Graphics::Windows::GL1Window::GL1Window(const Point2u& pos, const Point2u& 
         throw LDL::Core::RuntimeError("wglMakeCurrent failed");
 }
 
-LDL::Graphics::Windows::GL1Window::~GL1Window()
+LDL::Graphics::GpuWindowImpl::~GpuWindowImpl()
 {
     wglMakeCurrent(NULL, NULL);
     wglDeleteContext(_HGLRC);
     ReleaseDC(_Window._HWND, _Window._HDC);
 }
 
-void LDL::Graphics::Windows::GL1Window::Present()
+void LDL::Graphics::GpuWindowImpl::Present()
 {
     if (!SwapBuffers(_Window._HDC))
         throw LDL::Core::RuntimeError("SwapBuffers failed");
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::Windows::GL1Window::Size()
+const LDL::Graphics::Point2u& LDL::Graphics::GpuWindowImpl::Size()
 {
     return _Window.Size();
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::Windows::GL1Window::Pos()
+const LDL::Graphics::Point2u& LDL::Graphics::GpuWindowImpl::Pos()
 {
     return _Window.Pos();
 }
 
-bool LDL::Graphics::Windows::GL1Window::GetEvent(LDL::Events::Event& event)
+bool LDL::Graphics::GpuWindowImpl::GetEvent(LDL::Events::Event& event)
 {
     return _Window.GetEvent(event);
 }
 
-bool LDL::Graphics::Windows::GL1Window::WaitEvent(LDL::Events::Event& event)
+bool LDL::Graphics::GpuWindowImpl::WaitEvent(LDL::Events::Event& event)
 {
     return _Window.WaitEvent(event);
 }
 
-void LDL::Graphics::Windows::GL1Window::StopEvent()
+void LDL::Graphics::GpuWindowImpl::StopEvent()
 {
     _Window.StopEvent();
 }
 
-const std::string& LDL::Graphics::Windows::GL1Window::Title()
+const std::string& LDL::Graphics::GpuWindowImpl::Title()
 {
     return _Window.Title();
 }
 
-void LDL::Graphics::Windows::GL1Window::Title(const std::string& title)
+void LDL::Graphics::GpuWindowImpl::Title(const std::string& title)
 {
     _Window.Title(title);
 }

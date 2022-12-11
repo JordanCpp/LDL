@@ -2,7 +2,7 @@
 
 #if (LDL_GPU_SUPPORT_OPENGL1)
 #include "../Graphics/GL1/GL1Render.hpp"
-#include "../Platforms/Windows/Graphics/GL1/GL1Window.hpp"
+#include "../Platforms/Windows/Graphics/GL1/GpuWindowImpl.hpp"
 #include "../Platforms/Windows/Graphics/Cpu/CpuWindowImpl.hpp"
 #elif (LDL_GPU_SUPPORT_DIRECTX9)
 #include "../Graphics/DX9/DX9Render.hpp"
@@ -42,7 +42,7 @@ LDL::Graphics::IGpuWindow* LDL::Creators::GraphicsCreator::CreateGpuWindow(const
 	assert(_GpuWindow == NULL);
 
 #if (LDL_GPU_SUPPORT_OPENGL1)
-	_GpuWindow = new LDL::Graphics::Windows::GL1Window(pos, size, title, mode);
+	_GpuWindow = new LDL::Graphics::GpuWindowImpl(pos, size, title, mode);
 #elif (LDL_GPU_SUPPORT_DIRECTX9)
 	_GpuWindow = new LDL::Graphics::Windows::DX9Window(pos, size, title, mode);
 #elif (LDL_GPU_SUPPORT_DIRECTX5)
