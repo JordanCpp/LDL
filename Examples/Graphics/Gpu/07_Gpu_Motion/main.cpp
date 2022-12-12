@@ -1,5 +1,4 @@
 #include <iostream>
-#include <LDL/Creators/GraphicsCreator.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
@@ -14,8 +13,6 @@ int main()
 	{
 		LDL::Allocators::FixedLinear graphicsAllocator(LDL::Allocators::Allocator::Mb * 1);
 
-		LDL::Creators::GraphicsCreator graphics(&graphicsAllocator);
-
 		LDL::Graphics::GpuWindow window(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
 
 		LDL::Graphics::GpuRender render(&window);
@@ -26,7 +23,7 @@ int main()
 		LDL::Loaders::ImageLoader loader(&allocator);
 
 		loader.Load("Gorgosaurus_BW_transparent.png");
-		LDL::Graphics::IGpuImage* image = graphics.CreateGpuImage(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
+		LDL::Graphics::GpuImage image(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
 
 		size_t x = 0;
 		size_t y = 0;
@@ -54,7 +51,7 @@ int main()
 				y = report.Mouse.PosY;
 			}
 
-			render.Draw(image, LDL::Graphics::Point2u(x, y), LDL::Graphics::Point2u(150, 150));
+			render.Draw(&image, LDL::Graphics::Point2u(x, y), LDL::Graphics::Point2u(150, 150));
 
 			render.End();
 

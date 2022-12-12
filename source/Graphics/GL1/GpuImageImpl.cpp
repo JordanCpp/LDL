@@ -1,8 +1,8 @@
-#include "GL1Image.hpp"
+#include "GpuImageImpl.hpp"
 #include "OpenGL.hpp"
 #include <assert.h>
 
-LDL::Graphics::GL1Image::GL1Image(const LDL::Graphics::Point2u& size, size_t bytesPerPixel, uint8_t* pixels):
+LDL::Graphics::GpuImageImpl::GpuImageImpl(const LDL::Graphics::Point2u& size, size_t bytesPerPixel, uint8_t* pixels):
 	_Id(0)
 {
 	assert(size.PosX() > 0);
@@ -29,17 +29,17 @@ LDL::Graphics::GL1Image::GL1Image(const LDL::Graphics::Point2u& size, size_t byt
 	glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_Size.PosX(), (GLsizei)_Size.PosY(), 0, format, GL_UNSIGNED_BYTE, pixels);
 }
 
-LDL::Graphics::GL1Image::~GL1Image()
+LDL::Graphics::GpuImageImpl::~GpuImageImpl()
 {
 	glDeleteTextures(0, (GLuint*)&_Id);
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::GL1Image::Size()
+const LDL::Graphics::Point2u& LDL::Graphics::GpuImageImpl::Size()
 {
 	return _Size;
 }
 
-size_t LDL::Graphics::GL1Image::Id()
+size_t LDL::Graphics::GpuImageImpl::Id()
 {
 	return _Id;
 }

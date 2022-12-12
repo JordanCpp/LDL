@@ -44,9 +44,10 @@ add_library(LDL STATIC
 "source/Graphics/TextRasterizer.cpp"
 "source/Graphics/VideoMode.cpp"
 "source/Graphics/GpuWindow.cpp"
-"source/Creators/GraphicsCreator.cpp"
+
 "source/Graphics/Base/BaseScreenshoter.cpp"
 "source/Graphics/GpuRender.cpp"
+"source/Graphics/GpuImage.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
 "source/Allocators/SmallAllocator.cpp"
@@ -58,7 +59,7 @@ add_library(LDL STATIC
 if (LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
   "source/Graphics/GL1/GpuRenderImpl.cpp"
-  "source/Graphics/GL1/GL1Image.cpp"
+  "source/Graphics/GL1/GpuImageImpl.cpp"
   "source/Graphics/GL1/GL1Screen.cpp"
   "source/Graphics/GL1/GL1Screenshoter.cpp")
 endif() 

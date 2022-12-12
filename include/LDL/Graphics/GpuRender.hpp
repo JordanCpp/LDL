@@ -4,7 +4,7 @@
 #include <LDL/Graphics/Base/BaseRender.hpp>
 #include <LDL/Graphics/Cpu/CpuImage.hpp>
 #include <LDL/Graphics/GpuWindow.hpp>
-#include <LDL/Graphics/IGpuImage.hpp>
+#include <LDL/Graphics/GpuImage.hpp>
 
 namespace LDL
 {
@@ -26,8 +26,8 @@ namespace LDL
 			void Pixel(const LDL::Graphics::Point2u& pos);
 			void Fill(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
 			void Line(const LDL::Graphics::Point2u& pos1, const LDL::Graphics::Point2u& pos2);
-			void Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
-			void Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos);
+			void Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
+			void Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& pos);
 			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
 			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos);
 		private:

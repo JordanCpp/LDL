@@ -1,7 +1,6 @@
 #ifndef Game_Engine_hpp
 #define Game_Engine_hpp
 
-#include <LDL/Creators/GraphicsCreator.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
@@ -9,6 +8,7 @@
 #include <LDL/Time/FpsLimiter.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/GpuWindow.hpp>
+#include <LDL/Graphics/GpuRender.hpp>
 
 namespace Game
 {
@@ -19,7 +19,6 @@ namespace Game
 		void Run();
 	private:
 		LDL::Allocators::FixedLinear _GraphicsAllocator;
-		LDL::Creators::GraphicsCreator _Graphics;
 		LDL::Allocators::FixedLinear _Allocator;
 		LDL::Loaders::ImageLoader _ImageLoader;
 		LDL::Graphics::GpuWindow _Window;

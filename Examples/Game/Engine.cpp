@@ -2,7 +2,6 @@
 
 Game::Engine::Engine(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title) :
 	_GraphicsAllocator(LDL::Allocators::Allocator::Mb * 1),
-	_Graphics(&_GraphicsAllocator),
 	_Allocator(LDL::Allocators::Allocator::Mb * 4),
 	_ImageLoader(&_Allocator),
 	_Window(pos, size, title),

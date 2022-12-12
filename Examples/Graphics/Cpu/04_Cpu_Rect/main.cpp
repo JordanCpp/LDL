@@ -3,7 +3,6 @@
 #include <LDL/Graphics/Cpu/CpuRender.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/IntegerToString.hpp>
-#include <LDL/Creators/GraphicsCreator.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Cpu/CpuWindow.hpp>
 
@@ -14,8 +13,6 @@ int main()
 	try
 	{
 		LDL::Allocators::FixedLinear graphicsAllocator(LDL::Allocators::Allocator::Mb * 1);
-
-		LDL::Creators::GraphicsCreator graphics(&graphicsAllocator);
 
 		LDL::Graphics::CpuWindow window(LDL::Graphics::Point2u(0, 0), windowSize, "01_Cpu_WindowAndRender");
 

@@ -5,7 +5,6 @@
 #include <LDL/Core/IntegerToString.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
-#include <LDL/Creators/GraphicsCreator.hpp>
 #include <LDL/Graphics/Cpu/CpuWindow.hpp>
 
 const LDL::Graphics::Point2u windowSize = LDL::Graphics::Point2u(800, 600);
@@ -15,8 +14,6 @@ int main()
 	try
 	{
 		LDL::Allocators::FixedLinear graphicsAllocator(LDL::Allocators::Allocator::Mb * 1);
-
-		LDL::Creators::GraphicsCreator graphics(&graphicsAllocator);
 
 		LDL::Graphics::CpuWindow window(LDL::Graphics::Point2u(0, 0), windowSize, "05_Cpu_Image");
 

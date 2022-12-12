@@ -56,12 +56,12 @@ void LDL::Graphics::GpuRender::Line(const LDL::Graphics::Point2u& pos1, const LD
 	_GpuRenderImpl->Line(pos1, pos2);
 }
 
-void LDL::Graphics::GpuRender::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void LDL::Graphics::GpuRender::Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
 {
 	_GpuRenderImpl->Draw(image, pos, size);
 }
 
-void LDL::Graphics::GpuRender::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos)
+void LDL::Graphics::GpuRender::Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& pos)
 {
 	_GpuRenderImpl->Draw(image, pos);
 }

@@ -99,11 +99,9 @@ void LDL::Graphics::GpuRenderImpl::Fill(const LDL::Graphics::Point2u& pos, const
 	glEnd();
 }
 
-void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
 {
-	LDL::Graphics::GL1Image* img = (LDL::Graphics::GL1Image*)image;
-
-	glBindTexture(GL_TEXTURE_2D, (GLuint)img->Id());
+	glBindTexture(GL_TEXTURE_2D, (GLuint)image->Id());
 
 	GLint x = (GLint)pos.PosX();
 	GLint y = (GLint)pos.PosY();
@@ -122,7 +120,7 @@ void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::IGpuImage* image, const L
 	glEnd();
 }
 
-void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos)
+void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& pos)
 {
 	Draw(image, pos, image->Size());
 }

@@ -18,7 +18,6 @@ wcl386.exe ..\Examples\Graphics\Gpu\05_Gpu_Image\main.cpp -i="C:\WATCOM/h;C:\WAT
 ..\source\Graphics\GL1\*.cpp ^
 ..\source\Graphics\Primitives\*.cpp ^
 ..\source\Loaders\*.cpp  ^
-..\source\Creators\*.cpp  ^
 ..\source\Platforms\Windows\Input\*.cpp  ^
 gdi32.lib ^
 opengl32.lib ^

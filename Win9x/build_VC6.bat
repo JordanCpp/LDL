@@ -17,7 +17,6 @@ CL -GX /I..\include /DLDL_GPU_SUPPORT_OPENGL1 ..\%2  ^
 ..\source\Graphics\GL1\*.cpp ^
 ..\source\Graphics\Primitives\*.cpp ^
 ..\source\Loaders\*.cpp  ^
-..\source\Creators\*.cpp  ^
 ..\source\Platforms\Windows\Input\*.cpp  ^
 gdi32.lib ^
 opengl32.lib ^
