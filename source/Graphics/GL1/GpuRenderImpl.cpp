@@ -1,14 +1,14 @@
-#include "GL1Render.hpp"
+#include "GpuRenderImpl.hpp"
 #include "OpenGL.hpp"
 
-LDL::Graphics::GL1Render::GL1Render(LDL::Graphics::GpuWindow* window) :
+LDL::Graphics::GpuRenderImpl::GpuRenderImpl(LDL::Graphics::GpuWindow* window) :
 	_Window(window),
 	_BaseRender(_Window->Size()),
 	_Screen(_Window->Size())
 {
 }
 
-void LDL::Graphics::GL1Render::Begin()
+void LDL::Graphics::GpuRenderImpl::Begin()
 {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -19,22 +19,22 @@ void LDL::Graphics::GL1Render::Begin()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void LDL::Graphics::GL1Render::End()
+void LDL::Graphics::GpuRenderImpl::End()
 {
 	_Window->Present();
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::GL1Render::Size()
+const LDL::Graphics::Point2u& LDL::Graphics::GpuRenderImpl::Size()
 {
 	return _BaseRender.Size();
 }
 
-const LDL::Graphics::Color& LDL::Graphics::GL1Render::Color()
+const LDL::Graphics::Color& LDL::Graphics::GpuRenderImpl::Color()
 {
 	return _BaseRender.Color();
 }
 
-void LDL::Graphics::GL1Render::Clear()
+void LDL::Graphics::GpuRenderImpl::Clear()
 {
 	GLclampf r = _BaseRender.Color().Red() / 255.0f;
 	GLclampf g = _BaseRender.Color().Green() / 255.0f;
@@ -44,12 +44,12 @@ void LDL::Graphics::GL1Render::Clear()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void LDL::Graphics::GL1Render::Color(const LDL::Graphics::Color& color)
+void LDL::Graphics::GpuRenderImpl::Color(const LDL::Graphics::Color& color)
 {
 	_BaseRender.Color(color);
 }
 
-void LDL::Graphics::GL1Render::Pixel(const LDL::Graphics::Point2u& pos)
+void LDL::Graphics::GpuRenderImpl::Pixel(const LDL::Graphics::Point2u& pos)
 {
 	GLclampf r = _BaseRender.Color().Red() / 255.0f;
 	GLclampf g = _BaseRender.Color().Green() / 255.0f;
@@ -61,7 +61,7 @@ void LDL::Graphics::GL1Render::Pixel(const LDL::Graphics::Point2u& pos)
 	glEnd();
 }
 
-void LDL::Graphics::GL1Render::Line(const LDL::Graphics::Point2u& pos1, const LDL::Graphics::Point2u& pos2)
+void LDL::Graphics::GpuRenderImpl::Line(const LDL::Graphics::Point2u& pos1, const LDL::Graphics::Point2u& pos2)
 {
 	GLclampf r = _BaseRender.Color().Red() / 255.0f;
 	GLclampf g = _BaseRender.Color().Green() / 255.0f;
@@ -79,7 +79,7 @@ void LDL::Graphics::GL1Render::Line(const LDL::Graphics::Point2u& pos1, const LD
 	glEnd();
 }
 
-void LDL::Graphics::GL1Render::Fill(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void LDL::Graphics::GpuRenderImpl::Fill(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
 {
 	GLclampf r = _BaseRender.Color().Red() / 255.0f;
 	GLclampf g = _BaseRender.Color().Green() / 255.0f;
@@ -99,7 +99,7 @@ void LDL::Graphics::GL1Render::Fill(const LDL::Graphics::Point2u& pos, const LDL
 	glEnd();
 }
 
-void LDL::Graphics::GL1Render::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
 {
 	LDL::Graphics::GL1Image* img = (LDL::Graphics::GL1Image*)image;
 
@@ -122,17 +122,17 @@ void LDL::Graphics::GL1Render::Draw(LDL::Graphics::IGpuImage* image, const LDL::
 	glEnd();
 }
 
-void LDL::Graphics::GL1Render::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos)
+void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos)
 {
 	Draw(image, pos, image->Size());
 }
 
-void LDL::Graphics::GL1Render::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
 {
 	_Screen.Draw(image, pos, size);
 }
 
-void LDL::Graphics::GL1Render::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos)
+void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos)
 {
 	_Screen.Draw(image, pos);
 }

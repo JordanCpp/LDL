@@ -17,7 +17,7 @@ int main()
 
 		LDL::Graphics::GpuWindow window(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
 
-		LDL::Graphics::IGpuRender* render = graphics.CreateGpuRender(&window);
+		LDL::Graphics::GpuRender render(&window);
 
 		LDL::Events::Event report;
 
@@ -34,19 +34,19 @@ int main()
 		{
 			fpsCounter.Start();
 
-			render->Begin();
+			render.Begin();
 
-			render->Color(LDL::Graphics::Color(0, 162, 232));
-			render->Clear();
+			render.Color(LDL::Graphics::Color(0, 162, 232));
+			render.Clear();
 
 			if (report.Type == LDL::Events::IsQuit)
 			{
 				window.StopEvent();
 			}
 
-			render->Draw(image, window.Pos(), window.Size());
+			render.Draw(image, window.Pos(), window.Size());
 
-			render->End();
+			render.End();
 
 			if (fpsCounter.Calc())
 			{

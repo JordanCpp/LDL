@@ -5,6 +5,7 @@
 #include <LDL/Core/IntegerToString.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/GpuWindow.hpp>
+#include <LDL/Graphics/GpuRender.hpp>
 
 int main()
 {
@@ -16,11 +17,11 @@ int main()
 
 		LDL::Graphics::GpuWindow window(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
 
-		LDL::Graphics::IGpuRender* render = graphics.CreateGpuRender(&window);
+		LDL::Graphics::GpuRender render(&window);
 
 		LDL::Events::Event report;
 
-		render->Color(LDL::Graphics::Color(0, 162, 232));
+		render.Color(LDL::Graphics::Color(0, 162, 232));
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
@@ -29,16 +30,16 @@ int main()
 		{
 			fpsCounter.Start();
 
-			render->Begin();
+			render.Begin();
 
-			render->Clear();
+			render.Clear();
 
 			if (report.Type == LDL::Events::IsQuit)
 			{
 				window.StopEvent();
 			}
 
-			render->End();
+			render.End();
 
 			if (fpsCounter.Calc())
 			{

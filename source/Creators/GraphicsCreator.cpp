@@ -1,7 +1,7 @@
 #include <LDL/Creators/GraphicsCreator.hpp>
 
 #if (LDL_GPU_SUPPORT_OPENGL1)
-#include "../Graphics/GL1/GL1Render.hpp"
+#include "../Graphics/GL1/GpuRenderImpl.hpp"
 #include "../Platforms/Windows/Graphics/GL1/GpuWindowImpl.hpp"
 #include "../Platforms/Windows/Graphics/Cpu/CpuWindowImpl.hpp"
 #elif (LDL_GPU_SUPPORT_DIRECTX9)
@@ -22,30 +22,12 @@
 
 LDL::Creators::GraphicsCreator::GraphicsCreator(LDL::Allocators::Allocator* allocator) :
 	_Allocator(allocator),
-	_GpuImages(_Allocator),
-	_GpuRender(NULL)
+	_GpuImages(_Allocator)
 {
 }
 
 LDL::Creators::GraphicsCreator::~GraphicsCreator()
 {
-	if (_GpuRender)
-		delete _GpuRender;
-}
-
-LDL::Graphics::IGpuRender* LDL::Creators::GraphicsCreator::CreateGpuRender(LDL::Graphics::GpuWindow* gpuWindow)
-{
-	assert(_GpuRender == NULL);
-
-#if (LDL_GPU_SUPPORT_OPENGL1)
-	_GpuRender = new LDL::Graphics::GL1Render(gpuWindow);
-#elif (LDL_GPU_SUPPORT_DIRECTX9)
-	_GpuRender = new LDL::Graphics::DX9Render(gpuWindow);
-#elif (LDL_GPU_SUPPORT_DIRECTX5)
-	_GpuRender = new LDL::Graphics::DX5Render(gpuWindow);
-#endif
-
-	return _GpuRender;
 }
 
 LDL::Graphics::IGpuImage* LDL::Creators::GraphicsCreator::CreateGpuImage(const LDL::Graphics::Point2u& size, size_t bytesPerPixel, uint8_t* pixels)

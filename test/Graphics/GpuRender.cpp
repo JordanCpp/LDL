@@ -4,6 +4,7 @@
 #include <LDL/Creators/GraphicsCreator.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/GpuWindow.hpp>
+#include <LDL/Graphics/GpuRender.hpp>
 
 int main()
 {
@@ -17,10 +18,10 @@ int main()
 
 		LDL::Graphics::GpuWindow window(LDL::Graphics::Point2u(1, 2), LDL::Graphics::Point2u(640, 480), title);
 
-		LDL::Graphics::IGpuRender* render = graphics.CreateGpuRender(&window);
+		LDL::Graphics::GpuRender render(&window);
 
-		LDL_TEST_EQUAL(render->Size().PosX() == 640);
-		LDL_TEST_EQUAL(render->Size().PosY() == 480);
+		LDL_TEST_EQUAL(render.Size().PosX() == 640);
+		LDL_TEST_EQUAL(render.Size().PosY() == 480);
 	}
 	catch (const LDL::Core::RuntimeError& error)
 	{

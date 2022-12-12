@@ -5,6 +5,7 @@
 #include <LDL/Core/IntegerToString.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/GpuWindow.hpp>
+#include <LDL/Graphics/GpuRender.hpp>
 
 int main()
 {
@@ -16,7 +17,7 @@ int main()
 
 		LDL::Graphics::GpuWindow window(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
 
-		LDL::Graphics::IGpuRender* render = graphics.CreateGpuRender(&window);
+		LDL::Graphics::GpuRender render(&window);
 
 		LDL::Events::Event report;
 
@@ -27,21 +28,21 @@ int main()
 		{
 			fpsCounter.Start();
 
-			render->Begin();
+			render.Begin();
 
-			render->Color(LDL::Graphics::Color(0, 162, 232));
-			render->Clear();
+			render.Color(LDL::Graphics::Color(0, 162, 232));
+			render.Clear();
 
 			if (report.Type == LDL::Events::IsQuit)
 			{
 				window.StopEvent();
 			}
 
-			render->Color(LDL::Graphics::Color(237, 28, 36));
-			render->Line(LDL::Graphics::Point2u(0, 0), render->Size());
-			render->Line(LDL::Graphics::Point2u(render->Size().PosX(), 0), LDL::Graphics::Point2u(0, render->Size().PosY()));
+			render.Color(LDL::Graphics::Color(237, 28, 36));
+			render.Line(LDL::Graphics::Point2u(0, 0), render.Size());
+			render.Line(LDL::Graphics::Point2u(render.Size().PosX(), 0), LDL::Graphics::Point2u(0, render.Size().PosY()));
 
-			render->End();
+			render.End();
 
 			if (fpsCounter.Calc())
 			{

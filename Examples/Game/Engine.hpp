@@ -23,7 +23,7 @@ namespace Game
 		LDL::Allocators::FixedLinear _Allocator;
 		LDL::Loaders::ImageLoader _ImageLoader;
 		LDL::Graphics::GpuWindow _Window;
-		LDL::Graphics::IGpuRender* _Render;
+		LDL::Graphics::GpuRender _Render;
 		LDL::Time::FpsCounter _FpsCounter;
 		LDL::Core::IntegerToString _Convert;
 		LDL::Time::FpsLimiter _FpsLimiter;

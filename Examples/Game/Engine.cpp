@@ -6,7 +6,7 @@ Game::Engine::Engine(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Poi
 	_Allocator(LDL::Allocators::Allocator::Mb * 4),
 	_ImageLoader(&_Allocator),
 	_Window(pos, size, title),
-	_Render(_Graphics.CreateGpuRender(&_Window))
+	_Render(&_Window)
 {
 }
 
@@ -19,14 +19,14 @@ void Game::Engine::Run()
 		_FpsLimiter.Mark();
 		_FpsCounter.Start();
 
-		_Render->Begin();
+		_Render.Begin();
 
 		if (report.Type == LDL::Events::IsQuit)
 		{
 			_Window.StopEvent();
 		}
 
-		_Render->End();
+		_Render.End();
 
 		_FpsLimiter.Throttle();
 

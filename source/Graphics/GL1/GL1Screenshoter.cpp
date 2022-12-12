@@ -5,7 +5,7 @@
 #undef __STDC_LIB_EXT1__
 #include "../dependencies/stb/stb_image_write.h"  
 
-LDL::Graphics::GL1Screenshoter::GL1Screenshoter(const std::string& path, const std::string& name, LDL::Graphics::IGpuRender* render, LDL::Graphics::CpuImage* image) :
+LDL::Graphics::GL1Screenshoter::GL1Screenshoter(const std::string& path, const std::string& name, LDL::Graphics::GpuRender* render, LDL::Graphics::CpuImage* image) :
 	_ShortPath(path),
 	_Name(name),
 	_Render(render),
