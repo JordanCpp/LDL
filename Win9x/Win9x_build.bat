@@ -16,6 +16,7 @@ source\Graphics\*.cpp ^
 source\Graphics\Base\*.cpp ^
 source\Graphics\Cpu\*.cpp ^
 source\Graphics\GL1\*.cpp ^
+source\Graphics\Gpu\*.cpp ^
 source\Graphics\Primitives\*.cpp ^
 source\Loaders\*.cpp ^
 -Iinclude\ ^

@@ -15,6 +15,7 @@ CL -GX /I..\include /DLDL_GPU_SUPPORT_OPENGL1 ..\%2  ^
 ..\source\Graphics\Base\*.cpp ^
 ..\source\Graphics\Cpu\*.cpp ^
 ..\source\Graphics\GL1\*.cpp ^
+..\source\Graphics\Gpu\*.cpp ^
 ..\source\Graphics\Primitives\*.cpp ^
 ..\source\Loaders\*.cpp  ^
 ..\source\Platforms\Windows\Input\*.cpp  ^

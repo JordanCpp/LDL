@@ -1,5 +1,5 @@
-#include <LDL/Graphics/GpuWindow.hpp>
-#include "../Platforms/Windows/Graphics/GL1/GpuWindowImpl.hpp"
+#include <LDL/Graphics/Gpu/GpuWindow.hpp>
+#include "../../Platforms/Windows/Graphics/GL1/GpuWindowImpl.hpp"
 
 LDL::Graphics::GpuWindow::GpuWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode) :
 	_GpuWindowImpl(new LDL::Graphics::GpuWindowImpl(pos, size, title, mode))

@@ -1,5 +1,5 @@
-#include <LDL/Graphics/GpuImage.hpp>
-#include "GL1/GpuImageImpl.hpp"
+#include <LDL/Graphics/Gpu/GpuImage.hpp>
+#include "../GL1/GpuImageImpl.hpp"
 
 LDL::Graphics::GpuImage::GpuImage(const LDL::Graphics::Point2u& size, size_t bytesPerPixel, uint8_t* pixels) :
 	_GpuImageImpl(new LDL::Graphics::GpuImageImpl(size, bytesPerPixel, pixels))

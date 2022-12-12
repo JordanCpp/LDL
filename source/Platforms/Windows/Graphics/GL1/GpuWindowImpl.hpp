@@ -1,7 +1,7 @@
 #ifndef LDL_Platforms_Windows_Graphics_GpuWindowImpl_hpp
 #define LDL_Platforms_Windows_Graphics_GpuWindowImpl_hpp
 
-#include <LDL/Graphics/GpuWindow.hpp>
+#include <LDL/Graphics/Gpu/GpuWindow.hpp>
 #include "../MainWindow.hpp"
 
 namespace LDL

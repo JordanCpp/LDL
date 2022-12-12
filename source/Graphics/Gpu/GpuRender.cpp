@@ -1,5 +1,5 @@
-#include <LDL/Graphics/GpuRender.hpp>
-#include "GL1/GpuRenderImpl.hpp"
+#include <LDL/Graphics/Gpu/GpuRender.hpp>
+#include "../GL1/GpuRenderImpl.hpp"
 
 LDL::Graphics::GpuRender::GpuRender(LDL::Graphics::GpuWindow* window) :
 	_GpuRenderImpl(new LDL::Graphics::GpuRenderImpl(window))

@@ -2,7 +2,7 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
-#include <LDL/Graphics/GpuWindow.hpp>
+#include <LDL/Graphics/Gpu/GpuWindow.hpp>
 
 int main()
 {

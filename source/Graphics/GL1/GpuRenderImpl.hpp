@@ -2,10 +2,10 @@
 #define LDL_Graphics_GpuRenderImpl_hpp
 
 #include <LDL/Graphics/Base/BaseRender.hpp>
-#include <LDL/Graphics/GpuWindow.hpp>
+#include <LDL/Graphics/Gpu/GpuWindow.hpp>
 #include "GpuImageImpl.hpp"
 #include "GL1Screen.hpp"
-#include <LDL/Graphics/GpuImage.hpp>
+#include <LDL/Graphics/Gpu/GpuImage.hpp>
 
 namespace LDL
 {

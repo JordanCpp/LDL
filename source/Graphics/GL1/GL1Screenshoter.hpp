@@ -2,7 +2,7 @@
 #define LDL_Graphics_GL1Screenshoter_hpp
 
 #include <LDL/Graphics/IGpuScreenshoter.hpp>
-#include <LDL/Graphics/GpuRender.hpp>
+#include <LDL/Graphics/Gpu/GpuRender.hpp>
 #include <LDL/Graphics/Base/BaseScreenshoter.hpp>
 
 namespace LDL
