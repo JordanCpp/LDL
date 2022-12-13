@@ -1,5 +1,6 @@
 #include "GpuRenderImpl.hpp"
 #include "OpenGL.hpp"
+#include "GpuUtil.hpp"
 
 LDL::Graphics::GpuRenderImpl::GpuRenderImpl(LDL::Graphics::GpuWindow* window) :
 	_Window(window),
@@ -103,21 +104,7 @@ void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::GpuImage* image, const LD
 {
 	glBindTexture(GL_TEXTURE_2D, (GLuint)image->Id());
 
-	GLint x = (GLint)pos.PosX();
-	GLint y = (GLint)pos.PosY();
-	GLint w = (GLint)size.PosX();
-	GLint h = (GLint)size.PosY();
-
-	glBegin(GL_QUADS);
-	glTexCoord2i(0, 1);
-	glVertex2i(x, y + h);
-	glTexCoord2i(0, 0);
-	glVertex2i(x, y);
-	glTexCoord2i(1, 0);
-	glVertex2i(x + w, y);
-	glTexCoord2i(1, 1);
-	glVertex2i(x + w, y + h);
-	glEnd();
+	LDL::Graphics::GpuUtil::DrawQuad(pos, size);
 }
 
 void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& pos)

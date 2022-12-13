@@ -1,5 +1,6 @@
 #include "GL1Screen.hpp"
 #include "OpenGL.hpp"
+#include "GpuUtil.hpp"
 
 LDL::Graphics::GL1Screen::GL1Screen(const LDL::Graphics::Point2u& size) :
 	_Size(size),
@@ -24,21 +25,7 @@ void LDL::Graphics::GL1Screen::Draw(LDL::Graphics::CpuImage* image, const LDL::G
 {
 	glBindTexture(GL_TEXTURE_2D, (GLuint)_Screen);
 
-	GLint x = (GLint)pos.PosX();
-	GLint y = (GLint)pos.PosY();
-	GLint w = (GLint)size.PosX();
-	GLint h = (GLint)size.PosY();
-
-	glBegin(GL_QUADS);
-	glTexCoord2i(0, 1);
-	glVertex2i(x, y + h);
-	glTexCoord2i(0, 0);
-	glVertex2i(x, y);
-	glTexCoord2i(1, 0);
-	glVertex2i(x + w, y);
-	glTexCoord2i(1, 1);
-	glVertex2i(x + w, y + h);
-	glEnd();
+	LDL::Graphics::GpuUtil::DrawQuad(pos, size);
 
 	GLenum format = 0;
 
@@ -47,7 +34,7 @@ void LDL::Graphics::GL1Screen::Draw(LDL::Graphics::CpuImage* image, const LDL::G
 	else
 		format = GL_RGB;
 
-	glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, (GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels());
+	glTexSubImage2D(GL_TEXTURE_2D, 0, pos.PosX(), pos.PosY(), (GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels());
 }
 
 void LDL::Graphics::GL1Screen::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos)

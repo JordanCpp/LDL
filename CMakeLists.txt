@@ -60,6 +60,7 @@ if (LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
   "source/Graphics/GL1/GpuRenderImpl.cpp"
   "source/Graphics/GL1/GpuImageImpl.cpp"
+  "source/Graphics/GL1/GpuUtil.cpp"
   "source/Graphics/GL1/GL1Screen.cpp"
   "source/Graphics/GL1/GL1Screenshoter.cpp")
 endif() 
