@@ -44,10 +44,10 @@ add_library(LDL STATIC
 "source/Graphics/TextRasterizer.cpp"
 "source/Graphics/VideoMode.cpp"
 "source/Graphics/Gpu/GpuWindow.cpp"
-
 "source/Graphics/Base/BaseScreenshoter.cpp"
 "source/Graphics/Gpu/GpuRender.cpp"
 "source/Graphics/Gpu/GpuImage.cpp"
+"source/Graphics/ImageWritter.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
 "source/Allocators/SmallAllocator.cpp"

@@ -1,10 +1,6 @@
 #include "GL1Screenshoter.hpp"
 #include "OpenGL.hpp"
 
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-#undef __STDC_LIB_EXT1__
-#include "../dependencies/stb/stb_image_write.h"  
-
 LDL::Graphics::GL1Screenshoter::GL1Screenshoter(const std::string& path, const std::string& name, LDL::Graphics::GpuRender* render, LDL::Graphics::CpuImage* image) :
 	_ShortPath(path),
 	_Name(name),
@@ -25,7 +21,5 @@ void LDL::Graphics::GL1Screenshoter::Shot()
 	_FullPath += _BaseScreenshoter.Prefix();
 	_FullPath += ".png";
 
-	stbi_flip_vertically_on_write(true);
-
-	stbi_write_png(_FullPath.c_str(), (int)_Render->Size().PosX(), (int)_Render->Size().PosY(), 4, _Image->Pixels(), (int)_Render->Size().PosX() * 4);
+	_ImageWritter.Save(_FullPath, _Render->Size(), 4, _Image->Pixels());
 }
