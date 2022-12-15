@@ -19,3 +19,31 @@ void LDL::Graphics::GpuUtil::DrawQuad(const LDL::Graphics::Point2u& pos, const L
 	glVertex2i(x + w, y + h);
 	glEnd();
 }
+
+void LDL::Graphics::GpuUtil::DrawQuad(const LDL::Graphics::Point2u& dstPos, const LDL::Graphics::Point2u& dstSize, const LDL::Graphics::Point2u& srcPos, const LDL::Graphics::Point2u& srcSize)
+{
+	GLint x = (GLint)dstPos.PosX();
+	GLint y = (GLint)dstPos.PosY();
+	GLint w = (GLint)dstSize.PosX();
+	GLint h = (GLint)dstSize.PosY();
+
+	GLint cx = (GLint)srcPos.PosX();
+	GLint cy = (GLint)srcPos.PosY();
+	GLint cw = (GLint)srcSize.PosX();
+	GLint ch = (GLint)srcSize.PosY();
+
+	GLfloat dcx = GLfloat(cx) / GLfloat(w);
+	GLfloat dcy = GLfloat(cy) / GLfloat(h);
+
+	GLfloat dcw = (GLfloat(cx) + GLfloat(cw)) / GLfloat(w);
+	GLfloat dch = (GLfloat(cy) + GLfloat(ch)) / GLfloat(h);
+
+	glBegin(GL_QUADS);
+
+	glTexCoord2f(dcx, dcy); glVertex2f(x, y);
+	glTexCoord2f(dcw, dcy); glVertex2f(x + cw, y);
+	glTexCoord2f(dcw, dch); glVertex2f(x + cw, y + ch);
+	glTexCoord2f(dcx, dch); glVertex2f(x, y + ch);
+
+	glEnd();
+}

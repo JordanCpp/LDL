@@ -121,3 +121,10 @@ void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::CpuImage* image, const LD
 {
 	_Screen.Draw(image, pos);
 }
+
+void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& dstPos, const LDL::Graphics::Point2u& srcPos, const LDL::Graphics::Point2u& srcSize)
+{
+	glBindTexture(GL_TEXTURE_2D, (GLuint)image->Id());
+
+	LDL::Graphics::GpuUtil::DrawQuad(dstPos, image->Size(), srcPos, srcSize);
+}

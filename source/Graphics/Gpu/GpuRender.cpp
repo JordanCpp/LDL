@@ -75,3 +75,8 @@ void LDL::Graphics::GpuRender::Draw(LDL::Graphics::CpuImage* image, const LDL::G
 {
 	_GpuRenderImpl->Draw(image, pos);
 }
+
+void LDL::Graphics::GpuRender::Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& dstPos, const LDL::Graphics::Point2u& srcPos, const LDL::Graphics::Point2u& srcSize)
+{
+	_GpuRenderImpl->Draw(image, dstPos, srcPos, srcSize);
+}

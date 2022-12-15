@@ -28,6 +28,7 @@ namespace LDL
 			void Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& pos);
 			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
 			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos);
+			void Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& dstPos, const LDL::Graphics::Point2u& srcPos, const LDL::Graphics::Point2u& srcSize);
 		private:
 			LDL::Graphics::GpuWindow* _Window;
 			LDL::Graphics::BaseRender _BaseRender;
