@@ -44,7 +44,7 @@ Tigoro,
 Bobbie,
 
 
-#gamedev.ru
+# gamedev.ru
 Vitorio,
 Mirrel,
 gamedevfor,
@@ -52,5 +52,5 @@ vka123,
 u960,
 
 
-#habr
+# habr
 Kotofay
