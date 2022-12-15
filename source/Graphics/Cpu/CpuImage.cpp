@@ -97,6 +97,11 @@ uint8_t* LDL::Graphics::CpuImage::Pixels()
 	return _Pixels;
 }
 
+LDL::Allocators::Allocator* LDL::Graphics::CpuImage::Allocator()
+{
+	return _Allocator;
+}
+
 LDL::Graphics::Color LDL::Graphics::CpuImage::Pixel(const LDL::Graphics::Point2u& pos)
 {
 	size_t i = ((Size().PosX() * pos.PosY()) + pos.PosX()) * _BytesPerPixel;

@@ -22,6 +22,7 @@ namespace LDL
 			const LDL::Graphics::Point2u& Size();
 			uint8_t BytesPerPixel();
 			uint8_t* Pixels();
+			LDL::Allocators::Allocator* Allocator();
 			LDL::Graphics::Color Pixel(const LDL::Graphics::Point2u& pos);
 		private:
 			LDL::Allocators::Allocator* _Allocator;
