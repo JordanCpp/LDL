@@ -20,7 +20,7 @@ namespace LDL
 			const Point2u& Size();
 			const Point2u& Pos();
 		private:
-			Windows::MainWindow _Window;
+			MainWindow _Window;
 			BITMAPINFO _BITMAPINFO;
 		};
 	}
