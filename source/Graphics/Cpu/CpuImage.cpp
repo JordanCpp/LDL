@@ -2,6 +2,29 @@
 #include <assert.h>
 #include <string.h>
 
+LDL::Graphics::CpuImage::CpuImage(LDL::Loaders::ImageLoader* imageLoader, LDL::Allocators::Allocator* allocator) :
+	_Allocator(allocator),
+	_BytesPerPixel(0),
+	_Pixels(NULL)
+{
+	assert(imageLoader != NULL);
+
+	_Size = imageLoader->Size();
+	_BytesPerPixel = imageLoader->BytesPerPixel();
+	_Pixels = imageLoader->Pixels();
+
+	assert(_Size.PosX() > 0);
+	assert(_Size.PosY() > 0);
+	assert(_BytesPerPixel > 0);
+	assert(imageLoader->Pixels() != NULL);
+
+	size_t bytes = _Size.PosX() * _Size.PosY() * _BytesPerPixel;
+
+	_Pixels = (uint8_t*)_Allocator->Allocate(bytes);
+
+	memcpy(_Pixels, imageLoader->Pixels(), bytes);
+}
+
 LDL::Graphics::CpuImage::CpuImage(LDL::Loaders::ImageLoader* imageLoader) :
 	_Allocator(NULL),
 	_BytesPerPixel(0),
@@ -18,7 +41,11 @@ LDL::Graphics::CpuImage::CpuImage(LDL::Loaders::ImageLoader* imageLoader) :
 	assert(_BytesPerPixel > 0);
 	assert(imageLoader->Pixels() != NULL);
 
-	Copy(imageLoader);
+	size_t bytes = _Size.PosX() * _Size.PosY() * _BytesPerPixel;
+
+	_Pixels = (uint8_t*)_Allocator->Allocate(bytes);
+
+	memcpy(_Pixels, imageLoader->Pixels(), bytes);
 }
 
 LDL::Graphics::CpuImage::CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel) :
@@ -32,6 +59,19 @@ LDL::Graphics::CpuImage::CpuImage(const LDL::Graphics::Point2u& size, uint8_t by
 	assert(_BytesPerPixel > 0);
 
 	_Pixels = new uint8_t[_Size.PosX() * _Size.PosY() * _BytesPerPixel];
+}
+
+LDL::Graphics::CpuImage::CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel, LDL::Allocators::Allocator* allocator) :
+	_Allocator(allocator),
+	_Size(size),
+	_BytesPerPixel(bytesPerPixel),
+	_Pixels(NULL)
+{
+	assert(_Size.PosX() > 0);
+	assert(_Size.PosY() > 0);
+	assert(_BytesPerPixel > 0);
+
+	_Pixels = (uint8_t*)_Allocator->Allocate(_Size.PosX() * _Size.PosY() * _BytesPerPixel);
 }
 
 LDL::Graphics::CpuImage::~CpuImage()
@@ -62,13 +102,4 @@ LDL::Graphics::Color LDL::Graphics::CpuImage::Pixel(const LDL::Graphics::Point2u
 	size_t i = ((Size().PosX() * pos.PosY()) + pos.PosX()) * _BytesPerPixel;
 
 	return LDL::Graphics::Color(_Pixels[i], _Pixels[i + 1], _Pixels[i + 2]);
-}
-
-void LDL::Graphics::CpuImage::Copy(LDL::Loaders::ImageLoader* imageLoader)
-{
-	size_t bytes = _Size.PosX() * _Size.PosY() * _BytesPerPixel;
-
-	_Pixels = new uint8_t[bytes];
-
-	memcpy(_Pixels, imageLoader->Pixels(), bytes);
 }
