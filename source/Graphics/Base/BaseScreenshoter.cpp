@@ -1,7 +1,9 @@
 #include <LDL/Graphics/Base/BaseScreenshoter.hpp>
 #include <time.h>
 
-const std::string LDL::Graphics::BaseScreenshoter::Prefix()
+using namespace LDL::Graphics;
+
+const std::string BaseScreenshoter::Prefix()
 {
     time_t rawtime;
     struct tm* timeinfo;

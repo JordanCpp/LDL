@@ -1,23 +1,25 @@
 #include <LDL/Graphics/Cpu/CpuRender.hpp>
 
-LDL::Graphics::CpuRender::CpuRender(LDL::Graphics::CpuWindow* window) :
+using namespace LDL::Graphics;
+
+CpuRender::CpuRender(CpuWindow* window) :
 	_Window(window),
 	_BaseRender(_Window->Size()),
 	_Canvas(_Window->Size(), 4)
 {
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::CpuRender::Size()
+const Point2u& CpuRender::Size()
 {
 	return _BaseRender.Size();
 }
 
-const LDL::Graphics::Color& LDL::Graphics::CpuRender::Color()
+const Color& CpuRender::Color()
 {
 	return _BaseRender.Color();
 }
 
-void LDL::Graphics::CpuRender::Clear()
+void CpuRender::Clear()
 {
 	LDL::Graphics::Color* pixels = (LDL::Graphics::Color*)_Canvas.Pixels();
 
@@ -29,22 +31,22 @@ void LDL::Graphics::CpuRender::Clear()
 	}
 }
 
-void LDL::Graphics::CpuRender::Color(const LDL::Graphics::Color& color)
+void CpuRender::Color(const LDL::Graphics::Color& color)
 {
 	_BaseRender.Color(color);
 }
 
-void LDL::Graphics::CpuRender::Present()
+void CpuRender::Present()
 {
 	_Window->Present(_Canvas.Pixels());
 }
 
-LDL::Graphics::CpuImage* LDL::Graphics::CpuRender::Canvas()
+CpuImage* CpuRender::Canvas()
 {
 	return &_Canvas;
 }
 
-void LDL::Graphics::CpuRender::Pixel(const LDL::Graphics::Point2u& pos)
+void CpuRender::Pixel(const Point2u& pos)
 {
 	size_t i = (_BaseRender._Size._PosX * pos._PosY) + pos._PosX;
 
@@ -56,7 +58,7 @@ void LDL::Graphics::CpuRender::Pixel(const LDL::Graphics::Point2u& pos)
 	}
 }
 
-const LDL::Graphics::Color& LDL::Graphics::CpuRender::GetPixel(const LDL::Graphics::Point2u& pos)
+const Color& CpuRender::GetPixel(const Point2u& pos)
 {
 	size_t i = (Size().PosX() * pos.PosY()) + pos.PosX();
 
@@ -65,7 +67,7 @@ const LDL::Graphics::Color& LDL::Graphics::CpuRender::GetPixel(const LDL::Graphi
 	return	pixels[i];
 }
 
-void LDL::Graphics::CpuRender::Fill(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void CpuRender::Fill(const Point2u& pos, const Point2u& size)
 {
 	size_t x = pos.PosX();
 	size_t y = pos.PosY();
@@ -74,12 +76,12 @@ void LDL::Graphics::CpuRender::Fill(const LDL::Graphics::Point2u& pos, const LDL
 	{
 		for (size_t j = 0; j < size.PosY(); j++)
 		{
-			Pixel(LDL::Graphics::Point2u(x + i, y + j));
+			Pixel(Point2u(x + i, y + j));
 		}
 	}
 }
 
-void LDL::Graphics::CpuRender::Rect(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void CpuRender::Rect(const Point2u& pos, const Point2u& size)
 {
 	size_t x = pos.PosX();
 	size_t y = pos.PosY();
@@ -88,26 +90,26 @@ void LDL::Graphics::CpuRender::Rect(const LDL::Graphics::Point2u& pos, const LDL
 
 	for (size_t i = 0; i < w; i++)
 	{
-		Pixel(LDL::Graphics::Point2u(x + i, y));
+		Pixel(Point2u(x + i, y));
 	}
 
 	for (size_t j = 0; j < w; j++)
 	{
-		Pixel(LDL::Graphics::Point2u(x + j, y + h));
+		Pixel(Point2u(x + j, y + h));
 	}
 
 	for (size_t k = 0; k < h; k++)
 	{
-		Pixel(LDL::Graphics::Point2u(x, y + k));
+		Pixel(Point2u(x, y + k));
 	}
 
 	for (size_t g = 0; g < h; g++)
 	{
-		Pixel(LDL::Graphics::Point2u(x + w, y + g));
+		Pixel(Point2u(x + w, y + g));
 	}
 }
 
-void LDL::Graphics::CpuRender::Line(const LDL::Graphics::Point2u& pos1, const LDL::Graphics::Point2u& pos2)
+void CpuRender::Line(const Point2u& pos1, const Point2u& pos2)
 {
 	int x1 = (int)pos1.PosX();
 	int y1 = (int)pos1.PosY();
@@ -129,11 +131,11 @@ void LDL::Graphics::CpuRender::Line(const LDL::Graphics::Point2u& pos1, const LD
 
 	error = deltaX - deltaY;
 
-	Pixel(LDL::Graphics::Point2u(x2, y2));
+	Pixel(Point2u(x2, y2));
 
 	while (x1 != x2 || y1 != y2)
 	{
-		Pixel(LDL::Graphics::Point2u(x1, y1));
+		Pixel(Point2u(x1, y1));
 
 		error2 = error * 2;
 
@@ -151,17 +153,17 @@ void LDL::Graphics::CpuRender::Line(const LDL::Graphics::Point2u& pos1, const LD
 	}
 }
 
-uint8_t* LDL::Graphics::CpuRender::Pixels()
+uint8_t* CpuRender::Pixels()
 {
 	return _Canvas.Pixels();
 }
 
-size_t LDL::Graphics::CpuRender::BytesPerPixel()
+size_t CpuRender::BytesPerPixel()
 {
 	return _Canvas.BytesPerPixel();
 }
 
-void LDL::Graphics::CpuRender::Draw(LDL::Graphics::CpuImage& image, const LDL::Graphics::Point2u& pos)
+void CpuRender::Draw(CpuImage& image, const Point2u& pos)
 {
 	uint8_t* dstPixels = Pixels();
 	uint8_t* srcPixels = image.Pixels();

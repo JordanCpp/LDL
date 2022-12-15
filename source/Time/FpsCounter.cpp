@@ -1,6 +1,8 @@
 #include <LDL/Time/FpsCounter.hpp>
 
-LDL::Time::FpsCounter::FpsCounter() :
+using namespace LDL::Time;
+
+FpsCounter::FpsCounter() :
 	_Current(0),
 	_Delta(0),
 	_Old(0),
@@ -8,16 +10,16 @@ LDL::Time::FpsCounter::FpsCounter() :
 {
 }
 
-void LDL::Time::FpsCounter::Start()
+void FpsCounter::Start()
 {
-	_Current = LDL::Time::Ticks();
+	_Current = Ticks();
 }
 
-bool LDL::Time::FpsCounter::Calc()
+bool FpsCounter::Calc()
 {
 	_Fps++;
 
-	_Delta = LDL::Time::Ticks() - _Current;
+	_Delta = Ticks() - _Current;
 
 	_Old += _Delta;
 
@@ -29,12 +31,12 @@ bool LDL::Time::FpsCounter::Calc()
 	return false;
 }
 
-size_t LDL::Time::FpsCounter::Fps()
+size_t FpsCounter::Fps()
 {
 	return _Fps;
 }
 
-void LDL::Time::FpsCounter::Clear()
+void FpsCounter::Clear()
 {
 	_Fps = 0;
 	_Old = 0;

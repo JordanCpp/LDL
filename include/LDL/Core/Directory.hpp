@@ -10,7 +10,7 @@ namespace LDL
 	{
 		class DirectoryImpl;
 
-		class Directory: public LDL::Core::FastPimpl
+		class Directory: public FastPimpl
 		{
 		public:
 			Directory();
@@ -20,7 +20,7 @@ namespace LDL
 			bool Delete(const std::string& path);
 			bool Open(const std::string& path);
 			void Close();
-			bool Next(LDL::Core::FileInfo& fileInfo);
+			bool Next(FileInfo& fileInfo);
 		private:
 			DirectoryImpl* _DirectoryImpl;
 		};

@@ -10,13 +10,13 @@ namespace LDL
 		class GpuImageImpl
 		{
 		public:
-			GpuImageImpl(const LDL::Graphics::Point2u & size, size_t bytesPerPixel, uint8_t* pixels);
+			GpuImageImpl(const Point2u & size, size_t bytesPerPixel, uint8_t* pixels);
 			~GpuImageImpl();
-			const LDL::Graphics::Point2u& Size();
+			const Point2u& Size();
 			size_t Id();
 		private:
 			size_t _Id;
-			LDL::Graphics::Point2u _Size;
+			Point2u _Size;
 		};
 	}
 }

@@ -7,7 +7,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		typedef LDL::Graphics::Point2<intmax_t> Point2i;
+		typedef Point2<intmax_t> Point2i;
 	}
 }
 

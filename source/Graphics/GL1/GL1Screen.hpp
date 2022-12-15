@@ -10,12 +10,12 @@ namespace LDL
 		class GL1Screen
 		{
 		public:
-			GL1Screen(const LDL::Graphics::Point2u& size);
+			GL1Screen(const Point2u& size);
 			~GL1Screen();
-			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
-			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos);
+			void Draw(CpuImage* image, const Point2u& pos, const Point2u& size);
+			void Draw(CpuImage* image, const Point2u& pos);
 		private:
-			LDL::Graphics::Point2u _Size;
+			Point2u _Size;
 			size_t _Screen;
 		};
 	}

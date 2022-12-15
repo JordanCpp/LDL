@@ -17,7 +17,7 @@ namespace LDL
 			bool Delete(const std::string& path);
 			bool Open(const std::string& path);
 			void Close();
-			bool Next(LDL::Core::FileInfo& fileInfo);
+			bool Next(FileInfo& fileInfo);
 		private:
 			HANDLE _File;
 			WIN32_FIND_DATA _Data;

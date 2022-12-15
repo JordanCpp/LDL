@@ -12,25 +12,25 @@ namespace LDL
 		class CpuRender
 		{
 		public:
-			CpuRender(LDL::Graphics::CpuWindow* window);
-			const LDL::Graphics::Point2u& Size();
+			CpuRender(CpuWindow* window);
+			const Point2u& Size();
 			const LDL::Graphics::Color& Color();
 			void Clear();
 			void Color(const LDL::Graphics::Color& color);
 			void Present();
-			LDL::Graphics::CpuImage* Canvas();
-			void Pixel(const LDL::Graphics::Point2u& pos);
-			const LDL::Graphics::Color& GetPixel(const LDL::Graphics::Point2u& pos);
-			void Fill(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
-			void Rect(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
-			void Line(const LDL::Graphics::Point2u& pos1, const LDL::Graphics::Point2u& pos2);
+			CpuImage* Canvas();
+			void Pixel(const Point2u& pos);
+			const LDL::Graphics::Color& GetPixel(const Point2u& pos);
+			void Fill(const Point2u& pos, const Point2u& size);
+			void Rect(const Point2u& pos, const Point2u& size);
+			void Line(const Point2u& pos1, const Point2u& pos2);
 			uint8_t* Pixels();
 			size_t BytesPerPixel();
-			void Draw(LDL::Graphics::CpuImage& image, const LDL::Graphics::Point2u& pos);
+			void Draw(CpuImage& image, const Point2u& pos);
 		private:
-			LDL::Graphics::CpuWindow* _Window;
-			LDL::Graphics::BaseRender _BaseRender;
-			LDL::Graphics::CpuImage _Canvas;
+			CpuWindow* _Window;
+			BaseRender _BaseRender;
+			CpuImage _Canvas;
 		};
 	}
 }

@@ -14,25 +14,25 @@ namespace LDL
 		class GpuRenderImpl
 		{
 		public:
-			GpuRenderImpl(LDL::Graphics::GpuWindow* window);
+			GpuRenderImpl(GpuWindow* window);
 			void Begin();
 			void End();
-			const LDL::Graphics::Point2u& Size();
+			const Point2u& Size();
 			const LDL::Graphics::Color& Color();
 			void Clear();
 			void Color(const LDL::Graphics::Color& color);
-			void Pixel(const LDL::Graphics::Point2u& pos);
-			void Fill(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
-			void Line(const LDL::Graphics::Point2u& pos1, const LDL::Graphics::Point2u& pos2);
-			void Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
-			void Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& pos);
-			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
-			void Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos);
-			void Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& dstPos, const LDL::Graphics::Point2u& srcPos, const LDL::Graphics::Point2u& srcSize);
+			void Pixel(const Point2u& pos);
+			void Fill(const Point2u& pos, const Point2u& size);
+			void Line(const Point2u& pos1, const Point2u& pos2);
+			void Draw(GpuImage* image, const Point2u& pos, const Point2u& size);
+			void Draw(GpuImage* image, const Point2u& pos);
+			void Draw(CpuImage* image, const Point2u& pos, const Point2u& size);
+			void Draw(CpuImage* image, const Point2u& pos);
+			void Draw(GpuImage* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize);
 		private:
-			LDL::Graphics::GpuWindow* _Window;
-			LDL::Graphics::BaseRender _BaseRender;
-			LDL::Graphics::GL1Screen _Screen;
+			GpuWindow* _Window;
+			BaseRender _BaseRender;
+			GL1Screen _Screen;
 		};
 	}
 }

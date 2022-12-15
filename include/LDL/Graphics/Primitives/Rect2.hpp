@@ -23,18 +23,18 @@ namespace LDL
 			{
 			}
 
-			Rect2(const LDL::Graphics::Point2<TYPE>& pos, const LDL::Graphics::Point2<TYPE>& size) :
+			Rect2(const Point2<TYPE>& pos, const Point2<TYPE>& size) :
 				_Pos(pos),
 				_Size(size)
 			{
 			}
 
-			const LDL::Graphics::Point2<TYPE>& Pos() const
+			const Point2<TYPE>& Pos() const
 			{
 				return _Pos;
 			}
 
-			const LDL::Graphics::Point2<TYPE>& Size() const
+			const Point2<TYPE>& Size() const
 			{
 				return _Size;
 			}
@@ -51,8 +51,8 @@ namespace LDL
 				_Size._PosY = y;
 			}
 		private:
-			LDL::Graphics::Point2<TYPE> _Pos;
-			LDL::Graphics::Point2<TYPE> _Size;
+			Point2<TYPE> _Pos;
+			Point2<TYPE> _Size;
 		};
 	}
 }

@@ -2,9 +2,11 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
 
+using namespace LDL::Graphics;
+
 static const char AppName[] = "MainWindow";
 
-size_t LDL::Graphics::Windows::MainWindow::ConvertKey(size_t key)
+size_t Windows::MainWindow::ConvertKey(size_t key)
 {
     size_t result = 0;
 
@@ -122,7 +124,7 @@ size_t LDL::Graphics::Windows::MainWindow::ConvertKey(size_t key)
     return result;
 }
 
-LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
+LRESULT CALLBACK Windows::MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 {
     LDL::Events::Event event;
 
@@ -206,14 +208,14 @@ LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::Handler(UINT Message, WPARA
     return DefWindowProc(_HWND, Message, WParam, LParam);
 }
 
-LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam)
+LRESULT CALLBACK Windows::MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam)
 {
     LRESULT result;
 
 #ifdef _WIN64
-    LDL::Graphics::Windows::MainWindow* This = (LDL::Graphics::Windows::MainWindow*)GetWindowLongPtr(Hwnd, GWLP_USERDATA);
+    Windows::MainWindow* This = (Windows::MainWindow*)GetWindowLongPtr(Hwnd, GWLP_USERDATA);
 #elif _WIN32
-    LDL::Graphics::Windows::MainWindow* This = (LDL::Graphics::Windows::MainWindow*)GetWindowLong(Hwnd, GWL_USERDATA);
+    Windows::MainWindow* This = (Windows::MainWindow*)GetWindowLong(Hwnd, GWL_USERDATA);
 #endif  
 
     if (This != NULL)
@@ -224,7 +226,7 @@ LRESULT CALLBACK LDL::Graphics::Windows::MainWindow::WndProc(HWND Hwnd, UINT Mes
     return result;
 }
 
-LDL::Graphics::Windows::MainWindow::MainWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode) :
+Windows::MainWindow::MainWindow(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
     _BaseWindow(pos, size, title)
 {
     ZeroMemory(&_WNDCLASS, sizeof(WNDCLASS));
@@ -283,14 +285,14 @@ LDL::Graphics::Windows::MainWindow::MainWindow(const LDL::Graphics::Point2u& pos
     ShowWindow(_HWND, SW_SHOW);
 }
 
-LDL::Graphics::Windows::MainWindow::~MainWindow()
+Windows::MainWindow::~MainWindow()
 {
         UnregisterClass(AppName, _HINSTANCE);
         ReleaseDC(_HWND, _HDC);
         PostQuitMessage(0);
 }
 
-bool LDL::Graphics::Windows::MainWindow::GetEvent(LDL::Events::Event& event)
+bool Windows::MainWindow::GetEvent(LDL::Events::Event& event)
 {
     if (_Eventer.Running())
     {
@@ -306,7 +308,7 @@ bool LDL::Graphics::Windows::MainWindow::GetEvent(LDL::Events::Event& event)
     return _Eventer.Running();
 }
 
-bool LDL::Graphics::Windows::MainWindow::WaitEvent(LDL::Events::Event& event)
+bool Windows::MainWindow::WaitEvent(LDL::Events::Event& event)
 {
     BOOL result;
 
@@ -330,29 +332,29 @@ bool LDL::Graphics::Windows::MainWindow::WaitEvent(LDL::Events::Event& event)
     return _Eventer.Running();
 }
 
-void LDL::Graphics::Windows::MainWindow::StopEvent()
+void Windows::MainWindow::StopEvent()
 {
     _Eventer.Stop();
 }
 
-void LDL::Graphics::Windows::MainWindow::Title(const std::string& title)
+void Windows::MainWindow::Title(const std::string& title)
 {
     _BaseWindow.Title(title);
 
     SetWindowText(_HWND, _BaseWindow.Title().c_str());
 }
 
-const std::string& LDL::Graphics::Windows::MainWindow::Title()
+const std::string& Windows::MainWindow::Title()
 {
     return _BaseWindow.Title();
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::Windows::MainWindow::Size()
+const Point2u& Windows::MainWindow::Size()
 {
     return _BaseWindow.Size();
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::Windows::MainWindow::Pos()
+const Point2u& Windows::MainWindow::Pos()
 {
     return _BaseWindow.Pos();
 }

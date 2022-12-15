@@ -15,20 +15,20 @@ namespace LDL
 			class MainWindow
 			{
 			public:
-				MainWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode);
+				MainWindow(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode);
 				~MainWindow();
 				bool GetEvent(LDL::Events::Event& event);
 				bool WaitEvent(LDL::Events::Event& event);
 				void StopEvent();
 				void Title(const std::string& title);
 				const std::string& Title();
-				const LDL::Graphics::Point2u& Size();
-				const LDL::Graphics::Point2u& Pos();
+				const Point2u& Size();
+				const Point2u& Pos();
 			private:
 				size_t ConvertKey(size_t key);
 				static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 				LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
-				LDL::Graphics::BaseWindow _BaseWindow;
+				BaseWindow _BaseWindow;
 				LDL::Events::Eventer _Eventer;
 				WNDCLASS  _WNDCLASS;
 				HINSTANCE _HINSTANCE;

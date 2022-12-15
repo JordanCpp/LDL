@@ -1,11 +1,13 @@
 #include <LDL/Graphics/Base/BaseRender.hpp>
 
-LDL::Graphics::BaseRender::BaseRender(const LDL::Graphics::Point2u& size) :
+using namespace LDL::Graphics;
+
+BaseRender::BaseRender(const Point2u& size) :
 	_Size(size)
 {
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::BaseRender::Size()
+const Point2u& BaseRender::Size()
 {
 	return _Size;
 }

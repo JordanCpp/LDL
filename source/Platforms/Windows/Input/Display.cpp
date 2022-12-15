@@ -2,9 +2,12 @@
 #include "../Windows.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
-LDL::Input::Display::Display()
+using namespace LDL::Input;
+using namespace LDL::Graphics;
+
+Display::Display()
 {
-	_VideoModes.reserve(LDL::Graphics::VideoMode::Limit);
+	_VideoModes.reserve(VideoMode::Limit);
 
 	DWORD i = 0;
 	DEVMODE dev;
@@ -14,18 +17,18 @@ LDL::Input::Display::Display()
 
 	while (EnumDisplaySettings(NULL, i++, &dev) != 0)
 	{
-		_VideoModes.push_back(LDL::Graphics::VideoMode(LDL::Graphics::Point2u(dev.dmPelsWidth, dev.dmPelsHeight), dev.dmBitsPerPel));
+		_VideoModes.push_back(VideoMode(Point2u(dev.dmPelsWidth, dev.dmPelsHeight), dev.dmBitsPerPel));
 
 		ZeroMemory(&dev, sizeof(dev));
 	}
 }
 
-const std::vector<LDL::Graphics::VideoMode>& LDL::Input::Display::Modes()
+const std::vector<VideoMode>& Display::Modes()
 {
 	return _VideoModes;
 }
 
-const LDL::Graphics::VideoMode& LDL::Input::Display::Current()
+const VideoMode& Display::Current()
 {
 	HDC hdc = GetDC(NULL);
 
@@ -36,7 +39,7 @@ const LDL::Graphics::VideoMode& LDL::Input::Display::Current()
 	int height = GetDeviceCaps(hdc, VERTSIZE);
 	int bpp    = GetDeviceCaps(hdc, BITSPIXEL);
 
-	_VideoMode = LDL::Graphics::VideoMode(LDL::Graphics::Point2u(width, height), bpp);
+	_VideoMode = VideoMode(Point2u(width, height), bpp);
 
 	return _VideoMode;
 }

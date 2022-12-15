@@ -9,8 +9,8 @@ namespace LDL
 	{
 		namespace GpuUtil
 		{
-			void DrawQuad(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size);
-			void DrawQuad(const LDL::Graphics::Point2u& dstPos, const LDL::Graphics::Point2u& dstSize, const LDL::Graphics::Point2u& srcPos, const LDL::Graphics::Point2u& srcSize);
+			void DrawQuad(const Point2u& pos, const Point2u& size);
+			void DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize);
 		}
 	}
 }

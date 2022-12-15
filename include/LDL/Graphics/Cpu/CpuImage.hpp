@@ -16,17 +16,17 @@ namespace LDL
 		public:
 			CpuImage(LDL::Loaders::ImageLoader* imageLoader, LDL::Allocators::Allocator* allocator);
 			CpuImage(LDL::Loaders::ImageLoader* imageLoader);
-			CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel);
-			CpuImage(const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel, LDL::Allocators::Allocator* allocator);
+			CpuImage(const Point2u& size, uint8_t bytesPerPixel);
+			CpuImage(const Point2u& size, uint8_t bytesPerPixel, LDL::Allocators::Allocator* allocator);
 			~CpuImage();
-			const LDL::Graphics::Point2u& Size();
+			const Point2u& Size();
 			uint8_t BytesPerPixel();
 			uint8_t* Pixels();
 			LDL::Allocators::Allocator* Allocator();
-			LDL::Graphics::Color Pixel(const LDL::Graphics::Point2u& pos);
+			Color Pixel(const Point2u& pos);
 		private:
 			LDL::Allocators::Allocator* _Allocator;
-			LDL::Graphics::Point2u _Size;
+			Point2u _Size;
 			uint8_t _BytesPerPixel;
 			uint8_t* _Pixels;
 		};

@@ -1,7 +1,9 @@
 #include "GpuUtil.hpp"
 #include "OpenGL.hpp"
 
-void LDL::Graphics::GpuUtil::DrawQuad(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+using namespace LDL::Graphics;
+
+void GpuUtil::DrawQuad(const Point2u& pos, const Point2u& size)
 {
 	GLfloat x = (GLfloat)pos.PosX();
 	GLfloat y = (GLfloat)pos.PosY();
@@ -16,7 +18,7 @@ void LDL::Graphics::GpuUtil::DrawQuad(const LDL::Graphics::Point2u& pos, const L
 	glEnd();
 }
 
-void LDL::Graphics::GpuUtil::DrawQuad(const LDL::Graphics::Point2u& dstPos, const LDL::Graphics::Point2u& dstSize, const LDL::Graphics::Point2u& srcPos, const LDL::Graphics::Point2u& srcSize)
+void GpuUtil::DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
 {
 	GLfloat x = (GLfloat)dstPos.PosX();
 	GLfloat y = (GLfloat)dstPos.PosY();

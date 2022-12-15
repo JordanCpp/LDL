@@ -7,7 +7,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		typedef LDL::Graphics::Rect2<size_t> Rect2u;
+		typedef Rect2<size_t> Rect2u;
 	}
 }
 

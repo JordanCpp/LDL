@@ -1,16 +1,18 @@
 #include <LDL/Events/Eventer.hpp>
 
-LDL::Events::Eventer::Eventer() :
+using namespace LDL::Events;
+
+Eventer::Eventer() :
 	_Running(true)
 {
 }
 
-void LDL::Events::Eventer::Push(LDL::Events::Event& event)
+void Eventer::Push(Event& event)
 {
 	_Queue.push(event);
 }
 
-bool LDL::Events::Eventer::Pop(LDL::Events::Event& event)
+bool Eventer::Pop(Event& event)
 {
     if (!_Queue.empty())
     {
@@ -23,12 +25,12 @@ bool LDL::Events::Eventer::Pop(LDL::Events::Event& event)
     return false;
 }
 
-bool LDL::Events::Eventer::Running()
+bool Eventer::Running()
 {
 	return _Running;
 }
 
-void LDL::Events::Eventer::Stop()
+void Eventer::Stop()
 {
 	_Running = false;
 }

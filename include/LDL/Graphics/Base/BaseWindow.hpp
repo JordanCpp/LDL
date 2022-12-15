@@ -11,14 +11,14 @@ namespace LDL
 		class BaseWindow
 		{
 		public:
-			BaseWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title);
-			const LDL::Graphics::Point2u& Pos();
-			const LDL::Graphics::Point2u& Size();
+			BaseWindow(const Point2u& pos, const Point2u& size, const std::string& title);
+			const Point2u& Pos();
+			const Point2u& Size();
 			const std::string& Title();
 			void Title(const std::string& source);
 		private:
-			LDL::Graphics::Point2u _Pos;
-			LDL::Graphics::Point2u _Size;
+			Point2u _Pos;
+			Point2u _Size;
 			std::string _Title;
 		};
 	}

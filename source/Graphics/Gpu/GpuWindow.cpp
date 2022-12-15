@@ -1,52 +1,54 @@
 #include <LDL/Graphics/Gpu/GpuWindow.hpp>
 #include "../../Platforms/Windows/Graphics/GL1/GpuWindowImpl.hpp"
 
-LDL::Graphics::GpuWindow::GpuWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode) :
-	_GpuWindowImpl(new LDL::Graphics::GpuWindowImpl(pos, size, title, mode))
+using namespace LDL::Graphics;
+
+GpuWindow::GpuWindow(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
+	_GpuWindowImpl(new GpuWindowImpl(pos, size, title, mode))
 {
 }
 
-LDL::Graphics::GpuWindow::~GpuWindow()
+GpuWindow::~GpuWindow()
 {
 	delete _GpuWindowImpl;
 }
 
-void LDL::Graphics::GpuWindow::Present()
+void GpuWindow::Present()
 {
 	_GpuWindowImpl->Present();
 }
 
-bool LDL::Graphics::GpuWindow::GetEvent(LDL::Events::Event& event)
+bool GpuWindow::GetEvent(LDL::Events::Event& event)
 {
 	return _GpuWindowImpl->GetEvent(event);
 }
 
-bool LDL::Graphics::GpuWindow::WaitEvent(LDL::Events::Event& event)
+bool GpuWindow::WaitEvent(LDL::Events::Event& event)
 {
 	return _GpuWindowImpl->WaitEvent(event);
 }
 
-void LDL::Graphics::GpuWindow::StopEvent()
+void GpuWindow::StopEvent()
 {
 	_GpuWindowImpl->StopEvent();
 }
 
-void LDL::Graphics::GpuWindow::Title(const std::string& title)
+void GpuWindow::Title(const std::string& title)
 {
 	_GpuWindowImpl->Title(title);
 }
 
-const std::string& LDL::Graphics::GpuWindow::Title()
+const std::string& GpuWindow::Title()
 {
 	return _GpuWindowImpl->Title();
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::GpuWindow::Size()
+const Point2u& GpuWindow::Size()
 {
 	return _GpuWindowImpl->Size();
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::GpuWindow::Pos()
+const Point2u& GpuWindow::Pos()
 {
 	return _GpuWindowImpl->Pos();
 }

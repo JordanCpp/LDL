@@ -16,7 +16,7 @@ namespace LDL
 		class GpuWindow : public LDL::Core::FastPimpl
 		{
 		public:
-			GpuWindow(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
+			GpuWindow(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
 			~GpuWindow();
 			void Present();
 			bool GetEvent(LDL::Events::Event& event);
@@ -24,8 +24,8 @@ namespace LDL
 			void StopEvent();
 			void Title(const std::string& title);
 			const std::string& Title();
-			const LDL::Graphics::Point2u& Size();
-			const LDL::Graphics::Point2u& Pos();
+			const Point2u& Size();
+			const Point2u& Pos();
 		private:
 			GpuWindowImpl* _GpuWindowImpl;
 		};

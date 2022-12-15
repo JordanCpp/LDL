@@ -12,13 +12,13 @@ namespace LDL
 		{
 		public:
 			Eventer();
-			void Push(LDL::Events::Event& event);
-			bool Pop(LDL::Events::Event& event);
+			void Push(Event& event);
+			bool Pop(Event& event);
 			bool Running();
 			void Stop();
 		private:
 			bool _Running;
-			std::queue<LDL::Events::Event> _Queue;
+			std::queue<Event> _Queue;
 		};
 	}
 }

@@ -11,7 +11,7 @@ namespace LDL
 		class ImageWritter
 		{
 		public:
-			void Save(const std::string& path, const LDL::Graphics::Point2u& size, size_t bytesPerPixel, uint8_t* pixels);
+			void Save(const std::string& path, const Point2u& size, size_t bytesPerPixel, uint8_t* pixels);
 		private:
 		};
 	}

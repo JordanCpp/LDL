@@ -13,9 +13,9 @@ namespace LDL
 		class GpuImage : public LDL::Core::FastPimpl
 		{
 		public:
-			GpuImage(const LDL::Graphics::Point2u& size, size_t bytesPerPixel, uint8_t* pixels);
+			GpuImage(const Point2u& size, size_t bytesPerPixel, uint8_t* pixels);
 			~GpuImage();
-			const LDL::Graphics::Point2u& Size();
+			const Point2u& Size();
 			size_t Id();
 		private:
 			GpuImageImpl* _GpuImageImpl;

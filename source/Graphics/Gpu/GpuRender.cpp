@@ -1,82 +1,84 @@
 #include <LDL/Graphics/Gpu/GpuRender.hpp>
 #include "../GL1/GpuRenderImpl.hpp"
 
-LDL::Graphics::GpuRender::GpuRender(LDL::Graphics::GpuWindow* window) :
-	_GpuRenderImpl(new LDL::Graphics::GpuRenderImpl(window))
+using namespace LDL::Graphics;
+
+GpuRender::GpuRender(GpuWindow* window) :
+	_GpuRenderImpl(new GpuRenderImpl(window))
 {
 }
 
-LDL::Graphics::GpuRender::~GpuRender()
+GpuRender::~GpuRender()
 {
 	delete _GpuRenderImpl;
 }
 
-void LDL::Graphics::GpuRender::Begin()
+void GpuRender::Begin()
 {
 	_GpuRenderImpl->Begin();
 }
 
-void LDL::Graphics::GpuRender::End()
+void GpuRender::End()
 {
 	_GpuRenderImpl->End();
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::GpuRender::Size()
+const Point2u& GpuRender::Size()
 {
 	return _GpuRenderImpl->Size();
 }
 
-const LDL::Graphics::Color& LDL::Graphics::GpuRender::Color()
+const Color& GpuRender::Color()
 {
 	return _GpuRenderImpl->Color();
 }
 
-void LDL::Graphics::GpuRender::Clear()
+void GpuRender::Clear()
 {
 	_GpuRenderImpl->Clear();
 }
 
-void LDL::Graphics::GpuRender::Color(const LDL::Graphics::Color& color)
+void GpuRender::Color(const LDL::Graphics::Color& color)
 {
 	_GpuRenderImpl->Color(color);
 }
 
-void LDL::Graphics::GpuRender::Pixel(const LDL::Graphics::Point2u& pos)
+void GpuRender::Pixel(const Point2u& pos)
 {
 	_GpuRenderImpl->Pixel(pos);
 }
 
-void LDL::Graphics::GpuRender::Fill(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void GpuRender::Fill(const Point2u& pos, const Point2u& size)
 {
 	_GpuRenderImpl->Fill(pos, size);
 }
 
-void LDL::Graphics::GpuRender::Line(const LDL::Graphics::Point2u& pos1, const LDL::Graphics::Point2u& pos2)
+void GpuRender::Line(const Point2u& pos1, const Point2u& pos2)
 {
 	_GpuRenderImpl->Line(pos1, pos2);
 }
 
-void LDL::Graphics::GpuRender::Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void GpuRender::Draw(GpuImage* image, const Point2u& pos, const Point2u& size)
 {
 	_GpuRenderImpl->Draw(image, pos, size);
 }
 
-void LDL::Graphics::GpuRender::Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& pos)
+void GpuRender::Draw(GpuImage* image, const Point2u& pos)
 {
 	_GpuRenderImpl->Draw(image, pos);
 }
 
-void LDL::Graphics::GpuRender::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void GpuRender::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
 {
 	_GpuRenderImpl->Draw(image, pos, size);
 }
 
-void LDL::Graphics::GpuRender::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos)
+void GpuRender::Draw(CpuImage* image, const Point2u& pos)
 {
 	_GpuRenderImpl->Draw(image, pos);
 }
 
-void LDL::Graphics::GpuRender::Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& dstPos, const LDL::Graphics::Point2u& srcPos, const LDL::Graphics::Point2u& srcSize)
+void GpuRender::Draw(GpuImage* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
 {
 	_GpuRenderImpl->Draw(image, dstPos, srcPos, srcSize);
 }

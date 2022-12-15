@@ -11,9 +11,9 @@ namespace LDL
 		class PixelConverter
 		{
 		public:
-			void Fill(uint8_t* pixels, const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel, const LDL::Graphics::Color& color);
-			void RgbToBgr(uint8_t* pixels, const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel);
-			void BgrToRgb(uint8_t* pixels, const LDL::Graphics::Point2u& size, uint8_t bytesPerPixel);
+			void Fill(uint8_t* pixels, const Point2u& size, uint8_t bytesPerPixel, const Color& color);
+			void RgbToBgr(uint8_t* pixels, const Point2u& size, uint8_t bytesPerPixel);
+			void BgrToRgb(uint8_t* pixels, const Point2u& size, uint8_t bytesPerPixel);
 		private:
 		};
 	}

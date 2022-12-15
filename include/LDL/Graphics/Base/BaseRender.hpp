@@ -11,12 +11,12 @@ namespace LDL
 		class BaseRender
 		{
 		public:
-			BaseRender(const LDL::Graphics::Point2u& size);
-			const LDL::Graphics::Point2u& Size();
+			BaseRender(const Point2u& size);
+			const Point2u& Size();
 			const LDL::Graphics::Color& Color();
 			void Color(const LDL::Graphics::Color& color);
 		public:
-			LDL::Graphics::Point2u _Size;
+			Point2u _Size;
 			LDL::Graphics::Color _Current;
 		};
 	}

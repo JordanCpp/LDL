@@ -1,11 +1,13 @@
 #include <LDL/Core/RuntimeError.hpp>
 
-LDL::Core::RuntimeError::RuntimeError(const std::string& message) :
+using namespace LDL::Core;
+
+RuntimeError::RuntimeError(const std::string& message) :
 	_Message(message)
 {
 }
 
-const char* LDL::Core::RuntimeError::what() const
+const char* RuntimeError::what() const
 {
 	return _Message.c_str();
 }

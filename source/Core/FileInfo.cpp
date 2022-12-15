@@ -1,11 +1,13 @@
 #include <LDL/Core/FileInfo.hpp>
 
-const std::string& LDL::Core::FileInfo::Name()
+using namespace LDL::Core;
+
+const std::string& FileInfo::Name()
 {
 	return _Name;
 }
 
-void LDL::Core::FileInfo::Name(const std::string& source)
+void FileInfo::Name(const std::string& source)
 {
 	_Name = source;
 }

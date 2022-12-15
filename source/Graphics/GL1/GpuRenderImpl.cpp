@@ -2,14 +2,16 @@
 #include "OpenGL.hpp"
 #include "GpuUtil.hpp"
 
-LDL::Graphics::GpuRenderImpl::GpuRenderImpl(LDL::Graphics::GpuWindow* window) :
+using namespace LDL::Graphics;
+
+GpuRenderImpl::GpuRenderImpl(GpuWindow* window) :
 	_Window(window),
 	_BaseRender(_Window->Size()),
 	_Screen(_Window->Size())
 {
 }
 
-void LDL::Graphics::GpuRenderImpl::Begin()
+void GpuRenderImpl::Begin()
 {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -20,22 +22,22 @@ void LDL::Graphics::GpuRenderImpl::Begin()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void LDL::Graphics::GpuRenderImpl::End()
+void GpuRenderImpl::End()
 {
 	_Window->Present();
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::GpuRenderImpl::Size()
+const Point2u& GpuRenderImpl::Size()
 {
 	return _BaseRender.Size();
 }
 
-const LDL::Graphics::Color& LDL::Graphics::GpuRenderImpl::Color()
+const Color& GpuRenderImpl::Color()
 {
 	return _BaseRender.Color();
 }
 
-void LDL::Graphics::GpuRenderImpl::Clear()
+void GpuRenderImpl::Clear()
 {
 	GLclampf r = _BaseRender.Color().Red() / 255.0f;
 	GLclampf g = _BaseRender.Color().Green() / 255.0f;
@@ -45,12 +47,12 @@ void LDL::Graphics::GpuRenderImpl::Clear()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void LDL::Graphics::GpuRenderImpl::Color(const LDL::Graphics::Color& color)
+void GpuRenderImpl::Color(const LDL::Graphics::Color& color)
 {
 	_BaseRender.Color(color);
 }
 
-void LDL::Graphics::GpuRenderImpl::Pixel(const LDL::Graphics::Point2u& pos)
+void GpuRenderImpl::Pixel(const Point2u& pos)
 {
 	GLclampf r = _BaseRender.Color().Red() / 255.0f;
 	GLclampf g = _BaseRender.Color().Green() / 255.0f;
@@ -62,7 +64,7 @@ void LDL::Graphics::GpuRenderImpl::Pixel(const LDL::Graphics::Point2u& pos)
 	glEnd();
 }
 
-void LDL::Graphics::GpuRenderImpl::Line(const LDL::Graphics::Point2u& pos1, const LDL::Graphics::Point2u& pos2)
+void GpuRenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
 {
 	GLclampf r = _BaseRender.Color().Red() / 255.0f;
 	GLclampf g = _BaseRender.Color().Green() / 255.0f;
@@ -80,7 +82,7 @@ void LDL::Graphics::GpuRenderImpl::Line(const LDL::Graphics::Point2u& pos1, cons
 	glEnd();
 }
 
-void LDL::Graphics::GpuRenderImpl::Fill(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void GpuRenderImpl::Fill(const Point2u& pos, const Point2u& size)
 {
 	GLclampf r = _BaseRender.Color().Red() / 255.0f;
 	GLclampf g = _BaseRender.Color().Green() / 255.0f;
@@ -100,31 +102,31 @@ void LDL::Graphics::GpuRenderImpl::Fill(const LDL::Graphics::Point2u& pos, const
 	glEnd();
 }
 
-void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void GpuRenderImpl::Draw(GpuImage* image, const Point2u& pos, const Point2u& size)
 {
 	glBindTexture(GL_TEXTURE_2D, (GLuint)image->Id());
 
-	LDL::Graphics::GpuUtil::DrawQuad(pos, size);
+	GpuUtil::DrawQuad(pos, size);
 }
 
-void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& pos)
+void GpuRenderImpl::Draw(GpuImage* image, const Point2u& pos)
 {
 	Draw(image, pos, image->Size());
 }
 
-void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void GpuRenderImpl::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
 {
 	_Screen.Draw(image, pos, size);
 }
 
-void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos)
+void GpuRenderImpl::Draw(CpuImage* image, const Point2u& pos)
 {
 	_Screen.Draw(image, pos);
 }
 
-void LDL::Graphics::GpuRenderImpl::Draw(LDL::Graphics::GpuImage* image, const LDL::Graphics::Point2u& dstPos, const LDL::Graphics::Point2u& srcPos, const LDL::Graphics::Point2u& srcSize)
+void GpuRenderImpl::Draw(GpuImage* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
 {
 	glBindTexture(GL_TEXTURE_2D, (GLuint)image->Id());
 
-	LDL::Graphics::GpuUtil::DrawQuad(dstPos, image->Size(), srcPos, srcSize);
+	GpuUtil::DrawQuad(dstPos, image->Size(), srcPos, srcSize);
 }

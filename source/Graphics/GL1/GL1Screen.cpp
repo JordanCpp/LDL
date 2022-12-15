@@ -2,7 +2,9 @@
 #include "OpenGL.hpp"
 #include "GpuUtil.hpp"
 
-LDL::Graphics::GL1Screen::GL1Screen(const LDL::Graphics::Point2u& size) :
+using namespace LDL::Graphics;
+
+GL1Screen::GL1Screen(const Point2u& size) :
 	_Size(size),
 	_Screen(0)
 {
@@ -16,16 +18,16 @@ LDL::Graphics::GL1Screen::GL1Screen(const LDL::Graphics::Point2u& size) :
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)_Size.PosX(), (GLsizei)_Size.PosY(), 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 }
 
-LDL::Graphics::GL1Screen::~GL1Screen()
+GL1Screen::~GL1Screen()
 {
 	glDeleteTextures(0, (GLuint*)&_Screen);
 }
 
-void LDL::Graphics::GL1Screen::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void GL1Screen::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
 {
 	glBindTexture(GL_TEXTURE_2D, (GLuint)_Screen);
 
-	LDL::Graphics::GpuUtil::DrawQuad(pos, size);
+	GpuUtil::DrawQuad(pos, size);
 
 	GLenum format = 0;
 
@@ -37,7 +39,7 @@ void LDL::Graphics::GL1Screen::Draw(LDL::Graphics::CpuImage* image, const LDL::G
 	glTexSubImage2D(GL_TEXTURE_2D, 0, pos.PosX(), pos.PosY(), (GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels());
 }
 
-void LDL::Graphics::GL1Screen::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos)
+void GL1Screen::Draw(CpuImage* image, const Point2u& pos)
 {
 	Draw(image, pos, image->Size());
 }

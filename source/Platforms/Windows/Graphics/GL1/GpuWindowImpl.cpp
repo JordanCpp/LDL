@@ -1,7 +1,9 @@
 #include "GpuWindowImpl.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
-LDL::Graphics::GpuWindowImpl::GpuWindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
+using namespace LDL::Graphics;
+
+GpuWindowImpl::GpuWindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
     _Window(pos, size, title, mode)
 {
     PIXELFORMATDESCRIPTOR pfd;
@@ -38,50 +40,50 @@ LDL::Graphics::GpuWindowImpl::GpuWindowImpl(const Point2u& pos, const Point2u& s
         throw LDL::Core::RuntimeError("wglMakeCurrent failed");
 }
 
-LDL::Graphics::GpuWindowImpl::~GpuWindowImpl()
+GpuWindowImpl::~GpuWindowImpl()
 {
     wglMakeCurrent(NULL, NULL);
     wglDeleteContext(_HGLRC);
     ReleaseDC(_Window._HWND, _Window._HDC);
 }
 
-void LDL::Graphics::GpuWindowImpl::Present()
+void GpuWindowImpl::Present()
 {
     if (!SwapBuffers(_Window._HDC))
         throw LDL::Core::RuntimeError("SwapBuffers failed");
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::GpuWindowImpl::Size()
+const Point2u& GpuWindowImpl::Size()
 {
     return _Window.Size();
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::GpuWindowImpl::Pos()
+const Point2u& GpuWindowImpl::Pos()
 {
     return _Window.Pos();
 }
 
-bool LDL::Graphics::GpuWindowImpl::GetEvent(LDL::Events::Event& event)
+bool GpuWindowImpl::GetEvent(LDL::Events::Event& event)
 {
     return _Window.GetEvent(event);
 }
 
-bool LDL::Graphics::GpuWindowImpl::WaitEvent(LDL::Events::Event& event)
+bool GpuWindowImpl::WaitEvent(LDL::Events::Event& event)
 {
     return _Window.WaitEvent(event);
 }
 
-void LDL::Graphics::GpuWindowImpl::StopEvent()
+void GpuWindowImpl::StopEvent()
 {
     _Window.StopEvent();
 }
 
-const std::string& LDL::Graphics::GpuWindowImpl::Title()
+const std::string& GpuWindowImpl::Title()
 {
     return _Window.Title();
 }
 
-void LDL::Graphics::GpuWindowImpl::Title(const std::string& title)
+void GpuWindowImpl::Title(const std::string& title)
 {
     _Window.Title(title);
 }

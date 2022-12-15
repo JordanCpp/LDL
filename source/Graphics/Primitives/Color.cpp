@@ -1,6 +1,8 @@
 #include <LDL/Graphics/Primitives/Color.hpp>
 
-LDL::Graphics::Color::Color() :
+using namespace LDL::Graphics;
+
+Color::Color() :
 #if (_WIN32 || _WIN64)
 	_Blue(0),
 	_Green(0),
@@ -14,7 +16,7 @@ LDL::Graphics::Color::Color() :
 {
 }
 
-LDL::Graphics::Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha) :
+Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha) :
 #if (_WIN32 || _WIN64)
 	_Blue(blue),
 	_Green(green),
@@ -28,22 +30,22 @@ LDL::Graphics::Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t al
 {
 }
 
-uint8_t LDL::Graphics::Color::Red() const
+uint8_t Color::Red() const
 {
 	return _Red;
 }
 
-uint8_t LDL::Graphics::Color::Green() const
+uint8_t Color::Green() const
 {
 	return _Green;
 }
 
-uint8_t LDL::Graphics::Color::Blue() const
+uint8_t Color::Blue() const
 {
 	return _Blue;
 }
 
-uint8_t LDL::Graphics::Color::Alpha() const
+uint8_t Color::Alpha() const
 {
 	return _Alpha;
 }
