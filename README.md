@@ -38,16 +38,19 @@ https://www.old-games.ru/forum/threads/pishu-frejmvork-ldl-analog-sdl-no-na-s-i-
 
 # Thanks
 
+
 # old-games.ru
-Tigoro 
-Bobbie
+Tigoro, 
+Bobbie,
+
 
 #gamedev.ru
-Vitorio
-Mirrel
-gamedevfor
-vka123
-u960
+Vitorio,
+Mirrel,
+gamedevfor,
+vka123,
+u960,
+
 
 #habr
 Kotofay
