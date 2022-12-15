@@ -6,7 +6,9 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Cpu/CpuWindow.hpp>
 
-const LDL::Graphics::Point2u windowSize = LDL::Graphics::Point2u(800, 600);
+using namespace LDL::Graphics;
+
+const Point2u windowSize = Point2u(800, 600);
 
 int main()
 {
@@ -14,9 +16,9 @@ int main()
 	{
 		LDL::Allocators::FixedLinear graphicsAllocator(LDL::Allocators::Allocator::Mb * 1);
 
-		LDL::Graphics::CpuWindow window(LDL::Graphics::Point2u(0, 0), windowSize, "01_Cpu_WindowAndRender");
+		CpuWindow window(Point2u(0, 0), windowSize, "01_Cpu_WindowAndRender");
 
-		LDL::Graphics::CpuRender render(&window);
+		CpuRender render(&window);
 
 		LDL::Events::Event report;
 
@@ -27,7 +29,7 @@ int main()
 		{
 			fpsCounter.Start();
 
-			render.Color(LDL::Graphics::Color(0, 162, 232));
+			render.Color(Color(0, 162, 232));
 			render.Clear();
 
 			if (report.Type == LDL::Events::IsQuit)
@@ -35,8 +37,8 @@ int main()
 				window.StopEvent();
 			}
 
-			render.Color(LDL::Graphics::Color(237, 28, 36));
-			render.Fill(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(400, 300));
+			render.Color(Color(237, 28, 36));
+			render.Fill(Point2u(0, 0), Point2u(400, 300));
 
 			render.Present();
 

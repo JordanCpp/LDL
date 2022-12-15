@@ -7,7 +7,9 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Cpu/CpuWindow.hpp>
 
-const LDL::Graphics::Point2u windowSize = LDL::Graphics::Point2u(800, 600);
+using namespace LDL::Graphics;
+
+const Point2u windowSize = Point2u(800, 600);
 
 int main()
 {
@@ -15,15 +17,15 @@ int main()
 	{
 		LDL::Allocators::FixedLinear graphicsAllocator(LDL::Allocators::Allocator::Mb * 1);
 
-		LDL::Graphics::CpuWindow window(LDL::Graphics::Point2u(0, 0), windowSize, "05_Cpu_Image");
+		CpuWindow window(Point2u(0, 0), windowSize, "05_Cpu_Image");
 
-		LDL::Graphics::CpuRender render(&window);
+		CpuRender render(&window);
 
 		LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
 		LDL::Loaders::ImageLoader loader(&allocator);
 
 		loader.Load("Gorgosaurus_BW_transparent.png");
-		LDL::Graphics::CpuImage image(&loader);
+		CpuImage image(&loader);
 
 		LDL::Events::Event report;
 
@@ -34,7 +36,7 @@ int main()
 		{
 			fpsCounter.Start();
 
-			render.Color(LDL::Graphics::Color(0, 162, 232));
+			render.Color(Color(0, 162, 232));
 			render.Clear();
 
 			if (report.Type == LDL::Events::IsQuit)
@@ -42,7 +44,7 @@ int main()
 				window.StopEvent();
 			}
 
-			render.Draw(image, LDL::Graphics::Point2u(0, 0));
+			render.Draw(image, Point2u(0, 0));
 
 			render.Present();
 

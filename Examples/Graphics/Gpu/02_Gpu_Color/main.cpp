@@ -6,19 +6,21 @@
 #include <LDL/Graphics/Gpu/GpuWindow.hpp>
 #include <LDL/Graphics/Gpu/GpuRender.hpp>
 
+using namespace LDL::Graphics;
+
 int main()
 {
 	try
 	{
 		LDL::Allocators::FixedLinear graphicsAllocator(LDL::Allocators::Allocator::Mb * 1);
 
-		LDL::Graphics::GpuWindow window(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
+		GpuWindow window(Point2u(0, 0), Point2u(800, 600), "Window!");
 
-		LDL::Graphics::GpuRender render(&window);
+		GpuRender render(&window);
 
 		LDL::Events::Event report;
 
-		render.Color(LDL::Graphics::Color(0, 162, 232));
+		render.Color(Color(0, 162, 232));
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;

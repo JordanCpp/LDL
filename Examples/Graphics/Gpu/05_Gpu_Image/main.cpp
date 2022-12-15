@@ -7,15 +7,17 @@
 #include <LDL/Graphics/Gpu/GpuWindow.hpp>
 #include <LDL/Graphics/Gpu/GpuRender.hpp>
 
+using namespace LDL::Graphics;
+
 int main()
 {
 	try
 	{
 		LDL::Allocators::FixedLinear graphicsAllocator(LDL::Allocators::Allocator::Mb * 1);
 
-		LDL::Graphics::GpuWindow window(LDL::Graphics::Point2u(0, 0), LDL::Graphics::Point2u(800, 600), "Window!");
+		GpuWindow window(Point2u(0, 0), Point2u(800, 600), "Window!");
 
-		LDL::Graphics::GpuRender render(&window);
+		GpuRender render(&window);
 
 		LDL::Events::Event report;
 
@@ -23,7 +25,7 @@ int main()
 		LDL::Loaders::ImageLoader loader(&allocator);
 
 		loader.Load("trehmachtovyiy-korabl-kartina-maslom-60x50_512x.jpg");
-		LDL::Graphics::GpuImage image(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
+		GpuImage image(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
@@ -34,7 +36,7 @@ int main()
 
 			render.Begin();
 
-			render.Color(LDL::Graphics::Color(0, 162, 232));
+			render.Color(Color(0, 162, 232));
 			render.Clear();
 
 			if (report.Type == LDL::Events::IsQuit)
