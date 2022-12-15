@@ -43,7 +43,7 @@ LDL::Graphics::CpuImage::CpuImage(LDL::Loaders::ImageLoader* imageLoader) :
 
 	size_t bytes = _Size.PosX() * _Size.PosY() * _BytesPerPixel;
 
-	_Pixels = (uint8_t*)_Allocator->Allocate(bytes);
+	_Pixels = new uint8_t[bytes];
 
 	memcpy(_Pixels, imageLoader->Pixels(), bytes);
 }

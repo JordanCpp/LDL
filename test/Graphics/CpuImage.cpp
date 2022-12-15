@@ -53,15 +53,17 @@ void LoadFromAllocator()
 	LDL::Allocators::FixedLinear allocator(bytes);
 	LDL::Loaders::ImageLoader imageLoader(&allocator);
 
+	LDL::Allocators::FixedLinear imageCache(bytes);
+	
 	imageLoader.Load("TestFiles/359500_600.jpg");
 
-	LDL::Graphics::CpuImage cpuImage(&imageLoader, &allocator);
+	LDL::Graphics::CpuImage cpuImage(&imageLoader, &imageCache);
 
 	LDL_TEST_EQUAL(imageLoader.BytesPerPixel() == 3);
 	LDL_TEST_EQUAL(imageLoader.Size().PosX() == 600);
 	LDL_TEST_EQUAL(imageLoader.Size().PosY() == 438);
 	LDL_TEST_EQUAL(cpuImage.Pixels() != NULL);
-	LDL_TEST_EQUAL(cpuImage.Allocator() == &allocator);
+	LDL_TEST_EQUAL(cpuImage.Allocator() == &imageCache);
 }
 
 int main()
