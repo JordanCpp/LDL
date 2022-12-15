@@ -47,6 +47,7 @@ add_library(LDL STATIC
 "source/Graphics/Base/BaseScreenshoter.cpp"
 "source/Graphics/Gpu/GpuRender.cpp"
 "source/Graphics/Gpu/GpuImage.cpp"
+"source/Graphics/Gpu/GpuScreenshoter.cpp"
 "source/Graphics/ImageWritter.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
@@ -62,7 +63,7 @@ if (LDL_GPU_SUPPORT_OPENGL1)
   "source/Graphics/GL1/GpuImageImpl.cpp"
   "source/Graphics/GL1/GpuUtil.cpp"
   "source/Graphics/GL1/GL1Screen.cpp"
-  "source/Graphics/GL1/GL1Screenshoter.cpp")
+  "source/Graphics/GL1/GpuScreenshoterImpl.cpp")
 endif() 
 
 if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)

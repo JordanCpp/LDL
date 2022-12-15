@@ -1,7 +1,6 @@
-#ifndef LDL_Graphics_GL1Screenshoter_hpp
-#define LDL_Graphics_GL1Screenshoter_hpp
+#ifndef LDL_Graphics_GpuScreenshoterImpl_hpp
+#define LDL_Graphics_GpuScreenshoterImpl_hpp
 
-#include <LDL/Graphics/IGpuScreenshoter.hpp>
 #include <LDL/Graphics/Gpu/GpuRender.hpp>
 #include <LDL/Graphics/Base/BaseScreenshoter.hpp>
 #include <LDL/Graphics/ImageWritter.hpp>
@@ -10,10 +9,10 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class GL1Screenshoter: public LDL::Graphics::IGpuScreenshoter
+		class GpuScreenshoterImpl
 		{
 		public:
-			GL1Screenshoter(const std::string& path, const std::string& name, LDL::Graphics::GpuRender* render, LDL::Graphics::CpuImage* image);
+			GpuScreenshoterImpl(const std::string& path, const std::string& name, LDL::Graphics::GpuRender* render, LDL::Graphics::CpuImage* image);
 			void Shot();
 		private:
 			LDL::Graphics::ImageWritter _ImageWritter;

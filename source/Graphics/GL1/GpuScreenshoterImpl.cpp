@@ -1,7 +1,7 @@
-#include "GL1Screenshoter.hpp"
+#include "GpuScreenshoterImpl.hpp"
 #include "OpenGL.hpp"
 
-LDL::Graphics::GL1Screenshoter::GL1Screenshoter(const std::string& path, const std::string& name, LDL::Graphics::GpuRender* render, LDL::Graphics::CpuImage* image) :
+LDL::Graphics::GpuScreenshoterImpl::GpuScreenshoterImpl(const std::string& path, const std::string& name, LDL::Graphics::GpuRender* render, LDL::Graphics::CpuImage* image) :
 	_ShortPath(path),
 	_Name(name),
 	_Render(render),
@@ -9,7 +9,7 @@ LDL::Graphics::GL1Screenshoter::GL1Screenshoter(const std::string& path, const s
 {
 }
 
-void LDL::Graphics::GL1Screenshoter::Shot()
+void LDL::Graphics::GpuScreenshoterImpl::Shot()
 {
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
 	glReadPixels(0, 0, (GLsizei)_Image->Size().PosX(), (GLsizei)_Image->Size().PosY(), GL_RGBA, GL_UNSIGNED_BYTE, _Image->Pixels());
