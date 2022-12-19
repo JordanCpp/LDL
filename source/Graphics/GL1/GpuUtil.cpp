@@ -43,3 +43,10 @@ void GpuUtil::DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Poin
 	glTexCoord2f(dcx, dch); glVertex2f(x, y + ch);
 	glEnd();
 }
+
+void GpuUtil::Normalize(const Color& color, GLclampf& r, GLclampf& g, GLclampf& b)
+{
+	 r = color.Red() / 255.0f;
+	 g = color.Green() / 255.0f;
+	 b = color.Blue() / 255.0f;
+}

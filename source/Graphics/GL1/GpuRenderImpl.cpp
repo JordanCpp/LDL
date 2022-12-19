@@ -1,5 +1,4 @@
 #include "GpuRenderImpl.hpp"
-#include "OpenGL.hpp"
 #include "GpuUtil.hpp"
 
 using namespace LDL::Graphics;
@@ -45,9 +44,11 @@ const Color& GpuRenderImpl::Color()
 
 void GpuRenderImpl::Clear()
 {
-	GLclampf r = _BaseRender.Color().Red() / 255.0f;
-	GLclampf g = _BaseRender.Color().Green() / 255.0f;
-	GLclampf b = _BaseRender.Color().Blue() / 255.0f;
+	GLclampf r;
+	GLclampf g;
+	GLclampf b;
+
+	GpuUtil::Normalize(_BaseRender.Color(), r, g, b);
 
 	glClearColor(r, g, b, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -60,9 +61,11 @@ void GpuRenderImpl::Color(const LDL::Graphics::Color& color)
 
 void GpuRenderImpl::Pixel(const Point2u& pos)
 {
-	GLclampf r = _BaseRender.Color().Red() / 255.0f;
-	GLclampf g = _BaseRender.Color().Green() / 255.0f;
-	GLclampf b = _BaseRender.Color().Blue() / 255.0f;
+	GLclampf r;
+	GLclampf g;
+	GLclampf b;
+
+	GpuUtil::Normalize(_BaseRender.Color(), r, g, b);
 
 	glBegin(GL_POINTS);
 	glColor3f(r, g, b);
@@ -72,9 +75,11 @@ void GpuRenderImpl::Pixel(const Point2u& pos)
 
 void GpuRenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
 {
-	GLclampf r = _BaseRender.Color().Red() / 255.0f;
-	GLclampf g = _BaseRender.Color().Green() / 255.0f;
-	GLclampf b = _BaseRender.Color().Blue() / 255.0f;
+	GLclampf r;
+	GLclampf g;
+	GLclampf b;
+
+	GpuUtil::Normalize(_BaseRender.Color(), r, g, b);
 
 	GLint x1 = (GLint)pos1.PosX();
 	GLint y1 = (GLint)pos1.PosY();
@@ -90,9 +95,11 @@ void GpuRenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
 
 void GpuRenderImpl::Fill(const Point2u& pos, const Point2u& size)
 {
-	GLclampf r = _BaseRender.Color().Red() / 255.0f;
-	GLclampf g = _BaseRender.Color().Green() / 255.0f;
-	GLclampf b = _BaseRender.Color().Blue() / 255.0f;
+	GLclampf r;
+	GLclampf g;
+	GLclampf b;
+
+	GpuUtil::Normalize(_BaseRender.Color(), r, g, b);
 
 	GLint x = (GLint)pos.PosX();
 	GLint y = (GLint)pos.PosY();
