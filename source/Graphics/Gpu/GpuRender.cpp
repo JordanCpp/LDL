@@ -13,6 +13,11 @@ GpuRender::~GpuRender()
 	delete _GpuRenderImpl;
 }
 
+void GpuRender::Screen(uint8_t* dst)
+{
+	_GpuRenderImpl->Screen(dst);
+}
+
 void GpuRender::Begin()
 {
 	_GpuRenderImpl->Begin();

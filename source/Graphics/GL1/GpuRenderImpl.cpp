@@ -11,15 +11,24 @@ GpuRenderImpl::GpuRenderImpl(GpuWindow* window) :
 {
 }
 
+void LDL::Graphics::GpuRenderImpl::Screen(uint8_t* dst)
+{
+	glReadPixels(0, 0, _BaseRender.Size().PosX(), _BaseRender.Size().PosY(), GL_RGBA, GL_UNSIGNED_BYTE, dst);
+}
+
 void GpuRenderImpl::Begin()
 {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(0.0f, (GLdouble)_Window->Size().PosX(), (GLdouble)_Window->Size().PosY(), 0.0f, 0.0f, 1.0f);
 	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glScissor(0, 0, _Window->Size().PosX(), _Window->Size().PosY());
+	glViewport(0, 0, _Window->Size().PosX(), _Window->Size().PosY());
+
 }
 
 void GpuRenderImpl::End()

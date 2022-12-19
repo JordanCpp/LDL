@@ -40,3 +40,8 @@ bool LDL::Core::Directory::Next(LDL::Core::FileInfo& fileInfo)
 {
     return _DirectoryImpl->Next(fileInfo);
 }
+
+bool LDL::Core::Directory::Remove(const std::string& path)
+{
+    return _DirectoryImpl->Remove(path);
+}

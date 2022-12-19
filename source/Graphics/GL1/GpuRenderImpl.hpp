@@ -15,6 +15,7 @@ namespace LDL
 		{
 		public:
 			GpuRenderImpl(GpuWindow* window);
+			void Screen(uint8_t * dst);
 			void Begin();
 			void End();
 			const Point2u& Size();

@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.8)
 
+add_subdirectory("GpuRender")
+
 add_executable(Point2u "Point2u.cpp")
 target_link_libraries(Point2u LDL)
 
@@ -38,3 +40,6 @@ target_link_libraries(BaseScreenshoter LDL)
 
 add_executable(VideoMode "VideoMode.cpp")
 target_link_libraries(VideoMode LDL)
+
+add_executable(ImageWritter "ImageWritter.cpp")
+target_link_libraries(ImageWritter LDL)
