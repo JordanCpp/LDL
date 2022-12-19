@@ -14,11 +14,15 @@ namespace LDL
 			BaseWindow(const Point2u& pos, const Point2u& size, const std::string& title);
 			const Point2u& Pos();
 			const Point2u& Size();
+			void Size(const Point2u& size);
+			const Point2u& View();
+			void View(const Point2u& size);
 			const std::string& Title();
 			void Title(const std::string& source);
 		private:
 			Point2u _Pos;
 			Point2u _Size;
+			Point2u _View;
 			std::string _Title;
 		};
 	}

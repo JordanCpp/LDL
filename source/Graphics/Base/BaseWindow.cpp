@@ -19,6 +19,21 @@ const Point2u& BaseWindow::Size()
     return _Size;
 }
 
+void LDL::Graphics::BaseWindow::Size(const Point2u& size)
+{
+    _Size = size;
+}
+
+const Point2u& LDL::Graphics::BaseWindow::View()
+{
+    return _View;
+}
+
+void LDL::Graphics::BaseWindow::View(const Point2u& size)
+{
+    _View = size;
+}
+
 const std::string& BaseWindow::Title()
 {
     return _Title;

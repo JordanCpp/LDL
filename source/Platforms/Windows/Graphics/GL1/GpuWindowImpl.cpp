@@ -58,6 +58,11 @@ const Point2u& GpuWindowImpl::Size()
     return _Window.Size();
 }
 
+const Point2u& LDL::Graphics::GpuWindowImpl::View()
+{
+    return _Window.View();
+}
+
 const Point2u& GpuWindowImpl::Pos()
 {
     return _Window.Pos();

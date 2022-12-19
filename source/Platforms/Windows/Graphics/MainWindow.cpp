@@ -354,6 +354,18 @@ const Point2u& MainWindow::Size()
     return _BaseWindow.Size();
 }
 
+const Point2u& LDL::Graphics::MainWindow::View()
+{
+    RECT rect;
+    
+    if (!GetClientRect(_HWND, &rect))
+        throw LDL::Core::RuntimeError("GetClientRect failed");
+
+    _BaseWindow.View(Point2u(rect.right, rect.bottom));
+
+    return _BaseWindow.View();
+}
+
 const Point2u& MainWindow::Pos()
 {
     return _BaseWindow.Pos();

@@ -48,6 +48,11 @@ const Point2u& GpuWindow::Size()
 	return _GpuWindowImpl->Size();
 }
 
+const Point2u& GpuWindow::View()
+{
+	return _GpuWindowImpl->View();
+}
+
 const Point2u& GpuWindow::Pos()
 {
 	return _GpuWindowImpl->Pos();

@@ -6,8 +6,8 @@ using namespace LDL::Graphics;
 
 GpuRenderImpl::GpuRenderImpl(GpuWindow* window) :
 	_Window(window),
-	_BaseRender(_Window->Size()),
-	_Screen(_Window->Size())
+	_BaseRender(_Window->View()),
+	_Screen(_BaseRender.Size())
 {
 }
 
@@ -20,15 +20,12 @@ void GpuRenderImpl::Begin()
 {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(0.0f, (GLdouble)_Window->Size().PosX(), (GLdouble)_Window->Size().PosY(), 0.0f, 0.0f, 1.0f);
+	glOrtho(0.0f, (GLdouble)_BaseRender.Size().PosX(), (GLdouble)_BaseRender.Size().PosY(), 0.0f, 0.0f, 1.0f);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glScissor(0, 0, _Window->Size().PosX(), _Window->Size().PosY());
-	glViewport(0, 0, _Window->Size().PosX(), _Window->Size().PosY());
-
 }
 
 void GpuRenderImpl::End()

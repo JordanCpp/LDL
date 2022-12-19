@@ -17,8 +17,11 @@ int main()
 
 		LDL::Graphics::GpuRender render(&window);
 
-		LDL_TEST_EQUAL(render.Size().PosX() == 640);
-		LDL_TEST_EQUAL(render.Size().PosY() == 480);
+		LDL_TEST_EQUAL(render.Size().PosX() > 0);
+		LDL_TEST_EQUAL(render.Size().PosX() < 640);
+
+		LDL_TEST_EQUAL(render.Size().PosY() > 0);
+		LDL_TEST_EQUAL(render.Size().PosY() < 480);
 	}
 	catch (const LDL::Core::RuntimeError& error)
 	{

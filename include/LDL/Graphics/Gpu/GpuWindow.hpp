@@ -25,6 +25,7 @@ namespace LDL
 			void Title(const std::string& title);
 			const std::string& Title();
 			const Point2u& Size();
+			const Point2u& View();
 			const Point2u& Pos();
 		private:
 			GpuWindowImpl* _GpuWindowImpl;
