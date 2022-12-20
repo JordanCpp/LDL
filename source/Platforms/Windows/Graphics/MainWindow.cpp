@@ -270,7 +270,8 @@ MainWindow::MainWindow(const Point2u& pos, const Point2u& size, const std::strin
     rect.right  = (LONG)_BaseWindow.Size().PosX();
     rect.bottom = (LONG)_BaseWindow.Size().PosY();
 
-    AdjustWindowRect(&rect, style, FALSE);
+    if (!AdjustWindowRect(&rect, style, FALSE))
+        throw LDL::Core::RuntimeError("AdjustWindowRect failed");
 
     _HWND = CreateWindow(AppName, "", style, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _HINSTANCE, 0);
 
