@@ -43,14 +43,14 @@ int main()
 			render.Color(Color(0, 162, 232));
 			render.Clear();
 
+			render.Draw(&image, window.Pos(), window.Size());
+
+			render.End();
+
 			if (report.Type == LDL::Events::IsQuit)
 			{
 				window.StopEvent();
 			}
-
-			render.Draw(&image, window.Pos(), window.Size());
-
-			render.End();
 
 			fpsLimiter.Throttle();
 

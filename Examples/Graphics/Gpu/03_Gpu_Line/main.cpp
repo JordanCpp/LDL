@@ -32,16 +32,16 @@ int main()
 			render.Color(Color(0, 162, 232));
 			render.Clear();
 
-			if (report.Type == LDL::Events::IsQuit)
-			{
-				window.StopEvent();
-			}
-
 			render.Color(Color(237, 28, 36));
 			render.Line(Point2u(0, 0), render.Size());
 			render.Line(Point2u(render.Size().PosX(), 0), Point2u(0, render.Size().PosY()));
 
 			render.End();
+
+			if (report.Type == LDL::Events::IsQuit)
+			{
+				window.StopEvent();
+			}
 
 			if (fpsCounter.Calc())
 			{

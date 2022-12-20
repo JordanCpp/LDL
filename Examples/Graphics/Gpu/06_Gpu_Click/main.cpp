@@ -42,20 +42,20 @@ int main()
 			render.Color(Color(0, 162, 232));
 			render.Clear();
 
+			render.Draw(&image, Point2u(x, y), Point2u(150, 150));
+
+			render.End();
+
 			if (report.Type == LDL::Events::IsQuit)
 			{
 				window.StopEvent();
 			}
-
-			render.Draw(&image, Point2u(x, y), Point2u(150, 150));
 
 			if (report.Type == LDL::Events::IsMouseClick)
 			{
 				x = report.Mouse.PosX;
 				y = report.Mouse.PosY;
 			}
-
-			render.End();
 
 			if (fpsCounter.Calc())
 			{

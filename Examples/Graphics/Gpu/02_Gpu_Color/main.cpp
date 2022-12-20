@@ -33,12 +33,12 @@ int main()
 
 			render.Clear();
 
+			render.End();
+
 			if (report.Type == LDL::Events::IsQuit)
 			{
 				window.StopEvent();
 			}
-
-			render.End();
 
 			if (fpsCounter.Calc())
 			{
