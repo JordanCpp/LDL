@@ -273,7 +273,7 @@ MainWindow::MainWindow(const Point2u& pos, const Point2u& size, const std::strin
     if (!AdjustWindowRect(&rect, style, FALSE))
         throw LDL::Core::RuntimeError("AdjustWindowRect failed");
 
-    _HWND = CreateWindow(AppName, "", style, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _HINSTANCE, 0);
+    _HWND = CreateWindow(AppName, "", style, (int)_BaseWindow.Pos().PosX(), (int)_BaseWindow.Pos().PosX(), rect.right - rect.left, rect.bottom - rect.top, 0, 0, _HINSTANCE, 0);
 
     if (_HWND == INVALID_HANDLE_VALUE)
         throw LDL::Core::RuntimeError("CreateWindow failed");
