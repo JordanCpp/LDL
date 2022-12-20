@@ -53,5 +53,7 @@ void Screen()
 
 int main()
 {
+	Screen();
+
 	return 0;
 }

@@ -263,7 +263,16 @@ MainWindow::MainWindow(const Point2u& pos, const Point2u& size, const std::strin
     else
         throw LDL::Core::RuntimeError("WindowMode failed");
 
-    _HWND = CreateWindow(AppName, "", style, (int)_BaseWindow.Pos().PosX(), (int)_BaseWindow.Pos().PosY(), (int)_BaseWindow.Size().PosX(), (int)_BaseWindow.Size().PosY(), 0, 0, _HINSTANCE, 0);
+    RECT rect;
+
+    rect.left   = (LONG)_BaseWindow.Pos().PosX();
+    rect.top    = (LONG)_BaseWindow.Pos().PosX();
+    rect.right  = (LONG)_BaseWindow.Size().PosX();
+    rect.bottom = (LONG)_BaseWindow.Size().PosY();
+
+    AdjustWindowRect(&rect, style, FALSE);
+
+    _HWND = CreateWindow(AppName, "", style, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _HINSTANCE, 0);
 
     if (_HWND == INVALID_HANDLE_VALUE)
         throw LDL::Core::RuntimeError("CreateWindow failed");
