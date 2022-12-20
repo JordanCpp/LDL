@@ -2,7 +2,6 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/IntegerToString.hpp>
-#include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Gpu/GpuWindow.hpp>
 #include <LDL/Graphics/Gpu/GpuRender.hpp>
 
@@ -12,8 +11,6 @@ int main()
 {
 	try
 	{
-		LDL::Allocators::FixedLinear graphicsAllocator(LDL::Allocators::Allocator::Mb * 1);
-
 		GpuWindow window(Point2u(0, 0), Point2u(800, 600), "Window!");
 
 		GpuRender render(&window);
