@@ -38,11 +38,7 @@ int main()
 
 			if (fpsCounter.Calc())
 			{
-				if (convert.Convert(fpsCounter.Fps()))
-				{
-					window.Title(convert.Result());
-				}
-
+				window.Title(convert.Convert(fpsCounter.Fps()));
 				fpsCounter.Clear();
 			}
 		}

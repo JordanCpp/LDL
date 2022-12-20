@@ -6,9 +6,8 @@ IntegerToString::IntegerToString()
 {
 }
 
-bool IntegerToString::Convert(intmax_t num, uint8_t base)
+const char* IntegerToString::Convert(intmax_t num, uint8_t base)
 {
-
     int i = 0;
     bool isNegative = false;
 
@@ -44,11 +43,6 @@ bool IntegerToString::Convert(intmax_t num, uint8_t base)
     // Reverse the string
     Reverse(_Buffer, i);
 
-    return true;
-}
-
-const char* IntegerToString::Result()
-{
     return _Buffer;
 }
 

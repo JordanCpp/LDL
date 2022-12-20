@@ -11,8 +11,7 @@ namespace LDL
 		{
 		public:
 			IntegerToString();
-			bool Convert(intmax_t num, uint8_t base = 10);
-			const char* Result();
+			const char* Convert(intmax_t num, uint8_t base = 10);
 		private:
 			void Swap(char& t1, char& t2);
 			void Reverse(char * str, size_t length);

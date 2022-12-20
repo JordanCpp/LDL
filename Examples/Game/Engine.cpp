@@ -31,11 +31,7 @@ void Game::Engine::Run()
 
 		if (_FpsCounter.Calc())
 		{
-			if (_Convert.Convert(_FpsCounter.Fps()))
-			{
-				_Window.Title(_Convert.Result());
-			}
-
+			_Window.Title(_Convert.Convert(_FpsCounter.Fps()));
 			_FpsCounter.Clear();
 		}
 	}
