@@ -16,6 +16,7 @@ namespace LDL
 			uint8_t Green() const;
 			uint8_t Blue() const;
 			uint8_t Alpha() const;
+			uint32_t toInt() const;
 		private:
         #if (_WIN32 || _WIN64)
 			uint8_t _Blue;

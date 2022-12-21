@@ -49,3 +49,8 @@ uint8_t Color::Alpha() const
 {
 	return _Alpha;
 }
+
+uint32_t Color::toInt() const
+{
+	return (uint32_t)((_Red << 24) | (_Green << 16) | (_Blue << 8) | _Alpha);
+}
