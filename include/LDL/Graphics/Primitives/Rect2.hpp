@@ -50,6 +50,11 @@ namespace LDL
 				_Size._PosX = x;
 				_Size._PosY = y;
 			}
+
+			bool Contains(const Point2<TYPE>& Pt)
+			{
+				return Pt.PosX() >= _Pos._PosX && Pt.PosY() >= _Pos._PosY && Pt.PosX() <= _Pos._PosX + _Size._PosX && Pt.PosY() <= _Pos._PosY + _Size._PosY;
+			}
 		private:
 			Point2<TYPE> _Pos;
 			Point2<TYPE> _Size;
