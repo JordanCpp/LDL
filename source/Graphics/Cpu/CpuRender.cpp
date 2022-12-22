@@ -50,10 +50,10 @@ void CpuRender::Pixel(const Point2u& pos)
 {
 	size_t i = (_BaseRender._Size._PosX * pos._PosY) + pos._PosX;
 
+	LDL::Graphics::Color* pixels = (LDL::Graphics::Color*)_Canvas.Pixels();
+
 	if (i < _BaseRender._Size._PosX * _BaseRender._Size._PosY)
 	{
-		LDL::Graphics::Color* pixels = (LDL::Graphics::Color*)_Canvas.Pixels();
-
 		pixels[i] = _BaseRender._Current;
 	}
 }
