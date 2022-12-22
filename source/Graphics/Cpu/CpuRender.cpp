@@ -21,11 +21,14 @@ const Color& CpuRender::Color()
 
 void CpuRender::Clear()
 {
-	uint8_t* pixels = (uint8_t*)_Canvas.Pixels();
+	Graphics::Color* pixels = (Graphics::Color*)_Canvas.Pixels();
 
-	size_t bytes = _Canvas.Size().PosX() * _Canvas.Size().PosY() * BytesPerPixel();
+	size_t size = _Canvas.Size().PosX() * _Canvas.Size().PosY();
 
-	memset(pixels, _BaseRender._Current.toInt(), bytes);
+	for (size_t i = 0; i < size; i++)
+	{
+		pixels[i] = _BaseRender._Current;
+	}
 }
 
 void CpuRender::Color(const LDL::Graphics::Color& color)
