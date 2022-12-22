@@ -8,7 +8,7 @@ void InitFromHeap()
 {
 	LDL::Graphics::Point2u size = LDL::Graphics::Point2u(640, 480);
 
-	LDL::Graphics::CpuImage cpuImage(size, 4);
+	LDL::Graphics::CpuImage cpuImage(size);
 
 	LDL_TEST_EQUAL(cpuImage.Size().PosX() == 640);
 	LDL_TEST_EQUAL(cpuImage.Size().PosY() == 480);
@@ -23,7 +23,7 @@ void InitFromAllocator()
 
 	LDL::Graphics::Point2u size = LDL::Graphics::Point2u(640, 480);
 
-	LDL::Graphics::CpuImage cpuImage(size, 4, &allocator);
+	LDL::Graphics::CpuImage cpuImage(&allocator, size);
 
 	LDL_TEST_EQUAL(cpuImage.Size().PosX() == 640);
 	LDL_TEST_EQUAL(cpuImage.Size().PosY() == 480);

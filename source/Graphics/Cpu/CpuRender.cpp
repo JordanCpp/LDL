@@ -5,7 +5,7 @@ using namespace LDL::Graphics;
 CpuRender::CpuRender(CpuWindow* window) :
 	_Window(window),
 	_BaseRender(_Window->Size()),
-	_Canvas(_Window->Size(), 4)
+	_Canvas(_Window->Size())
 {
 }
 

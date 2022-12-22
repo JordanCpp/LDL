@@ -16,8 +16,8 @@ namespace LDL
 		public:
 			CpuImage(LDL::Loaders::ImageLoader* imageLoader, LDL::Allocators::Allocator* allocator);
 			CpuImage(LDL::Loaders::ImageLoader* imageLoader);
-			CpuImage(const Point2u& size, uint8_t bytesPerPixel);
-			CpuImage(const Point2u& size, uint8_t bytesPerPixel, LDL::Allocators::Allocator* allocator);
+			CpuImage(const Point2u& size, uint8_t bytesPerPixel = 4);
+			CpuImage(LDL::Allocators::Allocator* allocator, const Point2u& size, uint8_t bytesPerPixel = 4);
 			~CpuImage();
 			const Point2u& Size();
 			uint8_t BytesPerPixel();

@@ -63,7 +63,7 @@ CpuImage::CpuImage(const Point2u& size, uint8_t bytesPerPixel) :
 	_Pixels = new uint8_t[_Size.PosX() * _Size.PosY() * _BytesPerPixel];
 }
 
-CpuImage::CpuImage(const Point2u& size, uint8_t bytesPerPixel, LDL::Allocators::Allocator* allocator) :
+CpuImage::CpuImage(LDL::Allocators::Allocator* allocator, const Point2u& size, uint8_t bytesPerPixel) :
 	_Allocator(allocator),
 	_Size(size),
 	_BytesPerPixel(bytesPerPixel),
