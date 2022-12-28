@@ -4,8 +4,7 @@
 using namespace LDL::Graphics;
 
 GpuContextImpl::GpuContextImpl(const char* path) :
-    _HGLRC(NULL),
-    _Library(path)
+    _HGLRC(NULL)
 {
 }
 
@@ -27,16 +26,4 @@ void GpuContextImpl::Create(HDC hdc)
 
     if (!wglMakeCurrent(hdc, _HGLRC))
         throw LDL::Core::RuntimeError("wglMakeCurrent failed");
-}
-
-void* GpuContextImpl::Function(const char* name)
-{
-    void* p = (void*)wglGetProcAddress(name);
-
-    if (p == 0 || (p == (void*)0x1) || (p == (void*)0x2) || (p == (void*)0x3) || (p == (void*)-1))
-    {
-        p = _Library.Function(name);
-    }
-
-    return p;
 }

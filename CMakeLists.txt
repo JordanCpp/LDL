@@ -49,6 +49,7 @@ add_library(LDL STATIC
 "source/Graphics/Gpu/GpuRender.cpp"
 "source/Graphics/Gpu/GpuImage.cpp"
 "source/Graphics/Gpu/GpuScreenshoter.cpp"
+"source/Graphics/Gpu/GpuFunctions.cpp"
 "source/Graphics/ImageWritter.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
@@ -71,7 +72,8 @@ endif()
 if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
   "source/Platforms/Windows/Graphics/GL1/GpuWindowImpl.cpp"
-  "source/Platforms/Windows/Graphics/GL1/GpuContextImpl.cpp")
+  "source/Platforms/Windows/Graphics/GL1/GpuContextImpl.cpp"
+  "source/Platforms/Windows/Graphics/GL1/GpuFunctionsImpl.cpp")
 endif()
 
 if (LDL_GPU_SUPPORT_DIRECTX9)
