@@ -34,6 +34,7 @@ add_library(LDL STATIC
 "source/Core/FileInfo.cpp"
 "source/Core/Directory.cpp"
 "source/Core/FastPimpl.cpp"
+"source/Core/Library.cpp"
 "source/Graphics/Base/BaseWindow.cpp"
 "source/Graphics/Base/BaseRender.cpp"
 "source/Graphics/Cpu/CpuImage.cpp"
@@ -54,6 +55,7 @@ add_library(LDL STATIC
 "source/Allocators/SmallAllocator.cpp"
 "source/Loaders/ImageLoader.cpp"
 "source/Loaders/FontLoader.cpp"
+"source/Loaders/OpenGLLoader.cpp"
 "source/Time/FpsCounter.cpp"
 "source/Time/FpsLimiter.cpp")
 
@@ -101,6 +103,7 @@ if (WIN32)
   "source/Platforms/Windows/Graphics/Cpu/CpuWindowImpl.cpp"
   "source/Platforms/Windows/Time/Ticks.cpp"
   "source/Platforms/Windows/Core/DirectoryImpl.cpp"
+  "source/Platforms/Windows/Core/LibraryImpl.cpp"
   "source/Platforms/Windows/Input/Display.cpp"
   "source/Platforms/Windows/Input/Mouse.cpp")
 elseif(UNIX AND NOT APPLE)
