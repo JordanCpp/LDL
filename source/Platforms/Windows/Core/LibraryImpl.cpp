@@ -1,5 +1,6 @@
 #include "LibraryImpl.hpp"
 #include <assert.h>
+#include <LDL/Core/RuntimeError.hpp>
 
 LDL::Core::LibraryImpl::LibraryImpl(const std::string& path) :
     _HMODULE(NULL)
@@ -18,11 +19,10 @@ LDL::Core::LibraryImpl::~LibraryImpl()
 
 void* LDL::Core::LibraryImpl::Function(const std::string& name)
 {
-    void* result = NULL;
+    void* result = GetProcAddress(_HMODULE, name.c_str());
 
-    result = GetProcAddress(_HMODULE, name.c_str());
-
-    assert(result != NULL);
+    if (result == NULL)
+        throw LDL::Core::RuntimeError("GetProcAddress failed: " + name);
 
     return result;
 }
