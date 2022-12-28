@@ -4,7 +4,8 @@
 using namespace LDL::Graphics;
 
 GpuWindowImpl::GpuWindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
-    _Window(pos, size, title, mode)
+    _Window(pos, size, title, mode),
+    _GpuContextImpl("opengl32")
 {
     PIXELFORMATDESCRIPTOR pfd;
 
@@ -31,19 +32,11 @@ GpuWindowImpl::GpuWindowImpl(const Point2u& pos, const Point2u& size, const std:
     if (!SetPixelFormat(_Window._HDC, format, &pfd))
         throw LDL::Core::RuntimeError("SetPixelFormat failed");
 
-    _HGLRC = wglCreateContext(_Window._HDC);
-
-    if (_HGLRC == NULL)
-        throw LDL::Core::RuntimeError("wglCreateContext failed");
-
-    if (!wglMakeCurrent(_Window._HDC, _HGLRC))
-        throw LDL::Core::RuntimeError("wglMakeCurrent failed");
+    _GpuContextImpl.Create(_Window._HDC);
 }
 
 GpuWindowImpl::~GpuWindowImpl()
 {
-    wglMakeCurrent(NULL, NULL);
-    wglDeleteContext(_HGLRC);
     ReleaseDC(_Window._HWND, _Window._HDC);
 }
 

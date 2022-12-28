@@ -70,7 +70,8 @@ endif()
 
 if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/GL1/GpuWindowImpl.cpp")
+  "source/Platforms/Windows/Graphics/GL1/GpuWindowImpl.cpp"
+  "source/Platforms/Windows/Graphics/GL1/GpuContextImpl.cpp")
 endif()
 
 if (LDL_GPU_SUPPORT_DIRECTX9)

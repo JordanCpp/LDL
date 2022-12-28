@@ -3,6 +3,7 @@
 
 #include <LDL/Graphics/Gpu/GpuWindow.hpp>
 #include "../MainWindow.hpp"
+#include "GpuContextImpl.hpp"
 
 namespace LDL
 {
@@ -24,7 +25,7 @@ namespace LDL
 			const Point2u& Pos();
 		private:
 			MainWindow _Window;
-			HGLRC _HGLRC;
+			GpuContextImpl _GpuContextImpl;
 		};
 	}
 }
