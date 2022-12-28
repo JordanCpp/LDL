@@ -12,18 +12,23 @@ GpuRenderImpl::GpuRenderImpl(GpuWindow* window) :
 
 void LDL::Graphics::GpuRenderImpl::Screen(uint8_t* dst)
 {
-	glReadPixels(0, 0, _BaseRender.Size().PosX(), _BaseRender.Size().PosY(), GL_RGBA, GL_UNSIGNED_BYTE, dst);
+	GL_CHECK(glReadPixels(0, 0, _BaseRender.Size().PosX(), _BaseRender.Size().PosY(), GL_RGBA, GL_UNSIGNED_BYTE, dst));
 }
 
 void GpuRenderImpl::Begin()
 {
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(0.0f, (GLdouble)_BaseRender.Size().PosX(), (GLdouble)_BaseRender.Size().PosY(), 0.0f, 0.0f, 1.0f);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	GL_CHECK(glViewport(0, 0, (GLsizei)_BaseRender.Size().PosX(), (GLsizei)_BaseRender.Size().PosY()));
+
+	GL_CHECK(glMatrixMode(GL_PROJECTION));
+	GL_CHECK(glLoadIdentity());
+	
+	GL_CHECK(glOrtho(0.0f, (GLdouble)_BaseRender.Size().PosX(), (GLdouble)_BaseRender.Size().PosY(), 0.0f, 0.0f, 1.0f));
+	
+	GL_CHECK(glMatrixMode(GL_MODELVIEW));
+	GL_CHECK(glLoadIdentity());
+
+	GL_CHECK(glEnable(GL_BLEND));
+	GL_CHECK(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 }
 
 void GpuRenderImpl::End()
@@ -49,8 +54,8 @@ void GpuRenderImpl::Clear()
 
 	GpuUtil::Normalize(_BaseRender.Color(), r, g, b);
 
-	glClearColor(r, g, b, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	GL_CHECK(glClearColor(r, g, b, 1.0f));
+	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
 void GpuRenderImpl::Color(const LDL::Graphics::Color& color)
@@ -116,13 +121,13 @@ void GpuRenderImpl::Fill(const Point2u& pos, const Point2u& size)
 
 void GpuRenderImpl::Draw(GpuImage* image, const Point2u& pos, const Point2u& size)
 {
-	glBindTexture(GL_TEXTURE_2D, (GLuint)image->Id());
+	GL_CHECK(glEnable(GL_TEXTURE_2D));
 
-	glEnable(GL_TEXTURE_2D);
+	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)image->Id()));
 
 	GpuUtil::DrawQuad(pos, size);
 
-	glDisable(GL_TEXTURE_2D);
+	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }
 
 void GpuRenderImpl::Draw(GpuImage* image, const Point2u& pos)
@@ -142,11 +147,11 @@ void GpuRenderImpl::Draw(CpuImage* image, const Point2u& pos)
 
 void GpuRenderImpl::Draw(GpuImage* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
 {
-	glBindTexture(GL_TEXTURE_2D, (GLuint)image->Id());
+	GL_CHECK(glEnable(GL_TEXTURE_2D));
 
-	glEnable(GL_TEXTURE_2D);
+	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)image->Id()));
 
 	GpuUtil::DrawQuad(dstPos, image->Size(), srcPos, srcSize);
 
-	glDisable(GL_TEXTURE_2D);
+	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }

@@ -1,6 +1,8 @@
 #include "GpuImageImpl.hpp"
 #include "OpenGL.hpp"
 #include <assert.h>
+#include "GpuUtil.hpp"
+#include <iostream>
 
 using namespace LDL::Graphics;
 
@@ -14,26 +16,30 @@ GpuImageImpl::GpuImageImpl(const Point2u& size, size_t bytesPerPixel, uint8_t* p
 
 	_Size = size;
 
-	glGenTextures(1, (GLuint*)&_Id);
+	GL_CHECK(glGenTextures(1, (GLuint*)&_Id));
 
-	glBindTexture(GL_TEXTURE_2D, (GLuint)_Id);
+	GL_CHECK(glEnable(GL_TEXTURE_2D));
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_Id));
 
-	int format = 0;
+	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+
+	GLint format = 0;
 
 	if (bytesPerPixel == 3)
 		format = GL_RGB;
 	else
 		format = GL_RGBA;
 
-	glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_Size.PosX(), (GLsizei)_Size.PosY(), 0, format, GL_UNSIGNED_BYTE, pixels);
+	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_Size.PosX(), (GLsizei)_Size.PosY(), 0, format, GL_UNSIGNED_BYTE, pixels));
+
+	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }
 
 GpuImageImpl::~GpuImageImpl()
 {
-	glDeleteTextures(0, (GLuint*)&_Id);
+	GL_CHECK(glDeleteTextures(0, (GLuint*)&_Id));
 }
 
 const Point2u& GpuImageImpl::Size()
