@@ -22,7 +22,6 @@ void GpuRenderImpl::Begin()
 	glOrtho(0.0f, (GLdouble)_BaseRender.Size().PosX(), (GLdouble)_BaseRender.Size().PosY(), 0.0f, 0.0f, 1.0f);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
@@ -119,7 +118,11 @@ void GpuRenderImpl::Draw(GpuImage* image, const Point2u& pos, const Point2u& siz
 {
 	glBindTexture(GL_TEXTURE_2D, (GLuint)image->Id());
 
+	glEnable(GL_TEXTURE_2D);
+
 	GpuUtil::DrawQuad(pos, size);
+
+	glDisable(GL_TEXTURE_2D);
 }
 
 void GpuRenderImpl::Draw(GpuImage* image, const Point2u& pos)
@@ -141,5 +144,9 @@ void GpuRenderImpl::Draw(GpuImage* image, const Point2u& dstPos, const Point2u& 
 {
 	glBindTexture(GL_TEXTURE_2D, (GLuint)image->Id());
 
+	glEnable(GL_TEXTURE_2D);
+
 	GpuUtil::DrawQuad(dstPos, image->Size(), srcPos, srcSize);
+
+	glDisable(GL_TEXTURE_2D);
 }

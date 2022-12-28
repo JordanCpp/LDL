@@ -27,7 +27,11 @@ void GL1Screen::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
 {
 	glBindTexture(GL_TEXTURE_2D, (GLuint)_Screen);
 
+	glEnable(GL_TEXTURE_2D);
+
 	GpuUtil::DrawQuad(pos, size);
+
+	glDisable(GL_TEXTURE_2D);
 
 	GLenum format = 0;
 
