@@ -19,7 +19,7 @@ LDL::Core::LibraryImpl::~LibraryImpl()
 
 void* LDL::Core::LibraryImpl::Function(const std::string& name)
 {
-    void* result = GetProcAddress(_HMODULE, name.c_str());
+    void* result = (void*)GetProcAddress(_HMODULE, name.c_str());
 
     if (result == NULL)
         throw LDL::Core::RuntimeError("GetProcAddress failed: " + name);
