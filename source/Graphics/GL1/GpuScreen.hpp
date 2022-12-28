@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_GL1Screen_hpp
-#define LDL_Graphics_GL1Screen_hpp
+#ifndef LDL_Graphics_GpuScreen_hpp
+#define LDL_Graphics_GpuScreen_hpp
 
 #include <LDL/Graphics/Cpu/CpuImage.hpp>
 
@@ -7,11 +7,11 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class GL1Screen
+		class GpuScreen
 		{
 		public:
-			GL1Screen(const Point2u& size);
-			~GL1Screen();
+			GpuScreen(const Point2u& size);
+			~GpuScreen();
 			void Draw(CpuImage* image, const Point2u& pos, const Point2u& size);
 			void Draw(CpuImage* image, const Point2u& pos);
 		private:

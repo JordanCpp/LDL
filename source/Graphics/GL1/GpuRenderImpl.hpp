@@ -4,7 +4,7 @@
 #include <LDL/Graphics/Base/BaseRender.hpp>
 #include <LDL/Graphics/Gpu/GpuWindow.hpp>
 #include "GpuImageImpl.hpp"
-#include "GL1Screen.hpp"
+#include "GpuScreen.hpp"
 #include <LDL/Graphics/Gpu/GpuImage.hpp>
 
 namespace LDL
@@ -33,7 +33,7 @@ namespace LDL
 		private:
 			GpuWindow* _Window;
 			BaseRender _BaseRender;
-			GL1Screen _Screen;
+			GpuScreen _Screen;
 		};
 	}
 }

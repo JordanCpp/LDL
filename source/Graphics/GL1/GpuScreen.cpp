@@ -1,10 +1,10 @@
-#include "GL1Screen.hpp"
+#include "GpuScreen.hpp"
 #include "OpenGL.hpp"
 #include "GpuUtil.hpp"
 
 using namespace LDL::Graphics;
 
-GL1Screen::GL1Screen(const Point2u& size) :
+GpuScreen::GpuScreen(const Point2u& size) :
 	_Size(size),
 	_Screen(0)
 {
@@ -22,12 +22,12 @@ GL1Screen::GL1Screen(const Point2u& size) :
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }
 
-GL1Screen::~GL1Screen()
+GpuScreen::~GpuScreen()
 {
 	GL_CHECK(glDeleteTextures(0, (GLuint*)&_Screen));
 }
 
-void GL1Screen::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
+void GpuScreen::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
 {
 	GL_CHECK(glEnable(GL_TEXTURE_2D));
 
@@ -47,7 +47,7 @@ void GL1Screen::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }
 
-void GL1Screen::Draw(CpuImage* image, const Point2u& pos)
+void GpuScreen::Draw(CpuImage* image, const Point2u& pos)
 {
 	Draw(image, pos, image->Size());
 }

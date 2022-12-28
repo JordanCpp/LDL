@@ -65,7 +65,7 @@ if (LDL_GPU_SUPPORT_OPENGL1)
   "source/Graphics/GL1/GpuRenderImpl.cpp"
   "source/Graphics/GL1/GpuImageImpl.cpp"
   "source/Graphics/GL1/GpuUtil.cpp"
-  "source/Graphics/GL1/GL1Screen.cpp"
+  "source/Graphics/GL1/GpuScreen.cpp"
   "source/Graphics/GL1/GpuScreenshoterImpl.cpp")
 endif() 
 
