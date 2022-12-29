@@ -1,5 +1,5 @@
 #include "GpuScreen.hpp"
-#include "OpenGL.hpp"
+#include <LDL/OpenGL/OpenGL1_0.hpp>
 #include "GpuUtil.hpp"
 
 using namespace LDL::Graphics;

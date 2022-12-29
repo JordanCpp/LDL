@@ -3,6 +3,8 @@
 
 #include <LDL/Core/Types.hpp>
 
+#define OPENGL_API_CALL __stdcall
+
 typedef unsigned int GLenum;
 typedef unsigned char GLboolean;
 typedef unsigned int GLbitfield;

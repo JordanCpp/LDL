@@ -1,5 +1,5 @@
 #include "GpuScreenshoterImpl.hpp"
-#include "OpenGL.hpp"
+#include <LDL/OpenGL/OpenGL1_0.hpp>
 #include "GpuUtil.hpp"
 
 LDL::Graphics::GpuScreenshoterImpl::GpuScreenshoterImpl(const std::string& path, const std::string& name, LDL::Graphics::GpuRender* render, LDL::Graphics::CpuImage* image) :

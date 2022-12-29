@@ -4,6 +4,7 @@
 #include <LDL/Graphics/Gpu/GpuWindow.hpp>
 #include "../MainWindow.hpp"
 #include "GpuContextImpl.hpp"
+#include <LDL/OpenGL/OpenGLLoader.hpp>
 
 namespace LDL
 {
@@ -26,6 +27,7 @@ namespace LDL
 		private:
 			MainWindow _Window;
 			GpuContextImpl _GpuContextImpl;
+			OpenGLLoader _OpenGLLoader;
 		};
 	}
 }

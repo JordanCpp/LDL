@@ -1,5 +1,5 @@
 #include "GpuImageImpl.hpp"
-#include "OpenGL.hpp"
+#include <LDL/OpenGL/OpenGL1_0.hpp>
 #include <assert.h>
 #include "GpuUtil.hpp"
 #include <iostream>
