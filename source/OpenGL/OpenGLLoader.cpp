@@ -1,9 +1,9 @@
-#include <LDL/Loaders/OpenGLLoader.hpp>
+#include <LDL/OpenGL/OpenGLLoader.hpp>
 #include <LDL/Core/Library.hpp>
 #include <LDL/OpenGL/OpenGL1_0.hpp>
 #include <LDL/Graphics/Gpu/GpuFunctions.hpp>
 
-using namespace LDL::Loaders;
+using namespace LDL;
 
 OpenGLLoader::OpenGLLoader(size_t major, size_t minor) :
 	_Major(major),

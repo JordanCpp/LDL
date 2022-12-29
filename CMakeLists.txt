@@ -56,9 +56,10 @@ add_library(LDL STATIC
 "source/Allocators/SmallAllocator.cpp"
 "source/Loaders/ImageLoader.cpp"
 "source/Loaders/FontLoader.cpp"
-"source/Loaders/OpenGLLoader.cpp"
+"source/OpenGL/OpenGLLoader.cpp"
 "source/Time/FpsCounter.cpp"
-"source/Time/FpsLimiter.cpp")
+"source/Time/FpsLimiter.cpp"
+"source/OpenGL/OpenGL1_0.cpp")
 
 if (LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
