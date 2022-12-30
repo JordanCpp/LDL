@@ -1,17 +1,19 @@
 #include <LDL/Core/Library.hpp>
 #include "../Platforms/Windows/Core/LibraryImpl.hpp"
 
-LDL::Core::Library::Library(const std::string& path) :
+using namespace LDL::Core;
+
+Library::Library(const std::string& path) :
     _LibraryImpl(new LDL::Core::LibraryImpl(path))
 {
 }
 
-LDL::Core::Library::~Library()
+Library::~Library()
 {
     _LibraryImpl->~LibraryImpl();
 }
 
-void* LDL::Core::Library::Function(const std::string& name)
+LDL::VoidFuncPtr Library::Function(const std::string& name)
 {
-    return _LibraryImpl->Function(name);
+    return (LDL::VoidFuncPtr)_LibraryImpl->Function(name);
 }

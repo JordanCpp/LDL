@@ -15,7 +15,7 @@ namespace LDL
 		public:
 			Library(const std::string& path);
 			~Library();
-			void* Function(const std::string& name);
+			VoidFuncPtr Function(const std::string& name);
 		private:
 			LibraryImpl* _LibraryImpl;
 		};

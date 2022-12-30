@@ -8,7 +8,7 @@ GpuFunctionsImpl::GpuFunctionsImpl(const char* path) :
 {
 }
 
-void* GpuFunctionsImpl::Function(const char* name)
+LDL::VoidFuncPtr GpuFunctionsImpl::Function(const char* name)
 {
     void* p = (void*)wglGetProcAddress(name);
 
@@ -17,5 +17,5 @@ void* GpuFunctionsImpl::Function(const char* name)
         p = _Library.Function(name);
     }
 
-    return p;
+    return (LDL::VoidFuncPtr)p;
 }

@@ -4,4 +4,9 @@
 #include <LDL/Core/pstdint.h>
 #include <stdlib.h>
 
+namespace LDL
+{
+	typedef void(*VoidFuncPtr)(void);
+}
+
 #endif  

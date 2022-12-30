@@ -12,7 +12,7 @@ namespace LDL
 		{
 		public:
 			GpuFunctionsImpl(const char* path);
-			void* Function(const char* name);
+			LDL::VoidFuncPtr Function(const char* name);
 		private:
 			LDL::Core::Library _Library;
 		};

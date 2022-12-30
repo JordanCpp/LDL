@@ -8,7 +8,7 @@ GpuFunctions::GpuFunctions() :
 {
 }
 
-void* GpuFunctions::Function(const char* name)
+LDL::VoidFuncPtr GpuFunctions::Function(const char* name)
 {
     return _GpuFunctionsImpl->Function(name);
 }
