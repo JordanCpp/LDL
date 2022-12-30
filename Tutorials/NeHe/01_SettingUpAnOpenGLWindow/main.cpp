@@ -9,6 +9,8 @@
 
 using namespace LDL::Graphics;
 
+const std::string LessonTittle = "Setting Up An OpenGL Window";
+
 GLvoid ReSizeGLScene(GLsizei width, GLsizei height)
 {
 	glViewport(0, 0, width, height);
@@ -44,13 +46,14 @@ int main()
 {
 	try
 	{
-		GpuWindow window(Point2u(0, 0), Point2u(800, 600), "Window!");
+		GpuWindow window(Point2u(0, 0), Point2u(800, 600), LessonTittle);
 
 		GpuRender render(&window);
 
 		LDL::Events::Event report;
 
 		InitGL();
+		ReSizeGLScene(window.Size().PosX(), window.Size().PosY());
 
 		while (window.GetEvent(report))
 		{

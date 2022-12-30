@@ -9,6 +9,8 @@
 
 using namespace LDL::Graphics;
 
+const std::string LessonTittle = "Adding Color";
+
 GLvoid ReSizeGLScene(GLsizei width, GLsizei height)
 {
 	glViewport(0, 0, width, height);
@@ -66,7 +68,7 @@ int main()
 {
 	try
 	{
-		GpuWindow window(Point2u(0, 0), Point2u(800, 600), "Window!");
+		GpuWindow window(Point2u(0, 0), Point2u(800, 600), LessonTittle);
 
 		GpuRender render(&window);
 
