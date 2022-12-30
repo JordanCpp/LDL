@@ -59,7 +59,8 @@ add_library(LDL STATIC
 "source/OpenGL/OpenGLLoader.cpp"
 "source/Time/FpsCounter.cpp"
 "source/Time/FpsLimiter.cpp"
-"source/OpenGL/OpenGL1_0.cpp")
+"source/OpenGL/OpenGL1_0.cpp"
+"source/OpenGL/OpenGL_Matrix4.cpp")
 
 if (LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
@@ -133,3 +134,4 @@ endif()
 
 add_subdirectory("test")
 add_subdirectory("Examples")
+add_subdirectory("Tutorials")

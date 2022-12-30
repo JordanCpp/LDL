@@ -185,6 +185,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         event.Type          = Events::IsResize;
         event.Resize.Width  = LOWORD(LParam);
         event.Resize.Height = HIWORD(LParam);
+        _Eventer.Push(event);
         break;
 
     case WM_CLOSE:

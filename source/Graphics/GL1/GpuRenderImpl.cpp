@@ -8,6 +8,18 @@ GpuRenderImpl::GpuRenderImpl(GpuWindow* window) :
 	_BaseRender(_Window->View()),
 	_Screen(_BaseRender.Size())
 {
+	GL_CHECK(glViewport(0, 0, (GLsizei)_BaseRender.Size().PosX(), (GLsizei)_BaseRender.Size().PosY()));
+
+	GL_CHECK(glMatrixMode(GL_PROJECTION));
+	GL_CHECK(glLoadIdentity());
+
+	GL_CHECK(glOrtho(0.0f, (GLdouble)_BaseRender.Size().PosX(), (GLdouble)_BaseRender.Size().PosY(), 0.0f, 0.0f, 1.0f));
+
+	GL_CHECK(glMatrixMode(GL_MODELVIEW));
+	GL_CHECK(glLoadIdentity());
+
+	GL_CHECK(glEnable(GL_BLEND));
+	GL_CHECK(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 }
 
 void LDL::Graphics::GpuRenderImpl::Screen(uint8_t* dst)
@@ -17,18 +29,6 @@ void LDL::Graphics::GpuRenderImpl::Screen(uint8_t* dst)
 
 void GpuRenderImpl::Begin()
 {
-	GL_CHECK(glViewport(0, 0, (GLsizei)_BaseRender.Size().PosX(), (GLsizei)_BaseRender.Size().PosY()));
-
-	GL_CHECK(glMatrixMode(GL_PROJECTION));
-	GL_CHECK(glLoadIdentity());
-	
-	GL_CHECK(glOrtho(0.0f, (GLdouble)_BaseRender.Size().PosX(), (GLdouble)_BaseRender.Size().PosY(), 0.0f, 0.0f, 1.0f));
-	
-	GL_CHECK(glMatrixMode(GL_MODELVIEW));
-	GL_CHECK(glLoadIdentity());
-
-	GL_CHECK(glEnable(GL_BLEND));
-	GL_CHECK(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 }
 
 void GpuRenderImpl::End()
