@@ -16,6 +16,26 @@ GLdouble* LDL::Matrix4::Values()
 	return _Values;
 }
 
+void LDL::Matrix4::Identity()
+{
+	_Values[0]  = 1;
+	_Values[1]  = 0;
+	_Values[2]  = 0;
+	_Values[3]  = 0;
+	_Values[4]  = 0;
+	_Values[5]  = 1;
+	_Values[6]  = 0;
+	_Values[7]  = 0;
+	_Values[8]  = 0;
+	_Values[9]  = 0;
+	_Values[10] = 1;
+	_Values[11] = 0;
+	_Values[12] = 0;
+	_Values[13] = 0;
+	_Values[14] = 0;
+	_Values[15] = 1;
+}
+
 void LDL::Matrix4::Perspective(GLdouble fovy, GLdouble aspect, GLdouble zNear, GLdouble zFar)
 {
 	GLdouble f = 1 / tan(fovy * (NumberPi / 360.0f));

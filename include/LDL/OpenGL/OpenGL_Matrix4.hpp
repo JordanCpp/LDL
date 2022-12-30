@@ -14,6 +14,7 @@ namespace LDL
 		};
 		Matrix4();
 		GLdouble* Values();
+		void Identity();
 		void Perspective(GLdouble fovy, GLdouble aspect, GLdouble zNear, GLdouble zFar);
 	private:
 		GLdouble _Values[Max];
