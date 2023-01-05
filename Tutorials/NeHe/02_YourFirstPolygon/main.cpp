@@ -11,7 +11,7 @@ using namespace LDL::Graphics;
 
 const std::string LessonTittle = "Your First Polygon";
 
-GLvoid ReSizeGLScene(GLsizei width, GLsizei height)
+GLvoid Resize(GLsizei width, GLsizei height)
 {
 	glViewport(0, 0, width, height);
 
@@ -26,7 +26,7 @@ GLvoid ReSizeGLScene(GLsizei width, GLsizei height)
 	glLoadIdentity();
 }
 
-GLvoid InitGL()
+GLvoid Init()
 {
 	glShadeModel(GL_SMOOTH);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.5f);
@@ -36,7 +36,7 @@ GLvoid InitGL()
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 }
 
-GLvoid DrawGLScene()
+GLvoid Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
 	glLoadIdentity();			
@@ -69,14 +69,14 @@ int main()
 
 		LDL::Events::Event report;
 
-		InitGL();
-		ReSizeGLScene((GLsizei)window.Size().PosX(), (GLsizei)window.Size().PosY());
+		Init();
+		Resize((GLsizei)window.Size().PosX(), (GLsizei)window.Size().PosY());
 
 		while (window.GetEvent(report))
 		{
 			render.Begin();
 
-			DrawGLScene();
+			Draw();
 
 			render.End();
 
@@ -87,7 +87,7 @@ int main()
 
 			if (report.Type == LDL::Events::IsResize)
 			{
-				ReSizeGLScene((GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
+				Resize((GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
 			}
 		}
 	}
