@@ -75,7 +75,7 @@ int main()
 		LDL::Events::Event report;
 
 		InitGL();
-		ReSizeGLScene(window.Size().PosX(), window.Size().PosY());
+		ReSizeGLScene((GLsizei)window.Size().PosX(), (GLsizei)window.Size().PosY());
 
 		while (window.GetEvent(report))
 		{
@@ -92,7 +92,7 @@ int main()
 
 			if (report.Type == LDL::Events::IsResize)
 			{
-				ReSizeGLScene(report.Resize.Width, report.Resize.Height);
+				ReSizeGLScene((GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
 			}
 		}
 	}

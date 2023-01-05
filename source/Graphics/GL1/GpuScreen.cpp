@@ -42,7 +42,7 @@ void GpuScreen::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
 	else
 		format = GL_RGB;
 
-	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, pos.PosX(), pos.PosY(), (GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels()));
+	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)pos.PosX(), (GLint)pos.PosY(), (GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels()));
 
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }

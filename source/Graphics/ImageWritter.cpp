@@ -10,5 +10,5 @@ void ImageWritter::Save(const std::string& path, const Point2u& size, size_t byt
 {
 	stbi_flip_vertically_on_write(true);
 
-	stbi_write_png(path.c_str(), (int)size.PosX(), (int)size.PosY(), bytesPerPixel, pixels, (int)size.PosX() * bytesPerPixel);
+	stbi_write_png(path.c_str(), (int)size.PosX(), (int)size.PosY(), (int)bytesPerPixel, pixels, (int)size.PosX() * (int)bytesPerPixel);
 }

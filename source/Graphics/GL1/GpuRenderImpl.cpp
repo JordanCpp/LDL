@@ -24,7 +24,7 @@ GpuRenderImpl::GpuRenderImpl(GpuWindow* window) :
 
 void LDL::Graphics::GpuRenderImpl::Screen(uint8_t* dst)
 {
-	GL_CHECK(glReadPixels(0, 0, _BaseRender.Size().PosX(), _BaseRender.Size().PosY(), GL_RGBA, GL_UNSIGNED_BYTE, dst));
+	GL_CHECK(glReadPixels(0, 0, (GLsizei)_BaseRender.Size().PosX(), (GLsizei)_BaseRender.Size().PosY(), GL_RGBA, GL_UNSIGNED_BYTE, dst));
 }
 
 void GpuRenderImpl::Begin()
