@@ -13,6 +13,7 @@ namespace LDL
 		size_t Major();
 		size_t Minor();
 		void Init_1_0();
+		void Init_1_1();
 	private:
 		LDL::Graphics::GpuFunctions _GpuFunctions;
 		size_t _Major;

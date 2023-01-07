@@ -334,5 +334,4 @@ pglVertex4i* glVertex4i = NULL;
 pglVertex4iv* glVertex4iv = NULL;
 pglVertex4s* glVertex4s = NULL;
 pglVertex4sv* glVertex4sv = NULL;
-pglVertexPointer* glVertexPointer = NULL;
 pglViewport* glViewport = NULL;

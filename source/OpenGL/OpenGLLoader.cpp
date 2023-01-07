@@ -1,5 +1,6 @@
 #include <LDL/OpenGL/OpenGLLoader.hpp>
 #include <LDL/OpenGL/OpenGL1_0.hpp>
+#include <LDL/OpenGL/OpenGL1_1.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Core/IntegerToString.hpp>
 
@@ -12,6 +13,7 @@ OpenGLLoader::OpenGLLoader(size_t major, size_t minor) :
 	if (Major() == 1 && Minor() == 0)
 	{
 		Init_1_0();
+		Init_1_1();
 	}
 	else
 	{
@@ -377,6 +379,10 @@ void OpenGLLoader::Init_1_0()
 	glVertex4iv = (pglVertex4iv*)_GpuFunctions.Function("glVertex4iv");
 	glVertex4s = (pglVertex4s*)_GpuFunctions.Function("glVertex4s");
 	glVertex4sv = (pglVertex4sv*)_GpuFunctions.Function("glVertex4sv");
-	glVertexPointer = (pglVertexPointer*)_GpuFunctions.Function("glVertexPointer");
 	glViewport = (pglViewport*)_GpuFunctions.Function("glViewport");
+}
+
+void LDL::OpenGLLoader::Init_1_1()
+{
+	glVertexPointer = (pglVertexPointer*)_GpuFunctions.Function("glVertexPointer");
 }

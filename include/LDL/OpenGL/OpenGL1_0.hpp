@@ -1041,7 +1041,6 @@ typedef	void	(OPENGL_API_CALL pglVertex4i)(GLint	x, GLint	y, GLint	z, GLint	w);
 typedef	void	(OPENGL_API_CALL pglVertex4iv)(const	GLint* v);
 typedef	void	(OPENGL_API_CALL pglVertex4s)(GLshort	x, GLshort	y, GLshort	z, GLshort	w);
 typedef	void	(OPENGL_API_CALL pglVertex4sv)(const	GLshort* v);
-typedef	void	(OPENGL_API_CALL pglVertexPointer)(GLint	size, GLenum	type, GLsizei	stride, const	GLvoid* pointer);
 typedef	void	(OPENGL_API_CALL pglViewport)(GLint	x, GLint	y, GLsizei	width, GLsizei	height);
 
 extern	pglAccum* glAccum;
@@ -1378,7 +1377,6 @@ extern	pglVertex4i* glVertex4i;
 extern	pglVertex4iv* glVertex4iv;
 extern	pglVertex4s* glVertex4s;
 extern	pglVertex4sv* glVertex4sv;
-extern	pglVertexPointer* glVertexPointer;
 extern	pglViewport* glViewport;
 
 #endif     

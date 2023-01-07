@@ -60,6 +60,7 @@ add_library(LDL STATIC
 "source/Time/FpsCounter.cpp"
 "source/Time/FpsLimiter.cpp"
 "source/OpenGL/OpenGL1_0.cpp"
+"source/OpenGL/OpenGL1_1.cpp"
 "source/OpenGL/OpenGL_Matrix4.cpp")
 
 if (LDL_GPU_SUPPORT_OPENGL1)
