@@ -16,6 +16,8 @@ namespace LDL
 			void Draw(CpuImage* image, const Point2u& pos, const Point2u& size);
 			void Draw(CpuImage* image, const Point2u& pos);
 		private:
+			void DrawTexture(CpuImage* image, const Point2u& pos, const Point2u& size);
+			void DrawPixels(CpuImage* image, const Point2u& pos, const Point2u& size);
 			Point2u _Size;
 			size_t _Screen;
 		};

@@ -46,42 +46,48 @@ bool LDL::Graphics::GpuScreen::IsMaxTextureSize(const Point2u& size)
 void GpuScreen::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
 {
 	if (IsMaxTextureSize(_Size))
-	{
-		GL_CHECK(glEnable(GL_TEXTURE_2D));
-
-		GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_Screen));
-
-		GpuUtil::DrawQuad(pos, size);
-
-		GLenum format = 0;
-
-		if (image->BytesPerPixel() == 4)
-			format = GL_RGBA;
-		else
-			format = GL_RGB;
-
-		GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)pos.PosX(), (GLint)pos.PosY(), (GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels()));
-
-		GL_CHECK(glDisable(GL_TEXTURE_2D));
-	}
+		DrawTexture(image, pos, size);
 	else
-	{
-		GL_CHECK(glPixelZoom(1.0, -1.0));
-
-		GL_CHECK(glRasterPos2i((GLint)pos.PosX(), (GLint)pos.PosY()));
-
-		GLenum format = 0;
-
-		if (image->BytesPerPixel() == 4)
-			format = GL_RGBA;
-		else
-			format = GL_RGB;
-
-		GL_CHECK(glDrawPixels((GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels()));
-	}
+		DrawPixels(image, pos, size);
 }
 
 void GpuScreen::Draw(CpuImage* image, const Point2u& pos)
 {
 	Draw(image, pos, image->Size());
+}
+
+void LDL::Graphics::GpuScreen::DrawTexture(CpuImage* image, const Point2u& pos, const Point2u& size)
+{
+	GL_CHECK(glEnable(GL_TEXTURE_2D));
+
+	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_Screen));
+
+	GpuUtil::DrawQuad(pos, size);
+
+	GLenum format = 0;
+
+	if (image->BytesPerPixel() == 4)
+		format = GL_RGBA;
+	else
+		format = GL_RGB;
+
+	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)pos.PosX(), (GLint)pos.PosY(), (GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels()));
+
+	GL_CHECK(glDisable(GL_TEXTURE_2D));
+}
+
+void LDL::Graphics::GpuScreen::DrawPixels(CpuImage* image, const Point2u& pos, const Point2u& size)
+{
+	GL_CHECK(glPixelZoom(1.0, -1.0));
+
+	GL_CHECK(glRasterPos2i((GLint)pos.PosX(), (GLint)pos.PosY()));
+
+	GLenum format = 0;
+
+	if (image->BytesPerPixel() == 4)
+		format = GL_RGBA;
+	else
+		format = GL_RGB;
+
+	GL_CHECK(glDrawPixels((GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels()));
 }
