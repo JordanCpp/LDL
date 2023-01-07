@@ -12,6 +12,7 @@ namespace LDL
 		public:
 			GpuScreen(const Point2u& size);
 			~GpuScreen();
+			bool IsMaxTextureSize(const Point2u& size);
 			void Draw(CpuImage* image, const Point2u& pos, const Point2u& size);
 			void Draw(CpuImage* image, const Point2u& pos);
 		private:

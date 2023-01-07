@@ -8,43 +8,77 @@ GpuScreen::GpuScreen(const Point2u& size) :
 	_Size(size),
 	_Screen(0)
 {
-	GL_CHECK(glEnable(GL_TEXTURE_2D));
+	if (IsMaxTextureSize(_Size))
+	{
+		GL_CHECK(glEnable(GL_TEXTURE_2D));
 
-	GL_CHECK(glGenTextures(1, (GLuint*)&_Screen));
+		GL_CHECK(glGenTextures(1, (GLuint*)&_Screen));
 
-	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_Screen));
+		GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_Screen));
 
-	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
-	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+		GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+		GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
 
-	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)_Size.PosX(), (GLsizei)_Size.PosY(), 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL));
+		GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)_Size.PosX(), (GLsizei)_Size.PosY(), 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL));
 
-	GL_CHECK(glDisable(GL_TEXTURE_2D));
+		GL_CHECK(glDisable(GL_TEXTURE_2D));
+	}
 }
 
 GpuScreen::~GpuScreen()
 {
-	GL_CHECK(glDeleteTextures(0, (GLuint*)&_Screen));
+	if (IsMaxTextureSize(_Size))
+		GL_CHECK(glDeleteTextures(0, (GLuint*)&_Screen));
+}
+
+bool LDL::Graphics::GpuScreen::IsMaxTextureSize(const Point2u& size)
+{
+	GLint value;
+
+	GL_CHECK(glGetIntegerv(GL_MAX_TEXTURE_SIZE, &value));
+
+	if (value >= (GLint)size.PosX() && value >= (GLint)size.PosY())
+		return true;
+
+	return false;
 }
 
 void GpuScreen::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
 {
-	GL_CHECK(glEnable(GL_TEXTURE_2D));
+	if (IsMaxTextureSize(_Size))
+	{
+		GL_CHECK(glEnable(GL_TEXTURE_2D));
 
-	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_Screen));
+		GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_Screen));
 
-	GpuUtil::DrawQuad(pos, size);
+		GpuUtil::DrawQuad(pos, size);
 
-	GLenum format = 0;
+		GLenum format = 0;
 
-	if (image->BytesPerPixel() == 4)
-		format = GL_RGBA;
+		if (image->BytesPerPixel() == 4)
+			format = GL_RGBA;
+		else
+			format = GL_RGB;
+
+		GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)pos.PosX(), (GLint)pos.PosY(), (GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels()));
+
+		GL_CHECK(glDisable(GL_TEXTURE_2D));
+	}
 	else
-		format = GL_RGB;
+	{
+		GL_CHECK(glPixelZoom(1.0, -1.0));
 
-	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)pos.PosX(), (GLint)pos.PosY(), (GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels()));
+		GL_CHECK(glRasterPos2i((GLint)pos.PosX(), (GLint)pos.PosY()));
 
-	GL_CHECK(glDisable(GL_TEXTURE_2D));
+		GLenum format = 0;
+
+		if (image->BytesPerPixel() == 4)
+			format = GL_RGBA;
+		else
+			format = GL_RGB;
+
+		GL_CHECK(glDrawPixels((GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels()));
+	}
 }
 
 void GpuScreen::Draw(CpuImage* image, const Point2u& pos)
