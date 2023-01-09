@@ -17,6 +17,8 @@ namespace LDL
 			void Normalize(const Color& color, GLclampf& r, GLclampf& g, GLclampf& b);
 			void Check(const std::string& file, size_t line, const std::string& expression);
 			size_t MaxTextureSize();
+			bool IsMaxTextureSize(const Point2u& resolutionSize, size_t textureSize);
+			size_t SelectTextureSize(const Point2u& size);
 		}
 	}
 }

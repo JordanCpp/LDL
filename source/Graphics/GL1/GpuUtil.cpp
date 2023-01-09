@@ -5,6 +5,9 @@
 
 using namespace LDL::Graphics;
 
+const size_t TextureCount = 8;
+const size_t TextureSizes[TextureCount] = { 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
+
 void GpuUtil::DrawQuad(const Point2u& pos, const Point2u& size)
 {
 	GLfloat x = (GLfloat)pos.PosX();
@@ -91,4 +94,26 @@ size_t GpuUtil::MaxTextureSize()
 	GL_CHECK(glGetIntegerv(GL_MAX_TEXTURE_SIZE, &result));
 
 	return result;
+}
+
+bool GpuUtil::IsMaxTextureSize(const Point2u& resolutionSize, size_t textureSize)
+{
+	if (textureSize >= resolutionSize.PosX() && textureSize >= resolutionSize.PosY())
+		return true;
+
+	return false;
+}
+
+size_t GpuUtil::SelectTextureSize(const Point2u& size)
+{
+	size_t w = size.PosX();
+	size_t h = size.PosY();
+
+	for (size_t i = 0; i < TextureCount; i++)
+	{
+		if (w <= TextureSizes[i] && h <= TextureSizes[i])
+			return TextureSizes[i];
+	}
+	
+	return 0;
 }

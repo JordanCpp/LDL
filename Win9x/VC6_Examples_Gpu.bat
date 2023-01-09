@@ -8,5 +8,3 @@ call build_VC6.bat 06_Gpu_Click.exe           Examples\Graphics\Gpu\06_Gpu_Click
 call build_VC6.bat 07_Gpu_Motion.exe          Examples\Graphics\Gpu\07_Gpu_Motion\main.cpp
 call build_VC6.bat 08_Gpu_CpuImage.exe        Examples\Graphics\Gpu\08_Gpu_CpuImage\main.cpp
 call build_VC6.bat 09_Gpu_ColorKey.exe        Examples\Graphics\Gpu\09_Gpu_ColorKey\main.cpp
-
-pause

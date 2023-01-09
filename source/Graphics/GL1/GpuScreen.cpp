@@ -6,11 +6,12 @@ using namespace LDL::Graphics;
 
 GpuScreen::GpuScreen(const Point2u& size) :
 	_Size(size),
-	_Screen(0)
+	_Screen(0),
+	_MaxTextureSize(GpuUtil::MaxTextureSize())
 {
-	if (IsMaxTextureSize(_Size))
+	if (GpuUtil::IsMaxTextureSize(_Size, GpuUtil::MaxTextureSize()))
 	{
-		size_t sz = GpuUtil::MaxTextureSize();
+		size_t sz = GpuUtil::SelectTextureSize(_Size);
 
 		GL_CHECK(glEnable(GL_TEXTURE_2D));
 
@@ -29,23 +30,13 @@ GpuScreen::GpuScreen(const Point2u& size) :
 
 GpuScreen::~GpuScreen()
 {
-	if (IsMaxTextureSize(_Size))
+	if (GpuUtil::IsMaxTextureSize(_Size, _MaxTextureSize))
 		GL_CHECK(glDeleteTextures(0, (GLuint*)&_Screen));
-}
-
-bool LDL::Graphics::GpuScreen::IsMaxTextureSize(const Point2u& size)
-{
-	size_t sz = GpuUtil::MaxTextureSize();
-
-	if (sz >= size.PosX() && sz >= size.PosY())
-		return true;
-
-	return false;
 }
 
 void GpuScreen::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
 {
-	if (IsMaxTextureSize(_Size))
+	if (GpuUtil::IsMaxTextureSize(_Size, _MaxTextureSize))
 		DrawTexture(image, pos, size);
 	else
 		DrawPixels(image, pos, size);
