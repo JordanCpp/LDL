@@ -52,11 +52,16 @@ int main()
 
 		LDL::Events::Event report;
 
+		LDL::Time::FpsCounter fpsCounter;
+		LDL::Core::IntegerToString convert;
+
 		Init();
 		Resize((GLsizei)window.Size().PosX(), (GLsizei)window.Size().PosY());
 
 		while (window.GetEvent(report))
 		{
+			fpsCounter.Start();
+
 			render.Begin();
 
 			Draw();
@@ -71,6 +76,12 @@ int main()
 			if (report.Type == LDL::Events::IsResize)
 			{
 				Resize((GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
+			}
+
+			if (fpsCounter.Calc())
+			{
+				window.Title(convert.Convert(fpsCounter.Fps()));
+				fpsCounter.Clear();
 			}
 		}
 	}
