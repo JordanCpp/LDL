@@ -83,3 +83,12 @@ void GpuUtil::Check(const std::string& file, size_t line, const std::string& exp
 		abort();
     }
 }
+
+size_t GpuUtil::MaxTextureSize()
+{
+	GLint result = 0;
+
+	GL_CHECK(glGetIntegerv(GL_MAX_TEXTURE_SIZE, &result));
+
+	return result;
+}

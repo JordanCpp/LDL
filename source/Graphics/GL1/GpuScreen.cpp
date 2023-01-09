@@ -10,6 +10,8 @@ GpuScreen::GpuScreen(const Point2u& size) :
 {
 	if (IsMaxTextureSize(_Size))
 	{
+		size_t sz = GpuUtil::MaxTextureSize();
+
 		GL_CHECK(glEnable(GL_TEXTURE_2D));
 
 		GL_CHECK(glGenTextures(1, (GLuint*)&_Screen));
@@ -19,7 +21,7 @@ GpuScreen::GpuScreen(const Point2u& size) :
 		GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
 		GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
 
-		GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)_Size.PosX(), (GLsizei)_Size.PosY(), 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL));
+		GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, sz, sz, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL));
 
 		GL_CHECK(glDisable(GL_TEXTURE_2D));
 	}
@@ -33,11 +35,9 @@ GpuScreen::~GpuScreen()
 
 bool LDL::Graphics::GpuScreen::IsMaxTextureSize(const Point2u& size)
 {
-	GLint value;
+	size_t sz = GpuUtil::MaxTextureSize();
 
-	GL_CHECK(glGetIntegerv(GL_MAX_TEXTURE_SIZE, &value));
-
-	if (value >= (GLint)size.PosX() && value >= (GLint)size.PosY())
+	if (sz >= size.PosX() && sz >= size.PosY())
 		return true;
 
 	return false;
