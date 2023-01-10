@@ -69,7 +69,12 @@ add_library(LDL STATIC
 "source/Time/FpsLimiter.cpp"
 "source/OpenGL/OpenGL1_0.cpp"
 "source/OpenGL/OpenGL1_1.cpp"
-"source/OpenGL/OpenGL_Matrix4.cpp")
+"source/OpenGL/OpenGL_Matrix4.cpp"
+"source/Graphics/Image.cpp"
+"source/Graphics/Render.cpp"
+"source/Graphics/Window.cpp"
+"source/Graphics/Texture.cpp"
+"source/Graphics/Software/SurfaceImpl.cpp")
 
 if (LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
@@ -77,7 +82,10 @@ if (LDL_GPU_SUPPORT_OPENGL1)
   "source/Graphics/GL1/GpuImageImpl.cpp"
   "source/Graphics/GL1/GpuUtil.cpp"
   "source/Graphics/GL1/GpuScreen.cpp"
-  "source/Graphics/GL1/GpuScreenshoterImpl.cpp")
+  "source/Graphics/GL1/GpuScreenshoterImpl.cpp"
+  "source/Graphics/OpenGL1/TextureImpl.cpp"
+  "source/Graphics/OpenGL1/SurfaceImpl.cpp"
+  "source/Graphics/OpenGL1/RenderImpl.cpp")
 endif() 
 
 if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)
