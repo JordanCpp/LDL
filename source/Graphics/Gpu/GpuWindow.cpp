@@ -1,5 +1,10 @@
 #include <LDL/Graphics/Gpu/GpuWindow.hpp>
+
+#ifdef LDL_GPU_SUPPORT_OPENGL1
 #include "../../Platforms/Windows/Graphics/GL1/GpuWindowImpl.hpp"
+#elif LDL_GPU_SUPPORT_DIRECTX1
+#include "../../Platforms/Windows/Graphics/DirectDraw1/GpuWindowImpl.hpp"
+#endif
 
 using namespace LDL::Graphics;
 
@@ -56,4 +61,9 @@ const Point2u& GpuWindow::View()
 const Point2u& GpuWindow::Pos()
 {
 	return _GpuWindowImpl->Pos();
+}
+
+GpuWindowImpl* GpuWindow::GetGpuWindowImpl()
+{
+	return _GpuWindowImpl;
 }

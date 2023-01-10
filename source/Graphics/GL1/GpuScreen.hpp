@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_GpuScreen_hpp
-#define LDL_Graphics_GpuScreen_hpp
+#ifndef LDL_Graphics_GL1_GpuScreen_hpp
+#define LDL_Graphics_GL1_GpuScreen_hpp
 
 #include <LDL/Graphics/Cpu/CpuImage.hpp>
 

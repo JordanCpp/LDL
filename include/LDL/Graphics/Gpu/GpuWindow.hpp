@@ -27,6 +27,7 @@ namespace LDL
 			const Point2u& Size();
 			const Point2u& View();
 			const Point2u& Pos();
+			GpuWindowImpl* GetGpuWindowImpl();
 		private:
 			GpuWindowImpl* _GpuWindowImpl;
 		};

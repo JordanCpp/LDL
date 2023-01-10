@@ -1,11 +1,11 @@
-#ifndef LDL_Graphics_GL1_GpuRenderImpl_hpp
-#define LDL_Graphics_GL1_GpuRenderImpl_hpp
+#ifndef LDL_Graphics_DirectDraw1_GpuRenderImpl_hpp
+#define LDL_Graphics_DirectDraw1_GpuRenderImpl_hpp
 
 #include <LDL/Graphics/Base/BaseRender.hpp>
 #include <LDL/Graphics/Gpu/GpuWindow.hpp>
-#include "GpuImageImpl.hpp"
-#include "GpuScreen.hpp"
 #include <LDL/Graphics/Gpu/GpuImage.hpp>
+#include <LDL/Graphics/Cpu/CpuImage.hpp>
+#include <ddraw.h>
 
 namespace LDL
 {
@@ -15,6 +15,7 @@ namespace LDL
 		{
 		public:
 			GpuRenderImpl(GpuWindow* window);
+			~GpuRenderImpl();
 			void Screen(uint8_t * dst);
 			void Begin();
 			void End();
@@ -33,7 +34,11 @@ namespace LDL
 		private:
 			GpuWindow* _Window;
 			BaseRender _BaseRender;
-			GpuScreen _Screen;
+			LPDIRECTDRAW _DirectDraw;
+			DDSURFACEDESC _SurfaceDesc;
+			DDSCAPS _SurfaceCaps;
+			LPDIRECTDRAWSURFACE _Primary;
+			LPDIRECTDRAWCLIPPER _DirectDrawClipper;
 		};
 	}
 }

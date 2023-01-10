@@ -1,5 +1,10 @@
 #include <LDL/Graphics/Gpu/GpuImage.hpp>
+
+#ifdef LDL_GPU_SUPPORT_OPENGL1
 #include "../GL1/GpuImageImpl.hpp"
+#elif LDL_GPU_SUPPORT_DIRECTX1
+#include "../DirectDraw1/GpuImageImpl.hpp"
+#endif
 
 using namespace LDL::Graphics;
 
