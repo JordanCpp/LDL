@@ -27,7 +27,7 @@ void Init()
 
 void InitCapacity()
 {
-	Surface surface(Size, 4, Capacity);
+	Surface surface(Size, Capacity, 4);
 
 	LDL_TEST_EQUAL(surface.Pixels() != nullptr);
 
@@ -67,7 +67,7 @@ void Clear()
 
 void ClearCapacity()
 {
-	Surface surface(Size, 4, Capacity);
+	Surface surface(Size, Capacity, 4);
 
 	surface.Clear();
 
@@ -119,7 +119,7 @@ void ClearColor()
 
 void ClearColorCapacity()
 {
-	Surface surface(Size, 4, Capacity);
+	Surface surface(Size, Capacity, 4);
 
 	surface.Clear(Color(1, 2, 3, 4));
 

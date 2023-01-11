@@ -8,7 +8,7 @@ Surface::Surface(const Point2u& size, uint8_t bytesPerPixel) :
 {
 }
 
-LDL::Graphics::Surface::Surface(const Point2u& size, uint8_t bytesPerPixel, const Point2u& capacity) :
+LDL::Graphics::Surface::Surface(const Point2u& size, const Point2u& capacity, uint8_t bytesPerPixel) :
 	_SurfaceImpl(new SurfaceImpl(size, bytesPerPixel, capacity))
 {
 }
