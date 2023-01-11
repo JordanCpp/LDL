@@ -1,1 +1,0 @@
-#include <LDL/Graphics/Window.hpp>
