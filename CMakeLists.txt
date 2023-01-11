@@ -70,7 +70,7 @@ add_library(LDL STATIC
 "source/OpenGL/OpenGL1_0.cpp"
 "source/OpenGL/OpenGL1_1.cpp"
 "source/OpenGL/OpenGL_Matrix4.cpp"
-"source/Graphics/Image.cpp"
+"source/Graphics/Surface.cpp"
 "source/Graphics/Render.cpp"
 "source/Graphics/Window.cpp"
 "source/Graphics/Texture.cpp"
@@ -84,7 +84,6 @@ if (LDL_GPU_SUPPORT_OPENGL1)
   "source/Graphics/GL1/GpuScreen.cpp"
   "source/Graphics/GL1/GpuScreenshoterImpl.cpp"
   "source/Graphics/OpenGL1/TextureImpl.cpp"
-  "source/Graphics/OpenGL1/SurfaceImpl.cpp"
   "source/Graphics/OpenGL1/RenderImpl.cpp")
 endif() 
 
