@@ -46,18 +46,16 @@ add_library(LDL STATIC
 "source/Graphics/Base/BaseWindow.cpp"
 "source/Graphics/Base/BaseRender.cpp"
 "source/Graphics/Cpu/CpuImage.cpp"
-
-
 "source/Graphics/Primitives/Color.cpp"
 "source/Graphics/PixelConverter.cpp"
 "source/Graphics/TextRasterizer.cpp"
 "source/Graphics/VideoMode.cpp"
-"source/Graphics/Gpu/Window.cpp"
+"source/Graphics/Window.cpp"
 "source/Graphics/Base/BaseScreenshoter.cpp"
-"source/Graphics/Gpu/Render.cpp"
-"source/Graphics/Gpu/Texture.cpp"
-"source/Graphics/Gpu/Screenshoter.cpp"
-"source/Graphics/Gpu/Functions.cpp"
+"source/Graphics/Render.cpp"
+"source/Graphics/Texture.cpp"
+"source/Graphics/Screenshoter.cpp"
+"source/Graphics/Functions.cpp"
 "source/Graphics/ImageWritter.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
@@ -73,18 +71,18 @@ add_library(LDL STATIC
 
 if (LDL_RENDER_OPENGL1)
   target_sources(LDL PRIVATE
-  "source/Graphics/GL1/RenderImpl.cpp"
-  "source/Graphics/GL1/TextureImpl.cpp"
-  "source/Graphics/GL1/Util.cpp"
-  "source/Graphics/GL1/Screen.cpp"
-  "source/Graphics/GL1/ScreenshoterImpl.cpp")
+  "source/Graphics/OpenGL1/RenderImpl.cpp"
+  "source/Graphics/OpenGL1/TextureImpl.cpp"
+  "source/Graphics/OpenGL1/Util.cpp"
+  "source/Graphics/OpenGL1/Screen.cpp"
+  "source/Graphics/OpenGL1/ScreenshoterImpl.cpp")
 endif() 
 
 if (WIN32 AND LDL_RENDER_OPENGL1)
   target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/GL1/WindowImpl.cpp"
-  "source/Platforms/Windows/Graphics/GL1/ContextImpl.cpp"
-  "source/Platforms/Windows/Graphics/GL1/FunctionsImpl.cpp")
+  "source/Platforms/Windows/Graphics/OpenGL1/WindowImpl.cpp"
+  "source/Platforms/Windows/Graphics/OpenGL1/ContextImpl.cpp"
+  "source/Platforms/Windows/Graphics/OpenGL1/FunctionsImpl.cpp")
 endif()
 
 if (LDL_GPU_SUPPORT_DIRECTX1)

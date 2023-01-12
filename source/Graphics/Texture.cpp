@@ -1,7 +1,7 @@
 #include <LDL/Graphics/Texture.hpp>
 
 #ifdef LDL_RENDER_OPENGL1
-#include "../GL1/TextureImpl.hpp"
+#include "OpenGL1/TextureImpl.hpp"
 #elif LDL_GPU_SUPPORT_DIRECTX1
 #include "../DirectDraw1/GpuImageImpl.hpp"
 #endif

@@ -1,5 +1,5 @@
 #include <LDL/Graphics/Functions.hpp>
-#include "../../Platforms/Windows/Graphics/GL1/FunctionsImpl.hpp"
+#include "../Platforms/Windows/Graphics/OpenGL1/FunctionsImpl.hpp"
 
 using namespace LDL::Graphics;
 
