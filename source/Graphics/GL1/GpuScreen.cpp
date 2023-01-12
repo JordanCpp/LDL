@@ -22,7 +22,7 @@ GpuScreen::GpuScreen(const Point2u& size) :
 		GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
 		GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
 
-		GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, sz, sz, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL));
+		GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)sz, (GLsizei)sz, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL));
 
 		GL_CHECK(glDisable(GL_TEXTURE_2D));
 	}

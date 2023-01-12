@@ -105,7 +105,7 @@ namespace LDL
 				Num6,
 				Num7,
 				Num8,
-				Num9,
+				Num9
 			};
 		};
 	}

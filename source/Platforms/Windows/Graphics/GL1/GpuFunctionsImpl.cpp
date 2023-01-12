@@ -10,7 +10,7 @@ GpuFunctionsImpl::GpuFunctionsImpl(const char* path) :
 
 LDL::VoidFuncPtr GpuFunctionsImpl::Function(const char* name)
 {
-    void* p = (void*)wglGetProcAddress(name);
+    LDL::VoidFuncPtr p = (LDL::VoidFuncPtr)wglGetProcAddress(name);
 
     if (p == 0 || (p == (void*)0x1) || (p == (void*)0x2) || (p == (void*)0x3) || (p == (void*)-1))
     {

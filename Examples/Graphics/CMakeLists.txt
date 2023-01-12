@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.8)
+
+add_subdirectory("01_WindowAndRender")
+add_subdirectory("02_Color")
+add_subdirectory("03_Line")
+add_subdirectory("04_Rect")
+add_subdirectory("05_Image")
+add_subdirectory("06_Click")
+add_subdirectory("07_Motion")
+add_subdirectory("08_CpuImage")
+add_subdirectory("09_ColorKey")

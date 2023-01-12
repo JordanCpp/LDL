@@ -2,7 +2,7 @@ call C:\WATCOM\owsetenv.bat
 
 del *.obj *.err
 
-wcl386.exe ..\Examples\Graphics\Gpu\05_Gpu_Image\main.cpp -i="C:\WATCOM/h;C:\WATCOM/h/nt;../include;"  /xs -dLDL_GPU_SUPPORT_OPENGL1 ^
+wcl386.exe ..\Examples\Graphics\05_Image\main.cpp -i="C:\WATCOM/h;C:\WATCOM/h/nt;../include;"  /xs -dLDL_GPU_SUPPORT_OPENGL1 ^
 ..\source\Allocators\*.cpp ^
 ..\source\Core\*.cpp ^
 ..\source\Events\*.cpp ^

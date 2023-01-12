@@ -46,8 +46,8 @@ add_library(LDL STATIC
 "source/Graphics/Base/BaseWindow.cpp"
 "source/Graphics/Base/BaseRender.cpp"
 "source/Graphics/Cpu/CpuImage.cpp"
-"source/Graphics/Cpu/CpuRender.cpp"
-"source/Graphics/Cpu/CpuWindow.cpp"
+
+
 "source/Graphics/Primitives/Color.cpp"
 "source/Graphics/PixelConverter.cpp"
 "source/Graphics/TextRasterizer.cpp"
@@ -69,9 +69,7 @@ add_library(LDL STATIC
 "source/Time/FpsLimiter.cpp"
 "source/OpenGL/OpenGL1_0.cpp"
 "source/OpenGL/OpenGL1_1.cpp"
-"source/OpenGL/OpenGL_Matrix4.cpp"
-"source/Graphics/Surface.cpp"
-"source/Graphics/Software/SurfaceImpl.cpp")
+"source/OpenGL/OpenGL_Matrix4.cpp")
 
 if (LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
