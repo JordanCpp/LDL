@@ -14,21 +14,21 @@ LDL::Allocators::SmallAllocator::SmallAllocator(LDL::Allocators::Allocator* allo
 
 size_t LDL::Allocators::SmallAllocator::CalcBucket(size_t bytes)
 {
-	assert(bytes >= 0 && bytes <= 1024);
+	assert(bytes <= 1024);
 
-	if (bytes >= 0 && bytes <= 16)
+	if (bytes > 0 && bytes <= 16)
 		return 0;
-	else if (bytes >= 17 && bytes <= 32)
+	else if (bytes > 16 && bytes <= 32)
 		return 1;
-	else if (bytes >= 33 && bytes <= 64)
+	else if (bytes > 32 && bytes <= 64)
 		return 2;
-	else if (bytes >= 64 && bytes <= 128)
+	else if (bytes > 64 && bytes <= 128)
 		return 3;
-	else if (bytes >= 129 && bytes <= 256)
+	else if (bytes > 128 && bytes <= 256)
 		return 4;
-	else if (bytes >= 257 && bytes <= 512)
+	else if (bytes > 256 && bytes <= 512)
 		return 5;
-	else if (bytes >= 513 && bytes <= 1024)
+	else if (bytes > 512 && bytes <= 1024)
 		return 6;
 	else
 		return Overflow;
@@ -81,7 +81,7 @@ LDL::Allocators::SmallAllocator::Node* LDL::Allocators::SmallAllocator::ToNode(v
 
 size_t LDL::Allocators::SmallAllocator::CalckSize(size_t bucket)
 {
-	assert(bucket >= 0 && bucket <= Buckets);
+	assert(bucket <= Buckets);
 
 	if (bucket == 0)
 		return 16;
