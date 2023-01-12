@@ -6,6 +6,8 @@
 #include "OpenGL1/ScreenshoterImpl.hpp"
 #elif LDL_GPU_SUPPORT_DIRECTX1
 #include "DirectDraw1/ScreenshoterImpl.hpp"
+#elif LDL_GPU_SUPPORT_DIRECTX5
+#include "DirectX5/Direct3D/ScreenshoterImpl.hpp"
 #endif
 
 using namespace LDL::Graphics;

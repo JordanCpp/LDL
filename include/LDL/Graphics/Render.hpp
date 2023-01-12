@@ -1,7 +1,6 @@
 #ifndef LDL_Graphics_Render_hpp
 #define LDL_Graphics_Render_hpp
 
-#include <LDL/Graphics/Base/BaseRender.hpp>
 #include <LDL/Graphics/Surface.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Texture.hpp>

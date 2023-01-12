@@ -6,6 +6,8 @@
 #include "OpenGL1/TextureImpl.hpp"
 #elif LDL_GPU_SUPPORT_DIRECTX1
 #include "DirectDraw1/TextureImpl.hpp"
+#elif LDL_GPU_SUPPORT_DIRECTX5
+#include "DirectX5/Direct3D/TextureImpl.hpp"
 #endif
 
 using namespace LDL::Graphics;
