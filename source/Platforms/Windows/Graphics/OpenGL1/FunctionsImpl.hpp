@@ -1,5 +1,5 @@
-#ifndef LDL_Platforms_Windows_Graphics_GL1_FunctionsImpl_hpp
-#define LDL_Platforms_Windows_Graphics_GL1_FunctionsImpl_hpp
+#ifndef LDL_Platforms_Windows_Graphics_OpenGL1_FunctionsImpl_hpp
+#define LDL_Platforms_Windows_Graphics_OpenGL1_FunctionsImpl_hpp
 
 #include "../../Windows.hpp"
 #include <LDL/Core/Library.hpp>

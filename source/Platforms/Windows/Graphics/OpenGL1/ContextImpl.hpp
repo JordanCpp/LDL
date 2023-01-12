@@ -1,5 +1,5 @@
-#ifndef LDL_Platforms_Windows_Graphics_GL1_ContextImpl_hpp
-#define LDL_Platforms_Windows_Graphics_GL1_ContextImpl_hpp
+#ifndef LDL_Platforms_Windows_Graphics_OpenGL1_ContextImpl_hpp
+#define LDL_Platforms_Windows_Graphics_OpenGL1_ContextImpl_hpp
 
 #include "../../Windows.hpp"
 
