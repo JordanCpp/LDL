@@ -5,7 +5,7 @@
 #elif LDL_RENDER_OPENGL1
 #include "OpenGL1/RenderImpl.hpp"
 #elif LDL_GPU_SUPPORT_DIRECTX1
-#include "../DirectDraw1/GpuRenderImpl.hpp"
+#include "DirectDraw1/RenderImpl.hpp"
 #endif
 
 using namespace LDL::Graphics;

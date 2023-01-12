@@ -1,10 +1,10 @@
-#include "GpuRenderImpl.hpp"
+#include "RenderImpl.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 #include "../source/Platforms/Windows/Graphics/DirectDraw1/GpuWindowImpl.hpp"
 
 using namespace LDL::Graphics;
 
-GpuRenderImpl::GpuRenderImpl(GpuWindow* window) :
+RenderImpl::RenderImpl(Window* window) :
 	_Window(window),
 	_BaseRender(_Window->View())
 {
@@ -13,7 +13,7 @@ GpuRenderImpl::GpuRenderImpl(GpuWindow* window) :
     if (result != DD_OK)
         throw LDL::Core::RuntimeError("DirectDrawCreate failed");
 
-    result = _DirectDraw->SetCooperativeLevel(window->GetGpuWindowImpl()->Hwnd(), DDSCL_NORMAL);
+    result = _DirectDraw->SetCooperativeLevel(window->GetWindowImpl()->Hwnd(), DDSCL_NORMAL);
 
     if (result != DD_OK)
         throw LDL::Core::RuntimeError("SetCooperativeLevel failed");
@@ -36,7 +36,7 @@ GpuRenderImpl::GpuRenderImpl(GpuWindow* window) :
     if (result != DD_OK)
         throw LDL::Core::RuntimeError("CreateClipper failed");
 
-    result = _DirectDrawClipper->SetHWnd(0, window->GetGpuWindowImpl()->Hwnd());
+    result = _DirectDrawClipper->SetHWnd(0, window->GetWindowImpl()->Hwnd());
 
     if (result != DD_OK)
         throw LDL::Core::RuntimeError("SetHWnd failed");
@@ -47,7 +47,7 @@ GpuRenderImpl::GpuRenderImpl(GpuWindow* window) :
         throw LDL::Core::RuntimeError("SetClipper failed");
 }
 
-LDL::Graphics::GpuRenderImpl::~GpuRenderImpl()
+LDL::Graphics::RenderImpl::~RenderImpl()
 {
     if (_Primary != NULL)
     {
@@ -62,11 +62,11 @@ LDL::Graphics::GpuRenderImpl::~GpuRenderImpl()
     }
 }
 
-void LDL::Graphics::GpuRenderImpl::Screen(uint8_t* dst)
+void LDL::Graphics::RenderImpl::Buffer(uint8_t* dst)
 {
 }
 
-void GpuRenderImpl::Begin()
+void RenderImpl::Begin()
 {
     HRESULT result;
 
@@ -92,7 +92,7 @@ void GpuRenderImpl::Begin()
     }
 }
 
-void GpuRenderImpl::End()
+void RenderImpl::End()
 {
     /*
     HRESULT result;
@@ -104,17 +104,17 @@ void GpuRenderImpl::End()
     */
 }
 
-const Point2u& GpuRenderImpl::Size()
+const Point2u& RenderImpl::Size()
 {
 	return _BaseRender.Size();
 }
 
-const Color& GpuRenderImpl::Color()
+const Color& RenderImpl::Color()
 {
 	return _BaseRender.Color();
 }
 
-void GpuRenderImpl::Clear()
+void RenderImpl::Clear()
 {
     DDBLTFX bltfx;
 
@@ -131,42 +131,42 @@ void GpuRenderImpl::Clear()
         throw LDL::Core::RuntimeError("Blt failed");
 }
 
-void GpuRenderImpl::Color(const LDL::Graphics::Color& color)
+void RenderImpl::Color(const LDL::Graphics::Color& color)
 {
 	_BaseRender.Color(color);
 }
 
-void GpuRenderImpl::Pixel(const Point2u& pos)
+void RenderImpl::Pixel(const Point2u& pos)
 {
 }
 
-void GpuRenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
+void RenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
 {
 }
 
-void GpuRenderImpl::Fill(const Point2u& pos, const Point2u& size)
+void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
 {
 }
 
-void GpuRenderImpl::Draw(GpuImage* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
 {
 }
 
-void GpuRenderImpl::Draw(GpuImage* image, const Point2u& pos)
-{
-
-}
-
-void GpuRenderImpl::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Texture* image, const Point2u& pos)
 {
 
 }
 
-void GpuRenderImpl::Draw(CpuImage* image, const Point2u& pos)
+void RenderImpl::Draw(Surface* image, const Point2u& pos, const Point2u& size)
 {
 
 }
 
-void GpuRenderImpl::Draw(GpuImage* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
+void RenderImpl::Draw(Surface* image, const Point2u& pos)
+{
+
+}
+
+void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
 {
 }

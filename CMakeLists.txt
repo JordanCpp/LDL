@@ -102,9 +102,9 @@ endif()
 if (LDL_GPU_SUPPORT_DIRECTX1)
   target_sources(LDL PRIVATE
   "source/Platforms/Windows/Graphics/DirectDraw1/GpuWindowImpl.cpp"
-  "source/Graphics/DirectDraw1/GpuRenderImpl.cpp"
-  "source/Graphics/DirectDraw1/GpuImageImpl.cpp"
-  "source/Graphics/DirectDraw1/GpuScreenshoterImpl.cpp")
+  "source/Graphics/DirectDraw1/RenderImpl.cpp"
+  "source/Graphics/DirectDraw1/TextureImpl.cpp"
+  "source/Graphics/DirectDraw1/ScreenshoterImpl.cpp")
 endif()
 
 if (LDL_GPU_SUPPORT_DIRECTX9)

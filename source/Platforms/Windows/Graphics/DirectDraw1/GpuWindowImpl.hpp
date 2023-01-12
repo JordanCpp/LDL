@@ -1,7 +1,7 @@
-#ifndef LDL_Platforms_Windows_Graphics_DirectDraw1_GpuWindowImpl_hpp
-#define LDL_Platforms_Windows_Graphics_DirectDraw1_GpuWindowImpl_hpp
+#ifndef LDL_Platforms_Windows_Graphics_DirectDraw1_WindowImpl_hpp
+#define LDL_Platforms_Windows_Graphics_DirectDraw1_WindowImpl_hpp
 
-#include <LDL/Graphics/Gpu/GpuWindow.hpp>
+#include <LDL/Graphics/Window.hpp>
 #include "../MainWindow.hpp"
 #include <ddraw.h>
 
@@ -9,12 +9,12 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class GpuWindowImpl
+		class WindowImpl
 		{
 		public:
-			GpuWindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
-			~GpuWindowImpl();
-			void Present();
+			WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
+			~WindowImpl();
+			void Present(uint8_t* pixels);
 			bool GetEvent(LDL::Events::Event& event);
 			bool WaitEvent(LDL::Events::Event& event);
 			void StopEvent();

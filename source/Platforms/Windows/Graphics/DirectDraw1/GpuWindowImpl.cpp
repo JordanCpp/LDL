@@ -3,60 +3,60 @@
 
 using namespace LDL::Graphics;
 
-GpuWindowImpl::GpuWindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
+WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
     _Window(pos, size, title, mode)
 {
 }
 
-GpuWindowImpl::~GpuWindowImpl()
+WindowImpl::~WindowImpl()
 {
 }
 
-void GpuWindowImpl::Present()
+void WindowImpl::Present(uint8_t* pixels)
 {
 }
 
-const Point2u& GpuWindowImpl::Size()
+const Point2u& WindowImpl::Size()
 {
     return _Window.Size();
 }
 
-const Point2u& LDL::Graphics::GpuWindowImpl::View()
+const Point2u& LDL::Graphics::WindowImpl::View()
 {
     return _Window.View();
 }
 
-const Point2u& GpuWindowImpl::Pos()
+const Point2u& WindowImpl::Pos()
 {
     return _Window.Pos();
 }
 
-bool GpuWindowImpl::GetEvent(LDL::Events::Event& event)
+bool WindowImpl::GetEvent(LDL::Events::Event& event)
 {
     return _Window.GetEvent(event);
 }
 
-bool GpuWindowImpl::WaitEvent(LDL::Events::Event& event)
+bool WindowImpl::WaitEvent(LDL::Events::Event& event)
 {
     return _Window.WaitEvent(event);
 }
 
-void GpuWindowImpl::StopEvent()
+void WindowImpl::StopEvent()
 {
     _Window.StopEvent();
 }
 
-const std::string& GpuWindowImpl::Title()
+const std::string& WindowImpl::Title()
 {
     return _Window.Title();
 }
 
-void GpuWindowImpl::Title(const std::string& title)
+void WindowImpl::Title(const std::string& title)
 {
     _Window.Title(title);
 }
 
-HWND GpuWindowImpl::Hwnd()
+HWND WindowImpl::Hwnd()
 {
     return _Window._HWND;
 }

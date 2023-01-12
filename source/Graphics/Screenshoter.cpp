@@ -5,7 +5,7 @@
 #elif LDL_RENDER_OPENGL1
 #include "OpenGL1/ScreenshoterImpl.hpp"
 #elif LDL_GPU_SUPPORT_DIRECTX1
-#include "../DirectDraw1/GpuScreenshoterImpl.hpp"
+#include "DirectDraw1/ScreenshoterImpl.hpp"
 #endif
 
 using namespace LDL::Graphics;
