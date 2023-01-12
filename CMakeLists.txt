@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.8)
 
 project(LibLDL)
 
+#set(LDL_RENDER_SOFTWARE true)
+#add_definitions(-DLDL_RENDER_SOFTWARE)
+
 set(LDL_RENDER_OPENGL1 true)
 add_definitions(-DLDL_RENDER_OPENGL1)
 
@@ -45,7 +48,7 @@ add_library(LDL STATIC
 "source/Core/Library.cpp"
 "source/Graphics/Base/BaseWindow.cpp"
 "source/Graphics/Base/BaseRender.cpp"
-"source/Graphics/Cpu/CpuImage.cpp"
+"source/Graphics/Software/Surface.cpp"
 "source/Graphics/Primitives/Color.cpp"
 "source/Graphics/PixelConverter.cpp"
 "source/Graphics/TextRasterizer.cpp"
@@ -68,6 +71,17 @@ add_library(LDL STATIC
 "source/OpenGL/OpenGL1_0.cpp"
 "source/OpenGL/OpenGL1_1.cpp"
 "source/OpenGL/OpenGL_Matrix4.cpp")
+
+if (LDL_RENDER_SOFTWARE)
+  target_sources(LDL PRIVATE
+  "source/Graphics/Software/RenderImpl.cpp"
+  "source/Graphics/Software/TextureImpl.cpp")
+endif() 
+
+if (WIN32 AND LDL_RENDER_SOFTWARE)
+  target_sources(LDL PRIVATE
+  "source/Platforms/Windows/Graphics/Software/WindowImpl.cpp")
+endif()
 
 if (LDL_RENDER_OPENGL1)
   target_sources(LDL PRIVATE
@@ -120,7 +134,6 @@ endif()
 if (WIN32)
   target_sources(LDL PRIVATE
   "source/Platforms/Windows/Graphics/MainWindow.cpp"
-  "source/Platforms/Windows/Graphics/Cpu/CpuWindowImpl.cpp"
   "source/Platforms/Windows/Time/Ticks.cpp"
   "source/Platforms/Windows/Core/DirectoryImpl.cpp"
   "source/Platforms/Windows/Core/LibraryImpl.cpp"
