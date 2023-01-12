@@ -23,7 +23,7 @@ LDL::Graphics::TextRasterizer::~TextRasterizer()
 {
 }
 
-LDL::Graphics::CpuImage* LDL::Graphics::TextRasterizer::Result()
+LDL::Graphics::Surface* LDL::Graphics::TextRasterizer::Result()
 {
 	return _Result;
 }

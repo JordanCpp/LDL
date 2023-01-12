@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_GpuWindow_hpp
-#define LDL_Graphics_GpuWindow_hpp
+#ifndef LDL_Graphics_Window_hpp
+#define LDL_Graphics_Window_hpp
 
 #include <string>
 #include <LDL/Events/Event.hpp>
@@ -11,13 +11,13 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class GpuWindowImpl;
+		class WindowImpl;
 
-		class GpuWindow : public LDL::Core::FastPimpl
+		class Window : public LDL::Core::FastPimpl
 		{
 		public:
-			GpuWindow(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
-			~GpuWindow();
+			Window(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
+			~Window();
 			void Present();
 			bool GetEvent(LDL::Events::Event& event);
 			bool WaitEvent(LDL::Events::Event& event);
@@ -27,9 +27,9 @@ namespace LDL
 			const Point2u& Size();
 			const Point2u& View();
 			const Point2u& Pos();
-			GpuWindowImpl* GetGpuWindowImpl();
+			WindowImpl* GetWindowImpl();
 		private:
-			GpuWindowImpl* _GpuWindowImpl;
+			WindowImpl* _WindowImpl;
 		};
 	}
 }

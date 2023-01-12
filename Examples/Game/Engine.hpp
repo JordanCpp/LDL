@@ -7,8 +7,8 @@
 #include <LDL/Core/IntegerToString.hpp>
 #include <LDL/Time/FpsLimiter.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
-#include <LDL/Graphics/Gpu/GpuWindow.hpp>
-#include <LDL/Graphics/Gpu/GpuRender.hpp>
+#include <LDL/Graphics/Window.hpp>
+#include <LDL/Graphics/Render.hpp>
 
 namespace Game
 {
@@ -21,8 +21,8 @@ namespace Game
 		LDL::Allocators::FixedLinear _GraphicsAllocator;
 		LDL::Allocators::FixedLinear _Allocator;
 		LDL::Loaders::ImageLoader _ImageLoader;
-		LDL::Graphics::GpuWindow _Window;
-		LDL::Graphics::GpuRender _Render;
+		LDL::Graphics::Window _Window;
+		LDL::Graphics::Render _Render;
 		LDL::Time::FpsCounter _FpsCounter;
 		LDL::Core::IntegerToString _Convert;
 		LDL::Time::FpsLimiter _FpsLimiter;

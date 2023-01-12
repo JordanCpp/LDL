@@ -5,8 +5,8 @@
 #include <LDL/Core/IntegerToString.hpp>
 #include <LDL/Time/FpsLimiter.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
-#include <LDL/Graphics/Gpu/GpuWindow.hpp>
-#include <LDL/Graphics/Gpu/GpuRender.hpp>
+#include <LDL/Graphics/Window.hpp>
+#include <LDL/Graphics/Render.hpp>
 
 using namespace LDL::Graphics;
 
@@ -16,9 +16,9 @@ int main()
 	{
 		LDL::Allocators::FixedLinear graphicsAllocator(LDL::Allocators::Allocator::Mb * 1);
 
-		GpuWindow window(Point2u(0, 0), Point2u(800, 600), "Window!");
+		Window window(Point2u(0, 0), Point2u(800, 600), "Window!");
 
-		GpuRender render(&window);
+		Render render(&window);
 
 		LDL::Events::Event report;
 
@@ -26,7 +26,7 @@ int main()
 		LDL::Loaders::ImageLoader loader(&allocator);
 
 		loader.Load("Gorgosaurus_BW_transparent.png");
-		CpuImage image(&loader);
+		Surface image(&loader);
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;

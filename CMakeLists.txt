@@ -52,12 +52,12 @@ add_library(LDL STATIC
 "source/Graphics/PixelConverter.cpp"
 "source/Graphics/TextRasterizer.cpp"
 "source/Graphics/VideoMode.cpp"
-"source/Graphics/Gpu/GpuWindow.cpp"
+"source/Graphics/Gpu/Window.cpp"
 "source/Graphics/Base/BaseScreenshoter.cpp"
-"source/Graphics/Gpu/GpuRender.cpp"
-"source/Graphics/Gpu/GpuImage.cpp"
-"source/Graphics/Gpu/GpuScreenshoter.cpp"
-"source/Graphics/Gpu/GpuFunctions.cpp"
+"source/Graphics/Gpu/Render.cpp"
+"source/Graphics/Gpu/Texture.cpp"
+"source/Graphics/Gpu/Screenshoter.cpp"
+"source/Graphics/Gpu/Functions.cpp"
 "source/Graphics/ImageWritter.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
@@ -73,18 +73,18 @@ add_library(LDL STATIC
 
 if (LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
-  "source/Graphics/GL1/GpuRenderImpl.cpp"
-  "source/Graphics/GL1/GpuImageImpl.cpp"
-  "source/Graphics/GL1/GpuUtil.cpp"
-  "source/Graphics/GL1/GpuScreen.cpp"
-  "source/Graphics/GL1/GpuScreenshoterImpl.cpp")
+  "source/Graphics/GL1/RenderImpl.cpp"
+  "source/Graphics/GL1/TextureImpl.cpp"
+  "source/Graphics/GL1/Util.cpp"
+  "source/Graphics/GL1/Screen.cpp"
+  "source/Graphics/GL1/ScreenshoterImpl.cpp")
 endif() 
 
 if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)
   target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/GL1/GpuWindowImpl.cpp"
-  "source/Platforms/Windows/Graphics/GL1/GpuContextImpl.cpp"
-  "source/Platforms/Windows/Graphics/GL1/GpuFunctionsImpl.cpp")
+  "source/Platforms/Windows/Graphics/GL1/WindowImpl.cpp"
+  "source/Platforms/Windows/Graphics/GL1/ContextImpl.cpp"
+  "source/Platforms/Windows/Graphics/GL1/FunctionsImpl.cpp")
 endif()
 
 if (LDL_GPU_SUPPORT_DIRECTX1)

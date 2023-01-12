@@ -1,10 +1,10 @@
-#include <LDL/Graphics/Cpu/CpuImage.hpp>
+#include <LDL/Graphics/Surface.hpp>
 #include <assert.h>
 #include <string.h>
 
 using namespace LDL::Graphics;
 
-CpuImage::CpuImage(LDL::Loaders::ImageLoader* imageLoader, LDL::Allocators::Allocator* allocator) :
+Surface::Surface(LDL::Loaders::ImageLoader* imageLoader, LDL::Allocators::Allocator* allocator) :
 	_Allocator(allocator),
 	_BytesPerPixel(0),
 	_Pixels(NULL)
@@ -27,7 +27,7 @@ CpuImage::CpuImage(LDL::Loaders::ImageLoader* imageLoader, LDL::Allocators::Allo
 	memcpy(_Pixels, imageLoader->Pixels(), bytes);
 }
 
-CpuImage::CpuImage(LDL::Loaders::ImageLoader* imageLoader) :
+Surface::Surface(LDL::Loaders::ImageLoader* imageLoader) :
 	_Allocator(NULL),
 	_BytesPerPixel(0),
 	_Pixels(NULL)
@@ -50,7 +50,7 @@ CpuImage::CpuImage(LDL::Loaders::ImageLoader* imageLoader) :
 	memcpy(_Pixels, imageLoader->Pixels(), bytes);
 }
 
-CpuImage::CpuImage(const Point2u& size, uint8_t bytesPerPixel) :
+Surface::Surface(const Point2u& size, uint8_t bytesPerPixel) :
 	_Allocator(NULL),
 	_Size(size),
 	_BytesPerPixel(bytesPerPixel),
@@ -63,7 +63,7 @@ CpuImage::CpuImage(const Point2u& size, uint8_t bytesPerPixel) :
 	_Pixels = new uint8_t[_Size.PosX() * _Size.PosY() * _BytesPerPixel];
 }
 
-CpuImage::CpuImage(LDL::Allocators::Allocator* allocator, const Point2u& size, uint8_t bytesPerPixel) :
+Surface::Surface(LDL::Allocators::Allocator* allocator, const Point2u& size, uint8_t bytesPerPixel) :
 	_Allocator(allocator),
 	_Size(size),
 	_BytesPerPixel(bytesPerPixel),
@@ -76,7 +76,7 @@ CpuImage::CpuImage(LDL::Allocators::Allocator* allocator, const Point2u& size, u
 	_Pixels = (uint8_t*)_Allocator->Allocate(_Size.PosX() * _Size.PosY() * _BytesPerPixel);
 }
 
-CpuImage::~CpuImage()
+Surface::~Surface()
 {
 	if (_Allocator != NULL)
 		_Allocator->Deallocate(_Pixels);
@@ -84,27 +84,27 @@ CpuImage::~CpuImage()
 		delete[] _Pixels;
 }
 
-const Point2u& CpuImage::Size()
+const Point2u& Surface::Size()
 {
 	return _Size;
 }
 
-uint8_t CpuImage::BytesPerPixel()
+uint8_t Surface::BytesPerPixel()
 {
 	return _BytesPerPixel;
 }
 
-uint8_t* CpuImage::Pixels()
+uint8_t* Surface::Pixels()
 {
 	return _Pixels;
 }
 
-LDL::Allocators::Allocator* CpuImage::Allocator()
+LDL::Allocators::Allocator* Surface::Allocator()
 {
 	return _Allocator;
 }
 
-Color CpuImage::Pixel(const Point2u& pos)
+Color Surface::Pixel(const Point2u& pos)
 {
 	size_t i = ((Size().PosX() * pos.PosY()) + pos.PosX()) * _BytesPerPixel;
 

@@ -1,7 +1,7 @@
 #ifndef LDL_Graphics_TextRasterizer_hpp
 #define LDL_Graphics_TextRasterizer_hpp
 
-#include <LDL/Graphics/Cpu/CpuImage.hpp>
+#include <LDL/Graphics/Surface.hpp>
 #include <LDL/Loaders/FontLoader.hpp>
 
 namespace LDL
@@ -13,11 +13,11 @@ namespace LDL
 		public:
 			TextRasterizer(LDL::Allocators::Allocator* allocator);
 			~TextRasterizer();
-			LDL::Graphics::CpuImage* Result();
+			LDL::Graphics::Surface* Result();
 			void Create(LDL::Loaders::FontLoader * fontBufferLoader, size_t size, const std::string& text);
 		private:
 			LDL::Allocators::Allocator* _Allocator;
-			LDL::Graphics::CpuImage* _Result;
+			LDL::Graphics::Surface* _Result;
 			uint8_t* _Bitmap;
 		};
 	}

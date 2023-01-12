@@ -1,6 +1,6 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Graphics/ImageWritter.hpp>
-#include <LDL/Graphics/Cpu/CpuImage.hpp>
+#include <LDL/Graphics/Surface.hpp>
 #include <LDL/Core/Directory.hpp>
 
 using namespace LDL::Graphics;
@@ -11,7 +11,7 @@ const std::string path = "TestFiles/ImageWritterTest.png";
 
 void Save()
 {
-	CpuImage image(Point2u(640, 480), 4);
+	Surface image(Point2u(640, 480), 4);
 
 	ImageWritter writter;
 

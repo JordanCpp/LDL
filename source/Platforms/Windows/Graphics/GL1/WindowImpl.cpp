@@ -1,11 +1,11 @@
-#include "GpuWindowImpl.hpp"
+#include "WindowImpl.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Graphics;
 
-GpuWindowImpl::GpuWindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
+WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
     _Window(pos, size, title, mode),
-    _GpuContextImpl("opengl32")
+    _ContextImpl("opengl32")
 {
     PIXELFORMATDESCRIPTOR pfd;
 
@@ -32,56 +32,56 @@ GpuWindowImpl::GpuWindowImpl(const Point2u& pos, const Point2u& size, const std:
     if (!SetPixelFormat(_Window._HDC, format, &pfd))
         throw LDL::Core::RuntimeError("SetPixelFormat failed");
 
-    _GpuContextImpl.Create(_Window._HDC);
+    _ContextImpl.Create(_Window._HDC);
 }
 
-GpuWindowImpl::~GpuWindowImpl()
+WindowImpl::~WindowImpl()
 {
     ReleaseDC(_Window._HWND, _Window._HDC);
 }
 
-void GpuWindowImpl::Present()
+void WindowImpl::Present()
 {
     if (!SwapBuffers(_Window._HDC))
         throw LDL::Core::RuntimeError("SwapBuffers failed");
 }
 
-const Point2u& GpuWindowImpl::Size()
+const Point2u& WindowImpl::Size()
 {
     return _Window.Size();
 }
 
-const Point2u& LDL::Graphics::GpuWindowImpl::View()
+const Point2u& WindowImpl::View()
 {
     return _Window.View();
 }
 
-const Point2u& GpuWindowImpl::Pos()
+const Point2u& WindowImpl::Pos()
 {
     return _Window.Pos();
 }
 
-bool GpuWindowImpl::GetEvent(LDL::Events::Event& event)
+bool WindowImpl::GetEvent(LDL::Events::Event& event)
 {
     return _Window.GetEvent(event);
 }
 
-bool GpuWindowImpl::WaitEvent(LDL::Events::Event& event)
+bool WindowImpl::WaitEvent(LDL::Events::Event& event)
 {
     return _Window.WaitEvent(event);
 }
 
-void GpuWindowImpl::StopEvent()
+void WindowImpl::StopEvent()
 {
     _Window.StopEvent();
 }
 
-const std::string& GpuWindowImpl::Title()
+const std::string& WindowImpl::Title()
 {
     return _Window.Title();
 }
 
-void GpuWindowImpl::Title(const std::string& title)
+void WindowImpl::Title(const std::string& title)
 {
     _Window.Title(title);
 }

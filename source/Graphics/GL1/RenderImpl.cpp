@@ -1,9 +1,9 @@
-#include "GpuRenderImpl.hpp"
-#include "GpuUtil.hpp"
+#include "RenderImpl.hpp"
+#include "Util.hpp"
 
 using namespace LDL::Graphics;
 
-GpuRenderImpl::GpuRenderImpl(GpuWindow* window) :
+RenderImpl::RenderImpl(Window* window) :
 	_Window(window),
 	_BaseRender(_Window->View()),
 	_Screen(_BaseRender.Size())
@@ -22,31 +22,31 @@ GpuRenderImpl::GpuRenderImpl(GpuWindow* window) :
 	GL_CHECK(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 }
 
-void LDL::Graphics::GpuRenderImpl::Screen(uint8_t* dst)
+void LDL::Graphics::RenderImpl::Buffer(uint8_t* dst)
 {
 	GL_CHECK(glReadPixels(0, 0, (GLsizei)_BaseRender.Size().PosX(), (GLsizei)_BaseRender.Size().PosY(), GL_RGBA, GL_UNSIGNED_BYTE, dst));
 }
 
-void GpuRenderImpl::Begin()
+void RenderImpl::Begin()
 {
 }
 
-void GpuRenderImpl::End()
+void RenderImpl::End()
 {
 	_Window->Present();
 }
 
-const Point2u& GpuRenderImpl::Size()
+const Point2u& RenderImpl::Size()
 {
 	return _BaseRender.Size();
 }
 
-const Color& GpuRenderImpl::Color()
+const Color& RenderImpl::Color()
 {
 	return _BaseRender.Color();
 }
 
-void GpuRenderImpl::Clear()
+void RenderImpl::Clear()
 {
 	GLclampf r;
 	GLclampf g;
@@ -58,12 +58,12 @@ void GpuRenderImpl::Clear()
 	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
-void GpuRenderImpl::Color(const LDL::Graphics::Color& color)
+void RenderImpl::Color(const LDL::Graphics::Color& color)
 {
 	_BaseRender.Color(color);
 }
 
-void GpuRenderImpl::Pixel(const Point2u& pos)
+void RenderImpl::Pixel(const Point2u& pos)
 {
 	GLclampf r;
 	GLclampf g;
@@ -77,7 +77,7 @@ void GpuRenderImpl::Pixel(const Point2u& pos)
 	glEnd();
 }
 
-void GpuRenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
+void RenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
 {
 	GLclampf r;
 	GLclampf g;
@@ -97,7 +97,7 @@ void GpuRenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
 	glEnd();
 }
 
-void GpuRenderImpl::Fill(const Point2u& pos, const Point2u& size)
+void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
 {
 	GLclampf r;
 	GLclampf g;
@@ -119,7 +119,7 @@ void GpuRenderImpl::Fill(const Point2u& pos, const Point2u& size)
 	glEnd();
 }
 
-void GpuRenderImpl::Draw(GpuImage* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
 {
 	GL_CHECK(glEnable(GL_TEXTURE_2D));
 
@@ -130,22 +130,22 @@ void GpuRenderImpl::Draw(GpuImage* image, const Point2u& pos, const Point2u& siz
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }
 
-void GpuRenderImpl::Draw(GpuImage* image, const Point2u& pos)
+void RenderImpl::Draw(Texture* image, const Point2u& pos)
 {
 	Draw(image, pos, image->Size());
 }
 
-void GpuRenderImpl::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Surface* image, const Point2u& pos, const Point2u& size)
 {
 	_Screen.Draw(image, pos, size);
 }
 
-void GpuRenderImpl::Draw(CpuImage* image, const Point2u& pos)
+void RenderImpl::Draw(Surface* image, const Point2u& pos)
 {
 	_Screen.Draw(image, pos);
 }
 
-void GpuRenderImpl::Draw(GpuImage* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
+void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
 {
 	GL_CHECK(glEnable(GL_TEXTURE_2D));
 

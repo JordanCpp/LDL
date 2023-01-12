@@ -1,6 +1,6 @@
 #include <LDL/Core/TestEqual.hpp>
-#include <LDL/Graphics/Gpu/GpuWindow.hpp>
-#include <LDL/Graphics/Gpu/GpuRender.hpp>
+#include <LDL/Graphics/Window.hpp>
+#include <LDL/Graphics/Render.hpp>
 #include <LDL/Graphics/ImageWritter.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 
@@ -11,8 +11,8 @@ const Point2u sz = Point2u(640, 480);
 
 void Screen()
 {
-	GpuWindow window(Point2u(0, 0), size, __FILE__);
-	GpuRender render(&window);
+	Window window(Point2u(0, 0), size, __FILE__);
+	Render render(&window);
 
 	LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
 	
@@ -20,7 +20,7 @@ void Screen()
 	
 	loader.Load("TestFiles/trehmachtovyiy-korabl-kartina-maslom-60x50_512x.jpg");
 	
-	GpuImage img(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
+	Texture img(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
 
 	for (size_t i = 0; i < 10; i++)
 	{
@@ -31,9 +31,9 @@ void Screen()
 		render.End();
 	}
 
-	CpuImage image(render.Size(), 4);
+	Surface image(render.Size(), 4);
 
-	render.Screen(image.Pixels());
+	render.Buffer(image.Pixels());
 
 	uint8_t* pixels = image.Pixels();
 

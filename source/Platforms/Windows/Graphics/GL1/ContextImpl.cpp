@@ -1,20 +1,20 @@
-#include "GpuContextImpl.hpp"
+#include "ContextImpl.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Graphics;
 
-GpuContextImpl::GpuContextImpl(const char* path) :
+ContextImpl::ContextImpl(const char* path) :
     _HGLRC(NULL)
 {
 }
 
-GpuContextImpl::~GpuContextImpl()
+ContextImpl::~ContextImpl()
 {
     wglMakeCurrent(NULL, NULL);
     wglDeleteContext(_HGLRC);
 }
 
-void GpuContextImpl::Create(HDC hdc)
+void ContextImpl::Create(HDC hdc)
 {
     if (hdc == NULL)
         throw LDL::Core::RuntimeError("Argument hdc is null");

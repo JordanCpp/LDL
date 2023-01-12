@@ -1,12 +1,12 @@
-#include "GpuImageImpl.hpp"
+#include "TextureImpl.hpp"
 #include <LDL/OpenGL/OpenGL1_0.hpp>
 #include <assert.h>
-#include "GpuUtil.hpp"
+#include "Util.hpp"
 #include <iostream>
 
 using namespace LDL::Graphics;
 
-GpuImageImpl::GpuImageImpl(const Point2u& size, size_t bytesPerPixel, uint8_t* pixels):
+TextureImpl::TextureImpl(const Point2u& size, size_t bytesPerPixel, uint8_t* pixels):
 	_Id(0)
 {
 	assert(size.PosX() > 0);
@@ -37,17 +37,17 @@ GpuImageImpl::GpuImageImpl(const Point2u& size, size_t bytesPerPixel, uint8_t* p
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }
 
-GpuImageImpl::~GpuImageImpl()
+TextureImpl::~TextureImpl()
 {
 	GL_CHECK(glDeleteTextures(0, (GLuint*)&_Id));
 }
 
-const Point2u& GpuImageImpl::Size()
+const Point2u& TextureImpl::Size()
 {
 	return _Size;
 }
 
-size_t GpuImageImpl::Id()
+size_t TextureImpl::Id()
 {
 	return _Id;
 }

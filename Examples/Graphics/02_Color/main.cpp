@@ -2,8 +2,8 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/IntegerToString.hpp>
-#include <LDL/Graphics/Gpu/GpuWindow.hpp>
-#include <LDL/Graphics/Gpu/GpuRender.hpp>
+#include <LDL/Graphics/Window.hpp>
+#include <LDL/Graphics/Render.hpp>
 
 using namespace LDL::Graphics;
 
@@ -11,9 +11,9 @@ int main()
 {
 	try
 	{
-		GpuWindow window(Point2u(0, 0), Point2u(800, 600), "Window!");
+		Window window(Point2u(0, 0), Point2u(800, 600), "Window!");
 
-		GpuRender render(&window);
+		Render render(&window);
 
 		LDL::Events::Event report;
 

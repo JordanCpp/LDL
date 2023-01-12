@@ -1,5 +1,5 @@
 #include <LDL/Core/TestEqual.hpp>
-#include <LDL/Graphics/Cpu/CpuImage.hpp>
+#include <LDL/Graphics/Surface.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 
 const size_t bytes = LDL::Allocators::Allocator::Mb * 4;
@@ -8,7 +8,7 @@ void InitFromHeap()
 {
 	LDL::Graphics::Point2u size = LDL::Graphics::Point2u(640, 480);
 
-	LDL::Graphics::CpuImage cpuImage(size);
+	LDL::Graphics::Surface cpuImage(size);
 
 	LDL_TEST_EQUAL(cpuImage.Size().PosX() == 640);
 	LDL_TEST_EQUAL(cpuImage.Size().PosY() == 480);
@@ -23,7 +23,7 @@ void InitFromAllocator()
 
 	LDL::Graphics::Point2u size = LDL::Graphics::Point2u(640, 480);
 
-	LDL::Graphics::CpuImage cpuImage(&allocator, size);
+	LDL::Graphics::Surface cpuImage(&allocator, size);
 
 	LDL_TEST_EQUAL(cpuImage.Size().PosX() == 640);
 	LDL_TEST_EQUAL(cpuImage.Size().PosY() == 480);
@@ -39,7 +39,7 @@ void LoadFromHeap()
 
 	imageLoader.Load("TestFiles/359500_600.jpg");
 
-	LDL::Graphics::CpuImage cpuImage(&imageLoader);
+	LDL::Graphics::Surface cpuImage(&imageLoader);
 
 	LDL_TEST_EQUAL(imageLoader.BytesPerPixel() == 3);
 	LDL_TEST_EQUAL(imageLoader.Size().PosX() == 600);
@@ -57,7 +57,7 @@ void LoadFromAllocator()
 	
 	imageLoader.Load("TestFiles/359500_600.jpg");
 
-	LDL::Graphics::CpuImage cpuImage(&imageLoader, &imageCache);
+	LDL::Graphics::Surface cpuImage(&imageLoader, &imageCache);
 
 	LDL_TEST_EQUAL(imageLoader.BytesPerPixel() == 3);
 	LDL_TEST_EQUAL(imageLoader.Size().PosX() == 600);

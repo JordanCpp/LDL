@@ -1,10 +1,10 @@
-#include "GpuScreen.hpp"
+#include "Screen.hpp"
 #include <LDL/OpenGL/OpenGL1_0.hpp>
-#include "GpuUtil.hpp"
+#include "Util.hpp"
 
 using namespace LDL::Graphics;
 
-GpuScreen::GpuScreen(const Point2u& size) :
+Screen::Screen(const Point2u& size) :
 	_Size(size),
 	_Screen(0),
 	_MaxTextureSize(GpuUtil::MaxTextureSize())
@@ -28,13 +28,13 @@ GpuScreen::GpuScreen(const Point2u& size) :
 	}
 }
 
-GpuScreen::~GpuScreen()
+Screen::~Screen()
 {
 	if (GpuUtil::IsMaxTextureSize(_Size, _MaxTextureSize))
 		GL_CHECK(glDeleteTextures(0, (GLuint*)&_Screen));
 }
 
-void GpuScreen::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
+void Screen::Draw(Surface* image, const Point2u& pos, const Point2u& size)
 {
 	if (GpuUtil::IsMaxTextureSize(_Size, _MaxTextureSize))
 		DrawTexture(image, pos, size);
@@ -42,12 +42,12 @@ void GpuScreen::Draw(CpuImage* image, const Point2u& pos, const Point2u& size)
 		DrawPixels(image, pos, size);
 }
 
-void GpuScreen::Draw(CpuImage* image, const Point2u& pos)
+void Screen::Draw(Surface* image, const Point2u& pos)
 {
 	Draw(image, pos, image->Size());
 }
 
-void LDL::Graphics::GpuScreen::DrawTexture(CpuImage* image, const Point2u& pos, const Point2u& size)
+void LDL::Graphics::Screen::DrawTexture(Surface* image, const Point2u& pos, const Point2u& size)
 {
 	GL_CHECK(glEnable(GL_TEXTURE_2D));
 
@@ -67,7 +67,7 @@ void LDL::Graphics::GpuScreen::DrawTexture(CpuImage* image, const Point2u& pos, 
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }
 
-void LDL::Graphics::GpuScreen::DrawPixels(CpuImage* image, const Point2u& pos, const Point2u& size)
+void LDL::Graphics::Screen::DrawPixels(Surface* image, const Point2u& pos, const Point2u& size)
 {
 	GL_CHECK(glPixelZoom(1.0, -1.0));
 

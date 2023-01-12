@@ -1,7 +1,7 @@
 #ifndef LDL_OpenGL_OpenGLLoader_hpp
 #define LDL_OpenGL_OpenGLLoader_hpp
 
-#include <LDL/Graphics/Gpu/GpuFunctions.hpp>
+#include <LDL/Graphics/Functions.hpp>
 
 namespace LDL
 {
@@ -15,7 +15,7 @@ namespace LDL
 		void Init_1_0();
 		void Init_1_1();
 	private:
-		LDL::Graphics::GpuFunctions _GpuFunctions;
+		LDL::Graphics::Functions _Functions;
 		size_t _Major;
 		size_t _Minor;
 	};

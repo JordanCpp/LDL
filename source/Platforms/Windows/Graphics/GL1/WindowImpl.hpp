@@ -1,20 +1,20 @@
-#ifndef LDL_Platforms_Windows_Graphics_GpuWindowImpl_hpp
-#define LDL_Platforms_Windows_Graphics_GpuWindowImpl_hpp
+#ifndef LDL_Platforms_Windows_Graphics_WindowImpl_hpp
+#define LDL_Platforms_Windows_Graphics_WindowImpl_hpp
 
-#include <LDL/Graphics/Gpu/GpuWindow.hpp>
+#include <LDL/Graphics/Window.hpp>
 #include "../MainWindow.hpp"
-#include "GpuContextImpl.hpp"
+#include "ContextImpl.hpp"
 #include <LDL/OpenGL/OpenGLLoader.hpp>
 
 namespace LDL
 {
 	namespace Graphics
 	{
-		class GpuWindowImpl
+		class WindowImpl
 		{
 		public:
-			GpuWindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
-			~GpuWindowImpl();
+			WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
+			~WindowImpl();
 			void Present();
 			bool GetEvent(LDL::Events::Event& event);
 			bool WaitEvent(LDL::Events::Event& event);
@@ -26,7 +26,7 @@ namespace LDL
 			const Point2u& Pos();
 		private:
 			MainWindow _Window;
-			GpuContextImpl _GpuContextImpl;
+			ContextImpl _ContextImpl;
 			OpenGLLoader _OpenGLLoader;
 		};
 	}

@@ -1,14 +1,14 @@
-#include "GpuFunctionsImpl.hpp"
+#include "FunctionsImpl.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Graphics;
 
-GpuFunctionsImpl::GpuFunctionsImpl(const char* path) :
+FunctionsImpl::FunctionsImpl(const char* path) :
     _Library(path)
 {
 }
 
-LDL::VoidFuncPtr GpuFunctionsImpl::Function(const char* name)
+LDL::VoidFuncPtr FunctionsImpl::Function(const char* name)
 {
     LDL::VoidFuncPtr p = (LDL::VoidFuncPtr)wglGetProcAddress(name);
 

@@ -1,5 +1,5 @@
-#ifndef LDL_Platforms_Windows_Graphics_GL1_GpuFunctionsImpl_hpp
-#define LDL_Platforms_Windows_Graphics_GL1_GpuFunctionsImpl_hpp
+#ifndef LDL_Platforms_Windows_Graphics_GL1_FunctionsImpl_hpp
+#define LDL_Platforms_Windows_Graphics_GL1_FunctionsImpl_hpp
 
 #include "../../Windows.hpp"
 #include <LDL/Core/Library.hpp>
@@ -8,10 +8,10 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class GpuFunctionsImpl
+		class FunctionsImpl
 		{
 		public:
-			GpuFunctionsImpl(const char* path);
+			FunctionsImpl(const char* path);
 			LDL::VoidFuncPtr Function(const char* name);
 		private:
 			LDL::Core::Library _Library;

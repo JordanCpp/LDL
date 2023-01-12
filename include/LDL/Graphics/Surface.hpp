@@ -1,35 +1,36 @@
 #ifndef LDL_Graphics_Surface_hpp
 #define LDL_Graphics_Surface_hpp
 
-#include <LDL/Config.hpp>
+#include <LDL/Allocators/Allocator.hpp>
 #include <LDL/Graphics/Primitives/Point2u.hpp>
-#include "Primitives/Color.hpp"
-#include <LDL/Core/FastPimpl.hpp>
+#include <LDL/Graphics/Primitives/Color.hpp>
+#include <LDL/Loaders/ImageLoader.hpp>
+#include <string>
 
 namespace LDL
 {
 	namespace Graphics
 	{
-		class SurfaceImpl;
-
-		class Surface : public LDL::Core::FastPimpl
+		class Surface
 		{
 		public:
-			Surface(const Point2u& size, uint8_t bytesPerPixel = LDL_BytesPerPixelDefault);
-			Surface(const Point2u& size, const Point2u& capacity, uint8_t bytesPerPixel = LDL_BytesPerPixelDefault);
+			Surface(LDL::Loaders::ImageLoader* imageLoader, LDL::Allocators::Allocator* allocator);
+			Surface(LDL::Loaders::ImageLoader* imageLoader);
+			Surface(const Point2u& size, uint8_t bytesPerPixel = 4);
+			Surface(LDL::Allocators::Allocator* allocator, const Point2u& size, uint8_t bytesPerPixel = 4);
 			~Surface();
-			uint8_t* Pixels();
-			const Point2u& Capacity();
 			const Point2u& Size();
-			size_t Bytes();
 			uint8_t BytesPerPixel();
-			bool Empty();
-			void Clear();
-			void Clear(const Color& color);
+			uint8_t* Pixels();
+			LDL::Allocators::Allocator* Allocator();
+			Color Pixel(const Point2u& pos);
 		private:
-			SurfaceImpl* _SurfaceImpl;
+			LDL::Allocators::Allocator* _Allocator;
+			Point2u _Size;
+			uint8_t _BytesPerPixel;
+			uint8_t* _Pixels;
 		};
 	}
 }
 
-#endif    
+#endif 
