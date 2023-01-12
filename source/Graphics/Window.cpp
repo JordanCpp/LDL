@@ -20,9 +20,9 @@ Window::~Window()
 	delete _WindowImpl;
 }
 
-void Window::Present()
+void Window::Present(uint8_t* pixels)
 {
-	_WindowImpl->Present();
+	_WindowImpl->Present(pixels);
 }
 
 bool Window::GetEvent(LDL::Events::Event& event)

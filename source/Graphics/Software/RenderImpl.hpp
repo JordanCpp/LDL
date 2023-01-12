@@ -33,6 +33,7 @@ namespace LDL
 		private:
 			Window* _Window;
 			BaseRender _BaseRender;
+			Surface _Canvas;
 		};
 	}
 }

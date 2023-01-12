@@ -40,7 +40,7 @@ WindowImpl::~WindowImpl()
     ReleaseDC(_Window._HWND, _Window._HDC);
 }
 
-void WindowImpl::Present()
+void WindowImpl::Present(uint8_t* pixels)
 {
     if (!SwapBuffers(_Window._HDC))
         throw LDL::Core::RuntimeError("SwapBuffers failed");
