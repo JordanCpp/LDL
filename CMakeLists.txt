@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.8)
 
 project(LibLDL)
 
-set(LDL_GPU_SUPPORT_OPENGL1 true)
-add_definitions(-DLDL_GPU_SUPPORT_OPENGL1)
+set(LDL_RENDER_OPENGL1 true)
+add_definitions(-DLDL_RENDER_OPENGL1)
 
 #set(LDL_GPU_SUPPORT_DIRECTX9 true)
 #add_definitions(-DLDL_GPU_SUPPORT_DIRECTX9)
@@ -71,7 +71,7 @@ add_library(LDL STATIC
 "source/OpenGL/OpenGL1_1.cpp"
 "source/OpenGL/OpenGL_Matrix4.cpp")
 
-if (LDL_GPU_SUPPORT_OPENGL1)
+if (LDL_RENDER_OPENGL1)
   target_sources(LDL PRIVATE
   "source/Graphics/GL1/RenderImpl.cpp"
   "source/Graphics/GL1/TextureImpl.cpp"
@@ -80,7 +80,7 @@ if (LDL_GPU_SUPPORT_OPENGL1)
   "source/Graphics/GL1/ScreenshoterImpl.cpp")
 endif() 
 
-if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)
+if (WIN32 AND LDL_RENDER_OPENGL1)
   target_sources(LDL PRIVATE
   "source/Platforms/Windows/Graphics/GL1/WindowImpl.cpp"
   "source/Platforms/Windows/Graphics/GL1/ContextImpl.cpp"
@@ -137,7 +137,7 @@ if (WIN32)
   target_link_libraries(LDL winmm)
 endif() 
 
-if (WIN32 AND LDL_GPU_SUPPORT_OPENGL1)
+if (WIN32 AND LDL_RENDER_OPENGL1)
   target_link_libraries(LDL opengl32)
 endif()
 

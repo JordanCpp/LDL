@@ -1,6 +1,6 @@
 #include <LDL/Graphics/Texture.hpp>
 
-#ifdef LDL_GPU_SUPPORT_OPENGL1
+#ifdef LDL_RENDER_OPENGL1
 #include "../GL1/TextureImpl.hpp"
 #elif LDL_GPU_SUPPORT_DIRECTX1
 #include "../DirectDraw1/GpuImageImpl.hpp"

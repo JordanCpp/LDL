@@ -1,6 +1,6 @@
 #include <LDL/Graphics/Screenshoter.hpp>
 
-#ifdef LDL_GPU_SUPPORT_OPENGL1
+#ifdef LDL_RENDER_OPENGL1
 #include "../GL1/ScreenshoterImpl.hpp"
 #elif LDL_GPU_SUPPORT_DIRECTX1
 #include "../DirectDraw1/GpuScreenshoterImpl.hpp"
