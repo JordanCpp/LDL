@@ -1,13 +1,14 @@
 #include <LDL/Core/FastPimpl.hpp>
+#include <stdlib.h>
 
 using namespace LDL::Core;
 
 void* FastPimpl::operator new(size_t bytes)
 {
-	return ::operator new(bytes);
+	return malloc(bytes);
 }
 
 void FastPimpl::operator delete(void* ptr)
 {
-	delete ptr;
+	free(ptr);
 }
