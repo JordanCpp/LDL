@@ -12,7 +12,7 @@ LDL::VoidFuncPtr FunctionsImpl::Function(const char* name)
 {
     LDL::VoidFuncPtr p = (LDL::VoidFuncPtr)wglGetProcAddress(name);
 
-    if (p == 0 || (p == (void*)0x1) || (p == (void*)0x2) || (p == (void*)0x3) || (p == (void*)-1))
+    if (p == 0 || (p == (LDL::VoidFuncPtr)0x1) || (p == (LDL::VoidFuncPtr)0x2) || (p == (LDL::VoidFuncPtr)0x3) || (p == (LDL::VoidFuncPtr)-1))
     {
         p = _Library.Function(name);
     }

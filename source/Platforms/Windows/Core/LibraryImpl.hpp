@@ -1,6 +1,7 @@
 #ifndef LDL_Platforms_Windows_Core_LibraryImpl_hpp
 #define LDL_Platforms_Windows_Core_LibraryImpl_hpp
 
+#include <LDL/Core/Types.hpp>
 #include "../Windows.hpp"
 #include <string>
 
@@ -13,7 +14,7 @@ namespace LDL
 		public:
 			LibraryImpl(const std::string& path);
 			~LibraryImpl();
-			void* Function(const std::string& name);
+			LDL::VoidFuncPtr Function(const std::string& name);
 		private:
 			HMODULE _HMODULE;
 		};

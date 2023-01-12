@@ -7,13 +7,12 @@ CL -GX /I..\include /DLDL_RENDER_OPENGL1 ..\%2  ^
 ..\source\Events\*.cpp ^
 ..\source\Time\*.cpp ^
 ..\source\Platforms\Windows\Graphics\MainWindow.cpp ^
-..\source\Platforms\Windows\Graphics\Cpu\CpuWindowImpl.cpp ^
 ..\source\Platforms\Windows\Graphics\OpenGL1\*.cpp ^
 ..\source\Platforms\Windows\Time\Ticks.cpp ^
 ..\source\Platforms\Windows\Core\*.cpp ^
 ..\source\Graphics\*.cpp ^
 ..\source\Graphics\Base\*.cpp ^
-..\source\Graphics\Cpu\*.cpp ^
+..\source\Graphics\Software\Surface.cpp ^
 ..\source\Graphics\OpenGL1\*.cpp ^
 ..\source\Graphics\Primitives\*.cpp ^
 ..\source\Loaders\*.cpp  ^
