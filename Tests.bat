@@ -7,4 +7,4 @@ for %%f in (out\build\%1\test\Core\*.exe) do call %%f
 for %%f in (out\build\%1\test\Input\*.exe) do call %%f
 for %%f in (out\build\%1\test\Containers\*.exe) do call %%f
 for %%f in (out\build\%1\test\Creators\*.exe) do call %%f
-for %%f in (out\build\%1\test\Graphics\GpuRender\*.exe) do call %%f
+for %%f in (out\build\%1\test\Graphics\Render\*.exe) do call %%f

@@ -11,6 +11,7 @@ const Point2u sz = Point2u(640, 480);
 
 void Screen()
 {
+	/*
 	Window window(Point2u(0, 0), size, __FILE__);
 	Render render(&window);
 
@@ -39,9 +40,9 @@ void Screen()
 
 	ImageWritter writter;
 
-	writter.Save("GpuRenderScreen.png", render.Size(), 4, pixels);
+	writter.Save("RenderScreen.png", render.Size(), 4, pixels);
 
-	/*
+	
 	for (size_t i = 0; i < image.Size().PosX() * image.Size().PosY() * 4; i += 4)
 	{
 		LDL_TEST_EQUAL(pixels[i + 0] == 237);
