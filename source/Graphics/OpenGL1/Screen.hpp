@@ -21,6 +21,7 @@ namespace LDL
 			Point2u _Size;
 			size_t _Screen;
 			size_t _MaxTextureSize;
+			size_t _CurTextureSize;
 		};
 	}
 }
