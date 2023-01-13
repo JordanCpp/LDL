@@ -47,7 +47,7 @@ void Screen::Draw(Surface* image, const Point2u& pos)
 	Draw(image, pos, image->Size());
 }
 
-void LDL::Graphics::Screen::DrawTexture(Surface* image, const Point2u& pos, const Point2u& size)
+void Screen::DrawTexture(Surface* image, const Point2u& pos, const Point2u& size)
 {
 	GL_CHECK(glEnable(GL_TEXTURE_2D));
 
@@ -67,7 +67,7 @@ void LDL::Graphics::Screen::DrawTexture(Surface* image, const Point2u& pos, cons
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }
 
-void LDL::Graphics::Screen::DrawPixels(Surface* image, const Point2u& pos, const Point2u& size)
+void Screen::DrawPixels(Surface* image, const Point2u& pos, const Point2u& size)
 {
 	GL_CHECK(glPixelZoom(1.0, -1.0));
 

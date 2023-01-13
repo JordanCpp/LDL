@@ -12,16 +12,16 @@ namespace LDL
 		class ScreenshoterImpl
 		{
 		public:
-			ScreenshoterImpl(const std::string& path, const std::string& name, LDL::Graphics::Render* render, LDL::Graphics::Surface* image);
+			ScreenshoterImpl(const std::string& path, const std::string& name, Render* render, Surface* image);
 			void Shot();
 		private:
-			LDL::Graphics::ImageWritter _ImageWritter;
-			LDL::Graphics::BaseScreenshoter _BaseScreenshoter;
+			ImageWritter _ImageWritter;
+			BaseScreenshoter _BaseScreenshoter;
 			std::string _ShortPath;
 			std::string _Name;
 			std::string _FullPath;
-			LDL::Graphics::Render* _Render;
-			LDL::Graphics::Surface* _Image;
+			Render* _Render;
+			Surface* _Image;
 		};
 	}
 }

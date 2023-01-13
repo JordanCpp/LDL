@@ -2,7 +2,9 @@
 #include <LDL/OpenGL/OpenGL1_0.hpp>
 #include "Util.hpp"
 
-LDL::Graphics::ScreenshoterImpl::ScreenshoterImpl(const std::string& path, const std::string& name, LDL::Graphics::Render* render, LDL::Graphics::Surface* image) :
+using namespace LDL::Graphics;
+
+ScreenshoterImpl::ScreenshoterImpl(const std::string& path, const std::string& name, Render* render, Surface* image) :
 	_ShortPath(path),
 	_Name(name),
 	_Render(render),
@@ -10,7 +12,7 @@ LDL::Graphics::ScreenshoterImpl::ScreenshoterImpl(const std::string& path, const
 {
 }
 
-void LDL::Graphics::ScreenshoterImpl::Shot()
+void ScreenshoterImpl::Shot()
 {
 	GL_CHECK(glPixelStorei(GL_PACK_ALIGNMENT, 1));
 	GL_CHECK(glReadPixels(0, 0, (GLsizei)_Image->Size().PosX(), (GLsizei)_Image->Size().PosY(), GL_RGBA, GL_UNSIGNED_BYTE, _Image->Pixels()));
