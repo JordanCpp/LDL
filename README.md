@@ -1,6 +1,6 @@
-Greetings!
+#Greetings!
 
-#Screenshots
+# Screenshots
 ![1](Screenshots/1.jpg)
 ![2(Screenshots/2.jpg)
 ![3](Screenshots/3.jpg)
@@ -10,14 +10,26 @@ Greetings!
 # LDL - Little Directmedia Layer
 Free cross-platform library.
 
-# Project characteristics.
-
 1. Free for everyone.
 2. Consider and accept all ideas.
 3. We do not limit the developer.
 4. We support old and new platforms.
 5. Cross-platform.
 6. Static link.
+
+# Support platforms.
+1. Windows 95
+2. Windows 98
+3. Windows 98 Me
+4. Windows 2000
+5. Windows XP
+6. Windows Vista
+7. Windows 7
+8. Windows 8
+9. Windows 10
+10. Windows 11
+11. Linux XLib (In the implementation)
+12. Linux Wayland (In the implementation)
 
 # The main idea is to write an analogue of the SDL library. 
 Accessible to everyone, without exception. 
