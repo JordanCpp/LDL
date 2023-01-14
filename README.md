@@ -1,8 +1,8 @@
-#Greetings!
+# Greetings!
 
 # Screenshots
 ![1](Screenshots/1.jpg)
-![2(Screenshots/2.jpg)
+![2](Screenshots/2.jpg)
 ![3](Screenshots/3.jpg)
 ![41](Screenshots/4.jpg)
 ![5](Screenshots/5.jpg)
@@ -30,6 +30,14 @@ Free cross-platform library.
 10. Windows 11
 11. Linux XLib (In the implementation)
 12. Linux Wayland (In the implementation)
+
+# Support renders.
+1. OpenGL 1.0
+2. Software render
+3. DirectDraw (In the implementation)
+4. DirectX 5 Direct3D (In the implementation)
+5. DirectX 9 Direct3D (In the implementation)
+
 
 # The main idea is to write an analogue of the SDL library. 
 Accessible to everyone, without exception. 
