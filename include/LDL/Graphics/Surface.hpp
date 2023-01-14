@@ -16,8 +16,8 @@ namespace LDL
 		public:
 			Surface(LDL::Loaders::ImageLoader* imageLoader, LDL::Allocators::Allocator* allocator);
 			Surface(LDL::Loaders::ImageLoader* imageLoader);
-			Surface(const Point2u& size, uint8_t bytesPerPixel = 4);
-			Surface(LDL::Allocators::Allocator* allocator, const Point2u& size, uint8_t bytesPerPixel = 4);
+			Surface(const Point2u& size, uint8_t bytesPerPixel = LDL_BytesPerPixelDefault);
+			Surface(LDL::Allocators::Allocator* allocator, const Point2u& size, uint8_t bytesPerPixel = LDL_BytesPerPixelDefault);
 			~Surface();
 			const Point2u& Size();
 			uint8_t BytesPerPixel();
