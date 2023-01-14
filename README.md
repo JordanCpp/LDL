@@ -2,7 +2,7 @@
 
 # Screenshots
 ![1](Screenshots/1.jpg)
-![2](Screenshots/2.jpg)
+![https://github.com/JordanCpp/Lib-LDL/tree/master/Tutorials/NeHe/06_TextureMapping](Screenshots/2.jpg)
 ![3](Screenshots/3.jpg)
 ![41](Screenshots/4.jpg)
 ![5](Screenshots/5.jpg)
