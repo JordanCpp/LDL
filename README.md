@@ -7,7 +7,7 @@ Greetings!
 ![41](Screenshots/4.jpg)
 ![5](Screenshots/5.jpg)
 
-# LDL
+# LDL - Little Directmedia Layer
 Free cross-platform library.
 
 # Project characteristics.
