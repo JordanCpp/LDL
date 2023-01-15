@@ -8,7 +8,7 @@ using namespace LDL::Graphics;
 const size_t TextureCount = 8;
 const size_t TextureSizes[TextureCount] = { 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
 
-void GpuUtil::DrawQuad(const Point2u& pos, const Point2u& size)
+void LDL::Graphics::GpuUtil::DrawQuad(const Point2u& pos, const Point2u& size)
 {
 	GLfloat x = (GLfloat)pos.PosX();
 	GLfloat y = (GLfloat)pos.PosY();
@@ -23,7 +23,51 @@ void GpuUtil::DrawQuad(const Point2u& pos, const Point2u& size)
 	glEnd();
 }
 
+void GpuUtil::DrawQuad(const Point2u& pos, const Point2u& size, const Point2u& srcSize, size_t textureSize)
+{
+	GLfloat x = (GLfloat)pos.PosX();
+	GLfloat y = (GLfloat)pos.PosY();
+	GLfloat w = (GLfloat)size.PosX();
+	GLfloat h = (GLfloat)size.PosY();
+
+	GLfloat dw = (GLfloat)srcSize.PosX() / (GLfloat)textureSize;
+	GLfloat dh = (GLfloat)srcSize.PosY() / (GLfloat)textureSize;
+
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex2f(x, y);
+	glTexCoord2f(dw, 0); glVertex2f(x + w, y);
+	glTexCoord2f(dw, dh); glVertex2f(x + w, y + h);
+	glTexCoord2f(0, dh); glVertex2f(x, y + h);
+	glEnd();
+}
+
 void GpuUtil::DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
+{
+	GLfloat x = (GLfloat)dstPos.PosX();
+	GLfloat y = (GLfloat)dstPos.PosY();
+	GLfloat w = (GLfloat)dstSize.PosX();
+	GLfloat h = (GLfloat)dstSize.PosY();
+
+	GLfloat cx = (GLfloat)srcPos.PosX();
+	GLfloat cy = (GLfloat)srcPos.PosY();
+	GLfloat cw = (GLfloat)srcSize.PosX();
+	GLfloat ch = (GLfloat)srcSize.PosY();
+
+	GLfloat dcx = cx / w;
+	GLfloat dcy = cy / h;
+
+	GLfloat dcw = (cx + cw) / w;
+	GLfloat dch = (cy + ch) / h;
+
+	glBegin(GL_QUADS);
+	glTexCoord2f(dcx, dcy); glVertex2f(x, y);
+	glTexCoord2f(dcw, dcy); glVertex2f(x + cw, y);
+	glTexCoord2f(dcw, dch); glVertex2f(x + cw, y + ch);
+	glTexCoord2f(dcx, dch); glVertex2f(x, y + ch);
+	glEnd();
+}
+
+void GpuUtil::DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize, const Point2u& size, size_t textureSize)
 {
 	GLfloat x = (GLfloat)dstPos.PosX();
 	GLfloat y = (GLfloat)dstPos.PosY();
