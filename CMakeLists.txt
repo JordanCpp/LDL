@@ -60,6 +60,7 @@ add_library(LDL STATIC
 "source/Graphics/Screenshoter.cpp"
 "source/Graphics/Functions.cpp"
 "source/Graphics/ImageWritter.cpp"
+"source/Graphics/ImageResizer.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
 "source/Allocators/SmallAllocator.cpp"
