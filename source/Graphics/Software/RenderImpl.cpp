@@ -130,12 +130,41 @@ void RenderImpl::Draw(Texture* image, const Point2u& pos)
 
 void RenderImpl::Draw(Surface* image, const Point2u& pos, const Point2u& size)
 {
+	uint8_t* dstPixels = _Canvas.Pixels();
+	uint8_t* srcPixels = image->Pixels();
 
+	size_t srcStride = image->Size().PosX() * 4;
+	size_t dstStride = _BaseRender.Size().PosX() * 4;
+
+	for (size_t y = 0; y < image->Size().PosY(); ++y)
+	{
+		for (size_t x = 0; x < image->Size().PosX(); ++x)
+		{
+			uint8_t* src = srcPixels + x * 4;
+			uint8_t* dst = dstPixels + x * 4;
+
+			if (src[4] != 0)
+			{
+#if defined(WIN32) || defined(WIN64)
+				dst[0] = src[2];
+				dst[1] = src[1];
+				dst[2] = src[0];
+#else 
+				dst[0] = src[0];
+				dst[1] = src[1];
+				dst[2] = src[2];
+#endif
+			}
+		}
+
+		srcPixels += srcStride;
+		dstPixels += dstStride;
+	}
 }
 
 void RenderImpl::Draw(Surface* image, const Point2u& pos)
 {
-
+	Draw(image, pos, image->Size());
 }
 
 void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
