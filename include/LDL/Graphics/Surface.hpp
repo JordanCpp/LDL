@@ -1,12 +1,8 @@
 #ifndef LDL_Graphics_Surface_hpp
 #define LDL_Graphics_Surface_hpp
 
-#include <LDL/Allocators/Allocator.hpp>
 #include <LDL/Graphics/Primitives/Point2u.hpp>
 #include <LDL/Graphics/Primitives/Color.hpp>
-#include <LDL/Loaders/ImageLoader.hpp>
-#include <LDL/Config.hpp>
-#include <string>
 
 namespace LDL
 {

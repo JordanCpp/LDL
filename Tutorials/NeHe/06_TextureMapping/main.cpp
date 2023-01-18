@@ -7,6 +7,7 @@
 #include <LDL/OpenGL/OpenGL1_0.hpp>
 #include <LDL/OpenGL/OpenGL_Matrix4.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
+#include <LDL/Loaders/ImageLoader.hpp>
 
 using namespace LDL::Graphics;
 
