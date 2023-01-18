@@ -4,54 +4,21 @@
 
 using namespace LDL::Graphics;
 
-Surface::Surface(LDL::Loaders::ImageLoader* imageLoader, LDL::Allocators::Allocator* allocator) :
-	_Allocator(allocator),
-	_BytesPerPixel(0),
+Surface::Surface(const Point2u& size, uint8_t bytesPerPixel) :
+	_Size(size),
+	_BytesPerPixel(bytesPerPixel),
 	_Pixels(NULL)
 {
-	assert(imageLoader != NULL);
-
-	_Size = imageLoader->Size();
-	_BytesPerPixel = imageLoader->BytesPerPixel();
-	_Pixels = imageLoader->Pixels();
-
 	assert(_Size.PosX() > 0);
 	assert(_Size.PosY() > 0);
 	assert(_BytesPerPixel > 0);
-	assert(imageLoader->Pixels() != NULL);
-
-	size_t bytes = _Size.PosX() * _Size.PosY() * _BytesPerPixel;
-
-	_Pixels = (uint8_t*)_Allocator->Allocate(bytes);
-
-	memcpy(_Pixels, imageLoader->Pixels(), bytes);
-}
-
-Surface::Surface(LDL::Loaders::ImageLoader* imageLoader) :
-	_Allocator(NULL),
-	_BytesPerPixel(0),
-	_Pixels(NULL)
-{
-	assert(imageLoader != NULL);
-
-	_Size = imageLoader->Size();
-	_BytesPerPixel = imageLoader->BytesPerPixel();
-	_Pixels = imageLoader->Pixels();
-
-	assert(_Size.PosX() > 0);
-	assert(_Size.PosY() > 0);
-	assert(_BytesPerPixel > 0);
-	assert(imageLoader->Pixels() != NULL);
 
 	size_t bytes = _Size.PosX() * _Size.PosY() * _BytesPerPixel;
 
 	_Pixels = new uint8_t[bytes];
-
-	memcpy(_Pixels, imageLoader->Pixels(), bytes);
 }
 
-Surface::Surface(const Point2u& size, uint8_t bytesPerPixel) :
-	_Allocator(NULL),
+Surface::Surface(const Point2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
 	_Size(size),
 	_BytesPerPixel(bytesPerPixel),
 	_Pixels(NULL)
@@ -59,29 +26,18 @@ Surface::Surface(const Point2u& size, uint8_t bytesPerPixel) :
 	assert(_Size.PosX() > 0);
 	assert(_Size.PosY() > 0);
 	assert(_BytesPerPixel > 0);
+	assert(pixels != NULL);
+
+	size_t bytes = _Size.PosX() * _Size.PosY() * _BytesPerPixel;
 
 	_Pixels = new uint8_t[_Size.PosX() * _Size.PosY() * _BytesPerPixel];
-}
 
-Surface::Surface(LDL::Allocators::Allocator* allocator, const Point2u& size, uint8_t bytesPerPixel) :
-	_Allocator(allocator),
-	_Size(size),
-	_BytesPerPixel(bytesPerPixel),
-	_Pixels(NULL)
-{
-	assert(_Size.PosX() > 0);
-	assert(_Size.PosY() > 0);
-	assert(_BytesPerPixel > 0);
-
-	_Pixels = (uint8_t*)_Allocator->Allocate(_Size.PosX() * _Size.PosY() * _BytesPerPixel);
+	memcpy(_Pixels, pixels, bytes);
 }
 
 Surface::~Surface()
 {
-	if (_Allocator != NULL)
-		_Allocator->Deallocate(_Pixels);
-	else
-		delete[] _Pixels;
+	delete[] _Pixels;
 }
 
 const Point2u& Surface::Size()
@@ -97,11 +53,6 @@ uint8_t Surface::BytesPerPixel()
 uint8_t* Surface::Pixels()
 {
 	return _Pixels;
-}
-
-LDL::Allocators::Allocator* Surface::Allocator()
-{
-	return _Allocator;
 }
 
 Color Surface::Pixel(const Point2u& pos)
