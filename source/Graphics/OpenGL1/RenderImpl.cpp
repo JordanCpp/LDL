@@ -33,7 +33,7 @@ void RenderImpl::Begin()
 
 void RenderImpl::End()
 {
-	_Window->Present(NULL);
+	_Window->Present(NULL, NULL);
 }
 
 const Point2u& RenderImpl::Size()

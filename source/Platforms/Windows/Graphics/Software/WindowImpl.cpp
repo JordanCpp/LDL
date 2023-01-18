@@ -1,26 +1,33 @@
 #include "WindowImpl.hpp"
+#include <LDL/Core/RuntimeError.hpp>
+#include <assert.h>
 
 using namespace LDL::Graphics;
 
 WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
     _Window(pos, size, title, mode)
 {
+    ZeroMemory(&_BITMAPINFO, sizeof(_BITMAPINFO));
 }
 
 WindowImpl::~WindowImpl()
 {
 }
 
-void WindowImpl::Present(uint8_t* pixels)
+void WindowImpl::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 {
+    assert(pixels != NULL);
+    assert(bytesPerPixel == 1 || bytesPerPixel == 2 || bytesPerPixel == 3 || bytesPerPixel == 4);
+
     _BITMAPINFO.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
     _BITMAPINFO.bmiHeader.biWidth = (LONG)_Window.Size().PosX();
     _BITMAPINFO.bmiHeader.biHeight = -(LONG)_Window.Size().PosY();
     _BITMAPINFO.bmiHeader.biPlanes = 1;
-    _BITMAPINFO.bmiHeader.biBitCount = 32;
+    _BITMAPINFO.bmiHeader.biBitCount = bytesPerPixel * 8;
     _BITMAPINFO.bmiHeader.biCompression = BI_RGB;
 
-    SetDIBitsToDevice(_Window._HDC, 0, 0, (DWORD)_Window.Size().PosX(), (DWORD)_Window.Size().PosY(), 0, 0, 0, (UINT)_Window.Size().PosY(), pixels, &_BITMAPINFO, DIB_RGB_COLORS);
+    if (SetDIBitsToDevice(_Window._HDC, 0, 0, (DWORD)_Window.Size().PosX(), (DWORD)_Window.Size().PosY(), 0, 0, 0, (UINT)_Window.Size().PosY(), pixels, &_BITMAPINFO, DIB_RGB_COLORS) == 0)
+        throw LDL::Core::RuntimeError("SetDIBitsToDevice failed");
 }
 
 const Point2u& WindowImpl::Size()

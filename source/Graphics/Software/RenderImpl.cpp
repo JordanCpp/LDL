@@ -5,7 +5,7 @@ using namespace LDL::Graphics;
 RenderImpl::RenderImpl(Window* window) :
 	_Window(window),
 	_BaseRender(_Window->View()),
-	_Canvas(_Window->Size())
+	_Canvas(_Window->Size(), 4)
 {
 }
 
@@ -19,7 +19,7 @@ void RenderImpl::Begin()
 
 void RenderImpl::End()
 {
-	_Window->Present(_Canvas.Pixels());
+	_Window->Present(_Canvas.Pixels(), _Canvas.BytesPerPixel());
 }
 
 const Point2u& RenderImpl::Size()
