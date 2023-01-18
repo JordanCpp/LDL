@@ -43,3 +43,6 @@ target_link_libraries(VideoMode LDL)
 
 add_executable(ImageWritter "ImageWritter.cpp")
 target_link_libraries(ImageWritter LDL)
+
+add_executable(PixelPainter "PixelPainter.cpp")
+target_link_libraries(PixelPainter LDL)

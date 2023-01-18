@@ -1,6 +1,7 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Graphics/Surface.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
+#include <LDL/Loaders/ImageLoader.hpp>
 
 using namespace LDL::Graphics;
 
