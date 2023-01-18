@@ -8,6 +8,8 @@
 #include "DirectDraw/RenderImpl.hpp"
 #elif LDL_GPU_SUPPORT_DIRECTX5
 #include "DirectX5/Direct3D/RenderImpl.hpp"
+#elif LDL_GPU_SUPPORT_DIRECTX9
+#include "DirectX9/Direct3D/RenderImpl.hpp"
 #endif
 
 using namespace LDL::Graphics;

@@ -1,8 +1,10 @@
-#include "DX9Render.hpp"
+#include "RenderImpl.hpp"
 #include <LDL/Core/RuntimeError.hpp>
-#include "../../Platforms/Windows/Graphics/DX9/DX9Window.hpp"
+#include "../../../Platforms/Windows/Graphics/DirectX9/Direct3D/WindowImpl.hpp"
 
-LDL::Graphics::DX9Render::DX9Render(LDL::Graphics::IGpuWindow* window) :
+using namespace LDL::Graphics;
+
+RenderImpl::RenderImpl(Window* window) :
 	_Window(window),
 	_BaseRender(_Window->Size())
 {
@@ -11,12 +13,17 @@ LDL::Graphics::DX9Render::DX9Render(LDL::Graphics::IGpuWindow* window) :
     Mode2D();
 }
 
-LDL::Graphics::DX9Render::~DX9Render()
+RenderImpl::~RenderImpl()
 {
     Deinitialization();
 }
 
-void LDL::Graphics::DX9Render::Mode2D()
+void RenderImpl::Buffer(uint8_t* dst)
+{
+
+}
+
+void RenderImpl::Mode2D()
 {
     D3DXMATRIX projection;
     D3DXMatrixOrthoLH(&projection, (FLOAT)_Window->Size().PosX(), (FLOAT)_Window->Size().PosY(), 0.0f, 0.0f);
@@ -24,7 +31,7 @@ void LDL::Graphics::DX9Render::Mode2D()
     _Direct3DDevice->SetTransform(D3DTS_PROJECTION, &projection);
 }
 
-void LDL::Graphics::DX9Render::Begin()
+void RenderImpl::Begin()
 {
     HRESULT result = _Direct3DDevice->TestCooperativeLevel();
 
@@ -34,67 +41,69 @@ void LDL::Graphics::DX9Render::Begin()
     _Direct3DDevice->BeginScene();
 }
 
-void LDL::Graphics::DX9Render::End()
+void RenderImpl::End()
 {
     _Direct3DDevice->EndScene();
     _Direct3DDevice->Present(NULL, NULL, NULL, NULL);
 }
 
-const LDL::Graphics::Point2u& LDL::Graphics::DX9Render::Size()
+const Point2u& RenderImpl::Size()
 {
 	return _BaseRender.Size();
 }
 
-const LDL::Graphics::Color& LDL::Graphics::DX9Render::Color()
+const Color& LDL::Graphics::RenderImpl::Color()
 {
 	return _BaseRender.Color();
 }
 
-void LDL::Graphics::DX9Render::Clear()
+void RenderImpl::Clear()
 {
     _Direct3DDevice->Clear(0L, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(_BaseRender.Color().Red(), _BaseRender.Color().Green(), _BaseRender.Color().Blue()), 1.0f, 0L);
 }
 
-void LDL::Graphics::DX9Render::Color(const LDL::Graphics::Color& color)
+void RenderImpl::Color(const LDL::Graphics::Color& color)
 {
 	_BaseRender.Color(color);
 }
 
-void LDL::Graphics::DX9Render::Pixel(const LDL::Graphics::Point2u& pos)
+void RenderImpl::Pixel(const Point2u& pos)
 {
 }
 
-void LDL::Graphics::DX9Render::Line(const LDL::Graphics::Point2u& pos1, const LDL::Graphics::Point2u& pos2)
+void RenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
 {
     D3DXVECTOR2 vec[] = { D3DXVECTOR2((float)pos1.PosX(), (float)pos1.PosY()), D3DXVECTOR2((float)pos2.PosX(), (float)pos2.PosY()) };
 
     _Line->Draw(vec, 2, D3DCOLOR_XRGB(_BaseRender.Color().Red(), _BaseRender.Color().Green(), _BaseRender.Color().Blue()));
 }
 
-void LDL::Graphics::DX9Render::Fill(const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
 {
 }
 
-void LDL::Graphics::DX9Render::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
 {
 }
 
-void LDL::Graphics::DX9Render::Draw(LDL::Graphics::IGpuImage* image, const LDL::Graphics::Point2u& pos)
+void RenderImpl::Draw(Texture* image, const Point2u& pos)
 {
 	Draw(image, pos, image->Size());
 }
 
-void LDL::Graphics::DX9Render::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos, const LDL::Graphics::Point2u& size)
+void RenderImpl::Draw(Surface* image, const Point2u& pos, const Point2u& size)
 {
-
 }
 
-void LDL::Graphics::DX9Render::Draw(LDL::Graphics::CpuImage* image, const LDL::Graphics::Point2u& pos)
+void RenderImpl::Draw(Surface* image, const Point2u& pos)
 {
-
 }
 
-void LDL::Graphics::DX9Render::Initialization()
+void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
+{
+}
+
+void RenderImpl::Initialization()
 {
     _Direct3D = Direct3DCreate9(D3D_SDK_VERSION);
 
@@ -112,9 +121,7 @@ void LDL::Graphics::DX9Render::Initialization()
 
     D3DPRESENT_PARAMETERS parameters = { 0 };
 
-    LDL::Graphics::Windows::DX9Window* window = (LDL::Graphics::Windows::DX9Window*)_Window;
-
-    parameters.hDeviceWindow = window->Hwnd();
+    parameters.hDeviceWindow = _Window->GetWindowImpl()->Hwnd();
     parameters.Windowed = true;
     parameters.BackBufferWidth = (UINT)_Window->Size().PosX();
     parameters.BackBufferHeight = (UINT)_Window->Size().PosY();
@@ -124,7 +131,7 @@ void LDL::Graphics::DX9Render::Initialization()
     parameters.SwapEffect = D3DSWAPEFFECT_FLIP;
     parameters.BackBufferFormat = displayMode.Format;
 
-    result = _Direct3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, window->Hwnd(), D3DCREATE_HARDWARE_VERTEXPROCESSING, &parameters, &_Direct3DDevice);
+    result = _Direct3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, _Window->GetWindowImpl()->Hwnd(), D3DCREATE_HARDWARE_VERTEXPROCESSING, &parameters, &_Direct3DDevice);
 
     if (FAILED(result))
         throw LDL::Core::RuntimeError("CreateDevice failed");
@@ -135,7 +142,7 @@ void LDL::Graphics::DX9Render::Initialization()
         throw LDL::Core::RuntimeError("D3DXCreateLine failed");
 }
 
-void LDL::Graphics::DX9Render::Deinitialization()
+void RenderImpl::Deinitialization()
 {
     if (_Line != NULL)
     {

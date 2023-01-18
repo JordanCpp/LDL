@@ -110,9 +110,9 @@ endif()
 
 if (LDL_GPU_SUPPORT_DIRECTX9)
   target_sources(LDL PRIVATE
-  "source/Graphics/DX9/DX9Render.cpp"
-  "source/Graphics/DX9/DX9Image.cpp"
-  "source/Graphics/DX9/DX9Screenshoter.cpp")
+  "source/Graphics/DirectX9/Direct3D/RenderImpl.cpp"
+  "source/Graphics/DirectX9/Direct3D/TextureImpl.cpp"
+  "source/Graphics/DirectX9/Direct3D/ScreenshoterImpl.cpp")
 endif() 
 
 if (LDL_GPU_SUPPORT_DIRECTX5)
@@ -124,7 +124,7 @@ endif()
 
 if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX9)
   target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/DX9/DX9Window.cpp")
+  "source/Platforms/Windows/Graphics/DirectX9/Direct3D/WindowImpl.cpp")
 endif() 
 
 if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX5)

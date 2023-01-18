@@ -8,6 +8,8 @@
 #include "../Platforms/Windows/Graphics/DirectDraw/GpuWindowImpl.hpp"
 #elif LDL_GPU_SUPPORT_DIRECTX5
 #include "../Platforms/Windows/Graphics/DirectX5/Direct3D/WindowImpl.hpp"
+#elif LDL_GPU_SUPPORT_DIRECTX9
+#include "../Platforms/Windows/Graphics/DirectX9/Direct3D/WindowImpl.hpp"
 #endif
 
 using namespace LDL::Graphics;
