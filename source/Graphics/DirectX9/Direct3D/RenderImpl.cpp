@@ -59,7 +59,7 @@ const Color& LDL::Graphics::RenderImpl::Color()
 
 void RenderImpl::Clear()
 {
-    _Direct3DDevice->Clear(0L, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(_BaseRender.Color().Red(), _BaseRender.Color().Green(), _BaseRender.Color().Blue()), 1.0f, 0L);
+    _Direct3DDevice->Clear(0L, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(_BaseRender.Color().Red(), _BaseRender.Color().Green(), _BaseRender.Color().Blue()), 1.0f, 0L);
 }
 
 void RenderImpl::Color(const LDL::Graphics::Color& color)
@@ -130,6 +130,8 @@ void RenderImpl::Initialization()
     parameters.AutoDepthStencilFormat = D3DFMT_D16;
     parameters.SwapEffect = D3DSWAPEFFECT_FLIP;
     parameters.BackBufferFormat = displayMode.Format;
+    parameters.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
+    parameters.FullScreen_RefreshRateInHz = 0;
 
     result = _Direct3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, _Window->GetWindowImpl()->Hwnd(), D3DCREATE_HARDWARE_VERTEXPROCESSING, &parameters, &_Direct3DDevice);
 
