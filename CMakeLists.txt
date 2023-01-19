@@ -2,11 +2,11 @@ cmake_minimum_required(VERSION 3.8)
 
 project(LibLDL)
 
-#set(LDL_RENDER_SOFTWARE true)
-#add_definitions(-DLDL_RENDER_SOFTWARE)
+set(LDL_RENDER_SOFTWARE true)
+add_definitions(-DLDL_RENDER_SOFTWARE)
 
-set(LDL_RENDER_OPENGL1 true)
-add_definitions(-DLDL_RENDER_OPENGL1)
+#set(LDL_RENDER_OPENGL1 true)
+#add_definitions(-DLDL_RENDER_OPENGL1)
 
 #set(LDL_GPU_SUPPORT_DIRECTX9 true)
 #add_definitions(-DLDL_GPU_SUPPORT_DIRECTX9)

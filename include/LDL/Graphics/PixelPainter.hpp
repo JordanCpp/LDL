@@ -22,7 +22,12 @@ namespace LDL
 			void Bind(Surface* source);
 			void Pixel(const Point2u& pos);
 			const LDL::Graphics::Color& GetPixel(const Point2u& pos);
+			void Fill(const Point2u& pos, const Point2u& size);
 		private:
+			uint8_t _Red;
+			uint8_t _Green;
+			uint8_t _Blue;
+			uint8_t _Alpha;
 			Surface* _Target;
 			size_t   _Width;
 			size_t   _Heigth;

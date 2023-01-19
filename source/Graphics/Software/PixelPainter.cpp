@@ -4,6 +4,10 @@
 using namespace LDL::Graphics;
 
 PixelPainter::PixelPainter() :
+	_Red(0),
+	_Green(0),
+	_Blue(0),
+	_Alpha(0),
 	_Target(NULL),
 	_Width(0),
 	_Heigth(0),
@@ -46,6 +50,11 @@ const LDL::Graphics::Color& LDL::Graphics::PixelPainter::Color()
 void LDL::Graphics::PixelPainter::Color(const LDL::Graphics::Color& color)
 {
 	_Color = color;
+
+	_Red = _Color.Red();
+	_Green = _Color.Green();
+	_Blue = _Color.Blue();
+	_Alpha = _Color.Alpha();
 }
 
 void PixelPainter::Clear()
@@ -57,31 +66,31 @@ void PixelPainter::Clear()
   case 4:
 	  for (size_t i = 0; i < size; i += 4)
 	  {
-		  _Pixels[i] = _Color.Red();
-		  _Pixels[i + 1] = _Color.Green();
-		  _Pixels[i + 2] = _Color.Blue();
-		  _Pixels[i + 3] = _Color.Alpha();
+		  _Pixels[i] = _Red;
+		  _Pixels[i + 1] = _Green;
+		  _Pixels[i + 2] = _Blue;
+		  _Pixels[i + 3] = _Alpha;
 	  }
 	  break;
   case 3:
 	  for (size_t i = 0; i < size; i += 3)
 	  {
-		  _Pixels[i] = _Color.Red();
-		  _Pixels[i + 1] = _Color.Green();
-		  _Pixels[i + 2] = _Color.Blue();
+		  _Pixels[i] = _Red;
+		  _Pixels[i + 1] = _Green;
+		  _Pixels[i + 2] = _Blue;
 	  }
 	  break;
   case 2:
 	  for (size_t i = 0; i < size; i += 2)
 	  {
-		  _Pixels[i] = _Color.Red();
-		  _Pixels[i + 1] = _Color.Green();
+		  _Pixels[i] = _Red;
+		  _Pixels[i + 1] = _Green;
 	  }
 	  break;
   default:
 	  for (size_t i = 0; i < size; i++)
 	  {
-		  _Pixels[i] = _Color.Red();
+		  _Pixels[i] = _Red;
 	  }
 	}
 }
@@ -100,37 +109,37 @@ void PixelPainter::Bind(Surface* source)
 
 void PixelPainter::Pixel(const Point2u& pos)
 {
-	size_t i = (_Width * pos._PosY) + pos._PosX;
+	size_t i = ((_Width * pos._PosY) + pos._PosX) * _BytesPerPixel;
 
 	assert(i < _Width * _Heigth * _BytesPerPixel);
 
 	switch (_BytesPerPixel)
 	{
 	case 4:
-			_Pixels[i] = _Color.Red();
-			_Pixels[i + 1] = _Color.Green();
-			_Pixels[i + 2] = _Color.Blue();
-			_Pixels[i + 3] = _Color.Alpha();
+			_Pixels[i] = _Red;
+			_Pixels[i + 1] = _Green;
+			_Pixels[i + 2] = _Blue;
+			_Pixels[i + 3] = _Alpha;
 		break;
 	case 3:
-			_Pixels[i] = _Color.Red();
-			_Pixels[i + 1] = _Color.Green();
-			_Pixels[i + 2] = _Color.Blue();
+			_Pixels[i] = _Red;
+			_Pixels[i + 1] = _Green;
+			_Pixels[i + 2] = _Blue;
 		break;
 	case 2:
-			_Pixels[i] = _Color.Red();
-			_Pixels[i + 1] = _Color.Green();
+			_Pixels[i] = _Red;
+			_Pixels[i + 1] = _Green;
 		break;
 	default:
-			_Pixels[i] = _Color.Red();
+			_Pixels[i] = _Red;
 	}
 }
 
 const LDL::Graphics::Color& PixelPainter::GetPixel(const Point2u& pos)
 {
-	size_t i = (_Width * pos._PosY) + pos._PosX;
+	size_t i = ((_Width * pos._PosY) + pos._PosX) * _BytesPerPixel;
 
-	assert(i < _Width* _Heigth* _BytesPerPixel);
+	assert(i < _Width * _Heigth * _BytesPerPixel);
 
 	switch (_BytesPerPixel)
 	{
@@ -148,4 +157,18 @@ const LDL::Graphics::Color& PixelPainter::GetPixel(const Point2u& pos)
 	}
 
 	return _ColorGetPixel;
+}
+
+void LDL::Graphics::PixelPainter::Fill(const Point2u& pos, const Point2u& size)
+{
+	size_t x = pos.PosX();
+	size_t y = pos.PosY();
+
+	for (size_t i = 0; i < size._PosX; i++)
+	{
+		for (size_t j = 0; j < size._PosY; j++)
+		{
+			Pixel(Point2u(x + i, y + j));
+		}
+	}
 }

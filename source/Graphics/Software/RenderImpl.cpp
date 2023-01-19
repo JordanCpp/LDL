@@ -136,9 +136,12 @@ void RenderImpl::Draw(Surface* image, const Point2u& pos, const Point2u& size)
 	size_t srcStride = image->Size().PosX() * 4;
 	size_t dstStride = _BaseRender.Size().PosX() * 4;
 
-	for (size_t y = 0; y < image->Size().PosY(); ++y)
+	size_t w = image->Size().PosX();
+	size_t h = image->Size().PosY();
+
+	for (size_t y = 0; y < h; ++y)
 	{
-		for (size_t x = 0; x < image->Size().PosX(); ++x)
+		for (size_t x = 0; x < w; ++x)
 		{
 			uint8_t* src = srcPixels + x * 4;
 			uint8_t* dst = dstPixels + x * 4;

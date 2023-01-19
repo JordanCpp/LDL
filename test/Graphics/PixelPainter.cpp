@@ -76,6 +76,32 @@ void Clear()
 	}
 }
 
+void Fill()
+{
+	Surface surface(Point2u(640, 480), 4);
+
+	PixelPainter painter;
+
+	painter.Bind(&surface);
+
+	painter.Color(LDL::Graphics::Color(0, 0, 0, 0));
+	painter.Clear();
+
+	painter.Color(LDL::Graphics::Color(1, 2, 3, 4));
+	painter.Fill(Point2u(50, 50), Point2u(320, 240));
+
+	for (size_t i = 0; i < 320; i++)
+	{
+		for (size_t j = 0; j < 240; j++)
+		{
+			LDL_TEST_EQUAL(painter.GetPixel(Point2u(i, j)).Red()   == 1);
+			LDL_TEST_EQUAL(painter.GetPixel(Point2u(i, j)).Green() == 2);
+			LDL_TEST_EQUAL(painter.GetPixel(Point2u(i, j)).Blue()  == 3);
+			LDL_TEST_EQUAL(painter.GetPixel(Point2u(i, j)).Alpha() == 4);
+		}
+	}
+}
+
 void Pixel()
 {
 	Surface surface(Point2u(640, 480), 4);
@@ -103,6 +129,7 @@ int main()
 	InitColor();
 	Clear();
 	Pixel();
+	Fill();
 
 	return 0;
 }
