@@ -2,6 +2,7 @@
 #define LDL_Graphics_Color_hpp
 
 #include <LDL/Core/Types.hpp>
+#include <LDL/Config.hpp>
 
 namespace LDL
 {
@@ -18,7 +19,7 @@ namespace LDL
 			uint8_t Alpha() const;
 			uint32_t toInt() const;
 		private:
-        #if (_WIN32 || _WIN64)
+        #if defined(LDL_CONFIG_COLOR_BGRA)
 			uint8_t _Blue;
 			uint8_t _Green;
 			uint8_t _Red;

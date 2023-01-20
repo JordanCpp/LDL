@@ -8,7 +8,7 @@ void PixelConverter::Fill(uint8_t* pixels, const Point2u& size, uint8_t bytesPer
 
 	for (size_t i = 0; i < bytes; i += bytesPerPixel)
 	{
-#if defined(WIN32) || defined(WIN64)
+#if defined(LDL_CONFIG_COLOR_BGRA)
 		pixels[i + 0] = color.Blue();
 		pixels[i + 1] = color.Green();
 		pixels[i + 2] = color.Red();

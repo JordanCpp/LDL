@@ -28,22 +28,15 @@ int main()
 
 		while (window.GetEvent(report))
 		{
-			painter.Color(Color(35, 35, 35));
-			painter.Clear();
-
-			painter.Color(Color(34, 177, 76));
-
 			fpsCounter.Start();
 
 			render.Begin();
 
-			for (size_t i = 0; i < 400; i++)
-			{
-				for (size_t j = 0; j < 300; j++)
-				{
-					painter.Pixel(Point2u(i, j));
-				}
-			}		
+			painter.Color(Color(0, 162, 232));
+			painter.Clear();
+
+			painter.Color(Color(237, 28, 36));
+			painter.Line(Point2u(0, 0), Point2u(render.Size().PosX() - 1, render.Size().PosY() - 1));
 
 			render.Draw(&screen, Point2u(0, 0));
 
@@ -52,7 +45,7 @@ int main()
 			if (report.Type == LDL::Events::IsQuit)
 			{
 				window.StopEvent();
-			}
+			} 
 
 			if (fpsCounter.Calc())
 			{

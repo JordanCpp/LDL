@@ -50,6 +50,7 @@ add_library(LDL STATIC
 "source/Graphics/Base/BaseRender.cpp"
 "source/Graphics/Software/Surface.cpp"
 "source/Graphics/Software/PixelPainter.cpp"
+"source/Graphics/Software/PixelCopier.cpp"
 "source/Graphics/Primitives/Color.cpp"
 "source/Graphics/PixelConverter.cpp"
 "source/Graphics/TextRasterizer.cpp"

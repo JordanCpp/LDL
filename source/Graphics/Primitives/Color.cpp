@@ -3,7 +3,7 @@
 using namespace LDL::Graphics;
 
 Color::Color() :
-#if (_WIN32 || _WIN64)
+#if defined(LDL_CONFIG_COLOR_BGRA)
 	_Blue(0),
 	_Green(0),
 	_Red(0),
@@ -17,7 +17,7 @@ Color::Color() :
 }
 
 Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha) :
-#if (_WIN32 || _WIN64)
+#if defined(LDL_CONFIG_COLOR_BGRA)
 	_Blue(blue),
 	_Green(green),
 	_Red(red),

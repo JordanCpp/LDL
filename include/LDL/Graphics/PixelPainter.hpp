@@ -23,6 +23,7 @@ namespace LDL
 			void Pixel(const Point2u& pos);
 			const LDL::Graphics::Color& GetPixel(const Point2u& pos);
 			void Fill(const Point2u& pos, const Point2u& size);
+			void Line(const Point2u& pos1, const Point2u& pos2);
 		private:
 			uint8_t _Red;
 			uint8_t _Green;

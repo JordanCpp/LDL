@@ -6,6 +6,8 @@
 #include "TextureImpl.hpp"
 #include <LDL/Graphics/Surface.hpp>
 #include <LDL/Graphics/Texture.hpp>
+#include <LDL/Graphics/PixelPainter.hpp>
+#include <LDL/Graphics/PixelCopier.hpp>
 
 namespace LDL
 {
@@ -34,6 +36,8 @@ namespace LDL
 			Window* _Window;
 			BaseRender _BaseRender;
 			Surface _Canvas;
+			PixelPainter _PixelPainter;
+			PixelCopier _PixelCopier;
 		};
 	}
 }

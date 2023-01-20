@@ -30,8 +30,8 @@ int main()
 			render.Clear();
 
 			render.Color(Color(237, 28, 36));
-			render.Line(Point2u(0, 0), render.Size());
-			render.Line(Point2u(render.Size().PosX(), 0), Point2u(0, render.Size().PosY()));
+			render.Line(Point2u(0, 0), Point2u(render.Size().PosX() - 1, render.Size().PosY() - 1));
+			render.Line(Point2u(render.Size().PosX() - 1, 0), Point2u(0, render.Size().PosY() - 1));
 
 			render.End();
 

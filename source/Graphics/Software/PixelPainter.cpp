@@ -61,34 +61,46 @@ void PixelPainter::Clear()
 {
 	size_t size = _Width * _Heigth * _BytesPerPixel;
 
+	size_t i = 0;
+
 	switch(_BytesPerPixel)
 	{
   case 4:
-	  for (size_t i = 0; i < size; i += 4)
+	  for (i = 0; i < size; i += 4)
 	  {
+#if defined(LDL_CONFIG_COLOR_BGRA)
+		  _Pixels[i] = _Blue;
+		  _Pixels[i + 2] = _Red;
+#else
 		  _Pixels[i] = _Red;
-		  _Pixels[i + 1] = _Green;
 		  _Pixels[i + 2] = _Blue;
+#endif
+		  _Pixels[i + 1] = _Green;
 		  _Pixels[i + 3] = _Alpha;
 	  }
 	  break;
   case 3:
-	  for (size_t i = 0; i < size; i += 3)
+	  for (i = 0; i < size; i += 3)
 	  {
+#if defined(LDL_CONFIG_COLOR_BGRA)
+		  _Pixels[i] = _Blue;
+		  _Pixels[i + 2] = _Red;
+#else
 		  _Pixels[i] = _Red;
-		  _Pixels[i + 1] = _Green;
 		  _Pixels[i + 2] = _Blue;
+#endif
+		  _Pixels[i + 1] = _Green;
 	  }
 	  break;
   case 2:
-	  for (size_t i = 0; i < size; i += 2)
+	  for (i = 0; i < size; i += 2)
 	  {
 		  _Pixels[i] = _Red;
 		  _Pixels[i + 1] = _Green;
 	  }
 	  break;
   default:
-	  for (size_t i = 0; i < size; i++)
+	  for (i = 0; i < size; i++)
 	  {
 		  _Pixels[i] = _Red;
 	  }
@@ -109,22 +121,32 @@ void PixelPainter::Bind(Surface* source)
 
 void PixelPainter::Pixel(const Point2u& pos)
 {
-	size_t i = ((_Width * pos._PosY) + pos._PosX) * _BytesPerPixel;
+	size_t i = (_Width * pos._PosY + pos._PosX) * _BytesPerPixel;
 
 	assert(i < _Width * _Heigth * _BytesPerPixel);
 
 	switch (_BytesPerPixel)
 	{
 	case 4:
-			_Pixels[i] = _Red;
+#if defined(LDL_CONFIG_COLOR_BGRA)
+		_Pixels[i] = _Blue;
+		_Pixels[i + 2] = _Red;
+#else
+		_Pixels[i] = _Red;
+		_Pixels[i + 2] = _Blue;
+#endif
 			_Pixels[i + 1] = _Green;
-			_Pixels[i + 2] = _Blue;
 			_Pixels[i + 3] = _Alpha;
 		break;
 	case 3:
-			_Pixels[i] = _Red;
-			_Pixels[i + 1] = _Green;
-			_Pixels[i + 2] = _Blue;
+#if defined(LDL_CONFIG_COLOR_BGRA)
+		_Pixels[i] = _Blue;
+		_Pixels[i + 2] = _Red;
+#else
+		_Pixels[i] = _Red;
+		_Pixels[i + 2] = _Blue;
+#endif
+		_Pixels[i + 1] = _Green;
 		break;
 	case 2:
 			_Pixels[i] = _Red;
@@ -137,30 +159,41 @@ void PixelPainter::Pixel(const Point2u& pos)
 
 const LDL::Graphics::Color& PixelPainter::GetPixel(const Point2u& pos)
 {
-	size_t i = ((_Width * pos._PosY) + pos._PosX) * _BytesPerPixel;
+	size_t i = (_Width * pos._PosY + pos._PosX) * _BytesPerPixel;
 
 	assert(i < _Width * _Heigth * _BytesPerPixel);
 
 	switch (_BytesPerPixel)
 	{
 	case 4:
-		_ColorGetPixel = LDL::Graphics::Color(_Color.Red(), _Color.Green(), _Color.Blue(), _Color.Alpha());
+#if defined(LDL_CONFIG_COLOR_BGRA)
+		_ColorGetPixel = LDL::Graphics::Color(_Pixels[i + 2], _Pixels[i + 1], _Pixels[i], _Pixels[i + 3]);
+#else
+		_ColorGetPixel = LDL::Graphics::Color(_Pixels[i], _Pixels[i + 1], _Pixels[i + 2], _Pixels[i + 3]);
+#endif
 		break;
 	case 3:
-		_ColorGetPixel = LDL::Graphics::Color(_Color.Red(), _Color.Green(), _Color.Blue(), 0);
+#if defined(LDL_CONFIG_COLOR_BGRA)
+		_ColorGetPixel = LDL::Graphics::Color(_Pixels[i + 2], _Pixels[i + 1], _Pixels[i], 0);
+#else
+		_ColorGetPixel = LDL::Graphics::Color(_Pixels[i], _Pixels[i + 1], _Pixels[i + 2], 0);
+#endif
 		break;
 	case 2:
-		_ColorGetPixel = LDL::Graphics::Color(_Color.Red(), _Color.Green(), 0, 0);
+		_ColorGetPixel = LDL::Graphics::Color(_Pixels[i], _Pixels[i + 1], 0, 0);
 		break;
 	default:
-		_ColorGetPixel = LDL::Graphics::Color(_Color.Red(), 0, 0, 0);
+		_ColorGetPixel = LDL::Graphics::Color(_Pixels[i], 0, 0, 0);
 	}
 
 	return _ColorGetPixel;
 }
 
-void LDL::Graphics::PixelPainter::Fill(const Point2u& pos, const Point2u& size)
+void PixelPainter::Fill(const Point2u& pos, const Point2u& size)
 {
+	assert(size.PosX() > 0);
+	assert(size.PosY() > 0);
+
 	size_t x = pos.PosX();
 	size_t y = pos.PosY();
 
@@ -169,6 +202,50 @@ void LDL::Graphics::PixelPainter::Fill(const Point2u& pos, const Point2u& size)
 		for (size_t j = 0; j < size._PosY; j++)
 		{
 			Pixel(Point2u(x + i, y + j));
+		}
+	}
+}
+
+void PixelPainter::Line(const Point2u& pos1, const Point2u& pos2)
+{
+	int x1 = (int)pos1.PosX();
+	int y1 = (int)pos1.PosY();
+
+	int x2 = (int)pos2.PosX();
+	int y2 = (int)pos2.PosY();
+
+	int deltaX;
+	int deltaY;
+	int signX;
+	int signY;
+	int error;
+	int error2;
+
+	deltaX = abs(x2 - x1);
+	deltaY = abs(y2 - y1);
+	signX = x1 < x2 ? 1 : -1;
+	signY = y1 < y2 ? 1 : -1;
+
+	error = deltaX - deltaY;
+
+	Pixel(Point2u(x2, y2));
+
+	while (x1 != x2 || y1 != y2)
+	{
+		Pixel(Point2u(x1, y1));
+
+		error2 = error * 2;
+
+		if (error2 > -deltaY)
+		{
+			error -= deltaY;
+			x1 += signX;
+		}
+
+		if (error2 < deltaX)
+		{
+			error += deltaX;
+			y1 += signY;
 		}
 	}
 }
