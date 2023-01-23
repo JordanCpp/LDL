@@ -10,7 +10,11 @@ OpenGLLoader::OpenGLLoader(size_t major, size_t minor) :
 	_Major(major),
 	_Minor(minor)
 {
-	if (Major() == 1 && Minor() == 0)
+	if (Equal(1, 0))
+	{
+		Init_1_0();
+	}
+	else if (Equal(1, 1))
 	{
 		Init_1_0();
 		Init_1_1();
@@ -31,6 +35,11 @@ OpenGLLoader::OpenGLLoader(size_t major, size_t minor) :
 
 OpenGLLoader::~OpenGLLoader()
 {
+}
+
+bool LDL::OpenGLLoader::Equal(size_t major, size_t minor)
+{
+	return Major() == major && Minor() == minor;
 }
 
 size_t LDL::OpenGLLoader::Major()
@@ -162,7 +171,7 @@ void OpenGLLoader::Init_1_0()
 	glGetPixelMapusv = (pglGetPixelMapusv*)_Functions.Function("glGetPixelMapusv");
 	glGetPointerv = (pglGetPointerv*)_Functions.Function("glGetPointerv");
 	glGetPolygonStipple = (pglGetPolygonStipple*)_Functions.Function("glGetPolygonStipple");
-	//glGetString = (pglGetString*)_Functions.Function("pglGetString");
+	glGetString = (pglGetString*)_Functions.Function("glGetString");
 	glGetTexEnvfv = (pglGetTexEnvfv*)_Functions.Function("glGetTexEnvfv");
 	glGetTexEnviv = (pglGetTexEnviv*)_Functions.Function("glGetTexEnviv");
 	glGetTexGendv = (pglGetTexGendv*)_Functions.Function("glGetTexGendv");
