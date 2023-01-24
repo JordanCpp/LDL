@@ -1,6 +1,6 @@
 #include "RenderImpl.hpp"
 #include <LDL/Core/RuntimeError.hpp>
-#include "../source/Platforms/Windows/Graphics/DirectDraw/GpuWindowImpl.hpp"
+#include "../source/Platforms/Windows/Graphics/DirectDraw/WindowImpl.hpp"
 
 using namespace LDL::Graphics;
 

@@ -1,4 +1,4 @@
-#include "GpuWindowImpl.hpp"
+#include "WindowImpl.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Graphics;
@@ -12,7 +12,7 @@ WindowImpl::~WindowImpl()
 {
 }
 
-void WindowImpl::Present(uint8_t* pixels)
+void WindowImpl::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 {
 }
 
