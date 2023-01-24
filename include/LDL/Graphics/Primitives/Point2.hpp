@@ -38,6 +38,16 @@ namespace LDL
 				_PosX = x;
 				_PosY = y;
 			}
+
+			void PosX(const TYPE& x)
+			{
+				_PosX = x;
+			}
+
+			void PosY(const TYPE& y)
+			{
+				_PosY = y;
+			}
 		public:
 			TYPE _PosX;
 			TYPE _PosY;

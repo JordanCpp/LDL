@@ -14,7 +14,7 @@
 
 using namespace LDL::Graphics;
 
-Texture::Texture(const Point2u& size, size_t bytesPerPixel, uint8_t* pixels) :
+Texture::Texture(const Point2u& size, uint8_t bytesPerPixel, uint8_t* pixels) :
 	_TextureImpl(new TextureImpl(size, bytesPerPixel, pixels))
 {
 }

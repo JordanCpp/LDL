@@ -1,26 +1,50 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Graphics/Primitives/Point2i.hpp>
 
-void DefaultInit()
+using namespace LDL::Graphics;
+
+void InitDefault()
 {
-	LDL::Graphics::Point2i point;
+	Point2i point;
 
 	LDL_TEST_EQUAL(point.PosX() == 0);
 	LDL_TEST_EQUAL(point.PosY() == 0);
 }
 
-void ValueInit()
+void InitValue()
 {
-	LDL::Graphics::Point2i point2(125, 385);
+	Point2i point(125, 385);
 
-	LDL_TEST_EQUAL(point2.PosX() == 125);
-	LDL_TEST_EQUAL(point2.PosY() == 385);
+	LDL_TEST_EQUAL(point.PosX() == 125);
+	LDL_TEST_EQUAL(point.PosY() == 385);
+}
+
+void InitPosX()
+{
+	Point2i point;
+
+	point.PosX(45);
+
+	LDL_TEST_EQUAL(point.PosX() == 45);
+	LDL_TEST_EQUAL(point.PosY() == 0);
+}
+
+void InitPosY()
+{
+	Point2i point;
+
+	point.PosY(45);
+
+	LDL_TEST_EQUAL(point.PosX() == 0);
+	LDL_TEST_EQUAL(point.PosY() == 45);
 }
 
 int main()
 {
-	DefaultInit();
-	ValueInit();
+	InitDefault();
+	InitValue();
+	InitPosX();
+	InitPosY();
 
 	return 0;
 }
