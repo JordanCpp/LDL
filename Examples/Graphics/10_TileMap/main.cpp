@@ -33,14 +33,11 @@ int main()
 		LDL::Core::IntegerToString convert;
 		LDL::Time::FpsLimiter fpsLimiter;
 
-		size_t width  = 9;
-		size_t height = 9;
-
-		Point2u mapSize = Point2u(9, 9);
-
 		Isometric isometric;
 
 		Point2u start = Point2u(350, 150);
+		Point2u mapSize = Point2u(9, 9);
+		Point2u tileSize = Point2u(80, 40);
 
 		while (window.GetEvent(report))
 		{
@@ -53,12 +50,12 @@ int main()
 			render.Color(Color(0, 162, 232));
 			render.Clear();
 
-			for (size_t rows = 0; rows < width; rows++)
+			for (size_t rows = 0; rows < mapSize.PosX(); rows++)
 			{
-				for (size_t cols = 0; cols < height; cols++)
+				for (size_t cols = 0; cols < mapSize.PosY(); cols++)
 				{
-					size_t x = cols * 78 / 2;
-					size_t y = rows * 40;
+					size_t x = cols * tileSize.PosX() / 2;
+					size_t y = rows * tileSize.PosY();
 
 					Point2u pt = isometric.CartesianToIsometric(Point2u(x, y));
 
