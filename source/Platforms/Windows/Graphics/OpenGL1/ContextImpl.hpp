@@ -10,7 +10,7 @@ namespace LDL
 		class ContextImpl
 		{
 		public:
-			ContextImpl(const char* path);
+			ContextImpl();
 			~ContextImpl();
 			void Create(HDC hdc);
 		private:

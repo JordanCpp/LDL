@@ -1,4 +1,4 @@
-call "C:\Downloads\codeblocks-12.11mingw-setup\MinGW\mingwvars.bat"
+call "C:\Downloads\codeblocks-20.03mingw-nosetup\MinGW\mingwvars.bat"
 
 cd ../
 g++ -Wall -Wextra -pedantic -O2 -std=c++98 -o Win9x\%1 -DLDL_RENDER_OPENGL1 %2 ^

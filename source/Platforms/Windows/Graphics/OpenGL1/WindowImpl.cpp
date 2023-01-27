@@ -4,8 +4,7 @@
 using namespace LDL::Graphics;
 
 WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
-    _Window(pos, size, title, mode),
-    _ContextImpl("opengl32")
+    _Window(pos, size, title, mode)
 {
     PIXELFORMATDESCRIPTOR pfd;
 

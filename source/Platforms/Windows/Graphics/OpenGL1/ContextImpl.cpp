@@ -3,7 +3,7 @@
 
 using namespace LDL::Graphics;
 
-ContextImpl::ContextImpl(const char* path) :
+ContextImpl::ContextImpl() :
     _HGLRC(NULL)
 {
 }

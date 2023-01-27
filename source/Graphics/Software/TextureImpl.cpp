@@ -2,8 +2,8 @@
 
 using namespace LDL::Graphics;
 
-TextureImpl::TextureImpl(const Point2u& size, size_t bytesPerPixel, uint8_t* pixels):
-	_Id(0)
+TextureImpl::TextureImpl(const Point2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
+	_Surface(size, pixels, bytesPerPixel)
 {
 }
 
@@ -13,10 +13,10 @@ TextureImpl::~TextureImpl()
 
 const Point2u& TextureImpl::Size()
 {
-	return _Size;
+	return _Surface.Size();
 }
 
-size_t TextureImpl::Id()
+Surface* LDL::Graphics::TextureImpl::GetSurface()
 {
-	return _Id;
+	return &_Surface;
 }

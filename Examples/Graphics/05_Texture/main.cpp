@@ -25,7 +25,7 @@ int main()
 		LDL::Loaders::ImageLoader loader(&allocator);
 
 		loader.Load("trehmachtovyiy-korabl-kartina-maslom-60x50_512x.jpg");
-		Texture image(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
+		Texture image(loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;

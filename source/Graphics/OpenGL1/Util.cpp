@@ -1,14 +1,14 @@
 #include "Util.hpp"
 #include <LDL/OpenGL/OpenGL1_0.hpp>
-#include <iostream>
 #include <LDL/Core/IntegerToString.hpp>
+#include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Graphics;
 
 const size_t TextureCount = 8;
 const size_t TextureSizes[TextureCount] = { 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
 
-void LDL::Graphics::GpuUtil::DrawQuad(const Point2u& pos, const Point2u& size)
+void LDL::Graphics::Util::DrawQuad(const Point2u& pos, const Point2u& size)
 {
 	GLfloat x = (GLfloat)pos.PosX();
 	GLfloat y = (GLfloat)pos.PosY();
@@ -23,7 +23,7 @@ void LDL::Graphics::GpuUtil::DrawQuad(const Point2u& pos, const Point2u& size)
 	glEnd();
 }
 
-void GpuUtil::DrawQuad(const Point2u& pos, const Point2u& size, const Point2u& srcSize, size_t textureSize)
+void Util::DrawQuad(const Point2u& pos, const Point2u& size, const Point2u& srcSize, size_t textureSize)
 {
 	GLfloat x = (GLfloat)pos.PosX();
 	GLfloat y = (GLfloat)pos.PosY();
@@ -41,7 +41,7 @@ void GpuUtil::DrawQuad(const Point2u& pos, const Point2u& size, const Point2u& s
 	glEnd();
 }
 
-void GpuUtil::DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
+void Util::DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
 {
 	GLfloat x = (GLfloat)dstPos.PosX();
 	GLfloat y = (GLfloat)dstPos.PosY();
@@ -67,14 +67,14 @@ void GpuUtil::DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Poin
 	glEnd();
 }
 
-void GpuUtil::Normalize(const Color& color, GLclampf& r, GLclampf& g, GLclampf& b)
+void Util::Normalize(const Color& color, GLclampf& r, GLclampf& g, GLclampf& b)
 {
 	 r = color.Red() / 255.0f;
 	 g = color.Green() / 255.0f;
 	 b = color.Blue() / 255.0f;
 }
 
-void GpuUtil::Check(const std::string& file, size_t line, const std::string& expression)
+void Util::Check(const std::string& file, size_t line, const std::string& expression)
 {
     GLenum code = glGetError();
 
@@ -82,30 +82,37 @@ void GpuUtil::Check(const std::string& file, size_t line, const std::string& exp
 
     if (code != GL_NO_ERROR)
     { 
-		if (code == GL_INVALID_ENUM)
+		switch (code)
+		{
+		case GL_INVALID_ENUM:
 			error = "GL_INVALID_ENUM";
-		else if (code == GL_INVALID_VALUE)
+			break;
+		case GL_INVALID_VALUE:
 			error = "GL_INVALID_VALUE";
-		else if (code == GL_INVALID_OPERATION)
+			break;
+		case GL_INVALID_OPERATION:
 			error = "GL_INVALID_OPERATION";
-		else if (code == GL_STACK_OVERFLOW)
+			break;
+		case GL_STACK_OVERFLOW:
 			error = "GL_STACK_OVERFLOW";
-		else if (code == GL_STACK_UNDERFLOW)
+			break;
+		case GL_STACK_UNDERFLOW:
 			error = "GL_STACK_UNDERFLOW";
-		else if (code == GL_OUT_OF_MEMORY)
+			break;
+		case GL_OUT_OF_MEMORY:
 			error = "GL_OUT_OF_MEMORY";
-		else
+			break;
+		default:
 			error = "Unknown error";
+		}
 
 		LDL::Core::IntegerToString conv;
 
-		std::cout << "OpenGL error: " << error << " File: " << file << " Line: " << conv.Convert(line) << " Detail: " << expression << '\n';
-		
-		abort();
+		throw LDL::Core::RuntimeError("OpenGL error: " + error + " File: " + file + " Line: " + conv.Convert(line) + " Detail: " + expression);
     }
 }
 
-size_t GpuUtil::MaxTextureSize()
+size_t Util::MaxTextureSize()
 {
 	GLint result = 0;
 
@@ -114,7 +121,7 @@ size_t GpuUtil::MaxTextureSize()
 	return result;
 }
 
-bool GpuUtil::IsMaxTextureSize(const Point2u& resolutionSize, size_t textureSize)
+bool Util::IsMaxTextureSize(const Point2u& resolutionSize, size_t textureSize)
 {
 	if (textureSize >= resolutionSize.PosX() && textureSize >= resolutionSize.PosY())
 		return true;
@@ -122,7 +129,7 @@ bool GpuUtil::IsMaxTextureSize(const Point2u& resolutionSize, size_t textureSize
 	return false;
 }
 
-size_t GpuUtil::SelectTextureSize(const Point2u& size)
+size_t Util::SelectTextureSize(const Point2u& size)
 {
 	size_t w = size.PosX();
 	size_t h = size.PosY();

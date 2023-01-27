@@ -27,7 +27,7 @@ int main()
 		LDL::Loaders::ImageLoader loader(&allocator);
 
 		loader.Load(Color(0, 0, 255), "bg1bg23d_0_0_0.bmp");
-		Texture image(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
+		Texture image(loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;

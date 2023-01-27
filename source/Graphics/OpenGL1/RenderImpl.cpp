@@ -1,5 +1,6 @@
 #include "RenderImpl.hpp"
 #include "Util.hpp"
+#include "TextureImpl.hpp"
 
 using namespace LDL::Graphics;
 
@@ -52,7 +53,7 @@ void RenderImpl::Clear()
 	GLclampf g;
 	GLclampf b;
 
-	GpuUtil::Normalize(_BaseRender.Color(), r, g, b);
+	Util::Normalize(_BaseRender.Color(), r, g, b);
 
 	GL_CHECK(glClearColor(r, g, b, 1.0f));
 	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
@@ -69,7 +70,7 @@ void RenderImpl::Pixel(const Point2u& pos)
 	GLclampf g;
 	GLclampf b;
 
-	GpuUtil::Normalize(_BaseRender.Color(), r, g, b);
+	Util::Normalize(_BaseRender.Color(), r, g, b);
 
 	glBegin(GL_POINTS);
 	glColor3f(r, g, b);
@@ -83,7 +84,7 @@ void RenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
 	GLclampf g;
 	GLclampf b;
 
-	GpuUtil::Normalize(_BaseRender.Color(), r, g, b);
+	Util::Normalize(_BaseRender.Color(), r, g, b);
 
 	GLint x1 = (GLint)pos1.PosX();
 	GLint y1 = (GLint)pos1.PosY();
@@ -103,7 +104,7 @@ void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
 	GLclampf g;
 	GLclampf b;
 
-	GpuUtil::Normalize(_BaseRender.Color(), r, g, b);
+	Util::Normalize(_BaseRender.Color(), r, g, b);
 
 	GLint x = (GLint)pos.PosX();
 	GLint y = (GLint)pos.PosY();
@@ -123,9 +124,9 @@ void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
 {
 	GL_CHECK(glEnable(GL_TEXTURE_2D));
 
-	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)image->Id()));
+	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)image->GetTextureImpl()->Id()));
 
-	GpuUtil::DrawQuad(pos, size);
+	Util::DrawQuad(pos, size);
 
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }
@@ -149,9 +150,9 @@ void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcP
 {
 	GL_CHECK(glEnable(GL_TEXTURE_2D));
 
-	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)image->Id()));
+	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)image->GetTextureImpl()->Id()));
 
-	GpuUtil::DrawQuad(dstPos, image->Size(), srcPos, srcSize);
+	Util::DrawQuad(dstPos, image->Size(), srcPos, srcSize);
 
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }

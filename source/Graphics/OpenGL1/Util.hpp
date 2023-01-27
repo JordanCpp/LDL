@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_GL1_Util_hpp
-#define LDL_Graphics_GL1_Util_hpp
+#ifndef LDL_Graphics_OpenGL1_Util_hpp
+#define LDL_Graphics_OpenGL1_Util_hpp
 
 #include <LDL/Graphics/Primitives/Point2u.hpp>
 #include <LDL/Graphics/Primitives/Color.hpp>
@@ -10,7 +10,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		namespace GpuUtil
+		namespace Util
 		{
 			void DrawQuad(const Point2u& pos, const Point2u& size);
 			void DrawQuad(const Point2u& pos, const Point2u& size, const Point2u& srcSize, size_t textureSize);
@@ -24,11 +24,11 @@ namespace LDL
 	}
 }
 
-#define GL_CHECK(expr)                                            \
-    do                                                            \
-    {                                                             \
-        expr;                                                     \
-        LDL::Graphics::GpuUtil::Check(__FILE__, __LINE__, #expr); \
+#define GL_CHECK(expr)                                         \
+    do                                                         \
+    {                                                          \
+        expr;                                                  \
+        LDL::Graphics::Util::Check(__FILE__, __LINE__, #expr); \
     } while (false)                                           
 
 #endif

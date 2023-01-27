@@ -10,7 +10,7 @@ namespace LDL
 		class TextureImpl
 		{
 		public:
-			TextureImpl(const Point2u & size, size_t bytesPerPixel, uint8_t* pixels);
+			TextureImpl(const Point2u & size, uint8_t* pixels, size_t bytesPerPixel);
 			~TextureImpl();
 			const Point2u& Size();
 			size_t Id();

@@ -60,6 +60,7 @@ void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
 
 void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
 {
+	_PixelCopier.Copy(image->GetTextureImpl()->GetSurface(), &_Canvas, pos);
 }
 
 void RenderImpl::Draw(Texture* image, const Point2u& pos)

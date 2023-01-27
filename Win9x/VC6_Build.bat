@@ -15,6 +15,7 @@ CL -GX /I..\include /DLDL_RENDER_OPENGL1 ..\%2  ^
 ..\source\Graphics\Software\Surface.cpp ^
 ..\source\Graphics\OpenGL1\*.cpp ^
 ..\source\Graphics\Primitives\*.cpp ^
+..\source\Graphics\Utils\*.cpp ^
 ..\source\Loaders\*.cpp  ^
 ..\source\Platforms\Windows\Input\*.cpp  ^
 ..\source\OpenGL\*.cpp  ^

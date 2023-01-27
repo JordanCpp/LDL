@@ -65,6 +65,7 @@ add_library(LDL STATIC
 "source/Graphics/ImageResizer.cpp"
 "source/Graphics/Isometric.cpp"
 "source/Graphics/Camera.cpp"
+"source/Graphics/Utils/PotTextureSizer.cpp"
 "source/Events/Eventer.cpp"
 "source/Allocators/FixedLinear.cpp"
 "source/Allocators/SmallAllocator.cpp"

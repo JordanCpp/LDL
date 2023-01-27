@@ -7,12 +7,12 @@ using namespace LDL::Graphics;
 Screen::Screen(const Point2u& size) :
 	_Size(size),
 	_Screen(0),
-	_MaxTextureSize(GpuUtil::MaxTextureSize()),
+	_MaxTextureSize(Util::MaxTextureSize()),
 	_CurTextureSize(0)
 {
-	if (GpuUtil::IsMaxTextureSize(_Size, GpuUtil::MaxTextureSize()))
+	if (Util::IsMaxTextureSize(_Size, Util::MaxTextureSize()))
 	{
-		_CurTextureSize = GpuUtil::SelectTextureSize(_Size);
+		_CurTextureSize = _PotTextureSizer.Calc(_Size);
 
 		GL_CHECK(glEnable(GL_TEXTURE_2D));
 
@@ -31,13 +31,13 @@ Screen::Screen(const Point2u& size) :
 
 Screen::~Screen()
 {
-	if (GpuUtil::IsMaxTextureSize(_Size, _MaxTextureSize))
+	if (Util::IsMaxTextureSize(_Size, _MaxTextureSize))
 		GL_CHECK(glDeleteTextures(0, (GLuint*)&_Screen));
 }
 
 void Screen::Draw(Surface* image, const Point2u& pos, const Point2u& size)
 {
-	if (GpuUtil::IsMaxTextureSize(_Size, _MaxTextureSize))
+	if (Util::IsMaxTextureSize(_Size, _MaxTextureSize))
 		DrawTexture(image, pos, size);
 	else
 		DrawPixels(image, pos, size);
@@ -54,7 +54,7 @@ void Screen::DrawTexture(Surface* image, const Point2u& pos, const Point2u& size
 
 	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_Screen));
 
-	GpuUtil::DrawQuad(pos, size, image->Size(), _CurTextureSize);
+	Util::DrawQuad(pos, size, image->Size(), _CurTextureSize);
 
 	GLenum format = 0;
 

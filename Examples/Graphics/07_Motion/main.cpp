@@ -25,7 +25,7 @@ int main()
 		LDL::Loaders::ImageLoader loader(&allocator);
 
 		loader.Load("Gorgosaurus_BW_transparent.png");
-		Texture image(loader.Size(), loader.BytesPerPixel(), loader.Pixels());
+		Texture image(loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
 		size_t x = 0;
 		size_t y = 0;
