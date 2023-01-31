@@ -1,9 +1,18 @@
 #include <LDL/Graphics/PixelCopier.hpp>
+#include <assert.h>
 
 using namespace LDL::Graphics;
 
 void PixelCopier::Copy(Surface* srcSurf, Surface* dstSurf, const Point2u& pos)
 {
+	assert(srcSurf != NULL);
+	assert(dstSurf != NULL);
+
+	assert(srcSurf->BytesPerPixel() <= dstSurf->BytesPerPixel());
+
+	assert(srcSurf->Size().PosX() <= dstSurf->Size().PosX());
+	assert(srcSurf->Size().PosY() <= dstSurf->Size().PosY());
+
 	uint8_t bpp = srcSurf->BytesPerPixel();
 
 	switch (bpp)
