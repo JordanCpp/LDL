@@ -1,9 +1,11 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Graphics/Base/BaseScreenshoter.hpp>
 
+using namespace LDL::Graphics;
+
 void Create()
 {
-	LDL::Graphics::BaseScreenshoter baseScreenshoter;
+	BaseScreenshoter baseScreenshoter;
 
 	LDL_TEST_EQUAL(baseScreenshoter.Prefix().length() > 0);
 }

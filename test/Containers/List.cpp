@@ -1,9 +1,11 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Containers/List.hpp>
 
+using namespace LDL::Containers;
+
 void Node()
 {
-	LDL::Containers::ListNode<size_t> listNode;
+	ListNode<size_t> listNode;
 
 	LDL_TEST_EQUAL(listNode.Next == NULL);
 	LDL_TEST_EQUAL(listNode.Prev == NULL);
@@ -11,7 +13,7 @@ void Node()
 
 void Init()
 {
-	LDL::Containers::List<size_t> list;
+	List<size_t> list;
 
 	LDL_TEST_EQUAL(list.Head == NULL);
 	LDL_TEST_EQUAL(list.Tail == NULL);
@@ -21,11 +23,11 @@ void Append()
 {
 	const size_t limit = 128;
 
-	LDL::Containers::List<size_t> list;
+	List<size_t> list;
 
 	for (size_t i = 0; i < limit; i++)
 	{
-		LDL::Containers::ListNode<size_t>* element = new LDL::Containers::ListNode<size_t>;
+		ListNode<size_t>* element = new ListNode<size_t>;
 
 		element->Content = i;
 
@@ -34,7 +36,7 @@ void Append()
 
 	size_t j = 0;
 
-	for (LDL::Containers::ListNode<size_t> * i = list.Head; i != nullptr; i = i->Next)
+	for (ListNode<size_t> * i = list.Head; i != nullptr; i = i->Next)
 	{
 		LDL_TEST_EQUAL(i->Content == j);
 
@@ -46,9 +48,9 @@ void Remove()
 {
 	const size_t limit = 128;
 
-	LDL::Containers::List<size_t> list;
+	List<size_t> list;
 
-	LDL::Containers::ListNode<size_t>* element = new LDL::Containers::ListNode<size_t>;
+	ListNode<size_t>* element = new ListNode<size_t>;
 
 	list.Append(element);
 

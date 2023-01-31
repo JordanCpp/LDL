@@ -13,11 +13,11 @@ namespace LDL
 		public:
 			TextRasterizer(LDL::Allocators::Allocator* allocator);
 			~TextRasterizer();
-			LDL::Graphics::Surface* Result();
+			Surface* Result();
 			void Create(LDL::Loaders::FontLoader * fontBufferLoader, size_t size, const std::string& text);
 		private:
 			LDL::Allocators::Allocator* _Allocator;
-			LDL::Graphics::Surface* _Result;
+			Surface* _Result;
 			uint8_t* _Bitmap;
 		};
 	}

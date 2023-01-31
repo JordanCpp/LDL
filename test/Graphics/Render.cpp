@@ -5,15 +5,17 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 
+using namespace LDL::Graphics;
+
 int main()
 {
 	try
 	{
 		const std::string title = "LDL Window title!";
 
-		LDL::Graphics::Window window(LDL::Graphics::Point2u(1, 2), LDL::Graphics::Point2u(640, 480), title);
+		Window window(Point2u(1, 2), Point2u(640, 480), title);
 
-		LDL::Graphics::Render render(&window);
+		Render render(&window);
 
 		LDL_TEST_EQUAL(render.Size().PosX() > 0);
 		LDL_TEST_EQUAL(render.Size().PosX() <= 640);

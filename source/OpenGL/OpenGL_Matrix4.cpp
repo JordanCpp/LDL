@@ -1,9 +1,11 @@
 #include <LDL/OpenGL/OpenGL_Matrix4.hpp>
 #include <math.h>
 
+using namespace LDL;
+
 const GLdouble NumberPi = 3.14159265358979323846;
 
-LDL::Matrix4::Matrix4()
+Matrix4::Matrix4()
 {
 	for (size_t i = 0; i < Max; i++)
 	{
@@ -11,12 +13,12 @@ LDL::Matrix4::Matrix4()
 	}
 }
 
-GLdouble* LDL::Matrix4::Values()
+GLdouble* Matrix4::Values()
 {
 	return _Values;
 }
 
-void LDL::Matrix4::Identity()
+void Matrix4::Identity()
 {
 	_Values[0]  = 1;
 	_Values[1]  = 0;
@@ -36,7 +38,7 @@ void LDL::Matrix4::Identity()
 	_Values[15] = 1;
 }
 
-void LDL::Matrix4::Perspective(GLdouble fovy, GLdouble aspect, GLdouble zNear, GLdouble zFar)
+void Matrix4::Perspective(GLdouble fovy, GLdouble aspect, GLdouble zNear, GLdouble zFar)
 {
 	GLdouble f = 1 / tan(fovy * (NumberPi / 360.0f));
 
@@ -60,4 +62,3 @@ void LDL::Matrix4::Perspective(GLdouble fovy, GLdouble aspect, GLdouble zNear, G
 	_Values[14] = 2 * zFar * zNear / (zNear - zFar);
 	_Values[15] = 0;
 }
-

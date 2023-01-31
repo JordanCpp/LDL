@@ -1,7 +1,9 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <assert.h>
 
-LDL::Allocators::FixedLinear::FixedLinear(size_t bytes, LDL::Allocators::Allocator* allocator):
+using namespace LDL::Allocators;
+
+FixedLinear::FixedLinear(size_t bytes, Allocator* allocator):
 	_Capacity(bytes),
 	_Position(0),
 	_Content(NULL),
@@ -13,7 +15,7 @@ LDL::Allocators::FixedLinear::FixedLinear(size_t bytes, LDL::Allocators::Allocat
 		_Content = new uint8_t[_Capacity];
 }
 
-LDL::Allocators::FixedLinear::~FixedLinear()
+FixedLinear::~FixedLinear()
 {
 	if (_Allocator)
 		_Allocator->Deallocate(_Content);
@@ -21,7 +23,7 @@ LDL::Allocators::FixedLinear::~FixedLinear()
 		delete[] _Content;
 }
 
-void* LDL::Allocators::FixedLinear::Allocate(size_t bytes)
+void* FixedLinear::Allocate(size_t bytes)
 {
 	assert(bytes > 0);
 
@@ -34,16 +36,16 @@ void* LDL::Allocators::FixedLinear::Allocate(size_t bytes)
 	return result;
 }
 
-void LDL::Allocators::FixedLinear::Deallocate(void* ptr)
+void FixedLinear::Deallocate(void* ptr)
 {
 }
 
-size_t LDL::Allocators::FixedLinear::UsedBytes()
+size_t FixedLinear::UsedBytes()
 {
 	return _Position;
 }
 
-void LDL::Allocators::FixedLinear::Reset()
+void FixedLinear::Reset()
 {
 	_Position = 0;
 }

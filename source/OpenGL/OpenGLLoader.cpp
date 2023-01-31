@@ -37,17 +37,17 @@ OpenGLLoader::~OpenGLLoader()
 {
 }
 
-bool LDL::OpenGLLoader::Equal(size_t major, size_t minor)
+bool OpenGLLoader::Equal(size_t major, size_t minor)
 {
 	return Major() == major && Minor() == minor;
 }
 
-size_t LDL::OpenGLLoader::Major()
+size_t OpenGLLoader::Major()
 {
 	return _Major;
 }
 
-size_t LDL::OpenGLLoader::Minor()
+size_t OpenGLLoader::Minor()
 {
 	return _Minor;
 }

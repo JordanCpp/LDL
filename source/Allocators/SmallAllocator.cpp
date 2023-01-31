@@ -2,7 +2,9 @@
 #include <assert.h>
 #include <math.h>
 
-LDL::Allocators::SmallAllocator::SmallAllocator(LDL::Allocators::Allocator* allocator) :
+using namespace LDL::Allocators;
+
+SmallAllocator::SmallAllocator(Allocator* allocator) :
 	_Allocator(allocator)
 {
 	for (size_t i = 0; i < Buckets; i++)
@@ -12,7 +14,7 @@ LDL::Allocators::SmallAllocator::SmallAllocator(LDL::Allocators::Allocator* allo
 	}
 }
 
-size_t LDL::Allocators::SmallAllocator::CalcBucket(size_t bytes)
+size_t SmallAllocator::CalcBucket(size_t bytes)
 {
 	assert(bytes <= 1024);
 
@@ -34,7 +36,7 @@ size_t LDL::Allocators::SmallAllocator::CalcBucket(size_t bytes)
 		return Overflow;
 }
 
-void* LDL::Allocators::SmallAllocator::Allocate(size_t bytes)
+void* SmallAllocator::Allocate(size_t bytes)
 {
 	size_t bucket = CalcBucket(bytes);
 
@@ -58,7 +60,7 @@ void* LDL::Allocators::SmallAllocator::Allocate(size_t bytes)
 	return result->Data;
 }
 
-void LDL::Allocators::SmallAllocator::Deallocate(void* ptr)
+void SmallAllocator::Deallocate(void* ptr)
 {
 	assert(ptr != NULL);
 
@@ -72,14 +74,14 @@ void LDL::Allocators::SmallAllocator::Deallocate(void* ptr)
 	Append(&_Table[bucket], node);
 }
 
-LDL::Allocators::SmallAllocator::Node* LDL::Allocators::SmallAllocator::ToNode(void* ptr)
+SmallAllocator::Node* LDL::Allocators::SmallAllocator::ToNode(void* ptr)
 {
 	assert(ptr != NULL);
 
 	return (Node*)(size_t)ptr - sizeof(Node) + sizeof(void*);
 }
 
-size_t LDL::Allocators::SmallAllocator::CalckSize(size_t bucket)
+size_t SmallAllocator::CalckSize(size_t bucket)
 {
 	assert(bucket <= Buckets);
 
@@ -101,7 +103,7 @@ size_t LDL::Allocators::SmallAllocator::CalckSize(size_t bucket)
 		return Overflow;
 }
 
-void LDL::Allocators::SmallAllocator::Append(List* list, Node* node)
+void SmallAllocator::Append(List* list, Node* node)
 {
 	node->Next = NULL;
 	node->Prev = list->Tail;
@@ -119,7 +121,7 @@ void LDL::Allocators::SmallAllocator::Append(List* list, Node* node)
 	}
 }
 
-void LDL::Allocators::SmallAllocator::Remove(List* list, Node* node)
+void SmallAllocator::Remove(List* list, Node* node)
 {
 	if (node->Prev)
 	{

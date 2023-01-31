@@ -1,16 +1,18 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Graphics/PixelConverter.hpp>
 
+using namespace LDL::Graphics;
+
 void Fill()
 {
-	LDL::Graphics::Point2u size(800, 600);
+	Point2u size(800, 600);
 	uint8_t bytesPerPixel = 4;
 
-	LDL::Graphics::Color* pixels = new LDL::Graphics::Color[size.PosX() * size.PosY()];
+	Color* pixels = new Color[size.PosX() * size.PosY()];
 
-	LDL::Graphics::PixelConverter pixelConverter;
+	PixelConverter pixelConverter;
 
-	pixelConverter.Fill((uint8_t*)pixels, size, bytesPerPixel, LDL::Graphics::Color(1, 2, 3, 4));
+	pixelConverter.Fill((uint8_t*)pixels, size, bytesPerPixel, Color(1, 2, 3, 4));
 
 	for (size_t i = 0; i < size.PosX() * size.PosY(); i++)
 	{
@@ -25,14 +27,14 @@ void Fill()
 
 void BgrToRgb()
 {
-	LDL::Graphics::Point2u size(800, 600);
+	Point2u size(800, 600);
 	uint8_t bytesPerPixel = 4;
 
-	LDL::Graphics::Color* pixels = new LDL::Graphics::Color[size.PosX() * size.PosY()];
+	Color* pixels = new Color[size.PosX() * size.PosY()];
 
-	LDL::Graphics::PixelConverter pixelConverter;
+	PixelConverter pixelConverter;
 
-	pixelConverter.Fill((uint8_t*)pixels, size, bytesPerPixel, LDL::Graphics::Color(1, 2, 3, 4));
+	pixelConverter.Fill((uint8_t*)pixels, size, bytesPerPixel, Color(1, 2, 3, 4));
 
 	pixelConverter.BgrToRgb((uint8_t*)pixels, size, bytesPerPixel);
 
@@ -49,14 +51,14 @@ void BgrToRgb()
 
 void RgbToBgr()
 {
-	LDL::Graphics::Point2u size(800, 600);
+	Point2u size(800, 600);
 	uint8_t bytesPerPixel = 4;
 
-	LDL::Graphics::Color* pixels = new LDL::Graphics::Color[size.PosX() * size.PosY()];
+	Color* pixels = new Color[size.PosX() * size.PosY()];
 
-	LDL::Graphics::PixelConverter pixelConverter;
+	PixelConverter pixelConverter;
 
-	pixelConverter.Fill((uint8_t*)pixels, size, bytesPerPixel, LDL::Graphics::Color(1, 2, 3, 4));
+	pixelConverter.Fill((uint8_t*)pixels, size, bytesPerPixel, Color(1, 2, 3, 4));
 
 	pixelConverter.BgrToRgb((uint8_t*)pixels, size, bytesPerPixel);
 

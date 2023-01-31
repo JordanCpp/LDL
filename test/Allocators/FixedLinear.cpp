@@ -1,20 +1,22 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 
+using namespace LDL::Allocators;
+
 void Init()
 {
-	const size_t bytes = LDL::Allocators::Allocator::Mb * 1;
+	const size_t bytes = Allocator::Mb * 1;
 
-	LDL::Allocators::FixedLinear allocator(bytes);
+	FixedLinear allocator(bytes);
 
 	LDL_TEST_EQUAL(allocator.UsedBytes() == 0);
 }
 
 void Allocate()
 {
-	const size_t bytes = LDL::Allocators::Allocator::Mb * 1;
+	const size_t bytes = Allocator::Mb * 1;
 
-	LDL::Allocators::FixedLinear allocator(bytes);
+	FixedLinear allocator(bytes);
 
 	for (size_t i = 0; i < bytes; i++)
 	{
@@ -27,9 +29,9 @@ void Allocate()
 
 void Reset()
 {
-	const size_t bytes = LDL::Allocators::Allocator::Mb * 1;
+	const size_t bytes = Allocator::Mb * 1;
 
-	LDL::Allocators::FixedLinear allocator(bytes);
+	FixedLinear allocator(bytes);
 
 	void* ptr = allocator.Allocate(1024);
 

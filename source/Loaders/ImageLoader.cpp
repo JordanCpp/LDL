@@ -38,7 +38,10 @@ void* ReallocateSized(void* ptr, size_t Oldbytes, size_t Newbytes)
 #define STBI_NO_SIMD
 #include "../dependencies/stb/stb_image.h"  
 
-LDL::Loaders::ImageLoader::ImageLoader(LDL::Allocators::Allocator* allocator) :
+using namespace LDL::Graphics;
+using namespace LDL::Loaders;
+
+ImageLoader::ImageLoader(LDL::Allocators::Allocator* allocator) :
 	_Allocator(allocator),
 	_BytesPerPixel(0),
 	_Pixels(NULL)
@@ -48,12 +51,12 @@ LDL::Loaders::ImageLoader::ImageLoader(LDL::Allocators::Allocator* allocator) :
 	StbImageAllocator = _Allocator;
 }
 
-LDL::Loaders::ImageLoader::~ImageLoader()
+ImageLoader::~ImageLoader()
 {
 	Clear();
 }
 
-void LDL::Loaders::ImageLoader::Clear()
+void ImageLoader::Clear()
 {
 	_Allocator->Reset();
 	_Pixels = NULL;
@@ -61,22 +64,22 @@ void LDL::Loaders::ImageLoader::Clear()
 	_BytesPerPixel = 0;
 }
 
-const LDL::Graphics::Point2u& LDL::Loaders::ImageLoader::Size()
+const Point2u& ImageLoader::Size()
 {
 	return _Size;
 }
 
-uint8_t LDL::Loaders::ImageLoader::BytesPerPixel()
+uint8_t ImageLoader::BytesPerPixel()
 {
 	return _BytesPerPixel;
 }
 
-uint8_t* LDL::Loaders::ImageLoader::Pixels()
+uint8_t* ImageLoader::Pixels()
 {
 	return _Pixels;
 }
 
-void LDL::Loaders::ImageLoader::Load(const std::string& path)
+void ImageLoader::Load(const std::string& path)
 {
 	if (path.empty())
 		throw LDL::Core::RuntimeError("Argument path is empty");
@@ -92,11 +95,11 @@ void LDL::Loaders::ImageLoader::Load(const std::string& path)
 	if (width <= 0 || height <= 0 || bytesPerPixel <= 0 || _Pixels == NULL)
 		throw LDL::Core::RuntimeError("stbi_load " + path + " failed");
 
-	_Size = LDL::Graphics::Point2u(width, height);
+	_Size = Point2u(width, height);
 	_BytesPerPixel = bytesPerPixel;
 }
 
-void LDL::Loaders::ImageLoader::Load(const LDL::Graphics::Color& color, const std::string& path)
+void ImageLoader::Load(const Color& color, const std::string& path)
 {
 	Load(path);
 

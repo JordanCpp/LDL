@@ -16,6 +16,7 @@ source\Graphics\Base\*.cpp ^
 source\Graphics\Software\Surface.cpp ^
 source\Graphics\OpenGL1\*.cpp ^
 source\Graphics\Primitives\*.cpp ^
+source\Graphics\Utils\*.cpp ^
 source\Loaders\*.cpp ^
 source\OpenGL\*.cpp ^
 -Iinclude\ ^

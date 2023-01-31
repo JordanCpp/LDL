@@ -9,7 +9,9 @@ static LDL::Allocators::Allocator* StbTrueTypeAllocator;
 #define STB_TRUETYPE_IMPLEMENTATION 
 #include "../dependencies/stb/stb_truetype.h"
 
-LDL::Graphics::TextRasterizer::TextRasterizer(LDL::Allocators::Allocator* allocator) :
+using namespace LDL::Graphics;
+
+TextRasterizer::TextRasterizer(LDL::Allocators::Allocator* allocator) :
 	_Allocator(allocator),
 	_Result(NULL),
 	_Bitmap(NULL)
@@ -19,16 +21,16 @@ LDL::Graphics::TextRasterizer::TextRasterizer(LDL::Allocators::Allocator* alloca
 	StbTrueTypeAllocator = _Allocator;
 }
 
-LDL::Graphics::TextRasterizer::~TextRasterizer()
+TextRasterizer::~TextRasterizer()
 {
 }
 
-LDL::Graphics::Surface* LDL::Graphics::TextRasterizer::Result()
+Surface* TextRasterizer::Result()
 {
 	return _Result;
 }
 
-void LDL::Graphics::TextRasterizer::Create(LDL::Loaders::FontLoader* fontBufferLoader, size_t size, const std::string& text)
+void TextRasterizer::Create(LDL::Loaders::FontLoader* fontBufferLoader, size_t size, const std::string& text)
 {
 	stbtt_fontinfo info;
 

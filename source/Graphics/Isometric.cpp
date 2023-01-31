@@ -2,7 +2,7 @@
 
 using namespace LDL::Graphics;
 
-const Point2u& LDL::Graphics::Isometric::CartesianToIsometric(const Point2u& pt)
+const Point2u& Isometric::CartesianToIsometric(const Point2u& pt)
 {
 	size_t x = pt.PosX() - pt.PosY();
 	size_t y = (pt.PosX() + pt.PosY()) / 2;
@@ -12,7 +12,7 @@ const Point2u& LDL::Graphics::Isometric::CartesianToIsometric(const Point2u& pt)
 	return _Result;
 }
 
-const Point2u& LDL::Graphics::Isometric::IsometricToCartesian(const Point2u& pt)
+const Point2u& Isometric::IsometricToCartesian(const Point2u& pt)
 {
 	size_t x = (2 * pt.PosY() + pt.PosX()) / 2;
 	size_t y = (2 * pt.PosY() - pt.PosX()) / 2;

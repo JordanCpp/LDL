@@ -1,9 +1,11 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Core/Directory.hpp>
 
+using namespace LDL::Core;
+
 void Open()
 {
-	LDL::Core::Directory directory;
+	Directory directory;
 
 	LDL_TEST_EQUAL(directory.Open("*") == true);
 	LDL_TEST_EQUAL(directory.Open("blabla") == false);
@@ -11,11 +13,11 @@ void Open()
 
 void Next()
 {
-	LDL::Core::Directory directory;
+	Directory directory;
 
 	if (directory.Open("*"))
 	{
-		LDL::Core::FileInfo fileInfo;
+		FileInfo fileInfo;
 
 		while (directory.Next(fileInfo))
 		{
@@ -26,7 +28,7 @@ void Next()
 
 void Create()
 {
-	LDL::Core::Directory directory;
+	Directory directory;
 
 	LDL_TEST_EQUAL(directory.Create("TestFiles/Test") == true);
 	LDL_TEST_EQUAL(directory.Create("TestFiles/Test") == false);
@@ -34,14 +36,14 @@ void Create()
 
 void Exist()
 {
-	LDL::Core::Directory directory;
+	Directory directory;
 
 	LDL_TEST_EQUAL(directory.Exist("TestFiles/Test") == true);
 }
 
 void Delete()
 {
-	LDL::Core::Directory directory;
+	Directory directory;
 
 	LDL_TEST_EQUAL(directory.Delete("TestFiles/Test") == true);
 	LDL_TEST_EQUAL(directory.Delete("TestFiles/Test") == false);

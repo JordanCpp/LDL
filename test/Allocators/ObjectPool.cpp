@@ -2,13 +2,15 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Allocators/ObjectPool.hpp>
 
-void ObjectPool()
+using namespace LDL::Allocators;
+
+void ObjectPoolTest()
 {
-	const size_t bytes = LDL::Allocators::Allocator::Mb * 1;
+	const size_t bytes = Allocator::Mb * 1;
 
-	LDL::Allocators::FixedLinear allocator(bytes);
+	FixedLinear allocator(bytes);
 
-	LDL::Allocators::ObjectPool<size_t> objectPool(&allocator);
+	ObjectPool<size_t> objectPool(&allocator);
 
 	size_t* p1 = objectPool.New();
 
@@ -26,7 +28,7 @@ void ObjectPool()
 
 int main()
 {
-	ObjectPool();
+	ObjectPoolTest();
 
 	return 0;
 }

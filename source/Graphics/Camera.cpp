@@ -18,22 +18,22 @@ const Point2u& Camera::Size()
 	return _Size;
 }
 
-void LDL::Graphics::Camera::PosX(size_t x)
+void Camera::PosX(size_t x)
 {
 	_Pos.PosX(x);
 }
 
-void LDL::Graphics::Camera::PosY(size_t y)
+void Camera::PosY(size_t y)
 {
 	_Pos.PosY(y);
 }
 
-void LDL::Graphics::Camera::SizeX(size_t x)
+void Camera::SizeX(size_t x)
 {
 	_Size.PosX(x);
 }
 
-void LDL::Graphics::Camera::SizeY(size_t y)
+void Camera::SizeY(size_t y)
 {
 	_Size.PosY(y);
 }

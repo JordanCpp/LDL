@@ -10,7 +10,7 @@ RenderImpl::RenderImpl(Window* window) :
 	_PixelPainter.Bind(&_Canvas);
 }
 
-void LDL::Graphics::RenderImpl::Buffer(uint8_t* dst)
+void RenderImpl::Buffer(uint8_t* dst)
 {
 }
 

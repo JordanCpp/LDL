@@ -1,9 +1,11 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Graphics/Base/BaseRender.hpp>
 
+using namespace LDL::Graphics;
+
 void Init()
 {
-	LDL::Graphics::BaseRender baseRender(LDL::Graphics::Point2u(800, 600));
+	BaseRender baseRender(Point2u(800, 600));
 
 	LDL_TEST_EQUAL(baseRender.Size().PosX() == 800);
 	LDL_TEST_EQUAL(baseRender.Size().PosY() == 600);
@@ -14,11 +16,11 @@ void Init()
 	LDL_TEST_EQUAL(baseRender.Color().Alpha() == 255);
 }
 
-void Color()
+void ColorCheck()
 {
-	LDL::Graphics::BaseRender baseRender(LDL::Graphics::Point2u(800, 600));
+	BaseRender baseRender(Point2u(800, 600));
 
-	baseRender.Color(LDL::Graphics::Color(125, 175, 235));
+	baseRender.Color(Color(125, 175, 235));
 
 	LDL_TEST_EQUAL(baseRender.Size().PosX() == 800);
 	LDL_TEST_EQUAL(baseRender.Size().PosY() == 600);
@@ -32,7 +34,7 @@ void Color()
 int main()
 {
 	Init();
-	Color();
+	ColorCheck();
 
 	return 0;
 }

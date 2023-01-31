@@ -35,7 +35,7 @@ void PixelCopier::Copy24(Surface* srcSurf, Surface* dstSurf, const Point2u& pos)
 	Copy32(srcSurf, dstSurf, pos);
 }
 
-void LDL::Graphics::PixelCopier::Copy32(Surface* srcSurf, Surface* dstSurf, const Point2u& pos)
+void PixelCopier::Copy32(Surface* srcSurf, Surface* dstSurf, const Point2u& pos)
 {
 	uint8_t dstBpp = dstSurf->BytesPerPixel();
 	uint8_t srcBpp = srcSurf->BytesPerPixel();

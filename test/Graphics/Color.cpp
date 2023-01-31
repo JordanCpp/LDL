@@ -1,9 +1,11 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Graphics/Primitives/Color.hpp>
 
+using namespace LDL::Graphics;
+
 void Default()
 {
-	LDL::Graphics::Color color;
+	Color color;
 
 	LDL_TEST_EQUAL(color.Red() == 0);
 	LDL_TEST_EQUAL(color.Green() == 0);
@@ -13,7 +15,7 @@ void Default()
 
 void NoAlpha()
 {
-	LDL::Graphics::Color color(15, 20, 25);
+	Color color(15, 20, 25);
 
 	LDL_TEST_EQUAL(color.Red() == 15);
 	LDL_TEST_EQUAL(color.Green() == 20);
@@ -23,7 +25,7 @@ void NoAlpha()
 
 void YesAlpha()
 {
-	LDL::Graphics::Color color(15, 20, 25, 100);
+	Color color(15, 20, 25, 100);
 
 	LDL_TEST_EQUAL(color.Red() == 15);
 	LDL_TEST_EQUAL(color.Green() == 20);
