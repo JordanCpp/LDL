@@ -171,5 +171,6 @@ if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX1)
 endif()
 
 add_subdirectory("test")
+add_subdirectory("Games")
 add_subdirectory("Examples")
 add_subdirectory("Tutorials")
