@@ -9,7 +9,8 @@ Engine::Engine(Settings* settings) :
 	_ImageAllocator(Allocator::Mb * 2),
 	_ImageLoader(&_ImageAllocator),
 	_Window(Point2u(0,0), _Settings->Size(), _Settings->Title()),
-	_Render(&_Window)
+	_Render(&_Window),
+	_FpsLimiter(_Settings->Fps())
 {
 }
 
