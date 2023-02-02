@@ -11,6 +11,7 @@ namespace Disciples
 		class Settings
 		{
 		public:
+			Settings();
 			const std::string& Path();
 			void Path(const std::string& path);
 			const std::string& Title();

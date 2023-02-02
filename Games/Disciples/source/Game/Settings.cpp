@@ -2,6 +2,11 @@
 
 using namespace Disciples::Game;
 
+Settings::Settings() : 
+	_Fps(0)
+{
+}
+
 const std::string& Settings::Path()
 {
 	return _Path;
