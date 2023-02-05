@@ -79,6 +79,30 @@ uint8_t* ImageLoader::Pixels()
 	return _Pixels;
 }
 
+void ImageLoader::CopyIf(uint8_t* dstPixels, uint8_t * srcPixels, size_t bytes, const Color& color, uint8_t alpha)
+{
+	for (size_t i = 0; i < bytes; i++)
+	{
+		if (srcPixels[3 * i + 0] == color.Red() && srcPixels[3 * i + 1] == color.Green() && srcPixels[3 * i + 2] == color.Blue())
+		{
+			dstPixels[4 * i + 0] = 0;
+			dstPixels[4 * i + 1] = 0;
+			dstPixels[4 * i + 2] = 0;
+			dstPixels[4 * i + 3] = 0;
+		}
+		else
+		{
+			dstPixels[4 * i + 0] = srcPixels[3 * i + 0];
+			dstPixels[4 * i + 1] = srcPixels[3 * i + 1];
+			dstPixels[4 * i + 2] = srcPixels[3 * i + 2];
+			dstPixels[4 * i + 3] = alpha;
+		}
+
+		_Pixels = dstPixels;
+		_BytesPerPixel = 4;
+	}
+}
+
 void ImageLoader::Load(const std::string& path)
 {
 	if (path.empty())
@@ -105,28 +129,42 @@ void ImageLoader::Load(const Color& color, const std::string& path)
 
 	uint8_t* srcPixels = Pixels();
 
-	size_t bytes = Size().PosX() * Size().PosY() * 4;
+	size_t dstBytes = Size().PosX() * Size().PosY() * 4;
 
-	uint8_t* dstPixels = (uint8_t*)_Allocator->Allocate(bytes);
+	uint8_t* dstPixels = (uint8_t*)_Allocator->Allocate(dstBytes);
 
-	for (size_t i = 0; i < bytes; i++)
-	{
-		if (srcPixels[3 * i + 0] == color.Red() && srcPixels[3 * i + 1] == color.Green() && srcPixels[3 * i + 2] == color.Blue())
-		{
-			dstPixels[4 * i + 0] = 0;
-			dstPixels[4 * i + 1] = 0;
-			dstPixels[4 * i + 2] = 0;
-			dstPixels[4 * i + 3] = 0;
-		}
-		else
-		{
-			dstPixels[4 * i + 0] = srcPixels[3 * i + 0];
-			dstPixels[4 * i + 1] = srcPixels[3 * i + 1];
-			dstPixels[4 * i + 2] = srcPixels[3 * i + 2];
-			dstPixels[4 * i + 3] = 255;
-		}
+	CopyIf(dstPixels, srcPixels, dstBytes, color, 255);
+}
 
-		_Pixels = dstPixels;
-		_BytesPerPixel = 4;
-	}
+void ImageLoader::Load(uint8_t* data, size_t bytes)
+{
+	assert(data != NULL);
+	assert(bytes > 0);
+
+	Clear();
+
+	int width         = 0;
+	int height        = 0;
+	int bytesPerPixel = 0;
+
+	_Pixels = stbi_load_from_memory(data, bytes, &width, &height, &bytesPerPixel, 0);
+
+	if (width <= 0 || height <= 0 || bytesPerPixel <= 0 || _Pixels == NULL)
+		throw LDL::Core::RuntimeError("stbi_load_from_memory failed");
+
+	_Size = Point2u(width, height);
+	_BytesPerPixel = bytesPerPixel;
+}
+
+void ImageLoader::Load(const Color& color, uint8_t* data, size_t bytes)
+{
+	Load(data, bytes);
+
+	uint8_t* srcPixels = Pixels();
+
+	size_t dstBytes = Size().PosX() * Size().PosY() * 4;
+
+	uint8_t* dstPixels = (uint8_t*)_Allocator->Allocate(dstBytes);
+
+	CopyIf(dstPixels, srcPixels, dstBytes, color, 255);
 }
