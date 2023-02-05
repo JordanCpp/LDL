@@ -147,7 +147,7 @@ void ImageLoader::Load(uint8_t* data, size_t bytes)
 	int height        = 0;
 	int bytesPerPixel = 0;
 
-	_Pixels = stbi_load_from_memory(data, bytes, &width, &height, &bytesPerPixel, 0);
+	_Pixels = stbi_load_from_memory(data, (int)bytes, &width, &height, &bytesPerPixel, 0);
 
 	if (width <= 0 || height <= 0 || bytesPerPixel <= 0 || _Pixels == NULL)
 		throw LDL::Core::RuntimeError("stbi_load_from_memory failed");
