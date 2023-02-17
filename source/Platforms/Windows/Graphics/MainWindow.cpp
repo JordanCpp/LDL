@@ -180,15 +180,20 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_KEYDOWN:
-        event.Type = LDL::Events::IsKeyboard;
-        event.Keyboard.State = LDL::Enums::ButtonState::Pressed;
-        event.Keyboard.Key = ConvertKey(WParam);
+        if ((HIWORD(LParam) & KF_REPEAT) == 0)
+        {
+            event.Type = LDL::Events::IsKeyboard;
+            event.Keyboard.State = LDL::Enums::ButtonState::Pressed;
+            event.Keyboard.Key = ConvertKey(WParam);
+            _Eventer.Push(event);
+        }
         break;
 
     case WM_KEYUP:
         event.Type = LDL::Events::IsKeyboard;
         event.Keyboard.State = LDL::Enums::ButtonState::Released;
         event.Keyboard.Key = ConvertKey(WParam);
+        _Eventer.Push(event);
         break;
     }
 

@@ -39,6 +39,10 @@ int main()
 		Point2u mapSize = Point2u(9, 9);
 		Point2u tileSize = Point2u(80, 40);
 
+		size_t dx = 0;
+		size_t dy = 0;
+		size_t step = tileSize.PosX() / 2;
+
 		while (window.GetEvent(report))
 		{
 			fpsLimiter.Mark();
@@ -59,13 +63,36 @@ int main()
 
 					Point2u pt = isometric.CartesianToIsometric(Point2u(x, y));
 
-					render.Draw(&image, Point2u(start.PosX() + pt.PosX(), start.PosY() + pt.PosY()));
+					render.Draw(&image, Point2u(start.PosX() + pt.PosX() + dx, start.PosY() + pt.PosY() + dy));
 				}
 			}
 
 			render.End();
 
 			fpsLimiter.Throttle();
+
+			if (report.Type == LDL::Events::IsKeyboard && report.Keyboard.State == LDL::Enums::ButtonState::Pressed)
+			{
+				if (report.Keyboard.Key == LDL::Enums::KeyboardKey::W)
+				{
+					dy -= step;
+				}
+
+				if (report.Keyboard.Key == LDL::Enums::KeyboardKey::S)
+				{
+					dy += step;;
+				}
+
+				if (report.Keyboard.Key == LDL::Enums::KeyboardKey::A)
+				{
+					dx -= step;;
+				}
+
+				if (report.Keyboard.Key == LDL::Enums::KeyboardKey::D)
+				{
+					dx += step;;
+				}
+			}
 
 			if (report.Type == LDL::Events::IsQuit)
 			{
