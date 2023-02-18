@@ -5,7 +5,8 @@ using namespace LDL::Graphics;
 RenderImpl::RenderImpl(Window* window) :
 	_Window(window),
 	_BaseRender(_Window->View()),
-	_Canvas(_Window->Size(), 4)
+	_Canvas(_Window->Size(), 4),
+	_ImageResizer(_Window->Size())
 {
 	_PixelPainter.Bind(&_Canvas);
 }
@@ -60,7 +61,7 @@ void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
 
 void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
 {
-	_PixelCopier.Copy(image->GetTextureImpl()->GetSurface(), &_Canvas, pos);
+	Draw(image->GetTextureImpl()->GetSurface(), pos, size);
 }
 
 void RenderImpl::Draw(Texture* image, const Point2u& pos)
@@ -70,7 +71,15 @@ void RenderImpl::Draw(Texture* image, const Point2u& pos)
 
 void RenderImpl::Draw(Surface* image, const Point2u& pos, const Point2u& size)
 {
-	_PixelCopier.Copy(image, &_Canvas, pos);
+	if (size.PosX() != image->Size().PosX() || size.PosY() != image->Size().PosY())
+	{
+		Surface* result = _ImageResizer.Resize(size, image);
+		_PixelCopier.Copy(result, &_Canvas, pos);
+	}
+	else
+	{
+		_PixelCopier.Copy(image, &_Canvas, pos);
+	}
 }
 
 void RenderImpl::Draw(Surface* image, const Point2u& pos)

@@ -3,6 +3,7 @@
 
 #include <LDL/Core/Types.hpp>
 #include <LDL/Core/RuntimeError.hpp>
+#include <iostream>
 
 namespace LDL
 {

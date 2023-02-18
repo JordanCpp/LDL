@@ -9,5 +9,6 @@ call MinGW_Build.bat 07_Motion.exe          Examples\Graphics\07_Motion\main.cpp
 call MinGW_Build.bat 08_Surface.exe         Examples\Graphics\08_Surface\main.cpp
 call MinGW_Build.bat 09_ColorKey.exe        Examples\Graphics\09_ColorKey\main.cpp
 call MinGW_Build.bat 10_TileMap.exe         Examples\Graphics\10_TileMap\main.cpp
+call MinGW_Build.bat 11_Resize.exe          Examples\Graphics\11_Resize\main.cpp
 
 pause

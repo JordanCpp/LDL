@@ -8,3 +8,4 @@ call VC6_Build.bat 06_Click.exe           Examples\Graphics\06_Click\main.cpp
 call VC6_Build.bat 07_Motion.exe          Examples\Graphics\07_Motion\main.cpp
 call VC6_Build.bat 08_Surface.exe         Examples\Graphics\08_Surface\main.cpp
 call VC6_Build.bat 10_TileMap.exe         Examples\Graphics\10_TileMap\main.cpp
+call VC6_Build.bat 11_Resize.exe          Examples\Graphics\11_Resize\main.cpp

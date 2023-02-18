@@ -8,6 +8,7 @@
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Graphics/PixelPainter.hpp>
 #include <LDL/Graphics/PixelCopier.hpp>
+#include <LDL/Graphics/ImageResizer.hpp>
 
 namespace LDL
 {
@@ -38,6 +39,7 @@ namespace LDL
 			Surface _Canvas;
 			PixelPainter _PixelPainter;
 			PixelCopier _PixelCopier;
+			ImageResizer _ImageResizer;
 		};
 	}
 }
