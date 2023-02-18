@@ -2,7 +2,6 @@
 #include <LDL/Loaders/FontLoader.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Core/RuntimeError.hpp>
-#include <iostream>
 
 const size_t bytes = LDL::Allocators::Allocator::Mb * 1;
 

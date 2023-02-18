@@ -2,7 +2,6 @@
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
-#include <iostream>
 #include <fstream>
 
 uint8_t* FileSize(const std::string& path, size_t* bytes)

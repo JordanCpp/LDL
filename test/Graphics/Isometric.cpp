@@ -3,7 +3,7 @@
 
 using namespace LDL::Graphics;
 
-int main()
+void CartesianToIsometric()
 {
 	Isometric isometric;
 
@@ -11,11 +11,22 @@ int main()
 
 	LDL_TEST_EQUAL(iso.PosX() == 200);
 	LDL_TEST_EQUAL(iso.PosY() == 250);
+}
 
-	Point2u cart = isometric.IsometricToCartesian(iso);
+void IsometricToCartesian()
+{
+	Isometric isometric;
+
+	Point2u cart = isometric.IsometricToCartesian(Point2u(200, 250));
 
 	LDL_TEST_EQUAL(cart.PosX() == 350);
 	LDL_TEST_EQUAL(cart.PosY() == 150);
+}
+
+int main()
+{
+	CartesianToIsometric();
+	IsometricToCartesian();
 
 	return 0;
 }
