@@ -1,0 +1,2 @@
+
+del *.obj *.exe *.err
