@@ -24,6 +24,6 @@ opengl32.lib ^
 winmm.lib   ^
 user32.lib
 
-rename main.exe  %1
+rename main.exe %1
 
 del *.obj
