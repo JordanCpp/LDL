@@ -4,7 +4,6 @@ using namespace LDL::Graphics;
 
 RenderImpl::RenderImpl(Window* window) :
 	_Window(window),
-	_BaseRender(_Window->View()),
 	_Canvas(_Window->Size(), 4),
 	_ImageResizer(_Window->Size())
 {
@@ -26,7 +25,7 @@ void RenderImpl::End()
 
 const Point2u& RenderImpl::Size()
 {
-	return _BaseRender.Size();
+	return _Window->Size();
 }
 
 const Color& RenderImpl::Color()

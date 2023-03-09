@@ -1,12 +1,13 @@
 # Greetings!
 
 # Screenshots
-![0](Screenshots/10_TileMap.jpg)
-![1](Screenshots/1.jpg)
-![https://github.com/JordanCpp/Lib-LDL/tree/master/Tutorials/NeHe/06_TextureMapping](Screenshots/2.jpg)
-![3](Screenshots/3.jpg)
-![41](Screenshots/4.jpg)
-![5](Screenshots/5.jpg)
+![0](Screenshots/12_TileMap2.jpg)
+![1](Screenshots/10_TileMap.jpg)
+![2](Screenshots/1.jpg)
+![3](Screenshots/2.jpg)
+![4](Screenshots/3.jpg)
+![5](Screenshots/4.jpg)
+![6](Screenshots/5.jpg)
 
 # LDL - Little Directmedia Layer
 Free cross-platform library.

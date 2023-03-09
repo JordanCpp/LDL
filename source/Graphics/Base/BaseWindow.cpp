@@ -24,16 +24,6 @@ void BaseWindow::Size(const Point2u& size)
     _Size = size;
 }
 
-const Point2u& BaseWindow::View()
-{
-    return _View;
-}
-
-void BaseWindow::View(const Point2u& size)
-{
-    _View = size;
-}
-
 const std::string& BaseWindow::Title()
 {
     return _Title;

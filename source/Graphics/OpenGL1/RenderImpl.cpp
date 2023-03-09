@@ -6,18 +6,9 @@ using namespace LDL::Graphics;
 
 RenderImpl::RenderImpl(Window* window) :
 	_Window(window),
-	_BaseRender(_Window->View()),
-	_Screen(_BaseRender.Size())
+	_Screen(_Window->Size())
 {
-	GL_CHECK(glViewport(0, 0, (GLsizei)_BaseRender.Size().PosX(), (GLsizei)_BaseRender.Size().PosY()));
-
-	GL_CHECK(glMatrixMode(GL_PROJECTION));
-	GL_CHECK(glLoadIdentity());
-
-	GL_CHECK(glOrtho(0.0f, (GLdouble)_BaseRender.Size().PosX(), (GLdouble)_BaseRender.Size().PosY(), 0.0f, 0.0f, 1.0f));
-
-	GL_CHECK(glMatrixMode(GL_MODELVIEW));
-	GL_CHECK(glLoadIdentity());
+	Begin();
 
 	GL_CHECK(glEnable(GL_BLEND));
 	GL_CHECK(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
@@ -25,11 +16,20 @@ RenderImpl::RenderImpl(Window* window) :
 
 void LDL::Graphics::RenderImpl::Buffer(uint8_t* dst)
 {
-	GL_CHECK(glReadPixels(0, 0, (GLsizei)_BaseRender.Size().PosX(), (GLsizei)_BaseRender.Size().PosY(), GL_RGBA, GL_UNSIGNED_BYTE, dst));
+	GL_CHECK(glReadPixels(0, 0, (GLsizei)_Window->Size().PosX(), (GLsizei)_Window->Size().PosY(), GL_RGBA, GL_UNSIGNED_BYTE, dst));
 }
 
 void RenderImpl::Begin()
 {
+	GL_CHECK(glViewport(0, 0, (GLsizei)_Window->Size().PosX(), (GLsizei)_Window->Size().PosY()));
+
+	GL_CHECK(glMatrixMode(GL_PROJECTION));
+	GL_CHECK(glLoadIdentity());
+
+	GL_CHECK(glOrtho(0.0f, (GLdouble)_Window->Size().PosX(), (GLdouble)_Window->Size().PosY(), 0.0f, 0.0f, 1.0f));
+
+	GL_CHECK(glMatrixMode(GL_MODELVIEW));
+	GL_CHECK(glLoadIdentity());
 }
 
 void RenderImpl::End()
@@ -39,12 +39,12 @@ void RenderImpl::End()
 
 const Point2u& RenderImpl::Size()
 {
-	return _BaseRender.Size();
+	return _Window->Size();
 }
 
 const Color& RenderImpl::Color()
 {
-	return _BaseRender.Color();
+	return _Color;
 }
 
 void RenderImpl::Clear()
@@ -53,7 +53,7 @@ void RenderImpl::Clear()
 	GLclampf g;
 	GLclampf b;
 
-	Util::Normalize(_BaseRender.Color(), r, g, b);
+	Util::Normalize(_Color, r, g, b);
 
 	GL_CHECK(glClearColor(r, g, b, 1.0f));
 	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
@@ -61,7 +61,7 @@ void RenderImpl::Clear()
 
 void RenderImpl::Color(const LDL::Graphics::Color& color)
 {
-	_BaseRender.Color(color);
+	_Color = color;
 }
 
 void RenderImpl::Pixel(const Point2u& pos)
@@ -70,7 +70,7 @@ void RenderImpl::Pixel(const Point2u& pos)
 	GLclampf g;
 	GLclampf b;
 
-	Util::Normalize(_BaseRender.Color(), r, g, b);
+	Util::Normalize(_Color, r, g, b);
 
 	glBegin(GL_POINTS);
 	glColor3f(r, g, b);
@@ -84,7 +84,7 @@ void RenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
 	GLclampf g;
 	GLclampf b;
 
-	Util::Normalize(_BaseRender.Color(), r, g, b);
+	Util::Normalize(_Color, r, g, b);
 
 	GLint x1 = (GLint)pos1.PosX();
 	GLint y1 = (GLint)pos1.PosY();
@@ -104,7 +104,7 @@ void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
 	GLclampf g;
 	GLclampf b;
 
-	Util::Normalize(_BaseRender.Color(), r, g, b);
+	Util::Normalize(_Color, r, g, b);
 
 	GLint x = (GLint)pos.PosX();
 	GLint y = (GLint)pos.PosY();

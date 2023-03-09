@@ -11,8 +11,6 @@ void Init()
 	LDL_TEST_EQUAL(baseWindow.Pos().PosY() == 50);
 	LDL_TEST_EQUAL(baseWindow.Size().PosX() == 800);
 	LDL_TEST_EQUAL(baseWindow.Size().PosY() == 600);
-	LDL_TEST_EQUAL(baseWindow.View().PosX() == 0);
-	LDL_TEST_EQUAL(baseWindow.View().PosY() == 0);
 	LDL_TEST_EQUAL(baseWindow.Title() == "Hello world!");
 }
 
@@ -33,16 +31,6 @@ void ChangeSize()
 
 	LDL_TEST_EQUAL(baseWindow.Size().PosX() == 320);
 	LDL_TEST_EQUAL(baseWindow.Size().PosY() == 200);
-}
-
-void ChangeView()
-{
-	BaseWindow baseWindow(Point2u(25, 50), Point2u(800, 600), "Hello!");
-
-	baseWindow.View(Point2u(320, 200));
-
-	LDL_TEST_EQUAL(baseWindow.View().PosX() == 320);
-	LDL_TEST_EQUAL(baseWindow.View().PosY() == 200);
 }
 
 int main()

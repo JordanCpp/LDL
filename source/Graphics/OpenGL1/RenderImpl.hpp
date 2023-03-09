@@ -32,8 +32,8 @@ namespace LDL
 			void Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize);
 		private:
 			Window* _Window;
-			BaseRender _BaseRender;
 			Screen _Screen;
+			LDL::Graphics::Color _Color;
 		};
 	}
 }

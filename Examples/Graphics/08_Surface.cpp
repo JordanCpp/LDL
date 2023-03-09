@@ -14,8 +14,6 @@ int main()
 {
 	try
 	{
-		LDL::Allocators::FixedLinear graphicsAllocator(LDL::Allocators::Allocator::Mb * 1);
-
 		Window window(Point2u(0, 0), Point2u(800, 600), "Window!");
 
 		Render render(&window);

@@ -6,7 +6,7 @@ using namespace LDL::Graphics;
 
 RenderImpl::RenderImpl(Window* window) :
 	_Window(window),
-	_BaseRender(_Window->View())
+	_BaseRender(_Window->Size())
 {
     HRESULT result = DirectDrawCreate(NULL, &_DirectDraw, NULL);
 

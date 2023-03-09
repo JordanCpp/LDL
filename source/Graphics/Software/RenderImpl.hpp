@@ -35,7 +35,6 @@ namespace LDL
 			void Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize);
 		private:
 			Window* _Window;
-			BaseRender _BaseRender;
 			Surface _Canvas;
 			PixelPainter _PixelPainter;
 			PixelCopier _PixelCopier;

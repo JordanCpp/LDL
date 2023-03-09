@@ -15,8 +15,6 @@ namespace LDL
 			const Point2u& Pos();
 			const Point2u& Size();
 			void Size(const Point2u& size);
-			const Point2u& View();
-			void View(const Point2u& size);
 			const std::string& Title();
 			void Title(const std::string& source);
 		private:

@@ -59,11 +59,6 @@ const Point2u& Window::Size()
 	return _WindowImpl->Size();
 }
 
-const Point2u& Window::View()
-{
-	return _WindowImpl->View();
-}
-
 const Point2u& Window::Pos()
 {
 	return _WindowImpl->Pos();

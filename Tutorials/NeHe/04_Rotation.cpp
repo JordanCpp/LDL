@@ -14,19 +14,20 @@ const std::string LessonTittle = "Adding Color";
 GLfloat	rtri = 0;
 GLfloat	rquad = 0;
 
+LDL::Matrix4 projection;
+LDL::Matrix4 modelView;
+
 GLvoid Resize(GLsizei width, GLsizei height)
 {
 	glViewport(0, 0, width, height);
 
 	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-
-	LDL::Matrix4 projection;
 	projection.Perspective(45.0f, (GLfloat)width / (GLfloat)height, 0.1f, 100.0f);
 	glLoadMatrixd(projection.Values());
 
 	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	modelView.Identity();
+	glLoadMatrixd(modelView.Values());
 }
 
 GLvoid Init()
@@ -87,7 +88,6 @@ int main()
 		LDL::Core::IntegerToString convert;
 
 		Init();
-		Resize((GLsizei)window.Size().PosX(), (GLsizei)window.Size().PosY());
 
 		while (window.GetEvent(report))
 		{
@@ -95,6 +95,7 @@ int main()
 
 			render.Begin();
 
+			Resize((GLsizei)window.Size().PosX(), (GLsizei)window.Size().PosY());
 			Draw();
 
 			render.End();
@@ -102,11 +103,6 @@ int main()
 			if (report.Type == LDL::Events::IsQuit)
 			{
 				window.StopEvent();
-			}
-
-			if (report.Type == LDL::Events::IsResize)
-			{
-				Resize((GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
 			}
 
 			if (fpsCounter.Calc())

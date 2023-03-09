@@ -3,12 +3,12 @@
 
 using namespace LDL::Graphics;
 
-TextureImpl::TextureImpl(const Point2u& size, size_t bytesPerPixel, uint8_t* pixels)
+TextureImpl::TextureImpl(const Point2u& size, uint8_t* pixels, size_t bytesPerPixel)
 {
 	assert(size.PosX() > 0);
 	assert(size.PosY() > 0);
-	assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
 	assert(pixels != NULL);
+	assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
 }
 
 TextureImpl::~TextureImpl()

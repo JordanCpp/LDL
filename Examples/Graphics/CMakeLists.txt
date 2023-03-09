@@ -32,3 +32,6 @@ target_link_libraries(10_TileMap LDL)
 
 add_executable(11_Resize "11_Resize.cpp")
 target_link_libraries(11_Resize LDL)
+
+add_executable(12_TileMap2 "12_TileMap2.cpp")
+target_link_libraries(12_TileMap2 LDL)

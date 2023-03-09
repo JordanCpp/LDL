@@ -353,19 +353,14 @@ const std::string& MainWindow::Title()
 
 const Point2u& MainWindow::Size()
 {
-    return _BaseWindow.Size();
-}
-
-const Point2u& LDL::Graphics::MainWindow::View()
-{
     RECT rect;
-    
+
     if (!GetClientRect(_HWND, &rect))
         throw LDL::Core::RuntimeError("GetClientRect failed");
 
-    _BaseWindow.View(Point2u(rect.right, rect.bottom));
+    _BaseWindow.Size(Point2u(rect.right + 1, rect.bottom + 1));
 
-    return _BaseWindow.View();
+    return _BaseWindow.Size();
 }
 
 const Point2u& MainWindow::Pos()
