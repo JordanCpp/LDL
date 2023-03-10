@@ -5,8 +5,8 @@
 
 using namespace LDL::Graphics;
 
-const size_t TextureCount = 8;
-const size_t TextureSizes[TextureCount] = { 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
+const size_t TextureCount = 12;
+const size_t TextureSizes[TextureCount] = {32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
 
 void LDL::Graphics::Util::DrawQuad(const Point2u& pos, const Point2u& size)
 {
