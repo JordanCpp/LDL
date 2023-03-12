@@ -14,8 +14,8 @@ const std::string LessonTittle = "Adding Color";
 GLfloat	rtri = 0;
 GLfloat	rquad = 0;
 
-LDL::Matrix4 projection;
-LDL::Matrix4 modelView;
+LDL::Math::MatrixGLDouble projection;
+LDL::Math::MatrixGLDouble modelView;
 
 GLvoid Resize(GLsizei width, GLsizei height)
 {

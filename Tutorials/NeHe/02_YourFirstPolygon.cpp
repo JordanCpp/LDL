@@ -11,8 +11,8 @@ using namespace LDL::Graphics;
 
 const std::string LessonTittle = "Your First Polygon";
 
-LDL::Matrix4 projection;
-LDL::Matrix4 modelView;
+LDL::Math::MatrixGLDouble projection;
+LDL::Math::MatrixGLDouble modelView;
 
 GLvoid Resize(GLsizei width, GLsizei height)
 {

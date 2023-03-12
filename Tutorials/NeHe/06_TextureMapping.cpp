@@ -19,8 +19,8 @@ GLfloat	zrot;
 
 GLuint texture[1];
 
-LDL::Matrix4 projection;
-LDL::Matrix4 modelView;
+LDL::Math::MatrixGLDouble projection;
+LDL::Math::MatrixGLDouble modelView;
 
 GLvoid Resize(GLsizei width, GLsizei height)
 {
