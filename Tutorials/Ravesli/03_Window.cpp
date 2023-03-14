@@ -21,6 +21,7 @@ int main()
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
 
+		// Цикл рендеринга
 		while (window.GetEvent(report))
 		{
 			fpsCounter.Start();

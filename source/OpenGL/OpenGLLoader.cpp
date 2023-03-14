@@ -429,10 +429,24 @@ void LDL::OpenGLLoader::Init_3_3()
 	glEnableVertexAttribArray = (PFNGLENABLEVERTEXATTRIBARRAYPROC*)_Functions.Function("glEnableVertexAttribArray");
 	glUseProgram              = (PFNGLUSEPROGRAMPROC*)_Functions.Function("glUseProgram");
 	glUniform1i               = (PFNGLUNIFORM1IPROC*)_Functions.Function("glUniform1i");
-	glUniform1f               = (PFNGLUNIFORM1FPROC*)_Functions.Function("glUniform1f");
+
 	glGetUniformLocation      = (PFNGLGETUNIFORMLOCATIONPROC*)_Functions.Function("glGetUniformLocation");
 	glDeleteVertexArrays      = (PFNGLDELETEVERTEXARRAYSPROC*)_Functions.Function("glDeleteVertexArrays");
 	glDeleteBuffers           = (PFNGLDELETEBUFFERSPROC*)_Functions.Function("glDeleteBuffers");
 	glGenerateMipmap          = (PFNGLGENERATEMIPMAPPROC*)_Functions.Function("glGenerateMipmap");
 	glActiveTexture           = (PFNGLACTIVETEXTUREPROC*)_Functions.Function("glActiveTexture");
+
+	glUniformMatrix2fv        = (PFNGLUNIFORMMATRIX2FVPROC*)_Functions.Function("glUniformMatrix2fv");
+	glUniformMatrix3fv        = (PFNGLUNIFORMMATRIX3FVPROC*)_Functions.Function("glUniformMatrix3fv");
+	glUniformMatrix4fv        = (PFNGLUNIFORMMATRIX4FVPROC*)_Functions.Function("glUniformMatrix4fv");
+
+	glUniform1fv = (PFNGLUNIFORM1FVPROC*)_Functions.Function("glUniform1fv");
+	glUniform2fv = (PFNGLUNIFORM2FVPROC*)_Functions.Function("glUniform2fv");
+	glUniform3fv = (PFNGLUNIFORM3FVPROC*)_Functions.Function("glUniform3fv");
+	glUniform4fv = (PFNGLUNIFORM4FVPROC*)_Functions.Function("glUniform4fv");
+
+	glUniform1f = (PFNGLUNIFORM1FPROC*)_Functions.Function("glUniform1f");
+	glUniform2f = (PFNGLUNIFORM2FPROC*)_Functions.Function("glUniform2f");
+	glUniform3f = (PFNGLUNIFORM3FPROC*)_Functions.Function("glUniform3f");
+	glUniform4f = (PFNGLUNIFORM4FPROC*)_Functions.Function("glUniform4f");
 }

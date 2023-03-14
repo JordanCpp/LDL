@@ -55,6 +55,7 @@ int main()
 		// Изменение других значений VAO требует вызова функции glBindVertexArray() в любом случае, поэтому мы обычно не снимаем привязку VAO (или VBO), когда это непосредственно не требуется
 		// glBindVertexArray(0);
 
+		// Цикл рендеринга
 		while (window.GetEvent(report))
 		{
 			fpsCounter.Start();

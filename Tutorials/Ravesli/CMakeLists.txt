@@ -11,3 +11,9 @@ target_link_libraries(05_Shaders LDL)
 
 add_executable(06_Textures "06_Textures.cpp")
 target_link_libraries(06_Textures LDL)
+
+add_executable(07_Transformations "07_Transformations.cpp")
+target_link_libraries(07_Transformations LDL)
+
+add_executable(08_CoordinateSystems "08_CoordinateSystems.cpp")
+target_link_libraries(08_CoordinateSystems LDL)

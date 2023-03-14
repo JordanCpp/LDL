@@ -120,6 +120,7 @@ int main()
         // Раскомментируйте следующую строку для отрисовки полигонов в режиме каркаса
         // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
+        // Цикл рендеринга
 		while (window.GetEvent(report))
 		{
 			fpsCounter.Start();

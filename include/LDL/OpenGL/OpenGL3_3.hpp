@@ -15,6 +15,7 @@
 #define GL_LINK_STATUS                    0x8B82    
 #define GL_ARRAY_BUFFER                   0x8892  
 #define GL_ELEMENT_ARRAY_BUFFER           0x8893 
+#define GL_GEOMETRY_SHADER                0x8DD9   
 
 #define GL_TEXTURE0                       0x84C0
 #define GL_TEXTURE1                       0x84C1   
@@ -39,12 +40,26 @@ typedef void   (OPENGL_API_CALL PFNGLVERTEXATTRIBPOINTERPROC    ) (GLuint index,
 typedef void   (OPENGL_API_CALL PFNGLENABLEVERTEXATTRIBARRAYPROC) (GLuint index);
 typedef void   (OPENGL_API_CALL PFNGLUSEPROGRAMPROC             ) (GLuint program);
 typedef void   (OPENGL_API_CALL PFNGLUNIFORM1IPROC              ) (GLint location, GLint v0);
-typedef void   (OPENGL_API_CALL PFNGLUNIFORM1FPROC              ) (GLint location, GLfloat v0);
+
 typedef GLint  (OPENGL_API_CALL PFNGLGETUNIFORMLOCATIONPROC     ) (GLuint program, const GLchar* name);
 typedef void   (OPENGL_API_CALL PFNGLDELETEVERTEXARRAYSPROC     ) (GLsizei n, const GLuint* arrays);
 typedef void   (OPENGL_API_CALL PFNGLDELETEBUFFERSPROC          ) (GLsizei n, const GLuint* buffers);
 typedef void   (OPENGL_API_CALL PFNGLGENERATEMIPMAPPROC         ) (GLenum target);
 typedef void   (OPENGL_API_CALL PFNGLACTIVETEXTUREPROC          ) (GLenum texture);
+
+typedef void   (OPENGL_API_CALL PFNGLUNIFORMMATRIX2FVPROC       ) (GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
+typedef void   (OPENGL_API_CALL PFNGLUNIFORMMATRIX3FVPROC       ) (GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
+typedef void   (OPENGL_API_CALL PFNGLUNIFORMMATRIX4FVPROC       ) (GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
+
+typedef void   (OPENGL_API_CALL PFNGLUNIFORM1FVPROC             ) (GLint location, GLsizei count, const GLfloat* value);
+typedef void   (OPENGL_API_CALL PFNGLUNIFORM2FVPROC             ) (GLint location, GLsizei count, const GLfloat* value);
+typedef void   (OPENGL_API_CALL PFNGLUNIFORM3FVPROC             ) (GLint location, GLsizei count, const GLfloat* value);
+typedef void   (OPENGL_API_CALL PFNGLUNIFORM4FVPROC             ) (GLint location, GLsizei count, const GLfloat* value);
+
+typedef void   (OPENGL_API_CALL PFNGLUNIFORM1FPROC) (GLint location, GLfloat v0);
+typedef void   (OPENGL_API_CALL PFNGLUNIFORM2FPROC) (GLint location, GLfloat v0, GLfloat v1);
+typedef void   (OPENGL_API_CALL PFNGLUNIFORM3FPROC) (GLint location, GLfloat v0, GLfloat v1, GLfloat v2);
+typedef void   (OPENGL_API_CALL PFNGLUNIFORM4FPROC) (GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3);
 
 extern PFNGLCREATESHADERPROC            * glCreateShader;
 extern PFNGLSHADERSOURCEPROC            * glShaderSource;
@@ -66,11 +81,25 @@ extern PFNGLVERTEXATTRIBPOINTERPROC     * glVertexAttribPointer;
 extern PFNGLENABLEVERTEXATTRIBARRAYPROC * glEnableVertexAttribArray;
 extern PFNGLUSEPROGRAMPROC              * glUseProgram;
 extern PFNGLUNIFORM1IPROC               * glUniform1i;
-extern PFNGLUNIFORM1FPROC               * glUniform1f;
+
 extern PFNGLGETUNIFORMLOCATIONPROC      * glGetUniformLocation;
 extern PFNGLDELETEVERTEXARRAYSPROC      * glDeleteVertexArrays;
 extern PFNGLDELETEBUFFERSPROC           * glDeleteBuffers;
 extern PFNGLGENERATEMIPMAPPROC          * glGenerateMipmap;
 extern PFNGLACTIVETEXTUREPROC           * glActiveTexture;
+
+extern PFNGLUNIFORMMATRIX2FVPROC        * glUniformMatrix2fv;
+extern PFNGLUNIFORMMATRIX3FVPROC        * glUniformMatrix3fv;
+extern PFNGLUNIFORMMATRIX4FVPROC        * glUniformMatrix4fv;
+
+extern PFNGLUNIFORM1FVPROC              * glUniform1fv;
+extern PFNGLUNIFORM2FVPROC              * glUniform2fv;
+extern PFNGLUNIFORM3FVPROC              * glUniform3fv;
+extern PFNGLUNIFORM4FVPROC              * glUniform4fv;
+
+extern PFNGLUNIFORM1FPROC* glUniform1f;
+extern PFNGLUNIFORM2FPROC* glUniform2f;
+extern PFNGLUNIFORM3FPROC* glUniform3f;
+extern PFNGLUNIFORM4FPROC* glUniform4f;
 
 #endif     

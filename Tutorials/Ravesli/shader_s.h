@@ -6,41 +6,55 @@
 #include <sstream>
 #include <iostream>
 
+#include "glm/glm.hpp"
+
 class Shader
 {
 public:
     unsigned int ID;
-
-    // Конструктор генерирует шейдер "на лету"
-    Shader(const char* vertexPath, const char* fragmentPath)
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РіРµРЅРµСЂРёСЂСѓРµС‚ С€РµР№РґРµСЂ "РЅР° Р»РµС‚Сѓ"
+    Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath = nullptr)
     {
-        // 1. Получение исходного кода вершинного/фрагментного шейдера из переменной filePath
+        // 1. РџРѕР»СѓС‡РµРЅРёРµ РёСЃС…РѕРґРЅРѕРіРѕ РєРѕРґР° РІРµСЂС€РёРЅРЅРѕРіРѕ/С„СЂР°РіРјРµРЅС‚РЅРѕРіРѕ С€РµР№РґРµСЂР°
         std::string vertexCode;
         std::string fragmentCode;
+        std::string geometryCode;
         std::ifstream vShaderFile;
         std::ifstream fShaderFile;
-
-        // Убеждаемся, что объекты ifstream могут выбросить исключение:
+        std::ifstream gShaderFile;
+		
+        // РЈР±РµР¶РґР°РµРјСЃСЏ, С‡С‚Рѕ РѕР±СЉРµРєС‚С‹ ifstream РјРѕРіСѓС‚ РІС‹Р±СЂРѕСЃРёС‚СЊ РёСЃРєР»СЋС‡РµРЅРёРµ:
         vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
         fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+        gShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
         try
         {
-            // Открываем файлы
+            // РћС‚РєСЂС‹РІР°РµРј С„Р°Р№Р»С‹
             vShaderFile.open(vertexPath);
             fShaderFile.open(fragmentPath);
             std::stringstream vShaderStream, fShaderStream;
-
-            // Читаем содержимое файловых буферов
+			
+            // Р§РёС‚Р°РµРј СЃРѕРґРµСЂР¶РёРјРѕРµ С„Р°Р№Р»РѕРІС‹С… Р±СѓС„РµСЂРѕРІ
             vShaderStream << vShaderFile.rdbuf();
             fShaderStream << fShaderFile.rdbuf();
-
-            // Закрываем файлы
+			
+            // Р—Р°РєСЂС‹РІР°РµРј С„Р°Р№Р»С‹
             vShaderFile.close();
             fShaderFile.close();
-
-            // Конвертируем в строковую переменную данные из потока
+			
+            // РљРѕРЅРІРµСЂС‚РёСЂСѓРµРј РІ СЃС‚СЂРѕРєРѕРІСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ РґР°РЅРЅС‹Рµ РёР· РїРѕС‚РѕРєР°
             vertexCode = vShaderStream.str();
             fragmentCode = fShaderStream.str();
+			
+            // Р•СЃР»Рё РїСѓС‚СЊ РіРµРѕРјРµС‚СЂРёС‡РµСЃРєРѕРіРѕ С€РµР№РґРµСЂР° РїСЂРёСЃСѓС‚СЃС‚РІСѓРµС‚, С‚Рѕ С‚Р°РєР¶Рµ Р·Р°РіСЂСѓР¶Р°РµРј РіРµРѕРјРµС‚СЂРёС‡РµСЃРєРёР№ С€РµР№РґРµСЂ
+            if (geometryPath != nullptr)
+            {
+                gShaderFile.open(geometryPath);
+                std::stringstream gShaderStream;
+                gShaderStream << gShaderFile.rdbuf();
+                gShaderFile.close();
+                geometryCode = gShaderStream.str();
+            }
         }
         catch (std::ifstream::failure& e)
         {
@@ -48,58 +62,121 @@ public:
         }
         const char* vShaderCode = vertexCode.c_str();
         const char* fShaderCode = fragmentCode.c_str();
-
-        // 2. Компилируем шейдеры
+		
+        // 2. РљРѕРјРїРёР»РёСЂСѓРµРј С€РµР№РґРµСЂС‹
         unsigned int vertex, fragment;
-
-        // Вершинный шейдер
+		
+        // Р’РµСЂС€РёРЅРЅС‹Р№ С€РµР№РґРµСЂ
         vertex = glCreateShader(GL_VERTEX_SHADER);
         glShaderSource(vertex, 1, &vShaderCode, NULL);
         glCompileShader(vertex);
         checkCompileErrors(vertex, "VERTEX");
-
-        // Фрагментный шейдер
+		
+        // Р¤СЂР°РіРјРµРЅС‚РЅС‹Р№ С€РµР№РґРµСЂ
         fragment = glCreateShader(GL_FRAGMENT_SHADER);
         glShaderSource(fragment, 1, &fShaderCode, NULL);
         glCompileShader(fragment);
         checkCompileErrors(fragment, "FRAGMENT");
-
-        // Шейдерная программа
+		
+        // Р•СЃР»Рё Р±С‹Р» РґР°РЅ РіРµРѕРјРµС‚СЂРёС‡РµСЃРєРёР№ С€РµР№РґРµСЂ, С‚Рѕ РєРѕРјРїРёР»РёСЂСѓРµРј РµРіРѕ
+        unsigned int geometry;
+        if (geometryPath != nullptr)
+        {
+            const char* gShaderCode = geometryCode.c_str();
+            geometry = glCreateShader(GL_GEOMETRY_SHADER);
+            glShaderSource(geometry, 1, &gShaderCode, NULL);
+            glCompileShader(geometry);
+            checkCompileErrors(geometry, "GEOMETRY");
+        }
+		
+        // РЁРµР№РґРµСЂРЅР°СЏ РїСЂРѕРіСЂР°РјРјР°
         ID = glCreateProgram();
         glAttachShader(ID, vertex);
         glAttachShader(ID, fragment);
+        if (geometryPath != nullptr)
+            glAttachShader(ID, geometry);
         glLinkProgram(ID);
         checkCompileErrors(ID, "PROGRAM");
-
-        // После того, как мы связали шейдеры с нашей программой, удаляем их, т.к. они нам больше не нужны
+		
+        // РџРѕСЃР»Рµ С‚РѕРіРѕ, РєР°Рє РјС‹ СЃРІСЏР·Р°Р»Рё С€РµР№РґРµСЂС‹ СЃ РЅР°С€РµР№ РїСЂРѕРіСЂР°РјРјРѕР№, СѓРґР°Р»СЏРµРј РёС…, С‚.Рє. РѕРЅРё РЅР°Рј Р±РѕР»СЊС€Рµ РЅРµ РЅСѓР¶РЅС‹
         glDeleteShader(vertex);
         glDeleteShader(fragment);
+        if (geometryPath != nullptr)
+            glDeleteShader(geometry);
     }
-    // Активация шейдера
-    void use()
+	
+    // РђРєС‚РёРІР°С†РёСЏ С€РµР№РґРµСЂР°
+    void use() const
     {
         glUseProgram(ID);
     }
-    // Полезные uniform-функции
+	
+    // РџРѕР»РµР·РЅС‹Рµ uniform-С„СѓРЅРєС†РёРё
+	
+    // ------------------------------------------------------------------------
     void setBool(const std::string& name, bool value) const
     {
         glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
     }
+    // ------------------------------------------------------------------------
     void setInt(const std::string& name, int value) const
     {
         glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
     }
+    // ------------------------------------------------------------------------
     void setFloat(const std::string& name, float value) const
     {
         glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
     }
+    // ------------------------------------------------------------------------
+    void setVec2(const std::string& name, const glm::vec2& value) const
+    {
+        glUniform2fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
+    }
+    void setVec2(const std::string& name, float x, float y) const
+    {
+        glUniform2f(glGetUniformLocation(ID, name.c_str()), x, y);
+    }
+    // ------------------------------------------------------------------------
+    void setVec3(const std::string& name, const glm::vec3& value) const
+    {
+        glUniform3fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
+    }
+    void setVec3(const std::string& name, float x, float y, float z) const
+    {
+        glUniform3f(glGetUniformLocation(ID, name.c_str()), x, y, z);
+    }
+    // ------------------------------------------------------------------------
+    void setVec4(const std::string& name, const glm::vec4& value) const
+    {
+        glUniform4fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
+    }
+    void setVec4(const std::string& name, float x, float y, float z, float w) const
+    {
+        glUniform4f(glGetUniformLocation(ID, name.c_str()), x, y, z, w);
+    }
+    // ------------------------------------------------------------------------
+    void setMat2(const std::string& name, const glm::mat2& mat) const
+    {
+        glUniformMatrix2fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+    }
+    // ------------------------------------------------------------------------
+    void setMat3(const std::string& name, const glm::mat3& mat) const
+    {
+        glUniformMatrix3fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+    }
+    // ------------------------------------------------------------------------
+    void setMat4(const std::string& name, const glm::mat4& mat) const
+    {
+        glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+    }
 
 private:
-    // Полезные функции для проверки ошибок компиляции/связывания шейдеров
-    void checkCompileErrors(unsigned int shader, std::string type)
+    // РџРѕР»РµР·РЅС‹Рµ С„СѓРЅРєС†РёРё РґР»СЏ РїСЂРѕРІРµСЂРєРё РѕС€РёР±РѕРє РєРѕРјРїРёР»СЏС†РёРё/СЃРІСЏР·С‹РІР°РЅРёСЏ С€РµР№РґРµСЂРѕРІ
+    void checkCompileErrors(GLuint shader, std::string type)
     {
-        int success;
-        char infoLog[1024];
+        GLint success;
+        GLchar infoLog[1024];
         if (type != "PROGRAM")
         {
             glGetShaderiv(shader, GL_COMPILE_STATUS, &success);

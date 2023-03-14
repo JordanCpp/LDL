@@ -113,6 +113,7 @@ int main()
         // …или с помощью шейдерного класса
         ourShader.setInt("texture2", 1);
 
+        // Цикл рендеринга
 		while (window.GetEvent(report))
 		{
 			fpsCounter.Start();
