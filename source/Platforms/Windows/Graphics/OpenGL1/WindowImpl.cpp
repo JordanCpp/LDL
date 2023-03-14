@@ -4,7 +4,8 @@
 using namespace LDL::Graphics;
 
 WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
-    _Window(pos, size, title, mode)
+    _Window(pos, size, title, mode),
+    _OpenGLLoader(1, 1)
 {
     PIXELFORMATDESCRIPTOR pfd;
 
@@ -32,6 +33,8 @@ WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::strin
         throw LDL::Core::RuntimeError("SetPixelFormat failed");
 
     _ContextImpl.Create(_Window._HDC);
+
+    _OpenGLLoader.Init();
 }
 
 WindowImpl::~WindowImpl()

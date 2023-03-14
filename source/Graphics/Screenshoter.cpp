@@ -4,6 +4,8 @@
 #include "Software/ScreenshoterImpl.hpp"
 #elif LDL_RENDER_OPENGL1
 #include "OpenGL1/ScreenshoterImpl.hpp"
+#elif LDL_RENDER_OPENGL3
+#include "OpenGL3/ScreenshoterImpl.hpp"
 #elif LDL_GPU_SUPPORT_DIRECTX1
 #include "DirectDraw/ScreenshoterImpl.hpp"
 #elif LDL_GPU_SUPPORT_DIRECTX5

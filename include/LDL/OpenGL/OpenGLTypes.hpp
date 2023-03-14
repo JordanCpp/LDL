@@ -20,5 +20,9 @@ typedef float GLclampf;
 typedef double GLdouble;
 typedef double GLclampd;
 typedef void GLvoid;
+typedef unsigned int GLhandle;
+typedef char GLchar;
+typedef signed long int GLsizeiptr;
+typedef intptr_t GLintptr;
 
 #endif      

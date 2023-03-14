@@ -8,6 +8,9 @@ project(LibLDL)
 set(LDL_RENDER_OPENGL1 true)
 add_definitions(-DLDL_RENDER_OPENGL1)
 
+#set(LDL_RENDER_OPENGL3 true)
+#add_definitions(-DLDL_RENDER_OPENGL3)
+
 #set(LDL_GPU_SUPPORT_DIRECTX9 true)
 #add_definitions(-DLDL_GPU_SUPPORT_DIRECTX9)
 
@@ -75,7 +78,8 @@ add_library(LDL STATIC
 "source/Time/FpsCounter.cpp"
 "source/Time/FpsLimiter.cpp"
 "source/OpenGL/OpenGL1_0.cpp"
-"source/OpenGL/OpenGL1_1.cpp")
+"source/OpenGL/OpenGL1_1.cpp"
+"source/OpenGL/OpenGL3_3.cpp")
 
 if (LDL_RENDER_SOFTWARE)
   target_sources(LDL PRIVATE
@@ -97,11 +101,27 @@ if (LDL_RENDER_OPENGL1)
   "source/Graphics/OpenGL1/ScreenshoterImpl.cpp")
 endif() 
 
+if (LDL_RENDER_OPENGL3)
+  target_sources(LDL PRIVATE
+  "source/Graphics/OpenGL3/RenderImpl.cpp"
+  "source/Graphics/OpenGL3/TextureImpl.cpp"
+  "source/Graphics/OpenGL3/Util.cpp"
+  "source/Graphics/OpenGL3/Screen.cpp"
+  "source/Graphics/OpenGL3/ScreenshoterImpl.cpp")
+endif() 
+
 if (WIN32 AND LDL_RENDER_OPENGL1)
   target_sources(LDL PRIVATE
   "source/Platforms/Windows/Graphics/OpenGL1/WindowImpl.cpp"
   "source/Platforms/Windows/Graphics/OpenGL1/ContextImpl.cpp"
   "source/Platforms/Windows/Graphics/OpenGL1/FunctionsImpl.cpp")
+endif()
+
+if (WIN32 AND LDL_RENDER_OPENGL3)
+  target_sources(LDL PRIVATE
+  "source/Platforms/Windows/Graphics/OpenGL3/WindowImpl.cpp"
+  "source/Platforms/Windows/Graphics/OpenGL3/ContextImpl.cpp"
+  "source/Platforms/Windows/Graphics/OpenGL3/FunctionsImpl.cpp")
 endif()
 
 if (LDL_GPU_SUPPORT_DIRECTX1)
@@ -153,7 +173,7 @@ if (WIN32)
   target_link_libraries(LDL winmm)
 endif() 
 
-if (WIN32 AND LDL_RENDER_OPENGL1)
+if (WIN32 AND (LDL_RENDER_OPENGL1 OR LDL_RENDER_OPENGL3))
   target_link_libraries(LDL opengl32)
 endif()
 

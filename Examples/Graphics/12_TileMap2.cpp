@@ -22,7 +22,7 @@ int main()
 {
 	try
 	{
-		srand((size_t)time(NULL));
+		srand((uint32_t)time(NULL));
 
 		Window window(Point2u(0, 0), Point2u(800, 600), "12_TileMap2");
 

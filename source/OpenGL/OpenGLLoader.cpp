@@ -1,6 +1,7 @@
 #include <LDL/OpenGL/OpenGLLoader.hpp>
 #include <LDL/OpenGL/OpenGL1_0.hpp>
 #include <LDL/OpenGL/OpenGL1_1.hpp>
+#include <LDL/OpenGL/OpenGL3_3.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Core/IntegerToString.hpp>
 
@@ -10,6 +11,14 @@ OpenGLLoader::OpenGLLoader(size_t major, size_t minor) :
 	_Major(major),
 	_Minor(minor)
 {
+}
+
+OpenGLLoader::~OpenGLLoader()
+{
+}
+
+void OpenGLLoader::Init()
+{
 	if (Equal(1, 0))
 	{
 		Init_1_0();
@@ -18,6 +27,12 @@ OpenGLLoader::OpenGLLoader(size_t major, size_t minor) :
 	{
 		Init_1_0();
 		Init_1_1();
+	}
+	else if (Equal(3, 3))
+	{
+		Init_1_0();
+		Init_1_1();
+		Init_3_3();
 	}
 	else
 	{
@@ -31,10 +46,6 @@ OpenGLLoader::OpenGLLoader(size_t major, size_t minor) :
 
 		throw LDL::Core::RuntimeError(error);
 	}
-}
-
-OpenGLLoader::~OpenGLLoader()
-{
 }
 
 bool OpenGLLoader::Equal(size_t major, size_t minor)
@@ -394,4 +405,34 @@ void OpenGLLoader::Init_1_0()
 void LDL::OpenGLLoader::Init_1_1()
 {
 	glVertexPointer = (pglVertexPointer*)_Functions.Function("glVertexPointer");
+}
+
+void LDL::OpenGLLoader::Init_3_3()
+{
+	glCreateShader            = (PFNGLCREATESHADERPROC*)_Functions.Function("glCreateShader");
+	glShaderSource            = (PFNGLSHADERSOURCEPROC*)_Functions.Function("glShaderSource");
+	glCompileShader           = (PFNGLCOMPILESHADERPROC*)_Functions.Function("glCompileShader");
+	glGetShaderiv             = (PFNGLGETSHADERIVPROC*)_Functions.Function("glGetShaderiv");
+	glGetShaderInfoLog        = (PFNGLGETSHADERINFOLOGPROC*)_Functions.Function("glGetShaderInfoLog");
+	glCreateProgram           = (PFNGLCREATEPROGRAMPROC*)_Functions.Function("glCreateProgram");
+	glAttachShader            = (PFNGLATTACHSHADERPROC*)_Functions.Function("glAttachShader");
+	glLinkProgram             = (PFNGLLINKPROGRAMPROC*)_Functions.Function("glLinkProgram");
+	glGetProgramiv            = (PFNGLGETPROGRAMIVPROC*)_Functions.Function("glGetProgramiv");
+	glGetProgramInfoLog       = (PFNGLGETPROGRAMINFOLOGPROC*)_Functions.Function("glGetProgramInfoLog");
+	glDeleteShader            = (PFNGLDELETESHADERPROC*)_Functions.Function("glDeleteShader");
+	glGenVertexArrays         = (PFNGLGENVERTEXARRAYSPROC*)_Functions.Function("glGenVertexArrays");
+	glGenBuffers              = (PFNGLGENBUFFERSARBPROC*)_Functions.Function("glGenBuffers");
+	glBindVertexArray         = (PFNGLBINDVERTEXARRAYPROC*)_Functions.Function("glBindVertexArray");
+	glBindBuffer              = (PFNGLBINDBUFFERPROC*)_Functions.Function("glBindBuffer");
+	glBufferData              = (PFNGLBUFFERDATAPROC*)_Functions.Function("glBufferData");
+	glVertexAttribPointer     = (PFNGLVERTEXATTRIBPOINTERPROC*)_Functions.Function("glVertexAttribPointer");
+	glEnableVertexAttribArray = (PFNGLENABLEVERTEXATTRIBARRAYPROC*)_Functions.Function("glEnableVertexAttribArray");
+	glUseProgram              = (PFNGLUSEPROGRAMPROC*)_Functions.Function("glUseProgram");
+	glUniform1i               = (PFNGLUNIFORM1IPROC*)_Functions.Function("glUniform1i");
+	glUniform1f               = (PFNGLUNIFORM1FPROC*)_Functions.Function("glUniform1f");
+	glGetUniformLocation      = (PFNGLGETUNIFORMLOCATIONPROC*)_Functions.Function("glGetUniformLocation");
+	glDeleteVertexArrays      = (PFNGLDELETEVERTEXARRAYSPROC*)_Functions.Function("glDeleteVertexArrays");
+	glDeleteBuffers           = (PFNGLDELETEBUFFERSPROC*)_Functions.Function("glDeleteBuffers");
+	glGenerateMipmap          = (PFNGLGENERATEMIPMAPPROC*)_Functions.Function("glGenerateMipmap");
+	glActiveTexture           = (PFNGLACTIVETEXTUREPROC*)_Functions.Function("glActiveTexture");
 }

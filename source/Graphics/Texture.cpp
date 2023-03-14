@@ -4,6 +4,8 @@
 #include "Software/TextureImpl.hpp"
 #elif LDL_RENDER_OPENGL1
 #include "OpenGL1/TextureImpl.hpp"
+#elif LDL_RENDER_OPENGL3
+#include "OpenGL3/TextureImpl.hpp"
 #elif LDL_GPU_SUPPORT_DIRECTX1
 #include "DirectDraw/TextureImpl.hpp"
 #elif LDL_GPU_SUPPORT_DIRECTX5

@@ -17,7 +17,7 @@ Surface* ImageResizer::Resize(const Point2u& size, Surface* surface)
 
     _Surface.Resize(size);
 
-    stbir_resize(surface->Pixels(), surface->Size().PosX(), surface->Size().PosY(), 0, _Surface.Pixels(), size.PosX(), size.PosY(), 0, STBIR_TYPE_UINT8, surface->BytesPerPixel(), STBIR_ALPHA_CHANNEL_NONE, 0,
+    stbir_resize(surface->Pixels(), (int)surface->Size().PosX(), (int)surface->Size().PosY(), 0, _Surface.Pixels(), (int)size.PosX(), (int)size.PosY(), 0, STBIR_TYPE_UINT8, surface->BytesPerPixel(), STBIR_ALPHA_CHANNEL_NONE, 0,
         STBIR_EDGE_CLAMP, STBIR_EDGE_CLAMP,
         STBIR_FILTER_BOX, STBIR_FILTER_BOX,
         STBIR_COLORSPACE_SRGB, NULL);
