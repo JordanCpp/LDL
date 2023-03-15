@@ -11,14 +11,8 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
-#include <time.h>
 
 using namespace LDL::Graphics;
-
-size_t Random(size_t min, size_t max)
-{
-    return min + (rand() % (max - min + 1));
-}
 
 int main()
 {
@@ -38,7 +32,7 @@ int main()
 		LDL::Core::IntegerToString convert;
 
         // Компилирование нашей шейдерной программы
-        Shader ourShader("5.1.transform.vs", "5.1.transform.fs");
+        Shader ourShader("shaders/5.1.transform.vs", "shaders/5.1.transform.fs");
 
         // Указание вершин (и буфера(ов)) и настройка вершинных атрибутов
         float vertices[] = {
@@ -92,7 +86,7 @@ int main()
         // Загрузка изображения, создание текстуры и генерирование мипмап-уровней
         loader.Load("textures/wooden_container.jpg");
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, loader.Size().PosX(), loader.Size().PosY(), 0, GL_RGB, GL_UNSIGNED_BYTE, loader.Pixels());
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)loader.Size().PosX(), (GLsizei)loader.Size().PosY(), 0, GL_RGB, GL_UNSIGNED_BYTE, loader.Pixels());
         glGenerateMipmap(GL_TEXTURE_2D);
 
         // Текстура №2 - Смайлик
@@ -111,7 +105,7 @@ int main()
         loader.Load("textures/awesomeface.png");
 
         // Файл awesomeface.png имеет альфа-канал (прозрачность), поэтому необходимо использовать пераметр GL_RGBA
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, loader.Size().PosX(), loader.Size().PosY(), 0, GL_RGBA, GL_UNSIGNED_BYTE, loader.Pixels());
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)loader.Size().PosX(), (GLsizei)loader.Size().PosY(), 0, GL_RGBA, GL_UNSIGNED_BYTE, loader.Pixels());
         glGenerateMipmap(GL_TEXTURE_2D);
 
         // Указываем OpenGL, какой сэмплер к какому текстурному блоку принадлежит (это нужно сделать единожды) 
@@ -139,7 +133,7 @@ int main()
             // Создаем преобразование
             glm::mat4 transform = glm::mat4(1.0f); // сначала инициализируем единичную матрицу
             transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
-            transform = glm::rotate(transform, (float)Random(5, 15), glm::vec3(0.0f, 0.0f, 1.0f));
+            transform = glm::rotate(transform, (float)LDL::Time::Ticks(), glm::vec3(0.0f, 0.0f, 1.0f));
 
             // Получаем location uniform-переменной матрицы и настраиваем её
             ourShader.use();

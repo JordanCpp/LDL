@@ -17,3 +17,12 @@ target_link_libraries(07_Transformations LDL)
 
 add_executable(08_CoordinateSystems "08_CoordinateSystems.cpp")
 target_link_libraries(08_CoordinateSystems LDL)
+
+add_executable(09_Camera "09_Camera.cpp")
+target_link_libraries(09_Camera LDL)
+
+add_executable(10_Colors "10_Colors.cpp")
+target_link_libraries(10_Colors LDL)
+
+add_executable(11_BasicLighting "11_BasicLighting.cpp")
+target_link_libraries(11_BasicLighting LDL)

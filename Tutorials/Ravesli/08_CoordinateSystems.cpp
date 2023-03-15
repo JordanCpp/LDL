@@ -33,7 +33,7 @@ int main()
         glEnable(GL_DEPTH_TEST);
 
         // Компилирование нашей шейдерной программы
-        Shader ourShader("6.3.coordinate_systems.vs", "6.3.coordinate_systems.fs");
+        Shader ourShader("shaders/6.3.coordinate_systems.vs", "shaders/6.3.coordinate_systems.fs");
 
         // Задание вершин (и буфера(ов)) и настройка вершинных атрибутов
         float vertices[] = {
@@ -138,7 +138,7 @@ int main()
         // Загрузка изображения, создание текстуры и генерирование мипмап-уровней
         loader.Load("textures/wooden_container.jpg");
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, loader.Size().PosX(), loader.Size().PosY(), 0, GL_RGB, GL_UNSIGNED_BYTE, loader.Pixels());
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)loader.Size().PosX(), (GLsizei)loader.Size().PosY(), 0, GL_RGB, GL_UNSIGNED_BYTE, loader.Pixels());
         glGenerateMipmap(GL_TEXTURE_2D);
 
         // Текстура №2 - Смайлик
@@ -157,7 +157,7 @@ int main()
         loader.Load("textures/awesomeface.png");
 
         // Файл awesomeface.png имеет альфа-канал (прозрачность), поэтому необходимо использовать пераметр GL_RGBA
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, loader.Size().PosX(), loader.Size().PosY(), 0, GL_RGBA, GL_UNSIGNED_BYTE, loader.Pixels());
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)loader.Size().PosX(), (GLsizei)loader.Size().PosY(), 0, GL_RGBA, GL_UNSIGNED_BYTE, loader.Pixels());
         glGenerateMipmap(GL_TEXTURE_2D);
 
         // Указываем OpenGL, какой сэмплер к какому текстурному блоку принадлежит (это нужно сделать единожды) 
