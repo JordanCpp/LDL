@@ -5,29 +5,33 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/OpenGL/OpenGL1_0.hpp>
-#include <LDL/OpenGL/OpenGL_Matrix4.hpp>
+#include <LDL/Math/Funcs.hpp>
+#include <LDL/Math/Mat4f.hpp>
+#include <LDL/Math/Vec3f.hpp>
+#include <LDL/Time/FpsLimiter.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-const std::string LessonTittle = "Adding Color";
+const std::string LessonTittle = "Lesson 04 - Adding Color";
 
-GLfloat	rtri = 0;
+GLfloat	rtri  = 0;
 GLfloat	rquad = 0;
 
-LDL::Math::MatrixGLDouble projection;
-LDL::Math::MatrixGLDouble modelView;
+Mat4f projection;
+Mat4f modelView;
 
 GLvoid Resize(GLsizei width, GLsizei height)
 {
 	glViewport(0, 0, width, height);
 
 	glMatrixMode(GL_PROJECTION);
-	projection.Perspective(45.0f, (GLfloat)width / (GLfloat)height, 0.1f, 100.0f);
-	glLoadMatrixd(projection.Values());
+	projection = Perspective(45.0f, (GLfloat)width / (GLfloat)height, 0.1f, 100.0f);
+	glLoadMatrixf(projection.Values());
 
 	glMatrixMode(GL_MODELVIEW);
 	modelView.Identity();
-	glLoadMatrixd(modelView.Values());
+	glLoadMatrixf(modelView.Values());
 }
 
 GLvoid Init()
@@ -43,10 +47,11 @@ GLvoid Init()
 GLvoid Draw()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
-	glLoadIdentity();	
 
-	glTranslatef(-1.5f, 0.0f, -6.0f);						
-	glRotatef(rtri, 0.0f, 1.0f, 0.0f);	
+	modelView.Identity();
+	modelView = Translate(modelView, Vec3f(-1.5f, 0.0f, -6.0f));		
+	modelView = Rotate(modelView, rtri, Vec3f(0.0f, 1.0f, 0.0f));
+	glLoadMatrixf(modelView.Values());
 
 	glBegin(GL_TRIANGLES);					
 	glColor3f(1.0f, 0.0f, 0.0f);					
@@ -57,10 +62,13 @@ GLvoid Draw()
 	glVertex3f(1.0f, -1.0f, 0.0f);					
 	glEnd();	
 
-	glLoadIdentity();		
+	modelView.Identity();
+	modelView = Translate(modelView, Vec3f(1.5f, 0.0f, -6.0f));	
+	modelView = Rotate(modelView, rtri, Vec3f(1.0f, 0.0f, 0.0f));
+	glLoadMatrixf(modelView.Values());
 
-	glTranslatef(1.5f, 0.0f, -6.0f);					
-	glRotatef(rquad, 1.0f, 0.0f, 0.0f);			
+	//glRotatef(rquad, 1.0f, 0.0f, 0.0f);	
+
 	glColor3f(0.5f, 0.5f, 1.0f);	
 
 	glBegin(GL_QUADS);								
@@ -86,11 +94,15 @@ int main()
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
+		LDL::Time::FpsLimiter fpsLimiter;
+		std::string title;
 
 		Init();
 
 		while (window.GetEvent(report))
 		{
+			fpsLimiter.Mark();
+
 			fpsCounter.Start();
 
 			render.Begin();
@@ -100,6 +112,8 @@ int main()
 
 			render.End();
 
+			fpsLimiter.Throttle();
+
 			if (report.Type == LDL::Events::IsQuit)
 			{
 				window.StopEvent();
@@ -107,7 +121,8 @@ int main()
 
 			if (fpsCounter.Calc())
 			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
+				title = LessonTittle + " Fps: " + convert.Convert(fpsCounter.Fps());
+				window.Title(title);
 				fpsCounter.Clear();
 			}
 		}

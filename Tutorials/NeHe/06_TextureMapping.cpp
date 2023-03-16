@@ -5,13 +5,17 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/OpenGL/OpenGL1_0.hpp>
-#include <LDL/OpenGL/OpenGL_Matrix4.hpp>
+#include <LDL/Math/Funcs.hpp>
+#include <LDL/Math/Mat4f.hpp>
+#include <LDL/Math/Vec3f.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
+#include <LDL/Time/FpsLimiter.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-const std::string LessonTittle = "Texture Mapping";
+const std::string LessonTittle = "Lesson 06 - Texture Mapping";
 
 GLfloat	xrot;
 GLfloat	yrot;
@@ -19,20 +23,20 @@ GLfloat	zrot;
 
 GLuint texture[1];
 
-LDL::Math::MatrixGLDouble projection;
-LDL::Math::MatrixGLDouble modelView;
+Mat4f projection;
+Mat4f modelView;
 
 GLvoid Resize(GLsizei width, GLsizei height)
 {
 	glViewport(0, 0, width, height);
 
 	glMatrixMode(GL_PROJECTION);
-	projection.Perspective(45.0f, (GLfloat)width / (GLfloat)height, 0.1f, 100.0f);
-	glLoadMatrixd(projection.Values());
+	projection = Perspective(45.0f, (GLfloat)width / (GLfloat)height, 0.1f, 100.0f);
+	glLoadMatrixf(projection.Values());
 
 	glMatrixMode(GL_MODELVIEW);
 	modelView.Identity();
-	glLoadMatrixd(modelView.Values());
+	glLoadMatrixf(modelView.Values());
 }
 
 GLvoid Init()
@@ -61,12 +65,19 @@ GLvoid Load(LDL::Loaders::ImageLoader & loader)
 GLvoid Draw()
 {		
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();							
-	glTranslatef(0.0f, 0.0f, -5.0f);
 
-	glRotatef(xrot, 1.0f, 0.0f, 0.0f);
-	glRotatef(yrot, 0.0f, 1.0f, 0.0f);
-	glRotatef(zrot, 0.0f, 0.0f, 1.0f);
+	modelView.Identity();
+	modelView = Translate(modelView, Vec3f(0.0f, 0.0f, -5.0f));
+	modelView = Rotate(modelView, xrot, Vec3f(1.0f, 0.0f, 0.0f));
+	modelView = Rotate(modelView, yrot, Vec3f(0.0f, 1.0f, 0.0f));
+	modelView = Rotate(modelView, zrot, Vec3f(0.0f, 0.0f, 1.0f));
+	glLoadMatrixf(modelView.Values());
+
+	//glLoadIdentity();							
+	//glTranslatef(0.0f, 0.0f, -5.0f);
+	//glRotatef(xrot, 1.0f, 0.0f, 0.0f);
+	//glRotatef(yrot, 0.0f, 1.0f, 0.0f);
+	//glRotatef(zrot, 0.0f, 0.0f, 1.0f);
 
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 
@@ -123,12 +134,16 @@ int main()
 
 		LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 2);
 		LDL::Loaders::ImageLoader loader(&allocator);
+		LDL::Time::FpsLimiter fpsLimiter;
+		std::string title;
 
 		Init();
 		Load(loader);
 
 		while (window.GetEvent(report))
 		{
+			fpsLimiter.Mark();
+
 			fpsCounter.Start();
 
 			render.Begin();
@@ -138,6 +153,8 @@ int main()
 
 			render.End();
 
+			fpsLimiter.Throttle();
+
 			if (report.Type == LDL::Events::IsQuit)
 			{
 				window.StopEvent();
@@ -145,7 +162,8 @@ int main()
 
 			if (fpsCounter.Calc())
 			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
+				title = LessonTittle + " Fps: " + convert.Convert(fpsCounter.Fps());
+				window.Title(title);
 				fpsCounter.Clear();
 			}
 		}
