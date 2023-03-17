@@ -8,11 +8,13 @@
 
 using namespace LDL::Graphics;
 
+const std::string LessonTittle = "Lesson 03 - Adding Color";
+
 int main()
 {
 	try
 	{
-		Window window(Point2u(0, 0), Point2u(800, 600), "03_Window");
+		Window window(Point2u(0, 0), Point2u(800, 600), LessonTittle);
 
 		Render render(&window);
 
@@ -20,6 +22,7 @@ int main()
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
+		std::string title;
 
 		// Цикл рендеринга
 		while (window.GetEvent(report))
@@ -45,7 +48,8 @@ int main()
 
 			if (fpsCounter.Calc())
 			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
+				title = LessonTittle + " Fps: " + convert.Convert(fpsCounter.Fps());
+				window.Title(title);
 				fpsCounter.Clear();
 			}
 		}

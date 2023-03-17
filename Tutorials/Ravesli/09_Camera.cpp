@@ -8,22 +8,20 @@
 #include <LDL/Core/IntegerToString.hpp>
 #include <LDL/OpenGL/OpenGL3_3.hpp>
 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtc/type_ptr.hpp"
-
 #include "shader_s.h"
 #include "camera.h" 
 #include <LDL/Time/FpsLimiter.hpp>
 
 using namespace LDL::Graphics;
 
+const std::string LessonTittle = "Lesson 03 - Adding Color";
+
 // Константы
 const size_t SCR_WIDTH  = 800;
 const size_t SCR_HEIGHT = 600;
 
 // Камера
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+Camera camera(Vec3f(0.0f, 0.0f, 3.0f));
 float lastX = 800 / 2.0f;
 float lastY = 600 / 2.0f;
 
@@ -37,7 +35,7 @@ int main()
 {
 	try
 	{
-		Window window(Point2u(0, 0), Point2u(SCR_WIDTH, SCR_HEIGHT), "03_Window");
+		Window window(Point2u(0, 0), Point2u(SCR_WIDTH, SCR_HEIGHT), LessonTittle);
 		Render render(&window);
 
         LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
@@ -48,6 +46,7 @@ int main()
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
 		LDL::Time::FpsLimiter fpsLimiter;
+		std::string title;
 
 		// Конфигурирование глобального состояния OpenGL
 		glEnable(GL_DEPTH_TEST);
@@ -102,17 +101,17 @@ int main()
 		};
 
 		// Мировые координаты наших кубиков
-		glm::vec3 cubePositions[] = {
-			glm::vec3(0.0f,  0.0f,  0.0f),
-			glm::vec3(2.0f,  5.0f, -15.0f),
-			glm::vec3(-1.5f, -2.2f, -2.5f),
-			glm::vec3(-3.8f, -2.0f, -12.3f),
-			glm::vec3(2.4f, -0.4f, -3.5f),
-			glm::vec3(-1.7f,  3.0f, -7.5f),
-			glm::vec3(1.3f, -2.0f, -2.5f),
-			glm::vec3(1.5f,  2.0f, -2.5f),
-			glm::vec3(1.5f,  0.2f, -1.5f),
-			glm::vec3(-1.3f,  1.0f, -1.5f)
+		Vec3f cubePositions[] = {
+			Vec3f(0.0f,  0.0f,  0.0f),
+			Vec3f(2.0f,  5.0f, -15.0f),
+			Vec3f(-1.5f, -2.2f, -2.5f),
+			Vec3f(-3.8f, -2.0f, -12.3f),
+			Vec3f(2.4f, -0.4f, -3.5f),
+			Vec3f(-1.7f,  3.0f, -7.5f),
+			Vec3f(1.3f, -2.0f, -2.5f),
+			Vec3f(1.5f,  2.0f, -2.5f),
+			Vec3f(1.5f,  0.2f, -1.5f),
+			Vec3f(-1.3f,  1.0f, -1.5f)
 		};
 
 		unsigned int VBO, VAO;
@@ -198,11 +197,11 @@ int main()
 			ourShader.use();
 
 			// Передаем шейдеру матрицу проекции (поскольку проекционная матрица редко меняется, то нет необходимости делать это для каждого кадра)
-			glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)window.Size().PosX() / (float)window.Size().PosY(), 0.1f, 100.0f);
+			Mat4f projection = Perspective(camera.Zoom, (float)window.Size().PosX() / (float)window.Size().PosY(), 0.1f, 100.0f);
 			ourShader.setMat4("projection", projection);
 
 			// Создаем преобразование камеры/вида
-			glm::mat4 view = camera.GetViewMatrix();
+			Mat4f view = camera.GetViewMatrix();
 			ourShader.setMat4("view", view);
 
 			// Рендерим ящик
@@ -211,10 +210,10 @@ int main()
 			for (size_t i = 0; i < 10; i++)
 			{
 				// Вычисляем матрицу модели для каждого объекта и передаем её в шейдер до отрисовки
-				glm::mat4 model = glm::mat4(1.0f);
-				model = glm::translate(model, cubePositions[i]);
+				Mat4f model;
+				model = Translate(model, cubePositions[i]);
 				float angle = 20.0f * i;
-				model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+				model = Rotate(model, angle, Vec3f(1.0f, 0.3f, 0.5f));
 				ourShader.setMat4("model", model);
 
 				glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -224,7 +223,7 @@ int main()
 
 			fpsLimiter.Throttle();
 
-			if (report.Type == LDL::Events::IsKeyboard && report.Keyboard.State == LDL::Enums::ButtonState::Pressed)
+			if (report.Type == LDL::Events::IsKeyboard && report.Keyboard.State == LDL::Enums::ButtonState::Released)
 			{
 				if (report.Keyboard.Key == LDL::Enums::KeyboardKey::W)
 					camera.ProcessKeyboard(FORWARD, deltaTime);
@@ -272,7 +271,8 @@ int main()
 
 			if (fpsCounter.Calc())
 			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
+				title = LessonTittle + " Fps: " + convert.Convert(fpsCounter.Fps());
+				window.Title(title);
 				fpsCounter.Clear();
 			}
 		}

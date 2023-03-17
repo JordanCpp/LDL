@@ -8,11 +8,11 @@
 #include <LDL/Core/IntegerToString.hpp>
 #include <LDL/OpenGL/OpenGL3_3.hpp>
 #include "shader_s.h"
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtc/type_ptr.hpp"
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
+
+const std::string LessonTittle = "Lesson 03 - Adding Color";
 
 int main()
 {
@@ -20,7 +20,7 @@ int main()
 	{
         srand((uint32_t)time(NULL));
 
-		Window window(Point2u(0, 0), Point2u(800, 600), "03_Window");
+		Window window(Point2u(0, 0), Point2u(800, 600), LessonTittle);
 		Render render(&window);
 
         LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
@@ -30,6 +30,7 @@ int main()
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
+        std::string title;
 
         // Компилирование нашей шейдерной программы
         Shader ourShader("shaders/5.1.transform.vs", "shaders/5.1.transform.fs");
@@ -131,14 +132,14 @@ int main()
             glBindTexture(GL_TEXTURE_2D, texture2);
 
             // Создаем преобразование
-            glm::mat4 transform = glm::mat4(1.0f); // сначала инициализируем единичную матрицу
-            transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
-            transform = glm::rotate(transform, (float)LDL::Time::Ticks(), glm::vec3(0.0f, 0.0f, 1.0f));
+            Mat4f transform; // сначала инициализируем единичную матрицу
+            transform = Translate(transform, Vec3f(0.5f, -0.5f, 0.0f));
+            transform = Rotate(transform, (float)LDL::Time::Ticks(), Vec3f(0.0f, 0.0f, 1.0f));
 
             // Получаем location uniform-переменной матрицы и настраиваем её
             ourShader.use();
             unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
-            glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+            glUniformMatrix4fv(transformLoc, 1, GL_FALSE, transform._Values);
 
             // Рендерим ящик
             glBindVertexArray(VAO);
@@ -158,8 +159,9 @@ int main()
 
 			if (fpsCounter.Calc())
 			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
-				fpsCounter.Clear();
+                title = LessonTittle + " Fps: " + convert.Convert(fpsCounter.Fps());
+                window.Title(title);
+                fpsCounter.Clear();
 			}
 		}
 

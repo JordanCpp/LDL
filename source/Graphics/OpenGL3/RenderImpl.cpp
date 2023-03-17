@@ -1,8 +1,11 @@
 #include "RenderImpl.hpp"
 #include "Util.hpp"
 #include "TextureImpl.hpp"
+#include <LDL/Math/Mat4f.hpp>
+#include <LDL/Math/Funcs.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 RenderImpl::RenderImpl(Window* window) :
 	_Window(window),
@@ -16,6 +19,10 @@ void LDL::Graphics::RenderImpl::Buffer(uint8_t* dst)
 
 void RenderImpl::Begin()
 {
+	Mat4f projection;
+	Mat4f modelView;
+
+	projection = Ortho(0.0f, (float)_Window->Size().PosX(), (float)_Window->Size().PosY(), 0.0f, 0.0f, 1.0f);
 }
 
 void RenderImpl::End()

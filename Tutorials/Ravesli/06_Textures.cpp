@@ -11,11 +11,13 @@
 
 using namespace LDL::Graphics;
 
+const std::string LessonTittle = "Lesson 03 - Adding Color";
+
 int main()
 {
 	try
 	{
-		Window window(Point2u(0, 0), Point2u(800, 600), "03_Window");
+		Window window(Point2u(0, 0), Point2u(800, 600), LessonTittle);
 		Render render(&window);
         LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
         LDL::Loaders::ImageLoader loader(&allocator);
@@ -24,6 +26,7 @@ int main()
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
+        std::string title;
 
         // Компилирование нашей шейдерной программы
         Shader ourShader("shaders/4.2.texture.vs", "shaders/4.2.texture.fs");
@@ -149,8 +152,9 @@ int main()
 
 			if (fpsCounter.Calc())
 			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
-				fpsCounter.Clear();
+                title = LessonTittle + " Fps: " + convert.Convert(fpsCounter.Fps());
+                window.Title(title);
+                fpsCounter.Clear();
 			}
 		}
 

@@ -13,11 +13,6 @@ namespace LDL
 		class Mat4
 		{
 		public:
-			enum
-			{
-				Max = 16
-			};
-
 			Mat4()
 			{
 				Identity();
@@ -85,7 +80,7 @@ namespace LDL
 			}
 
 		//private:
-			T _Values[Max];
+			T _Values[16];
 		};
 	}
 }

@@ -14,9 +14,9 @@ namespace LDL
 		{
 			Mat4<T> result;
 
-			result._Values[12] = s._Values[0];
-			result._Values[13] = s._Values[1];
-			result._Values[14] = s._Values[2];
+			result._Values[12] = s.x;
+			result._Values[13] = s.y;
+			result._Values[14] = s.z;
 
 			return result * m;
 		}
@@ -26,9 +26,9 @@ namespace LDL
 		template<typename T>
 		Mat4<T> Rotate(Mat4<T>& m, T angle, const Vec3<T>& axis)
 		{
-			T x = axis._Values[0];
-			T y = axis._Values[1];
-			T z = axis._Values[2];
+			T x = axis.x;
+			T y = axis.y;
+			T z = axis.z;
 
 			T len = (T)sqrt(x * x + y * y + z * z);
 
@@ -70,18 +70,18 @@ namespace LDL
 			result._Values[15] = m._Values[15];
 
 			// Perform rotation-specific matrix multiplication
-			result._Values[0]  = a00 * b00 + a10 * b01 + a20 * b02;
-			result._Values[1]  = a01 * b00 + a11 * b01 + a21 * b02;
-			result._Values[2]  = a02 * b00 + a12 * b01 + a22 * b02;
-			result._Values[3]  = a03 * b00 + a13 * b01 + a23 * b02;
+			result._Values[0] = a00 * b00 + a10 * b01 + a20 * b02;
+			result._Values[1] = a01 * b00 + a11 * b01 + a21 * b02;
+			result._Values[2] = a02 * b00 + a12 * b01 + a22 * b02;
+			result._Values[3] = a03 * b00 + a13 * b01 + a23 * b02;
 
-			result._Values[4]  = a00 * b10 + a10 * b11 + a20 * b12;
-			result._Values[5]  = a01 * b10 + a11 * b11 + a21 * b12;
-			result._Values[6]  = a02 * b10 + a12 * b11 + a22 * b12;
-			result._Values[7]  = a03 * b10 + a13 * b11 + a23 * b12;
+			result._Values[4] = a00 * b10 + a10 * b11 + a20 * b12;
+			result._Values[5] = a01 * b10 + a11 * b11 + a21 * b12;
+			result._Values[6] = a02 * b10 + a12 * b11 + a22 * b12;
+			result._Values[7] = a03 * b10 + a13 * b11 + a23 * b12;
 
-			result._Values[8]  = a00 * b20 + a10 * b21 + a20 * b22;
-			result._Values[9]  = a01 * b20 + a11 * b21 + a21 * b22;
+			result._Values[8] = a00 * b20 + a10 * b21 + a20 * b22;
+			result._Values[9] = a01 * b20 + a11 * b21 + a21 * b22;
 			result._Values[10] = a02 * b20 + a12 * b21 + a22 * b22;
 			result._Values[11] = a03 * b20 + a13 * b21 + a23 * b22;
 
@@ -101,9 +101,9 @@ namespace LDL
 
 			Mat4<T> result;
 
-			result._Values[0]  = s._Values[0];
-			result._Values[5]  = s._Values[1];
-			result._Values[10] = s._Values[2];
+			result._Values[0]  = s.x;
+			result._Values[5]  = s.y;
+			result._Values[10] = s.z;
 
 			return result * m;
 		}
@@ -154,18 +154,18 @@ namespace LDL
 		}
 
 		template<typename T>
-		Mat4<T> LookAt(const Vec3<T>& eye, const Vec3<T>& center, const Vec3<T>& up) 
+		Mat4<T> LookAt(const Vec3<T>& eye, const Vec3<T>& center, const Vec3<T>& up)
 		{
 			T x0, x1, x2, y0, y1, y2, z0, z1, z2, len,
-				eyex = eye._Values[0],
-				eyey = eye._Values[1],
-				eyez = eye._Values[2],
-				upx = up._Values[0],
-				upy = up._Values[1],
-				upz = up._Values[2],
-				centerx = center._Values[0],
-				centery = center._Values[1],
-				centerz = center._Values[2];
+				eyex = eye.x,
+				eyey = eye.y,
+				eyez = eye.z,
+				upx = up.x,
+				upy = up.y,
+				upz = up.z,
+				centerx = center.x,
+				centery = center.y,
+				centerz = center.z;
 
 			//if (eyex == centerx && eyey == centery && eyez == centerz) {
 			//	return mat4_identity(dest);
@@ -240,7 +240,7 @@ namespace LDL
 		}
 
 		template<typename T>
-		Mat4<T> Frustum(T left, T right, T bottom, T top, T zNear, T zFar) 
+		Mat4<T> Frustum(T left, T right, T bottom, T top, T zNear, T zFar)
 		{
 			T rl = (right - left),
 				tb = (top - bottom),
@@ -264,6 +264,32 @@ namespace LDL
 			result._Values[13] = 0;
 			result._Values[14] = -(zFar * zNear * 2) / fn;
 			result._Values[15] = 0;
+
+			return result;
+		}
+
+		template<typename T>
+		Vec3<T> Normalize(const Vec3<T>& v)
+		{
+			T length = sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
+
+			Vec3<T> result;
+
+			result.x = v.x / length;
+			result.y = v.y / length;
+			result.z = v.z / length;
+
+			return result;
+		}
+
+		template<typename T>
+		Vec3<T> Cross(const Vec3<T>& v1, const Vec3<T>& v2)
+		{
+			Vec3<T> result;
+
+			result.x = v1.y * v2.z - v1.z * v2.y;
+			result.y = v1.z * v2.x - v1.x * v2.z;
+			result.z = v1.x * v2.y - v1.y * v2.x;
 
 			return result;
 		}

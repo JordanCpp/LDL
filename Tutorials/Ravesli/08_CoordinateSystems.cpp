@@ -8,17 +8,17 @@
 #include <LDL/Core/IntegerToString.hpp>
 #include <LDL/OpenGL/OpenGL3_3.hpp>
 #include "shader_s.h"
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtc/type_ptr.hpp"
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
+
+const std::string LessonTittle = "Lesson 03 - Adding Color";
 
 int main()
 {
 	try
 	{
-		Window window(Point2u(0, 0), Point2u(800, 600), "03_Window");
+		Window window(Point2u(0, 0), Point2u(800, 600), LessonTittle);
 		Render render(&window);
 
         LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
@@ -28,6 +28,7 @@ int main()
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
+        std::string title;
 
         //  онфигурирование глобального состо€ни€ OpenGL
         glEnable(GL_DEPTH_TEST);
@@ -82,17 +83,17 @@ int main()
         };
 
         // ћировые координаты наших кубиков
-        glm::vec3 cubePositions[] = {
-            glm::vec3(0.0f,  0.0f,  0.0f),
-            glm::vec3(2.0f,  5.0f, -15.0f),
-            glm::vec3(-1.5f, -2.2f, -2.5f),
-            glm::vec3(-3.8f, -2.0f, -12.3f),
-            glm::vec3(2.4f, -0.4f, -3.5f),
-            glm::vec3(-1.7f,  3.0f, -7.5f),
-            glm::vec3(1.3f, -2.0f, -2.5f),
-            glm::vec3(1.5f,  2.0f, -2.5f),
-            glm::vec3(1.5f,  0.2f, -1.5f),
-            glm::vec3(-1.3f,  1.0f, -1.5f)
+        Vec3f cubePositions[] = {
+            Vec3f(0.0f,  0.0f,  0.0f),
+            Vec3f(2.0f,  5.0f, -15.0f),
+            Vec3f(-1.5f, -2.2f, -2.5f),
+            Vec3f(-3.8f, -2.0f, -12.3f),
+            Vec3f(2.4f, -0.4f, -3.5f),
+            Vec3f(-1.7f,  3.0f, -7.5f),
+            Vec3f(1.3f, -2.0f, -2.5f),
+            Vec3f(1.5f,  2.0f, -2.5f),
+            Vec3f(1.5f,  0.2f, -1.5f),
+            Vec3f(-1.3f,  1.0f, -1.5f)
         };
 
         unsigned int indices[] = {
@@ -186,10 +187,10 @@ int main()
             ourShader.use();
 
             // создаем преобразование
-            glm::mat4 view = glm::mat4(1.0f); // сначала инициализируем единичную матрицу
-            glm::mat4 projection = glm::mat4(1.0f);
-            projection = glm::perspective(glm::radians(45.0f), (float)window.Size().PosX() / (float)window.Size().PosY(), 0.1f, 100.0f);
-            view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+            Mat4f view; // сначала инициализируем единичную матрицу
+            Mat4f projection;
+            projection = Perspective(45.0f, (float)window.Size().PosX() / (float)window.Size().PosY(), 0.1f, 100.0f);
+            view = Translate(view, Vec3f(0.0f, 0.0f, -3.0f));
             // передаЄм матрицы преобразовани€ в шейдеры
             ourShader.setMat4("projection", projection);//ѕримечание: ¬ насто€щее врем€ мы устанавливаем матрицу проекции дл€ каждого кадра, но поскольку матрица проекции редко мен€етс€, то рекомендуетс€ устанавливать ее (единожды) вне основного цикла.
             ourShader.setMat4("view", view);
@@ -199,10 +200,10 @@ int main()
             for (unsigned int i = 0; i < 10; i++)
             {
                 // вычисл€ем матрицу модели дл€ каждого объекта и передаЄм ее в шейдер до отрисовки
-                glm::mat4 model = glm::mat4(1.0f);
-                model = glm::translate(model, cubePositions[i]);
+                Mat4f model;
+                model = Translate(model, cubePositions[i]);
                 float angle = 20.0f * i;
-                model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+                model = Rotate(model, angle, Vec3f(1.0f, 0.3f, 0.5f));
                 ourShader.setMat4("model", model);
 
                 glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -222,8 +223,9 @@ int main()
 
 			if (fpsCounter.Calc())
 			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
-				fpsCounter.Clear();
+                title = LessonTittle + " Fps: " + convert.Convert(fpsCounter.Fps());
+                window.Title(title);
+                fpsCounter.Clear();
 			}
 		}
 

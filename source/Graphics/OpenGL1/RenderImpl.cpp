@@ -1,8 +1,11 @@
 #include "RenderImpl.hpp"
 #include "Util.hpp"
 #include "TextureImpl.hpp"
+#include <LDL/Math/Mat4f.hpp>
+#include <LDL/Math/Funcs.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 RenderImpl::RenderImpl(Window* window) :
 	_Window(window),
@@ -23,13 +26,15 @@ void RenderImpl::Begin()
 {
 	GL_CHECK(glViewport(0, 0, (GLsizei)_Window->Size().PosX(), (GLsizei)_Window->Size().PosY()));
 
-	GL_CHECK(glMatrixMode(GL_PROJECTION));
-	GL_CHECK(glLoadIdentity());
+	Mat4f projection;
+	Mat4f modelView;
 
-	GL_CHECK(glOrtho(0.0f, (GLdouble)_Window->Size().PosX(), (GLdouble)_Window->Size().PosY(), 0.0f, 0.0f, 1.0f));
+	GL_CHECK(glMatrixMode(GL_PROJECTION));
+	projection = Ortho(0.0f, (float)_Window->Size().PosX(), (float)_Window->Size().PosY(), 0.0f, 0.0f, 1.0f);
+	GL_CHECK(glLoadMatrixf(projection.Values()));
 
 	GL_CHECK(glMatrixMode(GL_MODELVIEW));
-	GL_CHECK(glLoadIdentity());
+	GL_CHECK(glLoadMatrixf(modelView.Values()));
 }
 
 void RenderImpl::End()

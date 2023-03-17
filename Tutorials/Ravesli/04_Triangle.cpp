@@ -21,11 +21,13 @@ const char* fragmentShaderSource = "#version 330 core\n"
 "   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
 "}\n\0";
 
+const std::string LessonTittle = "Lesson 03 - Adding Color";
+
 int main()
 {
 	try
 	{
-		Window window(Point2u(0, 0), Point2u(800, 600), "03_Window");
+		Window window(Point2u(0, 0), Point2u(800, 600), LessonTittle);
 
 		Render render(&window);
 
@@ -33,6 +35,7 @@ int main()
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
+        std::string title;
 
         // Компилирование нашей шейдерной программы
 
@@ -152,8 +155,9 @@ int main()
 
 			if (fpsCounter.Calc())
 			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
-				fpsCounter.Clear();
+                title = LessonTittle + " Fps: " + convert.Convert(fpsCounter.Fps());
+                window.Title(title);
+                fpsCounter.Clear();
 			}
 		}
 

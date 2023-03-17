@@ -1,9 +1,15 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtc/type_ptr.hpp"
+#include <LDL/Math/Funcs.hpp>
+#include <LDL/Math/Mat2f.hpp>
+#include <LDL/Math/Mat3f.hpp>
+#include <LDL/Math/Mat4f.hpp>
+#include <LDL/Math/Vec2f.hpp>
+#include <LDL/Math/Vec3f.hpp>
+#include <LDL/Math/Vec4f.hpp>
+
+using namespace LDL::Math;
 
 #include <vector>
 
@@ -28,11 +34,11 @@ class Camera
 {
 public:
     // Атрибуты камеры
-    glm::vec3 Position;
-    glm::vec3 Front;
-    glm::vec3 Up;
-    glm::vec3 Right;
-    glm::vec3 WorldUp;
+    Vec3f Position;
+    Vec3f Front;
+    Vec3f Up;
+    Vec3f Right;
+    Vec3f WorldUp;
     // углы Эйлера
     float Yaw;
     float Pitch;
@@ -42,7 +48,7 @@ public:
     float Zoom;
 
     // Конструктор, использующий векторы
-    Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+    Camera(Vec3f position = Vec3f(0.0f, 0.0f, 0.0f), Vec3f up = Vec3f(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH) : Front(Vec3f(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
     {
         Position = position;
         WorldUp = up;
@@ -51,19 +57,19 @@ public:
         updateCameraVectors();
     }
     // Конструктор, использующие скаляры
-    Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
+    Camera(float posX, float posY, float posZ, float upX, float upY, float upZ, float yaw, float pitch) : Front(Vec3f(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM)
     {
-        Position = glm::vec3(posX, posY, posZ);
-        WorldUp = glm::vec3(upX, upY, upZ);
+        Position = Vec3f(posX, posY, posZ);
+        WorldUp = Vec3f(upX, upY, upZ);
         Yaw = yaw;
         Pitch = pitch;
         updateCameraVectors();
     }
 
     // Возвращает матрицу вида, вычисленную с использованием углов Эйлера и LookAt-матрицы 
-    glm::mat4 GetViewMatrix()
+    Mat4f GetViewMatrix()
     {
-        return glm::lookAt(Position, Position + Front, Up);
+        return LookAt(Position, Position + Front, Up);
     }
 
     //Обрабатываем входные данные, полученные от любой клавиатуроподобной системы ввода. Принимаем входной параметр в виде определенного камерой перечисления (для абстрагирования его от оконных систем)
@@ -118,14 +124,14 @@ private:
     void updateCameraVectors()
     {
         // Вычисляем новый вектор-прямо
-        glm::vec3 front;
-        front.x = cos(glm::radians(Yaw)) * cos(glm::radians(Pitch));
-        front.y = sin(glm::radians(Pitch));
-        front.z = sin(glm::radians(Yaw)) * cos(glm::radians(Pitch));
-        Front = glm::normalize(front);
+        Vec3f front;
+        front.x = cos(Yaw) * cos(Pitch);
+        front.y = sin(Pitch);
+        front.z = sin(Yaw) * cos(Pitch);
+        Front = Normalize(front);
         // Также пересчитываем вектор-вправо и вектор-вверх
-        Right = glm::normalize(glm::cross(Front, WorldUp));  // Нормализуем векторы, потому что их длина становится стремится к 0 тем больше, чем больше вы смотрите вверх или вниз, что приводит к более медленному движению.
-        Up    = glm::normalize(glm::cross(Right, Front));
+        Right = Normalize(Cross(Front, WorldUp));  // Нормализуем векторы, потому что их длина становится стремится к 0 тем больше, чем больше вы смотрите вверх или вниз, что приводит к более медленному движению.
+        Up    = Normalize(Cross(Right, Front));
     }
 };
 #endif

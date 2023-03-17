@@ -13,19 +13,83 @@ namespace LDL
 		public:
 			Vec3()
 			{
-				_Values[0] = 0;
-				_Values[1] = 0;
-				_Values[2] = 0;
+				x = 0;
+				y = 0;
+				z = 0;
 			}
 
 			Vec3(T v1, T v2, T v3)
 			{
-				_Values[0] = v1;
-				_Values[1] = v2;
-				_Values[2] = v3;
+				x = v1;
+				y = v2;
+				z = v3;
 			}
 
-			T _Values[3];
+			Vec3(T v)
+			{
+				x = v;
+				y = v;
+				z = v;
+			}
+
+			Vec3<T> operator + (const Vec3<T>& source) const
+			{
+				Vec3<T> result;
+
+				result.x = x + source.x;
+				result.y = y + source.y;
+				result.z = z + source.z;
+
+				return result;
+			}
+
+			Vec3<T> operator += (const Vec3<T>& source) const
+			{
+				Vec3<T> result;
+
+				result.x = x + source.x;
+				result.y = y + source.y;
+				result.z = z + source.z;
+
+				return result;
+			}
+
+			Vec3<T> operator -= (const Vec3<T>& source) const
+			{
+				Vec3<T> result;
+
+				result.x = x - source.x;
+				result.y = y - source.y;
+				result.z = z - source.z;
+
+				return result;
+			}
+
+			Vec3<T> operator * (const Vec3<T>& source) const
+			{
+				Vec3<T> result;
+
+				result.x = x * source.x;
+				result.y = y * source.y;
+				result.z = z * source.z;
+
+				return result;
+			}
+
+			Vec3<T> operator * (const T& source) const
+			{
+				Vec3<T> result;
+
+				result.x = x * source;
+				result.y = y * source;
+				result.z = z * source;
+
+				return result;
+			}
+
+			T x;
+			T y;
+			T z;
 		};
 	}
 }

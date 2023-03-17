@@ -8,22 +8,20 @@
 #include <LDL/Core/IntegerToString.hpp>
 #include <LDL/OpenGL/OpenGL3_3.hpp>
 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtc/type_ptr.hpp"
-
 #include "shader_s.h"
 #include "camera.h" 
 #include <LDL/Time/FpsLimiter.hpp>
 
 using namespace LDL::Graphics;
 
+const std::string LessonTittle = "Lesson 03 - Adding Color";
+
 // Константы
-const size_t SCR_WIDTH  = 600;
-const size_t SCR_HEIGHT = 400;
+const size_t SCR_WIDTH  = 800;
+const size_t SCR_HEIGHT = 600;
 
 // Камера
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+Camera camera(Vec3f(0.0f, 0.0f, 3.0f));
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -33,13 +31,13 @@ float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
 // Освещение
-glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+Vec3f lightPos(1.2f, 1.0f, 2.0f);
 
 int main()
 {
 	try
 	{
-		Window window(Point2u(0, 0), Point2u(SCR_WIDTH, SCR_HEIGHT), "03_Window");
+		Window window(Point2u(0, 0), Point2u(SCR_WIDTH, SCR_HEIGHT), LessonTittle);
 		Render render(&window);
 
         LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
@@ -50,6 +48,7 @@ int main()
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;
 		LDL::Time::FpsLimiter fpsLimiter;
+		std::string title;
 
 		// Конфигурирование глобального состояния OpenGL
 		glEnable(GL_DEPTH_TEST);
@@ -152,13 +151,13 @@ int main()
 			lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
 
 			// Преобразования Вида/Проекции
-			glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-			glm::mat4 view = camera.GetViewMatrix();
+			Mat4f projection = Perspective(camera.Zoom, (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+			Mat4f view = camera.GetViewMatrix();
 			lightingShader.setMat4("projection", projection);
 			lightingShader.setMat4("view", view);
 
 			// Мировое преобразование
-			glm::mat4 model = glm::mat4(1.0f);
+			Mat4f model;
 			lightingShader.setMat4("model", model);
 
 			// Рендеринг куба
@@ -169,9 +168,8 @@ int main()
 			lampShader.use();
 			lampShader.setMat4("projection", projection);
 			lampShader.setMat4("view", view);
-			model = glm::mat4(1.0f);
-			model = glm::translate(model, lightPos);
-			model = glm::scale(model, glm::vec3(0.2f)); // куб меньшего размера
+			model = Translate(model, lightPos);
+			model = Scale(model, Vec3f(0.2f)); // куб меньшего размера
 			lampShader.setMat4("model", model);
 
 			glBindVertexArray(lightVAO);
@@ -229,7 +227,8 @@ int main()
 
 			if (fpsCounter.Calc())
 			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
+				title = LessonTittle + " Fps: " + convert.Convert(fpsCounter.Fps());
+				window.Title(title);
 				fpsCounter.Clear();
 			}
 		}
