@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_DX5Render_hpp
-#define LDL_Graphics_DX5Render_hpp
+#ifndef LDL_Graphics_DirectX5_Direct3D_RenderImpl_hpp
+#define LDL_Graphics_DirectX5_Direct3D_RenderImpl_hpp
 
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Graphics/Base/BaseRender.hpp>

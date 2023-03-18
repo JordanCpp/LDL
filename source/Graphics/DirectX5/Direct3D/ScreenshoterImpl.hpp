@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_DX5Screenshoter_hpp
-#define LDL_Graphics_DX5Screenshoter_hpp
+#ifndef LDL_Graphics_DirectX5_Direct3D_ScreenshoterImpl_hpp
+#define LDL_Graphics_DirectX5_Direct3D_ScreenshoterImpl_hpp
 
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Graphics/Screenshoter.hpp>

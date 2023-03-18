@@ -12,7 +12,7 @@ WindowImpl::~WindowImpl()
 {
 }
 
-void WindowImpl::Present(uint8_t* pixels)
+void WindowImpl::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 {
 }
 

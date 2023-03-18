@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_GL1_ScreenshoterImpl_hpp
-#define LDL_Graphics_GL1_ScreenshoterImpl_hpp
+#ifndef LDL_Graphics_OpenGL1_ScreenshoterImpl_hpp
+#define LDL_Graphics_OpenGL1_ScreenshoterImpl_hpp
 
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Graphics/Base/BaseScreenshoter.hpp>

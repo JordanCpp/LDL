@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_GL1_Screen_hpp
-#define LDL_Graphics_GL1_Screen_hpp
+#ifndef LDL_Graphics_OpenGL3_Screen_hpp
+#define LDL_Graphics_OpenGL3_Screen_hpp
 
 #include <LDL/Graphics/Surface.hpp>
 

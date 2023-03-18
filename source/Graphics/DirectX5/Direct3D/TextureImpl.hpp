@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_DX5_TextureImpl_hpp
-#define LDL_Graphics_DX5_TextureImpl_hpp
+#ifndef LDL_Graphics_DirectX5_Direct3D_TextureImpl_hpp
+#define LDL_Graphics_DirectX5_Direct3D_TextureImpl_hpp
 
 #include <LDL/Graphics/Primitives/Point2u.hpp>
 

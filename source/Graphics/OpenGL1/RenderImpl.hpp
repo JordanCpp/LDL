@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_GL1_RenderImpl_hpp
-#define LDL_Graphics_GL1_RenderImpl_hpp
+#ifndef LDL_Graphics_OpenGL1_RenderImpl_hpp
+#define LDL_Graphics_OpenGL1_RenderImpl_hpp
 
 #include <LDL/Graphics/Base/BaseRender.hpp>
 #include <LDL/Graphics/Window.hpp>

@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_OpenGL1_Util_hpp
-#define LDL_Graphics_OpenGL1_Util_hpp
+#ifndef LDL_Graphics_OpenGL3_Util_hpp
+#define LDL_Graphics_OpenGL3_Util_hpp
 
 #include <LDL/Graphics/Primitives/Point2u.hpp>
 #include <LDL/Graphics/Primitives/Color.hpp>
