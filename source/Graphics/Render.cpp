@@ -17,86 +17,91 @@
 using namespace LDL::Graphics;
 
 Render::Render(Window* window) :
-	_GpuRenderImpl(new RenderImpl(window))
+	_RenderImpl(new RenderImpl(window))
 {
 }
 
 Render::~Render()
 {
-	delete _GpuRenderImpl;
+	delete _RenderImpl;
 }
 
 void Render::Buffer(uint8_t* dst)
 {
-	_GpuRenderImpl->Buffer(dst);
+	_RenderImpl->Buffer(dst);
 }
 
 void Render::Begin()
 {
-	_GpuRenderImpl->Begin();
+	_RenderImpl->Begin();
 }
 
 void Render::End()
 {
-	_GpuRenderImpl->End();
+	_RenderImpl->End();
 }
 
 const Point2u& Render::Size()
 {
-	return _GpuRenderImpl->Size();
+	return _RenderImpl->Size();
 }
 
 const Color& Render::Color()
 {
-	return _GpuRenderImpl->Color();
+	return _RenderImpl->Color();
 }
 
 void Render::Clear()
 {
-	_GpuRenderImpl->Clear();
+	_RenderImpl->Clear();
 }
 
 void Render::Color(const LDL::Graphics::Color& color)
 {
-	_GpuRenderImpl->Color(color);
+	_RenderImpl->Color(color);
 }
 
 void Render::Pixel(const Point2u& pos)
 {
-	_GpuRenderImpl->Pixel(pos);
+	_RenderImpl->Pixel(pos);
 }
 
 void Render::Fill(const Point2u& pos, const Point2u& size)
 {
-	_GpuRenderImpl->Fill(pos, size);
+	_RenderImpl->Fill(pos, size);
 }
 
 void Render::Line(const Point2u& pos1, const Point2u& pos2)
 {
-	_GpuRenderImpl->Line(pos1, pos2);
+	_RenderImpl->Line(pos1, pos2);
 }
 
 void Render::Draw(Texture* image, const Point2u& pos, const Point2u& size)
 {
-	_GpuRenderImpl->Draw(image, pos, size);
+	_RenderImpl->Draw(image, pos, size);
 }
 
 void Render::Draw(Texture* image, const Point2u& pos)
 {
-	_GpuRenderImpl->Draw(image, pos);
+	_RenderImpl->Draw(image, pos);
 }
 
 void Render::Draw(Surface* image, const Point2u& pos, const Point2u& size)
 {
-	_GpuRenderImpl->Draw(image, pos, size);
+	_RenderImpl->Draw(image, pos, size);
 }
 
 void Render::Draw(Surface* image, const Point2u& pos)
 {
-	_GpuRenderImpl->Draw(image, pos);
+	_RenderImpl->Draw(image, pos);
 }
 
 void Render::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
 {
-	_GpuRenderImpl->Draw(image, dstPos, srcPos, srcSize);
+	_RenderImpl->Draw(image, dstPos, srcPos, srcSize);
+}
+
+RenderImpl* Render::GetRenderImpl()
+{
+	return _RenderImpl;
 }

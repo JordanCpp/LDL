@@ -2,7 +2,7 @@
 
 using namespace LDL::Graphics;
 
-TextureImpl::TextureImpl(const Point2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
+TextureImpl::TextureImpl(RenderImpl* renderImpl, const Point2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
 	_Surface(size, pixels, bytesPerPixel)
 {
 }

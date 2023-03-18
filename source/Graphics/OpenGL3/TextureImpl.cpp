@@ -6,7 +6,7 @@
 
 using namespace LDL::Graphics;
 
-TextureImpl::TextureImpl(const Point2u& size, uint8_t* pixels, size_t bytesPerPixel):
+TextureImpl::TextureImpl(RenderImpl* renderImpl, const Point2u& size, uint8_t* pixels, size_t bytesPerPixel):
 	_Id(0)
 {
 	assert(size.PosX() > 0);

@@ -38,9 +38,10 @@ namespace LDL
 			void Deinitialization();
 			Window* _Window;
 			BaseRender _BaseRender;
+			ID3DXLine* _Line = NULL;
+		public:
 			IDirect3D9* _Direct3D = NULL;
 			IDirect3DDevice9* _Direct3DDevice = NULL;
-			ID3DXLine* _Line = NULL;
 		};
 	}
 }

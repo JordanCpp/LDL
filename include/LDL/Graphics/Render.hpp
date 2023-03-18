@@ -10,6 +10,7 @@ namespace LDL
 	namespace Graphics
 	{
 		class RenderImpl;
+		class Texture;
 
 		class Render: public LDL::Core::FastPimpl
 		{
@@ -31,8 +32,9 @@ namespace LDL
 			void Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize);
 			void Draw(Surface* image, const Point2u& pos, const Point2u& size);
 			void Draw(Surface* image, const Point2u& pos);
+			RenderImpl* GetRenderImpl();
 		private:
-			RenderImpl* _GpuRenderImpl;
+			RenderImpl* _RenderImpl;
 		};
 	}
 }

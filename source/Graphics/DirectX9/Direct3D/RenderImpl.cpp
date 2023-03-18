@@ -6,7 +6,10 @@ using namespace LDL::Graphics;
 
 RenderImpl::RenderImpl(Window* window) :
 	_Window(window),
-	_BaseRender(_Window->Size())
+	_BaseRender(_Window->Size()),
+    _Line(NULL),
+    _Direct3D(NULL),
+    _Direct3DDevice(NULL)
 {
     Initialization();
 
