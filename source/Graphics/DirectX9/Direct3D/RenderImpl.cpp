@@ -1,17 +1,40 @@
 #include "RenderImpl.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 #include "../../../Platforms/Windows/Graphics/DirectX9/Direct3D/WindowImpl.hpp"
+#include "TextureImpl.hpp"
 
 using namespace LDL::Graphics;
+
+struct VertexType
+{
+    FLOAT x, y, z, rhw;
+    FLOAT tu, tv;
+};
+
+struct QuadType 
+{
+    VertexType  v1;
+    VertexType  v2;
+    VertexType  v3;
+    VertexType  v4;
+};
+
+#define D3DFVF_CUSTOMVERTEX (D3DFVF_XYZRHW | D3DFVF_TEX1)
 
 RenderImpl::RenderImpl(Window* window) :
 	_Window(window),
 	_BaseRender(_Window->Size()),
     _Line(NULL),
     _Direct3D(NULL),
-    _Direct3DDevice(NULL)
+    _Direct3DDevice(NULL),
+    _VertexBuffer(NULL)
 {
     Initialization();
+
+    HRESULT result = _Direct3DDevice->CreateVertexBuffer(sizeof(QuadType), 0, D3DFVF_CUSTOMVERTEX, D3DPOOL_DEFAULT, &_VertexBuffer, NULL);
+
+    if (FAILED(result))
+        throw LDL::Core::RuntimeError("CreateVertexBuffer failed");
 
     Mode2D();
 }
@@ -31,7 +54,10 @@ void RenderImpl::Mode2D()
     D3DXMATRIX projection;
     D3DXMatrixOrthoLH(&projection, (FLOAT)_Window->Size().PosX(), (FLOAT)_Window->Size().PosY(), 0.0f, 0.0f);
 
-    _Direct3DDevice->SetTransform(D3DTS_PROJECTION, &projection);
+    HRESULT result = _Direct3DDevice->SetTransform(D3DTS_PROJECTION, &projection);
+
+    if (FAILED(result))
+        throw LDL::Core::RuntimeError("SetTransform failed");
 }
 
 void RenderImpl::Begin()
@@ -41,13 +67,23 @@ void RenderImpl::Begin()
     if (result == D3DERR_DEVICELOST)
         throw LDL::Core::RuntimeError("TestCooperativeLevel failed");
 
-    _Direct3DDevice->BeginScene();
+    result = _Direct3DDevice->BeginScene();
+
+    if (FAILED(result))
+        throw LDL::Core::RuntimeError("BeginScene failed");
 }
 
 void RenderImpl::End()
 {
-    _Direct3DDevice->EndScene();
-    _Direct3DDevice->Present(NULL, NULL, NULL, NULL);
+    HRESULT result;
+
+    result = _Direct3DDevice->EndScene();
+    if (FAILED(result))
+        throw LDL::Core::RuntimeError("EndScene failed");
+
+    result = _Direct3DDevice->Present(NULL, NULL, NULL, NULL);
+    if (FAILED(result))
+        throw LDL::Core::RuntimeError("Present failed");
 }
 
 const Point2u& RenderImpl::Size()
@@ -87,6 +123,59 @@ void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
 
 void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
 {
+    QuadType q;
+
+    q.v1.x   = (FLOAT)pos.PosX();
+    q.v1.y   = (FLOAT)size.PosY() + (FLOAT)pos.PosY();
+    q.v1.z   = 0.0f;
+    q.v1.rhw = 1.0f;
+    q.v1.tu  = 0.0f;
+    q.v1.tv  = 1.0f;
+
+    q.v2.x   = (FLOAT)pos.PosX();
+    q.v2.y   = (FLOAT)pos.PosY();
+    q.v2.z   = 0.0f;
+    q.v2.rhw = 1.0f;
+    q.v2.tu  = 0.0f;
+    q.v2.tv  = 0.0f;
+
+    q.v3.x = (FLOAT)size.PosX() + (FLOAT)pos.PosX();;
+    q.v3.y = (FLOAT)size.PosY() + (FLOAT)pos.PosY();;
+    q.v3.z = 0.0f;
+    q.v3.rhw = 1.0f;
+    q.v3.tu = 1.0f;
+    q.v3.tv = 1.0f;
+
+    q.v4.x = (FLOAT)size.PosX() + (FLOAT)pos.PosX();;
+    q.v4.y = (FLOAT)pos.PosY();
+    q.v4.z = 0.0f;
+    q.v4.rhw = 1.0f;
+    q.v4.tu = 1.0f;
+    q.v4.tv = 0.0f;
+
+    HRESULT result;
+    void* temp = NULL;
+
+    result = _VertexBuffer->Lock(0, sizeof(QuadType), (void**)&temp, 0);
+    if (FAILED(result))
+        throw LDL::Core::RuntimeError("Lock failed");
+
+    memcpy(temp, &q, sizeof(QuadType));
+
+    result = _VertexBuffer->Unlock();
+    if (FAILED(result))
+        throw LDL::Core::RuntimeError("Unlock failed");
+
+    _Direct3DDevice->SetStreamSource(0, _VertexBuffer, 0, sizeof(VertexType));
+    _Direct3DDevice->SetFVF(D3DFVF_CUSTOMVERTEX);
+
+    _Direct3DDevice->SetTexture(0, (LPDIRECT3DBASETEXTURE9)image->GetTextureImpl()->Texture());
+    _Direct3DDevice->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+    _Direct3DDevice->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
+    _Direct3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+    _Direct3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+    _Direct3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+    _Direct3DDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
 }
 
 void RenderImpl::Draw(Texture* image, const Point2u& pos)

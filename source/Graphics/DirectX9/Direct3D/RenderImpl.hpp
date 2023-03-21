@@ -42,6 +42,7 @@ namespace LDL
 		public:
 			IDirect3D9* _Direct3D = NULL;
 			IDirect3DDevice9* _Direct3DDevice = NULL;
+			IDirect3DVertexBuffer9* _VertexBuffer;
 		};
 	}
 }

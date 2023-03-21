@@ -110,11 +110,11 @@ void ImageLoader::Load(const std::string& path)
 
 	Clear();
 
-	int width = 0;
-	int height = 0;
+	int width         = 0;
+	int height        = 0;
 	int bytesPerPixel = 0;
 
-	_Pixels = stbi_load(path.c_str(), &width, &height, &bytesPerPixel, 0);
+	_Pixels = stbi_load(path.c_str(), &width, &height, &bytesPerPixel, STBI_default);
 
 	if (width <= 0 || height <= 0 || bytesPerPixel <= 0 || _Pixels == NULL)
 		throw LDL::Core::RuntimeError("stbi_load " + path + " failed");

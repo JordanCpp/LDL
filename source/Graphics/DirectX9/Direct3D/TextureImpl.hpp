@@ -13,7 +13,7 @@ namespace LDL
 			TextureImpl(RenderImpl* renderImpl, const Point2u & size, uint8_t* pixels, size_t bytesPerPixel);
 			~TextureImpl();
 			const Point2u& Size();
-			const size_t Id();
+			IDirect3DTexture9* Texture();
 		private:
 			IDirect3DTexture9* _Texture;
 			Point2u _Size;
