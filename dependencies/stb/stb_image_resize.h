@@ -260,7 +260,7 @@ typedef enum
     STBIR_EDGE_CLAMP   = 1,
     STBIR_EDGE_REFLECT = 2,
     STBIR_EDGE_WRAP    = 3,
-    STBIR_EDGE_ZERO    = 4,
+    STBIR_EDGE_ZERO    = 4
 } stbir_edge;
 
 // This function adds the ability to specify how requests to sample off the edge of the image are handled.
@@ -291,15 +291,14 @@ typedef enum
     STBIR_FILTER_TRIANGLE     = 2,  // On upsampling, produces same results as bilinear texture filtering
     STBIR_FILTER_CUBICBSPLINE = 3,  // The cubic b-spline (aka Mitchell-Netrevalli with B=1,C=0), gaussian-esque
     STBIR_FILTER_CATMULLROM   = 4,  // An interpolating cubic spline
-    STBIR_FILTER_MITCHELL     = 5,  // Mitchell-Netrevalli filter with B=1/3, C=1/3
+    STBIR_FILTER_MITCHELL     = 5   // Mitchell-Netrevalli filter with B=1/3, C=1/3
 } stbir_filter;
 
 typedef enum
 {
     STBIR_COLORSPACE_LINEAR,
     STBIR_COLORSPACE_SRGB,
-
-    STBIR_MAX_COLORSPACES,
+    STBIR_MAX_COLORSPACES
 } stbir_colorspace;
 
 // The following functions are all identical except for the type of the image data

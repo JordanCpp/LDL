@@ -4,6 +4,7 @@
 using namespace LDL::Graphics;
 
 WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
+    _HGLRC(NULL),
     _Window(pos, size, title, mode),
     _OpenGLLoader(1, 1)
 {
@@ -32,13 +33,22 @@ WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::strin
     if (!SetPixelFormat(_Window._HDC, format, &pfd))
         throw LDL::Core::RuntimeError("SetPixelFormat failed");
 
-    _ContextImpl.Create(_Window._HDC);
+    _HGLRC = wglCreateContext(_Window._HDC);
+
+    if (_HGLRC == NULL)
+        throw LDL::Core::RuntimeError("wglCreateContext failed");
+
+    if (!wglMakeCurrent(_Window._HDC, _HGLRC))
+        throw LDL::Core::RuntimeError("wglMakeCurrent failed");
 
     _OpenGLLoader.Init();
 }
 
 WindowImpl::~WindowImpl()
 {
+    wglMakeCurrent(NULL, NULL);
+    wglDeleteContext(_HGLRC);
+
     ReleaseDC(_Window._HWND, _Window._HDC);
 }
 

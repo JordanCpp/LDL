@@ -10,7 +10,7 @@ namespace LDL
 {
 	namespace Loaders
 	{
-		class ImageLoader
+		class LDL_EXPORT ImageLoader
 		{
 		public:
 			ImageLoader(LDL::Allocators::Allocator* allocator);

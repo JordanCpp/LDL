@@ -1,14 +1,15 @@
 #ifndef LDL_Graphics_BaseScreenshoter_hpp
 #define LDL_Graphics_BaseScreenshoter_hpp
 
-#include <string>
+#include <LDL/Config.hpp>
 #include <LDL/Core/IntegerToString.hpp>
+#include <string>
 
 namespace LDL
 {
 	namespace Graphics
 	{
-		class BaseScreenshoter
+		class LDL_EXPORT BaseScreenshoter
 		{
 		public:
 			const std::string Prefix();

@@ -1,6 +1,7 @@
 #ifndef LDL_Events_Eventer_hpp
 #define LDL_Events_Eventer_hpp
 
+#include <LDL/Config.hpp>
 #include <LDL/Events/Event.hpp>
 #include <queue>
 
@@ -8,7 +9,7 @@ namespace LDL
 {
 	namespace Events
 	{
-		class Eventer
+		class LDL_EXPORT Eventer
 		{
 		public:
 			Eventer();

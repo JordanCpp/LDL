@@ -1,2 +1,2 @@
 
-call ..\BuildDirForCpp.bat VC6_Build.bat ..\Examples\Graphics\
+call ..\BuildDirForCpp.bat %1 ..\Examples\Graphics\

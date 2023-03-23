@@ -1,13 +1,14 @@
 #ifndef LDL_Core_FileInfo_hpp
 #define LDL_Core_FileInfo_hpp
 
+#include <LDL/Config.hpp>
 #include <string>
 
 namespace LDL
 {
 	namespace Core
 	{
-		class FileInfo
+		class LDL_EXPORT FileInfo
 		{
 		public:
 			const std::string& Name();

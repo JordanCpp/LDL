@@ -17,6 +17,7 @@ namespace LDL
 			const Point2u& Size();
 			size_t Id();
 		private:
+			RenderImpl* _RenderImpl;
 			size_t _Id;
 			Point2u _Size;
 		};

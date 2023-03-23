@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class ImageResizer
+		class LDL_EXPORT ImageResizer
 		{
 		public:
 			ImageResizer(const Point2u& size);

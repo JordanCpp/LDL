@@ -1,6 +1,7 @@
 #ifndef LDL_Loaders_FontLoader_hpp
 #define LDL_Loaders_FontLoader_hpp
 
+#include <LDL/Config.hpp>
 #include <LDL/Allocators/Allocator.hpp>
 #include <string>
 
@@ -8,7 +9,7 @@ namespace LDL
 {
 	namespace Loaders
 	{
-		class FontLoader
+		class LDL_EXPORT FontLoader
 		{
 		public:
 			FontLoader(LDL::Allocators::Allocator* allocator);

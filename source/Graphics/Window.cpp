@@ -2,15 +2,17 @@
 
 #ifdef LDL_RENDER_SOFTWARE
 #include "../Platforms/Windows/Graphics/Software/WindowImpl.hpp"
+#elif LDL_RENDER_GDI
+#include "../Platforms/Windows/Graphics/GDI/WindowImpl.hpp"
 #elif LDL_RENDER_OPENGL1
 #include "../Platforms/Windows/Graphics/OpenGL1/WindowImpl.hpp"
 #elif LDL_RENDER_OPENGL3
 #include "../Platforms/Windows/Graphics/OpenGL3/WindowImpl.hpp"
-#elif LDL_GPU_SUPPORT_DIRECTX1
+#elif LDL_RENDER_DIRECTX1
 #include "../Platforms/Windows/Graphics/DirectDraw/WindowImpl.hpp"
-#elif LDL_GPU_SUPPORT_DIRECTX5
+#elif LDL_RENDER_DIRECTX5
 #include "../Platforms/Windows/Graphics/DirectX5/Direct3D/WindowImpl.hpp"
-#elif LDL_GPU_SUPPORT_DIRECTX9
+#elif LDL_RENDER_DIRECTX9
 #include "../Platforms/Windows/Graphics/DirectX9/Direct3D/WindowImpl.hpp"
 #endif
 

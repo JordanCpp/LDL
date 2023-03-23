@@ -1,2 +1,2 @@
 
-call ..\BuildDirForCpp.bat VC6_Build.bat ..\Tutorials\NeHe\
+call ..\BuildDirForCpp.bat %1 ..\Tutorials\NeHe\

@@ -1,13 +1,14 @@
 #ifndef LDL_Allocators_FixedLinear_hpp
 #define LDL_Allocators_FixedLinear_hpp
 
+#include <LDL/Config.hpp>
 #include <LDL/Allocators/Allocator.hpp>
 
 namespace LDL
 {
 	namespace Allocators
 	{
-		class FixedLinear : public LDL::Allocators::Allocator
+		class LDL_EXPORT FixedLinear : public LDL::Allocators::Allocator
 		{
 		public:
 			FixedLinear(size_t bytes, LDL::Allocators::Allocator* allocator = NULL);

@@ -1,13 +1,14 @@
 #ifndef LDL_Core_RuntimeError_hpp
 #define LDL_Core_RuntimeError_hpp
 
+#include <LDL/Config.hpp>
 #include <string>
 
 namespace LDL
 {
     namespace Core
     {
-        class RuntimeError
+        class LDL_EXPORT RuntimeError
         {
         public:
             RuntimeError(const std::string& message);

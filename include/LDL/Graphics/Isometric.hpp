@@ -1,13 +1,14 @@
 #ifndef LDL_Graphics_Isometric_hpp
 #define LDL_Graphics_Isometric_hpp
 
+#include <LDL/Config.hpp>
 #include <LDL/Graphics/Primitives/Point2u.hpp>
 
 namespace LDL
 {
     namespace Graphics
     {
-        class Isometric
+        class LDL_EXPORT Isometric
         {
         public:
             const Point2u& CartesianToIsometric(const Point2u& pt);

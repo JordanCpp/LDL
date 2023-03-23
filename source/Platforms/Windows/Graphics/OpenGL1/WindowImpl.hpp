@@ -3,7 +3,6 @@
 
 #include <LDL/Graphics/Window.hpp>
 #include "../MainWindow.hpp"
-#include "ContextImpl.hpp"
 #include <LDL/OpenGL/OpenGLLoader.hpp>
 
 namespace LDL
@@ -24,8 +23,8 @@ namespace LDL
 			const Point2u& Size();
 			const Point2u& Pos();
 		private:
+			HGLRC _HGLRC;
 			MainWindow _Window;
-			ContextImpl _ContextImpl;
 			OpenGLLoader _OpenGLLoader;
 		};
 	}

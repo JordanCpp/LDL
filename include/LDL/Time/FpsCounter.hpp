@@ -1,13 +1,14 @@
 #ifndef LDL_Time_FpsCounter_hpp
 #define LDL_Time_FpsCounter_hpp
 
+#include <LDL/Config.hpp>
 #include <LDL/Time/Ticks.hpp>
 
 namespace LDL
 {
 	namespace Time
 	{
-		class FpsCounter
+		class LDL_EXPORT FpsCounter
 		{
 		public:
 			FpsCounter();

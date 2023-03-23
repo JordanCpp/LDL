@@ -10,7 +10,7 @@ namespace LDL
 	{
 		class LibraryImpl;
 
-		class Library : public FastPimpl
+		class LDL_EXPORT Library : public FastPimpl
 		{
 		public:
 			Library(const std::string& path);

@@ -2,15 +2,17 @@
 
 #ifdef LDL_RENDER_SOFTWARE
 #include "Software/TextureImpl.hpp"
+#elif LDL_RENDER_GDI
+#include "GDI/TextureImpl.hpp"
 #elif LDL_RENDER_OPENGL1
 #include "OpenGL1/TextureImpl.hpp"
 #elif LDL_RENDER_OPENGL3
 #include "OpenGL3/TextureImpl.hpp"
-#elif LDL_GPU_SUPPORT_DIRECTX1
+#elif LDL_RENDER_DIRECTX1
 #include "DirectDraw/TextureImpl.hpp"
-#elif LDL_GPU_SUPPORT_DIRECTX5
+#elif LDL_RENDER_DIRECTX5
 #include "DirectX5/Direct3D/TextureImpl.hpp"
-#elif LDL_GPU_SUPPORT_DIRECTX9
+#elif LDL_RENDER_DIRECTX9
 #include "DirectX9/Direct3D/TextureImpl.hpp"
 #endif
 

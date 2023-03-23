@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class Surface
+		class LDL_EXPORT Surface
 		{
 		public:
 			Surface(const Point2u& size, uint8_t bytesPerPixel);

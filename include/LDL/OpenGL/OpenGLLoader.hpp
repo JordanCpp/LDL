@@ -1,11 +1,11 @@
 #ifndef LDL_OpenGL_OpenGLLoader_hpp
 #define LDL_OpenGL_OpenGLLoader_hpp
 
-#include <LDL/Graphics/Functions.hpp>
+#include <LDL/OpenGL/OpenGL_Functions.hpp>
 
 namespace LDL
 {
-	class OpenGLLoader
+	class LDL_EXPORT OpenGLLoader
 	{
 	public:
 		OpenGLLoader(size_t major = 1, size_t minor = 0);

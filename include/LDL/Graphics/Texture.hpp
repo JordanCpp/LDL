@@ -11,7 +11,7 @@ namespace LDL
 		class TextureImpl;
 		class Render;
 
-		class Texture : public LDL::Core::FastPimpl
+		class LDL_EXPORT Texture : public LDL::Core::FastPimpl
 		{
 		public:
 			Texture(Render * render, const Point2u& size, uint8_t* pixels, uint8_t bytesPerPixel);

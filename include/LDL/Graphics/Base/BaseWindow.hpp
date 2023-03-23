@@ -1,6 +1,7 @@
 #ifndef LDL_Graphics_BaseWindow_hpp
 #define LDL_Graphics_BaseWindow_hpp
 
+#include <LDL/Config.hpp>
 #include <LDL/Graphics/Primitives/Point2u.hpp>
 #include <string>
 
@@ -8,7 +9,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class BaseWindow
+		class LDL_EXPORT BaseWindow
 		{
 		public:
 			BaseWindow(const Point2u& pos, const Point2u& size, const std::string& title);

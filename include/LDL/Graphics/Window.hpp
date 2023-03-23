@@ -13,7 +13,7 @@ namespace LDL
 	{
 		class WindowImpl;
 
-		class Window : public LDL::Core::FastPimpl
+		class LDL_EXPORT Window : public LDL::Core::FastPimpl
 		{
 		public:
 			Window(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);

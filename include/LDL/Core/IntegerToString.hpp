@@ -1,13 +1,14 @@
 #ifndef LDL_Core_IntegerToString_hpp
 #define LDL_Core_IntegerToString_hpp
 
+#include <LDL/Config.hpp>
 #include <LDL/Core/Types.hpp>
 
 namespace LDL
 {
 	namespace Core
 	{
-		class IntegerToString
+		class LDL_EXPORT IntegerToString
 		{
 		public:
 			IntegerToString();

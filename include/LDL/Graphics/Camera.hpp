@@ -1,13 +1,14 @@
 #ifndef LDL_Graphics_Camera_hpp
 #define LDL_Graphics_Camera_hpp
 
+#include <LDL/Config.hpp>
 #include <LDL/Graphics/Primitives/Point2u.hpp>
 
 namespace LDL
 {
     namespace Graphics
     {
-        class Camera
+        class LDL_EXPORT Camera
         {
         public:
             Camera(const Point2u& pos, const Point2u& size);

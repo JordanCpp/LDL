@@ -1,9 +1,25 @@
 cmake_minimum_required(VERSION 3.8)
 
-project(LibLDL)
+project(LDL)
+#
+# Library type
+#
+
+#set(LDL_CONFIG_SHARED_LIBRARY true)
+#add_definitions(-DLDL_CONFIG_SHARED_LIBRARY)
+
+set(LDL_CONFIG_STATIC_LIBRARY true)
+add_definitions(-DLDL_CONFIG_STATIC_LIBRARY)
+
+#
+# Render type
+#
 
 #set(LDL_RENDER_SOFTWARE true)
 #add_definitions(-DLDL_RENDER_SOFTWARE)
+
+#set(LDL_RENDER_GDI true)
+#add_definitions(-DLDL_RENDER_GDI)
 
 set(LDL_RENDER_OPENGL1 true)
 add_definitions(-DLDL_RENDER_OPENGL1)
@@ -11,14 +27,14 @@ add_definitions(-DLDL_RENDER_OPENGL1)
 #set(LDL_RENDER_OPENGL3 true)
 #add_definitions(-DLDL_RENDER_OPENGL3)
 
-#set(LDL_GPU_SUPPORT_DIRECTX9 true)
-#add_definitions(-DLDL_GPU_SUPPORT_DIRECTX9)
+#set(LDL_RENDER_DIRECTX1 true)
+#add_definitions(-DLDL_RENDER_DIRECTX1)
 
-#set(LDL_GPU_SUPPORT_DIRECTX5 true)
-#add_definitions(-DLDL_GPU_SUPPORT_DIRECTX5)
+#set(LDL_RENDER_DIRECTX5 true)
+#add_definitions(-DLDL_RENDER_DIRECTX5)
 
-#set(LDL_GPU_SUPPORT_DIRECTX1 true)
-#add_definitions(-DLDL_GPU_SUPPORT_DIRECTX1)
+#set(LDL_RENDER_DIRECTX9 true)
+#add_definitions(-DLDL_RENDER_DIRECTX9)
 
 if (MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
@@ -26,22 +42,26 @@ endif()
 
 include_directories("include")
 
-if (LDL_GPU_SUPPORT_DIRECTX9)
+if (LDL_RENDER_DIRECTX9)
   include_directories("dependencies/dx9sdk/Include")
-  link_directories("dependencies/dx9sdk/Lib/x86")
+  if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    link_directories("dependencies/dx9sdk/Lib/x64")
+  elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+    link_directories("dependencies/dx9sdk/Lib/x86")
+  endif()
 endif() 
 
-if (LDL_GPU_SUPPORT_DIRECTX5)
+if (LDL_RENDER_DIRECTX5)
   include_directories("dependencies/dx5sdk/Include")
   link_directories("dependencies/dx5sdk/Lib")
 endif() 
 
-if (LDL_GPU_SUPPORT_DIRECTX1)
+if (LDL_RENDER_DIRECTX1)
   include_directories("dependencies/dx1sdk/Include")
   link_directories("dependencies/dx1sdk/Lib")
 endif()
 
-add_library(LDL STATIC
+set(SOURCE_FILES
 "source/Core/TestEqual.cpp" 
 "source/Core/RuntimeError.cpp"
 "source/Core/IntegerToString.cpp"
@@ -63,7 +83,6 @@ add_library(LDL STATIC
 "source/Graphics/Render.cpp"
 "source/Graphics/Texture.cpp"
 "source/Graphics/Screenshoter.cpp"
-"source/Graphics/Functions.cpp"
 "source/Graphics/ImageWritter.cpp"
 "source/Graphics/ImageResizer.cpp"
 "source/Graphics/Isometric.cpp"
@@ -74,26 +93,19 @@ add_library(LDL STATIC
 "source/Allocators/SmallAllocator.cpp"
 "source/Loaders/ImageLoader.cpp"
 "source/Loaders/FontLoader.cpp"
-"source/OpenGL/OpenGLLoader.cpp"
 "source/Time/FpsCounter.cpp"
 "source/Time/FpsLimiter.cpp"
+"source/Graphics/OpenGL/Functions.cpp"
+"source/OpenGL/OpenGLLoader.cpp"
 "source/OpenGL/OpenGL1_0.cpp"
 "source/OpenGL/OpenGL1_1.cpp"
 "source/OpenGL/OpenGL3_3.cpp")
 
-if (LDL_RENDER_SOFTWARE)
-  target_sources(LDL PRIVATE
-  "source/Graphics/Software/RenderImpl.cpp"
-  "source/Graphics/Software/TextureImpl.cpp")
-endif() 
-
-if (WIN32 AND LDL_RENDER_SOFTWARE)
-  target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/Software/WindowImpl.cpp")
-endif()
-
+#
+# OpenGL1
+#
 if (LDL_RENDER_OPENGL1)
-  target_sources(LDL PRIVATE
+  set(SOURCE_RENDER
   "source/Graphics/OpenGL1/RenderImpl.cpp"
   "source/Graphics/OpenGL1/TextureImpl.cpp"
   "source/Graphics/OpenGL1/Util.cpp"
@@ -101,8 +113,17 @@ if (LDL_RENDER_OPENGL1)
   "source/Graphics/OpenGL1/ScreenshoterImpl.cpp")
 endif() 
 
+if (WIN32 AND LDL_RENDER_OPENGL1)
+set(SOURCE_RENDER_PLATFORM
+  "source/Platforms/Windows/Graphics/OpenGL/FunctionsImpl.cpp"
+  "source/Platforms/Windows/Graphics/OpenGL1/WindowImpl.cpp")
+endif()
+
+#
+# OpenGL3
+#
 if (LDL_RENDER_OPENGL3)
-  target_sources(LDL PRIVATE
+  set(SOURCE_RENDER
   "source/Graphics/OpenGL3/RenderImpl.cpp"
   "source/Graphics/OpenGL3/TextureImpl.cpp"
   "source/Graphics/OpenGL3/Util.cpp"
@@ -110,54 +131,93 @@ if (LDL_RENDER_OPENGL3)
   "source/Graphics/OpenGL3/ScreenshoterImpl.cpp")
 endif() 
 
-if (WIN32 AND LDL_RENDER_OPENGL1)
-  target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/OpenGL1/WindowImpl.cpp"
-  "source/Platforms/Windows/Graphics/OpenGL1/ContextImpl.cpp"
-  "source/Platforms/Windows/Graphics/OpenGL1/FunctionsImpl.cpp")
-endif()
-
 if (WIN32 AND LDL_RENDER_OPENGL3)
-  target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/OpenGL3/WindowImpl.cpp"
-  "source/Platforms/Windows/Graphics/OpenGL3/ContextImpl.cpp"
-  "source/Platforms/Windows/Graphics/OpenGL3/FunctionsImpl.cpp")
+  set(SOURCE_RENDER_PLATFORM
+  "source/Platforms/Windows/Graphics/OpenGL/FunctionsImpl.cpp"
+  "source/Platforms/Windows/Graphics/OpenGL3/WindowImpl.cpp")
 endif()
 
-if (LDL_GPU_SUPPORT_DIRECTX1)
-  target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/DirectDraw/WindowImpl.cpp"
+#
+# Software
+#
+if (LDL_RENDER_SOFTWARE)
+  set(SOURCE_RENDER
+  "source/Graphics/Software/RenderImpl.cpp"
+  "source/Graphics/Software/TextureImpl.cpp")
+endif() 
+
+if (WIN32 AND LDL_RENDER_SOFTWARE)
+  set(SOURCE_RENDER_PLATFORM
+  "source/Platforms/Windows/Graphics/Software/WindowImpl.cpp")
+endif()
+
+#
+# GDI
+#
+if (LDL_RENDER_GDI)
+  set(SOURCE_RENDER
+  "source/Graphics/GDI/RenderImpl.cpp"
+  "source/Graphics/GDI/TextureImpl.cpp"
+  "source/Graphics/GDI/Util.cpp"
+  "source/Graphics/GDI/Screen.cpp"
+  "source/Graphics/GDI/ScreenshoterImpl.cpp")
+endif() 
+
+if (WIN32 AND LDL_RENDER_GDI)
+  set(SOURCE_RENDER_PLATFORM
+  "source/Platforms/Windows/Graphics/GDI/WindowImpl.cpp")
+endif()
+
+#
+# DirectX1
+#
+if (LDL_RENDER_DIRECTX1)
+  set(SOURCE_RENDER
   "source/Graphics/DirectDraw/RenderImpl.cpp"
   "source/Graphics/DirectDraw/TextureImpl.cpp"
   "source/Graphics/DirectDraw/ScreenshoterImpl.cpp")
 endif()
 
-if (LDL_GPU_SUPPORT_DIRECTX9)
-  target_sources(LDL PRIVATE
+if (WIN32 AND LDL_RENDER_DIRECTX1)
+  set(SOURCE_RENDER_PLATFORM
+  "source/Platforms/Windows/Graphics/DirectDraw/WindowImpl.cpp")
+endif() 
+
+#
+# DirectX9
+#
+if (LDL_RENDER_DIRECTX9)
+  set(SOURCE_RENDER
   "source/Graphics/DirectX9/Direct3D/RenderImpl.cpp"
   "source/Graphics/DirectX9/Direct3D/TextureImpl.cpp"
   "source/Graphics/DirectX9/Direct3D/ScreenshoterImpl.cpp")
 endif() 
 
-if (LDL_GPU_SUPPORT_DIRECTX5)
-  target_sources(LDL PRIVATE
+if (WIN32 AND LDL_RENDER_DIRECTX9)
+  set(SOURCE_RENDER_PLATFORM
+  "source/Platforms/Windows/Graphics/DirectX9/Direct3D/WindowImpl.cpp")
+endif() 
+
+#
+# DirectX5
+#
+if (LDL_RENDER_DIRECTX5)
+  set(SOURCE_RENDER
   "source/Graphics/DirectX5/Direct3D/RenderImpl.cpp"
   "source/Graphics/DirectX5/Direct3D/TextureImpl.cpp"
   "source/Graphics/DirectX5/Direct3D/ScreenshoterImpl.cpp")
 endif() 
 
-if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX9)
-  target_sources(LDL PRIVATE
-  "source/Platforms/Windows/Graphics/DirectX9/Direct3D/WindowImpl.cpp")
-endif() 
-
-if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX5)
-  target_sources(LDL PRIVATE
+if (WIN32 AND LDL_RENDER_DIRECTX5)
+  set(SOURCE_RENDER_PLATFORM
   "source/Platforms/Windows/Graphics/DirectX5/Direct3D/WindowImpl.cpp")
 endif() 
 
+#
+# Platform
+#
 if (WIN32)
-  target_sources(LDL PRIVATE
+  set(SOURCE_PLATFORM
   "source/Platforms/Windows/Graphics/MainWindow.cpp"
   "source/Platforms/Windows/Time/Ticks.cpp"
   "source/Platforms/Windows/Core/DirectoryImpl.cpp"
@@ -165,32 +225,43 @@ if (WIN32)
   "source/Platforms/Windows/Input/Display.cpp"
   "source/Platforms/Windows/Input/Mouse.cpp")
 elseif(UNIX AND NOT APPLE)
-  target_sources(LDL PRIVATE
+  set(SOURCE_PLATFORM
   "source/Platforms/Linux/Graphics/Window.cpp")
 endif() 
 
+set(SOURCE_ALL ${SOURCE_FILES} ${SOURCE_RENDER} ${SOURCE_RENDER_PLATFORM} ${SOURCE_PLATFORM})
+
+if (LDL_CONFIG_SHARED_LIBRARY)
+  add_library(${CMAKE_PROJECT_NAME} SHARED  ${SOURCE_ALL})		
+elseif (LDL_CONFIG_STATIC_LIBRARY)
+  add_library(${CMAKE_PROJECT_NAME} STATIC  ${SOURCE_ALL})		
+endif() 
+
 if (WIN32)
-  target_link_libraries(LDL winmm)
+  target_link_libraries(${CMAKE_PROJECT_NAME} winmm)
 endif() 
 
 if (WIN32 AND (LDL_RENDER_OPENGL1 OR LDL_RENDER_OPENGL3))
-  target_link_libraries(LDL opengl32)
+  target_link_libraries(${CMAKE_PROJECT_NAME} opengl32)
 endif()
 
-if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX9)
-  target_link_libraries(LDL d3d9 d3dx9)
+if (WIN32 AND LDL_RENDER_DIRECTX1)
+  target_link_libraries(${CMAKE_PROJECT_NAME} ddraw)
 endif()
 
-if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX5)
-  target_link_libraries(LDL d3drm ddraw)
+if (WIN32 AND LDL_RENDER_DIRECTX5)
+  target_link_libraries(${CMAKE_PROJECT_NAME} d3drm ddraw)
 endif()
 
-if (WIN32 AND LDL_GPU_SUPPORT_DIRECTX1)
-  target_link_libraries(LDL ddraw)
+if (WIN32 AND LDL_RENDER_DIRECTX9)
+  target_link_libraries(${CMAKE_PROJECT_NAME} d3d9 d3dx9)
 endif()
 
-add_subdirectory("test")
-add_subdirectory("Games")
 add_subdirectory("Examples")
-add_subdirectory("Tutorials")
+add_subdirectory("Games")
 add_subdirectory("Experiments")
+
+if (LDL_CONFIG_STATIC_LIBRARY)
+  add_subdirectory("test")
+  add_subdirectory("Tutorials")
+endif()

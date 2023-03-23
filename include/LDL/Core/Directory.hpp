@@ -10,7 +10,7 @@ namespace LDL
 	{
 		class DirectoryImpl;
 
-		class Directory: public FastPimpl
+		class LDL_EXPORT Directory: public FastPimpl
 		{
 		public:
 			Directory();
