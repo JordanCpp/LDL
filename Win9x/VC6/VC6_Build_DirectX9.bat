@@ -20,6 +20,7 @@ CL -GX /DLDL_CONFIG_STATIC_LIBRARY   ^
 ..\..\source\Graphics\Utils\*.cpp ^
 ..\..\source\Loaders\*.cpp  ^
 ..\..\source\Platforms\Windows\Input\*.cpp  ^
+..\..\source\LDLC\*.cpp  ^
 gdi32.lib ^
 ..\..\dependencies\dx9sdk\lib\x86\d3d9.lib  ^
 ..\..\dependencies\dx9sdk\lib\x86\d3dx9.lib ^

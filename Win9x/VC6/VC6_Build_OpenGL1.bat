@@ -21,6 +21,7 @@ CL -GX /I..\..\include /DLDL_CONFIG_STATIC_LIBRARY /DLDL_RENDER_OPENGL1 ..\%2  ^
 ..\..\source\Loaders\*.cpp  ^
 ..\..\source\Platforms\Windows\Input\*.cpp  ^
 ..\..\source\OpenGL\*.cpp  ^
+..\..\source\LDLC\*.cpp  ^
 gdi32.lib ^
 opengl32.lib ^
 winmm.lib   ^

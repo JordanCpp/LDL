@@ -99,7 +99,8 @@ set(SOURCE_FILES
 "source/OpenGL/OpenGLLoader.cpp"
 "source/OpenGL/OpenGL1_0.cpp"
 "source/OpenGL/OpenGL1_1.cpp"
-"source/OpenGL/OpenGL3_3.cpp")
+"source/OpenGL/OpenGL3_3.cpp"
+"source/LDLC/LDL_Window.cpp")
 
 #
 # OpenGL1

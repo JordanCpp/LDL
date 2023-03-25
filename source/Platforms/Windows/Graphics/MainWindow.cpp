@@ -258,14 +258,14 @@ MainWindow::MainWindow(const Point2u& pos, const Point2u& size, const std::strin
     RECT rect;
 
     rect.left   = (LONG)_BaseWindow.Pos().PosX();
-    rect.top    = (LONG)_BaseWindow.Pos().PosX();
+    rect.top    = (LONG)_BaseWindow.Pos().PosY();
     rect.right  = (LONG)_BaseWindow.Size().PosX();
     rect.bottom = (LONG)_BaseWindow.Size().PosY();
 
     if (!AdjustWindowRect(&rect, style, FALSE))
         throw LDL::Core::RuntimeError("AdjustWindowRect failed");
 
-    _HWND = CreateWindow(AppName, "", style, (int)_BaseWindow.Pos().PosX(), (int)_BaseWindow.Pos().PosX(), rect.right - rect.left, rect.bottom - rect.top, 0, 0, _HINSTANCE, 0);
+    _HWND = CreateWindow(AppName, "", style, (int)_BaseWindow.Pos().PosX(), (int)_BaseWindow.Pos().PosY(), rect.right - rect.left, rect.bottom - rect.top, 0, 0, _HINSTANCE, 0);
 
     if (_HWND == INVALID_HANDLE_VALUE)
         throw LDL::Core::RuntimeError("CreateWindow failed");
@@ -358,7 +358,7 @@ const Point2u& MainWindow::Size()
     if (!GetClientRect(_HWND, &rect))
         throw LDL::Core::RuntimeError("GetClientRect failed");
 
-    _BaseWindow.Size(Point2u(rect.right + 1, rect.bottom + 1));
+    _BaseWindow.Size(Point2u(rect.right + Pos().PosX(), rect.bottom + Pos().PosY()));
 
     return _BaseWindow.Size();
 }

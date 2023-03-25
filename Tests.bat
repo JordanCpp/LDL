@@ -11,3 +11,4 @@ for %%f in (out\build\%1\test\Graphics\Base\*.exe) do call %%f
 for %%f in (out\build\%1\test\Graphics\Render\*.exe) do call %%f
 for %%f in (out\build\%1\test\Graphics\Utils\*.exe) do call %%f
 for %%f in (out\build\%1\test\Math\*.exe) do call %%f
+for %%f in (out\build\%1\test\LDLC\*.exe) do call %%f
