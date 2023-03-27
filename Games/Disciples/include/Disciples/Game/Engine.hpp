@@ -26,6 +26,7 @@ namespace Disciples
 			LDL::Allocators::FixedLinear _ImageAllocator;
 			LDL::Loaders::ImageLoader _ImageLoader;
 			LDL::Graphics::Window _Window;
+			LDL::Graphics::RenderContext _RenderContext;
 			LDL::Graphics::Render _Render;
 			LDL::Time::FpsCounter _FpsCounter;
 			LDL::Core::IntegerToString _Convert;

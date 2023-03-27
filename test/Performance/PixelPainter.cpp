@@ -14,7 +14,8 @@ int main()
 	{
 		Window window(Point2u(0, 0), Point2u(800, 600), "Window!");
 
-		Render render(&window);
+		RenderContext renderContext;
+		Render render(&renderContext, &window);
 
 		Surface screen(Point2u(800, 600), 4);
 		PixelPainter painter;

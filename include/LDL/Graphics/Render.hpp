@@ -4,6 +4,7 @@
 #include <LDL/Graphics/Surface.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Texture.hpp>
+#include <LDL/Graphics/RenderContext.hpp>
 
 namespace LDL
 {
@@ -15,7 +16,7 @@ namespace LDL
 		class LDL_EXPORT Render: public LDL::Core::FastPimpl
 		{
 		public:
-			Render(Window* window);
+			Render(RenderContext* renderContext, Window* window);
 			~Render();
 			void Buffer(uint8_t* dst);
 			void Begin();

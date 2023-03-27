@@ -15,7 +15,8 @@ int main()
 
 		Window window(Point2u(1, 2), Point2u(640, 480), title);
 
-		Render render(&window);
+		RenderContext renderContext;
+		Render render(&renderContext, &window);
 
 		LDL_TEST_EQUAL(render.Size().PosX() > 0);
 		LDL_TEST_EQUAL(render.Size().PosX() <= 640);

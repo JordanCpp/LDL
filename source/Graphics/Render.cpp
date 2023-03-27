@@ -18,8 +18,8 @@
 
 using namespace LDL::Graphics;
 
-Render::Render(Window* window) :
-	_RenderImpl(new RenderImpl(window))
+Render::Render(RenderContext* renderContext, Window* window) :
+	_RenderImpl(new RenderImpl(renderContext->GetRenderContextImpl(), window))
 {
 }
 

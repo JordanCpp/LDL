@@ -1,7 +1,7 @@
 #ifndef LDL_Graphics_Software_TextureImpl_hpp
 #define LDL_Graphics_Software_TextureImpl_hpp
 
-#include "RenderImpl.hpp"
+#include "RenderContextImpl.hpp"
 #include <LDL/Graphics/Surface.hpp>
 
 namespace LDL
@@ -13,7 +13,7 @@ namespace LDL
 		class TextureImpl
 		{
 		public:
-			TextureImpl(RenderImpl* renderImpl, const Point2u & size, uint8_t* pixels, uint8_t bytesPerPixel);
+			TextureImpl(RenderContextImpl* renderContextImpl, const Point2u & size, uint8_t* pixels, uint8_t bytesPerPixel);
 			~TextureImpl();
 			const Point2u& Size();
 			Surface* GetSurface();

@@ -69,6 +69,7 @@ set(SOURCE_FILES
 "source/Core/Directory.cpp"
 "source/Core/FastPimpl.cpp"
 "source/Core/Library.cpp"
+
 "source/Graphics/Base/BaseWindow.cpp"
 "source/Graphics/Base/BaseRender.cpp"
 "source/Graphics/Software/Surface.cpp"
@@ -81,6 +82,7 @@ set(SOURCE_FILES
 "source/Graphics/Window.cpp"
 "source/Graphics/Base/BaseScreenshoter.cpp"
 "source/Graphics/Render.cpp"
+"source/Graphics/RenderContext.cpp"
 "source/Graphics/Texture.cpp"
 "source/Graphics/Screenshoter.cpp"
 "source/Graphics/ImageWritter.cpp"
@@ -88,19 +90,30 @@ set(SOURCE_FILES
 "source/Graphics/Isometric.cpp"
 "source/Graphics/Camera.cpp"
 "source/Graphics/Utils/PotTextureSizer.cpp"
+"source/Graphics/OpenGL/Functions.cpp"
+
 "source/Events/Eventer.cpp"
+
 "source/Allocators/FixedLinear.cpp"
 "source/Allocators/SmallAllocator.cpp"
+
 "source/Loaders/ImageLoader.cpp"
 "source/Loaders/FontLoader.cpp"
+
 "source/Time/FpsCounter.cpp"
 "source/Time/FpsLimiter.cpp"
-"source/Graphics/OpenGL/Functions.cpp"
+
 "source/OpenGL/OpenGLLoader.cpp"
 "source/OpenGL/OpenGL1_0.cpp"
 "source/OpenGL/OpenGL1_1.cpp"
 "source/OpenGL/OpenGL3_3.cpp"
-"source/LDLC/LDL_Window.cpp")
+
+"source/LDLC/LDL_Window.cpp"
+"source/LDLC/LDL_RenderContext.cpp"
+"source/LDLC/LDL_Render.cpp"
+"source/LDLC/LDL_Surface.cpp"
+"source/LDLC/LDL_Texture.cpp"
+"source/LDLC/LDL_FpsCounter.cpp")
 
 #
 # OpenGL1
@@ -111,7 +124,8 @@ if (LDL_RENDER_OPENGL1)
   "source/Graphics/OpenGL1/TextureImpl.cpp"
   "source/Graphics/OpenGL1/Util.cpp"
   "source/Graphics/OpenGL1/Screen.cpp"
-  "source/Graphics/OpenGL1/ScreenshoterImpl.cpp")
+  "source/Graphics/OpenGL1/ScreenshoterImpl.cpp"
+  "source/Graphics/OpenGL1/RenderContextImpl.cpp")
 endif() 
 
 if (WIN32 AND LDL_RENDER_OPENGL1)
@@ -129,7 +143,8 @@ if (LDL_RENDER_OPENGL3)
   "source/Graphics/OpenGL3/TextureImpl.cpp"
   "source/Graphics/OpenGL3/Util.cpp"
   "source/Graphics/OpenGL3/Screen.cpp"
-  "source/Graphics/OpenGL3/ScreenshoterImpl.cpp")
+  "source/Graphics/OpenGL3/ScreenshoterImpl.cpp"
+  "source/Graphics/OpenGL3/RenderContextImpl.cpp")
 endif() 
 
 if (WIN32 AND LDL_RENDER_OPENGL3)
@@ -144,7 +159,8 @@ endif()
 if (LDL_RENDER_SOFTWARE)
   set(SOURCE_RENDER
   "source/Graphics/Software/RenderImpl.cpp"
-  "source/Graphics/Software/TextureImpl.cpp")
+  "source/Graphics/Software/TextureImpl.cpp"
+  "source/Graphics/Software/RenderContextImpl.cpp")
 endif() 
 
 if (WIN32 AND LDL_RENDER_SOFTWARE)
@@ -191,7 +207,8 @@ if (LDL_RENDER_DIRECTX9)
   set(SOURCE_RENDER
   "source/Graphics/DirectX9/Direct3D/RenderImpl.cpp"
   "source/Graphics/DirectX9/Direct3D/TextureImpl.cpp"
-  "source/Graphics/DirectX9/Direct3D/ScreenshoterImpl.cpp")
+  "source/Graphics/DirectX9/Direct3D/ScreenshoterImpl.cpp"
+  "source/Graphics/DirectX9/Direct3D/RenderContextImpl.cpp")
 endif() 
 
 if (WIN32 AND LDL_RENDER_DIRECTX9)

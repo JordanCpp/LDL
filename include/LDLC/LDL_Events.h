@@ -1,7 +1,11 @@
 #ifndef LDL_Events_h
 #define LDL_Events_h
 
-#include <LDL/Core/Types.hpp>
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <LDLC/LDL_Types.h>
 
 #define LDL_EventIsQuit       (1)
 #define LDL_EventIsMouseMove  (2)
@@ -48,5 +52,9 @@ typedef struct LDL_Event
 		LDL_EventKeyboard Keyboard;
 	};
 } LDL_Event;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

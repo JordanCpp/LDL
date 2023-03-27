@@ -14,7 +14,9 @@ int main()
 	try
 	{
 		Window window(Point2u(0, 0), Point2u(800, 600), "Window!");
-		Render render(&window);
+		
+		RenderContext renderContext;
+		Render render(&renderContext, &window);
 
 		LDL::Events::Event report;
 
@@ -22,7 +24,7 @@ int main()
 		LDL::Loaders::ImageLoader loader(&allocator);
 
 		loader.Load("trehmachtovyiy-korabl-kartina-maslom-60x50_512x.jpg");
-		Texture image(&render, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
+		Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;

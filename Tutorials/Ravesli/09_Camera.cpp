@@ -36,7 +36,9 @@ int main()
 	try
 	{
 		Window window(Point2u(0, 0), Point2u(SCR_WIDTH, SCR_HEIGHT), LessonTittle);
-		Render render(&window);
+
+		RenderContext renderContext;
+		Render render(&renderContext, &window);
 
         LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
         LDL::Loaders::ImageLoader loader(&allocator);

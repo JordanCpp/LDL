@@ -14,7 +14,9 @@ int main()
 	try
 	{
 		Window window(Point2u(0, 0), Point2u(800, 600), "Window!");
-		Render render(&window);
+
+		RenderContext renderContext;
+		Render render(&renderContext, &window);
 
 		LDL::Events::Event report;
 
@@ -22,7 +24,7 @@ int main()
 		LDL::Loaders::ImageLoader loader(&allocator);
 
 		loader.Load("Gorgosaurus_BW_transparent.png");
-		Texture image(&render, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
+		Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
 		size_t x = 0;
 		size_t y = 0;

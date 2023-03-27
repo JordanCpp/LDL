@@ -2,7 +2,7 @@
 
 using namespace LDL::Graphics;
 
-RenderImpl::RenderImpl(Window* window) :
+RenderImpl::RenderImpl(RenderContextImpl* renderContextImpl, Window* window) :
 	_Window(window),
 	_Canvas(_Window->Size(), 4),
 	_ImageResizer(_Window->Size())

@@ -15,7 +15,7 @@ namespace LDL
 		class RenderImpl
 		{
 		public:
-			RenderImpl(Window* window);
+			RenderImpl(RenderContextImpl* renderContextImpl, Window* window);
 			~RenderImpl();
 			void RenderImpl::Buffer(uint8_t* dst);
 			void Mode2D();
@@ -40,8 +40,7 @@ namespace LDL
 			BaseRender _BaseRender;
 			ID3DXLine* _Line;
 		public:
-			IDirect3D9* _Direct3D;
-			IDirect3DDevice9* _Direct3DDevice;
+			RenderContextImpl* _RenderContextImpl;
 			IDirect3DVertexBuffer9* _VertexBuffer;
 		};
 	}

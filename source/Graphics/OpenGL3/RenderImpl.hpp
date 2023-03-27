@@ -14,7 +14,7 @@ namespace LDL
 		class RenderImpl
 		{
 		public:
-			RenderImpl(Window* window);
+			RenderImpl(RenderContextImpl* renderContextImpl, Window* window);
 			void Buffer(uint8_t * dst);
 			void Begin();
 			void End();

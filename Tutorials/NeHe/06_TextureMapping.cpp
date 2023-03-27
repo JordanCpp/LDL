@@ -125,7 +125,8 @@ int main()
 	{
 		Window window(Point2u(0, 0), Point2u(800, 600), LessonTittle);
 
-		Render render(&window);
+		RenderContext renderContext;
+		Render render(&renderContext, &window);
 
 		LDL::Events::Event report;
 

@@ -1,10 +1,11 @@
 #include "TextureImpl.hpp"
 #include <assert.h>
 #include <LDL/Core/RuntimeError.hpp>
+#include "RenderContextImpl.hpp"
 
 using namespace LDL::Graphics;
 
-TextureImpl::TextureImpl(RenderImpl* renderImpl, const Point2u& size, uint8_t* pixels, size_t bytesPerPixel) :
+TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Point2u& size, uint8_t* pixels, size_t bytesPerPixel) :
 	_Texture(NULL)
 {
 	assert(size.PosX() > 0);
@@ -23,7 +24,7 @@ TextureImpl::TextureImpl(RenderImpl* renderImpl, const Point2u& size, uint8_t* p
 	else
 		format = D3DFMT_R8G8B8;
 	
-	result = D3DXCreateTexture(renderImpl->_Direct3DDevice, size.PosX(), size.PosY(), D3DX_DEFAULT, 0, format, D3DPOOL_MANAGED, &_Texture);
+	result = D3DXCreateTexture(renderContextImpl->Context.Device, size.PosX(), size.PosY(), D3DX_DEFAULT, 0, format, D3DPOOL_MANAGED, &_Texture);
 	if (FAILED(result))
 		throw LDL::Core::RuntimeError("D3DXCreateTexture failed");
 

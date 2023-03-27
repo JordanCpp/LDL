@@ -7,7 +7,7 @@
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-RenderImpl::RenderImpl(Window* window) :
+RenderImpl::RenderImpl(RenderContextImpl* renderContextImpl, Window* window) :
 	_Window(window),
 	_Screen(_Window->Size())
 {

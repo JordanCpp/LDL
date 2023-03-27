@@ -25,7 +25,9 @@ int main()
 		srand((uint32_t)time(NULL));
 
 		Window window(Point2u(0, 0), Point2u(800, 600), "12_TileMap2");
-		Render render(&window);
+
+		RenderContext renderContext;
+		Render render(&renderContext, &window);
 
 		LDL::Events::Event report;
 
@@ -33,7 +35,7 @@ int main()
 		LDL::Loaders::ImageLoader loader(&allocator);
 
 		loader.Load("SeasonsTiles.png");
-		Texture image(&render, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
+		Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;

@@ -16,7 +16,9 @@ int main()
 	try
 	{
 		Window window(Point2u(0, 0), Point2u(800, 600), "10_TileMap");
-		Render render(&window);
+
+		RenderContext renderContext;
+		Render render(&renderContext, &window);
 
 		LDL::Events::Event report;
 
@@ -24,7 +26,7 @@ int main()
 		LDL::Loaders::ImageLoader loader(&allocator);
 
 		loader.Load(Color(0, 0, 255), "bg1bg23d_0_0_0.bmp");
-		Texture image(&render, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
+		Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
 		LDL::Time::FpsCounter fpsCounter;
 		LDL::Core::IntegerToString convert;

@@ -2,6 +2,7 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include "../../../Platforms/Windows/Graphics/DirectX9/Direct3D/WindowImpl.hpp"
 #include "TextureImpl.hpp"
+#include "RenderContextImpl.hpp"
 
 using namespace LDL::Graphics;
 
@@ -21,17 +22,16 @@ struct QuadType
 
 #define D3DFVF_CUSTOMVERTEX (D3DFVF_XYZRHW | D3DFVF_TEX1)
 
-RenderImpl::RenderImpl(Window* window) :
+RenderImpl::RenderImpl(RenderContextImpl* renderContextImpl, Window* window) :
 	_Window(window),
 	_BaseRender(_Window->Size()),
     _Line(NULL),
-    _Direct3D(NULL),
-    _Direct3DDevice(NULL),
+    _RenderContextImpl(renderContextImpl),
     _VertexBuffer(NULL)
 {
     Initialization();
 
-    HRESULT result = _Direct3DDevice->CreateVertexBuffer(sizeof(QuadType), 0, D3DFVF_CUSTOMVERTEX, D3DPOOL_DEFAULT, &_VertexBuffer, NULL);
+    HRESULT result = _RenderContextImpl->Context.Device->CreateVertexBuffer(sizeof(QuadType), 0, D3DFVF_CUSTOMVERTEX, D3DPOOL_DEFAULT, &_VertexBuffer, NULL);
 
     if (FAILED(result))
         throw LDL::Core::RuntimeError("CreateVertexBuffer failed");
@@ -54,7 +54,7 @@ void RenderImpl::Mode2D()
     D3DXMATRIX projection;
     D3DXMatrixOrthoLH(&projection, (FLOAT)_Window->Size().PosX(), (FLOAT)_Window->Size().PosY(), 0.0f, 0.0f);
 
-    HRESULT result = _Direct3DDevice->SetTransform(D3DTS_PROJECTION, &projection);
+    HRESULT result = _RenderContextImpl->Context.Device->SetTransform(D3DTS_PROJECTION, &projection);
 
     if (FAILED(result))
         throw LDL::Core::RuntimeError("SetTransform failed");
@@ -62,12 +62,12 @@ void RenderImpl::Mode2D()
 
 void RenderImpl::Begin()
 {
-    HRESULT result = _Direct3DDevice->TestCooperativeLevel();
+    HRESULT result = _RenderContextImpl->Context.Device->TestCooperativeLevel();
 
     if (result == D3DERR_DEVICELOST)
         throw LDL::Core::RuntimeError("TestCooperativeLevel failed");
 
-    result = _Direct3DDevice->BeginScene();
+    result = _RenderContextImpl->Context.Device->BeginScene();
 
     if (FAILED(result))
         throw LDL::Core::RuntimeError("BeginScene failed");
@@ -77,11 +77,11 @@ void RenderImpl::End()
 {
     HRESULT result;
 
-    result = _Direct3DDevice->EndScene();
+    result = _RenderContextImpl->Context.Device->EndScene();
     if (FAILED(result))
         throw LDL::Core::RuntimeError("EndScene failed");
 
-    result = _Direct3DDevice->Present(NULL, NULL, NULL, NULL);
+    result = _RenderContextImpl->Context.Device->Present(NULL, NULL, NULL, NULL);
     if (FAILED(result))
         throw LDL::Core::RuntimeError("Present failed");
 }
@@ -98,7 +98,7 @@ const Color& LDL::Graphics::RenderImpl::Color()
 
 void RenderImpl::Clear()
 {
-    _Direct3DDevice->Clear(0L, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(_BaseRender.Color().Red(), _BaseRender.Color().Green(), _BaseRender.Color().Blue()), 1.0f, 0L);
+    _RenderContextImpl->Context.Device->Clear(0L, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(_BaseRender.Color().Red(), _BaseRender.Color().Green(), _BaseRender.Color().Blue()), 1.0f, 0L);
 }
 
 void RenderImpl::Color(const LDL::Graphics::Color& color)
@@ -166,16 +166,16 @@ void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
     if (FAILED(result))
         throw LDL::Core::RuntimeError("Unlock failed");
 
-    _Direct3DDevice->SetStreamSource(0, _VertexBuffer, 0, sizeof(VertexType));
-    _Direct3DDevice->SetFVF(D3DFVF_CUSTOMVERTEX);
+    _RenderContextImpl->Context.Device->SetStreamSource(0, _VertexBuffer, 0, sizeof(VertexType));
+    _RenderContextImpl->Context.Device->SetFVF(D3DFVF_CUSTOMVERTEX);
 
-    _Direct3DDevice->SetTexture(0, (LPDIRECT3DBASETEXTURE9)image->GetTextureImpl()->Texture());
-    _Direct3DDevice->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
-    _Direct3DDevice->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
-    _Direct3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-    _Direct3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-    _Direct3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-    _Direct3DDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
+    _RenderContextImpl->Context.Device->SetTexture(0, (LPDIRECT3DBASETEXTURE9)image->GetTextureImpl()->Texture());
+    _RenderContextImpl->Context.Device->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
+    _RenderContextImpl->Context.Device->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
+    _RenderContextImpl->Context.Device->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+    _RenderContextImpl->Context.Device->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+    _RenderContextImpl->Context.Device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+    _RenderContextImpl->Context.Device->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
 }
 
 void RenderImpl::Draw(Texture* image, const Point2u& pos)
@@ -197,21 +197,23 @@ void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcP
 
 void RenderImpl::Initialization()
 {
-    _Direct3D = Direct3DCreate9(D3D_SDK_VERSION);
+    _RenderContextImpl->Context.Direct = Direct3DCreate9(D3D_SDK_VERSION);
 
-    if (_Direct3D == NULL)
+    if (_RenderContextImpl->Context.Direct == NULL)
         throw LDL::Core::RuntimeError("Direct3DCreate9 failed");
 
     HRESULT result = NULL;
 
     D3DDISPLAYMODE displayMode = { 0 };
 
-    result = _Direct3D->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &displayMode);
+    result = _RenderContextImpl->Context.Direct->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &displayMode);
 
     if (FAILED(result))
         throw LDL::Core::RuntimeError("GetAdapterDisplayMode failed");
 
-    D3DPRESENT_PARAMETERS parameters = { 0 };
+    D3DPRESENT_PARAMETERS parameters;
+
+    ZeroMemory(&parameters, sizeof(parameters));
 
     parameters.hDeviceWindow = _Window->GetWindowImpl()->Hwnd();
     parameters.Windowed = true;
@@ -225,12 +227,12 @@ void RenderImpl::Initialization()
     parameters.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
     parameters.FullScreen_RefreshRateInHz = 0;
 
-    result = _Direct3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, _Window->GetWindowImpl()->Hwnd(), D3DCREATE_HARDWARE_VERTEXPROCESSING, &parameters, &_Direct3DDevice);
+    result = _RenderContextImpl->Context.Direct->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, _Window->GetWindowImpl()->Hwnd(), D3DCREATE_HARDWARE_VERTEXPROCESSING, &parameters, &_RenderContextImpl->Context.Device);
 
     if (FAILED(result))
         throw LDL::Core::RuntimeError("CreateDevice failed");
 
-    result = D3DXCreateLine(_Direct3DDevice, &_Line);
+    result = D3DXCreateLine(_RenderContextImpl->Context.Device, &_Line);
 
     if (FAILED(result))
         throw LDL::Core::RuntimeError("D3DXCreateLine failed");
@@ -244,15 +246,15 @@ void RenderImpl::Deinitialization()
         _Line = NULL;
     }
 
-    if (_Direct3DDevice != NULL)
+    if (_RenderContextImpl->Context.Device != NULL)
     {
-        _Direct3DDevice->Release();
-        _Direct3DDevice = NULL;
+        _RenderContextImpl->Context.Device->Release();
+        _RenderContextImpl->Context.Device = NULL;
     }
 
-    if (_Direct3D != NULL)
+    if (_RenderContextImpl->Context.Direct != NULL)
     {
-        _Direct3D->Release();
-        _Direct3D = NULL;
+        _RenderContextImpl->Context.Direct->Release();
+        _RenderContextImpl->Context.Direct = NULL;
     }
 }
