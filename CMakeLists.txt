@@ -36,11 +36,23 @@ add_definitions(-DLDL_RENDER_OPENGL1)
 #set(LDL_RENDER_DIRECTX9 true)
 #add_definitions(-DLDL_RENDER_DIRECTX9)
 
+#set(LDL_RENDER_DIRECTX10 true)
+#add_definitions(-DLDL_RENDER_DIRECTX10)
+
 if (MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
 
 include_directories("include")
+
+if (LDL_RENDER_DIRECTX10)
+  include_directories("dependencies/dx10sdk/Include")
+  if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    link_directories("dependencies/dx10sdk/Lib/x64")
+  elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+    link_directories("dependencies/dx10sdk/Lib/x86")
+  endif()
+endif() 
 
 if (LDL_RENDER_DIRECTX9)
   include_directories("dependencies/dx9sdk/Include")
@@ -214,6 +226,22 @@ endif()
 if (WIN32 AND LDL_RENDER_DIRECTX9)
   set(SOURCE_RENDER_PLATFORM
   "source/Platforms/Windows/Graphics/DirectX9/Direct3D/WindowImpl.cpp")
+endif() 
+
+#
+# DirectX10
+#
+if (LDL_RENDER_DIRECTX10)
+  set(SOURCE_RENDER
+  "source/Graphics/DirectX10/Direct3D/RenderImpl.cpp"
+  "source/Graphics/DirectX10/Direct3D/TextureImpl.cpp"
+  "source/Graphics/DirectX10/Direct3D/ScreenshoterImpl.cpp"
+  "source/Graphics/DirectX10/Direct3D/RenderContextImpl.cpp")
+endif() 
+
+if (WIN32 AND LDL_RENDER_DIRECTX10)
+  set(SOURCE_RENDER_PLATFORM
+  "source/Platforms/Windows/Graphics/DirectX10/Direct3D/WindowImpl.cpp")
 endif() 
 
 #

@@ -14,6 +14,8 @@
 #include "DirectX5/Direct3D/RenderContextImpl.hpp"
 #elif LDL_RENDER_DIRECTX9
 #include "DirectX9/Direct3D/RenderContextImpl.hpp"
+#elif LDL_RENDER_DIRECTX10
+#include "DirectX10/Direct3D/RenderContextImpl.hpp"
 #endif
 
 using namespace LDL::Graphics;

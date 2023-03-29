@@ -14,6 +14,8 @@
 #include "../Platforms/Windows/Graphics/DirectX5/Direct3D/WindowImpl.hpp"
 #elif LDL_RENDER_DIRECTX9
 #include "../Platforms/Windows/Graphics/DirectX9/Direct3D/WindowImpl.hpp"
+#elif LDL_RENDER_DIRECTX10
+#include "../Platforms/Windows/Graphics/DirectX10/Direct3D/WindowImpl.hpp"
 #endif
 
 using namespace LDL::Graphics;
