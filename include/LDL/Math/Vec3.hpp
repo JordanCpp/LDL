@@ -43,18 +43,7 @@ namespace LDL
 				return result;
 			}
 
-			Vec3<T> operator += (const Vec3<T>& source) const
-			{
-				Vec3<T> result;
-
-				result.x = x + source.x;
-				result.y = y + source.y;
-				result.z = z + source.z;
-
-				return result;
-			}
-
-			Vec3<T> operator -= (const Vec3<T>& source) const
+			Vec3<T> operator - (const Vec3<T>& source) const
 			{
 				Vec3<T> result;
 
@@ -63,6 +52,24 @@ namespace LDL
 				result.z = z - source.z;
 
 				return result;
+			}
+
+			Vec3<T> operator += (const Vec3<T>& right)
+			{
+				x += right.x;
+				y += right.y;
+				z += right.z;
+
+				return *this;
+			}
+
+			Vec3<T> operator -= (const Vec3<T>& right)
+			{
+				x -= right.x;
+				y -= right.y;
+				z -= right.z;
+
+				return *this;
 			}
 
 			Vec3<T> operator * (const Vec3<T>& source) const

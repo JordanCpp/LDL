@@ -1,11 +1,11 @@
 #ifndef LDL_Events_h
 #define LDL_Events_h
 
+#include <LDLC/LDL_Types.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-#include <LDLC/LDL_Types.h>
 
 #define LDL_EventIsQuit       (1)
 #define LDL_EventIsMouseMove  (2)

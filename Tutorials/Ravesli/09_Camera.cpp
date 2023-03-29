@@ -13,6 +13,8 @@
 #include <LDL/Time/FpsLimiter.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Events;
+using namespace LDL::Enums;
 
 const std::string LessonTittle = "Lesson 03 - Adding Color";
 
@@ -181,7 +183,7 @@ int main()
 			render.Begin();
 
 			// Логическая часть работы со временем для каждого кадра
-			float currentFrame = (float)LDL::Time::Ticks();
+			float currentFrame = (float)LDL::Time::Ticks() / 1000.0f;
 			deltaTime = currentFrame - lastFrame;
 			lastFrame = currentFrame;
 
@@ -225,22 +227,19 @@ int main()
 
 			fpsLimiter.Throttle();
 
-			if (report.Type == LDL::Events::IsKeyboard && report.Keyboard.State == LDL::Enums::ButtonState::Released)
-			{
-				if (report.Keyboard.Key == LDL::Enums::KeyboardKey::W)
-					camera.ProcessKeyboard(FORWARD, deltaTime);
+			if (report.IsKeyPresed(KeyboardKey::W))
+				camera.ProcessKeyboard(FORWARD, deltaTime);
 
-				if (report.Keyboard.Key == LDL::Enums::KeyboardKey::S)
-					camera.ProcessKeyboard(BACKWARD, deltaTime);
+			if (report.IsKeyPresed(KeyboardKey::S))
+				camera.ProcessKeyboard(BACKWARD, deltaTime);
 
-				if (report.Keyboard.Key == LDL::Enums::KeyboardKey::A)
-					camera.ProcessKeyboard(LEFT, deltaTime);
+			if (report.IsKeyPresed(KeyboardKey::A))
+				camera.ProcessKeyboard(LEFT, deltaTime);
 
-				if (report.Keyboard.Key == LDL::Enums::KeyboardKey::D)
-					camera.ProcessKeyboard(RIGHT, deltaTime);
-			}
+			if (report.IsKeyPresed(KeyboardKey::D))
+				camera.ProcessKeyboard(RIGHT, deltaTime);
 
-			if (report.Type == LDL::Events::IsMouseMove)
+			if (report.Type == IsMouseMove)
 			{
 				float xpos = (float)report.Mouse.PosX;
 				float ypos = (float)report.Mouse.PosY;

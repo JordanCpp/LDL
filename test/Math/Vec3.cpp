@@ -33,6 +33,54 @@ void Addition()
 	LDL_TEST_EQUAL(vec3.z == 9.0f);
 }
 
+void Subtract()
+{
+	Vec3f vec1(1.0f, 2.0f, 3.0f);
+	Vec3f vec2(4.0f, 6.0f, 8.0f);
+
+	Vec3f vec3 = vec1 - vec2;
+
+	LDL_TEST_EQUAL(vec3.x == -3.0f);
+	LDL_TEST_EQUAL(vec3.y == -4.0f);
+	LDL_TEST_EQUAL(vec3.z == -5.0f);
+}
+
+void Assign()
+{
+	Vec3f vec1(1.0f, 2.0f, 3.0f);
+	Vec3f vec2(4.0f, 5.0f, 6.0f);
+
+	vec1 = vec2;
+
+	LDL_TEST_EQUAL(vec1.x == 4.0f);
+	LDL_TEST_EQUAL(vec1.y == 5.0f);
+	LDL_TEST_EQUAL(vec1.z == 6.0f);
+}
+
+void AdditionAssign()
+{
+	Vec3f vec1(1.0f, 2.0f, 3.0f);
+	Vec3f vec2(4.0f, 5.0f, 6.0f);
+
+	vec2 += vec1;
+
+	LDL_TEST_EQUAL(vec2.x == 5.0f);
+	LDL_TEST_EQUAL(vec2.y == 7.0f);
+	LDL_TEST_EQUAL(vec2.z == 9.0f);
+}
+
+void SubtractAssign()
+{
+	Vec3f vec1(1.0f, 2.0f, 3.0f);
+	Vec3f vec2(4.0f, 6.0f, 8.0f);
+
+	vec1 -= vec2;
+
+	LDL_TEST_EQUAL(vec1.x == -3.0f);
+	LDL_TEST_EQUAL(vec1.y == -4.0f);
+	LDL_TEST_EQUAL(vec1.z == -5.0f);
+}
+
 void Multiply()
 {
 	Vec3f vec1(1.0f, 2.0f, 3.0f);
@@ -50,6 +98,10 @@ int main()
 	Default();
 	InitValues();
 	Addition();
+	Subtract();
+	Assign();
+	AdditionAssign();
+	SubtractAssign();
 	Multiply();
 
 	return 0;

@@ -136,7 +136,7 @@ int main()
             // —оздаем преобразование
             Mat4f transform; // сначала инициализируем единичную матрицу
             transform = Translate(transform, Vec3f(0.5f, -0.5f, 0.0f));
-            transform = Rotate(transform, (float)LDL::Time::Ticks(), Vec3f(0.0f, 0.0f, 1.0f));
+            transform = Rotate(transform, (float)LDL::Time::Ticks() / 1000.0f, Vec3f(0.0f, 0.0f, 1.0f));
 
             // ѕолучаем location uniform-переменной матрицы и настраиваем еЄ
             ourShader.use();

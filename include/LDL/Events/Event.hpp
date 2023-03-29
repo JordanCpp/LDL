@@ -31,6 +31,11 @@ namespace LDL
 				LDL::Events::Resize Resize;
 				LDL::Events::Keyboard Keyboard;
 			};
+
+			bool IsKeyPresed(size_t key)
+			{
+				return (Type == IsKeyboard && Keyboard.Key == key && Keyboard.State == Enums::ButtonState::Pressed);
+			}
 		};
 	}
 }
