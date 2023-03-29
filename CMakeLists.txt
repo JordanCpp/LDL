@@ -283,3 +283,5 @@ if (LDL_CONFIG_STATIC_LIBRARY)
   add_subdirectory("test")
   add_subdirectory("Tutorials")
 endif()
+
+add_subdirectory("Samples")
