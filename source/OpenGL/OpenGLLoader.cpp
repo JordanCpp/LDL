@@ -449,4 +449,6 @@ void LDL::OpenGLLoader::Init_3_3()
 	glUniform2f = (PFNGLUNIFORM2FPROC*)_Functions.Function("glUniform2f");
 	glUniform3f = (PFNGLUNIFORM3FPROC*)_Functions.Function("glUniform3f");
 	glUniform4f = (PFNGLUNIFORM4FPROC*)_Functions.Function("glUniform4f");
+
+	glDeleteProgram = (PFNGLDELETEPROGRAMPROC*)_Functions.Function("glDeleteProgram");
 }

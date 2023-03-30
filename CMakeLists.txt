@@ -21,11 +21,11 @@ add_definitions(-DLDL_CONFIG_STATIC_LIBRARY)
 #set(LDL_RENDER_GDI true)
 #add_definitions(-DLDL_RENDER_GDI)
 
-#set(LDL_RENDER_OPENGL1 true)
-#add_definitions(-DLDL_RENDER_OPENGL1)
+set(LDL_RENDER_OPENGL1 true)
+add_definitions(-DLDL_RENDER_OPENGL1)
 
-set(LDL_RENDER_OPENGL3 true)
-add_definitions(-DLDL_RENDER_OPENGL3)
+#set(LDL_RENDER_OPENGL3 true)
+#add_definitions(-DLDL_RENDER_OPENGL3)
 
 #set(LDL_RENDER_DIRECTX1 true)
 #add_definitions(-DLDL_RENDER_DIRECTX1)

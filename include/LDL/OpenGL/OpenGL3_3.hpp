@@ -20,6 +20,8 @@
 #define GL_TEXTURE0                       0x84C0
 #define GL_TEXTURE1                       0x84C1   
 
+#define GL_CLAMP_TO_EDGE                  0x812F 
+
 typedef GLuint (OPENGL_API_CALL PFNGLCREATESHADERPROC           ) (GLenum type);
 typedef void   (OPENGL_API_CALL PFNGLSHADERSOURCEPROC           ) (GLuint shader, GLsizei count, const GLchar* const* string, const GLint* length);
 typedef void   (OPENGL_API_CALL PFNGLCOMPILESHADERPROC          ) (GLuint shader);
@@ -61,6 +63,8 @@ typedef void   (OPENGL_API_CALL PFNGLUNIFORM2FPROC) (GLint location, GLfloat v0,
 typedef void   (OPENGL_API_CALL PFNGLUNIFORM3FPROC) (GLint location, GLfloat v0, GLfloat v1, GLfloat v2);
 typedef void   (OPENGL_API_CALL PFNGLUNIFORM4FPROC) (GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3);
 
+typedef void   (OPENGL_API_CALL PFNGLDELETEPROGRAMPROC) (GLuint program);
+
 extern PFNGLCREATESHADERPROC            * glCreateShader;
 extern PFNGLSHADERSOURCEPROC            * glShaderSource;
 extern PFNGLCOMPILESHADERPROC           * glCompileShader;
@@ -101,5 +105,7 @@ extern PFNGLUNIFORM1FPROC* glUniform1f;
 extern PFNGLUNIFORM2FPROC* glUniform2f;
 extern PFNGLUNIFORM3FPROC* glUniform3f;
 extern PFNGLUNIFORM4FPROC* glUniform4f;
+
+extern PFNGLDELETEPROGRAMPROC* glDeleteProgram;
 
 #endif     
