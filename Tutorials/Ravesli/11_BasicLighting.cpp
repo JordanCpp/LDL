@@ -142,7 +142,7 @@ int main()
 			render.Begin();
 
 			// Логическая часть работы со временем для каждого кадра
-			float currentFrame = (float)LDL::Time::Ticks();
+			float currentFrame = (float)LDL::Time::Ticks() / 1000.f;
 			deltaTime = currentFrame - lastFrame;
 			lastFrame = currentFrame;
 
