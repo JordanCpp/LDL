@@ -451,4 +451,8 @@ void LDL::OpenGLLoader::Init_3_3()
 	glUniform4f = (PFNGLUNIFORM4FPROC*)_Functions.Function("glUniform4f");
 
 	glDeleteProgram = (PFNGLDELETEPROGRAMPROC*)_Functions.Function("glDeleteProgram");
+
+	glDisableVertexAttribArray = (PFNGLDISABLEVERTEXATTRIBARRAYPROC*)_Functions.Function("glDisableVertexAttribArray");
+
+	glBindAttribLocation = (PFNGLBINDATTRIBLOCATIONPROC*)_Functions.Function("glBindAttribLocation");
 }

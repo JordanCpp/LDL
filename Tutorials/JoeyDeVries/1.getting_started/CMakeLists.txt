@@ -45,9 +45,17 @@ target_link_libraries(4.5.textures_exercise3 LDL)
 add_executable(4.6.textures_exercise4 "4.6.textures_exercise4.cpp")
 target_link_libraries(4.6.textures_exercise4 LDL)
 
+add_executable(5.1.transformations "5.1.transformations.cpp")
+target_link_libraries(5.1.transformations LDL)
 
+add_executable(5.2.transformations_exercise2 "5.2.transformations_exercise2.cpp")
+target_link_libraries(5.2.transformations_exercise2 LDL)
 
+add_executable(6.1.coordinate_systems "6.1.coordinate_systems.cpp")
+target_link_libraries(6.1.coordinate_systems LDL)
 
+add_executable(6.2.coordinate_systems_depth "6.2.coordinate_systems_depth.cpp")
+target_link_libraries(6.2.coordinate_systems_depth LDL)
 
-
-
+add_executable(6.3.coordinate_systems_multiple "6.3.coordinate_systems_multiple.cpp")
+target_link_libraries(6.3.coordinate_systems_multiple LDL)
