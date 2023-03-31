@@ -59,3 +59,12 @@ target_link_libraries(6.2.coordinate_systems_depth LDL)
 
 add_executable(6.3.coordinate_systems_multiple "6.3.coordinate_systems_multiple.cpp")
 target_link_libraries(6.3.coordinate_systems_multiple LDL)
+
+add_executable(6.4.coordinate_systems_exercise3 "6.4.coordinate_systems_exercise3.cpp")
+target_link_libraries(6.4.coordinate_systems_exercise3 LDL)
+
+add_executable(7.1.camera_circle "7.1.camera_circle.cpp")
+target_link_libraries(7.1.camera_circle LDL)
+
+add_executable(7.2.camera_keyboard_dt "7.2.camera_keyboard_dt.cpp")
+target_link_libraries(7.2.camera_keyboard_dt LDL)

@@ -50,7 +50,7 @@ int main()
 
         // build and compile our shader zprogram
         // ------------------------------------
-        Shader ourShader("resources/shaders/6.2.coordinate_systems.vs", "resources/shaders/6.2.coordinate_systems.fs");
+        Shader ourShader("resources/shaders/6.3.coordinate_systems.vs", "resources/shaders/6.3.coordinate_systems.fs");
 
         // set up vertex data (and buffer(s)) and configure vertex attributes
         // ------------------------------------------------------------------
@@ -97,6 +97,20 @@ int main()
             -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
             -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
         };
+        // world space positions of our cubes
+        Vec3f cubePositions[] = {
+            Vec3f(0.0f,  0.0f,  0.0f),
+            Vec3f(2.0f,  5.0f, -15.0f),
+            Vec3f(-1.5f, -2.2f, -2.5f),
+            Vec3f(-3.8f, -2.0f, -12.3f),
+            Vec3f(2.4f, -0.4f, -3.5f),
+            Vec3f(-1.7f,  3.0f, -7.5f),
+            Vec3f(1.3f, -2.0f, -2.5f),
+            Vec3f(1.5f,  2.0f, -2.5f),
+            Vec3f(1.5f,  0.2f, -1.5f),
+            Vec3f(-1.3f,  1.0f, -1.5f)
+        };
+
         unsigned int VBO, VAO;
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
@@ -125,6 +139,9 @@ int main()
         ourShader.setInt("texture1", 0);
         ourShader.setInt("texture2", 1);
 
+
+        // render loop
+        // ----------- 
 		while (window.GetEvent(report))
 		{
 			render.Begin();
@@ -144,24 +161,29 @@ int main()
             ourShader.use();
 
             // create transformations
-            Mat4f model; // make sure to initialize matrix to identity matrix first
-            Mat4f view;
+            Mat4f view; // make sure to initialize matrix to identity matrix first
             Mat4f projection;
-            model = Rotate(model, (float)Ticks() / 1000.0f, Vec3f(0.5f, 1.0f, 0.0f));
-            view = Translate(view, Vec3f(0.0f, 0.0f, -3.0f));
             projection = Perspective(45.0f, (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-            // retrieve the matrix uniform locations
-            unsigned int modelLoc = glGetUniformLocation(ourShader.ID, "model");
-            unsigned int viewLoc = glGetUniformLocation(ourShader.ID, "view");
-            // pass them to the shaders (3 different ways)
-            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, model.Values());
-            glUniformMatrix4fv(viewLoc, 1, GL_FALSE, view.Values());
-            // note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
-            ourShader.setMat4("projection", projection);
+            view = Translate(view, Vec3f(0.0f, 0.0f, -3.0f));
+            // pass transformation matrices to the shader
+            ourShader.setMat4("projection", projection); // note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
+            ourShader.setMat4("view", view);
 
-            // render box
+            // render boxes
             glBindVertexArray(VAO);
-            glDrawArrays(GL_TRIANGLES, 0, 36);
+            for (unsigned int i = 0; i < 10; i++)
+            {
+                // calculate the model matrix for each object and pass it to shader before drawing
+                Mat4f model;
+                model = Translate(model, cubePositions[i]);
+                float angle = 20.0f * i;
+                if (i % 3 == 0)  // every 3rd iteration (including the first) we set the angle using GLFW's time function.
+                    angle = Ticks() / 1000.0f; //* 25.0f;
+                model = Rotate(model, angle, Vec3f(1.0f, 0.3f, 0.5f));
+                ourShader.setMat4("model", model);
+
+                glDrawArrays(GL_TRIANGLES, 0, 36);
+            }
 
 			render.End();
 

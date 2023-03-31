@@ -12,6 +12,7 @@
 #include <LDL/Math/Funcs.hpp>
 
 #include <learnopengl/shader_m.h> 
+#include <learnopengl/texture.h>
 
 using namespace LDL::Graphics;
 using namespace LDL::Events;
@@ -83,37 +84,8 @@ int main()
 
         // load and create a texture 
         // -------------------------
-        unsigned int texture1, texture2;
-        // texture 1
-        // ---------
-        glGenTextures(1, &texture1);
-        glBindTexture(GL_TEXTURE_2D, texture1);
-        // set the texture wrapping parameters
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        // set texture filtering parameters
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        // load image, create texture and generate mipmaps
-        loader.Load("resources/textures/container.jpg");
-
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)loader.Size().PosX(), (GLsizei)loader.Size().PosY(), 0, GL_RGB, GL_UNSIGNED_BYTE, loader.Pixels());
-        glGenerateMipmap(GL_TEXTURE_2D);
-        // texture 2
-        // ---------
-        glGenTextures(1, &texture2);
-        glBindTexture(GL_TEXTURE_2D, texture2);
-        // set the texture wrapping parameters
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        // set texture filtering parameters
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        // load image, create texture and generate mipmaps
-        loader.Load("resources/textures/awesomeface.png");
-
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)loader.Size().PosX(), (GLsizei)loader.Size().PosY(), 0, GL_RGBA, GL_UNSIGNED_BYTE, loader.Pixels());
-        glGenerateMipmap(GL_TEXTURE_2D);
+        GLuint texture1 = LoadTexture("resources/textures/container.jpg", loader);
+        GLuint texture2 = LoadTexture("resources/textures/awesomeface.png", loader);
 
         // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
         // -------------------------------------------------------------------------------------------
