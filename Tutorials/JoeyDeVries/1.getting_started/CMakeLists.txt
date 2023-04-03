@@ -68,3 +68,6 @@ target_link_libraries(7.1.camera_circle LDL)
 
 add_executable(7.2.camera_keyboard_dt "7.2.camera_keyboard_dt.cpp")
 target_link_libraries(7.2.camera_keyboard_dt LDL)
+
+add_executable(7.4.camera_class "7.4.camera_class.cpp")
+target_link_libraries(7.4.camera_class LDL)

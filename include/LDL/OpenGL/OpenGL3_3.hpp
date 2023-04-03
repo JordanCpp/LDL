@@ -1,122 +1,124 @@
 #ifndef LDL_OpenGL_OpenGL3_3_hpp
 #define LDL_OpenGL_OpenGL3_3_hpp
 
-#include <LDL/OpenGL/OpenGL1_1.hpp>
+#include <LDL/OpenGL/OpenGL3_2.hpp>
 
-#define GL_STREAM_DRAW                    0x88E0
-#define GL_STATIC_DRAW                    0x88E4
-#define GL_DYNAMIC_DRAW                   0x88E8
-#define GL_MAJOR_VERSION                  0x821B
-#define GL_MINOR_VERSION                  0x821C 
-#define GL_SHADING_LANGUAGE_VERSION       0x8B8C 
-#define GL_VERTEX_SHADER                  0x8B31 
-#define GL_COMPILE_STATUS                 0x8B81  
-#define GL_FRAGMENT_SHADER                0x8B30   
-#define GL_LINK_STATUS                    0x8B82    
-#define GL_ARRAY_BUFFER                   0x8892  
-#define GL_ELEMENT_ARRAY_BUFFER           0x8893 
-#define GL_GEOMETRY_SHADER                0x8DD9   
+typedef void (OPENGL_API_CALL PFNGLBINDFRAGDATALOCATIONINDEXEDPROC)(GLuint program, GLuint colorNumber, GLuint index, const GLchar* name);
+typedef GLint(OPENGL_API_CALL PFNGLGETFRAGDATAINDEXPROC)(GLuint program, const GLchar* name);
+typedef void (OPENGL_API_CALL PFNGLGENSAMPLERSPROC)(GLsizei count, GLuint* samplers);
+typedef void (OPENGL_API_CALL PFNGLDELETESAMPLERSPROC)(GLsizei count, const GLuint* samplers);
+typedef GLboolean(OPENGL_API_CALL PFNGLISSAMPLERPROC)(GLuint sampler);
+typedef void (OPENGL_API_CALL PFNGLBINDSAMPLERPROC)(GLuint unit, GLuint sampler);
+typedef void (OPENGL_API_CALL PFNGLSAMPLERPARAMETERIPROC)(GLuint sampler, GLenum pname, GLint param);
+typedef void (OPENGL_API_CALL PFNGLSAMPLERPARAMETERIVPROC)(GLuint sampler, GLenum pname, const GLint* param);
+typedef void (OPENGL_API_CALL PFNGLSAMPLERPARAMETERFPROC)(GLuint sampler, GLenum pname, GLfloat param);
+typedef void (OPENGL_API_CALL PFNGLSAMPLERPARAMETERFVPROC)(GLuint sampler, GLenum pname, const GLfloat* param);
+typedef void (OPENGL_API_CALL PFNGLSAMPLERPARAMETERIIVPROC)(GLuint sampler, GLenum pname, const GLint* param);
+typedef void (OPENGL_API_CALL PFNGLSAMPLERPARAMETERIUIVPROC)(GLuint sampler, GLenum pname, const GLuint* param);
+typedef void (OPENGL_API_CALL PFNGLGETSAMPLERPARAMETERIVPROC)(GLuint sampler, GLenum pname, GLint* params);
+typedef void (OPENGL_API_CALL PFNGLGETSAMPLERPARAMETERIIVPROC)(GLuint sampler, GLenum pname, GLint* params);
+typedef void (OPENGL_API_CALL PFNGLGETSAMPLERPARAMETERFVPROC)(GLuint sampler, GLenum pname, GLfloat* params);
+typedef void (OPENGL_API_CALL PFNGLGETSAMPLERPARAMETERIUIVPROC)(GLuint sampler, GLenum pname, GLuint* params);
+typedef void (OPENGL_API_CALL PFNGLQUERYCOUNTERPROC)(GLuint id, GLenum target);
+typedef void (OPENGL_API_CALL PFNGLGETQUERYOBJECTI64VPROC)(GLuint id, GLenum pname, GLint64* params);
+typedef void (OPENGL_API_CALL PFNGLGETQUERYOBJECTUI64VPROC)(GLuint id, GLenum pname, GLuint64* params);
+typedef void (OPENGL_API_CALL PFNGLVERTEXATTRIBDIVISORPROC)(GLuint index, GLuint divisor);
+typedef void (OPENGL_API_CALL PFNGLVERTEXATTRIBP1UIPROC)(GLuint index, GLenum type, GLboolean normalized, GLuint value);
+typedef void (OPENGL_API_CALL PFNGLVERTEXATTRIBP1UIVPROC)(GLuint index, GLenum type, GLboolean normalized, const GLuint* value);
+typedef void (OPENGL_API_CALL PFNGLVERTEXATTRIBP2UIPROC)(GLuint index, GLenum type, GLboolean normalized, GLuint value);
+typedef void (OPENGL_API_CALL PFNGLVERTEXATTRIBP2UIVPROC)(GLuint index, GLenum type, GLboolean normalized, const GLuint* value);
+typedef void (OPENGL_API_CALL PFNGLVERTEXATTRIBP3UIPROC)(GLuint index, GLenum type, GLboolean normalized, GLuint value);
+typedef void (OPENGL_API_CALL PFNGLVERTEXATTRIBP3UIVPROC)(GLuint index, GLenum type, GLboolean normalized, const GLuint* value);
+typedef void (OPENGL_API_CALL PFNGLVERTEXATTRIBP4UIPROC)(GLuint index, GLenum type, GLboolean normalized, GLuint value);
+typedef void (OPENGL_API_CALL PFNGLVERTEXATTRIBP4UIVPROC)(GLuint index, GLenum type, GLboolean normalized, const GLuint* value);
+typedef void (OPENGL_API_CALL PFNGLVERTEXP2UIPROC)(GLenum type, GLuint value);
+typedef void (OPENGL_API_CALL PFNGLVERTEXP2UIVPROC)(GLenum type, const GLuint* value);
+typedef void (OPENGL_API_CALL PFNGLVERTEXP3UIPROC)(GLenum type, GLuint value);
+typedef void (OPENGL_API_CALL PFNGLVERTEXP3UIVPROC)(GLenum type, const GLuint* value);
+typedef void (OPENGL_API_CALL PFNGLVERTEXP4UIPROC)(GLenum type, GLuint value);
+typedef void (OPENGL_API_CALL PFNGLVERTEXP4UIVPROC)(GLenum type, const GLuint* value);
+typedef void (OPENGL_API_CALL PFNGLTEXCOORDP1UIPROC)(GLenum type, GLuint coords);
+typedef void (OPENGL_API_CALL PFNGLTEXCOORDP1UIVPROC)(GLenum type, const GLuint* coords);
+typedef void (OPENGL_API_CALL PFNGLTEXCOORDP2UIPROC)(GLenum type, GLuint coords);
+typedef void (OPENGL_API_CALL PFNGLTEXCOORDP2UIVPROC)(GLenum type, const GLuint* coords);
+typedef void (OPENGL_API_CALL PFNGLTEXCOORDP3UIPROC)(GLenum type, GLuint coords);
+typedef void (OPENGL_API_CALL PFNGLTEXCOORDP3UIVPROC)(GLenum type, const GLuint* coords);
+typedef void (OPENGL_API_CALL PFNGLTEXCOORDP4UIPROC)(GLenum type, GLuint coords);
+typedef void (OPENGL_API_CALL PFNGLTEXCOORDP4UIVPROC)(GLenum type, const GLuint* coords);
+typedef void (OPENGL_API_CALL PFNGLMULTITEXCOORDP1UIPROC)(GLenum texture, GLenum type, GLuint coords);
+typedef void (OPENGL_API_CALL PFNGLMULTITEXCOORDP1UIVPROC)(GLenum texture, GLenum type, const GLuint* coords);
+typedef void (OPENGL_API_CALL PFNGLMULTITEXCOORDP2UIPROC)(GLenum texture, GLenum type, GLuint coords);
+typedef void (OPENGL_API_CALL PFNGLMULTITEXCOORDP2UIVPROC)(GLenum texture, GLenum type, const GLuint* coords);
+typedef void (OPENGL_API_CALL PFNGLMULTITEXCOORDP3UIPROC)(GLenum texture, GLenum type, GLuint coords);
+typedef void (OPENGL_API_CALL PFNGLMULTITEXCOORDP3UIVPROC)(GLenum texture, GLenum type, const GLuint* coords);
+typedef void (OPENGL_API_CALL PFNGLMULTITEXCOORDP4UIPROC)(GLenum texture, GLenum type, GLuint coords);
+typedef void (OPENGL_API_CALL PFNGLMULTITEXCOORDP4UIVPROC)(GLenum texture, GLenum type, const GLuint* coords);
+typedef void (OPENGL_API_CALL PFNGLNORMALP3UIPROC)(GLenum type, GLuint coords);
+typedef void (OPENGL_API_CALL PFNGLNORMALP3UIVPROC)(GLenum type, const GLuint* coords);
+typedef void (OPENGL_API_CALL PFNGLCOLORP3UIPROC)(GLenum type, GLuint color);
+typedef void (OPENGL_API_CALL PFNGLCOLORP3UIVPROC)(GLenum type, const GLuint* color);
+typedef void (OPENGL_API_CALL PFNGLCOLORP4UIPROC)(GLenum type, GLuint color);
+typedef void (OPENGL_API_CALL PFNGLCOLORP4UIVPROC)(GLenum type, const GLuint* color);
+typedef void (OPENGL_API_CALL PFNGLSECONDARYCOLORP3UIPROC)(GLenum type, GLuint color);
+typedef void (OPENGL_API_CALL PFNGLSECONDARYCOLORP3UIVPROC)(GLenum type, const GLuint* color);
 
-#define GL_TEXTURE0                       0x84C0
-#define GL_TEXTURE1                       0x84C1   
-
-#define GL_CLAMP_TO_EDGE                  0x812F 
-#define GL_INVALID_FRAMEBUFFER_OPERATION  0x0506
-#define GL_TEXTURE_LOD_BIAS 0x8501
-#define GL_INFO_LOG_LENGTH 0x8B84
-
-typedef GLuint (OPENGL_API_CALL PFNGLCREATESHADERPROC           ) (GLenum type);
-typedef void   (OPENGL_API_CALL PFNGLSHADERSOURCEPROC           ) (GLuint shader, GLsizei count, const GLchar* const* string, const GLint* length);
-typedef void   (OPENGL_API_CALL PFNGLCOMPILESHADERPROC          ) (GLuint shader);
-typedef void   (OPENGL_API_CALL PFNGLGETSHADERIVPROC            ) (GLuint shader, GLenum pname, GLint* params);
-typedef void   (OPENGL_API_CALL PFNGLGETSHADERINFOLOGPROC       ) (GLuint shader, GLsizei bufSize, GLsizei* length, GLchar* infoLog);
-typedef GLuint (OPENGL_API_CALL PFNGLCREATEPROGRAMPROC          ) (void);
-typedef void   (OPENGL_API_CALL PFNGLATTACHSHADERPROC           ) (GLuint program, GLuint shader);
-typedef void   (OPENGL_API_CALL PFNGLLINKPROGRAMPROC            ) (GLuint program);
-typedef void   (OPENGL_API_CALL PFNGLGETPROGRAMIVPROC           ) (GLuint program, GLenum pname, GLint* params);
-typedef void   (OPENGL_API_CALL PFNGLGETPROGRAMINFOLOGPROC      ) (GLuint program, GLsizei bufSize, GLsizei* length, GLchar* infoLog);
-typedef void   (OPENGL_API_CALL PFNGLDELETESHADERPROC           ) (GLuint shader);
-typedef void   (OPENGL_API_CALL PFNGLGENVERTEXARRAYSPROC        ) (GLsizei n, GLuint* arrays);
-typedef void   (OPENGL_API_CALL PFNGLGENBUFFERSARBPROC          ) (GLsizei n, GLuint* buffers);
-typedef void   (OPENGL_API_CALL PFNGLBINDVERTEXARRAYPROC        ) (GLuint array);
-typedef void   (OPENGL_API_CALL PFNGLBINDBUFFERPROC             ) (GLenum target, GLuint buffer);
-typedef void   (OPENGL_API_CALL PFNGLBUFFERDATAPROC             ) (GLenum target, GLsizeiptr size, const void* data, GLenum usage);
-typedef void   (OPENGL_API_CALL PFNGLVERTEXATTRIBPOINTERPROC    ) (GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer);
-typedef void   (OPENGL_API_CALL PFNGLENABLEVERTEXATTRIBARRAYPROC) (GLuint index);
-typedef void   (OPENGL_API_CALL PFNGLUSEPROGRAMPROC             ) (GLuint program);
-typedef void   (OPENGL_API_CALL PFNGLUNIFORM1IPROC              ) (GLint location, GLint v0);
-
-typedef GLint  (OPENGL_API_CALL PFNGLGETUNIFORMLOCATIONPROC     ) (GLuint program, const GLchar* name);
-typedef void   (OPENGL_API_CALL PFNGLDELETEVERTEXARRAYSPROC     ) (GLsizei n, const GLuint* arrays);
-typedef void   (OPENGL_API_CALL PFNGLDELETEBUFFERSPROC          ) (GLsizei n, const GLuint* buffers);
-typedef void   (OPENGL_API_CALL PFNGLGENERATEMIPMAPPROC         ) (GLenum target);
-typedef void   (OPENGL_API_CALL PFNGLACTIVETEXTUREPROC          ) (GLenum texture);
-
-typedef void   (OPENGL_API_CALL PFNGLUNIFORMMATRIX2FVPROC       ) (GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
-typedef void   (OPENGL_API_CALL PFNGLUNIFORMMATRIX3FVPROC       ) (GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
-typedef void   (OPENGL_API_CALL PFNGLUNIFORMMATRIX4FVPROC       ) (GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
-
-typedef void   (OPENGL_API_CALL PFNGLUNIFORM1FVPROC             ) (GLint location, GLsizei count, const GLfloat* value);
-typedef void   (OPENGL_API_CALL PFNGLUNIFORM2FVPROC             ) (GLint location, GLsizei count, const GLfloat* value);
-typedef void   (OPENGL_API_CALL PFNGLUNIFORM3FVPROC             ) (GLint location, GLsizei count, const GLfloat* value);
-typedef void   (OPENGL_API_CALL PFNGLUNIFORM4FVPROC             ) (GLint location, GLsizei count, const GLfloat* value);
-
-typedef void   (OPENGL_API_CALL PFNGLUNIFORM1FPROC) (GLint location, GLfloat v0);
-typedef void   (OPENGL_API_CALL PFNGLUNIFORM2FPROC) (GLint location, GLfloat v0, GLfloat v1);
-typedef void   (OPENGL_API_CALL PFNGLUNIFORM3FPROC) (GLint location, GLfloat v0, GLfloat v1, GLfloat v2);
-typedef void   (OPENGL_API_CALL PFNGLUNIFORM4FPROC) (GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3);
-
-typedef void   (OPENGL_API_CALL PFNGLDELETEPROGRAMPROC) (GLuint program);
-
-//2.1
-typedef void   (OPENGL_API_CALL PFNGLDISABLEVERTEXATTRIBARRAYPROC) (GLuint index);
-typedef void   (OPENGL_API_CALL PFNGLBINDATTRIBLOCATIONPROC) (GLuint program, GLuint index, const GLchar* name);
-
-extern PFNGLCREATESHADERPROC            * glCreateShader;
-extern PFNGLSHADERSOURCEPROC            * glShaderSource;
-extern PFNGLCOMPILESHADERPROC           * glCompileShader;
-extern PFNGLGETSHADERIVPROC             * glGetShaderiv;
-extern PFNGLGETSHADERINFOLOGPROC        * glGetShaderInfoLog;
-extern PFNGLCREATEPROGRAMPROC           * glCreateProgram;
-extern PFNGLATTACHSHADERPROC            * glAttachShader;
-extern PFNGLLINKPROGRAMPROC             * glLinkProgram;
-extern PFNGLGETPROGRAMIVPROC            * glGetProgramiv;
-extern PFNGLGETPROGRAMINFOLOGPROC       * glGetProgramInfoLog;
-extern PFNGLDELETESHADERPROC            * glDeleteShader;
-extern PFNGLGENVERTEXARRAYSPROC         * glGenVertexArrays;
-extern PFNGLGENBUFFERSARBPROC           * glGenBuffers;
-extern PFNGLBINDVERTEXARRAYPROC         * glBindVertexArray;
-extern PFNGLBINDBUFFERPROC              * glBindBuffer;
-extern PFNGLBUFFERDATAPROC              * glBufferData;
-extern PFNGLVERTEXATTRIBPOINTERPROC     * glVertexAttribPointer;
-extern PFNGLENABLEVERTEXATTRIBARRAYPROC * glEnableVertexAttribArray;
-extern PFNGLUSEPROGRAMPROC              * glUseProgram;
-extern PFNGLUNIFORM1IPROC               * glUniform1i;
-
-extern PFNGLGETUNIFORMLOCATIONPROC      * glGetUniformLocation;
-extern PFNGLDELETEVERTEXARRAYSPROC      * glDeleteVertexArrays;
-extern PFNGLDELETEBUFFERSPROC           * glDeleteBuffers;
-extern PFNGLGENERATEMIPMAPPROC          * glGenerateMipmap;
-extern PFNGLACTIVETEXTUREPROC           * glActiveTexture;
-
-extern PFNGLUNIFORMMATRIX2FVPROC        * glUniformMatrix2fv;
-extern PFNGLUNIFORMMATRIX3FVPROC        * glUniformMatrix3fv;
-extern PFNGLUNIFORMMATRIX4FVPROC        * glUniformMatrix4fv;
-
-extern PFNGLUNIFORM1FVPROC              * glUniform1fv;
-extern PFNGLUNIFORM2FVPROC              * glUniform2fv;
-extern PFNGLUNIFORM3FVPROC              * glUniform3fv;
-extern PFNGLUNIFORM4FVPROC              * glUniform4fv;
-
-extern PFNGLUNIFORM1FPROC* glUniform1f;
-extern PFNGLUNIFORM2FPROC* glUniform2f;
-extern PFNGLUNIFORM3FPROC* glUniform3f;
-extern PFNGLUNIFORM4FPROC* glUniform4f;
-
-extern PFNGLDELETEPROGRAMPROC* glDeleteProgram;
-
-extern PFNGLDISABLEVERTEXATTRIBARRAYPROC* glDisableVertexAttribArray;
-
-extern PFNGLBINDATTRIBLOCATIONPROC* glBindAttribLocation;
+OPENGL_API_ENTRY PFNGLBINDFRAGDATALOCATIONINDEXEDPROC* glBindFragDataLocationIndexed;
+OPENGL_API_ENTRY PFNGLGETFRAGDATAINDEXPROC* glGetFragDataIndex;
+OPENGL_API_ENTRY PFNGLGENSAMPLERSPROC* glGenSamplers;
+OPENGL_API_ENTRY PFNGLDELETESAMPLERSPROC* glDeleteSamplers;
+OPENGL_API_ENTRY PFNGLISSAMPLERPROC* glIsSampler;
+OPENGL_API_ENTRY PFNGLBINDSAMPLERPROC* glBindSampler;
+OPENGL_API_ENTRY PFNGLSAMPLERPARAMETERIPROC* glSamplerParameteri;
+OPENGL_API_ENTRY PFNGLSAMPLERPARAMETERIVPROC* glSamplerParameteriv;
+OPENGL_API_ENTRY PFNGLSAMPLERPARAMETERFPROC* glSamplerParameterf;
+OPENGL_API_ENTRY PFNGLSAMPLERPARAMETERFVPROC* glSamplerParameterfv;
+OPENGL_API_ENTRY PFNGLSAMPLERPARAMETERIIVPROC* glSamplerParameterIiv;
+OPENGL_API_ENTRY PFNGLSAMPLERPARAMETERIUIVPROC* glSamplerParameterIuiv;
+OPENGL_API_ENTRY PFNGLGETSAMPLERPARAMETERIVPROC* glGetSamplerParameteriv;
+OPENGL_API_ENTRY PFNGLGETSAMPLERPARAMETERIIVPROC* glGetSamplerParameterIiv;
+OPENGL_API_ENTRY PFNGLGETSAMPLERPARAMETERFVPROC* glGetSamplerParameterfv;
+OPENGL_API_ENTRY PFNGLGETSAMPLERPARAMETERIUIVPROC* glGetSamplerParameterIuiv;
+OPENGL_API_ENTRY PFNGLQUERYCOUNTERPROC* glQueryCounter;
+OPENGL_API_ENTRY PFNGLGETQUERYOBJECTI64VPROC* glGetQueryObjecti64v;
+OPENGL_API_ENTRY PFNGLGETQUERYOBJECTUI64VPROC* glGetQueryObjectui64v;
+OPENGL_API_ENTRY PFNGLVERTEXATTRIBDIVISORPROC* glVertexAttribDivisor;
+OPENGL_API_ENTRY PFNGLVERTEXATTRIBP1UIPROC* glVertexAttribP1ui;
+OPENGL_API_ENTRY PFNGLVERTEXATTRIBP1UIVPROC* glVertexAttribP1uiv;
+OPENGL_API_ENTRY PFNGLVERTEXATTRIBP2UIPROC* glVertexAttribP2ui;
+OPENGL_API_ENTRY PFNGLVERTEXATTRIBP2UIVPROC* glVertexAttribP2uiv;
+OPENGL_API_ENTRY PFNGLVERTEXATTRIBP3UIPROC* glVertexAttribP3ui;
+OPENGL_API_ENTRY PFNGLVERTEXATTRIBP3UIVPROC* glVertexAttribP3uiv;
+OPENGL_API_ENTRY PFNGLVERTEXATTRIBP4UIPROC* glVertexAttribP4ui;
+OPENGL_API_ENTRY PFNGLVERTEXATTRIBP4UIVPROC* glVertexAttribP4uiv;
+OPENGL_API_ENTRY PFNGLVERTEXP2UIPROC* glVertexP2ui;
+OPENGL_API_ENTRY PFNGLVERTEXP2UIVPROC* glVertexP2uiv;
+OPENGL_API_ENTRY PFNGLVERTEXP3UIPROC* glVertexP3ui;
+OPENGL_API_ENTRY PFNGLVERTEXP3UIVPROC* glVertexP3uiv;
+OPENGL_API_ENTRY PFNGLVERTEXP4UIPROC* glVertexP4ui;
+OPENGL_API_ENTRY PFNGLVERTEXP4UIVPROC* glVertexP4uiv;
+OPENGL_API_ENTRY PFNGLTEXCOORDP1UIPROC* glTexCoordP1ui;
+OPENGL_API_ENTRY PFNGLTEXCOORDP1UIVPROC* glTexCoordP1uiv;
+OPENGL_API_ENTRY PFNGLTEXCOORDP2UIPROC* glTexCoordP2ui;
+OPENGL_API_ENTRY PFNGLTEXCOORDP2UIVPROC* glTexCoordP2uiv;
+OPENGL_API_ENTRY PFNGLTEXCOORDP3UIPROC* glTexCoordP3ui;
+OPENGL_API_ENTRY PFNGLTEXCOORDP3UIVPROC* glTexCoordP3uiv;
+OPENGL_API_ENTRY PFNGLTEXCOORDP4UIPROC* glTexCoordP4ui;
+OPENGL_API_ENTRY PFNGLTEXCOORDP4UIVPROC* glTexCoordP4uiv;
+OPENGL_API_ENTRY PFNGLMULTITEXCOORDP1UIPROC* glMultiTexCoordP1ui;
+OPENGL_API_ENTRY PFNGLMULTITEXCOORDP1UIVPROC* glMultiTexCoordP1uiv;
+OPENGL_API_ENTRY PFNGLMULTITEXCOORDP2UIPROC* glMultiTexCoordP2ui;
+OPENGL_API_ENTRY PFNGLMULTITEXCOORDP2UIVPROC* glMultiTexCoordP2uiv;
+OPENGL_API_ENTRY PFNGLMULTITEXCOORDP3UIPROC* glMultiTexCoordP3ui;
+OPENGL_API_ENTRY PFNGLMULTITEXCOORDP3UIVPROC* glMultiTexCoordP3uiv;
+OPENGL_API_ENTRY PFNGLMULTITEXCOORDP4UIPROC* glMultiTexCoordP4ui;
+OPENGL_API_ENTRY PFNGLMULTITEXCOORDP4UIVPROC* glMultiTexCoordP4uiv;
+OPENGL_API_ENTRY PFNGLNORMALP3UIPROC* glNormalP3ui;
+OPENGL_API_ENTRY PFNGLNORMALP3UIVPROC* glNormalP3uiv;
+OPENGL_API_ENTRY PFNGLCOLORP3UIPROC* glColorP3ui;
+OPENGL_API_ENTRY PFNGLCOLORP3UIVPROC* glColorP3uiv;
+OPENGL_API_ENTRY PFNGLCOLORP4UIPROC* glColorP4ui;
+OPENGL_API_ENTRY PFNGLCOLORP4UIVPROC* glColorP4uiv;
+OPENGL_API_ENTRY PFNGLSECONDARYCOLORP3UIPROC* glSecondaryColorP3ui;
+OPENGL_API_ENTRY PFNGLSECONDARYCOLORP3UIVPROC* glSecondaryColorP3uiv;
 
 #endif     

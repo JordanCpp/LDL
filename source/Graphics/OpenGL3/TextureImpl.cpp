@@ -1,5 +1,5 @@
 #include "TextureImpl.hpp"
-#include <LDL/OpenGL/OpenGL1_0.hpp>
+#include <LDL/OpenGL/OpenGL1_1.hpp>
 #include <assert.h>
 #include "Util.hpp"
 #include <iostream>

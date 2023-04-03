@@ -3,7 +3,7 @@
 
 #include <LDL/Graphics/Primitives/Point2u.hpp>
 #include <LDL/Graphics/Primitives/Color.hpp>
-#include <LDL/OpenGL/OpenGL1_0.hpp>
+#include <LDL/OpenGL/OpenGL1_1.hpp>
 #include <string>
 
 namespace LDL

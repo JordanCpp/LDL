@@ -4,7 +4,7 @@
 #include <LDL/Core/IntegerToString.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/OpenGL/OpenGL1_0.hpp>
+#include <LDL/OpenGL/OpenGL1_1.hpp>
 #include <LDL/Math/Funcs.hpp>
 #include <LDL/Math/Mat4f.hpp>
 #include <LDL/Math/Vec3f.hpp>

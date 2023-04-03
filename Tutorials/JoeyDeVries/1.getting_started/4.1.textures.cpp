@@ -7,6 +7,7 @@
 #include <LDL/OpenGL/OpenGL3_3.hpp>
 
 #include <learnopengl/shader_s.h>  
+#include <learnopengl/texture.h>
 
 using namespace LDL::Graphics;
 using namespace LDL::Events;
@@ -76,22 +77,7 @@ int main()
 
         // load and create a texture 
         // -------------------------
-        unsigned int texture;
-        glGenTextures(1, &texture);
-        glBindTexture(GL_TEXTURE_2D, texture); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
-        // set the texture wrapping parameters
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        // set texture filtering parameters
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-       
-        // load image, create texture and generate mipmaps
-        // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
-        loader.Load("resources/textures/container.jpg");
-        
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)loader.Size().PosX(), (GLsizei)loader.Size().PosY(), 0, GL_RGB, GL_UNSIGNED_BYTE, loader.Pixels());
-        glGenerateMipmap(GL_TEXTURE_2D);
+        GLuint texture = LoadTexture("resources/textures/container.jpg", loader);
 
         // render loop
         // ----------- 
