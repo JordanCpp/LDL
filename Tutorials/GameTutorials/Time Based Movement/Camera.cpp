@@ -29,7 +29,6 @@ void CalculateFrameRate(float g_DT)
 {
 	static int framesPerSecond = 0;				// This will store our fps
 	static float fpsTime = 0.0f;				// Amount of elapsed time until we update the FPS count
-	char strFrameRate[50] = {0};				// We will store the string here for the window title
 
 	// Increase the fps elapsed time
 	// g_DT is the delta time, that is, the time between the last frame and the current frame
@@ -41,9 +40,6 @@ void CalculateFrameRate(float g_DT)
 	{
 		// Reset the fpsTime
 		fpsTime = 0.0f;
-
-		// Copy the frames per second into a string to display in the window title bar
-		sprintf(strFrameRate, "Current Frames Per Second: %d", framesPerSecond);
 
 		// Reset the frames per second
 		framesPerSecond = 0;

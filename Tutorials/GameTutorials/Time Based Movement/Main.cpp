@@ -24,9 +24,7 @@
 #define SCREEN_WIDTH  800								// We want our screen width 800 pixels
 #define SCREEN_HEIGHT 600								// We want our screen height 600 pixels
 
-CCamera g_Camera(SCREEN_WIDTH, SCREEN_HEIGHT);										// This is our global camera object
-
-float g_DT = 0.0f;										// Global delta time
+CCamera g_Camera(SCREEN_WIDTH, SCREEN_HEIGHT);			// This is our global camera object
 
 using namespace LDL::Graphics;
 using namespace LDL::Events;
@@ -59,40 +57,6 @@ using namespace LDL::Time;
 // Notice that we did change the colors of the pyramids, just to give it a new look.
 //
 //
-
-
-/////////////////////////////// ANIMATE NEXT FRAME \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-/////
-/////	This function clamps a specified frame rate for consistency
-/////
-/////////////////////////////// ANIMATE NEXT FRAME \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
-
-bool AnimateNextFrame(int desiredFrameRate)
-{
-	static float lastTime = Ticks() * 0.001f;
-	static float elapsedTime = 0.0f;
-
-	float currentTime = Ticks() * 0.001f; // Get the time (milliseconds = seconds * .001)
-	float deltaTime = currentTime - lastTime; // Get the slice of time
-	float desiredFPS = 1.0f / desiredFrameRate; // Store 1 / desiredFrameRate
-
-	elapsedTime += deltaTime; // Add to the elapsed time
-	lastTime = currentTime; // Update lastTime
-
-	// Check if the time since we last checked is greater than our desiredFPS
-	if( elapsedTime > desiredFPS )
-	{
-		g_DT = desiredFPS; // Set the delta time
-		elapsedTime -= desiredFPS; // Adjust our elapsed time
-
-		// Return true, to animate the next frame of animation
-		return true;
-	}
-
-	// We don't animate right now.
-	return false;
-}
-
 
 ///////////////////////////////// CREATE PYRAMID \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\*
 /////
@@ -274,33 +238,33 @@ int main()
 
 		glEnable(GL_DEPTH_TEST);
 
+		float deltaTime = 0.0f;	// time between current frame and last frame
+		float lastFrame = 0.0f;
+
 		while (window.GetEvent(report))
 		{
-			//render.Begin();
+			float currentFrame = static_cast<float>(Ticks() / 1000.0f);
+			deltaTime = currentFrame - lastFrame;
+			lastFrame = currentFrame;
 
-			if (AnimateNextFrame(60))					// Make sure we only animate 60 FPS
-			{
-				g_Camera.Update(g_DT);						// Update the camera every frame
-				RenderScene();							// Render the scene every frame
-			}
-			else
-			{
-				Delay(1);								// Let other processes work
-			}
+			//render.Begin();
+			
+			g_Camera.Update(deltaTime);				// Update the camera every frame
+			RenderScene();							// Render the scene every frame
 
 			render.End();
 
 			if (report.IsKeyPresed(KeyboardKey::W))
-				g_Camera.MoveCamera(g_Camera.Speed(g_DT));
+				g_Camera.MoveCamera(g_Camera.Speed(deltaTime));
 
 			if (report.IsKeyPresed(KeyboardKey::S))
-				g_Camera.MoveCamera(-g_Camera.Speed(g_DT));
+				g_Camera.MoveCamera(-g_Camera.Speed(deltaTime));
 
 			if (report.IsKeyPresed(KeyboardKey::A))
-				g_Camera.StrafeCamera(-g_Camera.Speed(g_DT));
+				g_Camera.StrafeCamera(-g_Camera.Speed(deltaTime));
 
 			if (report.IsKeyPresed(KeyboardKey::D))
-				g_Camera.StrafeCamera(g_Camera.Speed(g_DT));
+				g_Camera.StrafeCamera(g_Camera.Speed(deltaTime));
 
 			if (report.Type == IsResize)
 			{
