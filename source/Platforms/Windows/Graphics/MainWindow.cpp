@@ -105,6 +105,10 @@ size_t MainWindow::ConvertKey(size_t key)
     case '7':           return LDL::Enums::KeyboardKey::Num7;
     case '8':           return LDL::Enums::KeyboardKey::Num8;
     case '9':           return LDL::Enums::KeyboardKey::Num9;
+    case VK_LSHIFT:     return LDL::Enums::KeyboardKey::Leftshift;
+    case VK_RSHIFT:     return LDL::Enums::KeyboardKey::RightShift;
+    case VK_LCONTROL:   return LDL::Enums::KeyboardKey::LeftControl;
+    case VK_RCONTROL:   return LDL::Enums::KeyboardKey::RightControl;
     }
 
     return LDL::Enums::KeyboardKey::Unknown;
@@ -167,6 +171,24 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         _Eventer.Push(event);
         break;
 
+    case WM_MBUTTONDOWN:
+        event.Type         = Events::IsMouseClick;
+        event.Mouse.State  = LDL::Enums::ButtonState::Pressed;
+        event.Mouse.Button = LDL::Enums::MouseButton::Middle;
+        event.Mouse.PosX   = LOWORD(LParam);
+        event.Mouse.PosY   = HIWORD(LParam);
+        _Eventer.Push(event);
+        break;
+
+    case WM_MBUTTONUP:
+        event.Type         = Events::IsMouseClick;
+        event.Mouse.State  = LDL::Enums::ButtonState::Released;
+        event.Mouse.Button = LDL::Enums::MouseButton::Middle;
+        event.Mouse.PosX   = LOWORD(LParam);
+        event.Mouse.PosY   = HIWORD(LParam);
+        _Eventer.Push(event);
+        break;
+
     case WM_SIZE:
         event.Type          = Events::IsResize;
         event.Resize.Width  = LOWORD(LParam);
@@ -180,19 +202,46 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_KEYDOWN:
-        if ((HIWORD(LParam) & KF_REPEAT) == 0)
-        {
-            event.Type = LDL::Events::IsKeyboard;
-            event.Keyboard.State = LDL::Enums::ButtonState::Pressed;
-            event.Keyboard.Key = ConvertKey(WParam);
-            _Eventer.Push(event);
-        }
+    case WM_SYSKEYDOWN:
+        event.Type           = LDL::Events::IsKeyboard;
+        event.Keyboard.State = LDL::Enums::ButtonState::Pressed;
+        event.Keyboard.Key   = ConvertKey(WParam);
+        _Eventer.Push(event);
         break;
 
     case WM_KEYUP:
-        event.Type = LDL::Events::IsKeyboard;
+    case WM_SYSKEYUP:
+        event.Type           = LDL::Events::IsKeyboard;
         event.Keyboard.State = LDL::Enums::ButtonState::Released;
-        event.Keyboard.Key = ConvertKey(WParam);
+        event.Keyboard.Key   = ConvertKey(WParam);
+        _Eventer.Push(event);
+        break;
+
+    case WM_SETFOCUS:
+        event.Type = LDL::Events::IsGainedFocus;
+        _Eventer.Push(event);
+        break;
+
+    case WM_KILLFOCUS:
+        event.Type = LDL::Events::IsLostFocus;
+        _Eventer.Push(event);
+        break;
+
+    case WM_MOUSEWHEEL:
+        event.Type         = LDL::Events::IsMouseScroll;
+        event.Mouse.Scroll = LDL::Enums::MouseScroll::Vertical;
+        event.Mouse.Delta  = HIWORD(WParam);
+        event.Mouse.PosX   = LOWORD(LParam);
+        event.Mouse.PosY   = HIWORD(LParam);
+        _Eventer.Push(event);
+        break;
+
+    case WM_MOUSEHWHEEL:
+        event.Type         = LDL::Events::IsMouseScroll;
+        event.Mouse.Scroll = LDL::Enums::MouseScroll::Vertical;
+        event.Mouse.Delta  = HIWORD(WParam);
+        event.Mouse.PosX   = LOWORD(LParam);
+        event.Mouse.PosY   = HIWORD(LParam);
         _Eventer.Push(event);
         break;
     }
@@ -296,15 +345,18 @@ MainWindow::~MainWindow()
 
 bool MainWindow::GetEvent(LDL::Events::Event& event)
 {
-    if (_Eventer.Running())
+    if (_Eventer.Empty())
     {
-        if (PeekMessage(&_MSG, _HWND, 0, 0, PM_REMOVE))
+        while (PeekMessage(&_MSG, _HWND, 0, 0, PM_REMOVE))
         {
             TranslateMessage(&_MSG);
             DispatchMessage(&_MSG);
-
-            _Eventer.Pop(event);
         }
+    }
+
+    if (!_Eventer.Empty())
+    {
+        _Eventer.Pop(event);
     }
 
     return _Eventer.Running();

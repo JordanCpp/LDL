@@ -1,22 +1,6 @@
 #include <LDL/Graphics/Window.hpp>
 
-#ifdef LDL_RENDER_SOFTWARE
-#include "../Platforms/Windows/Graphics/Software/WindowImpl.hpp"
-#elif LDL_RENDER_GDI
-#include "../Platforms/Windows/Graphics/GDI/WindowImpl.hpp"
-#elif LDL_RENDER_OPENGL1
-#include "../Platforms/Windows/Graphics/OpenGL1/WindowImpl.hpp"
-#elif LDL_RENDER_OPENGL3
-#include "../Platforms/Windows/Graphics/OpenGL3/WindowImpl.hpp"
-#elif LDL_RENDER_DIRECTX1
-#include "../Platforms/Windows/Graphics/DirectDraw/WindowImpl.hpp"
-#elif LDL_RENDER_DIRECTX5
-#include "../Platforms/Windows/Graphics/DirectX5/Direct3D/WindowImpl.hpp"
-#elif LDL_RENDER_DIRECTX9
-#include "../Platforms/Windows/Graphics/DirectX9/Direct3D/WindowImpl.hpp"
-#elif LDL_RENDER_DIRECTX10
-#include "../Platforms/Windows/Graphics/DirectX10/Direct3D/WindowImpl.hpp"
-#endif
+#include "../Platforms/Windows/Graphics/WindowImpl.hpp"
 
 using namespace LDL::Graphics;
 

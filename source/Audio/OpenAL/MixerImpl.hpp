@@ -1,8 +1,7 @@
-#ifndef LDL_Audio_DirectSound8_MixerImpl_hpp
-#define LDL_Audio_DirectSound8_MixerImpl_hpp
+#ifndef LDL_Audio_OpenAL_MixerImpl_hpp
+#define LDL_Audio_OpenAL_MixerImpl_hpp
 
 #include <LDL/Audio/Mixer.hpp>
-#include <dsound.h>
 
 namespace LDL
 {
@@ -15,10 +14,6 @@ namespace LDL
 			~MixerImpl();
 		private:
 			LDL::Graphics::Window* _Window;
-			IDirectSound8* _DirectSound;
-			IDirectSoundBuffer* _DirectPrimaryBuffer;
-			IDirectSoundBuffer8* _DirectSoundBuffer;
-
 		};
 	}
 }

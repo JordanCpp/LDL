@@ -1,7 +1,7 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include "MixerImpl.hpp"
 #include <LDL/Graphics/Window.hpp>
-#include "../../Platforms/Windows/Graphics/OpenGL1/WindowImpl.hpp"
+#include "../../Platforms/Windows/Graphics/WindowImpl.hpp"
 
 using namespace LDL::Audio;
 using namespace LDL::Core;

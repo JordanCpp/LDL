@@ -61,4 +61,12 @@
 #define VK_OEM_PERIOD 0xBE
 #endif
 
+#if !defined WM_MOUSEWHEEL
+#define WM_MOUSEWHEEL 0x020A
+#endif
+
+#if !defined WM_MOUSEHWHEEL
+#define WM_MOUSEHWHEEL 0x020E
+#endif
+
 #endif  

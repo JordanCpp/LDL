@@ -7,6 +7,11 @@ Eventer::Eventer() :
 {
 }
 
+bool Eventer::Empty()
+{
+    return _Queue.empty();
+}
+
 void Eventer::Push(Event& event)
 {
 	_Queue.push(event);

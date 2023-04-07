@@ -13,6 +13,7 @@ namespace LDL
 		{
 		public:
 			Eventer();
+			bool Empty();
 			void Push(Event& event);
 			bool Pop(Event& event);
 			bool Running();

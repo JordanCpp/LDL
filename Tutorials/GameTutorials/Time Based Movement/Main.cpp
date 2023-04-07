@@ -268,7 +268,7 @@ int main()
 		FixedLinear allocator(Allocator::Mb * 4);
 		ImageLoader loader(&allocator);
 
-		SizeOpenGLScreen(window.Size().PosX(), window.Size().PosY());
+		SizeOpenGLScreen((int)window.Size().PosX(), (int)window.Size().PosY());
 
 		g_Camera.PositionCamera(0, 1.5f, 6, 0, 1.5f, 0, 0, 1, 0);
 
@@ -304,7 +304,7 @@ int main()
 
 			if (report.Type == IsResize)
 			{
-				SizeOpenGLScreen(report.Resize.Width, report.Resize.Height);
+				SizeOpenGLScreen((int)report.Resize.Width, (int)report.Resize.Height);
 			}
 
 			if (report.Type == IsQuit || report.IsKeyPresed(KeyboardKey::Escape))
