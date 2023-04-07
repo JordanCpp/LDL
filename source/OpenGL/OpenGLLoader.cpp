@@ -5,19 +5,28 @@
 
 using namespace LDL;
 
+OpenGLLoader::OpenGLLoader() :
+	_Major(0),
+	_Minor(0)
+{
+}
+
 OpenGLLoader::OpenGLLoader(size_t major, size_t minor) :
 	_Major(major),
 	_Minor(minor)
 {
-
+	Init(_Major, _Minor);
 }
 
 OpenGLLoader::~OpenGLLoader()
 {
 }
 
-void OpenGLLoader::Init()
+void OpenGLLoader::Init(size_t major, size_t minor)
 {
+	_Major = major;
+	_Minor = minor;
+
 	if (Equal(1, 0))
 	{
 		Init_1_0();

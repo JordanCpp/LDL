@@ -5,8 +5,7 @@ using namespace LDL::Graphics;
 
 WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
     _HGLRC(NULL),
-    _Window(pos, size, title, mode),
-    _OpenGLLoader(1, 1)
+    _Window(pos, size, title, mode)
 {
     PIXELFORMATDESCRIPTOR pfd;
 
@@ -41,7 +40,7 @@ WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::strin
     if (!wglMakeCurrent(_Window._HDC, _HGLRC))
         throw LDL::Core::RuntimeError("wglMakeCurrent failed");
 
-    _OpenGLLoader.Init();
+    _OpenGLLoader.Init(1, 1);
 }
 
 WindowImpl::~WindowImpl()

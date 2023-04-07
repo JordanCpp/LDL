@@ -8,9 +8,10 @@ namespace LDL
 	class LDL_EXPORT OpenGLLoader
 	{
 	public:
-		OpenGLLoader(size_t major = 1, size_t minor = 0);
+		OpenGLLoader();
+		OpenGLLoader(size_t major, size_t minor);
 		~OpenGLLoader();
-		void Init();
+		void Init(size_t major, size_t minor);
 		bool Equal(size_t major, size_t minor);
 		size_t Major();
 		size_t Minor();

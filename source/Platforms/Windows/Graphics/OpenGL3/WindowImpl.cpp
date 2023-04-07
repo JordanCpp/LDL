@@ -16,8 +16,7 @@ typedef HGLRC(WINAPI* PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareC
 
 WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
     _Window(pos, size, title, mode),
-    _HGLRC(NULL),
-    _OpenGLLoader(3, 3)
+    _HGLRC(NULL)
 {
     PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
 
@@ -81,7 +80,7 @@ WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::strin
     if (!wglMakeCurrent(_Window._HDC, _HGLRC))
         throw LDL::Core::RuntimeError("wglMakeCurrent failed");
 
-    _OpenGLLoader.Init();
+    _OpenGLLoader.Init(3, 3);
 }
 
 WindowImpl::~WindowImpl()
