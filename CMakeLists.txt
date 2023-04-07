@@ -39,6 +39,9 @@ add_definitions(-DLDL_RENDER_OPENGL1)
 #set(LDL_RENDER_DIRECTX10 true)
 #add_definitions(-DLDL_RENDER_DIRECTX10)
 
+set(LDL_AUDIO_DIRECT_SOUND_8 true)
+add_definitions(-DLDL_AUDIO_DIRECT_SOUND_8)
+
 if (MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
@@ -55,6 +58,15 @@ if (LDL_RENDER_DIRECTX10)
 endif() 
 
 if (LDL_RENDER_DIRECTX9)
+  include_directories("dependencies/dx9sdk/Include")
+  if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    link_directories("dependencies/dx9sdk/Lib/x64")
+  elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+    link_directories("dependencies/dx9sdk/Lib/x86")
+  endif()
+endif() 
+
+if (LDL_AUDIO_DIRECT_SOUND_8)
   include_directories("dependencies/dx9sdk/Include")
   if(CMAKE_SIZEOF_VOID_P EQUAL 8)
     link_directories("dependencies/dx9sdk/Lib/x64")
@@ -104,6 +116,8 @@ set(SOURCE_FILES
 "source/Graphics/Utils/PotTextureSizer.cpp"
 "source/Graphics/OpenGL/Functions.cpp"
 
+"source/Audio/Mixer.cpp"
+
 "source/Events/Eventer.cpp"
 
 "source/Allocators/FixedLinear.cpp"
@@ -111,6 +125,7 @@ set(SOURCE_FILES
 
 "source/Loaders/ImageLoader.cpp"
 "source/Loaders/FontLoader.cpp"
+"source/Loaders/SoundLoader.cpp"
 
 "source/Time/FpsCounter.cpp"
 "source/Time/FpsLimiter.cpp"
@@ -135,6 +150,7 @@ set(SOURCE_FILES
 "source/OpenGL/OpenGL4_4.cpp"
 "source/OpenGL/OpenGL4_5.cpp"
 "source/OpenGL/OpenGL4_6.cpp"
+"source/OpenGL/OpenGLUtility.cpp"
 
 "source/LDLC/LDL_Window.cpp"
 "source/LDLC/LDL_RenderContext.cpp"
@@ -142,6 +158,11 @@ set(SOURCE_FILES
 "source/LDLC/LDL_Surface.cpp"
 "source/LDLC/LDL_Texture.cpp"
 "source/LDLC/LDL_FpsCounter.cpp")
+
+if (LDL_AUDIO_DIRECT_SOUND_8)
+  set(SOURCE_AUDIO
+  "source/Audio/DirectSound8/MixerImpl.cpp")
+endif() 
 
 #
 # OpenGL1
@@ -291,7 +312,7 @@ elseif(UNIX AND NOT APPLE)
   "source/Platforms/Linux/Graphics/Window.cpp")
 endif() 
 
-set(SOURCE_ALL ${SOURCE_FILES} ${SOURCE_RENDER} ${SOURCE_RENDER_PLATFORM} ${SOURCE_PLATFORM})
+set(SOURCE_ALL ${SOURCE_FILES} ${SOURCE_RENDER} ${SOURCE_RENDER_PLATFORM} ${SOURCE_PLATFORM} ${SOURCE_AUDIO})
 
 if (LDL_CONFIG_SHARED_LIBRARY)
   add_library(${CMAKE_PROJECT_NAME} SHARED  ${SOURCE_ALL})		
@@ -317,6 +338,10 @@ endif()
 
 if (WIN32 AND LDL_RENDER_DIRECTX9)
   target_link_libraries(${CMAKE_PROJECT_NAME} d3d9 d3dx9)
+endif()
+
+if (WIN32 AND LDL_AUDIO_DIRECT_SOUND_8)
+  target_link_libraries(${CMAKE_PROJECT_NAME} dsound dxguid)
 endif()
 
 add_subdirectory("Examples")

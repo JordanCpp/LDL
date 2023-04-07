@@ -22,6 +22,7 @@ namespace LDL
 			const std::string& Title();
 			const Point2u& Size();
 			const Point2u& Pos();
+			HWND Hwnd();
 		private:
 			HGLRC _HGLRC;
 			MainWindow _Window;

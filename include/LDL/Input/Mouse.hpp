@@ -12,6 +12,7 @@ namespace LDL
 		{
 		public:
 			const LDL::Graphics::Point2u& Pos();
+			void Pos(const LDL::Graphics::Point2u& pos);
 		private:
 			LDL::Graphics::Point2u _Pos;
 		};

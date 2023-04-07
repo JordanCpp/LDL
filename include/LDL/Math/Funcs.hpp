@@ -177,7 +177,7 @@ namespace LDL
 			z2 = eyez - centerz;
 
 			// normalize (no check needed for 0 because of early return)
-			len = 1 / sqrt(z0 * z0 + z1 * z1 + z2 * z2);
+			len = 1 / (T)sqrt(z0 * z0 + z1 * z1 + z2 * z2);
 			z0 *= len;
 			z1 *= len;
 			z2 *= len;
@@ -186,7 +186,7 @@ namespace LDL
 			x0 = upy * z2 - upz * z1;
 			x1 = upz * z0 - upx * z2;
 			x2 = upx * z1 - upy * z0;
-			len = sqrt(x0 * x0 + x1 * x1 + x2 * x2);
+			len = (T)sqrt(x0 * x0 + x1 * x1 + x2 * x2);
 			if (!len) {
 				x0 = 0;
 				x1 = 0;
@@ -204,7 +204,7 @@ namespace LDL
 			y1 = z2 * x0 - z0 * x2;
 			y2 = z0 * x1 - z1 * x0;
 
-			len = sqrt(y0 * y0 + y1 * y1 + y2 * y2);
+			len = (T)sqrt(y0 * y0 + y1 * y1 + y2 * y2);
 			if (!len) {
 				y0 = 0;
 				y1 = 0;
