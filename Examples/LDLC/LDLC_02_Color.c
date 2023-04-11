@@ -37,6 +37,8 @@ int main()
 		}
 	}
 
+	LDL_FpsCounterFree(counter);
+	LDL_NumberToStringFree(convert);
 	LDL_WindowFree(window);
 	LDL_RenderFree(render);
 
