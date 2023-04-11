@@ -1,7 +1,7 @@
 #include <iostream>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/IntegerToString.hpp>
+#include <LDL/Core/NumberToString.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 
@@ -22,7 +22,7 @@ int main()
 		Event report;
 
 		FpsCounter fpsCounter;
-		IntegerToString convert;
+		NumberToString convert;
 
 		while (window.GetEvent(report))
 		{
@@ -34,8 +34,8 @@ int main()
 			render.Clear();
 
 			render.Color(Color(237, 28, 36));
-			render.Line(Point2u(0, 0), Point2u(render.Size().PosX() - 1, render.Size().PosY() - 1));
-			render.Line(Point2u(render.Size().PosX() - 1, 0), Point2u(0, render.Size().PosY() - 1));
+			render.Line(Point2u(0, 0), Point2u(render.Size().PosX(), render.Size().PosY()));
+			render.Line(Point2u(render.Size().PosX(), 0), Point2u(0, render.Size().PosY()));
 
 			render.End();
 

@@ -5,3 +5,9 @@ target_link_libraries(LDLC_01_WindowAndRender LDL)
 
 add_executable(LDLC_02_Color "LDLC_02_Color.c")
 target_link_libraries(LDLC_02_Color LDL)
+
+add_executable(LDLC_03_Line "LDLC_03_Line.c")
+target_link_libraries(LDLC_03_Line LDL)
+
+add_executable(LDLC_04_Rect "LDLC_04_Rect.c")
+target_link_libraries(LDLC_04_Rect LDL)

@@ -64,7 +64,7 @@ void LDL_RenderFill(LDL_Render* render, size_t x, size_t y, size_t w, size_t h)
 
 void LDL_RenderLine(LDL_Render* render, size_t x, size_t y, size_t w, size_t h)
 {
-	render->_Render.Fill(Point2u(x, y), Point2u(w, h));
+	render->_Render.Line(Point2u(x, y), Point2u(w, h));
 }
 
 void LDL_RenderDrawTexture1(LDL_Render* render, LDL_Texture* texture, size_t x, size_t y)

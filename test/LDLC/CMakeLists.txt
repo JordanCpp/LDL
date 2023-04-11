@@ -5,3 +5,6 @@ target_link_libraries(LDL_WindowTest LDL)
 
 add_executable(LDL_RenderTest "LDL_RenderTest.cpp")
 target_link_libraries(LDL_RenderTest LDL)
+
+add_executable(LDL_Events "LDL_Events.cpp")
+target_link_libraries(LDL_Events LDL)

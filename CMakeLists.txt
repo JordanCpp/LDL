@@ -89,7 +89,7 @@ endif()
 set(SOURCE_FILES
 "source/Core/TestEqual.cpp" 
 "source/Core/RuntimeError.cpp"
-"source/Core/IntegerToString.cpp"
+"source/Core/NumberToString.cpp"
 "source/Core/FileInfo.cpp"
 "source/Core/Directory.cpp"
 "source/Core/FastPimpl.cpp"
@@ -158,7 +158,9 @@ set(SOURCE_FILES
 "source/LDLC/LDL_Render.cpp"
 "source/LDLC/LDL_Surface.cpp"
 "source/LDLC/LDL_Texture.cpp"
-"source/LDLC/LDL_FpsCounter.cpp")
+"source/LDLC/LDL_FpsCounter.cpp"
+"source/LDLC/LDL_FpsLimiter.cpp"
+"source/LDLC/LDL_NumberToString.cpp")
 
 if (LDL_AUDIO_DIRECT_SOUND_8)
   set(SOURCE_AUDIO

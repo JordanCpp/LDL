@@ -3,7 +3,7 @@
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/IntegerToString.hpp>
+#include <LDL/Core/NumberToString.hpp>
 #include <LDL/OpenGL/OpenGL3_3.hpp>
 
 using namespace LDL::Graphics;
@@ -35,7 +35,7 @@ int main()
 		LDL::Events::Event report;
 
 		LDL::Time::FpsCounter fpsCounter;
-		LDL::Core::IntegerToString convert;
+		LDL::Core::NumberToString convert;
         std::string title;
 
         // Компилирование нашей шейдерной программы

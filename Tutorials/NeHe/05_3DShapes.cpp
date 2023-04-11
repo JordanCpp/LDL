@@ -1,7 +1,7 @@
 #include <iostream>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/IntegerToString.hpp>
+#include <LDL/Core/NumberToString.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/OpenGL/OpenGL1_0.hpp>
@@ -134,7 +134,7 @@ int main()
 		LDL::Events::Event report;
 
 		LDL::Time::FpsCounter fpsCounter;
-		LDL::Core::IntegerToString convert;
+		LDL::Core::NumberToString convert;
 		LDL::Time::FpsLimiter fpsLimiter;
 		std::string title;
 

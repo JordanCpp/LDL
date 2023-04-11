@@ -1,5 +1,5 @@
-#ifndef LDL_Core_IntegerToString_hpp
-#define LDL_Core_IntegerToString_hpp
+#ifndef LDL_Core_NumberToString_hpp
+#define LDL_Core_NumberToString_hpp
 
 #include <LDL/Config.hpp>
 #include <LDL/Core/Types.hpp>
@@ -8,10 +8,10 @@ namespace LDL
 {
 	namespace Core
 	{
-		class LDL_EXPORT IntegerToString
+		class LDL_EXPORT NumberToString
 		{
 		public:
-			IntegerToString();
+			NumberToString();
 			const char* Convert(intmax_t num, uint8_t base = 10);
 		private:
 			void Swap(char& t1, char& t2);

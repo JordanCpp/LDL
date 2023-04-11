@@ -1,7 +1,7 @@
 #include <LDL/OpenGL/OpenGLLoader.hpp>
 #include <LDL/OpenGL/OpenGL4_6.hpp>
 #include <LDL/Core/RuntimeError.hpp>
-#include <LDL/Core/IntegerToString.hpp>
+#include <LDL/Core/NumberToString.hpp>
 
 using namespace LDL;
 
@@ -275,7 +275,7 @@ void OpenGLLoader::Init(size_t major, size_t minor)
 	}
 	else
 	{
-		Core::IntegerToString conv;
+		Core::NumberToString conv;
 
 		std::string error = "OpenGL ";
 		error += conv.Convert(Major());

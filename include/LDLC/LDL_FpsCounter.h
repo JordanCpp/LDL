@@ -2,6 +2,7 @@
 #define LDL_FpsCounter_h
 
 #include <LDLC/LDL_Export.h>
+#include <LDLC/LDL_Types.h>
 
 #ifdef __cplusplus
 extern "C" {

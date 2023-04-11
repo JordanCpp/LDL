@@ -4,7 +4,7 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/IntegerToString.hpp>
+#include <LDL/Core/NumberToString.hpp>
 #include <LDL/Time/FpsLimiter.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
@@ -29,7 +29,7 @@ namespace Template
 			LDL::Graphics::RenderContext _RenderContext;
 			LDL::Graphics::Render _Render;
 			LDL::Time::FpsCounter _FpsCounter;
-			LDL::Core::IntegerToString _Convert;
+			LDL::Core::NumberToString _Convert;
 			LDL::Time::FpsLimiter _FpsLimiter;
 		};
 	}

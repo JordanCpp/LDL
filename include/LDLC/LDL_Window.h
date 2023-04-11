@@ -3,6 +3,7 @@
 
 #include <LDLC/LDL_Export.h>
 #include <LDLC/LDL_Events.h>
+#include <LDLC/LDL_Enums.h>
 
 #ifdef __cplusplus
 extern "C" {

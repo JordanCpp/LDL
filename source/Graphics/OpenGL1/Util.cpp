@@ -1,6 +1,6 @@
 #include "Util.hpp"
 #include <LDL/OpenGL/OpenGL1_0.hpp>
-#include <LDL/Core/IntegerToString.hpp>
+#include <LDL/Core/NumberToString.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Graphics;
@@ -106,7 +106,7 @@ void Util::Check(const std::string& file, size_t line, const std::string& expres
 			error = "Unknown error";
 		}
 
-		LDL::Core::IntegerToString conv;
+		LDL::Core::NumberToString conv;
 
 		throw LDL::Core::RuntimeError("OpenGL error: " + error + " File: " + file + " Line: " + conv.Convert(line) + " Detail: " + expression);
     }

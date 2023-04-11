@@ -1,7 +1,7 @@
 #include <iostream>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/IntegerToString.hpp>
+#include <LDL/Core/NumberToString.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 
@@ -22,7 +22,7 @@ int main()
 		Event report;
 
 		FpsCounter fpsCounter;
-		IntegerToString convert;
+		NumberToString convert;
 
 		while (window.GetEvent(report))
 		{
