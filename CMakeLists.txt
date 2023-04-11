@@ -194,7 +194,10 @@ if (LDL_RENDER_OPENGL3)
   "source/Graphics/OpenGL3/Util.cpp"
   "source/Graphics/OpenGL3/Screen.cpp"
   "source/Graphics/OpenGL3/ScreenshoterImpl.cpp"
-  "source/Graphics/OpenGL3/RenderContextImpl.cpp")
+  "source/Graphics/OpenGL3/RenderContextImpl.cpp"
+  "source/Graphics/OpenGL3/ShaderLoader.cpp"
+  "source/Graphics/OpenGL3/LinePainter.cpp"
+  "source/Graphics/OpenGL3/TexturePainter.cpp")
 endif() 
 
 if (WIN32 AND LDL_RENDER_OPENGL3)

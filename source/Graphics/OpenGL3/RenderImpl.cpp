@@ -1,7 +1,6 @@
 #include "RenderImpl.hpp"
 #include "Util.hpp"
 #include "TextureImpl.hpp"
-#include <LDL/Math/Mat4f.hpp>
 #include <LDL/Math/Funcs.hpp>
 
 using namespace LDL::Graphics;
@@ -9,7 +8,9 @@ using namespace LDL::Math;
 
 RenderImpl::RenderImpl(RenderContextImpl* renderContextImpl, Window* window) :
 	_Window(window),
-	_Screen(_Window->Size())
+	_Screen(_Window->Size()),
+	_LinePainter(&_ShaderLoader),
+	_TexturePainter(&_ShaderLoader)
 {
 }
 
@@ -19,8 +20,7 @@ void LDL::Graphics::RenderImpl::Buffer(uint8_t* dst)
 
 void RenderImpl::Begin()
 {
-	Mat4f projection;
-	Mat4f modelView;
+	glViewport(0, 0, (GLsizei)_Window->Size().PosX(), (GLsizei)_Window->Size().PosY());
 
 	projection = Ortho(0.0f, (float)_Window->Size().PosX(), (float)_Window->Size().PosY(), 0.0f, 0.0f, 1.0f);
 }
@@ -63,6 +63,13 @@ void RenderImpl::Pixel(const Point2u& pos)
 
 void RenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
 {
+	GLclampf r;
+	GLclampf g;
+	GLclampf b;
+
+	Util::Normalize(_Color, r, g, b);
+
+	_LinePainter.Draw(projection, Vec3f((float)pos1.PosX(), (float)pos1.PosY(), 0), Vec3f((float)pos2.PosX(), (float)pos2.PosY(), 0), Vec3f((float)r, (float)g, (float)b));
 }
 
 void RenderImpl::Fill(const Point2u& pos, const Point2u& size)

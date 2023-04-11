@@ -12,6 +12,12 @@
 #include <time.h>
 
 using namespace LDL::Graphics;
+using namespace LDL::Events;
+using namespace LDL::Time;
+using namespace LDL::Core;
+using namespace LDL::Allocators;
+using namespace LDL::Loaders;
+using namespace LDL::Enums;
 
 size_t Random(size_t min, size_t max)
 {
@@ -29,17 +35,17 @@ int main()
 		RenderContext renderContext;
 		Render render(&renderContext, &window);
 
-		LDL::Events::Event report;
+		Event report;
 
-		LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 8);
-		LDL::Loaders::ImageLoader loader(&allocator);
+		FixedLinear allocator(Allocator::Mb * 8);
+		ImageLoader loader(&allocator);
 
 		loader.Load("SeasonsTiles.png");
 		Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
-		LDL::Time::FpsCounter fpsCounter;
-		LDL::Core::IntegerToString convert;
-		LDL::Time::FpsLimiter fpsLimiter;
+		FpsCounter fpsCounter;
+		IntegerToString convert;
+		FpsLimiter fpsLimiter;
 
 		Isometric isometric;
 
@@ -97,30 +103,28 @@ int main()
 
 			fpsLimiter.Throttle();
 
-			if (report.Type == LDL::Events::IsKeyboard && report.Keyboard.State == LDL::Enums::ButtonState::Pressed)
+
+			if (report.IsKeyPresed(KeyboardKey::W))
 			{
-				if (report.Keyboard.Key == LDL::Enums::KeyboardKey::W)
-				{
-					dy -= step;
-				}
-
-				if (report.Keyboard.Key == LDL::Enums::KeyboardKey::S)
-				{
-					dy += step;;
-				}
-
-				if (report.Keyboard.Key == LDL::Enums::KeyboardKey::A)
-				{
-					dx -= step;;
-				}
-
-				if (report.Keyboard.Key == LDL::Enums::KeyboardKey::D)
-				{
-					dx += step;;
-				}
+				dy -= step;
 			}
 
-			if (report.Type == LDL::Events::IsQuit)
+			if (report.IsKeyPresed(KeyboardKey::S))
+			{
+				dy += step;;
+			}
+
+			if (report.IsKeyPresed(KeyboardKey::A))
+			{
+				dx -= step;;
+			}
+
+			if (report.IsKeyPresed(KeyboardKey::D))
+			{
+				dx += step;;
+			}
+
+			if (report.Type == IsQuit)
 			{
 				window.StopEvent();
 			}
@@ -132,7 +136,7 @@ int main()
 			}
 		}
 	}
-	catch (const LDL::Core::RuntimeError& error)
+	catch (const RuntimeError& error)
 	{
 		std::cout << error.what() << '\n';
 	}

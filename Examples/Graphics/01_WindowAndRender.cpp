@@ -6,6 +6,9 @@
 #include <LDL/Graphics/Render.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Events;
+using namespace LDL::Time;
+using namespace LDL::Core;
 
 int main()
 {
@@ -16,10 +19,10 @@ int main()
 		RenderContext renderContext;
 		Render render(&renderContext, &window);
 
-		LDL::Events::Event report;
+		Event report;
 
-		LDL::Time::FpsCounter fpsCounter;
-		LDL::Core::IntegerToString convert;
+		FpsCounter fpsCounter;
+		IntegerToString convert;
 
 		while (window.GetEvent(report))
 		{
@@ -28,7 +31,7 @@ int main()
 			render.Begin();
 			render.End();
 
-			if (report.Type == LDL::Events::IsQuit)
+			if (report.Type == IsQuit)
 			{
 				window.StopEvent();
 			}
@@ -40,7 +43,7 @@ int main()
 			}
 		}
 	}
-	catch (const LDL::Core::RuntimeError& error)
+	catch (const RuntimeError& error)
 	{
 		std::cout << error.what() << '\n';
 	}

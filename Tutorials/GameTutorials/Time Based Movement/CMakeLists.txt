@@ -1,6 +1,6 @@
 
 add_executable(TimeBasedMovement 
 "Camera.cpp"
-"Main.cpp" "CVector3.h")
+"Main.cpp")
 
 target_link_libraries(TimeBasedMovement LDL)

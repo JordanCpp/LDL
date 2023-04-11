@@ -8,6 +8,11 @@
 #include <LDL/Graphics/Render.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Events;
+using namespace LDL::Time;
+using namespace LDL::Core;
+using namespace LDL::Allocators;
+using namespace LDL::Loaders;
 
 int main()
 {
@@ -18,16 +23,16 @@ int main()
 		RenderContext renderContext;
 		Render render(&renderContext, &window);
 
-		LDL::Events::Event report;
+		Event report;
 
-		LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
-		LDL::Loaders::ImageLoader loader(&allocator);
+		FixedLinear allocator(Allocator::Mb * 4);
+		ImageLoader loader(&allocator);
 
 		loader.Load("trehmachtovyiy-korabl-kartina-maslom-60x50_512x.jpg");
 		Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
-		LDL::Time::FpsCounter fpsCounter;
-		LDL::Core::IntegerToString convert;
+		FpsCounter fpsCounter;
+		IntegerToString convert;
 
 		while (window.GetEvent(report))
 		{
@@ -42,7 +47,7 @@ int main()
 
 			render.End();
 
-			if (report.Type == LDL::Events::IsQuit)
+			if (report.Type == IsQuit)
 			{
 				window.StopEvent();
 			}
@@ -54,7 +59,7 @@ int main()
 			}
 		}
 	}
-	catch (const LDL::Core::RuntimeError& error)
+	catch (const RuntimeError& error)
 	{
 		std::cout << error.what() << '\n';
 	}

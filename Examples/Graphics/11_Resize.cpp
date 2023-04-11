@@ -9,6 +9,11 @@
 #include <LDL/Graphics/Render.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Events;
+using namespace LDL::Time;
+using namespace LDL::Core;
+using namespace LDL::Allocators;
+using namespace LDL::Loaders;
 
 int main()
 {
@@ -19,17 +24,17 @@ int main()
 		RenderContext renderContext;
 		Render render(&renderContext, &window);
 
-		LDL::Events::Event report;
+		Event report;
 
-		LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
-		LDL::Loaders::ImageLoader loader(&allocator);
+		FixedLinear allocator(Allocator::Mb * 4);
+	    ImageLoader loader(&allocator);
 
 		loader.Load("Gorgosaurus_BW_transparent.png");
 		Surface image(loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
-		LDL::Time::FpsCounter fpsCounter;
-		LDL::Core::IntegerToString convert;
-		LDL::Time::FpsLimiter fpsLimiter;
+		FpsCounter fpsCounter;
+		IntegerToString convert;
+		FpsLimiter fpsLimiter;
 
 		Point2u size;
 
@@ -48,12 +53,12 @@ int main()
 
 			render.End();
 
-			if (report.Type == LDL::Events::IsQuit)
+			if (report.Type == IsQuit)
 			{
 				window.StopEvent();
 			}
 
-			if (report.Type == LDL::Events::IsMouseMove)
+			if (report.Type == IsMouseMove)
 			{
 				size = Point2u(report.Mouse.PosX, report.Mouse.PosY);
 			}
@@ -67,7 +72,7 @@ int main()
 			}
 		}
 	}
-	catch (const LDL::Core::RuntimeError& error)
+	catch (const RuntimeError& error)
 	{
 		std::cout << error.what() << '\n';
 	}
