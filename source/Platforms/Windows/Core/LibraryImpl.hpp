@@ -2,6 +2,7 @@
 #define LDL_Platforms_Windows_Core_LibraryImpl_hpp
 
 #include <LDL/Core/Types.hpp>
+#include <LDL/Core/Library.hpp>
 #include "../Windows.hpp"
 #include <string>
 

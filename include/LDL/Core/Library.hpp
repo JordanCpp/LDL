@@ -6,6 +6,8 @@
 
 namespace LDL
 {
+	typedef void(*VoidFuncPtr)(void);
+
 	namespace Core
 	{
 		class LibraryImpl;

@@ -2,6 +2,7 @@
 #define LDL_Graphics_Functions_hpp
 
 #include <LDL/Core/FastPimpl.hpp>
+#include <LDL/Core/Library.hpp>
 
 namespace LDL
 {

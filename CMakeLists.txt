@@ -160,7 +160,10 @@ set(SOURCE_FILES
 "source/LDLC/LDL_Texture.cpp"
 "source/LDLC/LDL_FpsCounter.cpp"
 "source/LDLC/LDL_FpsLimiter.cpp"
-"source/LDLC/LDL_NumberToString.cpp")
+"source/LDLC/LDL_NumberToString.cpp"
+"source/LDLC/LDL_Library.cpp"
+"source/LDLC/LDL_Ticks.cpp"
+"source/LDLC/LDL_OpenGLLoader.cpp")
 
 if (LDL_AUDIO_DIRECT_SOUND_8)
   set(SOURCE_AUDIO
