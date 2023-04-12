@@ -14,7 +14,7 @@ int main()
 	LDL_NumberToString* convert = LDL_NumberToStringNew();
 	LDL_FpsCounter* counter = LDL_FpsCounterNew(60);
 
-	LDL_FixedLinear* allocator = LDL_FixedLinearNew(1024 * 1024 * 4, NULL);
+	LDL_FixedLinear* allocator = LDL_FixedLinearNew(LDL_Allocator_Mb * 4, NULL);
 	LDL_ImageLoader* loader = LDL_ImageLoaderNew(allocator);
 
 	LDL_Event report;
@@ -64,8 +64,8 @@ int main()
 	LDL_ImageLoaderFree(loader);
 	LDL_FpsCounterFree(counter);
 	LDL_NumberToStringFree(convert);
-	LDL_WindowFree(window);
 	LDL_RenderFree(render);
+	LDL_WindowFree(window);
 
 	return 0;
 }

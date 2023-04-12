@@ -3,6 +3,7 @@
 
 #include <LDLC/LDL_Export.h>
 #include <LDLC/LDL_Types.h>
+#include <LDLC/LDL_Allocator.h>
 
 #ifdef __cplusplus
 extern "C" {
