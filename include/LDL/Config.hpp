@@ -17,12 +17,4 @@
   #endif
 #endif
 
-namespace LDL
-{
-	namespace Config
-	{
-		const size_t BytesPerPixelDefault = 4;
-	}
-}
-
 #endif    
