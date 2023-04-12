@@ -6,11 +6,11 @@ project(LDL)
 # Library type
 #
 
-#set(LDL_CONFIG_SHARED_LIBRARY true)
-#add_definitions(-DLDL_CONFIG_SHARED_LIBRARY)
+#set(LDL_SHARED_LIBRARY true)
+#add_definitions(-DLDL_SHARED_LIBRARY)
 
-set(LDL_CONFIG_STATIC_LIBRARY true)
-add_definitions(-DLDL_CONFIG_STATIC_LIBRARY)
+set(LDL_STATIC_LIBRARY true)
+add_definitions(-DLDL_STATIC_LIBRARY)
 
 #
 # Render type
@@ -163,7 +163,9 @@ set(SOURCE_FILES
 "source/LDLC/LDL_NumberToString.cpp"
 "source/LDLC/LDL_Library.cpp"
 "source/LDLC/LDL_Ticks.cpp"
-"source/LDLC/LDL_OpenGLLoader.cpp")
+"source/LDLC/LDL_OpenGLLoader.cpp"
+"source/LDLC/LDL_FixedLinear.cpp"
+"source/LDLC/LDL_ImageLoader.cpp")
 
 if (LDL_AUDIO_DIRECT_SOUND_8)
   set(SOURCE_AUDIO
@@ -323,9 +325,9 @@ endif()
 
 set(SOURCE_ALL ${SOURCE_FILES} ${SOURCE_RENDER} ${SOURCE_RENDER_PLATFORM} ${SOURCE_PLATFORM} ${SOURCE_AUDIO})
 
-if (LDL_CONFIG_SHARED_LIBRARY)
+if (LDL_SHARED_LIBRARY)
   add_library(${CMAKE_PROJECT_NAME} SHARED  ${SOURCE_ALL})		
-elseif (LDL_CONFIG_STATIC_LIBRARY)
+elseif (LDL_STATIC_LIBRARY)
   add_library(${CMAKE_PROJECT_NAME} STATIC  ${SOURCE_ALL})		
 endif() 
 
@@ -357,7 +359,7 @@ add_subdirectory("Examples")
 add_subdirectory("Games")
 add_subdirectory("Experiments")
 
-if (LDL_CONFIG_STATIC_LIBRARY)
+if (LDL_STATIC_LIBRARY)
   add_subdirectory("test")
   add_subdirectory("Tutorials")
 endif()

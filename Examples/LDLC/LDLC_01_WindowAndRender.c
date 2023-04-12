@@ -4,7 +4,7 @@
 
 int main()
 {
-	LDL_Window* window = LDL_WindowNew(0, 0, 800, 600, "LDLC_01_WindowAndRender.c", LDL_WindowModeResized);
+	LDL_Window* window = LDL_WindowNew(0, 0, 800, 600, "01_WindowAndRender", LDL_WindowModeResized);
 
 	LDL_RenderContext* renderContext = LDL_RenderContextNew();
 	LDL_Render* render = LDL_RenderNew(renderContext, window);

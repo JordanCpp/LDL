@@ -11,3 +11,6 @@ target_link_libraries(LDLC_03_Line LDL)
 
 add_executable(LDLC_04_Rect "LDLC_04_Rect.c")
 target_link_libraries(LDLC_04_Rect LDL)
+
+add_executable(LDLC_05_Texture "LDLC_05_Texture.c")
+target_link_libraries(LDLC_05_Texture LDL)

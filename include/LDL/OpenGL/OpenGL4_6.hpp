@@ -7,15 +7,15 @@
 extern "C" {
 #endif
 
-typedef void (OPENGL_API_CALL PFNGLSPECIALIZESHADERPROC)(GLuint shader, const GLchar* pEntryPoint, GLuint numSpecializationConstants, const GLuint* pConstantIndex, const GLuint* pConstantValue);
-typedef void (OPENGL_API_CALL PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC)(GLenum mode, const void* indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
-typedef void (OPENGL_API_CALL PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC)(GLenum mode, GLenum type, const void* indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
-typedef void (OPENGL_API_CALL PFNGLPOLYGONOFFSETCLAMPPROC)(GLfloat factor, GLfloat units, GLfloat clamp);
+typedef void (LDL_OPENGL_API_CALL PFNGLSPECIALIZESHADERPROC)(GLuint shader, const GLchar* pEntryPoint, GLuint numSpecializationConstants, const GLuint* pConstantIndex, const GLuint* pConstantValue);
+typedef void (LDL_OPENGL_API_CALL PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC)(GLenum mode, const void* indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
+typedef void (LDL_OPENGL_API_CALL PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC)(GLenum mode, GLenum type, const void* indirect, GLintptr drawcount, GLsizei maxdrawcount, GLsizei stride);
+typedef void (LDL_OPENGL_API_CALL PFNGLPOLYGONOFFSETCLAMPPROC)(GLfloat factor, GLfloat units, GLfloat clamp);
 
-OPENGL_API_ENTRY PFNGLSPECIALIZESHADERPROC glSpecializeShader;
-OPENGL_API_ENTRY PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC glMultiDrawArraysIndirectCount;
-OPENGL_API_ENTRY PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC glMultiDrawElementsIndirectCount;
-OPENGL_API_ENTRY PFNGLPOLYGONOFFSETCLAMPPROC glPolygonOffsetClamp;
+LDL_OPENGL_API_ENTRY PFNGLSPECIALIZESHADERPROC glSpecializeShader;
+LDL_OPENGL_API_ENTRY PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC glMultiDrawArraysIndirectCount;
+LDL_OPENGL_API_ENTRY PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC glMultiDrawElementsIndirectCount;
+LDL_OPENGL_API_ENTRY PFNGLPOLYGONOFFSETCLAMPPROC glPolygonOffsetClamp;
 
 #ifdef __cplusplus
 }
