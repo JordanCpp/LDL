@@ -4,6 +4,7 @@
 #include <LDL/Core/NumberToString.hpp>
 
 using namespace LDL;
+using namespace LDL::Core;
 
 OpenGLLoader::OpenGLLoader() :
 	_Major(0),
@@ -275,7 +276,7 @@ void OpenGLLoader::Init(size_t major, size_t minor)
 	}
 	else
 	{
-		Core::NumberToString conv;
+		NumberToString conv;
 
 		std::string error = "OpenGL ";
 		error += conv.Convert(Major());
@@ -283,7 +284,7 @@ void OpenGLLoader::Init(size_t major, size_t minor)
 		error += conv.Convert(Minor());
 		error += " not support";
 
-		throw LDL::Core::RuntimeError(error);
+		throw RuntimeError(error);
 	}
 }
 

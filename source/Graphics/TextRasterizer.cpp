@@ -12,9 +12,7 @@ static LDL::Allocators::Allocator* StbTrueTypeAllocator;
 using namespace LDL::Graphics;
 
 TextRasterizer::TextRasterizer(LDL::Allocators::Allocator* allocator) :
-	_Allocator(allocator),
-	_Result(NULL),
-	_Bitmap(NULL)
+	_Allocator(allocator)
 {
 	assert(_Allocator != NULL);
 
@@ -23,17 +21,4 @@ TextRasterizer::TextRasterizer(LDL::Allocators::Allocator* allocator) :
 
 TextRasterizer::~TextRasterizer()
 {
-}
-
-Surface* TextRasterizer::Result()
-{
-	return _Result;
-}
-
-void TextRasterizer::Create(LDL::Loaders::FontLoader* fontBufferLoader, size_t size, const std::string& text)
-{
-	stbtt_fontinfo info;
-
-	if (!stbtt_InitFont(&info, fontBufferLoader->Font(), 0))
-		throw LDL::Core::RuntimeError("stbtt_InitFont failed");
 }

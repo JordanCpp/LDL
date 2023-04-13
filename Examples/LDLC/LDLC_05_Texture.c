@@ -12,7 +12,7 @@ int main()
 	LDL_RenderContext* renderContext = LDL_RenderContextNew();
 	LDL_Render* render = LDL_RenderNew(renderContext, window);
 	LDL_NumberToString* convert = LDL_NumberToStringNew();
-	LDL_FpsCounter* counter = LDL_FpsCounterNew(60);
+	LDL_FpsCounter* counter = LDL_FpsCounterNew();
 
 	LDL_FixedLinear* allocator = LDL_FixedLinearNew(LDL_Allocator_Mb * 4, NULL);
 	LDL_ImageLoader* loader = LDL_ImageLoaderNew(allocator);

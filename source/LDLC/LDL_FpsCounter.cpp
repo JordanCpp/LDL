@@ -5,7 +5,7 @@ using namespace LDL::Time;
 
 struct LDL_FpsCounter
 {
-	FpsCounter FpsCounter;
+	FpsCounter _FpsCounter;
 };
 
 LDL_FpsCounter* LDL_FpsCounterNew()
@@ -22,20 +22,20 @@ void LDL_FpsCounterFree(LDL_FpsCounter* fpsCounter)
 
 void LDL_FpsCounterStart(LDL_FpsCounter* fpsCounter)
 {
-	fpsCounter->FpsCounter.Start();
+	fpsCounter->_FpsCounter.Start();
 }
 
 bool LDL_FpsCounterCalc(LDL_FpsCounter* fpsCounter)
 {
-	return fpsCounter->FpsCounter.Calc();
+	return fpsCounter->_FpsCounter.Calc();
 }
 
 size_t LDL_FpsCounterGetFps(LDL_FpsCounter* fpsCounter)
 {
-	return fpsCounter->FpsCounter.Fps();
+	return fpsCounter->_FpsCounter.Fps();
 }
 
 void LDL_FpsCounterClear(LDL_FpsCounter* fpsCounter)
 {
-	fpsCounter->FpsCounter.Clear();
+	fpsCounter->_FpsCounter.Clear();
 }

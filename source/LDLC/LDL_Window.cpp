@@ -1,5 +1,6 @@
 #include <LDLC/LDL_Window.h>
 #include <LDL/Graphics/Window.hpp>
+#include <string.h>
 
 using namespace LDL::Graphics;
 using namespace LDL::Events;

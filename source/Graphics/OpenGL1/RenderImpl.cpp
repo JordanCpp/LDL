@@ -9,7 +9,8 @@ using namespace LDL::Math;
 
 RenderImpl::RenderImpl(RenderContextImpl* renderContextImpl, Window* window) :
 	_Window(window),
-	_Screen(_Window->Size())
+	_Screen(_Window->Size()),
+	_RenderContextImpl(renderContextImpl)
 {
 	Begin();
 

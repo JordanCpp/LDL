@@ -1,6 +1,6 @@
 call "C:\Downloads\codeblocks-12.11mingw-setup\MinGW\mingwvars.bat"
 
-g++ -Wall -Wextra -pedantic -O2 -std=c++98 -o %1.exe -DLDL_CONFIG_STATIC_LIBRARY -DLDL_RENDER_OPENGL1 ..\%2 ^
+g++ -Wall -Wextra -pedantic -O2 -std=c++98 -o %1.exe -DLDL_STATIC_LIBRARY -DLDL_RENDER_OPENGL1 ..\%2 ^
 ..\..\source\Allocators\*.cpp ^
 ..\..\source\Core\*.cpp ^
 ..\..\source\Events\*.cpp ^
@@ -20,6 +20,7 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -o %1.exe -DLDL_CONFIG_STATIC_LIBRARY
 ..\..\source\Graphics\Utils\*.cpp ^
 ..\..\source\Loaders\*.cpp ^
 ..\..\source\OpenGL\*.cpp ^
+..\..\source\LDLC\*.cpp ^
 -I..\..\include\ ^
 -lgdi32 ^
 -lopengl32 ^

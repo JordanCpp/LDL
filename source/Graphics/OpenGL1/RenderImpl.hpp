@@ -34,6 +34,7 @@ namespace LDL
 			Window* _Window;
 			Screen _Screen;
 			LDL::Graphics::Color _Color;
+			RenderContextImpl* _RenderContextImpl;
 		};
 	}
 }

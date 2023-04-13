@@ -1,7 +1,7 @@
 
 call "C:\VC6\Microsoft Visual Studio\VC98\Bin\VCVARS32.BAT"
 
-CL -GX /I..\..\include /DLDL_CONFIG_STATIC_LIBRARY /DLDL_RENDER_OPENGL1 ..\%2  ^
+CL -GX /I..\..\include /DLDL_STATIC_LIBRARY /DLDL_RENDER_OPENGL1 ..\%2  ^
 ..\..\source\Allocators\*.cpp ^
 ..\..\source\Core\*.cpp ^
 ..\..\source\Events\*.cpp ^

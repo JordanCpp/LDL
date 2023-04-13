@@ -1,7 +1,7 @@
 
 call "C:\VC6\Microsoft Visual Studio\VC98\Bin\VCVARS32.BAT"
 
-CL -GX /DLDL_CONFIG_STATIC_LIBRARY   ^
+CL -GX /DLDL_STATIC_LIBRARY   ^
 /I..\..\dependencies\dx9sdk\include        ^
 /I..\..\include /DLDL_RENDER_DIRECTX9 ..\%2  ^
 ..\..\source\Allocators\*.cpp ^
@@ -20,7 +20,6 @@ CL -GX /DLDL_CONFIG_STATIC_LIBRARY   ^
 ..\..\source\Graphics\Utils\*.cpp ^
 ..\..\source\Loaders\*.cpp  ^
 ..\..\source\Platforms\Windows\Input\*.cpp  ^
-..\..\source\LDLC\*.cpp  ^
 gdi32.lib ^
 ..\..\dependencies\dx9sdk\lib\x86\d3d9.lib  ^
 ..\..\dependencies\dx9sdk\lib\x86\d3dx9.lib ^

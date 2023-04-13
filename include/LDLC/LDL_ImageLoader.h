@@ -11,7 +11,7 @@ extern "C" {
 typedef struct LDL_ImageLoader LDL_ImageLoader;
 
 LDL_EXPORT LDL_ImageLoader* LDL_ImageLoaderNew(void* allocator);
-LDL_EXPORT void LDL_ImageLoaderFree(void* ptr);
+LDL_EXPORT void LDL_ImageLoaderFree(LDL_ImageLoader* ptr);
 LDL_EXPORT size_t LDL_ImageLoaderGetSizeX(LDL_ImageLoader* imageLoader);
 LDL_EXPORT size_t LDL_ImageLoaderGetSizeY(LDL_ImageLoader* imageLoader);
 LDL_EXPORT uint8_t LDL_ImageLoaderGetBytesPerPixel(LDL_ImageLoader* imageLoader);

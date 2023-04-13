@@ -5,7 +5,7 @@ using namespace LDL::Core;
 
 struct LDL_NumberToString
 {
-	NumberToString NumberToString;
+	NumberToString _NumberToString;
 };
 
 LDL_NumberToString* LDL_NumberToStringNew()
@@ -22,5 +22,5 @@ void LDL_NumberToStringFree(LDL_NumberToString* numberToString)
 
 const char* LDL_NumberToStringConvertInt(LDL_NumberToString* numberToString, intmax_t num)
 {
-	return numberToString->NumberToString.Convert(num);
+	return numberToString->_NumberToString.Convert(num);
 }
