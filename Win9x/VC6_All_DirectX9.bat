@@ -1,0 +1,4 @@
+
+call Build_All VC6_Build_DLL_DirectX9 VC6_Build_EXE
+
+pause
