@@ -12,10 +12,6 @@ WindowImpl::~WindowImpl()
 {
 }
 
-void WindowImpl::Present(uint8_t* pixels, uint8_t bytesPerPixel)
-{
-}
-
 const Point2u& WindowImpl::Size()
 {
     return _Window.Size();

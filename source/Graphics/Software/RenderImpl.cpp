@@ -1,4 +1,5 @@
 #include "RenderImpl.hpp"
+#include "../../Platforms/Windows/Graphics/Software/WindowImpl.hpp"
 
 using namespace LDL::Graphics;
 
@@ -20,7 +21,7 @@ void RenderImpl::Begin()
 
 void RenderImpl::End()
 {
-	_Window->Present(_Canvas.Pixels(), _Canvas.BytesPerPixel());
+	_Window->GetWindowImpl()->Present(_Canvas.Pixels(), _Canvas.BytesPerPixel());
 }
 
 const Point2u& RenderImpl::Size()

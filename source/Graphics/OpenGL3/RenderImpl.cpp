@@ -2,6 +2,7 @@
 #include "Util.hpp"
 #include "TextureImpl.hpp"
 #include <LDL/Math/Funcs.hpp>
+#include "../../Platforms/Windows/Graphics/OpenGL3/WindowImpl.hpp"
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;
@@ -27,7 +28,7 @@ void RenderImpl::Begin()
 
 void RenderImpl::End()
 {
-	_Window->Present(NULL, NULL);
+	_Window->GetWindowImpl()->Present();
 }
 
 const Point2u& RenderImpl::Size()

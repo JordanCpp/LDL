@@ -14,11 +14,6 @@ Window::~Window()
 	delete _WindowImpl;
 }
 
-void Window::Present(uint8_t* pixels, uint8_t bytesPerPixel)
-{
-	_WindowImpl->Present(pixels, bytesPerPixel);
-}
-
 bool Window::GetEvent(LDL::Events::Event& event)
 {
 	return _WindowImpl->GetEvent(event);

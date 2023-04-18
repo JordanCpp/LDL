@@ -21,8 +21,6 @@ void RenderImpl::Begin()
 
 void RenderImpl::End()
 {
-	_Window->Present(NULL, NULL);
-
 	EndPaint(_Window->GetWindowImpl()->Hwnd(), &_PaintStruct);
 }
 

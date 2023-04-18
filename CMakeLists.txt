@@ -58,16 +58,7 @@ if (LDL_RENDER_DIRECTX10)
   endif()
 endif() 
 
-if (LDL_RENDER_DIRECTX9)
-  include_directories("dependencies/dx9sdk/Include")
-  if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    link_directories("dependencies/dx9sdk/Lib/x64")
-  elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
-    link_directories("dependencies/dx9sdk/Lib/x86")
-  endif()
-endif() 
-
-if (LDL_AUDIO_DIRECT_SOUND_8)
+if (LDL_RENDER_DIRECTX9 OR LDL_AUDIO_DIRECT_SOUND_8)
   include_directories("dependencies/dx9sdk/Include")
   if(CMAKE_SIZEOF_VOID_P EQUAL 8)
     link_directories("dependencies/dx9sdk/Lib/x64")
@@ -365,6 +356,9 @@ add_subdirectory("Experiments")
 
 if (LDL_STATIC_LIBRARY)
   add_subdirectory("test")
+endif()
+
+if (LDL_STATIC_LIBRARY AND (LDL_RENDER_OPENGL1 OR LDL_RENDER_OPENGL3))
   add_subdirectory("Tutorials")
 endif()
 
