@@ -20,6 +20,7 @@ namespace LDL
 			const std::string& Title();
 			const Point2u& Size();
 			const Point2u& Pos();
+			HWND Hwnd();
 		private:
 			MainWindow _Window;
 			BITMAPINFO _BITMAPINFO;

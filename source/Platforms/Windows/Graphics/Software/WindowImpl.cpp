@@ -64,3 +64,8 @@ void WindowImpl::Title(const std::string& title)
 {
     _Window.Title(title);
 }
+
+HWND WindowImpl::Hwnd()
+{
+    return _Window._HWND;
+}

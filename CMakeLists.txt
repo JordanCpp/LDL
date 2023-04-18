@@ -115,7 +115,6 @@ set(SOURCE_FILES
 "source/Graphics/Isometric.cpp"
 "source/Graphics/Camera.cpp"
 "source/Graphics/Utils/PotTextureSizer.cpp"
-"source/Graphics/OpenGL/Functions.cpp"
 
 "source/Audio/Mixer.cpp"
 
@@ -131,6 +130,21 @@ set(SOURCE_FILES
 "source/Time/FpsCounter.cpp"
 "source/Time/FpsLimiter.cpp"
 
+"source/LDLC/LDL_Window.cpp"
+"source/LDLC/LDL_RenderContext.cpp"
+"source/LDLC/LDL_Render.cpp"
+"source/LDLC/LDL_Surface.cpp"
+"source/LDLC/LDL_Texture.cpp"
+"source/LDLC/LDL_FpsCounter.cpp"
+"source/LDLC/LDL_FpsLimiter.cpp"
+"source/LDLC/LDL_NumberToString.cpp"
+"source/LDLC/LDL_Library.cpp"
+"source/LDLC/LDL_Ticks.cpp"
+"source/LDLC/LDL_FixedLinear.cpp"
+"source/LDLC/LDL_ImageLoader.cpp")
+
+set(SOURCE_OPENGL_FILES
+"source/Graphics/OpenGL/Functions.cpp"
 "source/OpenGL/OpenGLLoader.cpp"
 "source/OpenGL/OpenGL1_0.cpp"
 "source/OpenGL/OpenGL1_1.cpp"
@@ -152,20 +166,7 @@ set(SOURCE_FILES
 "source/OpenGL/OpenGL4_5.cpp"
 "source/OpenGL/OpenGL4_6.cpp"
 "source/OpenGL/OpenGLUtility.cpp"
-
-"source/LDLC/LDL_Window.cpp"
-"source/LDLC/LDL_RenderContext.cpp"
-"source/LDLC/LDL_Render.cpp"
-"source/LDLC/LDL_Surface.cpp"
-"source/LDLC/LDL_Texture.cpp"
-"source/LDLC/LDL_FpsCounter.cpp"
-"source/LDLC/LDL_FpsLimiter.cpp"
-"source/LDLC/LDL_NumberToString.cpp"
-"source/LDLC/LDL_Library.cpp"
-"source/LDLC/LDL_Ticks.cpp"
-"source/LDLC/LDL_OpenGLLoader.cpp"
-"source/LDLC/LDL_FixedLinear.cpp"
-"source/LDLC/LDL_ImageLoader.cpp")
+"source/LDLC/LDL_OpenGLLoader.cpp")
 
 if (LDL_AUDIO_DIRECT_SOUND_8)
   set(SOURCE_AUDIO
@@ -182,7 +183,8 @@ if (LDL_RENDER_OPENGL1)
   "source/Graphics/OpenGL1/Util.cpp"
   "source/Graphics/OpenGL1/Screen.cpp"
   "source/Graphics/OpenGL1/ScreenshoterImpl.cpp"
-  "source/Graphics/OpenGL1/RenderContextImpl.cpp")
+  "source/Graphics/OpenGL1/RenderContextImpl.cpp"
+  ${SOURCE_OPENGL_FILES})
 endif() 
 
 if (WIN32 AND LDL_RENDER_OPENGL1)
@@ -204,7 +206,8 @@ if (LDL_RENDER_OPENGL3)
   "source/Graphics/OpenGL3/RenderContextImpl.cpp"
   "source/Graphics/OpenGL3/ShaderLoader.cpp"
   "source/Graphics/OpenGL3/LinePainter.cpp"
-  "source/Graphics/OpenGL3/TexturePainter.cpp")
+  "source/Graphics/OpenGL3/TexturePainter.cpp"
+  ${SOURCE_OPENGL_FILES})
 endif() 
 
 if (WIN32 AND LDL_RENDER_OPENGL3)
@@ -220,7 +223,8 @@ if (LDL_RENDER_SOFTWARE)
   set(SOURCE_RENDER
   "source/Graphics/Software/RenderImpl.cpp"
   "source/Graphics/Software/TextureImpl.cpp"
-  "source/Graphics/Software/RenderContextImpl.cpp")
+  "source/Graphics/Software/RenderContextImpl.cpp"
+  "source/Graphics/Software/ScreenshoterImpl.cpp")
 endif() 
 
 if (WIN32 AND LDL_RENDER_SOFTWARE)
