@@ -6,7 +6,7 @@ using namespace LDL::Math;
 LinePainter::LinePainter(ShaderLoader* shaderLoader) :
     _ShaderLoader(shaderLoader)
 {
-    _ShaderLoader->Load("LDL_Shaders/OpenGL/3.3/vertex.vs");
+    _ShaderLoader->Load("LDL_Shaders/OpenGL3/LinePainter.vs");
     const char* vertexSource = _ShaderLoader->Result().c_str();
 
     GLint success = 0;
@@ -16,7 +16,7 @@ LinePainter::LinePainter(ShaderLoader* shaderLoader) :
     glCompileShader(vertexShader);
     glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
 
-    _ShaderLoader->Load("LDL_Shaders/OpenGL/3.3/fragment.fs");
+    _ShaderLoader->Load("LDL_Shaders/OpenGL3/LinePainter.fs");
     const char* fragmentSource = _ShaderLoader->Result().c_str();
 
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
