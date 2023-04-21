@@ -79,7 +79,7 @@ void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
 
 void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
 {
-	_TexturePainter.Draw(image);
+	_TexturePainter.Draw(projection, image);
 }
 
 void RenderImpl::Draw(Texture* image, const Point2u& pos)

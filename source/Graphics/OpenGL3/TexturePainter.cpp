@@ -2,6 +2,7 @@
 #include "TextureImpl.hpp"
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 TexturePainter::TexturePainter(ShaderLoader* shaderLoader) :
 	_ShaderLoader(shaderLoader),
@@ -36,29 +37,24 @@ TexturePainter::TexturePainter(ShaderLoader* shaderLoader) :
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
-    float vertices[] = {
-        // positions          // colors           // texture coords
-         0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-         0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left 
-    };
-    unsigned int indices[] = {
-        0, 1, 3, // first triangle
-        1, 2, 3  // second triangle
+    float vertices[] =
+    {
+         0.0f,  1.0f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f,
+         0.0f,  0.0f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,
+         1.0f,  0.0f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,
+
+         0.0f,  1.0f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f,
+         1.0f,  0.0f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,
+         1.0f,  1.0f, 0.0f,   0.0f, 0.0f, 1.0f,   1.0f, 1.0f
     };
 
     glGenVertexArrays(1, &_VertexArraysObject);
     glGenBuffers(1, &_VertexBufferObject);
-    glGenBuffers(1, &_ElementBufferObject);
 
     glBindVertexArray(_VertexArraysObject);
 
     glBindBuffer(GL_ARRAY_BUFFER, _VertexBufferObject);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ElementBufferObject);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // position attribute
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
@@ -71,13 +67,15 @@ TexturePainter::TexturePainter(ShaderLoader* shaderLoader) :
     glEnableVertexAttribArray(2);
 }
 
-void TexturePainter::Draw(Texture* texture)
+void TexturePainter::Draw(Mat4f proj, Texture* texture)
 {
    glBindTexture(GL_TEXTURE_2D, (GLuint)texture->GetTextureImpl()->Id());
 
    glUseProgram(_ShaderProgram);
 
+   //glUniformMatrix4fv(glGetUniformLocation(_ShaderProgram, "projection"), 1, GL_FALSE, proj.Values());
+
    glBindVertexArray(_VertexArraysObject);
 
-   glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+   glDrawArrays(GL_TRIANGLES, 0, 6);
 }

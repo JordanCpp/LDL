@@ -4,6 +4,7 @@
 #include <LDL/OpenGL/OpenGL3_0.hpp>
 #include "ShaderLoader.hpp"
 #include <LDL/Graphics/Texture.hpp>
+#include <LDL/Math/Mat4f.hpp>
 
 namespace LDL
 {
@@ -13,7 +14,7 @@ namespace LDL
 		{
 		public:
 			TexturePainter(ShaderLoader* shaderLoader);
-			void Draw(Texture * texture);
+			void Draw(LDL::Math::Mat4f proj, Texture * texture);
 		private:
 			ShaderLoader* _ShaderLoader;
 			GLuint _ShaderProgram;
