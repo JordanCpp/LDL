@@ -35,6 +35,11 @@ void ArtFrame::Reset()
 	px = py = 0;
 }
 
+size_t ArtFrame::Index(int x, int y)
+{
+	return ((header.width * y) + x);
+}
+
 bool ArtFrame::EOD()
 {
 	if (py < static_cast<int>(header.height)) return false;
@@ -62,115 +67,41 @@ void ArtFrame::Save(std::ofstream& source)
 	source.write(data, header.size);
 }
 
-unsigned char ArtFrame::GetValue(int x, int y)
+uint8_t ArtFrame::GetValue(int x, int y)
 {
-	return pixels[y][x];
+	return pixels[Index(x, y)];
 }
 
-unsigned char ArtFrame::GetValueI(int x, int y)
+void ArtFrame::SetValue(int x, int y, uint8_t ch)
 {
-	return pixels[pixels.size() - 1 - y][x];
-}
-
-void ArtFrame::SetValue(int x, int y, unsigned char ch)
-{
-	pixels[y][x] = ch;
+	pixels[Index(x, y)] = ch;
 }
 
 void ArtFrame::SetSize(int w, int h)
 {
 	header.width = w;
 	header.height = h;
-	pixels = bytemap(header.height, bytevec(header.width));
-}
-
-void ArtFrame::Encode()
-{
-	std::string data_compressed;
-	std::string data_raw;
-
-	Reset();
-	do
-	{
-		char clones = 0;
-		char val = GetValueI(px, py);
-		if (!Inc())
-		{
-			data_compressed += static_cast<unsigned char>(0x81);
-			data_compressed += val;
-		}
-		else
-		{
-			if (val == GetValueI(px, py))
-			{
-				clones = 2;
-				while (Inc() && (val == GetValueI(px, py)) && (clones < 0x7F))
-				{
-					clones++;
-				}
-				data_compressed += clones;
-				data_compressed += val;
-			}
-			else
-			{
-				clones = 2;
-				data_compressed += '\0';
-				data_compressed += val;
-				data_compressed += GetValueI(px, py);
-				while (Inc() && (GetValueI(px, py) != data_compressed.back()) && (clones < 0x7F))
-				{
-					data_compressed += GetValueI(px, py);
-					clones++;
-				}
-				if ((!EOD()) && (GetValueI(px, py) == data_compressed.back()))
-				{
-					clones--;
-					data_compressed.resize(data_compressed.size() - 1);
-					Dec();
-				}
-				data_compressed[data_compressed.size() - clones - 1] = static_cast<unsigned char>(0x80) | static_cast<unsigned char>(clones);
-			}
-		}
-	} while (!EOD());
-
-	Reset();
-	while (!EOD())
-	{
-		data_raw += GetValueI(px, py);
-		Inc();
-	}
-	Reset();
-
-	if (data_raw.size() <= data_compressed.size())
-	{
-		data = new char[data_raw.size()];
-		memcpy(data, data_raw.c_str(), data_raw.size());
-		header.size = static_cast<unsigned long>(data_raw.size());
-	}
-	else
-	{
-		data = new char[data_compressed.size()];
-		memcpy(data, data_compressed.c_str(), data_compressed.size());
-		header.size = static_cast<unsigned long>(data_compressed.size());
-	}
+	pixels.resize(header.height * header.width);
 }
 
 void ArtFrame::Decode()
 {
-	pixels = bytemap(header.height, bytevec(header.width));
+	pixels.resize(header.height * header.width);
+
 	Reset();
 	if (header.size < (header.height*header.width))
 	{
 		for (int p = 0; p < static_cast<int>(header.size); p++)
 		{
-			unsigned char ch = static_cast<unsigned char>(data[p]);
+			uint8_t ch = static_cast<uint8_t>(data[p]);
+
 			if (ch & 0x80)
 			{
 				int to_copy = ch & (0x7F);
 				while (to_copy--)
 				{
 					p++;
-					pixels[py][px] = data[p];
+					pixels[Index(px, py)] = data[p];
 					Inc();
 				}
 			}
@@ -178,10 +109,11 @@ void ArtFrame::Decode()
 			{
 				int to_clone = ch & (0x7F);
 				p++;
-				unsigned char src = static_cast<unsigned char>(data[p]);
+				uint8_t src = static_cast<uint8_t>(data[p]);
+
 				while (to_clone--)
 				{
-					pixels[py][px] = src;
+					pixels[Index(px, py)] = src;
 					Inc();
 				}
 			}
@@ -191,7 +123,7 @@ void ArtFrame::Decode()
 	{
 		for (int p = 0; p < static_cast<int>(header.size); p++)
 		{
-			pixels[py][px] = data[p];
+			pixels[Index(px, py)] = data[p];
 			Inc();
 		}
 	}
@@ -201,9 +133,6 @@ void ArtFile::Reset()
 {
 
 }
-
-//-----------------------------------------------------------------------
-//-----------------------------------------------------------------------
 
 void ArtFile::LoadArt(const std::string &fname)
 {
@@ -245,29 +174,4 @@ void ArtFile::LoadArt(const std::string &fname)
 		af.Load(source);
 		af.Decode();
 	}
-}
-
-void ArtFile::SaveArt(const std::string &fname)
-{
-	std::ofstream source;
-	source.open(fname, std::ios_base::binary);
-	source.write(reinterpret_cast<char*>(&header), sizeof(header));
-
-	for (int i = 0; i < palettes; i++)
-	{
-		source.write(reinterpret_cast<char*>(&palette_data[i]), sizeof(ArtTable));
-	}
-
-	for (auto &af : frame_data)
-	{
-		af.Encode();
-		af.SaveHeader(source);
-	}
-
-	for (auto &af : frame_data)
-	{
-		af.Save(source);
-	}
-
-	source.close();
 }

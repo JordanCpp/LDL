@@ -59,13 +59,15 @@ struct ArtFrame
 {
 	ArtFrameHeader header;
 	char*          data;
-	bytemap        pixels;
+	std::vector<uint8_t> pixels;
 	int px, py;
 
 	bool Inc();
 	void Dec();
 	void Reset();
 	bool EOD();
+
+	size_t Index(int x, int y);
 
 	ArtFrameHeader& GetHeader() { return header; }
 	void LoadHeader(std::ifstream& source);
@@ -74,12 +76,9 @@ struct ArtFrame
 	void Load(std::ifstream& source);
 	void Save(std::ofstream& source);
 
-	unsigned char GetValue(int x, int y);
-	unsigned char GetValueI(int x, int y);
-	void SetValue(int x, int y, unsigned char ch);
+	uint8_t GetValue(int x, int y);
+	void SetValue(int x, int y, uint8_t ch);
 	void SetSize(int w, int h);
-
-	void Encode();
 	void Decode();
 };
 
@@ -96,7 +95,6 @@ struct ArtFile
 
 	void Reset();
 	void LoadArt(const std::string &fname);
-	void SaveArt(const std::string &fname);
 };
 
 #endif
