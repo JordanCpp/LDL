@@ -6,6 +6,7 @@ using namespace LDL::Allocators;
 
 Engine::Engine(Settings* settings) :
 	_Settings(settings),
+	_PathManager(settings->Path()),
 	_ImageAllocator(Allocator::Mb * 2),
 	_ImageLoader(&_ImageAllocator),
 	_Window(Point2u(0,0), _Settings->Size(), _Settings->Title()),

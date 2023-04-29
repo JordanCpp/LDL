@@ -197,6 +197,11 @@ void ArtFrame::Decode()
 	}
 }
 
+void ArtFile::Reset()
+{
+
+}
+
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
 
@@ -217,6 +222,7 @@ void ArtFile::LoadArt(const std::string &fname)
 	{
 		if (in_palette(col)) palettes++;
 	}
+
 	frames = header.frame_num;
 	key_frame = header.frame_num_low;
 

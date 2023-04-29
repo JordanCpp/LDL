@@ -9,6 +9,7 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
+#include <Arcanum/Managers/PathManager.hpp>
 #include <Arcanum/Game/Settings.hpp>
 #include <Arcanum/Formats/Art.hpp>
 
@@ -23,6 +24,7 @@ namespace Arcanum
 			void Run();
 		private:
 			Settings* _Settings;
+			Managers::PathManager _PathManager;
 			std::string _Title;
 			LDL::Allocators::FixedLinear _ImageAllocator;
 			LDL::Loaders::ImageLoader _ImageLoader;

@@ -94,6 +94,7 @@ struct ArtFile
 	int key_frame;
 	bool animated;
 
+	void Reset();
 	void LoadArt(const std::string &fname);
 	void SaveArt(const std::string &fname);
 };
