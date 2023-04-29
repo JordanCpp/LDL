@@ -11,7 +11,7 @@
 #include <LDL/Graphics/Render.hpp>
 #include <Arcanum/Managers/PathManager.hpp>
 #include <Arcanum/Game/Settings.hpp>
-#include <Arcanum/Formats/Art.hpp>
+#include <Arcanum/Loaders/ArtLoader.hpp>
 
 namespace Arcanum
 {
@@ -34,8 +34,8 @@ namespace Arcanum
 			LDL::Time::FpsCounter _FpsCounter;
 			LDL::Core::NumberToString _Convert;
 			LDL::Time::FpsLimiter _FpsLimiter;
-			ArtFile _ArtFile;
 			LDL::Graphics::Texture* _Texture;
+			Loaders::ArtLoader _ArtLoader;
 		};
 	}
 }

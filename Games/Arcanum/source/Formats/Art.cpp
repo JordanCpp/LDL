@@ -131,6 +131,8 @@ void ArtFile::Reset()
 
 void ArtFile::LoadArt(const std::string &fname)
 {
+	frame_data.clear();
+
 	std::ifstream source;
 	source.open(fname, std::ios_base::binary);
 
@@ -169,4 +171,6 @@ void ArtFile::LoadArt(const std::string &fname)
 		af.Load(source);
 		af.Decode();
 	}
+
+	source.close();
 }

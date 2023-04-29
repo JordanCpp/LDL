@@ -1,7 +1,8 @@
 #ifndef Arcanum_Graphics_Sprite_hpp
 #define Arcanum_Graphics_Sprite_hpp
 
-#include <LDL/Graphics/Texture.hpp>
+#include <Arcanum/Graphics/Image.hpp>
+#include <vector>
 
 namespace Arcanum
 {
@@ -11,8 +12,7 @@ namespace Arcanum
 		{
 		public:
 		private:
-			LDL::Graphics::Texture _Texture;
-			LDL::Graphics::Point2u _Pos;
+			std::vector<Image*> _Images;
 		};
 	}
 }
