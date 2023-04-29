@@ -58,7 +58,7 @@ struct ArtFrameHeader
 struct ArtFrame
 {
 	ArtFrameHeader header;
-	char*          data;
+	std::vector<char> data;
 	std::vector<uint8_t> pixels;
 	int px, py;
 
@@ -74,7 +74,6 @@ struct ArtFrame
 	void SaveHeader(std::ofstream& dest);
 
 	void Load(std::ifstream& source);
-	void Save(std::ofstream& source);
 
 	uint8_t GetValue(int x, int y);
 	void SetValue(int x, int y, uint8_t ch);

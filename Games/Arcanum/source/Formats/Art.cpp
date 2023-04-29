@@ -58,13 +58,8 @@ void ArtFrame::SaveHeader(std::ofstream& dest)
 
 void ArtFrame::Load(std::ifstream& source)
 {
-	data = new char[header.size];
-	source.read(data, header.size);
-}
-
-void ArtFrame::Save(std::ofstream& source)
-{
-	source.write(data, header.size);
+	data.resize(header.size);
+	source.read(&data[0], header.size);
 }
 
 uint8_t ArtFrame::GetValue(int x, int y)
