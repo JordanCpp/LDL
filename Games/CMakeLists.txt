@@ -1,4 +1,3 @@
 cmake_minimum_required(VERSION 3.8)
 
-#add_subdirectory("Template")
-add_subdirectory("Arcanum")
+add_subdirectory("Template")
