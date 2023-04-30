@@ -7,6 +7,7 @@ add_library(ArcanumLib STATIC
 "source/Game/Settings.cpp"
 "source/Managers/PathManager.cpp"
 "source/Formats/Art.cpp"
+"source/Formats/Msg.cpp"
 "source/Graphics/Image.cpp"
 "source/Graphics/Sprite.cpp"
 "source/Loaders/ArtLoader.cpp"
