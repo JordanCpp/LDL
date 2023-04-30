@@ -13,13 +13,16 @@ namespace Arcanum
 		public:
 			void Load(const std::string& path);
 			const LDL::Graphics::Point2u& Size();
+			const LDL::Graphics::Point2u& Offset();
+			const LDL::Graphics::Point2u& Delta();
 			uint8_t* Pixels();
 			size_t Frames();
 			void Frame(size_t index);
 		private:
 			ArtFile _File;
 			LDL::Graphics::Point2u _Size;
-			LDL::Graphics::Point2u _Pos;
+			LDL::Graphics::Point2u _Offset;
+			LDL::Graphics::Point2u _Delta;
 			std::vector<uint8_t> _Pixels;
 		};
 	}

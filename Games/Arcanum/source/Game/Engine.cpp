@@ -11,13 +11,9 @@ Engine::Engine(Settings* settings) :
 	_ImageLoader(&_ImageAllocator),
 	_Window(Point2u(0,0), _Settings->Size(), _Settings->Title()),
 	_Render(&_RenderContext, &_Window),
-	_FpsLimiter(_Settings->Fps())
+	_FpsLimiter(_Settings->Fps()),
+	_SpriteManager(&_RenderContext, &_ArtLoader)
 {
-	_ArtLoader.Load("data/art/scenery/engine.ART");
-	_ArtLoader.Load("data/art/scenery/engine_old.ART");
-	_ArtLoader.Frame(0);
-
-	_Texture = new Texture(&_RenderContext, _ArtLoader.Size(), _ArtLoader.Pixels(), 4);
 }
 
 void Engine::Run()
@@ -39,7 +35,8 @@ void Engine::Run()
 		_Render.Color(Color(255, 5, 255));
 		_Render.Clear();
 		
-		_Render.Draw(_Texture, Point2u(0, 0));
+		_Render.Draw(_SpriteManager.GetSprite("data/art/scenery/engine.ART")->GetImage(0)->GetTexture(), Point2u(0, 0));
+		_Render.Draw(_SpriteManager.GetSprite("data/art/scenery/engine_old.ART")->GetImage(0)->GetTexture(), Point2u(300, 0));
 
 		_Render.End();
 

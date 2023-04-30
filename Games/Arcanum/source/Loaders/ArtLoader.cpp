@@ -13,6 +13,16 @@ const Point2u& ArtLoader::Size()
 	return _Size;
 }
 
+const Point2u& ArtLoader::Offset()
+{
+	return _Offset;
+}
+
+const Point2u& ArtLoader::Delta()
+{
+	return _Delta;
+}
+
 uint8_t* ArtLoader::Pixels()
 {
 	return &_Pixels[0];
@@ -27,8 +37,15 @@ void ArtLoader::Frame(size_t index)
 {
 	size_t w = _File.frame_data[index].header.width;
 	size_t h = _File.frame_data[index].header.height;
-
 	_Size = Point2u(w, h);
+
+	size_t ow = _File.frame_data[index].header.c_x;
+	size_t oh = _File.frame_data[index].header.c_y;
+	_Offset = Point2u(ow, oh);
+
+	size_t dw = _File.frame_data[index].header.d_x;
+	size_t dh = _File.frame_data[index].header.d_y;
+	_Delta = Point2u(dw, dh);
 
 	_Pixels.resize(w * h * 4);
 

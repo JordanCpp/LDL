@@ -12,6 +12,7 @@
 #include <Arcanum/Managers/PathManager.hpp>
 #include <Arcanum/Game/Settings.hpp>
 #include <Arcanum/Loaders/ArtLoader.hpp>
+#include <Arcanum/Managers/SpriteManager.hpp>
 
 namespace Arcanum
 {
@@ -36,6 +37,7 @@ namespace Arcanum
 			LDL::Time::FpsLimiter _FpsLimiter;
 			LDL::Graphics::Texture* _Texture;
 			Loaders::ArtLoader _ArtLoader;
+			Managers::SpriteManager _SpriteManager;
 		};
 	}
 }
