@@ -124,11 +124,6 @@ void ArtFrame::Decode()
 	}
 }
 
-void ArtFile::Reset()
-{
-
-}
-
 void ArtFile::LoadArt(const std::string &fname)
 {
 	frame_data.clear();

@@ -15,7 +15,10 @@ struct MissingFile
 
 struct ArtColor
 {
-	unsigned char b, g, r, a;
+	uint8_t b;
+	uint8_t	g;
+	uint8_t	r;
+	uint8_t	a;
 };
 
 inline bool in_palette(ArtColor col)
@@ -28,16 +31,13 @@ struct ArtTable
 	ArtColor colors[256];
 };
 
-using bytevec = std::vector<unsigned char>;
-using bytemap = std::vector<bytevec>;
-
 struct ArtHeader
 {
-	unsigned long    h0[3]; //1,8,8,WTF
+	uint32_t h0[3]; //1,8,8,WTF
 	ArtColor stupid_color[4];
 
-	unsigned long    frame_num_low;
-	unsigned long    frame_num;
+	uint32_t frame_num_low;
+	uint32_t frame_num;
 
 	ArtColor palette_data1[8];
 	ArtColor palette_data2[8];
@@ -46,9 +46,9 @@ struct ArtHeader
 
 struct ArtFrameHeader
 {
-	unsigned long width;
-	unsigned long height;
-	unsigned long size;
+	uint32_t width;
+	uint32_t height;
+	uint32_t size;
 	int c_x;
 	int c_y;
 	int d_x;
