@@ -6,42 +6,9 @@
 using namespace LDL::Graphics;
 
 const size_t TextureCount = 12;
-const size_t TextureSizes[TextureCount] = {32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
+const size_t TextureSizes[TextureCount] = { 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
 
-void LDL::Graphics::Util::DrawQuad(const Point2u& pos, const Point2u& size)
-{
-	GLfloat x = (GLfloat)pos.PosX();
-	GLfloat y = (GLfloat)pos.PosY();
-	GLfloat w = (GLfloat)size.PosX();
-	GLfloat h = (GLfloat)size.PosY();
-
-	glBegin(GL_QUADS);
-	glTexCoord2f(0, 0); glVertex2f(x, y);
-	glTexCoord2f(1, 0); glVertex2f(x + w, y);
-	glTexCoord2f(1, 1); glVertex2f(x + w, y + h);
-	glTexCoord2f(0, 1); glVertex2f(x, y + h);
-	glEnd();
-}
-
-void Util::DrawQuad(const Point2u& pos, const Point2u& size, const Point2u& srcSize, size_t textureSize)
-{
-	GLfloat x = (GLfloat)pos.PosX();
-	GLfloat y = (GLfloat)pos.PosY();
-	GLfloat w = (GLfloat)size.PosX();
-	GLfloat h = (GLfloat)size.PosY();
-
-	GLfloat dw = (GLfloat)srcSize.PosX() / (GLfloat)textureSize;
-	GLfloat dh = (GLfloat)srcSize.PosY() / (GLfloat)textureSize;
-
-	glBegin(GL_QUADS);
-	glTexCoord2f(0, 0); glVertex2f(x, y);
-	glTexCoord2f(dw, 0); glVertex2f(x + w, y);
-	glTexCoord2f(dw, dh); glVertex2f(x + w, y + h);
-	glTexCoord2f(0, dh); glVertex2f(x, y + h);
-	glEnd();
-}
-
-void Util::DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
+void Util::DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize, size_t textureSize)
 {
 	GLfloat x = (GLfloat)dstPos.PosX();
 	GLfloat y = (GLfloat)dstPos.PosY();
@@ -53,17 +20,17 @@ void Util::DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Point2u
 	GLfloat cw = (GLfloat)srcSize.PosX();
 	GLfloat ch = (GLfloat)srcSize.PosY();
 
-	GLfloat dcx = cx / w;
-	GLfloat dcy = cy / h;
+	GLfloat dcx = cx / textureSize;
+	GLfloat dcy = cy / textureSize;
 
-	GLfloat dcw = (cx + cw) / w;
-	GLfloat dch = (cy + ch) / h;
+	GLfloat dcw = (cx + cw) / textureSize;
+	GLfloat dch = (cy + ch) / textureSize;
 
 	glBegin(GL_QUADS);
 	glTexCoord2f(dcx, dcy); glVertex2f(x, y);
-	glTexCoord2f(dcw, dcy); glVertex2f(x + cw, y);
-	glTexCoord2f(dcw, dch); glVertex2f(x + cw, y + ch);
-	glTexCoord2f(dcx, dch); glVertex2f(x, y + ch);
+	glTexCoord2f(dcw, dcy); glVertex2f(x + cw + (w - cw), y);
+	glTexCoord2f(dcw, dch); glVertex2f(x + cw + (w - cw), y + ch + (h - ch));
+	glTexCoord2f(dcx, dch); glVertex2f(x, y + ch + (h - ch));
 	glEnd();
 }
 

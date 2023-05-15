@@ -12,9 +12,7 @@ namespace LDL
 	{
 		namespace Util
 		{
-			void DrawQuad(const Point2u& pos, const Point2u& size);
-			void DrawQuad(const Point2u& pos, const Point2u& size, const Point2u& srcSize, size_t textureSize);
-			void DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize);
+			void DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize, size_t textureSize);
 			void Normalize(const Color& color, GLclampf& r, GLclampf& g, GLclampf& b);
 			void Check(const std::string& file, size_t line, const std::string& expression);
 			size_t MaxTextureSize();

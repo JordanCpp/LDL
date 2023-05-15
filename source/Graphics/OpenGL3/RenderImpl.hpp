@@ -33,6 +33,7 @@ namespace LDL
 			void Draw(Surface* image, const Point2u& pos, const Point2u& size);
 			void Draw(Surface* image, const Point2u& pos);
 			void Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize);
+			void Draw(Texture* image, const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize);
 		private:
 			Window* _Window;
 			Screen _Screen;

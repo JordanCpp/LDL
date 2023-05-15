@@ -54,7 +54,7 @@ void Screen::DrawTexture(Surface* image, const Point2u& pos, const Point2u& size
 
 	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_Screen));
 
-	Util::DrawQuad(pos, size, image->Size(), _CurTextureSize);
+	Util::DrawQuad(pos, size, Point2u(0, 0), image->Size(), _CurTextureSize);
 
 	GLenum format = 0;
 

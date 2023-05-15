@@ -129,18 +129,12 @@ void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
 
 void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
 {
-	GL_CHECK(glEnable(GL_TEXTURE_2D));
-
-	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)image->GetTextureImpl()->Id()));
-
-	Util::DrawQuad(pos, size);
-
-	GL_CHECK(glDisable(GL_TEXTURE_2D));
+	Draw(image, pos, size, Point2u(0, 0), image->Size());
 }
 
 void RenderImpl::Draw(Texture* image, const Point2u& pos)
 {
-	Draw(image, pos, image->Size());
+	Draw(image, pos, image->Size(), Point2u(0, 0), image->Size());
 }
 
 void RenderImpl::Draw(Surface* image, const Point2u& pos, const Point2u& size)
@@ -155,11 +149,16 @@ void RenderImpl::Draw(Surface* image, const Point2u& pos)
 
 void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
 {
+	Draw(image, dstPos, srcSize, srcPos, srcSize);
+}
+
+void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
+{
 	GL_CHECK(glEnable(GL_TEXTURE_2D));
 
 	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)image->GetTextureImpl()->Id()));
 
-	Util::DrawQuad(dstPos, image->Size(), srcPos, srcSize);
+	Util::DrawQuad(dstPos, dstSize, srcPos, srcSize, image->GetTextureImpl()->Quad().PosX());
 
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }

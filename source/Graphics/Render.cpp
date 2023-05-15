@@ -105,6 +105,11 @@ void Render::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, 
 	_RenderImpl->Draw(image, dstPos, srcPos, srcSize);
 }
 
+void Render::Draw(Texture* image, const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
+{
+	_RenderImpl->Draw(image, dstPos, dstSize, srcPos, srcSize);
+}
+
 RenderImpl* Render::GetRenderImpl()
 {
 	return _RenderImpl;

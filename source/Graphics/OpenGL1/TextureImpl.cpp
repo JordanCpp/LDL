@@ -33,7 +33,12 @@ TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Point2u& si
 	else
 		format = GL_RGBA;
 
-	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_Size.PosX(), (GLsizei)_Size.PosY(), 0, format, GL_UNSIGNED_BYTE, pixels));
+	size_t sz = Util::SelectTextureSize(_Size);
+
+	_Quad = Point2u(sz, sz);
+
+	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_Quad.PosX(), (GLsizei)_Quad.PosX(), 0, format, GL_UNSIGNED_BYTE, NULL));
+	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, (GLsizei)_Size.PosX(), (GLsizei)_Size.PosY(), format, GL_UNSIGNED_BYTE, pixels));
 
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }
@@ -46,6 +51,11 @@ TextureImpl::~TextureImpl()
 const Point2u& TextureImpl::Size()
 {
 	return _Size;
+}
+
+const Point2u& TextureImpl::Quad()
+{
+	return _Quad;
 }
 
 size_t TextureImpl::Id()

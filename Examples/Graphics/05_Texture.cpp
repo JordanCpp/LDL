@@ -43,7 +43,8 @@ int main()
 			render.Color(Color(0, 162, 232));
 			render.Clear();
 
-			render.Draw(&image, window.Pos(), window.Size());
+			//render.Draw(&image, Point2u(0, 0), window.Size(), Point2u(0, 0), Point2u(512, 615));
+			render.Draw(&image, Point2u(0, 0), window.Size(), Point2u(0, 0), image.Size());
 
 			render.End();
 
