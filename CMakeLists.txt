@@ -175,6 +175,7 @@ if (LDL_RENDER_OPENGL1)
   "source/Graphics/OpenGL1/Screen.cpp"
   "source/Graphics/OpenGL1/ScreenshoterImpl.cpp"
   "source/Graphics/OpenGL1/RenderContextImpl.cpp"
+  "source/Graphics/OpenGL1/RenderBuffer.cpp"
   ${SOURCE_OPENGL_FILES})
 endif() 
 
