@@ -3,6 +3,8 @@
 
 #include <LDL/Graphics/Primitives/Point2u.hpp>
 #include <LDL/Graphics/Primitives/Color.hpp>
+#include <LDL/Graphics/Texture.hpp>
+#include "TextureBatcherImpl.hpp"
 #include <vector>
 
 namespace LDL
@@ -60,25 +62,36 @@ namespace LDL
 			uint8_t b;
 		};
 
+		class TextureBatcherElement
+		{
+		public:
+			uint8_t type;
+			size_t texture;
+			size_t count;
+			Quad* quads;
+		};
+
 		class RenderElement
 		{
 		public:
 			enum
 			{
-				IsTexture,
+				IsTexture = 1,
 				IsLine,
 				IsFill,
-				IsClear
+				IsClear,
+				IsTextureBatcher
 			};
 
 			uint8_t type;
-			
+
 			union
 			{
 				TextureElement textureElement;
 				LineElement    lineElement;
 				FillElement    fillElement;
 				ClearElement   clearElement;
+				TextureBatcherElement textureBatcherElement;
 			};
 		};
 
@@ -90,12 +103,14 @@ namespace LDL
 			void Texture(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize, size_t textureId, size_t textureQuad);
 			void Line(const Point2u& first, const Point2u& last, const Color& color);
 			void Fill(const Point2u& pos, const Point2u& size, const Color& color);
+			void TextureBatcher(size_t textureId, size_t count, Quad* quads);
 			void Clear(const Color& color);
 			void Draw();
 			void Draw(TextureElement & src);
 			void Draw(LineElement& src);
 			void Draw(FillElement& src);
 			void Draw(ClearElement& src);
+			void Draw(TextureBatcherElement& src);
 		private:
 			std::vector<RenderElement> _Elements;
 		};

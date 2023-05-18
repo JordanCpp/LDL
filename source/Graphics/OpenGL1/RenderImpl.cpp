@@ -128,3 +128,10 @@ void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& dstS
 {
 	_RenderBuffer.Texture(dstPos, dstSize, srcPos, srcSize, image->GetTextureImpl()->Id(), image->GetTextureImpl()->Quad().PosX());
 }
+
+void RenderImpl::Draw(TextureBatcher* textureBatcher)
+{
+	TextureBatcherImpl* batcher = textureBatcher->GetTextureBatcherImpl();
+
+	_RenderBuffer.TextureBatcher(batcher->TextureId(), batcher->Count(), batcher->Content());
+}

@@ -6,6 +6,7 @@
 #include "TextureImpl.hpp"
 #include "Screen.hpp"
 #include <LDL/Graphics/Texture.hpp>
+#include <LDL/Graphics/TextureBatcher.hpp>
 #include "RenderBuffer.hpp"
 
 namespace LDL
@@ -32,6 +33,7 @@ namespace LDL
 			void Draw(Texture* image, const Point2u& pos, const Point2u& size);
 			void Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize);
 			void Draw(Texture* image, const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize);
+			void Draw(TextureBatcher* textureBatcher);
 		private:
 			Window* _Window;
 			Screen _Screen;

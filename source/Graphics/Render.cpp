@@ -30,6 +30,12 @@ Render::~Render()
 	delete _RenderImpl;
 }
 
+RenderImpl* Render::GetRenderImpl()
+{
+	return _RenderImpl;
+}
+
+
 void Render::Buffer(uint8_t* dst)
 {
 	_RenderImpl->Buffer(dst);
@@ -110,7 +116,7 @@ void Render::Draw(Texture* image, const Point2u& dstPos, const Point2u& dstSize,
 	_RenderImpl->Draw(image, dstPos, dstSize, srcPos, srcSize);
 }
 
-RenderImpl* Render::GetRenderImpl()
+void Render::Draw(TextureBatcher* textureBatcher)
 {
-	return _RenderImpl;
+	_RenderImpl->Draw(textureBatcher);
 }

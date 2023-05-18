@@ -5,6 +5,7 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
+#include <LDL/Graphics/TextureBatcher.hpp>
 
 namespace LDL
 {
@@ -18,6 +19,7 @@ namespace LDL
 		public:
 			Render(RenderContext* renderContext, Window* window);
 			~Render();
+			RenderImpl* GetRenderImpl();
 			void Buffer(uint8_t* dst);
 			void Begin();
 			void End();
@@ -34,7 +36,7 @@ namespace LDL
 			void Draw(Texture* image, const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize);
 			void Draw(Surface* image, const Point2u& pos, const Point2u& size);
 			void Draw(Surface* image, const Point2u& pos);
-			RenderImpl* GetRenderImpl();
+			void Draw(TextureBatcher* textureBatcher);
 		private:
 			RenderImpl* _RenderImpl;
 		};

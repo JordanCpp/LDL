@@ -64,6 +64,18 @@ void RenderBuffer::Fill(const Point2u& pos, const Point2u& size, const Color& co
 	_Elements.push_back(element);
 }
 
+void RenderBuffer::TextureBatcher(size_t textureId, size_t count, Quad* quads)
+{
+	RenderElement element;
+
+	element.type                          = RenderElement::IsTextureBatcher;
+	element.textureBatcherElement.texture = textureId;
+	element.textureBatcherElement.count   = count;
+	element.textureBatcherElement.quads   = quads;
+
+	_Elements.push_back(element);
+}
+
 void RenderBuffer::Clear(const Color& color)
 {
 	RenderElement element;
@@ -88,16 +100,66 @@ void RenderBuffer::Draw()
 			Draw(_Elements[i].fillElement);
 		else if (_Elements[i].type == RenderElement::IsClear)
 			Draw(_Elements[i].clearElement);
+		else if (_Elements[i].type == RenderElement::IsTextureBatcher)
+			Draw(_Elements[i].textureBatcherElement);
 	}
 }
 
 void RenderBuffer::Draw(TextureElement& src)
 {
 	GL_CHECK(glEnable(GL_TEXTURE_2D));
-
 	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)src.textureId));
 
-	Util::DrawQuad(Point2u(src.dstPosX, src.dstPosY), Point2u(src.dstSizeX, src.dstSizeY), Point2u(src.srcPosX, src.srcPosY), Point2u(src.srcSizeX, src.srcSizeY), src.textureQuad);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	Quad quad;
+
+	float ps = 1.0f / (float)src.textureQuad;
+
+	quad.data[0] = src.dstPosX;
+	quad.data[1] = float(src.dstSizeY + src.dstPosY);
+	quad.data[2] = 0.0f;
+	quad.data[3] = ps * src.srcPosX;
+	quad.data[4] = ps * (src.srcSizeY + src.srcPosY);
+
+	quad.data[5] = float(src.dstSizeX + src.dstPosX);
+	quad.data[6] = float(src.dstSizeY + src.dstPosY);
+	quad.data[7] = 0.0f;
+	quad.data[8] = ps * (src.srcSizeX + src.srcPosX);
+	quad.data[9] = ps * (src.srcSizeY + src.srcPosY);
+
+	quad.data[10] = src.dstPosX;
+	quad.data[11] = src.dstPosY;
+	quad.data[12] = 0.0f;
+	quad.data[13] = ps * src.srcPosX;
+	quad.data[14] = ps * src.srcPosY;
+
+	quad.data[15] = float(src.dstSizeX + src.dstPosX);
+	quad.data[16] = float(src.dstSizeY + src.dstPosY);
+	quad.data[17] = 0.0f;
+	quad.data[18] = ps * (src.srcSizeX + src.srcPosX);
+	quad.data[19] = ps * (src.srcSizeY + src.srcPosY);
+
+	quad.data[20] = float(src.dstSizeX + src.dstPosX);
+	quad.data[21] = src.dstPosY;
+	quad.data[22] = 0.0f;
+	quad.data[23] = ps * (src.srcSizeX + src.srcPosX);
+	quad.data[24] = ps * src.srcPosY;
+
+	quad.data[25] = src.dstPosX;
+	quad.data[26] = src.dstPosY;
+	quad.data[27] = 0.0f;
+	quad.data[28] = ps * src.srcPosX;
+	quad.data[29] = ps * src.srcPosY;
+
+	glVertexPointer(3, GL_FLOAT, sizeof(float) * 5, &quad.data[0]);
+	glTexCoordPointer(2, GL_FLOAT, sizeof(float) * 5, &quad.data[3]);
+
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }
@@ -149,4 +211,23 @@ void RenderBuffer::Draw(ClearElement& src)
 
 	GL_CHECK(glClearColor(r, g, b, 1.0f));
 	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+}
+
+void RenderBuffer::Draw(TextureBatcherElement& src)
+{
+	GL_CHECK(glEnable(GL_TEXTURE_2D));
+	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)src.texture));
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	glVertexPointer(3, GL_FLOAT, sizeof(float) * 5, &src.quads->data[0]);
+	glTexCoordPointer(2, GL_FLOAT, sizeof(float) * 5, &src.quads->data[3]);
+
+	glDrawArrays(GL_TRIANGLES, 0, src.count * 6);
+
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }

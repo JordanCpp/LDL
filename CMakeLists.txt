@@ -105,6 +105,7 @@ set(SOURCE_FILES
 "source/Graphics/ImageResizer.cpp"
 "source/Graphics/Isometric.cpp"
 "source/Graphics/Camera.cpp"
+"source/Graphics/TextureBatcher.cpp"
 "source/Graphics/Utils/PotTextureSizer.cpp"
 
 "source/Audio/Mixer.cpp"
@@ -176,6 +177,7 @@ if (LDL_RENDER_OPENGL1)
   "source/Graphics/OpenGL1/ScreenshoterImpl.cpp"
   "source/Graphics/OpenGL1/RenderContextImpl.cpp"
   "source/Graphics/OpenGL1/RenderBuffer.cpp"
+  "source/Graphics/OpenGL1/TextureBatcherImpl.cpp"
   ${SOURCE_OPENGL_FILES})
 endif() 
 
@@ -352,15 +354,15 @@ if (WIN32 AND LDL_AUDIO_DIRECT_SOUND_8)
 endif()
 
 add_subdirectory("Examples")
-add_subdirectory("Games")
-add_subdirectory("Experiments")
+#add_subdirectory("Games")
+#add_subdirectory("Experiments")
 
 if (LDL_STATIC_LIBRARY)
-  add_subdirectory("test")
+  #add_subdirectory("test")
 endif()
 
 if (LDL_STATIC_LIBRARY AND (LDL_RENDER_OPENGL1 OR LDL_RENDER_OPENGL3))
-  add_subdirectory("Tutorials")
+  #add_subdirectory("Tutorials")
 endif()
 
-add_subdirectory("Samples")
+#add_subdirectory("Samples")
