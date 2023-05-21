@@ -16,11 +16,13 @@ namespace LDL
 			TextureImpl(RenderContextImpl* renderContextImpl, const Point2u & size, uint8_t* pixels, size_t bytesPerPixel);
 			~TextureImpl();
 			const Point2u& Size();
+			const Point2u& Quad();
 			size_t Id();
 		private:
 			RenderContextImpl* _RenderContextImpl;
 			size_t _Id;
 			Point2u _Size;
+			Point2u _Quad;
 		};
 	}
 }

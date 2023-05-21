@@ -121,9 +121,23 @@ int main()
 
         // render loop
         // -----------
-		while (window.GetEvent(report))
-		{
-			render.Begin();
+
+        while (window.Running())
+        {
+            while (window.GetEvent(report))
+            {
+                if (report.Type == IsResize)
+                {
+                    glViewport(0, 0, (GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
+                }
+
+                if (report.Type == IsQuit || report.IsKeyPresed(KeyboardKey::Escape))
+                {
+                    window.StopEvent();
+                }
+            }
+
+            render.Begin();
 
             // render
             // ------
@@ -137,18 +151,10 @@ int main()
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
             // glBindVertexArray(0); // no need to unbind it every time
 
-			render.End();
+            render.End();
 
-			if (report.Type == IsResize)
-			{
-				glViewport(0, 0, (GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
-			}
-
-			if (report.Type == IsQuit || report.IsKeyPresed(KeyboardKey::Escape))
-			{
-				window.StopEvent();
-			}
-		}
+            window.PollEvents();
+        }
 
         // optional: de-allocate all resources once they've outlived their purpose:
         // ------------------------------------------------------------------------

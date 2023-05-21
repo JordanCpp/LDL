@@ -26,9 +26,17 @@ int main()
 		FpsCounter fpsCounter;
 		NumberToString convert;
 
-		while (window.GetEvent(report))
+		while (window.Running())
 		{
 			fpsCounter.Start();
+
+			while (window.GetEvent(report))
+			{
+				if (report.Type == IsQuit)
+				{
+					window.StopEvent();
+				}
+			}
 
 			render.Begin();
 
@@ -36,16 +44,13 @@ int main()
 
 			render.End();
 
-			if (report.Type == IsQuit)
-			{
-				window.StopEvent();
-			}
-
 			if (fpsCounter.Calc())
 			{
 				window.Title(convert.Convert(fpsCounter.Fps()));
 				fpsCounter.Clear();
 			}
+
+			window.PollEvents();
 		}
 	}
 	catch (const RuntimeError& error)

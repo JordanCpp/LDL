@@ -104,3 +104,8 @@ void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcP
 void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
 {
 }
+
+void RenderImpl::Draw(TextureBatcher* textureBatcher)
+{
+
+}

@@ -18,6 +18,8 @@ namespace LDL
 		public:
 			Window(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
 			~Window();
+			bool Running();
+			void PollEvents();
 			bool GetEvent(LDL::Events::Event& event);
 			bool WaitEvent(LDL::Events::Event& event);
 			void StopEvent();

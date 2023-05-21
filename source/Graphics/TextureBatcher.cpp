@@ -2,6 +2,8 @@
 
 #ifdef LDL_RENDER_OPENGL1
 #include "OpenGL1/TextureBatcherImpl.hpp"
+#elif LDL_RENDER_OPENGL3
+#include "OpenGL3/TextureBatcherImpl.hpp"
 #endif
 
 using namespace LDL::Graphics;

@@ -38,11 +38,24 @@ int main()
 
 		Point2u size;
 
-		while (window.GetEvent(report))
+		while (window.Running())
 		{
 			fpsLimiter.Mark();
 
 			fpsCounter.Start();
+
+			while (window.GetEvent(report))
+			{
+				if (report.Type == IsQuit)
+				{
+					window.StopEvent();
+				}
+
+				if (report.Type == IsMouseMove)
+				{
+					size = Point2u(report.Mouse.PosX, report.Mouse.PosY);
+				}
+			}
 
 			render.Begin();
 
@@ -53,16 +66,6 @@ int main()
 
 			render.End();
 
-			if (report.Type == IsQuit)
-			{
-				window.StopEvent();
-			}
-
-			if (report.Type == IsMouseMove)
-			{
-				size = Point2u(report.Mouse.PosX, report.Mouse.PosY);
-			}
-
 			fpsLimiter.Throttle();
 
 			if (fpsCounter.Calc())
@@ -70,6 +73,8 @@ int main()
 				window.Title(convert.Convert(fpsCounter.Fps()));
 				fpsCounter.Clear();
 			}
+
+			window.PollEvents();
 		}
 	}
 	catch (const RuntimeError& error)

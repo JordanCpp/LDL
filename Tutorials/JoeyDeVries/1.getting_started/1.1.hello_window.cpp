@@ -24,21 +24,26 @@ int main()
 
 		Event report;
 
-		while (window.GetEvent(report))
+		while (window.Running())
 		{
+			while (window.GetEvent(report))
+			{
+				if (report.Type == IsResize)
+				{
+					glViewport(0, 0, (GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
+				}
+
+				if (report.Type == IsQuit || report.IsKeyPresed(KeyboardKey::Escape))
+				{
+					window.StopEvent();
+				}
+			}
+
 			render.Begin();
 
 			render.End();
 
-			if (report.Type == IsResize)
-			{
-				glViewport(0, 0, (GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
-			}
-
-			if (report.Type == IsQuit || report.IsKeyPresed(KeyboardKey::Escape))
-			{
-				window.StopEvent();
-			}
+			window.PollEvents();
 		}
 	}
 	catch (const RuntimeError& error)

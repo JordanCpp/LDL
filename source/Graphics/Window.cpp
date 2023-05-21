@@ -14,6 +14,16 @@ Window::~Window()
 	delete _WindowImpl;
 }
 
+bool Window::Running()
+{
+	return _WindowImpl->Running();
+}
+
+void Window::PollEvents()
+{
+	_WindowImpl->PollEvents();
+}
+
 bool Window::GetEvent(LDL::Events::Event& event)
 {
 	return _WindowImpl->GetEvent(event);

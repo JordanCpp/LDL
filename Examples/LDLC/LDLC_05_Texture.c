@@ -30,9 +30,17 @@ int main()
 
 	LDL_Texture* texture = LDL_TextureNew(renderContext, w, h, pixels, bpp);
 
-	while (LDL_WindowGetEvent(window, &report))
+	while (LDL_WindowRunning(window))
 	{
 		LDL_FpsCounterStart(counter);
+
+		while (LDL_WindowGetEvent(window, &report))
+		{
+			if (report.Type == LDL_EventIsQuit)
+			{
+				LDL_WindowStopEvent(window);
+			}
+		}
 
 		LDL_RenderBegin(render);
 
@@ -54,10 +62,7 @@ int main()
 			LDL_FpsCounterClear(counter);
 		}
 
-		if (report.Type == LDL_EventIsQuit)
-		{
-			LDL_WindowStopEvent(window);
-		}
+		LDL_WindowPollEvents(window);
 	}
 
 	LDL_FixedLinearFree(allocator);

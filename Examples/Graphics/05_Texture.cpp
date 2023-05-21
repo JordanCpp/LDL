@@ -34,30 +34,34 @@ int main()
 		FpsCounter fpsCounter;
 		NumberToString convert;
 
-		while (window.GetEvent(report))
+		while (window.Running())
 		{
 			fpsCounter.Start();
+
+			while (window.GetEvent(report))
+			{
+				if (report.Type == IsQuit)
+				{
+					window.StopEvent();
+				}
+			}
 
 			render.Begin();
 
 			render.Color(Color(0, 162, 232));
 			render.Clear();
 
-			//render.Draw(&image, Point2u(0, 0), window.Size(), Point2u(0, 0), Point2u(512, 615));
 			render.Draw(&image, Point2u(0, 0), window.Size(), Point2u(0, 0), image.Size());
 
 			render.End();
-
-			if (report.Type == IsQuit)
-			{
-				window.StopEvent();
-			}
 
 			if (fpsCounter.Calc())
 			{
 				window.Title(convert.Convert(fpsCounter.Fps()));
 				fpsCounter.Clear();
 			}
+
+			window.PollEvents();
 		}
 	}
 	catch (const RuntimeError& error)

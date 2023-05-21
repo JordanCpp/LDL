@@ -343,23 +343,30 @@ MainWindow::~MainWindow()
         PostQuitMessage(0);
 }
 
+bool MainWindow::Running()
+{
+    return _Eventer.Running();
+}
+
+void MainWindow::PollEvents()
+{
+    while (PeekMessage(&_MSG, _HWND, 0, 0, PM_REMOVE))
+    {
+        TranslateMessage(&_MSG);
+        DispatchMessage(&_MSG);
+    }
+}
+
 bool MainWindow::GetEvent(LDL::Events::Event& event)
 {
-    if (_Eventer.Empty())
-    {
-        while (PeekMessage(&_MSG, _HWND, 0, 0, PM_REMOVE))
-        {
-            TranslateMessage(&_MSG);
-            DispatchMessage(&_MSG);
-        }
-    }
-
     if (!_Eventer.Empty())
     {
         _Eventer.Pop(event);
+
+        return true;
     }
 
-    return _Eventer.Running();
+    return false;
 }
 
 bool MainWindow::WaitEvent(LDL::Events::Event& event)

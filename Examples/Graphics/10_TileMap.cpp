@@ -49,11 +49,39 @@ int main()
 		size_t dy = 0;
 		size_t step = tileSize.PosX() / 2;
 
-		while (window.GetEvent(report))
+		while (window.Running())
 		{
 			fpsLimiter.Mark();
 
 			fpsCounter.Start();
+
+			while (window.GetEvent(report))
+			{
+				if (report.IsKeyPresed(KeyboardKey::W))
+				{
+					dy -= step;
+				}
+
+				if (report.IsKeyPresed(KeyboardKey::S))
+				{
+					dy += step;;
+				}
+
+				if (report.IsKeyPresed(KeyboardKey::A))
+				{
+					dx -= step;;
+				}
+
+				if (report.IsKeyPresed(KeyboardKey::D))
+				{
+					dx += step;;
+				}
+
+				if (report.Type == IsQuit)
+				{
+					window.StopEvent();
+				}
+			}
 
 			render.Begin();
 
@@ -77,36 +105,13 @@ int main()
 
 			fpsLimiter.Throttle();
 
-			if (report.IsKeyPresed(KeyboardKey::W))
-			{
-				dy -= step;
-			}
-
-			if (report.IsKeyPresed(KeyboardKey::S))
-			{
-				dy += step;;
-			}
-
-			if (report.IsKeyPresed(KeyboardKey::A))
-			{
-				dx -= step;;
-			}
-
-			if (report.IsKeyPresed(KeyboardKey::D))
-			{
-				dx += step;;
-			}
-		
-			if (report.Type == IsQuit)
-			{
-				window.StopEvent();
-			}
-
 			if (fpsCounter.Calc())
 			{
 				window.Title(convert.Convert(fpsCounter.Fps()));
 				fpsCounter.Clear();
 			}
+
+			window.PollEvents();
 		}
 	}
 	catch (const RuntimeError& error)

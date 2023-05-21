@@ -15,9 +15,17 @@ int main()
 
 	LDL_RenderSetColor(render, 0, 162, 232, 0);
 
-	while (LDL_WindowGetEvent(window, &report))
+	while (LDL_WindowRunning(window))
 	{
 		LDL_FpsCounterStart(counter);
+
+		while (LDL_WindowGetEvent(window, &report))
+		{
+			if (report.Type == LDL_EventIsQuit)
+			{
+				LDL_WindowStopEvent(window);
+			}
+		}
 
 		LDL_RenderBegin(render);
 
@@ -25,16 +33,13 @@ int main()
 
 		LDL_RenderEnd(render);
 
-		if (report.Type == LDL_EventIsQuit)
-		{
-			LDL_WindowStopEvent(window);
-		}
-
 		if (LDL_FpsCounterCalc(counter))
 		{
 			LDL_WindowSetTitle(window, LDL_NumberToStringConvertInt(convert, LDL_FpsCounterGetFps(counter)));
 			LDL_FpsCounterClear(counter);
 		}
+
+		LDL_WindowPollEvents(window);
 	}
 
 	LDL_FpsCounterFree(counter);

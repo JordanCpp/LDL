@@ -111,9 +111,22 @@ int main()
         // render loop
         // -----------
 
-		while (window.GetEvent(report))
-		{
-			render.Begin();
+        while (window.Running())
+        {
+            while (window.GetEvent(report))
+            {
+                if (report.Type == IsResize)
+                {
+                    glViewport(0, 0, (GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
+                }
+
+                if (report.Type == IsQuit || report.IsKeyPresed(KeyboardKey::Escape))
+                {
+                    window.StopEvent();
+                }
+            }
+
+            render.Begin();
 
             // render
             // ------
@@ -126,18 +139,10 @@ int main()
             glDrawArrays(GL_TRIANGLES, 0, 3);
             // glBindVertexArray(0); // no need to unbind it every time
 
-			render.End();
+            render.End();
 
-			if (report.Type == LDL::Events::IsResize)
-			{
-				glViewport(0, 0, (GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
-			}
-
-            if (report.Type == IsQuit || report.IsKeyPresed(KeyboardKey::Escape))
-            {
-                window.StopEvent();
-            }
-		}
+            window.PollEvents();
+        }
 
         // optional: de-allocate all resources once they've outlived their purpose:
         // ------------------------------------------------------------------------
@@ -145,7 +150,7 @@ int main()
         glDeleteBuffers(1, &VBO);
         glDeleteProgram(shaderProgram);
 	}
-	catch (const LDL::Core::RuntimeError& error)
+	catch (const RuntimeError& error)
 	{
 		std::cout << error.what() << '\n';
 	}

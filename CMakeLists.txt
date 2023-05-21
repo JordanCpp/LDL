@@ -201,6 +201,7 @@ if (LDL_RENDER_OPENGL3)
   "source/Graphics/OpenGL3/ShaderLoader.cpp"
   "source/Graphics/OpenGL3/LinePainter.cpp"
   "source/Graphics/OpenGL3/TexturePainter.cpp"
+  "source/Graphics/OpenGL3/TextureBatcherImpl.cpp"
   ${SOURCE_OPENGL_FILES})
 endif() 
 
@@ -354,15 +355,15 @@ if (WIN32 AND LDL_AUDIO_DIRECT_SOUND_8)
 endif()
 
 add_subdirectory("Examples")
-#add_subdirectory("Games")
-#add_subdirectory("Experiments")
+add_subdirectory("Games")
+add_subdirectory("Experiments")
 
 if (LDL_STATIC_LIBRARY)
-  #add_subdirectory("test")
+  add_subdirectory("test")
 endif()
 
 if (LDL_STATIC_LIBRARY AND (LDL_RENDER_OPENGL1 OR LDL_RENDER_OPENGL3))
-  #add_subdirectory("Tutorials")
+  add_subdirectory("Tutorials")
 endif()
 
-#add_subdirectory("Samples")
+add_subdirectory("Samples")

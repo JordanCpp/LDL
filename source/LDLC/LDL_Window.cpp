@@ -28,6 +28,16 @@ void LDL_WindowFree(LDL_Window* window)
 	delete window;
 }
 
+bool LDL_WindowRunning(LDL_Window* window)
+{
+	return window->_Window.Running();
+}
+
+void LDL_WindowPollEvents(LDL_Window* window)
+{
+	window->_Window.PollEvents();
+}
+
 bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event)
 {
 	Event src;

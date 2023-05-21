@@ -75,11 +75,45 @@ int main()
 
 		bool batch = false;
 
-		while (window.GetEvent(report))
+		while (window.Running())
 		{
+			fpsCounter.Start();
 			fpsLimiter.Mark();
 
-			fpsCounter.Start();
+			while (window.GetEvent(report))
+			{
+				if (report.IsKeyPresed(KeyboardKey::W))
+				{
+					dy -= step;
+				}
+
+				if (report.IsKeyPresed(KeyboardKey::S))
+				{
+					dy += step;
+				}
+
+				if (report.IsKeyPresed(KeyboardKey::A))
+				{
+					dx -= step;
+				}
+
+				if (report.IsKeyPresed(KeyboardKey::D))
+				{
+					dx += step;
+				}
+
+				if (report.IsKeyPresed(KeyboardKey::Z))
+					batch = true;
+
+				if (report.IsKeyPresed(KeyboardKey::X))
+					batch = false;
+
+
+				if (report.Type == IsQuit)
+				{
+					window.StopEvent();
+				}
+			}
 
 			render.Begin();
 
@@ -103,7 +137,7 @@ int main()
 					size_t tx = tileSize.PosX() * tilesX[j];
 					size_t ty = tileSize.PosY() * tilesY[j];
 					j++;
-					
+
 					if (batch)
 						textureBatcher.Draw(Point2u(start.PosX() + pt.PosX() + dx, start.PosY() + pt.PosY() + dy), tileSize, Point2u(tx, ty), tileSize);
 					else
@@ -118,44 +152,13 @@ int main()
 
 			fpsLimiter.Throttle();
 
-
-			if (report.IsKeyPresed(KeyboardKey::W))
-			{
-				dy -= step;
-			}
-
-			if (report.IsKeyPresed(KeyboardKey::S))
-			{
-				dy += step;
-			}
-
-			if (report.IsKeyPresed(KeyboardKey::A))
-			{
-				dx -= step;
-			}
-
-			if (report.IsKeyPresed(KeyboardKey::D))
-			{
-				dx += step;
-			}
-
-			if (report.IsKeyPresed(KeyboardKey::Z))
-				batch = true;
-
-			if (report.IsKeyPresed(KeyboardKey::X))
-				batch = false;
-			
-
-			if (report.Type == IsQuit)
-			{
-				window.StopEvent();
-			}
-
 			if (fpsCounter.Calc())
 			{
 				window.Title(convert.Convert(fpsCounter.Fps()));
 				fpsCounter.Clear();
 			}
+
+			window.PollEvents();
 		}
 	}
 	catch (const RuntimeError& error)

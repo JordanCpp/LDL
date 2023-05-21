@@ -51,10 +51,20 @@ WindowImpl::~WindowImpl()
     ReleaseDC(_Window._HWND, _Window._HDC);
 }
 
+bool WindowImpl::Running()
+{
+    return _Window.Running();
+}
+
 void WindowImpl::Present()
 {
     if (!SwapBuffers(_Window._HDC))
         throw LDL::Core::RuntimeError("SwapBuffers failed");
+}
+
+void WindowImpl::PollEvents()
+{
+    _Window.PollEvents();
 }
 
 const Point2u& WindowImpl::Size()

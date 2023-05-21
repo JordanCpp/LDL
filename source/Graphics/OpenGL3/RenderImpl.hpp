@@ -9,6 +9,7 @@
 #include <LDL/Math/Mat4f.hpp>
 #include "LinePainter.hpp"
 #include "TexturePainter.hpp"
+#include <LDL/Graphics/TextureBatcher.hpp>
 
 namespace LDL
 {
@@ -34,6 +35,7 @@ namespace LDL
 			void Draw(Surface* image, const Point2u& pos);
 			void Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize);
 			void Draw(Texture* image, const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize);
+			void Draw(TextureBatcher* textureBatcher);
 		private:
 			Window* _Window;
 			Screen _Screen;

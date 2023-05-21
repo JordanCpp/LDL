@@ -36,11 +36,19 @@ int main()
 		NumberToString convert;
 		FpsLimiter fpsLimiter;
 
-		while (window.GetEvent(report))
+		while (window.Running())
 		{
 			fpsLimiter.Mark();
 
 			fpsCounter.Start();
+
+			while (window.GetEvent(report))
+			{
+				if (report.Type == IsQuit)
+				{
+					window.StopEvent();
+				}
+			}
 
 			render.Begin();
 
@@ -53,16 +61,13 @@ int main()
 
 			fpsLimiter.Throttle();
 
-			if (report.Type == IsQuit)
-			{
-				window.StopEvent();
-			}
-
 			if (fpsCounter.Calc())
 			{
 				window.Title(convert.Convert(fpsCounter.Fps()));
 				fpsCounter.Clear();
 			}
+
+			window.PollEvents();
 		}
 	}
 	catch (const RuntimeError& error)

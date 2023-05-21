@@ -91,6 +91,16 @@ WindowImpl::~WindowImpl()
     ReleaseDC(_Window._HWND, _Window._HDC);
 }
 
+bool WindowImpl::Running()
+{
+    return _Window.Running();
+}
+
+void WindowImpl::PollEvents()
+{
+    _Window.PollEvents();
+}
+
 void WindowImpl::Present()
 {
     if (!SwapBuffers(_Window._HDC))

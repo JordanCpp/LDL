@@ -43,6 +43,11 @@ const Point2u& TextureImpl::Size()
 	return _Size;
 }
 
+const Point2u& TextureImpl::Quad()
+{
+	return _Quad;
+}
+
 size_t TextureImpl::Id()
 {
 	return _Id;
