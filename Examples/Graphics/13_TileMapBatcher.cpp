@@ -84,22 +84,22 @@ int main()
 			{
 				if (report.IsKeyPresed(KeyboardKey::W))
 				{
-					dy -= step;
+					dy += step;
 				}
 
 				if (report.IsKeyPresed(KeyboardKey::S))
 				{
-					dy += step;
+					dy -= step;
 				}
 
 				if (report.IsKeyPresed(KeyboardKey::A))
 				{
-					dx -= step;
+					dx += step;
 				}
 
 				if (report.IsKeyPresed(KeyboardKey::D))
 				{
-					dx += step;
+					dx -= step;
 				}
 
 				if (report.IsKeyPresed(KeyboardKey::Z))
