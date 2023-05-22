@@ -172,7 +172,7 @@ if (LDL_RENDER_OPENGL1)
   set(SOURCE_RENDER
   "source/Graphics/OpenGL1/RenderImpl.cpp"
   "source/Graphics/OpenGL1/TextureImpl.cpp"
-  "source/Graphics/OpenGL1/Util.cpp"
+  "source/Graphics/OpenGL/Util.cpp"
   "source/Graphics/OpenGL1/Screen.cpp"
   "source/Graphics/OpenGL1/ScreenshoterImpl.cpp"
   "source/Graphics/OpenGL1/RenderContextImpl.cpp"

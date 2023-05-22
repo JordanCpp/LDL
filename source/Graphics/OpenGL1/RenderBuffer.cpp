@@ -1,5 +1,5 @@
 #include "RenderBuffer.hpp"
-#include "Util.hpp"
+#include "../OpenGL/Util.hpp"
 
 using namespace LDL::Graphics;
 
@@ -64,7 +64,7 @@ void RenderBuffer::Fill(const Point2u& pos, const Point2u& size, const Color& co
 	_Elements.push_back(element);
 }
 
-void RenderBuffer::TextureBatcher(size_t textureId, size_t count, Quad* quads)
+void RenderBuffer::TextureBatcher(size_t textureId, size_t count, Util::Quad* quads)
 {
 	RenderElement element;
 
@@ -113,45 +113,9 @@ void RenderBuffer::Draw(TextureElement& src)
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	Quad quad;
+	Util::Quad quad;
 
-	float ps = 1.0f / (float)src.textureQuad;
-
-	quad.data[0] = src.dstPosX;
-	quad.data[1] = float(src.dstSizeY + src.dstPosY);
-	quad.data[2] = 0.0f;
-	quad.data[3] = ps * src.srcPosX;
-	quad.data[4] = ps * (src.srcSizeY + src.srcPosY);
-
-	quad.data[5] = float(src.dstSizeX + src.dstPosX);
-	quad.data[6] = float(src.dstSizeY + src.dstPosY);
-	quad.data[7] = 0.0f;
-	quad.data[8] = ps * (src.srcSizeX + src.srcPosX);
-	quad.data[9] = ps * (src.srcSizeY + src.srcPosY);
-
-	quad.data[10] = src.dstPosX;
-	quad.data[11] = src.dstPosY;
-	quad.data[12] = 0.0f;
-	quad.data[13] = ps * src.srcPosX;
-	quad.data[14] = ps * src.srcPosY;
-
-	quad.data[15] = float(src.dstSizeX + src.dstPosX);
-	quad.data[16] = float(src.dstSizeY + src.dstPosY);
-	quad.data[17] = 0.0f;
-	quad.data[18] = ps * (src.srcSizeX + src.srcPosX);
-	quad.data[19] = ps * (src.srcSizeY + src.srcPosY);
-
-	quad.data[20] = float(src.dstSizeX + src.dstPosX);
-	quad.data[21] = src.dstPosY;
-	quad.data[22] = 0.0f;
-	quad.data[23] = ps * (src.srcSizeX + src.srcPosX);
-	quad.data[24] = ps * src.srcPosY;
-
-	quad.data[25] = src.dstPosX;
-	quad.data[26] = src.dstPosY;
-	quad.data[27] = 0.0f;
-	quad.data[28] = ps * src.srcPosX;
-	quad.data[29] = ps * src.srcPosY;
+	Util::CalcQuad(quad, src.dstPosX, src.dstPosY, src.dstSizeX, src.dstSizeY, src.srcPosX, src.srcPosY, src.srcSizeX, src.srcSizeY, src.textureQuad);
 
 	glVertexPointer(3, GL_FLOAT, sizeof(float) * 5, &quad.data[0]);
 	glTexCoordPointer(2, GL_FLOAT, sizeof(float) * 5, &quad.data[3]);
@@ -224,7 +188,7 @@ void RenderBuffer::Draw(TextureBatcherElement& src)
 	glVertexPointer(3, GL_FLOAT, sizeof(float) * 5, &src.quads->data[0]);
 	glTexCoordPointer(2, GL_FLOAT, sizeof(float) * 5, &src.quads->data[3]);
 
-	glDrawArrays(GL_TRIANGLES, 0, src.count * 6);
+	glDrawArrays(GL_TRIANGLES, 0, (GLsizei)src.count * 6);
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);

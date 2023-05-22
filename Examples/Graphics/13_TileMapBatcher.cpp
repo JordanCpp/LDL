@@ -78,7 +78,7 @@ int main()
 		while (window.Running())
 		{
 			fpsCounter.Start();
-			fpsLimiter.Mark();
+			//fpsLimiter.Mark();
 
 			while (window.GetEvent(report))
 			{
@@ -150,7 +150,7 @@ int main()
 
 			render.End();
 
-			fpsLimiter.Throttle();
+			//fpsLimiter.Throttle();
 
 			if (fpsCounter.Calc())
 			{

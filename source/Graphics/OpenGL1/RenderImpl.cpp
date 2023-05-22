@@ -1,5 +1,5 @@
 #include "RenderImpl.hpp"
-#include "Util.hpp"
+#include "../OpenGL/Util.hpp"
 #include "TextureImpl.hpp"
 #include <LDL/Math/Mat4f.hpp>
 #include <LDL/Math/Funcs.hpp>

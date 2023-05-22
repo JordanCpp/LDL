@@ -68,7 +68,7 @@ namespace LDL
 			uint8_t type;
 			size_t texture;
 			size_t count;
-			Quad* quads;
+			Util::Quad* quads;
 		};
 
 		class RenderElement
@@ -103,7 +103,7 @@ namespace LDL
 			void Texture(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize, size_t textureId, size_t textureQuad);
 			void Line(const Point2u& first, const Point2u& last, const Color& color);
 			void Fill(const Point2u& pos, const Point2u& size, const Color& color);
-			void TextureBatcher(size_t textureId, size_t count, Quad* quads);
+			void TextureBatcher(size_t textureId, size_t count, Util::Quad* quads);
 			void Clear(const Color& color);
 			void Draw();
 			void Draw(TextureElement & src);

@@ -2,17 +2,13 @@
 #define LDL_Graphics_OpenGL1_TextureBatcherImpl_hpp
 
 #include <LDL/Graphics/Texture.hpp>
+#include "../OpenGL/Util.hpp"
 #include <vector>
 
 namespace LDL
 {
 	namespace Graphics
 	{
-		struct Quad
-		{
-			float data[5 * 6];
-		};
-
 		class TextureBatcherImpl
 		{
 		public:
@@ -21,11 +17,11 @@ namespace LDL
 			void Clear();
 			size_t TextureId();
 			size_t Count();
-			Quad* Content();
+			Util::Quad* Content();
 		private:
 			size_t _Texture;
 			size_t _TextureSize;
-			std::vector<Quad> _Quads;
+			std::vector<Util::Quad> _Quads;
 		};
 	}
 }

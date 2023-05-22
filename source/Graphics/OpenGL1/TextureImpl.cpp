@@ -1,7 +1,7 @@
 #include "TextureImpl.hpp"
 #include <LDL/OpenGL/OpenGL1_0.hpp>
 #include <assert.h>
-#include "Util.hpp"
+#include "../OpenGL/Util.hpp"
 #include <iostream>
 
 using namespace LDL::Graphics;
@@ -17,14 +17,27 @@ TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Point2u& si
 
 	_Size = size;
 
-	GL_CHECK(glGenTextures(1, (GLuint*)&_Id));
+	GLint format = 0;
 
-	GL_CHECK(glEnable(GL_TEXTURE_2D));
+	if (bytesPerPixel == 3)
+		format = GL_RGB;
+	else
+		format = GL_RGBA;
 
-	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_Id));
+	size_t sz = Util::SelectTextureSize(_Size);
 
-	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
-	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+	_Quad = Point2u(sz, sz);
+
+	_Id = Util::CreateTexture((GLsizei)_Quad.PosX(), (GLsizei)_Quad.PosY(), format);
+
+	Copy(Point2u(0, 0), _Size, pixels, bytesPerPixel);
+}
+
+TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Point2u& size, size_t bytesPerPixel) :
+	_RenderContextImpl(renderContextImpl),
+	_Id(0)
+{
+	_Size = size;
 
 	GLint format = 0;
 
@@ -37,15 +50,29 @@ TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Point2u& si
 
 	_Quad = Point2u(sz, sz);
 
-	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_Quad.PosX(), (GLsizei)_Quad.PosX(), 0, format, GL_UNSIGNED_BYTE, NULL));
-	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, (GLsizei)_Size.PosX(), (GLsizei)_Size.PosY(), format, GL_UNSIGNED_BYTE, pixels));
-
-	GL_CHECK(glDisable(GL_TEXTURE_2D));
+	_Id = Util::CreateTexture((GLsizei)_Quad.PosX(), (GLsizei)_Quad.PosY(), format);
 }
 
 TextureImpl::~TextureImpl()
 {
-	GL_CHECK(glDeleteTextures(0, (GLuint*)&_Id));
+	Util::DeleteTexture((GLint)_Id);
+}
+
+void TextureImpl::Copy(const Point2u& dstPos, const Point2u& srcSize, uint8_t* pixels, size_t bytesPerPixel)
+{
+	GLint format = 0;
+
+	if (bytesPerPixel == 3)
+		format = GL_RGB;
+	else
+		format = GL_RGBA;
+
+	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)dstPos.PosX(), (GLint)dstPos.PosY(), (GLsizei)srcSize.PosX(), (GLsizei)srcSize.PosY(), format, GL_UNSIGNED_BYTE, pixels));
+}
+
+void TextureImpl::Copy(const Point2u& dstPos, Surface* surface, const Point2u& srcSize)
+{
+	Copy(dstPos, srcSize, surface->Pixels(), surface->BytesPerPixel());
 }
 
 const Point2u& TextureImpl::Size()

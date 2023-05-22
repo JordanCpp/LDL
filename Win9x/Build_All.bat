@@ -16,6 +16,7 @@ call %2 10_TileMap %pth%
 call %2 11_Resize %pth%
 call %2 12_TileMap2 %pth%
 call %2 13_TileMapBatcher %pth%
+call %2 14_TextureCopy %pth%
 
 set pth=C:\Repos\Lib-LDL\Tutorials\NeHe\
 

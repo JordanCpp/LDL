@@ -8,6 +8,72 @@ using namespace LDL::Graphics;
 const size_t TextureCount = 12;
 const size_t TextureSizes[TextureCount] = { 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
 
+void Util::CalcQuad(Util::Quad& quad, uint16_t dstPosX, uint16_t dstPosY, uint16_t dstSizeX, uint16_t dstSizeY, uint16_t srcPosX, uint16_t srcPosY, uint16_t srcSizeX, uint16_t srcSizeY, size_t textureSize)
+{
+	float ps = 1.0f / (float)textureSize;
+
+	quad.data[0] = dstPosX;
+	quad.data[1] = float(dstSizeY + dstPosY);
+	quad.data[2] = 0.0f;
+	quad.data[3] = ps * srcPosX;
+	quad.data[4] = ps * (srcSizeY + srcPosY);
+
+	quad.data[5] = float(dstSizeX + dstPosX);
+	quad.data[6] = float(dstSizeY + dstPosY);
+	quad.data[7] = 0.0f;
+	quad.data[8] = ps * (srcSizeX + srcPosX);
+	quad.data[9] = ps * (srcSizeY + srcPosY);
+
+	quad.data[10] = dstPosX;
+	quad.data[11] = dstPosY;
+	quad.data[12] = 0.0f;
+	quad.data[13] = ps * srcPosX;
+	quad.data[14] = ps * srcPosY;
+
+	quad.data[15] = float(dstSizeX + dstPosX);
+	quad.data[16] = float(dstSizeY + dstPosY);
+	quad.data[17] = 0.0f;
+	quad.data[18] = ps * (srcSizeX + srcPosX);
+	quad.data[19] = ps * (srcSizeY + srcPosY);
+
+	quad.data[20] = float(dstSizeX + dstPosX);
+	quad.data[21] = dstPosY;
+	quad.data[22] = 0.0f;
+	quad.data[23] = ps * (srcSizeX + srcPosX);
+	quad.data[24] = ps * srcPosY;
+
+	quad.data[25] = dstPosX;
+	quad.data[26] = dstPosY;
+	quad.data[27] = 0.0f;
+	quad.data[28] = ps * srcPosX;
+	quad.data[29] = ps * srcPosY;
+}
+
+GLuint Util::CreateTexture(GLsizei width, GLsizei heigth, GLint format)
+{
+	GLuint result = 0;
+	
+	GL_CHECK(glGenTextures(1, (GLuint*)&result));
+
+	GL_CHECK(glEnable(GL_TEXTURE_2D));
+
+	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)result));
+
+	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+
+	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, width, heigth, 0, format, GL_UNSIGNED_BYTE, NULL));
+
+	GL_CHECK(glDisable(GL_TEXTURE_2D));
+
+	return result;
+}
+
+void Util::DeleteTexture(GLint id)
+{
+	GL_CHECK(glDeleteTextures(0, (GLuint*)&id));
+}
+
 void Util::DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize, size_t textureSize)
 {
 	GLfloat x = (GLfloat)dstPos.PosX();

@@ -3,6 +3,7 @@
 #include <assert.h>
 #include "Util.hpp"
 #include <iostream>
+#include "TextureImpl.hpp"
 
 using namespace LDL::Graphics;
 

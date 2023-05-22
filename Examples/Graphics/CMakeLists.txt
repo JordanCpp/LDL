@@ -38,3 +38,6 @@ target_link_libraries(12_TileMap2 LDL)
 
 add_executable(13_TileMapBatcher "13_TileMapBatcher.cpp")
 target_link_libraries(13_TileMapBatcher LDL)
+
+add_executable(14_TextureCopy "14_TextureCopy.cpp")
+target_link_libraries(14_TextureCopy LDL)
