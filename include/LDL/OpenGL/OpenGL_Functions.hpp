@@ -1,5 +1,5 @@
-#ifndef LDL_Graphics_Functions_hpp
-#define LDL_Graphics_Functions_hpp
+#ifndef LDL_Graphics_OpenGLFunctions_hpp
+#define LDL_Graphics_OpenGLFunctions_hpp
 
 #include <LDL/Core/FastPimpl.hpp>
 #include <LDL/Core/Library.hpp>
@@ -8,15 +8,15 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class FunctionsImpl;
+		class OpenGLFunctionsImpl;
 
-		class LDL_EXPORT Functions : LDL::Core::FastPimpl
+		class LDL_EXPORT OpenGLFunctions : LDL::Core::FastPimpl
 		{
 		public:
-			Functions();
+			OpenGLFunctions();
 			LDL::VoidFuncPtr Function(const char* name);
 		private:
-			FunctionsImpl* _GpuFunctionsImpl;
+			OpenGLFunctionsImpl* _FunctionsImpl;
 		};
 	}
 }

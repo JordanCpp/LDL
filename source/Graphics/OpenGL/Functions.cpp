@@ -3,12 +3,12 @@
 
 using namespace LDL::Graphics;
 
-Functions::Functions() :
-    _GpuFunctionsImpl(new FunctionsImpl("opengl32"))
+OpenGLFunctions::OpenGLFunctions() :
+    _FunctionsImpl(new OpenGLFunctionsImpl("opengl32"))
 {
 }
 
-LDL::VoidFuncPtr Functions::Function(const char* name)
+LDL::VoidFuncPtr OpenGLFunctions::Function(const char* name)
 {
-    return _GpuFunctionsImpl->Function(name);
+    return _FunctionsImpl->Function(name);
 }

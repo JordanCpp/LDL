@@ -3,12 +3,12 @@
 
 using namespace LDL::Graphics;
 
-FunctionsImpl::FunctionsImpl(const char* path) :
+OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path) :
     _Library(path)
 {
 }
 
-LDL::VoidFuncPtr FunctionsImpl::Function(const char* name)
+LDL::VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
 {
     LDL::VoidFuncPtr p = (LDL::VoidFuncPtr)wglGetProcAddress(name);
 

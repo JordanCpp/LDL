@@ -35,7 +35,7 @@ namespace LDL
 		void Init_4_5();
 		void Init_4_6();
 	private:
-		LDL::Graphics::Functions _Functions;
+		LDL::Graphics::OpenGLFunctions _Functions;
 		size_t _Major;
 		size_t _Minor;
 	};
