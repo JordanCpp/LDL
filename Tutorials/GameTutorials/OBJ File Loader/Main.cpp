@@ -303,10 +303,10 @@ int main()
 					glDisable(GL_LIGHTING);
 			}
 
-			if (report.IsKeyPresed(KeyboardKey::W))
+			if (report.IsKeyPressed(KeyboardKey::W))
 				g_RotationSpeed += 0.05f;
 
-			if (report.IsKeyPresed(KeyboardKey::S))
+			if (report.IsKeyPressed(KeyboardKey::S))
 				g_RotationSpeed -= 0.05f;
 
 			if (report.Type == IsResize)
@@ -314,7 +314,7 @@ int main()
 				SizeOpenGLScreen((int)report.Resize.Width, (int)report.Resize.Height);
 			}
 
-			if (report.Type == IsQuit || report.IsKeyPresed(KeyboardKey::Escape))
+			if (report.Type == IsQuit || report.IsKeyPressed(KeyboardKey::Escape))
 			{
 				window.StopEvent();
 			}

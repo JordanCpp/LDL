@@ -254,16 +254,16 @@ int main()
 
 			render.End();
 
-			if (report.IsKeyPresed(KeyboardKey::W))
+			if (report.IsKeyPressed(KeyboardKey::W))
 				g_Camera.MoveCamera(g_Camera.Speed(deltaTime));
 
-			if (report.IsKeyPresed(KeyboardKey::S))
+			if (report.IsKeyPressed(KeyboardKey::S))
 				g_Camera.MoveCamera(-g_Camera.Speed(deltaTime));
 
-			if (report.IsKeyPresed(KeyboardKey::A))
+			if (report.IsKeyPressed(KeyboardKey::A))
 				g_Camera.StrafeCamera(-g_Camera.Speed(deltaTime));
 
-			if (report.IsKeyPresed(KeyboardKey::D))
+			if (report.IsKeyPressed(KeyboardKey::D))
 				g_Camera.StrafeCamera(g_Camera.Speed(deltaTime));
 
 			if (report.Type == IsResize)
@@ -271,7 +271,7 @@ int main()
 				SizeOpenGLScreen((int)report.Resize.Width, (int)report.Resize.Height);
 			}
 
-			if (report.Type == IsQuit || report.IsKeyPresed(KeyboardKey::Escape))
+			if (report.Type == IsQuit || report.IsKeyPressed(KeyboardKey::Escape))
 			{
 				window.StopEvent();
 			}

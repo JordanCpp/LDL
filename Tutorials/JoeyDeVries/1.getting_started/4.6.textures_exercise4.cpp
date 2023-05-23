@@ -125,19 +125,19 @@ int main()
 				glViewport(0, 0, (GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
 			}
 
-			if (report.Type == IsQuit || report.IsKeyPresed(KeyboardKey::Escape))
+			if (report.Type == IsQuit || report.IsKeyPressed(KeyboardKey::Escape))
 			{
 				window.StopEvent();
 			}
 
-            if (report.IsKeyPresed(KeyboardKey::Up))
+            if (report.IsKeyPressed(KeyboardKey::Up))
             {
                 mixValue += 0.001f; // change this value accordingly (might be too slow or too fast based on system hardware)
                 if (mixValue >= 1.0f)
                     mixValue = 1.0f;
             }
 
-            if (report.IsKeyPresed(KeyboardKey::Down))
+            if (report.IsKeyPressed(KeyboardKey::Down))
             {
                 mixValue -= 0.001f; // change this value accordingly (might be too slow or too fast based on system hardware)
                 if (mixValue <= 0.0f)

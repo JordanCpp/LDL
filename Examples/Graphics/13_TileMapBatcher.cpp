@@ -82,30 +82,30 @@ int main()
 
 			while (window.GetEvent(report))
 			{
-				if (report.IsKeyPresed(KeyboardKey::W))
+				if (report.IsKeyPressed(KeyboardKey::W))
 				{
 					dy += step;
 				}
 
-				if (report.IsKeyPresed(KeyboardKey::S))
+				if (report.IsKeyPressed(KeyboardKey::S))
 				{
 					dy -= step;
 				}
 
-				if (report.IsKeyPresed(KeyboardKey::A))
+				if (report.IsKeyPressed(KeyboardKey::A))
 				{
 					dx += step;
 				}
 
-				if (report.IsKeyPresed(KeyboardKey::D))
+				if (report.IsKeyPressed(KeyboardKey::D))
 				{
 					dx -= step;
 				}
 
-				if (report.IsKeyPresed(KeyboardKey::Z))
+				if (report.IsKeyPressed(KeyboardKey::Z))
 					batch = true;
 
-				if (report.IsKeyPresed(KeyboardKey::X))
+				if (report.IsKeyPressed(KeyboardKey::X))
 					batch = false;
 
 

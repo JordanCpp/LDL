@@ -39,7 +39,7 @@ namespace LDL
 				LDL::Events::LostFocus   LostFocus;
 			};
 
-			bool IsKeyPresed(size_t key)
+			bool IsKeyPressed(size_t key)
 			{
 				return (Type == IsKeyboard && Keyboard.Key == key && Keyboard.State == Enums::ButtonState::Pressed);
 			}

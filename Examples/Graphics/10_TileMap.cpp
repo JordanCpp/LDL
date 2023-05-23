@@ -57,22 +57,22 @@ int main()
 
 			while (window.GetEvent(report))
 			{
-				if (report.IsKeyPresed(KeyboardKey::W))
+				if (report.IsKeyPressed(KeyboardKey::W))
 				{
 					dy -= step;
 				}
 
-				if (report.IsKeyPresed(KeyboardKey::S))
+				if (report.IsKeyPressed(KeyboardKey::S))
 				{
 					dy += step;;
 				}
 
-				if (report.IsKeyPresed(KeyboardKey::A))
+				if (report.IsKeyPressed(KeyboardKey::A))
 				{
 					dx -= step;;
 				}
 
-				if (report.IsKeyPresed(KeyboardKey::D))
+				if (report.IsKeyPressed(KeyboardKey::D))
 				{
 					dx += step;;
 				}

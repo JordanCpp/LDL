@@ -119,7 +119,7 @@ int main()
 				glViewport(0, 0, (GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
 			}
 
-			if (report.Type == IsQuit || report.IsKeyPresed(KeyboardKey::Escape))
+			if (report.Type == IsQuit || report.IsKeyPressed(KeyboardKey::Escape))
 			{
 				window.StopEvent();
 			}

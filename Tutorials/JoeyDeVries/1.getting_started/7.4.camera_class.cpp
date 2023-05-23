@@ -204,21 +204,21 @@ int main()
 				glViewport(0, 0, (GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
 			}
 
-			if (report.Type == IsQuit || report.IsKeyPresed(KeyboardKey::Escape))
+			if (report.Type == IsQuit || report.IsKeyPressed(KeyboardKey::Escape))
 			{
 				window.StopEvent();
 			}
 
-            if (report.IsKeyPresed(KeyboardKey::W))
+            if (report.IsKeyPressed(KeyboardKey::W))
                 camera.ProcessKeyboard(FORWARD, deltaTime);
 
-            if (report.IsKeyPresed(KeyboardKey::S))
+            if (report.IsKeyPressed(KeyboardKey::S))
                 camera.ProcessKeyboard(BACKWARD, deltaTime);
 
-            if (report.IsKeyPresed(KeyboardKey::A))
+            if (report.IsKeyPressed(KeyboardKey::A))
                 camera.ProcessKeyboard(LEFT, deltaTime);
 
-            if (report.IsKeyPresed(KeyboardKey::D))
+            if (report.IsKeyPressed(KeyboardKey::D))
                 camera.ProcessKeyboard(RIGHT, deltaTime);
 
             if (report.Type == IsMouseMove)
