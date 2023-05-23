@@ -8,6 +8,7 @@
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Graphics/TextureBatcher.hpp>
 #include "RenderBuffer.hpp"
+#include <LDL/Math/Mat4f.hpp>
 
 namespace LDL
 {
@@ -40,6 +41,9 @@ namespace LDL
 			LDL::Graphics::Color _Color;
 			RenderContextImpl* _RenderContextImpl;
 			RenderBuffer _RenderBuffer;
+		public:
+			LDL::Math::Mat4f _Projection;
+			LDL::Math::Mat4f _ModelView;
 		};
 	}
 }

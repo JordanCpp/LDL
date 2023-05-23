@@ -2,25 +2,26 @@
 #define LDL_Graphics_Camera_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/Graphics/Primitives/Point2u.hpp>
+#include <LDL/Graphics/Primitives/Point2i.hpp>
+#include <LDL/Graphics/Render.hpp>
 
 namespace LDL
 {
     namespace Graphics
     {
+        class CameraImpl;
+
         class LDL_EXPORT Camera
         {
         public:
-            Camera(const Point2u& pos, const Point2u& size);
+            Camera(Render* render, const Point2u& pos, const Point2u& size);
+            CameraImpl* GetCameraImpl();
             const Point2u& Pos();
             const Point2u& Size();
-            void PosX(size_t x);
-            void PosY(size_t y);
-            void SizeX(size_t x);
-            void SizeY(size_t y);
+            void Pos(const Point2u& pos);
+            void Size(const Point2u& size);
         private:
-            Point2u _Pos;
-            Point2u _Size;
+            CameraImpl* _CameraImpl;
         };
     }
 }

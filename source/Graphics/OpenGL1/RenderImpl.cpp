@@ -1,7 +1,7 @@
 #include "RenderImpl.hpp"
 #include "../OpenGL/Util.hpp"
 #include "TextureImpl.hpp"
-#include <LDL/Math/Mat4f.hpp>
+
 #include <LDL/Math/Funcs.hpp>
 #include "../../Platforms/Windows/Graphics/OpenGL1/WindowImpl.hpp"
 
@@ -28,19 +28,18 @@ void RenderImpl::Begin()
 {
 	GL_CHECK(glViewport(0, 0, (GLsizei)_Window->Size().PosX(), (GLsizei)_Window->Size().PosY()));
 
-	Mat4f projection;
-	Mat4f modelView;
-
 	GL_CHECK(glMatrixMode(GL_PROJECTION));
-	projection = Ortho(0.0f, (float)_Window->Size().PosX(), (float)_Window->Size().PosY(), 0.0f, 0.0f, 1.0f);
-	GL_CHECK(glLoadMatrixf(projection.Values()));
+	_Projection = Ortho(0.0f, (float)_Window->Size().PosX(), (float)_Window->Size().PosY(), 0.0f, 0.0f, 1.0f);
+	GL_CHECK(glLoadMatrixf(_Projection.Values()));
+
 
 	GL_CHECK(glMatrixMode(GL_MODELVIEW));
-	GL_CHECK(glLoadMatrixf(modelView.Values()));
+	GL_CHECK(glLoadMatrixf(_ModelView.Values()));
 }
 
 void RenderImpl::End()
 {
+	_ModelView.Identity();
 	_RenderBuffer.Draw();
 
 	_Window->GetWindowImpl()->Present();
