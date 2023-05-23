@@ -326,45 +326,37 @@ endif()
 set(SOURCE_ALL ${SOURCE_FILES} ${SOURCE_RENDER} ${SOURCE_RENDER_PLATFORM} ${SOURCE_PLATFORM} ${SOURCE_AUDIO})
 
 if (LDL_SHARED_LIBRARY)
-  add_library(${CMAKE_PROJECT_NAME} SHARED  ${SOURCE_ALL})		
+  add_library(${PROJECT_NAME} SHARED  ${SOURCE_ALL})		
 elseif (LDL_STATIC_LIBRARY)
-  add_library(${CMAKE_PROJECT_NAME} STATIC  ${SOURCE_ALL})		
+  add_library(${PROJECT_NAME} STATIC  ${SOURCE_ALL})		
 endif() 
 
 if (WIN32)
-  target_link_libraries(${CMAKE_PROJECT_NAME} winmm)
+  target_link_libraries(${PROJECT_NAME} winmm)
 endif() 
 
 if (WIN32 AND (LDL_RENDER_OPENGL1 OR LDL_RENDER_OPENGL3))
-  target_link_libraries(${CMAKE_PROJECT_NAME} opengl32)
+  target_link_libraries(${PROJECT_NAME} opengl32)
 endif()
 
 if (WIN32 AND LDL_RENDER_DIRECTX1)
-  target_link_libraries(${CMAKE_PROJECT_NAME} ddraw)
+  target_link_libraries(${PROJECT_NAME} ddraw)
 endif()
 
 if (WIN32 AND LDL_RENDER_DIRECTX5)
-  target_link_libraries(${CMAKE_PROJECT_NAME} d3drm ddraw)
+  target_link_libraries(${PROJECT_NAME} d3drm ddraw)
 endif()
 
 if (WIN32 AND LDL_RENDER_DIRECTX9)
-  target_link_libraries(${CMAKE_PROJECT_NAME} d3d9 d3dx9)
+  target_link_libraries(${PROJECT_NAME} d3d9 d3dx9)
 endif()
 
 if (WIN32 AND LDL_AUDIO_DIRECT_SOUND_8)
-  target_link_libraries(${CMAKE_PROJECT_NAME} dsound dxguid)
+  target_link_libraries(${PROJECT_NAME} dsound dxguid)
 endif()
 
 add_subdirectory("Examples")
-add_subdirectory("Games")
-add_subdirectory("Experiments")
 
 if (LDL_STATIC_LIBRARY)
   add_subdirectory("test")
 endif()
-
-if (LDL_STATIC_LIBRARY AND (LDL_RENDER_OPENGL1 OR LDL_RENDER_OPENGL3))
-  add_subdirectory("Tutorials")
-endif()
-
-add_subdirectory("Samples")

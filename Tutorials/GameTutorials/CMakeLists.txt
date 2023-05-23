@@ -1,4 +1,0 @@
-cmake_minimum_required(VERSION 3.8)
-
-add_subdirectory("Time Based Movement")
-add_subdirectory("OBJ File Loader")
