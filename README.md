@@ -1,14 +1,5 @@
 # Greetings!
 
-# Screenshots
-![0](Screenshots/12_TileMap2.jpg)
-![1](Screenshots/10_TileMap.jpg)
-![2](Screenshots/1.jpg)
-![3](Screenshots/2.jpg)
-![4](Screenshots/3.jpg)
-![5](Screenshots/4.jpg)
-![6](Screenshots/5.jpg)
-
 # LDL - Little Directmedia Layer
 Free cross-platform library.
 
@@ -47,7 +38,7 @@ Free cross-platform library.
 - link_directories   (dependencies/LDL/MSVC2022_x64)
 - target_link_libraries(MyProject LDL)
 
-#Install Linux
+# Install Linux
 In the process of porting.
 
 # Support platforms.
@@ -117,3 +108,12 @@ u960,
 
 # habr
 Kotofay
+
+# Screenshots
+![0](Screenshots/12_TileMap2.jpg)
+![1](Screenshots/10_TileMap.jpg)
+![2](Screenshots/1.jpg)
+![3](Screenshots/2.jpg)
+![4](Screenshots/3.jpg)
+![5](Screenshots/4.jpg)
+![6](Screenshots/5.jpg)
