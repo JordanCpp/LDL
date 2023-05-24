@@ -57,10 +57,11 @@ In the process of porting.
 
 # Support renders.
 1. OpenGL 1.0
-2. Software render
-3. DirectDraw (In the implementation)
-4. DirectX 5 Direct3D (In the implementation)
-5. DirectX 9 Direct3D (In the implementation)
+2. OpenGL 3.0
+3. Software render
+4. DirectDraw (In the implementation)
+5. DirectX 5 Direct3D (In the implementation)
+6. DirectX 9 Direct3D (In the implementation)
 
 
 # The main idea is to write an analogue of the SDL library. 
