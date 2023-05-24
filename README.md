@@ -89,10 +89,13 @@ I'm glad for everyone. The main language for communication is English. There are
 Ready to discuss any questions, ideas, suggestions. There is no bureaucracy.
 I'm using the C++98 standard. To support old and new platforms.
 
-#Article on habr
+# My report on the LDL framework is the C++ Russia 2023 conference.
+https://cppconf.ru/talks/16ef41e0e5ec48bfb25b36f8b2a0b540/?referer=/talks/
+
+# Article on habr
 https://habr.com/ru/post/700668/
 
-#Communication
+# Communication
 https://gamedev.ru/projects/forum/?id=273184
 https://www.old-games.ru/forum/threads/pishu-frejmvork-ldl-analog-sdl-no-na-s-i-s-podderzhkoj-staryx-sistem.106435/
 
