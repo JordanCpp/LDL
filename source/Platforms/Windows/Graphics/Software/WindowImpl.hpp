@@ -13,6 +13,8 @@ namespace LDL
 			WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
 			~WindowImpl();
 			void Present(uint8_t* pixels, uint8_t bytesPerPixel);
+			bool Running();
+			void PollEvents();
 			bool GetEvent(LDL::Events::Event& event);
 			bool WaitEvent(LDL::Events::Event& event);
 			void StopEvent();

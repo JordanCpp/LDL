@@ -40,6 +40,16 @@ const Point2u& WindowImpl::Pos()
     return _Window.Pos();
 }
 
+bool WindowImpl::Running()
+{
+    return _Window.Running();
+}
+
+void WindowImpl::PollEvents()
+{
+    _Window.PollEvents();
+}
+
 bool WindowImpl::GetEvent(LDL::Events::Event& event)
 {
     return _Window.GetEvent(event);

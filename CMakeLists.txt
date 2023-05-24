@@ -220,7 +220,9 @@ if (LDL_RENDER_SOFTWARE)
   "source/Graphics/Software/RenderImpl.cpp"
   "source/Graphics/Software/TextureImpl.cpp"
   "source/Graphics/Software/RenderContextImpl.cpp"
-  "source/Graphics/Software/ScreenshoterImpl.cpp")
+  "source/Graphics/Software/ScreenshoterImpl.cpp"
+  "source/Graphics/Software/TextureBatcherImpl.cpp"
+  "source/Graphics/Software/CameraImpl.cpp")
 endif() 
 
 if (WIN32 AND LDL_RENDER_SOFTWARE)

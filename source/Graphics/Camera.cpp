@@ -1,8 +1,21 @@
 #include <LDL/Graphics/Camera.hpp>
-#include "../Graphics/OpenGL1/CameraImpl.hpp"
 
-#ifdef LDL_RENDER_OPENGL1
-#include "OpenGL1/RenderImpl.hpp"
+#ifdef LDL_RENDER_SOFTWARE
+#include "Software/CameraImpl.hpp"
+#elif LDL_RENDER_GDI
+#include "GDI/CameraImpl.hpp"
+#elif LDL_RENDER_OPENGL1
+#include "OpenGL1/CameraImpl.hpp"
+#elif LDL_RENDER_OPENGL3
+#include "OpenGL3/CameraImpl.hpp"
+#elif LDL_RENDER_DIRECTX1
+#include "DirectDraw/CameraImpl.hpp"
+#elif LDL_RENDER_DIRECTX5
+#include "DirectX5/Direct3D/CameraImpl.hpp"
+#elif LDL_RENDER_DIRECTX9
+#include "DirectX9/Direct3D/CameraImpl.hpp"
+#elif LDL_RENDER_DIRECTX10
+#include "DirectX10/Direct3D/CameraImpl.hpp"
 #endif
 
 using namespace LDL::Graphics;
@@ -12,7 +25,7 @@ Camera::Camera(Render* render, const Point2u& pos, const Point2u& size) :
 {
 }
 
-CameraImpl* LDL::Graphics::Camera::GetCameraImpl()
+CameraImpl* Camera::GetCameraImpl()
 {
 	return _CameraImpl;
 }

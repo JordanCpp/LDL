@@ -9,6 +9,7 @@
 #include <LDL/Graphics/PixelPainter.hpp>
 #include <LDL/Graphics/PixelCopier.hpp>
 #include <LDL/Graphics/ImageResizer.hpp>
+#include <LDL/Graphics/TextureBatcher.hpp>
 
 namespace LDL
 {
@@ -33,6 +34,8 @@ namespace LDL
 			void Draw(Surface* image, const Point2u& pos, const Point2u& size);
 			void Draw(Surface* image, const Point2u& pos);
 			void Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize);
+			void Draw(Texture* image, const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize);
+			void Draw(TextureBatcher* textureBatcher);
 		private:
 			Window* _Window;
 			Surface _Canvas;
