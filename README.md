@@ -19,6 +19,37 @@ Free cross-platform library.
 5. Cross-platform.
 6. Static link.
 
+# Install for Windows (Static library)
+1.git clone https://github.com/JordanCpp/Lib-LDL.git dependencies/LDL 
+2.Added to CMake
+project(MyProject)
+add_definitions(-DLDL_STATIC_LIBRARY)
+add_subdirectory(dependencies/LDL)
+include_directories(dependencies/LDL/include)
+link_directories   (${CMAKE_CURRENT_BINARY_DIR}/dependencies/LDL)
+target_link_libraries(MyProject LDL opengl32 winmm)
+
+# Install for Windows (Dynamic library 32 bit)
+1.git clone https://github.com/JordanCpp/Lib-LDL-WindowsBuilds dependencies/LDL 
+2.Added to CMake
+project(MyProject)
+add_definitions(-DLDL_SHARED_LIBRARY)
+include_directories(dependencies/LDL/MSVC2022_x86/include)
+link_directories   (dependencies/LDL/MSVC2022_x86)
+target_link_libraries(MyProject LDL)
+
+# Install for Windows (Dynamic library 64 bit)
+1.git clone https://github.com/JordanCpp/Lib-LDL-WindowsBuilds dependencies/LDL 
+2.Added to CMake
+project(MyProject)
+add_definitions(-DLDL_SHARED_LIBRARY)
+include_directories(dependencies/LDL/MSVC2022_x64/include)
+link_directories   (dependencies/LDL/MSVC2022_x64)
+target_link_libraries(MyProject LDL)
+
+#Install Linux
+In the process of porting.
+
 # Support platforms.
 1. Windows 95
 2. Windows 98
