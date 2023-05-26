@@ -1,59 +1,60 @@
 #ifndef LDL_Allocators_ObjectPool_hpp
 #define LDL_Allocators_ObjectPool_hpp
 
+#include <LDL/Core/Types.hpp>
 #include <assert.h>
-#include <LDL/Allocators/Allocator.hpp>
-#include <LDL/Containers/List.hpp>
+#include <vector>
 
 namespace LDL
 {
 	namespace Allocators
 	{
-		template <typename T>
+		template <typename T, size_t limit>
 		class ObjectPool
 		{
 		public:
 
-			ObjectPool(LDL::Allocators::Allocator* allocator) :
-				_Allocator(allocator)
+			ObjectPool()
 			{
-			}
-
-			LDL::Containers::ListNode<T>* Make()
-			{
-				LDL::Containers::ListNode<T>* result = NULL;
-
-				result = (LDL::Containers::ListNode<T>*)_Allocator->Allocate(sizeof(LDL::Containers::ListNode<T>));
-
-				return result;
+				_Objects.resize(limit);
+				_Pointers.resize(limit);
 			}
 
 			T* New()
 			{
-				LDL::Containers::ListNode<T>* result = _Free.Tail;
+				size_t i = 0;
 
-				if (result != NULL)
-					_Free.Remove(result);
-				else
-					result = Make();
+				for (i = 0; i < _Pointers.size(); i++)
+				{
+					if (_Pointers[i] == NULL)
+					{
+						_Pointers[i] = &_Objects[i];
 
-				_Used.Append(result);
+						return &_Objects[i];
+					}
+				}
 
-				return (T*)result;
+				assert(i == _Pointers.size());
+
+				return NULL;
 			}
 
-			void Free(T* ptr)
+			void Delete(T* ptr)
 			{
-				assert(ptr != NULL);
+				size_t i = 0;
 
-				_Used.Remove((LDL::Containers::ListNode<T>*)ptr);
+				while (i < _Pointers.size() && _Pointers[i] != ptr)
+				{
+					i++;
+				}
 
-				_Free.Append((LDL::Containers::ListNode<T>*)ptr);
+				assert(i < _Pointers.size());
+
+				_Pointers[i] = NULL;
 			}
 		private:
-			LDL::Allocators::Allocator* _Allocator;
-			LDL::Containers::List<T> _Used;
-			LDL::Containers::List<T> _Free;
+			std::vector<T> _Objects;
+			std::vector<T*> _Pointers;
 		};
 	}
 }
