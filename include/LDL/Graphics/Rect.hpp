@@ -41,14 +41,14 @@ namespace LDL
 
 			void Pos(const TYPE& x, const TYPE& y)
 			{
-				_Pos._PosX = x;
-				_Pos._PosY = y;
+				_Pos.x = x;
+				_Pos.y = y;
 			}
 
 			void Size(const TYPE& x, const TYPE& y)
 			{
-				_Size._PosX = x;
-				_Size._PosY = y;
+				_Size.x = x;
+				_Size.y = y;
 			}
 
 			bool Contains(const LDL::Math::Vec2<TYPE>& Pt)
