@@ -1,10 +1,11 @@
 #include <LDL/Graphics/PixelConverter.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-void PixelConverter::Fill(uint8_t* pixels, const Point2u& size, uint8_t bytesPerPixel, const Color& color)
+void PixelConverter::Fill(uint8_t* pixels, const Vec2u& size, uint8_t bytesPerPixel, const Color& color)
 {
-	size_t bytes = size.PosX() * size.PosY() * bytesPerPixel;
+	size_t bytes = size.x * size.y * bytesPerPixel;
 
 	for (size_t i = 0; i < bytes; i += bytesPerPixel)
 	{
@@ -22,9 +23,9 @@ void PixelConverter::Fill(uint8_t* pixels, const Point2u& size, uint8_t bytesPer
 	}
 }
 
-void PixelConverter::RgbToBgr(uint8_t* pixels, const Point2u& size, uint8_t bytesPerPixel)
+void PixelConverter::RgbToBgr(uint8_t* pixels, const Vec2u& size, uint8_t bytesPerPixel)
 {
-	size_t bytes = size.PosX() * size.PosY() * bytesPerPixel;
+	size_t bytes = size.x * size.y * bytesPerPixel;
 
 	for (size_t i = 0; i < bytes; i += 4)
 	{
@@ -34,9 +35,9 @@ void PixelConverter::RgbToBgr(uint8_t* pixels, const Point2u& size, uint8_t byte
 	}
 }
 
-void PixelConverter::BgrToRgb(uint8_t* pixels, const Point2u& size, uint8_t bytesPerPixel)
+void PixelConverter::BgrToRgb(uint8_t* pixels, const Vec2u& size, uint8_t bytesPerPixel)
 {
-	size_t bytes = size.PosX() * size.PosY() * bytesPerPixel;
+	size_t bytes = size.x * size.y * bytesPerPixel;
 
 	for (size_t i = 0; i < bytes; i += 4)
 	{

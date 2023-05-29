@@ -4,7 +4,7 @@
 
 using namespace LDL::Graphics;
 
-Screen::Screen(const Point2u& size) :
+Screen::Screen(const Vec2u& size) :
 	_Size(size)
 {
 }
@@ -13,18 +13,18 @@ Screen::~Screen()
 {
 }
 
-void Screen::Draw(Surface* image, const Point2u& pos, const Point2u& size)
+void Screen::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
 }
 
-void Screen::Draw(Surface* image, const Point2u& pos)
+void Screen::Draw(Surface* image, const Vec2u& pos)
 {
 }
 
-void Screen::DrawTexture(Surface* image, const Point2u& pos, const Point2u& size)
+void Screen::DrawTexture(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
 }
 
-void Screen::DrawPixels(Surface* image, const Point2u& pos, const Point2u& size)
+void Screen::DrawPixels(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
 }

@@ -2,6 +2,7 @@
 #include <assert.h>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 PixelPainter::PixelPainter() :
 	_Red(0),
@@ -25,9 +26,9 @@ Surface* PixelPainter::Target()
 	return _Target;
 }
 
-const Point2u& PixelPainter::Size()
+const Vec2u& PixelPainter::Size()
 {
-	_Size = Point2u(_Width, _Heigth);
+	_Size = Vec2u(_Width, _Heigth);
 
 	return _Size;
 }
@@ -113,15 +114,15 @@ void PixelPainter::Bind(Surface* source)
 
 	_Target = source;
 
-	_Width = _Target->Size().PosX();
-	_Heigth = _Target->Size().PosY();
+	_Width = _Target->Size().x;
+	_Heigth = _Target->Size().y;
 	_BytesPerPixel = _Target->BytesPerPixel();
 	_Pixels = _Target->Pixels();
 }
 
-void PixelPainter::Pixel(const Point2u& pos)
+void PixelPainter::Pixel(const Vec2u& pos)
 {
-	size_t i = (_Width * pos._PosY + pos._PosX) * _BytesPerPixel;
+	size_t i = (_Width * pos.y + pos.x) * _BytesPerPixel;
 
 	assert(i < _Width * _Heigth * _BytesPerPixel);
 
@@ -157,9 +158,9 @@ void PixelPainter::Pixel(const Point2u& pos)
 	}
 }
 
-const LDL::Graphics::Color& PixelPainter::GetPixel(const Point2u& pos)
+const LDL::Graphics::Color& PixelPainter::GetPixel(const Vec2u& pos)
 {
-	size_t i = (_Width * pos._PosY + pos._PosX) * _BytesPerPixel;
+	size_t i = (_Width * pos.y + pos.x) * _BytesPerPixel;
 
 	assert(i < _Width * _Heigth * _BytesPerPixel);
 
@@ -189,30 +190,30 @@ const LDL::Graphics::Color& PixelPainter::GetPixel(const Point2u& pos)
 	return _ColorGetPixel;
 }
 
-void PixelPainter::Fill(const Point2u& pos, const Point2u& size)
+void PixelPainter::Fill(const Vec2u& pos, const Vec2u& size)
 {
-	assert(size.PosX() > 0);
-	assert(size.PosY() > 0);
+	assert(size.x > 0);
+	assert(size.y > 0);
 
-	size_t x = pos.PosX();
-	size_t y = pos.PosY();
+	size_t x = pos.x;
+	size_t y = pos.y;
 
-	for (size_t i = 0; i < size._PosX; i++)
+	for (size_t i = 0; i < size.x; i++)
 	{
-		for (size_t j = 0; j < size._PosY; j++)
+		for (size_t j = 0; j < size.y; j++)
 		{
-			Pixel(Point2u(x + i, y + j));
+			Pixel(Vec2u(x + i, y + j));
 		}
 	}
 }
 
-void PixelPainter::Line(const Point2u& pos1, const Point2u& pos2)
+void PixelPainter::Line(const Vec2u& pos1, const Vec2u& pos2)
 {
-	int x1 = (int)pos1.PosX();
-	int y1 = (int)pos1.PosY();
+	int x1 = (int)pos1.x;
+	int y1 = (int)pos1.y;
 
-	int x2 = (int)pos2.PosX();
-	int y2 = (int)pos2.PosY();
+	int x2 = (int)pos2.x;
+	int y2 = (int)pos2.y;
 
 	int deltaX;
 	int deltaY;
@@ -228,11 +229,11 @@ void PixelPainter::Line(const Point2u& pos1, const Point2u& pos2)
 
 	error = deltaX - deltaY;
 
-	Pixel(Point2u(x2, y2));
+	Pixel(Vec2u(x2, y2));
 
 	while (x1 != x2 || y1 != y2)
 	{
-		Pixel(Point2u(x1, y1));
+		Pixel(Vec2u(x1, y1));
 
 		error2 = error * 2;
 

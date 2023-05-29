@@ -6,6 +6,7 @@
 #include <LDL/Graphics/Render.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 int main()
 {
@@ -13,16 +14,16 @@ int main()
 	{
 		const std::string title = "LDL Window title!";
 
-		Window window(Point2u(1, 2), Point2u(640, 480), title);
+		Window window(Vec2u(1, 2), Vec2u(640, 480), title);
 
 		RenderContext renderContext;
 		Render render(&renderContext, &window);
 
-		LDL_TEST_EQUAL(render.Size().PosX() > 0);
-		LDL_TEST_EQUAL(render.Size().PosX() <= 640);
+		LDL_TEST_EQUAL(render.Size().x > 0);
+		LDL_TEST_EQUAL(render.Size().x <= 640);
 
-		LDL_TEST_EQUAL(render.Size().PosY() > 0);
-		LDL_TEST_EQUAL(render.Size().PosY() <= 480);
+		LDL_TEST_EQUAL(render.Size().y > 0);
+		LDL_TEST_EQUAL(render.Size().y <= 480);
 	}
 	catch (const LDL::Core::RuntimeError& error)
 	{

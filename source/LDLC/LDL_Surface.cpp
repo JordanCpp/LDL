@@ -2,6 +2,7 @@
 #include <LDL/Graphics/Surface.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 struct LDL_Surface
 {
@@ -13,22 +14,22 @@ struct LDL_Surface
 };
 
 LDL_Surface::LDL_Surface(size_t w, size_t h, uint8_t bytesPerPixel) :
-	_Surface(Point2u(w, h), bytesPerPixel)
+	_Surface(Vec2u(w, h), bytesPerPixel)
 {
 }
 
 LDL_Surface::LDL_Surface(size_t w, size_t h, uint8_t* pixels, uint8_t bytesPerPixel) :
-	_Surface(Point2u(w, h), pixels, bytesPerPixel)
+	_Surface(Vec2u(w, h), pixels, bytesPerPixel)
 {
 }
 
 LDL_Surface::LDL_Surface(size_t w, size_t h, size_t capacityW, size_t capacityH, uint8_t bytesPerPixel) :
-	_Surface(Point2u(w, h), Point2u(capacityW, capacityH), bytesPerPixel)
+	_Surface(Vec2u(w, h), Vec2u(capacityW, capacityH), bytesPerPixel)
 {
 }
 
 LDL_Surface::LDL_Surface(size_t w, size_t h, size_t capacityW, size_t capacityH, uint8_t* pixels, uint8_t bytesPerPixel) :
-	_Surface(Point2u(w, h), Point2u(capacityW, capacityH), pixels, bytesPerPixel)
+	_Surface(Vec2u(w, h), Vec2u(capacityW, capacityH), pixels, bytesPerPixel)
 {
 }
 
@@ -67,27 +68,27 @@ LDL_Surface* LDL_SurfaceNewCapacityFromBytes(size_t w, size_t h, size_t capacity
 
 size_t  LDL_SurfaceGetSizeX(LDL_Surface* surface)
 {
-	return surface->_Surface.Size().PosX();
+	return surface->_Surface.Size().x;
 }
 
 size_t  LDL_SurfaceGetSizeY(LDL_Surface* surface)
 {
-	return surface->_Surface.Size().PosY();
+	return surface->_Surface.Size().y;
 }
 
 size_t  LDL_SurfaceGetCapacitySizeX(LDL_Surface* surface)
 {
-	return surface->_Surface.Capacity().PosX();
+	return surface->_Surface.Capacity().x;
 }
 
 size_t  LDL_SurfaceGetCapacitySizeY(LDL_Surface* surface)
 {
-	return surface->_Surface.Capacity().PosY();
+	return surface->_Surface.Capacity().y;
 }
 
 void LDL_SurfaceResize(LDL_Surface* surface, size_t w, size_t h)
 {
-	surface->_Surface.Resize(Point2u(w, h));
+	surface->_Surface.Resize(Vec2u(w, h));
 }
 
 void LDL_SurfaceClear(LDL_Surface* surface)

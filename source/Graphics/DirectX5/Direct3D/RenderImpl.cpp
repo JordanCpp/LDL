@@ -25,7 +25,7 @@ RenderImpl::RenderImpl(Window* window) :
 	if (FAILED(result))
 		throw LDL::Core::RuntimeError("SetHWnd failed");
 
-	result = _Direct3Drm->CreateDeviceFromClipper(_DirectDrawClipper, _GUID, (int)_Window->Size().PosX(), (int)_Window->Size().PosY(), &_Direct3DrmDevice);
+	result = _Direct3Drm->CreateDeviceFromClipper(_DirectDrawClipper, _GUID, (int)_Window->Size().x, (int)_Window->Size().y, &_Direct3DrmDevice);
 
 	if (FAILED(result))
 		throw LDL::Core::RuntimeError("CreateDeviceFromClipper failed");
@@ -65,7 +65,7 @@ void RenderImpl::End()
 {
 }
 
-const Point2u& RenderImpl::Size()
+const Vec2u& RenderImpl::Size()
 {
 	return _BaseRender.Size();
 }
@@ -84,35 +84,35 @@ void LDL::Graphics::RenderImpl::Color(const LDL::Graphics::Color& color)
 	_BaseRender.Color(color);
 }
 
-void RenderImpl::Pixel(const Point2u& pos)
+void RenderImpl::Pixel(const Vec2u& pos)
 {
 }
 
-void RenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
+void RenderImpl::Line(const Vec2u& pos1, const Vec2u& pos2)
 {
 }
 
-void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
+void RenderImpl::Fill(const Vec2u& pos, const Vec2u& size)
 {
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
 {
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& pos)
+void RenderImpl::Draw(Texture* image, const Vec2u& pos)
 {
 	Draw(image, pos, image->Size());
 }
 
-void RenderImpl::Draw(Surface* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
 }
 
-void RenderImpl::Draw(Surface* image, const Point2u& pos)
+void RenderImpl::Draw(Surface* image, const Vec2u& pos)
 {
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
+void RenderImpl::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 }

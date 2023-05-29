@@ -3,19 +3,20 @@
 #include "../OpenGL/Util.hpp"
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 TextureBatcherImpl::TextureBatcherImpl(Texture* texture, size_t count) :
 	_Texture(texture->GetTextureImpl()->Id()),
-	_TextureSize(texture->GetTextureImpl()->Quad().PosX())
+	_TextureSize(texture->GetTextureImpl()->Quad().x)
 {
 	_Quads.reserve(count);
 }
 
-void TextureBatcherImpl::Draw(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
+void TextureBatcherImpl::Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	Util::Quad quad;
 
-	Util::CalcQuad(quad, (uint16_t)dstPos.PosX(), (uint16_t)dstPos.PosY(), (uint16_t)dstSize.PosX(), (uint16_t)dstSize.PosY(), (uint16_t)srcPos.PosX(), (uint16_t)srcPos.PosY(), (uint16_t)srcSize.PosX(), (uint16_t)srcSize.PosY(), _TextureSize);
+	Util::CalcQuad(quad, (uint16_t)dstPos.x, (uint16_t)dstPos.y, (uint16_t)dstSize.x, (uint16_t)dstSize.y, (uint16_t)srcPos.x, (uint16_t)srcPos.y, (uint16_t)srcSize.x, (uint16_t)srcSize.y, _TextureSize);
 
 	_Quads.push_back(quad);
 }

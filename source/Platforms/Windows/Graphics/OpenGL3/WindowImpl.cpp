@@ -14,7 +14,7 @@ typedef HGLRC(WINAPI* PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareC
 #define WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB 0x00000002
 
 
-WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
+WindowImpl::WindowImpl(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _Window(pos, size, title, mode),
     _HGLRC(NULL)
 {
@@ -107,12 +107,12 @@ void WindowImpl::Present()
         throw LDL::Core::RuntimeError("SwapBuffers failed");
 }
 
-const Point2u& WindowImpl::Size()
+const Vec2u& WindowImpl::Size()
 {
     return _Window.Size();
 }
 
-const Point2u& WindowImpl::Pos()
+const Vec2u& WindowImpl::Pos()
 {
     return _Window.Pos();
 }

@@ -5,13 +5,14 @@
 #include <iostream>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Point2u& size, uint8_t* pixels, size_t bytesPerPixel) :
+TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, size_t bytesPerPixel) :
 	_RenderContextImpl(renderContextImpl),
 	_Id(0)
 {
-	assert(size.PosX() > 0);
-	assert(size.PosY() > 0);
+	assert(size.x > 0);
+	assert(size.y > 0);
 	assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
 	assert(pixels != NULL);
 
@@ -26,14 +27,14 @@ TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Point2u& si
 
 	size_t sz = Util::SelectTextureSize(_Size);
 
-	_Quad = Point2u(sz, sz);
+	_Quad = Vec2u(sz, sz);
 
-	_Id = Util::CreateTexture((GLsizei)_Quad.PosX(), (GLsizei)_Quad.PosY(), format);
+	_Id = Util::CreateTexture((GLsizei)_Quad.x, (GLsizei)_Quad.y, format);
 
-	Copy(Point2u(0, 0), _Size, pixels, bytesPerPixel);
+	Copy(Vec2u(0, 0), _Size, pixels, bytesPerPixel);
 }
 
-TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Point2u& size, size_t bytesPerPixel) :
+TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Vec2u& size, size_t bytesPerPixel) :
 	_RenderContextImpl(renderContextImpl),
 	_Id(0)
 {
@@ -48,9 +49,9 @@ TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Point2u& si
 
 	size_t sz = Util::SelectTextureSize(_Size);
 
-	_Quad = Point2u(sz, sz);
+	_Quad = Vec2u(sz, sz);
 
-	_Id = Util::CreateTexture((GLsizei)_Quad.PosX(), (GLsizei)_Quad.PosY(), format);
+	_Id = Util::CreateTexture((GLsizei)_Quad.x, (GLsizei)_Quad.y, format);
 }
 
 TextureImpl::~TextureImpl()
@@ -58,7 +59,7 @@ TextureImpl::~TextureImpl()
 	Util::DeleteTexture((GLint)_Id);
 }
 
-void TextureImpl::Copy(const Point2u& dstPos, const Point2u& srcSize, uint8_t* pixels, size_t bytesPerPixel)
+void TextureImpl::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, size_t bytesPerPixel)
 {
 	GLint format = 0;
 
@@ -67,20 +68,20 @@ void TextureImpl::Copy(const Point2u& dstPos, const Point2u& srcSize, uint8_t* p
 	else
 		format = GL_RGBA;
 
-	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)dstPos.PosX(), (GLint)dstPos.PosY(), (GLsizei)srcSize.PosX(), (GLsizei)srcSize.PosY(), format, GL_UNSIGNED_BYTE, pixels));
+	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)dstPos.x, (GLint)dstPos.y, (GLsizei)srcSize.x, (GLsizei)srcSize.y, format, GL_UNSIGNED_BYTE, pixels));
 }
 
-void TextureImpl::Copy(const Point2u& dstPos, Surface* surface, const Point2u& srcSize)
+void TextureImpl::Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& srcSize)
 {
 	Copy(dstPos, srcSize, surface->Pixels(), surface->BytesPerPixel());
 }
 
-const Point2u& TextureImpl::Size()
+const Vec2u& TextureImpl::Size()
 {
 	return _Size;
 }
 
-const Point2u& TextureImpl::Quad()
+const Vec2u& TextureImpl::Quad()
 {
 	return _Quad;
 }

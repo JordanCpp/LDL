@@ -2,7 +2,6 @@
 #define LDL_Graphics_Camera_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/Graphics/Primitives/Point2i.hpp>
 #include <LDL/Graphics/Render.hpp>
 
 namespace LDL
@@ -14,12 +13,12 @@ namespace LDL
         class LDL_EXPORT Camera
         {
         public:
-            Camera(Render* render, const Point2u& pos, const Point2u& size);
+            Camera(Render* render, const Math::Vec2u& pos, const Math::Vec2u& size);
             CameraImpl* GetCameraImpl();
-            const Point2u& Pos();
-            const Point2u& Size();
-            void Pos(const Point2u& pos);
-            void Size(const Point2u& size);
+            const Math::Vec2u& Pos();
+            const Math::Vec2u& Size();
+            void Pos(const Math::Vec2u& pos);
+            void Size(const Math::Vec2u& size);
         private:
             CameraImpl* _CameraImpl;
         };

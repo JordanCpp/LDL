@@ -40,6 +40,7 @@ void* ReallocateSized(void* ptr, size_t Oldbytes, size_t Newbytes)
 
 using namespace LDL::Graphics;
 using namespace LDL::Loaders;
+using namespace LDL::Math;
 
 ImageLoader::ImageLoader(LDL::Allocators::Allocator* allocator) :
 	_Allocator(allocator),
@@ -60,11 +61,11 @@ void ImageLoader::Clear()
 {
 	_Allocator->Reset();
 	_Pixels = NULL;
-	_Size = LDL::Graphics::Point2u(0, 0);
+	_Size = Vec2u(0, 0);
 	_BytesPerPixel = 0;
 }
 
-const Point2u& ImageLoader::Size()
+const Vec2u& ImageLoader::Size()
 {
 	return _Size;
 }
@@ -119,7 +120,7 @@ void ImageLoader::Load(const std::string& path)
 	if (width <= 0 || height <= 0 || bytesPerPixel <= 0 || _Pixels == NULL)
 		throw LDL::Core::RuntimeError("stbi_load " + path + " failed");
 
-	_Size = Point2u(width, height);
+	_Size = Vec2u(width, height);
 	_BytesPerPixel = bytesPerPixel;
 }
 
@@ -129,7 +130,7 @@ void ImageLoader::Load(const Color& color, const std::string& path)
 
 	uint8_t* srcPixels = Pixels();
 
-	size_t dstBytes = Size().PosX() * Size().PosY() * 4;
+	size_t dstBytes = Size().x * Size().y * 4;
 
 	uint8_t* dstPixels = (uint8_t*)_Allocator->Allocate(dstBytes);
 
@@ -152,7 +153,7 @@ void ImageLoader::Load(uint8_t* data, size_t bytes)
 	if (width <= 0 || height <= 0 || bytesPerPixel <= 0 || _Pixels == NULL)
 		throw LDL::Core::RuntimeError("stbi_load_from_memory failed");
 
-	_Size = Point2u(width, height);
+	_Size = Vec2u(width, height);
 	_BytesPerPixel = bytesPerPixel;
 }
 
@@ -162,7 +163,7 @@ void ImageLoader::Load(const Color& color, uint8_t* data, size_t bytes)
 
 	uint8_t* srcPixels = Pixels();
 
-	size_t dstBytes = Size().PosX() * Size().PosY() * 4;
+	size_t dstBytes = Size().x * Size().y * 4;
 
 	uint8_t* dstPixels = (uint8_t*)_Allocator->Allocate(dstBytes);
 

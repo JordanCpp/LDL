@@ -7,12 +7,12 @@
 
 using namespace LDL::Graphics;
 
-TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Point2u& size, uint8_t* pixels, size_t bytesPerPixel) :
+TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, size_t bytesPerPixel) :
 	_RenderContextImpl(renderContextImpl),
 	_Id(0)
 {
-	assert(size.PosX() > 0);
-	assert(size.PosY() > 0);
+	assert(size.x > 0);
+	assert(size.y > 0);
 	assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
 	assert(pixels != NULL);
 
@@ -31,7 +31,7 @@ TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Point2u& si
 	else
 		format = GL_RGBA;
 
-	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_Size.PosX(), (GLsizei)_Size.PosY(), 0, format, GL_UNSIGNED_BYTE, pixels));
+	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_Size.x, (GLsizei)_Size.y, 0, format, GL_UNSIGNED_BYTE, pixels));
 }
 
 TextureImpl::~TextureImpl()
@@ -39,12 +39,12 @@ TextureImpl::~TextureImpl()
 	GL_CHECK(glDeleteTextures(0, (GLuint*)&_Id));
 }
 
-const Point2u& TextureImpl::Size()
+const Vec2u& TextureImpl::Size()
 {
 	return _Size;
 }
 
-const Point2u& TextureImpl::Quad()
+const Vec2u& TextureImpl::Quad()
 {
 	return _Quad;
 }

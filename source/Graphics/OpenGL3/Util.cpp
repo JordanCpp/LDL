@@ -8,12 +8,12 @@ using namespace LDL::Graphics;
 const size_t TextureCount = 12;
 const size_t TextureSizes[TextureCount] = {32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
 
-void LDL::Graphics::Util::DrawQuad(const Point2u& pos, const Point2u& size)
+void LDL::Graphics::Util::DrawQuad(const Vec2u& pos, const Vec2u& size)
 {
-	GLfloat x = (GLfloat)pos.PosX();
-	GLfloat y = (GLfloat)pos.PosY();
-	GLfloat w = (GLfloat)size.PosX();
-	GLfloat h = (GLfloat)size.PosY();
+	GLfloat x = (GLfloat)pos.x;
+	GLfloat y = (GLfloat)pos.y;
+	GLfloat w = (GLfloat)size.x;
+	GLfloat h = (GLfloat)size.y;
 
 	glBegin(GL_QUADS);
 	glTexCoord2f(0, 0); glVertex2f(x, y);
@@ -23,15 +23,15 @@ void LDL::Graphics::Util::DrawQuad(const Point2u& pos, const Point2u& size)
 	glEnd();
 }
 
-void Util::DrawQuad(const Point2u& pos, const Point2u& size, const Point2u& srcSize, size_t textureSize)
+void Util::DrawQuad(const Vec2u& pos, const Vec2u& size, const Vec2u& srcSize, size_t textureSize)
 {
-	GLfloat x = (GLfloat)pos.PosX();
-	GLfloat y = (GLfloat)pos.PosY();
-	GLfloat w = (GLfloat)size.PosX();
-	GLfloat h = (GLfloat)size.PosY();
+	GLfloat x = (GLfloat)pos.x;
+	GLfloat y = (GLfloat)pos.y;
+	GLfloat w = (GLfloat)size.x;
+	GLfloat h = (GLfloat)size.y;
 
-	GLfloat dw = (GLfloat)srcSize.PosX() / (GLfloat)textureSize;
-	GLfloat dh = (GLfloat)srcSize.PosY() / (GLfloat)textureSize;
+	GLfloat dw = (GLfloat)srcSize.x / (GLfloat)textureSize;
+	GLfloat dh = (GLfloat)srcSize.y / (GLfloat)textureSize;
 
 	glBegin(GL_QUADS);
 	glTexCoord2f(0, 0); glVertex2f(x, y);
@@ -41,17 +41,17 @@ void Util::DrawQuad(const Point2u& pos, const Point2u& size, const Point2u& srcS
 	glEnd();
 }
 
-void Util::DrawQuad(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
+void Util::DrawQuad(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
-	GLfloat x = (GLfloat)dstPos.PosX();
-	GLfloat y = (GLfloat)dstPos.PosY();
-	GLfloat w = (GLfloat)dstSize.PosX();
-	GLfloat h = (GLfloat)dstSize.PosY();
+	GLfloat x = (GLfloat)dstPos.x;
+	GLfloat y = (GLfloat)dstPos.y;
+	GLfloat w = (GLfloat)dstSize.x;
+	GLfloat h = (GLfloat)dstSize.y;
 
-	GLfloat cx = (GLfloat)srcPos.PosX();
-	GLfloat cy = (GLfloat)srcPos.PosY();
-	GLfloat cw = (GLfloat)srcSize.PosX();
-	GLfloat ch = (GLfloat)srcSize.PosY();
+	GLfloat cx = (GLfloat)srcPos.x;
+	GLfloat cy = (GLfloat)srcPos.y;
+	GLfloat cw = (GLfloat)srcSize.x;
+	GLfloat ch = (GLfloat)srcSize.y;
 
 	GLfloat dcx = cx / w;
 	GLfloat dcy = cy / h;
@@ -121,18 +121,18 @@ size_t Util::MaxTextureSize()
 	return result;
 }
 
-bool Util::IsMaxTextureSize(const Point2u& resolutionSize, size_t textureSize)
+bool Util::IsMaxTextureSize(const Vec2u& resolutionSize, size_t textureSize)
 {
-	if (textureSize >= resolutionSize.PosX() && textureSize >= resolutionSize.PosY())
+	if (textureSize >= resolutionSize.x && textureSize >= resolutionSize.y)
 		return true;
 
 	return false;
 }
 
-size_t Util::SelectTextureSize(const Point2u& size)
+size_t Util::SelectTextureSize(const Vec2u& size)
 {
-	size_t w = size.PosX();
-	size_t h = size.PosY();
+	size_t w = size.x;
+	size_t h = size.y;
 
 	for (size_t i = 0; i < TextureCount; i++)
 	{

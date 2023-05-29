@@ -4,6 +4,7 @@
 
 using namespace LDL::Input;
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 Display::Display()
 {
@@ -17,7 +18,7 @@ Display::Display()
 
 	while (EnumDisplaySettings(NULL, i++, &dev) != 0)
 	{
-		_VideoModes.push_back(VideoMode(Point2u(dev.dmPelsWidth, dev.dmPelsHeight), dev.dmBitsPerPel));
+		_VideoModes.push_back(VideoMode(Vec2u(dev.dmPelsWidth, dev.dmPelsHeight), dev.dmBitsPerPel));
 
 		ZeroMemory(&dev, sizeof(dev));
 	}
@@ -39,7 +40,7 @@ const VideoMode& Display::Current()
 	int height = GetDeviceCaps(hdc, VERTSIZE);
 	int bpp    = GetDeviceCaps(hdc, BITSPIXEL);
 
-	_VideoMode = VideoMode(Point2u(width, height), bpp);
+	_VideoMode = VideoMode(Vec2u(width, height), bpp);
 
 	return _VideoMode;
 }

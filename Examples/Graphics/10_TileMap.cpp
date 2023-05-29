@@ -17,12 +17,13 @@ using namespace LDL::Core;
 using namespace LDL::Allocators;
 using namespace LDL::Loaders;
 using namespace LDL::Enums;
+using namespace LDL::Math;
 
 int main()
 {
 	try
 	{
-		Window window(Point2u(0, 0), Point2u(800, 600), "10_TileMap");
+		Window window(Vec2u(0, 0), Vec2u(800, 600), "10_TileMap");
 
 		RenderContext renderContext;
 		Render render(&renderContext, &window);
@@ -41,13 +42,13 @@ int main()
 
 		Isometric isometric;
 
-		Point2u start = Point2u(350, 150);
-		Point2u mapSize = Point2u(9, 9);
-		Point2u tileSize = Point2u(80, 40);
+		Vec2u start = Vec2u(350, 150);
+		Vec2u mapSize = Vec2u(9, 9);
+		Vec2u tileSize = Vec2u(80, 40);
 
 		size_t dx = 0;
 		size_t dy = 0;
-		size_t step = tileSize.PosX() / 2;
+		size_t step = tileSize.x / 2;
 
 		while (window.Running())
 		{
@@ -88,16 +89,16 @@ int main()
 			render.Color(Color(0, 162, 232));
 			render.Clear();
 
-			for (size_t rows = 0; rows < mapSize.PosX(); rows++)
+			for (size_t rows = 0; rows < mapSize.x; rows++)
 			{
-				for (size_t cols = 0; cols < mapSize.PosY(); cols++)
+				for (size_t cols = 0; cols < mapSize.y; cols++)
 				{
-					size_t x = cols * tileSize.PosX() / 2;
-					size_t y = rows * tileSize.PosY();
+					size_t x = cols * tileSize.x / 2;
+					size_t y = rows * tileSize.y;
 
-					Point2u pt = isometric.CartesianToIsometric(Point2u(x, y));
+					Vec2u pt = isometric.CartesianToIsometric(Vec2u(x, y));
 
-					render.Draw(&image, Point2u(start.PosX() + pt.PosX() + dx, start.PosY() + pt.PosY() + dy));
+					render.Draw(&image, Vec2u(start.x + pt.x + dx, start.y + pt.y + dy));
 				}
 			}
 

@@ -2,8 +2,9 @@
 #include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
+WindowImpl::WindowImpl(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _HGLRC(NULL),
     _Window(pos, size, title, mode)
 {
@@ -67,12 +68,12 @@ void WindowImpl::PollEvents()
     _Window.PollEvents();
 }
 
-const Point2u& WindowImpl::Size()
+const Vec2u& WindowImpl::Size()
 {
     return _Window.Size();
 }
 
-const Point2u& WindowImpl::Pos()
+const Vec2u& WindowImpl::Pos()
 {
     return _Window.Pos();
 }

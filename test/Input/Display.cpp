@@ -14,8 +14,8 @@ void Modes()
 
 	for (size_t i = 0; i < modes.size(); i++)
 	{
-		LDL_TEST_EQUAL(modes[i].Size().PosX() > 0);
-		LDL_TEST_EQUAL(modes[i].Size().PosY() > 0);
+		LDL_TEST_EQUAL(modes[i].Size().x > 0);
+		LDL_TEST_EQUAL(modes[i].Size().y > 0);
 		LDL_TEST_EQUAL(modes[i].BitsPerPixel() > 0);
 	}
 }
@@ -26,8 +26,8 @@ void Current()
 
 	VideoMode current = display.Current();
 
-	LDL_TEST_EQUAL(current.Size().PosX() > 0);
-	LDL_TEST_EQUAL(current.Size().PosY() > 0);
+	LDL_TEST_EQUAL(current.Size().x > 0);
+	LDL_TEST_EQUAL(current.Size().y > 0);
 	LDL_TEST_EQUAL(current.BitsPerPixel() > 0);
 }
 

@@ -1,8 +1,8 @@
 #ifndef LDL_Graphics_OpenGL1_RenderBuffer_hpp
 #define LDL_Graphics_OpenGL1_RenderBuffer_hpp
 
-#include <LDL/Graphics/Primitives/Point2u.hpp>
-#include <LDL/Graphics/Primitives/Color.hpp>
+#include <LDL/Math/Vec2.hpp>
+#include <LDL/Graphics/Color.hpp>
 #include <LDL/Graphics/Texture.hpp>
 #include "TextureBatcherImpl.hpp"
 #include <vector>
@@ -100,9 +100,9 @@ namespace LDL
 		public:
 			RenderBuffer();
 			void Reset();
-			void Texture(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize, size_t textureId, size_t textureQuad);
-			void Line(const Point2u& first, const Point2u& last, const Color& color);
-			void Fill(const Point2u& pos, const Point2u& size, const Color& color);
+			void Texture(const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize, size_t textureId, size_t textureQuad);
+			void Line(const Math::Vec2u& first, const Math::Vec2u& last, const Color& color);
+			void Fill(const Math::Vec2u& pos, const Math::Vec2u& size, const Color& color);
 			void TextureBatcher(size_t textureId, size_t count, Util::Quad* quads);
 			void Clear(const Color& color);
 			void Draw();

@@ -12,15 +12,15 @@ namespace LDL
 		class WindowImpl
 		{
 		public:
-			WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Fixed);
+			WindowImpl(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Fixed);
 			~WindowImpl();
 			bool GetEvent(LDL::Events::Event& event);
 			bool WaitEvent(LDL::Events::Event& event);
 			void StopEvent();
 			void Title(const std::string& title);
 			const std::string& Title();
-			const Point2u& Size();
-			const Point2u& Pos();
+			const Math::Vec2u& Size();
+			const Math::Vec2u& Pos();
 			HWND Hwnd();
 			void Hwnd(HWND hwnd);
 			HDC Hdc();

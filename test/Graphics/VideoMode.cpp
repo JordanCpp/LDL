@@ -2,6 +2,7 @@
 #include <LDL/Graphics/VideoMode.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 void Limit()
 {
@@ -12,8 +13,8 @@ void Default()
 {
 	VideoMode videoMode;
 
-	LDL_TEST_EQUAL(videoMode.Size().PosX()  == 0);
-	LDL_TEST_EQUAL(videoMode.Size().PosY()  == 0);
+	LDL_TEST_EQUAL(videoMode.Size().x  == 0);
+	LDL_TEST_EQUAL(videoMode.Size().y  == 0);
 	LDL_TEST_EQUAL(videoMode.BitsPerPixel() == 0);
 }
 
@@ -21,10 +22,10 @@ void Init()
 {
 	LDL_TEST_EQUAL(VideoMode::Limit > 0);
 
-	VideoMode videoMode(Point2u(800, 600), 32);
+	VideoMode videoMode(Vec2u(800, 600), 32);
 
-	LDL_TEST_EQUAL(videoMode.Size().PosX()  == 800);
-	LDL_TEST_EQUAL(videoMode.Size().PosY()  == 600);
+	LDL_TEST_EQUAL(videoMode.Size().x  == 800);
+	LDL_TEST_EQUAL(videoMode.Size().y  == 600);
 	LDL_TEST_EQUAL(videoMode.BitsPerPixel() == 32);
 }
 

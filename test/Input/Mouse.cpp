@@ -7,8 +7,8 @@ void GetPos()
 {
 	Mouse mouse;
 	
-	LDL_TEST_EQUAL(mouse.Pos().PosX() > 0);
-	LDL_TEST_EQUAL(mouse.Pos().PosY() > 0);
+	LDL_TEST_EQUAL(mouse.Pos().x > 0);
+	LDL_TEST_EQUAL(mouse.Pos().y > 0);
 }
 
 int main()

@@ -21,15 +21,15 @@ RenderImpl::RenderImpl(RenderContextImpl* renderContextImpl, Window* window) :
 
 void LDL::Graphics::RenderImpl::Buffer(uint8_t* dst)
 {
-	GL_CHECK(glReadPixels(0, 0, (GLsizei)_Window->Size().PosX(), (GLsizei)_Window->Size().PosY(), GL_RGBA, GL_UNSIGNED_BYTE, dst));
+	GL_CHECK(glReadPixels(0, 0, (GLsizei)_Window->Size().x, (GLsizei)_Window->Size().y, GL_RGBA, GL_UNSIGNED_BYTE, dst));
 }
 
 void RenderImpl::Begin()
 {
-	GL_CHECK(glViewport(0, 0, (GLsizei)_Window->Size().PosX(), (GLsizei)_Window->Size().PosY()));
+	GL_CHECK(glViewport(0, 0, (GLsizei)_Window->Size().x, (GLsizei)_Window->Size().y));
 
 	GL_CHECK(glMatrixMode(GL_PROJECTION));
-	_Projection = Ortho(0.0f, (float)_Window->Size().PosX(), (float)_Window->Size().PosY(), 0.0f, 0.0f, 1.0f);
+	_Projection = Ortho(0.0f, (float)_Window->Size().x, (float)_Window->Size().y, 0.0f, 0.0f, 1.0f);
 	GL_CHECK(glLoadMatrixf(_Projection.Values()));
 
 
@@ -47,7 +47,7 @@ void RenderImpl::End()
 	_RenderBuffer.Reset();
 }
 
-const Point2u& RenderImpl::Size()
+const Vec2u& RenderImpl::Size()
 {
 	return _Window->Size();
 }
@@ -74,7 +74,7 @@ void RenderImpl::Color(const LDL::Graphics::Color& color)
 	_Color = color;
 }
 
-void RenderImpl::Pixel(const Point2u& pos)
+void RenderImpl::Pixel(const Vec2u& pos)
 {
 	GLclampf r;
 	GLclampf g;
@@ -84,48 +84,48 @@ void RenderImpl::Pixel(const Point2u& pos)
 
 	glBegin(GL_POINTS);
 	glColor3f(r, g, b);
-	glVertex2i((GLint)pos.PosX(), (GLint)pos.PosY());
+	glVertex2i((GLint)pos.x, (GLint)pos.y);
 	glEnd();
 }
 
-void RenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
+void RenderImpl::Line(const Vec2u& pos1, const Vec2u& pos2)
 {
 	_RenderBuffer.Line(pos1, pos2, _Color);
 }
 
-void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
+void RenderImpl::Fill(const Vec2u& pos, const Vec2u& size)
 {
 	_RenderBuffer.Fill(pos, size, _Color);
 }
 
-void RenderImpl::Draw(Surface* image, const Point2u& pos)
+void RenderImpl::Draw(Surface* image, const Vec2u& pos)
 {
 	_Screen.Draw(image, pos);
 }
 
-void RenderImpl::Draw(Surface* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
 	_Screen.Draw(image, pos, size);
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& pos)
+void RenderImpl::Draw(Texture* image, const Vec2u& pos)
 {
-	Draw(image, pos, image->Size(), Point2u(0, 0), image->Size());
+	Draw(image, pos, image->Size(), Vec2u(0, 0), image->Size());
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
 {
-	Draw(image, pos, size, Point2u(0, 0), image->Size());
+	Draw(image, pos, size, Vec2u(0, 0), image->Size());
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
+void RenderImpl::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	Draw(image, dstPos, srcSize, srcPos, srcSize);
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
+void RenderImpl::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
-	_RenderBuffer.Texture(dstPos, dstSize, srcPos, srcSize, image->GetTextureImpl()->Id(), image->GetTextureImpl()->Quad().PosX());
+	_RenderBuffer.Texture(dstPos, dstSize, srcPos, srcSize, image->GetTextureImpl()->Id(), image->GetTextureImpl()->Quad().x);
 }
 
 void RenderImpl::Draw(TextureBatcher* textureBatcher)

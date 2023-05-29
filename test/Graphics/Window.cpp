@@ -6,6 +6,7 @@
 
 using namespace LDL::Graphics;
 using namespace LDL::Allocators;
+using namespace LDL::Math;
 
 int main()
 {
@@ -15,13 +16,13 @@ int main()
 
 		const std::string title = "LDL Window title!";
 
-		Window window(LDL::Graphics::Point2u(1, 2), Point2u(640, 480), title);
+		Window window(Vec2u(1, 2), Vec2u(640, 480), title);
 
-		LDL_TEST_EQUAL(window.Pos().PosX() == 1);
-		LDL_TEST_EQUAL(window.Pos().PosY() == 2);
+		LDL_TEST_EQUAL(window.Pos().x == 1);
+		LDL_TEST_EQUAL(window.Pos().y == 2);
 
-		LDL_TEST_EQUAL(window.Size().PosX() == 640);
-		LDL_TEST_EQUAL(window.Size().PosY() == 480);
+		LDL_TEST_EQUAL(window.Size().x == 640);
+		LDL_TEST_EQUAL(window.Size().y == 480);
 
 		LDL_TEST_EQUAL(window.Title() == title);
 	}

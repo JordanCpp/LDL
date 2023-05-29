@@ -1,5 +1,5 @@
 #include <LDL/Core/TestEqual.hpp>
-#include <LDL/Math/Mat4f.hpp>
+#include <LDL/Math/Mat4.hpp>
 
 using namespace LDL::Math;
 

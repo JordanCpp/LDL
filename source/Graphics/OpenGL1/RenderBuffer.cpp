@@ -2,6 +2,7 @@
 #include "../OpenGL/Util.hpp"
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 RenderBuffer::RenderBuffer()
 {
@@ -13,26 +14,26 @@ void RenderBuffer::Reset()
 	_Elements.clear();
 }
 
-void RenderBuffer::Texture(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize, size_t textureId, size_t textureQuad)
+void RenderBuffer::Texture(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize, size_t textureId, size_t textureQuad)
 {
 	RenderElement element;
 
 	element.type                       = RenderElement::IsTexture;
-	element.textureElement.dstPosX     = (uint16_t)dstPos.PosX();
-	element.textureElement.dstPosY     = (uint16_t)dstPos.PosY();
-	element.textureElement.dstSizeX    = (uint16_t)dstSize.PosX();
-	element.textureElement.dstSizeY    = (uint16_t)dstSize.PosY();
-	element.textureElement.srcPosX     = (uint16_t)srcPos.PosX();
-	element.textureElement.srcPosY     = (uint16_t)srcPos.PosY();
-	element.textureElement.srcSizeX    = (uint16_t)srcSize.PosX();
-	element.textureElement.srcSizeY    = (uint16_t)srcSize.PosY();
+	element.textureElement.dstPosX     = (uint16_t)dstPos.x;
+	element.textureElement.dstPosY     = (uint16_t)dstPos.y;
+	element.textureElement.dstSizeX    = (uint16_t)dstSize.x;
+	element.textureElement.dstSizeY    = (uint16_t)dstSize.y;
+	element.textureElement.srcPosX     = (uint16_t)srcPos.x;
+	element.textureElement.srcPosY     = (uint16_t)srcPos.y;
+	element.textureElement.srcSizeX    = (uint16_t)srcSize.x;
+	element.textureElement.srcSizeY    = (uint16_t)srcSize.y;
 	element.textureElement.textureId   = (uint16_t)textureId;
 	element.textureElement.textureQuad = (uint16_t)textureQuad;
 
 	_Elements.push_back(element);
 }
 
-void RenderBuffer::Line(const Point2u& first, const Point2u& last, const Color& color)
+void RenderBuffer::Line(const Vec2u& first, const Vec2u& last, const Color& color)
 {
 	RenderElement element;
 
@@ -40,15 +41,15 @@ void RenderBuffer::Line(const Point2u& first, const Point2u& last, const Color& 
 	element.lineElement.r      = color.Red();
 	element.lineElement.g      = color.Green();
 	element.lineElement.b      = color.Blue();
-	element.lineElement.firstX = (uint16_t)first.PosX();
-	element.lineElement.firstY = (uint16_t)first.PosY();
-	element.lineElement.lastX  = (uint16_t)last.PosX();
-	element.lineElement.lastY  = (uint16_t)last.PosY();
+	element.lineElement.firstX = (uint16_t)first.x;
+	element.lineElement.firstY = (uint16_t)first.y;
+	element.lineElement.lastX  = (uint16_t)last.x;
+	element.lineElement.lastY  = (uint16_t)last.y;
 
 	_Elements.push_back(element);
 }
 
-void RenderBuffer::Fill(const Point2u& pos, const Point2u& size, const Color& color)
+void RenderBuffer::Fill(const Vec2u& pos, const Vec2u& size, const Color& color)
 {
 	RenderElement element;
 
@@ -56,10 +57,10 @@ void RenderBuffer::Fill(const Point2u& pos, const Point2u& size, const Color& co
 	element.fillElement.r     = color.Red();
 	element.fillElement.g     = color.Green();
 	element.fillElement.b     = color.Blue();
-	element.fillElement.posX  = (uint16_t)pos.PosX();
-	element.fillElement.posY  = (uint16_t)pos.PosY();
-	element.fillElement.sizeX = (uint16_t)size.PosX();
-	element.fillElement.sizeY = (uint16_t)size.PosY();
+	element.fillElement.posX  = (uint16_t)pos.x;
+	element.fillElement.posY  = (uint16_t)pos.y;
+	element.fillElement.sizeX = (uint16_t)size.x;
+	element.fillElement.sizeY = (uint16_t)size.y;
 
 	_Elements.push_back(element);
 }

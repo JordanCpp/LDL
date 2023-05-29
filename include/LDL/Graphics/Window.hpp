@@ -3,7 +3,7 @@
 
 #include <string>
 #include <LDL/Events/Event.hpp>
-#include <LDL/Graphics/Primitives/Point2u.hpp>
+#include <LDL/Math/Vec2.hpp>
 #include <LDL/Enums/WindowMode.hpp>
 #include <LDL/Core/FastPimpl.hpp>
 
@@ -16,7 +16,7 @@ namespace LDL
 		class LDL_EXPORT Window : public LDL::Core::FastPimpl
 		{
 		public:
-			Window(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
+			Window(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
 			~Window();
 			bool Running();
 			void PollEvents();
@@ -25,8 +25,8 @@ namespace LDL
 			void StopEvent();
 			void Title(const std::string& title);
 			const std::string& Title();
-			const Point2u& Size();
-			const Point2u& Pos();
+			const Math::Vec2u& Size();
+			const Math::Vec2u& Pos();
 			WindowImpl* GetWindowImpl();
 		private:
 			WindowImpl* _WindowImpl;

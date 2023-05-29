@@ -2,16 +2,17 @@
 #include <assert.h>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-void PixelCopier::Copy(Surface* srcSurf, Surface* dstSurf, const Point2u& pos)
+void PixelCopier::Copy(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
 {
 	assert(srcSurf != NULL);
 	assert(dstSurf != NULL);
 
 	assert(srcSurf->BytesPerPixel() <= dstSurf->BytesPerPixel());
 
-	assert(srcSurf->Size().PosX() <= dstSurf->Size().PosX());
-	assert(srcSurf->Size().PosY() <= dstSurf->Size().PosY());
+	assert(srcSurf->Size().x <= dstSurf->Size().x);
+	assert(srcSurf->Size().y <= dstSurf->Size().y);
 
 	uint8_t bpp = srcSurf->BytesPerPixel();
 
@@ -31,32 +32,32 @@ void PixelCopier::Copy(Surface* srcSurf, Surface* dstSurf, const Point2u& pos)
 	}
 }
 
-void PixelCopier::Copy8(Surface* srcSurf, Surface* dstSurf, const Point2u& pos)
+void PixelCopier::Copy8(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
 {
 }
 
-void PixelCopier::Copy16(Surface* srcSurf, Surface* dstSurf, const Point2u& pos)
+void PixelCopier::Copy16(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
 {
 }
 
-void PixelCopier::Copy24(Surface* srcSurf, Surface* dstSurf, const Point2u& pos)
+void PixelCopier::Copy24(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
 {
 	Copy32(srcSurf, dstSurf, pos);
 }
 
-void PixelCopier::Copy32(Surface* srcSurf, Surface* dstSurf, const Point2u& pos)
+void PixelCopier::Copy32(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
 {
 	uint8_t dstBpp = dstSurf->BytesPerPixel();
 	uint8_t srcBpp = srcSurf->BytesPerPixel();
 
-	uint8_t* dstPixels = dstSurf->Pixels() + (pos.PosX() + pos.PosY() * dstSurf->Size().PosX()) * dstBpp;
+	uint8_t* dstPixels = dstSurf->Pixels() + (pos.x + pos.y * dstSurf->Size().x) * dstBpp;
 	uint8_t* srcPixels = srcSurf->Pixels();
 
-	size_t dstStride = dstSurf->Size().PosX() * dstBpp;
-	size_t srcStride = srcSurf->Size().PosX() * srcBpp;
+	size_t dstStride = dstSurf->Size().x * dstBpp;
+	size_t srcStride = srcSurf->Size().x * srcBpp;
 
-	size_t w = srcSurf->Size().PosX();
-	size_t h = srcSurf->Size().PosY();
+	size_t w = srcSurf->Size().x;
+	size_t h = srcSurf->Size().y;
 
 	for (size_t y = 0; y < h; ++y)
 	{

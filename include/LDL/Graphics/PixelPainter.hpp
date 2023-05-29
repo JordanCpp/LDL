@@ -13,17 +13,17 @@ namespace LDL
 			PixelPainter();
 			~PixelPainter();
 			Surface* Target();
-			const Point2u& Size();
+			const Math::Vec2u& Size();
 			uint8_t BytesPerPixel();
 			uint8_t* Pixels();
 			const LDL::Graphics::Color& Color();
 			void Color(const LDL::Graphics::Color & color);
 			void Clear();
 			void Bind(Surface* source);
-			void Pixel(const Point2u& pos);
-			const LDL::Graphics::Color& GetPixel(const Point2u& pos);
-			void Fill(const Point2u& pos, const Point2u& size);
-			void Line(const Point2u& pos1, const Point2u& pos2);
+			void Pixel(const Math::Vec2u& pos);
+			const LDL::Graphics::Color& GetPixel(const Math::Vec2u& pos);
+			void Fill(const Math::Vec2u& pos, const Math::Vec2u& size);
+			void Line(const Math::Vec2u& pos1, const Math::Vec2u& pos2);
 		private:
 			uint8_t _Red;
 			uint8_t _Green;
@@ -34,7 +34,7 @@ namespace LDL
 			size_t   _Heigth;
 			uint8_t  _BytesPerPixel;
 			uint8_t* _Pixels;
-			Point2u  _Size;
+			LDL::Math::Vec2u  _Size;
 			LDL::Graphics::Color _Color;
 			LDL::Graphics::Color _ColorGetPixel;
 		};

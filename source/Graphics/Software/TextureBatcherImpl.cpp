@@ -3,12 +3,13 @@
 #include "../OpenGL/Util.hpp"
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 TextureBatcherImpl::TextureBatcherImpl(Texture* texture, size_t count)
 {
 }
 
-void TextureBatcherImpl::Draw(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
+void TextureBatcherImpl::Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 }
 

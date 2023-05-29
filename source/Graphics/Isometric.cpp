@@ -1,23 +1,24 @@
 #include <LDL/Graphics/Isometric.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-const Point2u& Isometric::CartesianToIsometric(const Point2u& pt)
+const Vec2u& Isometric::CartesianToIsometric(const Vec2u& pt)
 {
-	size_t x = pt.PosX() - pt.PosY();
-	size_t y = (pt.PosX() + pt.PosY()) / 2;
+	size_t x = pt.x - pt.y;
+	size_t y = (pt.x + pt.y) / 2;
 
-	_Result = Point2u(x, y);
+	_Result = Vec2u(x, y);
 
 	return _Result;
 }
 
-const Point2u& Isometric::IsometricToCartesian(const Point2u& pt)
+const Vec2u& Isometric::IsometricToCartesian(const Vec2u& pt)
 {
-	size_t x = (2 * pt.PosY() + pt.PosX()) / 2;
-	size_t y = (2 * pt.PosY() - pt.PosX()) / 2;
+	size_t x = (2 * pt.y + pt.x) / 2;
+	size_t y = (2 * pt.y - pt.x) / 2;
 
-	_Result = Point2u(x, y);
+	_Result = Vec2u(x, y);
 
 	return _Result;
 }

@@ -1,7 +1,7 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Math/Funcs.hpp>
-#include <LDL/Math/Vec3f.hpp>
-#include <LDL/Math/Mat4f.hpp>
+#include <LDL/Math/Vec3.hpp>
+#include <LDL/Math/Mat4.hpp>
 
 using namespace LDL::Math;
 

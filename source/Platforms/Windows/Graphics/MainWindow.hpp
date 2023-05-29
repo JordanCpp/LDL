@@ -13,7 +13,7 @@ namespace LDL
 		class MainWindow
 		{
 		public:
-			MainWindow(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode);
+			MainWindow(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode);
 			~MainWindow();
 			bool Running();
 			void PollEvents();
@@ -22,8 +22,8 @@ namespace LDL
 			void StopEvent();
 			void Title(const std::string& title);
 			const std::string& Title();
-			const Point2u& Size();
-			const Point2u& Pos();
+			const Math::Vec2u& Size();
+			const Math::Vec2u& Pos();
 		private:
 			size_t ConvertKey(size_t key);
 			static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);

@@ -2,7 +2,7 @@
 #define LDL_Graphics_ImageWritter_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/Graphics/Primitives/Point2u.hpp>
+#include <LDL/Math/Vec2.hpp>
 #include <string>
 
 namespace LDL
@@ -12,7 +12,7 @@ namespace LDL
 		class LDL_EXPORT ImageWritter
 		{
 		public:
-			void Save(const std::string& path, const Point2u& size, size_t bytesPerPixel, uint8_t* pixels);
+			void Save(const std::string& path, const Math::Vec2u& size, size_t bytesPerPixel, uint8_t* pixels);
 		private:
 		};
 	}

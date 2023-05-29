@@ -9,12 +9,13 @@ using namespace LDL::Graphics;
 using namespace LDL::Events;
 using namespace LDL::Time;
 using namespace LDL::Core;
+using namespace LDL::Math;
 
 int main()
 {
 	try
 	{
-		Window window(Point2u(0, 0), Point2u(800, 600), "Window!");
+		Window window(Vec2u(0, 0), Vec2u(800, 600), "Window!");
 
 		RenderContext renderContext;
 		Render render(&renderContext, &window);

@@ -2,19 +2,20 @@
 #include <LDL/Graphics/PixelConverter.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 void Fill()
 {
-	Point2u size(800, 600);
+	Vec2u size(800, 600);
 	uint8_t bytesPerPixel = 4;
 
-	Color* pixels = new Color[size.PosX() * size.PosY()];
+	Color* pixels = new Color[size.x * size.y];
 
 	PixelConverter pixelConverter;
 
 	pixelConverter.Fill((uint8_t*)pixels, size, bytesPerPixel, Color(1, 2, 3, 4));
 
-	for (size_t i = 0; i < size.PosX() * size.PosY(); i++)
+	for (size_t i = 0; i < size.x * size.y; i++)
 	{
 		LDL_TEST_EQUAL(pixels[i].Red() == 1);
 		LDL_TEST_EQUAL(pixels[i].Green() == 2);
@@ -27,10 +28,10 @@ void Fill()
 
 void BgrToRgb()
 {
-	Point2u size(800, 600);
+	Vec2u size(800, 600);
 	uint8_t bytesPerPixel = 4;
 
-	Color* pixels = new Color[size.PosX() * size.PosY()];
+	Color* pixels = new Color[size.x * size.y];
 
 	PixelConverter pixelConverter;
 
@@ -38,7 +39,7 @@ void BgrToRgb()
 
 	pixelConverter.BgrToRgb((uint8_t*)pixels, size, bytesPerPixel);
 
-	for (size_t i = 0; i < size.PosX() * size.PosY(); i++)
+	for (size_t i = 0; i < size.x * size.y; i++)
 	{
 		LDL_TEST_EQUAL(pixels[i].Red() == 3);
 		LDL_TEST_EQUAL(pixels[i].Green() == 2);
@@ -51,10 +52,10 @@ void BgrToRgb()
 
 void RgbToBgr()
 {
-	Point2u size(800, 600);
+	Vec2u size(800, 600);
 	uint8_t bytesPerPixel = 4;
 
-	Color* pixels = new Color[size.PosX() * size.PosY()];
+	Color* pixels = new Color[size.x * size.y];
 
 	PixelConverter pixelConverter;
 
@@ -62,7 +63,7 @@ void RgbToBgr()
 
 	pixelConverter.BgrToRgb((uint8_t*)pixels, size, bytesPerPixel);
 
-	for (size_t i = 0; i < size.PosX() * size.PosY(); i++)
+	for (size_t i = 0; i < size.x * size.y; i++)
 	{
 		LDL_TEST_EQUAL(pixels[i].Red() == 3);
 		LDL_TEST_EQUAL(pixels[i].Green() == 2);

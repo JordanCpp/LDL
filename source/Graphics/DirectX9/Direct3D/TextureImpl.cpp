@@ -5,11 +5,11 @@
 
 using namespace LDL::Graphics;
 
-TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Point2u& size, uint8_t* pixels, size_t bytesPerPixel) :
+TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, size_t bytesPerPixel) :
 	_Texture(NULL)
 {
-	assert(size.PosX() > 0);
-	assert(size.PosY() > 0);
+	assert(size.x > 0);
+	assert(size.y > 0);
 	assert(pixels != NULL);
 	assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
 
@@ -24,7 +24,7 @@ TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Point2u& si
 	else
 		format = D3DFMT_R8G8B8;
 	
-	result = D3DXCreateTexture(renderContextImpl->Context.Device, (UINT)size.PosX(), (UINT)size.PosY(), D3DX_DEFAULT, 0, format, D3DPOOL_MANAGED, &_Texture);
+	result = D3DXCreateTexture(renderContextImpl->Context.Device, (UINT)size.x, (UINT)size.y, D3DX_DEFAULT, 0, format, D3DPOOL_MANAGED, &_Texture);
 	if (FAILED(result))
 		throw LDL::Core::RuntimeError("D3DXCreateTexture failed");
 
@@ -34,7 +34,7 @@ TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Point2u& si
 	if (FAILED(result))
 		throw LDL::Core::RuntimeError("LockRect failed");
 
-	memcpy(rect.pBits, pixels, Size().PosX() * Size().PosY() * bytesPerPixel);
+	memcpy(rect.pBits, pixels, Size().x * Size().y * bytesPerPixel);
 	
 	result = _Texture->UnlockRect(0);
 	if (FAILED(result))
@@ -50,7 +50,7 @@ TextureImpl::~TextureImpl()
 	}
 }
 
-const Point2u& TextureImpl::Size()
+const Vec2u& TextureImpl::Size()
 {
 	return _Size;
 }

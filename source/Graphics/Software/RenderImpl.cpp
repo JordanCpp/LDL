@@ -2,6 +2,7 @@
 #include "../../Platforms/Windows/Graphics/Software/WindowImpl.hpp"
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 RenderImpl::RenderImpl(RenderContextImpl* renderContextImpl, Window* window) :
 	_Window(window),
@@ -24,7 +25,7 @@ void RenderImpl::End()
 	_Window->GetWindowImpl()->Present(_Canvas.Pixels(), _Canvas.BytesPerPixel());
 }
 
-const Point2u& RenderImpl::Size()
+const Vec2u& RenderImpl::Size()
 {
 	return _Window->Size();
 }
@@ -44,34 +45,34 @@ void RenderImpl::Color(const LDL::Graphics::Color& color)
 	_PixelPainter.Color(color);
 }
 
-void RenderImpl::Pixel(const Point2u& pos)
+void RenderImpl::Pixel(const Vec2u& pos)
 {
 	_PixelPainter.Pixel(pos);
 }
 
-void RenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
+void RenderImpl::Line(const Vec2u& pos1, const Vec2u& pos2)
 {
 	_PixelPainter.Line(pos1, pos2);
 }
 
-void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
+void RenderImpl::Fill(const Vec2u& pos, const Vec2u& size)
 {
 	_PixelPainter.Fill(pos, size);
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
 {
 	Draw(image->GetTextureImpl()->GetSurface(), pos, size);
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& pos)
+void RenderImpl::Draw(Texture* image, const Vec2u& pos)
 {
 	Draw(image, pos, image->Size());
 }
 
-void RenderImpl::Draw(Surface* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
-	if (size.PosX() != image->Size().PosX() || size.PosY() != image->Size().PosY())
+	if (size.x != image->Size().x || size.y != image->Size().y)
 	{
 		Surface* result = _ImageResizer.Resize(size, image);
 		_PixelCopier.Copy(result, &_Canvas, pos);
@@ -82,16 +83,16 @@ void RenderImpl::Draw(Surface* image, const Point2u& pos, const Point2u& size)
 	}
 }
 
-void RenderImpl::Draw(Surface* image, const Point2u& pos)
+void RenderImpl::Draw(Surface* image, const Vec2u& pos)
 {
 	Draw(image, pos, image->Size());
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
+void RenderImpl::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
+void RenderImpl::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 }
 

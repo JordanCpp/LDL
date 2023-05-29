@@ -19,13 +19,14 @@
 #endif
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-Texture::Texture(RenderContext* renderContext, const Point2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
+Texture::Texture(RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
 	_TextureImpl(new TextureImpl(renderContext->GetRenderContextImpl(), size, pixels, bytesPerPixel))
 {
 }
 
-Texture::Texture(RenderContext* renderContext, const Point2u& size, uint8_t bytesPerPixel) :
+Texture::Texture(RenderContext* renderContext, const Vec2u& size, uint8_t bytesPerPixel) :
 	_TextureImpl(new TextureImpl(renderContext->GetRenderContextImpl(), size, bytesPerPixel))
 {
 }
@@ -35,17 +36,17 @@ Texture::~Texture()
 	delete _TextureImpl;
 }
 
-void Texture::Copy(const Point2u& dstPos, const Point2u& srcSize, uint8_t* pixels, size_t bytesPerPixel)
+void Texture::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, size_t bytesPerPixel)
 {
 	_TextureImpl->Copy(dstPos, srcSize, pixels, bytesPerPixel);
 }
 
-void Texture::Copy(const Point2u& dstPos, Surface* surface, const Point2u& srcSize)
+void Texture::Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& srcSize)
 {
 	_TextureImpl->Copy(dstPos, surface, srcSize);
 }
 
-const Point2u& Texture::Size()
+const Vec2u& Texture::Size()
 {
 	return _TextureImpl->Size();
 }

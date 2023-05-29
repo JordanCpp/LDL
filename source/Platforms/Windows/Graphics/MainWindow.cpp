@@ -3,6 +3,7 @@
 #include <LDL/Enums/KeyboardKey.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 static const char AppName[] = "MainWindow";
 
@@ -267,7 +268,7 @@ LRESULT CALLBACK MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPA
     return result;
 }
 
-MainWindow::MainWindow(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
+MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _BaseWindow(pos, size, title)
 {
     ZeroMemory(&_WNDCLASS, sizeof(WNDCLASS));
@@ -306,15 +307,15 @@ MainWindow::MainWindow(const Point2u& pos, const Point2u& size, const std::strin
 
     RECT rect;
 
-    rect.left   = (LONG)_BaseWindow.Pos().PosX();
-    rect.top    = (LONG)_BaseWindow.Pos().PosY();
-    rect.right  = (LONG)_BaseWindow.Size().PosX();
-    rect.bottom = (LONG)_BaseWindow.Size().PosY();
+    rect.left   = (LONG)_BaseWindow.Pos().x;
+    rect.top    = (LONG)_BaseWindow.Pos().y;
+    rect.right  = (LONG)_BaseWindow.Size().x;
+    rect.bottom = (LONG)_BaseWindow.Size().y;
 
     if (!AdjustWindowRect(&rect, style, FALSE))
         throw LDL::Core::RuntimeError("AdjustWindowRect failed");
 
-    _HWND = CreateWindow(AppName, "", style, (int)_BaseWindow.Pos().PosX(), (int)_BaseWindow.Pos().PosY(), rect.right - rect.left, rect.bottom - rect.top, 0, 0, _HINSTANCE, 0);
+    _HWND = CreateWindow(AppName, "", style, (int)_BaseWindow.Pos().x, (int)_BaseWindow.Pos().y, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _HINSTANCE, 0);
 
     if (_HWND == INVALID_HANDLE_VALUE)
         throw LDL::Core::RuntimeError("CreateWindow failed");
@@ -410,19 +411,19 @@ const std::string& MainWindow::Title()
     return _BaseWindow.Title();
 }
 
-const Point2u& MainWindow::Size()
+const Vec2u& MainWindow::Size()
 {
     RECT rect;
 
     if (!GetClientRect(_HWND, &rect))
         throw LDL::Core::RuntimeError("GetClientRect failed");
 
-    _BaseWindow.Size(Point2u(rect.right + Pos().PosX(), rect.bottom + Pos().PosY()));
+    _BaseWindow.Size(Vec2u(rect.right + Pos().x, rect.bottom + Pos().y));
 
     return _BaseWindow.Size();
 }
 
-const Point2u& MainWindow::Pos()
+const Vec2u& MainWindow::Pos()
 {
     return _BaseWindow.Pos();
 }

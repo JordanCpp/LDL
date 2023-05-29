@@ -5,13 +5,14 @@
 
 using namespace LDL::Graphics;
 using namespace LDL::Core;
+using namespace LDL::Math;
 
-const Point2u size = Point2u(640, 480);
+const Vec2u size = Vec2u(640, 480);
 const std::string path = "TestFiles/ImageWritterTest.png";
 
 void Save()
 {
-	Surface image(Point2u(640, 480), 4);
+	Surface image(Vec2u(640, 480), 4);
 
 	ImageWritter writter;
 

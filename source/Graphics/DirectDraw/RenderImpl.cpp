@@ -23,8 +23,8 @@ RenderImpl::RenderImpl(Window* window) :
     _SurfaceDesc.dwSize = sizeof(_SurfaceDesc);
     _SurfaceDesc.dwFlags = DDSD_CAPS;
     _SurfaceDesc.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE;
-    _SurfaceDesc.dwWidth = _BaseRender.Size().PosX();
-    _SurfaceDesc.dwHeight = _BaseRender.Size().PosY();
+    _SurfaceDesc.dwWidth = _BaseRender.Size().x;
+    _SurfaceDesc.dwHeight = _BaseRender.Size().y;
 
     result = _DirectDraw->CreateSurface(&_SurfaceDesc, &_Primary, NULL);
 
@@ -104,7 +104,7 @@ void RenderImpl::End()
     */
 }
 
-const Point2u& RenderImpl::Size()
+const Vec2u& RenderImpl::Size()
 {
 	return _BaseRender.Size();
 }
@@ -136,37 +136,37 @@ void RenderImpl::Color(const LDL::Graphics::Color& color)
 	_BaseRender.Color(color);
 }
 
-void RenderImpl::Pixel(const Point2u& pos)
+void RenderImpl::Pixel(const Vec2u& pos)
 {
 }
 
-void RenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
+void RenderImpl::Line(const Vec2u& pos1, const Vec2u& pos2)
 {
 }
 
-void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
+void RenderImpl::Fill(const Vec2u& pos, const Vec2u& size)
 {
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
 {
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& pos)
-{
-
-}
-
-void RenderImpl::Draw(Surface* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Texture* image, const Vec2u& pos)
 {
 
 }
 
-void RenderImpl::Draw(Surface* image, const Point2u& pos)
+void RenderImpl::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
 
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
+void RenderImpl::Draw(Surface* image, const Vec2u& pos)
+{
+
+}
+
+void RenderImpl::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 }

@@ -2,7 +2,7 @@
 #define LDL_Graphics_GDI_TextureImpl_hpp
 
 #include "RenderContextImpl.hpp"
-#include <LDL/Graphics/Primitives/Point2u.hpp>
+#include <LDL/Graphics/Primitives/LDL::Math::Vec2u.hpp>
 
 namespace LDL
 {
@@ -13,11 +13,11 @@ namespace LDL
 		class TextureImpl
 		{
 		public:
-			TextureImpl(RenderContextImpl* renderContextImpl, const Point2u & size, uint8_t* pixels, size_t bytesPerPixel);
+			TextureImpl(RenderContextImpl* renderContextImpl, const LDL::Math::Vec2u & size, uint8_t* pixels, size_t bytesPerPixel);
 			~TextureImpl();
-			const Point2u& Size();
+			const Math::Vec2u& Size();
 		private:
-			Point2u _Size;
+			LDL::Math::Vec2u _Size;
 		};
 	}
 }

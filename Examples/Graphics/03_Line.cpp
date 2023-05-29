@@ -9,12 +9,13 @@ using namespace LDL::Graphics;
 using namespace LDL::Events;
 using namespace LDL::Time;
 using namespace LDL::Core;
+using namespace LDL::Math;
 
 int main()
 {
 	try
 	{
-		Window window(Point2u(0, 0), Point2u(800, 600), "Window!");
+		Window window(Vec2u(0, 0), Vec2u(800, 600), "Window!");
 
 		RenderContext renderContext;
 		Render render(&renderContext, &window);
@@ -42,8 +43,8 @@ int main()
 			render.Clear();
 
 			render.Color(Color(237, 28, 36));
-			render.Line(Point2u(0, 0), Point2u(render.Size().PosX(), render.Size().PosY()));
-			render.Line(Point2u(render.Size().PosX(), 0), Point2u(0, render.Size().PosY()));
+			render.Line(Vec2u(0, 0), Vec2u(render.Size().x, render.Size().y));
+			render.Line(Vec2u(render.Size().x, 0), Vec2u(0, render.Size().y));
 
 			render.End();
 

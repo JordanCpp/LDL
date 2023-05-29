@@ -19,6 +19,7 @@
 #endif
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 TextureBatcher::TextureBatcher(Texture* texture, size_t count) :
 	_TextureBatcherImpl(new TextureBatcherImpl(texture, count))
@@ -35,7 +36,7 @@ TextureBatcherImpl* TextureBatcher::GetTextureBatcherImpl()
 	return _TextureBatcherImpl;
 }
 
-void TextureBatcher::Draw(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
+void TextureBatcher::Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	_TextureBatcherImpl->Draw(dstPos, dstSize, srcPos, srcSize);
 }

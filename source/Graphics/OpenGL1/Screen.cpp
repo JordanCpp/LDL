@@ -3,8 +3,9 @@
 #include "../OpenGL/Util.hpp"
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-Screen::Screen(const Point2u& size) :
+Screen::Screen(const Vec2u& size) :
 	_Size(size),
 	_Screen(0),
 	_MaxTextureSize(Util::MaxTextureSize()),
@@ -35,7 +36,7 @@ Screen::~Screen()
 		GL_CHECK(glDeleteTextures(0, (GLuint*)&_Screen));
 }
 
-void Screen::Draw(Surface* image, const Point2u& pos, const Point2u& size)
+void Screen::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
 	if (Util::IsMaxTextureSize(_Size, _MaxTextureSize))
 		DrawTexture(image, pos, size);
@@ -43,18 +44,18 @@ void Screen::Draw(Surface* image, const Point2u& pos, const Point2u& size)
 		DrawPixels(image, pos, size);
 }
 
-void Screen::Draw(Surface* image, const Point2u& pos)
+void Screen::Draw(Surface* image, const Vec2u& pos)
 {
 	Draw(image, pos, image->Size());
 }
 
-void Screen::DrawTexture(Surface* image, const Point2u& pos, const Point2u& size)
+void Screen::DrawTexture(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
 	GL_CHECK(glEnable(GL_TEXTURE_2D));
 
 	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_Screen));
 
-	Util::DrawQuad(pos, size, Point2u(0, 0), image->Size(), _CurTextureSize);
+	Util::DrawQuad(pos, size, Vec2u(0, 0), image->Size(), _CurTextureSize);
 
 	GLenum format = 0;
 
@@ -63,16 +64,16 @@ void Screen::DrawTexture(Surface* image, const Point2u& pos, const Point2u& size
 	else
 		format = GL_RGB;
 
-	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)pos.PosX(), (GLint)pos.PosY(), (GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels()));
+	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)pos.x, (GLint)pos.y, (GLsizei)image->Size().x, (GLsizei)image->Size().y, format, GL_UNSIGNED_BYTE, image->Pixels()));
 
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }
 
-void Screen::DrawPixels(Surface* image, const Point2u& pos, const Point2u& size)
+void Screen::DrawPixels(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
 	GL_CHECK(glPixelZoom(1.0, -1.0));
 
-	GL_CHECK(glRasterPos2i((GLint)pos.PosX(), (GLint)pos.PosY()));
+	GL_CHECK(glRasterPos2i((GLint)pos.x, (GLint)pos.y));
 
 	GLenum format = 0;
 
@@ -81,5 +82,5 @@ void Screen::DrawPixels(Surface* image, const Point2u& pos, const Point2u& size)
 	else
 		format = GL_RGB;
 
-	GL_CHECK(glDrawPixels((GLsizei)image->Size().PosX(), (GLsizei)image->Size().PosY(), format, GL_UNSIGNED_BYTE, image->Pixels()));
+	GL_CHECK(glDrawPixels((GLsizei)image->Size().x, (GLsizei)image->Size().y, format, GL_UNSIGNED_BYTE, image->Pixels()));
 }

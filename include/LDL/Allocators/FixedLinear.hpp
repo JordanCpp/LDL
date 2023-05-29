@@ -8,10 +8,10 @@ namespace LDL
 {
 	namespace Allocators
 	{
-		class LDL_EXPORT FixedLinear : public LDL::Allocators::Allocator
+		class LDL_EXPORT FixedLinear : public Allocator
 		{
 		public:
-			FixedLinear(size_t bytes, LDL::Allocators::Allocator* allocator = NULL);
+			FixedLinear(size_t bytes, Allocator* allocator = NULL);
 			~FixedLinear();
 			void* Allocate(size_t bytes);
 			void Deallocate(void* ptr);
@@ -21,7 +21,7 @@ namespace LDL
 			size_t _Capacity;
 			size_t _Position;
 			uint8_t* _Content;
-			LDL::Allocators::Allocator* _Allocator;
+			Allocator* _Allocator;
 		};
 	}
 }

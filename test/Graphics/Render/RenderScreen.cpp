@@ -5,14 +5,15 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-const Point2u size = Point2u(640, 480);
-const Point2u sz = Point2u(640, 480);
+const Vec2u size = Vec2u(640, 480);
+const Vec2u sz = Vec2u(640, 480);
 
 void Screen()
 {
 	/*
-	Window window(Point2u(0, 0), size, __FILE__);
+	Window window(Vec2u(0, 0), size, __FILE__);
 	Render render(&window);
 
 	LDL::Allocators::FixedLinear allocator(LDL::Allocators::Allocator::Mb * 4);
@@ -28,7 +29,7 @@ void Screen()
 		render.Color(Color(237, 28, 36));
 		render.Clear();
 		render.Begin();
-		render.Draw(&img, Point2u(0, 0), render.Size());
+		render.Draw(&img, Vec2u(0, 0), render.Size());
 		render.End();
 	}
 
@@ -43,7 +44,7 @@ void Screen()
 	writter.Save("RenderScreen.png", render.Size(), 4, pixels);
 
 	
-	for (size_t i = 0; i < image.Size().PosX() * image.Size().PosY() * 4; i += 4)
+	for (size_t i = 0; i < image.Size().x * image.Size().y * 4; i += 4)
 	{
 		LDL_TEST_EQUAL(pixels[i + 0] == 237);
 		LDL_TEST_EQUAL(pixels[i + 1] == 28);

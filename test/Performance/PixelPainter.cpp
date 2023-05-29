@@ -7,17 +7,18 @@
 #include <LDL/Graphics/PixelPainter.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 int main()
 {
 	try
 	{
-		Window window(Point2u(0, 0), Point2u(800, 600), "Window!");
+		Window window(Vec2u(0, 0), Vec2u(800, 600), "Window!");
 
 		RenderContext renderContext;
 		Render render(&renderContext, &window);
 
-		Surface screen(Point2u(800, 600), 4);
+		Surface screen(Vec2u(800, 600), 4);
 		PixelPainter painter;
 
 		painter.Bind(&screen);
@@ -37,9 +38,9 @@ int main()
 			painter.Clear();
 
 			painter.Color(Color(237, 28, 36));
-			painter.Line(Point2u(0, 0), Point2u(render.Size().PosX() - 1, render.Size().PosY() - 1));
+			painter.Line(Vec2u(0, 0), Vec2u(render.Size().x - 1, render.Size().y - 1));
 
-			render.Draw(&screen, Point2u(0, 0));
+			render.Draw(&screen, Vec2u(0, 0));
 
 			render.End();
 

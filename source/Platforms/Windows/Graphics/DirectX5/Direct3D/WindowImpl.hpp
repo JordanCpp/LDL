@@ -12,7 +12,7 @@ namespace LDL
 		class WindowImpl
 		{
 		public:
-			WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode);
+			WindowImpl(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode);
 			~WindowImpl();
 			void Present(uint8_t* pixels, uint8_t bytesPerPixel);
 			bool GetEvent(LDL::Events::Event& event);
@@ -20,8 +20,8 @@ namespace LDL
 			void StopEvent();
 			void Title(const std::string& title);
 			const std::string& Title();
-			const Point2u& Size();
-			const Point2u& Pos();
+			const Math::Vec2u& Size();
+			const Math::Vec2u& Pos();
 			HWND Hwnd();
 		private:
 			MainWindow _Window;

@@ -4,21 +4,22 @@
 
 using namespace LDL::Graphics;
 using namespace LDL::Events;
+using namespace LDL::Math;
 
 struct LDL_Window
 {
 	Window _Window;
-	LDL_Window(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode);
+	LDL_Window(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode);
 };
 
-LDL_Window::LDL_Window(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
+LDL_Window::LDL_Window(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
 	_Window(pos, size, title, mode)
 {
 }
 
 LDL_Window* LDL_WindowNew(size_t x, size_t y,size_t w, size_t h, const char * title, size_t mode)
 {
-	LDL_Window* p = new LDL_Window(Point2u(x, y), Point2u(w, h), title, mode);
+	LDL_Window* p = new LDL_Window(Vec2u(x, y), Vec2u(w, h), title, mode);
 
 	return p;
 }
@@ -77,20 +78,20 @@ const char* LDL_WindowGetTitle(LDL_Window* window)
 
 size_t LDL_WindowGetPosX(LDL_Window* window)
 {
-	return  window->_Window.Pos().PosX();
+	return  window->_Window.Pos().x;
 }
 
 size_t LDL_WindowGetPosY(LDL_Window* window)
 {
-	return  window->_Window.Pos().PosY();
+	return  window->_Window.Pos().y;
 }
 
 size_t LDL_WindowGetSizeX(LDL_Window* window)
 {
-	return window->_Window.Size().PosX();
+	return window->_Window.Size().x;
 }
 
 size_t LDL_WindowGetSizeY(LDL_Window* window)
 {
-	return window->_Window.Size().PosY();
+	return window->_Window.Size().y;
 }

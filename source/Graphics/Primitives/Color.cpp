@@ -1,4 +1,4 @@
-#include <LDL/Graphics/Primitives/Color.hpp>
+#include <LDL/Graphics/Color.hpp>
 
 using namespace LDL::Graphics;
 

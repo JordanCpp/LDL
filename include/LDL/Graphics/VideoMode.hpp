@@ -2,7 +2,7 @@
 #define LDL_Graphics_VideoMode_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/Graphics/Primitives/Point2u.hpp>
+#include <LDL/Math/Vec2.hpp>
 
 namespace LDL
 {
@@ -16,11 +16,11 @@ namespace LDL
 				Limit = 32
 			};
 			VideoMode();
-			VideoMode(const Point2u& size, size_t bytesPerPixel);
-			const Point2u& Size();
+			VideoMode(const Math::Vec2u& size, size_t bytesPerPixel);
+			const Math::Vec2u& Size();
 			size_t BitsPerPixel();
 		private:
-			Point2u _Size;
+			LDL::Math::Vec2u _Size;
 			size_t _BitsPerPixel;
 		};
 	}

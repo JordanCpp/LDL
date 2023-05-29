@@ -19,6 +19,7 @@
 #endif
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 Render::Render(RenderContext* renderContext, Window* window) :
 	_RenderImpl(new RenderImpl(renderContext->GetRenderContextImpl(), window))
@@ -51,7 +52,7 @@ void Render::End()
 	_RenderImpl->End();
 }
 
-const Point2u& Render::Size()
+const Vec2u& Render::Size()
 {
 	return _RenderImpl->Size();
 }
@@ -71,47 +72,47 @@ void Render::Color(const LDL::Graphics::Color& color)
 	_RenderImpl->Color(color);
 }
 
-void Render::Pixel(const Point2u& pos)
+void Render::Pixel(const Vec2u& pos)
 {
 	_RenderImpl->Pixel(pos);
 }
 
-void Render::Fill(const Point2u& pos, const Point2u& size)
+void Render::Fill(const Vec2u& pos, const Vec2u& size)
 {
 	_RenderImpl->Fill(pos, size);
 }
 
-void Render::Line(const Point2u& pos1, const Point2u& pos2)
+void Render::Line(const Vec2u& pos1, const Vec2u& pos2)
 {
 	_RenderImpl->Line(pos1, pos2);
 }
 
-void Render::Draw(Texture* image, const Point2u& pos, const Point2u& size)
+void Render::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
 {
 	_RenderImpl->Draw(image, pos, size);
 }
 
-void Render::Draw(Texture* image, const Point2u& pos)
+void Render::Draw(Texture* image, const Vec2u& pos)
 {
 	_RenderImpl->Draw(image, pos);
 }
 
-void Render::Draw(Surface* image, const Point2u& pos, const Point2u& size)
+void Render::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
 	_RenderImpl->Draw(image, pos, size);
 }
 
-void Render::Draw(Surface* image, const Point2u& pos)
+void Render::Draw(Surface* image, const Vec2u& pos)
 {
 	_RenderImpl->Draw(image, pos);
 }
 
-void Render::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
+void Render::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	_RenderImpl->Draw(image, dstPos, srcPos, srcSize);
 }
 
-void Render::Draw(Texture* image, const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize)
+void Render::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	_RenderImpl->Draw(image, dstPos, dstSize, srcPos, srcSize);
 }

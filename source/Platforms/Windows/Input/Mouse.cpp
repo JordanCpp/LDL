@@ -3,22 +3,22 @@
 #include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Input;
-using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-const Point2u& Mouse::Pos()
+const Vec2u& Mouse::Pos()
 {
     POINT point;
 
     if (!GetCursorPos(&point))
         throw LDL::Core::RuntimeError("GetCursorPos failed");
 
-    _Pos = Point2u(point.x, point.y);
+    _Pos = Vec2u(point.x, point.y);
 
     return _Pos;
 }
 
-void Mouse::Pos(const Point2u& pos)
+void Mouse::Pos(const Vec2u& pos)
 {
-    if (!SetCursorPos((int)pos.PosX(), (int)pos.PosY()))
+    if (!SetCursorPos((int)pos.x, (int)pos.y))
         throw LDL::Core::RuntimeError("SetCursorPos failed");
 }

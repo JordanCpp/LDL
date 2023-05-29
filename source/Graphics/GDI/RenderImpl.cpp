@@ -24,7 +24,7 @@ void RenderImpl::End()
 	EndPaint(_Window->GetWindowImpl()->Hwnd(), &_PaintStruct);
 }
 
-const Point2u& RenderImpl::Size()
+const Vec2u& RenderImpl::Size()
 {
 	return _Window->Size();
 }
@@ -47,42 +47,42 @@ void RenderImpl::Color(const LDL::Graphics::Color& color)
 	SelectObject(_Window->GetWindowImpl()->Hdc(), _Pen);
 }
 
-void RenderImpl::Pixel(const Point2u& pos)
+void RenderImpl::Pixel(const Vec2u& pos)
 {
 }
 
-void RenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
+void RenderImpl::Line(const Vec2u& pos1, const Vec2u& pos2)
 {
 	POINT point;
 
-	MoveToEx(_Window->GetWindowImpl()->Hdc(), pos1.PosX(), pos1.PosY(), &point);
-	LineTo(_Window->GetWindowImpl()->Hdc(), pos2.PosX(), pos2.PosY());
+	MoveToEx(_Window->GetWindowImpl()->Hdc(), pos1.x, pos1.y, &point);
+	LineTo(_Window->GetWindowImpl()->Hdc(), pos2.x, pos2.y);
 }
 
-void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
+void RenderImpl::Fill(const Vec2u& pos, const Vec2u& size)
 {
-	Rectangle(_Window->GetWindowImpl()->Hdc(), pos.PosX(), pos.PosY(), size.PosX(), size.PosY());
+	Rectangle(_Window->GetWindowImpl()->Hdc(), pos.x, pos.y, size.x, size.y);
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
 {
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& pos)
+void RenderImpl::Draw(Texture* image, const Vec2u& pos)
 {
 	Draw(image, pos, image->Size());
 }
 
-void RenderImpl::Draw(Surface* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
 	_Screen.Draw(image, pos, size);
 }
 
-void RenderImpl::Draw(Surface* image, const Point2u& pos)
+void RenderImpl::Draw(Surface* image, const Vec2u& pos)
 {
 	_Screen.Draw(image, pos);
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
+void RenderImpl::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 }

@@ -19,8 +19,9 @@
 #endif
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-Camera::Camera(Render* render, const Point2u& pos, const Point2u& size) :
+Camera::Camera(Render* render, const Vec2u& pos, const Vec2u& size) :
 	_CameraImpl(new CameraImpl(render->GetRenderImpl(), pos, size))
 {
 }
@@ -30,22 +31,22 @@ CameraImpl* Camera::GetCameraImpl()
 	return _CameraImpl;
 }
 
-const Point2u& Camera::Pos()
+const Vec2u& Camera::Pos()
 {
 	return _CameraImpl->Pos();
 }
 
-const Point2u& Camera::Size()
+const Vec2u& Camera::Size()
 {
 	return _CameraImpl->Size();
 }
 
-void Camera::Pos(const Point2u& pos)
+void Camera::Pos(const Vec2u& pos)
 {
 	_CameraImpl->Pos(pos);
 }
 
-void Camera::Size(const Point2u& size)
+void Camera::Size(const Vec2u& size)
 {
 	_CameraImpl->Size(size);
 }

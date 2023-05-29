@@ -32,8 +32,8 @@ void Init()
 	ImageLoader imageLoader(&allocator);
 
 	LDL_TEST_EQUAL(imageLoader.BytesPerPixel() == 0);
-	LDL_TEST_EQUAL(imageLoader.Size().PosX()   == 0);
-	LDL_TEST_EQUAL(imageLoader.Size().PosY()   == 0);
+	LDL_TEST_EQUAL(imageLoader.Size().x   == 0);
+	LDL_TEST_EQUAL(imageLoader.Size().y   == 0);
 	LDL_TEST_EQUAL(imageLoader.Pixels()        == NULL);
 }
 
@@ -45,8 +45,8 @@ void LoadJpg()
 	LDL_TEST_EXCEPTION(imageLoader.Load("TestFiles/359500_600.jpg"));
 
 	LDL_TEST_EQUAL(imageLoader.BytesPerPixel() == 3);
-	LDL_TEST_EQUAL(imageLoader.Size().PosX()   == 600);
-	LDL_TEST_EQUAL(imageLoader.Size().PosY()   == 438);
+	LDL_TEST_EQUAL(imageLoader.Size().x   == 600);
+	LDL_TEST_EQUAL(imageLoader.Size().y   == 438);
 	LDL_TEST_EQUAL(imageLoader.Pixels()        != NULL);
 }
 
@@ -64,8 +64,8 @@ void LoadJpgFromMemory()
 	LDL_TEST_EXCEPTION(imageLoader.Load(memory, size));
 
 	LDL_TEST_EQUAL(imageLoader.BytesPerPixel() == 3);
-	LDL_TEST_EQUAL(imageLoader.Size().PosX()   == 600);
-	LDL_TEST_EQUAL(imageLoader.Size().PosY()   == 438);
+	LDL_TEST_EQUAL(imageLoader.Size().x   == 600);
+	LDL_TEST_EQUAL(imageLoader.Size().y   == 438);
 	LDL_TEST_EQUAL(imageLoader.Pixels()        != NULL);
 }
 
@@ -77,8 +77,8 @@ void LoadPng()
 	LDL_TEST_EXCEPTION(imageLoader.Load("TestFiles/Gorgosaurus_BW_transparent.png"));
 
 	LDL_TEST_EQUAL(imageLoader.BytesPerPixel() == 4);
-	LDL_TEST_EQUAL(imageLoader.Size().PosX()   == 700);
-	LDL_TEST_EQUAL(imageLoader.Size().PosY()   == 476);
+	LDL_TEST_EQUAL(imageLoader.Size().x   == 700);
+	LDL_TEST_EQUAL(imageLoader.Size().y   == 476);
 	LDL_TEST_EQUAL(imageLoader.Pixels()        != NULL);
 }
 
@@ -96,8 +96,8 @@ void LoadPngFromMemory()
 	LDL_TEST_EXCEPTION(imageLoader.Load(memory, size));
 
 	LDL_TEST_EQUAL(imageLoader.BytesPerPixel() == 4);
-	LDL_TEST_EQUAL(imageLoader.Size().PosX()   == 700);
-	LDL_TEST_EQUAL(imageLoader.Size().PosY()   == 476);
+	LDL_TEST_EQUAL(imageLoader.Size().x   == 700);
+	LDL_TEST_EQUAL(imageLoader.Size().y   == 476);
 	LDL_TEST_EQUAL(imageLoader.Pixels()        != NULL);
 }
 
@@ -111,8 +111,8 @@ void Clear()
 	imageLoader.Clear();
 
 	LDL_TEST_EQUAL(imageLoader.BytesPerPixel() == 0);
-	LDL_TEST_EQUAL(imageLoader.Size().PosX()   == 0);
-	LDL_TEST_EQUAL(imageLoader.Size().PosY()   == 0);
+	LDL_TEST_EQUAL(imageLoader.Size().x   == 0);
+	LDL_TEST_EQUAL(imageLoader.Size().y   == 0);
 	LDL_TEST_EQUAL(imageLoader.Pixels()        == NULL);
 }
 

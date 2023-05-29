@@ -3,8 +3,9 @@
 #include "../Platforms/Windows/Graphics/WindowImpl.hpp"
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-Window::Window(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
+Window::Window(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
 	_WindowImpl(new WindowImpl(pos, size, title, mode))
 {
 }
@@ -49,12 +50,12 @@ const std::string& Window::Title()
 	return _WindowImpl->Title();
 }
 
-const Point2u& Window::Size()
+const Vec2u& Window::Size()
 {
 	return _WindowImpl->Size();
 }
 
-const Point2u& Window::Pos()
+const Vec2u& Window::Pos()
 {
 	return _WindowImpl->Pos();
 }

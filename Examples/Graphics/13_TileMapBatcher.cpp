@@ -20,6 +20,7 @@ using namespace LDL::Core;
 using namespace LDL::Allocators;
 using namespace LDL::Loaders;
 using namespace LDL::Enums;
+using namespace LDL::Math;
 
 size_t Random(size_t min, size_t max)
 {
@@ -32,7 +33,7 @@ int main()
 	{
 		srand((uint32_t)time(NULL));
 
-		Window window(Point2u(0, 0), Point2u(800, 600), "12_TileMap2");
+		Window window(Vec2u(0, 0), Vec2u(800, 600), "12_TileMap2");
 
 		RenderContext renderContext;
 		Render render(&renderContext, &window);
@@ -51,23 +52,23 @@ int main()
 
 		Isometric isometric;
 
-		Point2u start = Point2u(550, 0);
-		Point2u mapSize = Point2u(100, 100);
-		Point2u tileSize = Point2u(128, 64);
+		Vec2u start = Vec2u(550, 0);
+		Vec2u mapSize = Vec2u(100, 100);
+		Vec2u tileSize = Vec2u(128, 64);
 
-		TextureBatcher textureBatcher(&image, mapSize.PosX() * mapSize.PosY());
+		TextureBatcher textureBatcher(&image, mapSize.x * mapSize.y);
 
 		size_t dx = 0;
 		size_t dy = 0;
-		size_t step = tileSize.PosX() / 2;
+		size_t step = tileSize.x / 2;
 
 		std::vector<size_t> tilesX;
 		std::vector<size_t> tilesY;
 
-		tilesX.resize(mapSize.PosX() * mapSize.PosY());
-		tilesY.resize(mapSize.PosX() * mapSize.PosY());
+		tilesX.resize(mapSize.x * mapSize.y);
+		tilesY.resize(mapSize.x * mapSize.y);
 
-		for (size_t i = 0; i < mapSize.PosX() * mapSize.PosY(); i++)
+		for (size_t i = 0; i < mapSize.x * mapSize.y; i++)
 		{
 			tilesX[i] = Random(0, 7);
 			tilesY[i] = Random(0, 5);
@@ -125,23 +126,23 @@ int main()
 			if (batch)
 				textureBatcher.Clear();
 
-			for (size_t rows = 0; rows < mapSize.PosX(); rows++)
+			for (size_t rows = 0; rows < mapSize.x; rows++)
 			{
-				for (size_t cols = 0; cols < mapSize.PosY(); cols++)
+				for (size_t cols = 0; cols < mapSize.y; cols++)
 				{
-					size_t x = cols * tileSize.PosX() / 2;
-					size_t y = rows * tileSize.PosY();
+					size_t x = cols * tileSize.x / 2;
+					size_t y = rows * tileSize.y;
 
-					Point2u pt = isometric.CartesianToIsometric(Point2u(x, y));
+					Vec2u pt = isometric.CartesianToIsometric(Vec2u(x, y));
 
-					size_t tx = tileSize.PosX() * tilesX[j];
-					size_t ty = tileSize.PosY() * tilesY[j];
+					size_t tx = tileSize.x * tilesX[j];
+					size_t ty = tileSize.y * tilesY[j];
 					j++;
 
 					if (batch)
-						textureBatcher.Draw(Point2u(start.PosX() + pt.PosX() + dx, start.PosY() + pt.PosY() + dy), tileSize, Point2u(tx, ty), tileSize);
+						textureBatcher.Draw(Vec2u(start.x + pt.x + dx, start.y + pt.y + dy), tileSize, Vec2u(tx, ty), tileSize);
 					else
-						render.Draw(&image, Point2u(start.PosX() + pt.PosX() + dx, start.PosY() + pt.PosY() + dy), Point2u(tx, ty), tileSize);
+						render.Draw(&image, Vec2u(start.x + pt.x + dx, start.y + pt.y + dy), Vec2u(tx, ty), tileSize);
 				}
 			}
 

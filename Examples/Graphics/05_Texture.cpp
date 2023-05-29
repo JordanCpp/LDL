@@ -13,12 +13,13 @@ using namespace LDL::Time;
 using namespace LDL::Core;
 using namespace LDL::Allocators;
 using namespace LDL::Loaders;
+using namespace LDL::Math;
 
 int main()
 {
 	try
 	{
-		Window window(Point2u(0, 0), Point2u(800, 600), "Window!");
+		Window window(Vec2u(0, 0), Vec2u(800, 600), "Window!");
 		
 		RenderContext renderContext;
 		Render render(&renderContext, &window);
@@ -51,7 +52,7 @@ int main()
 			render.Color(Color(0, 162, 232));
 			render.Clear();
 
-			render.Draw(&image, Point2u(0, 0), window.Size(), Point2u(0, 0), image.Size());
+			render.Draw(&image, Vec2u(0, 0), window.Size(), Vec2u(0, 0), image.Size());
 
 			render.End();
 

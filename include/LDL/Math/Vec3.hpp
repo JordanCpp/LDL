@@ -98,6 +98,8 @@ namespace LDL
 			T y;
 			T z;
 		};
+
+		typedef Vec3<float> Vec3f;
 	}
 }
 

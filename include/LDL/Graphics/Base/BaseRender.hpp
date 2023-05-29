@@ -2,8 +2,8 @@
 #define LDL_Graphics_BaseRender_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/Graphics/Primitives/Color.hpp>
-#include <LDL/Graphics/Primitives/Point2u.hpp>
+#include <LDL/Graphics/Color.hpp>
+#include <LDL/Math/Vec2.hpp>
 
 namespace LDL
 {
@@ -12,12 +12,12 @@ namespace LDL
 		class LDL_EXPORT BaseRender
 		{
 		public:
-			BaseRender(const Point2u& size);
-			const Point2u& Size();
+			BaseRender(const Math::Vec2u& size);
+			const Math::Vec2u& Size();
 			const LDL::Graphics::Color& Color();
 			void Color(const LDL::Graphics::Color& color);
 		public:
-			Point2u _Size;
+			LDL::Math::Vec2u _Size;
 			LDL::Graphics::Color _Current;
 		};
 	}

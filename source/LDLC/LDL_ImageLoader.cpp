@@ -30,12 +30,12 @@ void LDL_ImageLoaderFree(LDL_ImageLoader* ptr)
 
 size_t LDL_ImageLoaderGetSizeX(LDL_ImageLoader * imageLoader)
 {
-	return imageLoader->_ImageLoader.Size().PosX();
+	return imageLoader->_ImageLoader.Size().x;
 }
 
 size_t LDL_ImageLoaderGetSizeY(LDL_ImageLoader* imageLoader)
 {
-	return imageLoader->_ImageLoader.Size().PosY();
+	return imageLoader->_ImageLoader.Size().y;
 }
 
 uint8_t LDL_ImageLoaderGetBytesPerPixel(LDL_ImageLoader* imageLoader)

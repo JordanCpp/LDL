@@ -2,25 +2,26 @@
 #include <LDL/Graphics/Isometric.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 void CartesianToIsometric()
 {
 	Isometric isometric;
 
-	Point2u iso = isometric.CartesianToIsometric(Point2u(350, 150));
+	Vec2u iso = isometric.CartesianToIsometric(Vec2u(350, 150));
 
-	LDL_TEST_EQUAL(iso.PosX() == 200);
-	LDL_TEST_EQUAL(iso.PosY() == 250);
+	LDL_TEST_EQUAL(iso.x == 200);
+	LDL_TEST_EQUAL(iso.y == 250);
 }
 
 void IsometricToCartesian()
 {
 	Isometric isometric;
 
-	Point2u cart = isometric.IsometricToCartesian(Point2u(200, 250));
+	Vec2u cart = isometric.IsometricToCartesian(Vec2u(200, 250));
 
-	LDL_TEST_EQUAL(cart.PosX() == 350);
-	LDL_TEST_EQUAL(cart.PosY() == 150);
+	LDL_TEST_EQUAL(cart.x == 350);
+	LDL_TEST_EQUAL(cart.y == 150);
 }
 
 int main()

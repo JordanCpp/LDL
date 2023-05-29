@@ -11,14 +11,14 @@ namespace LDL
 		class Screen
 		{
 		public:
-			Screen(const Point2u& size);
+			Screen(const Math::Vec2u& size);
 			~Screen();
-			void Draw(Surface* image, const Point2u& pos, const Point2u& size);
-			void Draw(Surface* image, const Point2u& pos);
+			void Draw(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size);
+			void Draw(Surface* image, const Math::Vec2u& pos);
 		private:
-			void DrawTexture(Surface* image, const Point2u& pos, const Point2u& size);
-			void DrawPixels(Surface* image, const Point2u& pos, const Point2u& size);
-			Point2u _Size;
+			void DrawTexture(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size);
+			void DrawPixels(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size);
+			LDL::Math::Vec2u _Size;
 			size_t _Screen;
 			size_t _MaxTextureSize;
 			size_t _CurTextureSize;

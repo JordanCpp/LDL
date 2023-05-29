@@ -13,7 +13,7 @@ namespace LDL
 		{
 		public:
 			TextureBatcherImpl(Texture* texture, size_t count);
-			void Draw(const Point2u& dstPos, const Point2u& dstSize, const Point2u& srcPos, const Point2u& srcSize);
+			void Draw(const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
 			void Clear();
 			size_t TextureId();
 			size_t Count();

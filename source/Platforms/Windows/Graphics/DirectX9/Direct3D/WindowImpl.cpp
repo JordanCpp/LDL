@@ -3,7 +3,7 @@
 
 using namespace LDL::Graphics;
 
-WindowImpl::WindowImpl(const Point2u& pos, const Point2u& size, const std::string& title, size_t mode) :
+WindowImpl::WindowImpl(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _Window(pos, size, title, mode)
 {
 }
@@ -16,12 +16,12 @@ void WindowImpl::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 {
 }
 
-const Point2u& WindowImpl::Size()
+const Vec2u& WindowImpl::Size()
 {
     return _Window.Size();
 }
 
-const Point2u& WindowImpl::Pos()
+const Vec2u& WindowImpl::Pos()
 {
     return _Window.Pos();
 }

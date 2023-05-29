@@ -1,5 +1,5 @@
 #include <LDL/Core/TestEqual.hpp>
-#include <LDL/Math/Vec2f.hpp>
+#include <LDL/Math/Vec2.hpp>
 
 using namespace LDL::Math;
 

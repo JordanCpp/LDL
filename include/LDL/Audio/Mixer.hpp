@@ -13,7 +13,7 @@ namespace LDL
 		class LDL_EXPORT Mixer : public Core::FastPimpl
 		{
 		public:
-			Mixer(LDL::Graphics::Window* window, size_t rate, size_t bits, size_t channels);
+			Mixer(Graphics::Window* window, size_t rate, size_t bits, size_t channels);
 			MixerImpl* GetMixerImpl();
 		private:
 			MixerImpl* _MixerImpl;

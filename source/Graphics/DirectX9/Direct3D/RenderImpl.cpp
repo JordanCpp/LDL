@@ -52,7 +52,7 @@ void RenderImpl::Buffer(uint8_t* dst)
 void RenderImpl::Mode2D()
 {
     D3DXMATRIX projection;
-    D3DXMatrixOrthoLH(&projection, (FLOAT)_Window->Size().PosX(), (FLOAT)_Window->Size().PosY(), 0.0f, 0.0f);
+    D3DXMatrixOrthoLH(&projection, (FLOAT)_Window->Size().x, (FLOAT)_Window->Size().y, 0.0f, 0.0f);
 
     HRESULT result = _RenderContextImpl->Context.Device->SetTransform(D3DTS_PROJECTION, &projection);
 
@@ -86,7 +86,7 @@ void RenderImpl::End()
         throw LDL::Core::RuntimeError("Present failed");
 }
 
-const Point2u& RenderImpl::Size()
+const Vec2u& RenderImpl::Size()
 {
 	return _BaseRender.Size();
 }
@@ -106,48 +106,48 @@ void RenderImpl::Color(const LDL::Graphics::Color& color)
 	_BaseRender.Color(color);
 }
 
-void RenderImpl::Pixel(const Point2u& pos)
+void RenderImpl::Pixel(const Vec2u& pos)
 {
 }
 
-void RenderImpl::Line(const Point2u& pos1, const Point2u& pos2)
+void RenderImpl::Line(const Vec2u& pos1, const Vec2u& pos2)
 {
-    D3DXVECTOR2 vec[] = { D3DXVECTOR2((float)pos1.PosX(), (float)pos1.PosY()), D3DXVECTOR2((float)pos2.PosX(), (float)pos2.PosY()) };
+    D3DXVECTOR2 vec[] = { D3DXVECTOR2((float)pos1.x, (float)pos1.y), D3DXVECTOR2((float)pos2.x, (float)pos2.y) };
 
     _Line->Draw(vec, 2, D3DCOLOR_XRGB(_BaseRender.Color().Red(), _BaseRender.Color().Green(), _BaseRender.Color().Blue()));
 }
 
-void RenderImpl::Fill(const Point2u& pos, const Point2u& size)
+void RenderImpl::Fill(const Vec2u& pos, const Vec2u& size)
 {
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
 {
     QuadType q;
 
-    q.v1.x   = (FLOAT)pos.PosX();
-    q.v1.y   = (FLOAT)size.PosY() + (FLOAT)pos.PosY();
+    q.v1.x   = (FLOAT)pos.x;
+    q.v1.y   = (FLOAT)size.y + (FLOAT)pos.y;
     q.v1.z   = 0.0f;
     q.v1.rhw = 1.0f;
     q.v1.tu  = 0.0f;
     q.v1.tv  = 1.0f;
 
-    q.v2.x   = (FLOAT)pos.PosX();
-    q.v2.y   = (FLOAT)pos.PosY();
+    q.v2.x   = (FLOAT)pos.x;
+    q.v2.y   = (FLOAT)pos.y;
     q.v2.z   = 0.0f;
     q.v2.rhw = 1.0f;
     q.v2.tu  = 0.0f;
     q.v2.tv  = 0.0f;
 
-    q.v3.x = (FLOAT)size.PosX() + (FLOAT)pos.PosX();;
-    q.v3.y = (FLOAT)size.PosY() + (FLOAT)pos.PosY();;
+    q.v3.x = (FLOAT)size.x + (FLOAT)pos.x;;
+    q.v3.y = (FLOAT)size.y + (FLOAT)pos.y;;
     q.v3.z = 0.0f;
     q.v3.rhw = 1.0f;
     q.v3.tu = 1.0f;
     q.v3.tv = 1.0f;
 
-    q.v4.x = (FLOAT)size.PosX() + (FLOAT)pos.PosX();;
-    q.v4.y = (FLOAT)pos.PosY();
+    q.v4.x = (FLOAT)size.x + (FLOAT)pos.x;;
+    q.v4.y = (FLOAT)pos.y;
     q.v4.z = 0.0f;
     q.v4.rhw = 1.0f;
     q.v4.tu = 1.0f;
@@ -178,20 +178,20 @@ void RenderImpl::Draw(Texture* image, const Point2u& pos, const Point2u& size)
     _RenderContextImpl->Context.Device->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& pos)
+void RenderImpl::Draw(Texture* image, const Vec2u& pos)
 {
 	Draw(image, pos, image->Size());
 }
 
-void RenderImpl::Draw(Surface* image, const Point2u& pos, const Point2u& size)
+void RenderImpl::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
 }
 
-void RenderImpl::Draw(Surface* image, const Point2u& pos)
+void RenderImpl::Draw(Surface* image, const Vec2u& pos)
 {
 }
 
-void RenderImpl::Draw(Texture* image, const Point2u& dstPos, const Point2u& srcPos, const Point2u& srcSize)
+void RenderImpl::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 }
 
@@ -217,8 +217,8 @@ void RenderImpl::Initialization()
 
     parameters.hDeviceWindow = _Window->GetWindowImpl()->Hwnd();
     parameters.Windowed = true;
-    parameters.BackBufferWidth = (UINT)_Window->Size().PosX();
-    parameters.BackBufferHeight = (UINT)_Window->Size().PosY();
+    parameters.BackBufferWidth = (UINT)_Window->Size().x;
+    parameters.BackBufferHeight = (UINT)_Window->Size().y;
     parameters.BackBufferCount = 1;
     parameters.EnableAutoDepthStencil = true;
     parameters.AutoDepthStencilFormat = D3DFMT_D16;

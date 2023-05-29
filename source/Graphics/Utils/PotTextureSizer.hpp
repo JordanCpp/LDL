@@ -1,7 +1,7 @@
 #ifndef LDL_Graphics_Utils_PotTextureSizer_hpp
 #define LDL_Graphics_Utils_PotTextureSizer_hpp
 
-#include <LDL/Graphics/Primitives/Point2u.hpp>
+#include <LDL/Math/Vec2.hpp>
 
 namespace LDL
 {
@@ -12,7 +12,7 @@ namespace LDL
 			class PotTextureSizer
 			{
 			public:
-				size_t Calc(const Point2u& size);
+				size_t Calc(const Math::Vec2u& size);
 			private:
 			};
 		}

@@ -10,13 +10,13 @@ namespace LDL
 		class TextureImpl
 		{
 		public:
-			TextureImpl(RenderImpl* renderImpl, const Point2u & size, uint8_t* pixels, size_t bytesPerPixel);
+			TextureImpl(RenderImpl* renderImpl, const LDL::Math::Vec2u & size, uint8_t* pixels, size_t bytesPerPixel);
 			~TextureImpl();
-			const Point2u& Size();
+			const Math::Vec2u& Size();
 			size_t Id();
 		private:
 			size_t _Id;
-			Point2u _Size;
+			LDL::Math::Vec2u _Size;
 		};
 	}
 }

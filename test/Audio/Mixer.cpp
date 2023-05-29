@@ -4,10 +4,11 @@
 
 using namespace LDL::Graphics;
 using namespace LDL::Audio;
+using namespace LDL::Math;
 
 int main()
 {
-	Window window(Point2u(1, 2), Point2u(640, 480), "Mixer.cpp");
+	Window window(Vec2u(1, 2), Vec2u(640, 480), "Mixer.cpp");
 
 	try
 	{

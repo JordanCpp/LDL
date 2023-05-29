@@ -82,6 +82,8 @@ namespace LDL
 		//private:
 			T _Values[16];
 		};
+
+		typedef Mat4<float> Mat4f;
 	}
 }
 
