@@ -11,10 +11,10 @@ void Init()
 	LDL_TEST_EQUAL(baseRender.Size().x == 800);
 	LDL_TEST_EQUAL(baseRender.Size().y == 600);
 
-	LDL_TEST_EQUAL(baseRender.Color().Red() == 0);
-	LDL_TEST_EQUAL(baseRender.Color().Green() == 0);
-	LDL_TEST_EQUAL(baseRender.Color().Blue() == 0);
-	LDL_TEST_EQUAL(baseRender.Color().Alpha() == 255);
+	LDL_TEST_EQUAL(baseRender.Color().r == 0);
+	LDL_TEST_EQUAL(baseRender.Color().g == 0);
+	LDL_TEST_EQUAL(baseRender.Color().b == 0);
+	LDL_TEST_EQUAL(baseRender.Color().a == 255);
 }
 
 void ColorCheck()
@@ -26,10 +26,10 @@ void ColorCheck()
 	LDL_TEST_EQUAL(baseRender.Size().x == 800);
 	LDL_TEST_EQUAL(baseRender.Size().y == 600);
 
-	LDL_TEST_EQUAL(baseRender.Color().Red() == 125);
-	LDL_TEST_EQUAL(baseRender.Color().Green() == 175);
-	LDL_TEST_EQUAL(baseRender.Color().Blue() == 235);
-	LDL_TEST_EQUAL(baseRender.Color().Alpha() == 255);
+	LDL_TEST_EQUAL(baseRender.Color().r == 125);
+	LDL_TEST_EQUAL(baseRender.Color().g == 175);
+	LDL_TEST_EQUAL(baseRender.Color().b == 235);
+	LDL_TEST_EQUAL(baseRender.Color().a == 255);
 }
 
 int main()

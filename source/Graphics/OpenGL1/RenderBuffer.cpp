@@ -38,9 +38,9 @@ void RenderBuffer::Line(const Vec2u& first, const Vec2u& last, const Color& colo
 	RenderElement element;
 
 	element.type               = RenderElement::IsLine;
-	element.lineElement.r      = color.Red();
-	element.lineElement.g      = color.Green();
-	element.lineElement.b      = color.Blue();
+	element.lineElement.r      = color.r;
+	element.lineElement.g      = color.g;
+	element.lineElement.b      = color.b;
 	element.lineElement.firstX = (uint16_t)first.x;
 	element.lineElement.firstY = (uint16_t)first.y;
 	element.lineElement.lastX  = (uint16_t)last.x;
@@ -54,9 +54,9 @@ void RenderBuffer::Fill(const Vec2u& pos, const Vec2u& size, const Color& color)
 	RenderElement element;
 
 	element.type              = RenderElement::IsFill;
-	element.fillElement.r     = color.Red();
-	element.fillElement.g     = color.Green();
-	element.fillElement.b     = color.Blue();
+	element.fillElement.r     = color.r;
+	element.fillElement.g     = color.g;
+	element.fillElement.b     = color.b;
 	element.fillElement.posX  = (uint16_t)pos.x;
 	element.fillElement.posY  = (uint16_t)pos.y;
 	element.fillElement.sizeX = (uint16_t)size.x;
@@ -82,9 +82,9 @@ void RenderBuffer::Clear(const Color& color)
 	RenderElement element;
 
 	element.type           = RenderElement::IsClear;
-	element.clearElement.r = color.Red();
-	element.clearElement.g = color.Green();
-	element.clearElement.b = color.Blue();
+	element.clearElement.r = color.r;
+	element.clearElement.g = color.g;
+	element.clearElement.b = color.b;
 
 	_Elements.push_back(element);
 }

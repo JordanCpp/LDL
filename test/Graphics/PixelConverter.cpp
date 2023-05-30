@@ -17,10 +17,10 @@ void Fill()
 
 	for (size_t i = 0; i < size.x * size.y; i++)
 	{
-		LDL_TEST_EQUAL(pixels[i].Red() == 1);
-		LDL_TEST_EQUAL(pixels[i].Green() == 2);
-		LDL_TEST_EQUAL(pixels[i].Blue() == 3);
-		LDL_TEST_EQUAL(pixels[i].Alpha() == 4);
+		LDL_TEST_EQUAL(pixels[i].r == 1);
+		LDL_TEST_EQUAL(pixels[i].g == 2);
+		LDL_TEST_EQUAL(pixels[i].b == 3);
+		LDL_TEST_EQUAL(pixels[i].a == 4);
 	}
 
 	delete[] pixels;
@@ -41,10 +41,10 @@ void BgrToRgb()
 
 	for (size_t i = 0; i < size.x * size.y; i++)
 	{
-		LDL_TEST_EQUAL(pixels[i].Red() == 3);
-		LDL_TEST_EQUAL(pixels[i].Green() == 2);
-		LDL_TEST_EQUAL(pixels[i].Blue() == 1);
-		LDL_TEST_EQUAL(pixels[i].Alpha() == 4);
+		LDL_TEST_EQUAL(pixels[i].r == 3);
+		LDL_TEST_EQUAL(pixels[i].g == 2);
+		LDL_TEST_EQUAL(pixels[i].b == 1);
+		LDL_TEST_EQUAL(pixels[i].a == 4);
 	}
 
 	delete[] pixels;
@@ -65,10 +65,10 @@ void RgbToBgr()
 
 	for (size_t i = 0; i < size.x * size.y; i++)
 	{
-		LDL_TEST_EQUAL(pixels[i].Red() == 3);
-		LDL_TEST_EQUAL(pixels[i].Green() == 2);
-		LDL_TEST_EQUAL(pixels[i].Blue() == 1);
-		LDL_TEST_EQUAL(pixels[i].Alpha() == 4);
+		LDL_TEST_EQUAL(pixels[i].r == 3);
+		LDL_TEST_EQUAL(pixels[i].g == 2);
+		LDL_TEST_EQUAL(pixels[i].b == 1);
+		LDL_TEST_EQUAL(pixels[i].a == 4);
 	}
 
 	delete[] pixels;

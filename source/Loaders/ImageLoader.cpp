@@ -84,7 +84,7 @@ void ImageLoader::CopyIf(uint8_t* dstPixels, uint8_t * srcPixels, size_t bytes, 
 {
 	for (size_t i = 0; i < bytes; i++)
 	{
-		if (srcPixels[3 * i + 0] == color.Red() && srcPixels[3 * i + 1] == color.Green() && srcPixels[3 * i + 2] == color.Blue())
+		if (srcPixels[3 * i + 0] == color.r && srcPixels[3 * i + 1] == color.g && srcPixels[3 * i + 2] == color.b)
 		{
 			dstPixels[4 * i + 0] = 0;
 			dstPixels[4 * i + 1] = 0;

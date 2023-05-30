@@ -52,10 +52,10 @@ void LDL::Graphics::PixelPainter::Color(const LDL::Graphics::Color& color)
 {
 	_Color = color;
 
-	_Red = _Color.Red();
-	_Green = _Color.Green();
-	_Blue = _Color.Blue();
-	_Alpha = _Color.Alpha();
+	_Red   = _Color.r;
+	_Green = _Color.g;
+	_Blue  = _Color.b;
+	_Alpha = _Color.a;
 }
 
 void PixelPainter::Clear()

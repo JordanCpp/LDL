@@ -11,13 +11,13 @@ void InitDefault()
 	PixelPainter painter;
 
 	LDL_TEST_EQUAL(painter.Target()        == NULL);
-	LDL_TEST_EQUAL(painter.Size().x   == 0);
-	LDL_TEST_EQUAL(painter.Size().y   == 0);
+	LDL_TEST_EQUAL(painter.Size().x        == 0);
+	LDL_TEST_EQUAL(painter.Size().y        == 0);
 	LDL_TEST_EQUAL(painter.BytesPerPixel() == 0);
 	LDL_TEST_EQUAL(painter.Pixels()        == NULL);
-	LDL_TEST_EQUAL(painter.Color().Red()   == 0);
-	LDL_TEST_EQUAL(painter.Color().Green() == 0);
-	LDL_TEST_EQUAL(painter.Color().Blue()  == 0);
+	LDL_TEST_EQUAL(painter.Color().r       == 0);
+	LDL_TEST_EQUAL(painter.Color().g       == 0);
+	LDL_TEST_EQUAL(painter.Color().b       == 0);
 }
 
 void InitValue()
@@ -29,13 +29,13 @@ void InitValue()
 	painter.Bind(&surface);
 
 	LDL_TEST_EQUAL(painter.Target()        == &surface);
-	LDL_TEST_EQUAL(painter.Size().x   == 640);
-	LDL_TEST_EQUAL(painter.Size().y   == 480);
+	LDL_TEST_EQUAL(painter.Size().x        == 640);
+	LDL_TEST_EQUAL(painter.Size().y        == 480);
 	LDL_TEST_EQUAL(painter.BytesPerPixel() == 4);
 	LDL_TEST_EQUAL(painter.Pixels()        != NULL);
-	LDL_TEST_EQUAL(painter.Color().Red()   == 0);
-	LDL_TEST_EQUAL(painter.Color().Green() == 0);
-	LDL_TEST_EQUAL(painter.Color().Blue()  == 0);
+	LDL_TEST_EQUAL(painter.Color().r       == 0);
+	LDL_TEST_EQUAL(painter.Color().g       == 0);
+	LDL_TEST_EQUAL(painter.Color().b       == 0);
 }
 
 void InitColor()
@@ -48,10 +48,10 @@ void InitColor()
 
 	painter.Color(LDL::Graphics::Color(1, 2, 3, 4));
 
-	LDL_TEST_EQUAL(painter.Color().Red()   == 1);
-	LDL_TEST_EQUAL(painter.Color().Green() == 2);
-	LDL_TEST_EQUAL(painter.Color().Blue()  == 3);
-	LDL_TEST_EQUAL(painter.Color().Alpha() == 4);
+	LDL_TEST_EQUAL(painter.Color().r == 1);
+	LDL_TEST_EQUAL(painter.Color().g == 2);
+	LDL_TEST_EQUAL(painter.Color().b == 3);
+	LDL_TEST_EQUAL(painter.Color().a == 4);
 }
 
 void Clear()
@@ -69,10 +69,10 @@ void Clear()
 	{
 		for (size_t j = 0; j < painter.Size().y; j++)
 		{
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).Red()   == 1);
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).Green() == 2);
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).Blue()  == 3);
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).Alpha() == 4);
+			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).r == 1);
+			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).g == 2);
+			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).b == 3);
+			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).a == 4);
 		}
 	}
 }
@@ -95,10 +95,10 @@ void Fill()
 	{
 		for (size_t j = 50; j < 240; j++)
 		{
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).Red()   == 1);
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).Green() == 2);
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).Blue()  == 3);
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).Alpha() == 4);
+			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).r == 1);
+			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).g == 2);
+			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).b == 3);
+			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).a == 4);
 		}
 	}
 }
@@ -119,10 +119,10 @@ void Line()
 
 	for (size_t i = 0; i < 320; i++)
 	{
-		LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, 0)).Red()   == 1);
-		LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, 0)).Green() == 2);
-		LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, 0)).Blue()  == 3);
-		LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, 0)).Alpha() == 4);
+		LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, 0)).r == 1);
+		LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, 0)).g == 2);
+		LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, 0)).b == 3);
+		LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, 0)).a == 4);
 	}
 }
 
@@ -140,10 +140,10 @@ void Pixel()
 	painter.Color(LDL::Graphics::Color(5, 6, 7, 8));
 	painter.Pixel(Vec2u(150, 300));
 
-	LDL_TEST_EQUAL(painter.GetPixel(Vec2u(150, 300)).Red()   == 5);
-	LDL_TEST_EQUAL(painter.GetPixel(Vec2u(150, 300)).Green() == 6);
-	LDL_TEST_EQUAL(painter.GetPixel(Vec2u(150, 300)).Blue()  == 7);
-	LDL_TEST_EQUAL(painter.GetPixel(Vec2u(150, 300)).Alpha() == 8);
+	LDL_TEST_EQUAL(painter.GetPixel(Vec2u(150, 300)).r == 5);
+	LDL_TEST_EQUAL(painter.GetPixel(Vec2u(150, 300)).g == 6);
+	LDL_TEST_EQUAL(painter.GetPixel(Vec2u(150, 300)).b == 7);
+	LDL_TEST_EQUAL(painter.GetPixel(Vec2u(150, 300)).a == 8);
 }
 
 int main()
