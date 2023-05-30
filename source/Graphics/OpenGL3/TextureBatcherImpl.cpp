@@ -3,6 +3,7 @@
 #include "Util.hpp"
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 TextureBatcherImpl::TextureBatcherImpl(Texture* texture, size_t count) :
 	_Texture(texture->GetTextureImpl()->Id()),

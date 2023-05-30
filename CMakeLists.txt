@@ -203,6 +203,7 @@ if (LDL_RENDER_OPENGL3)
   "source/Graphics/OpenGL3/LinePainter.cpp"
   "source/Graphics/OpenGL3/TexturePainter.cpp"
   "source/Graphics/OpenGL3/TextureBatcherImpl.cpp"
+  "source/Graphics/OpenGL3/CameraImpl.cpp"
   ${SOURCE_OPENGL_FILES})
 endif() 
 

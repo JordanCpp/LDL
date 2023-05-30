@@ -2,6 +2,7 @@
 #include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 typedef HGLRC(WINAPI* PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareContext, const int* attribList);
 

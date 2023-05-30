@@ -3,6 +3,7 @@
 #include "Util.hpp"
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 Screen::Screen(const Vec2u& size) :
 	_Size(size)

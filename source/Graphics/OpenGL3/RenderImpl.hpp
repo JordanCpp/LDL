@@ -6,7 +6,7 @@
 #include "TextureImpl.hpp"
 #include "Screen.hpp"
 #include <LDL/Graphics/Texture.hpp>
-#include <LDL/Math/Mat4f.hpp>
+#include <LDL/Math/Mat4.hpp>
 #include "LinePainter.hpp"
 #include "TexturePainter.hpp"
 #include <LDL/Graphics/TextureBatcher.hpp>
@@ -40,10 +40,13 @@ namespace LDL
 			Window* _Window;
 			Screen _Screen;
 			LDL::Graphics::Color _Color;
-			LDL::Math::Mat4f projection;
+			Math::Mat4f projection;
 			ShaderLoader _ShaderLoader;
 			LinePainter _LinePainter;
 			TexturePainter _TexturePainter;
+		public:
+			Math::Mat4f _Projection;
+			Math::Mat4f _ModelView;
 		};
 	}
 }

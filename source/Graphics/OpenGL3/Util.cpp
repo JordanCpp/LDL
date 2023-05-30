@@ -4,11 +4,12 @@
 #include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 const size_t TextureCount = 12;
 const size_t TextureSizes[TextureCount] = {32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
 
-void LDL::Graphics::Util::DrawQuad(const Vec2u& pos, const Vec2u& size)
+void Util::DrawQuad(const Vec2u& pos, const Vec2u& size)
 {
 	GLfloat x = (GLfloat)pos.x;
 	GLfloat y = (GLfloat)pos.y;
@@ -69,9 +70,9 @@ void Util::DrawQuad(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcP
 
 void Util::Normalize(const Color& color, GLclampf& r, GLclampf& g, GLclampf& b)
 {
-	 r = color.Red() / 255.0f;
-	 g = color.Green() / 255.0f;
-	 b = color.Blue() / 255.0f;
+	 r = color.r / 255.0f;
+	 g = color.g / 255.0f;
+	 b = color.b / 255.0f;
 }
 
 void Util::Check(const std::string& file, size_t line, const std::string& expression)

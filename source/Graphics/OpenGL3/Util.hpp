@@ -1,8 +1,8 @@
 #ifndef LDL_Graphics_OpenGL3_Util_hpp
 #define LDL_Graphics_OpenGL3_Util_hpp
 
-#include <LDL/Graphics/Primitives/LDL::Math::Vec2u.hpp>
-#include <LDL/Graphics/Primitives/Color.hpp>
+#include <LDL/Math/Vec2.hpp>
+#include <LDL/Graphics/Color.hpp>
 #include <LDL/OpenGL/OpenGL1_0.hpp>
 #include <string>
 

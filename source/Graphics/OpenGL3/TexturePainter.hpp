@@ -4,7 +4,7 @@
 #include <LDL/OpenGL/OpenGL3_0.hpp>
 #include "ShaderLoader.hpp"
 #include <LDL/Graphics/Texture.hpp>
-#include <LDL/Math/Mat4f.hpp>
+#include <LDL/Math/Mat4.hpp>
 
 namespace LDL
 {
