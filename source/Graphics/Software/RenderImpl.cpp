@@ -6,7 +6,7 @@ using namespace LDL::Math;
 
 RenderImpl::RenderImpl(RenderContextImpl* renderContextImpl, Window* window) :
 	_Window(window),
-	_Canvas(_Window->Size(), 4),
+	_Canvas(_Window->Size(), 3),
 	_ImageResizer(_Window->Size())
 {
 	_PixelPainter.Bind(&_Canvas);

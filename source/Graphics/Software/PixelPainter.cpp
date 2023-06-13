@@ -124,37 +124,38 @@ void PixelPainter::Pixel(const Vec2u& pos)
 {
 	size_t i = (_Width * pos.y + pos.x) * _BytesPerPixel;
 
-	assert(i < _Width * _Heigth * _BytesPerPixel);
-
-	switch (_BytesPerPixel)
+	if (i < _Width * _Heigth * _BytesPerPixel)
 	{
-	case 4:
+		switch (_BytesPerPixel)
+		{
+		case 4:
 #if defined(LDL_CONFIG_COLOR_BGRA)
-		_Pixels[i] = _Blue;
-		_Pixels[i + 2] = _Red;
+			_Pixels[i] = _Blue;
+			_Pixels[i + 2] = _Red;
 #else
-		_Pixels[i] = _Red;
-		_Pixels[i + 2] = _Blue;
+			_Pixels[i] = _Red;
+			_Pixels[i + 2] = _Blue;
 #endif
 			_Pixels[i + 1] = _Green;
 			_Pixels[i + 3] = _Alpha;
-		break;
-	case 3:
+			break;
+		case 3:
 #if defined(LDL_CONFIG_COLOR_BGRA)
-		_Pixels[i] = _Blue;
-		_Pixels[i + 2] = _Red;
+			_Pixels[i] = _Blue;
+			_Pixels[i + 2] = _Red;
 #else
-		_Pixels[i] = _Red;
-		_Pixels[i + 2] = _Blue;
+			_Pixels[i] = _Red;
+			_Pixels[i + 2] = _Blue;
 #endif
-		_Pixels[i + 1] = _Green;
-		break;
-	case 2:
+			_Pixels[i + 1] = _Green;
+			break;
+		case 2:
 			_Pixels[i] = _Red;
 			_Pixels[i + 1] = _Green;
-		break;
-	default:
+			break;
+		default:
 			_Pixels[i] = _Red;
+		}
 	}
 }
 

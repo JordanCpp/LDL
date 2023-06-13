@@ -9,8 +9,6 @@ void PixelCopier::Copy(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
 	assert(srcSurf != NULL);
 	assert(dstSurf != NULL);
 
-	assert(srcSurf->BytesPerPixel() <= dstSurf->BytesPerPixel());
-
 	assert(srcSurf->Size().x <= dstSurf->Size().x);
 	assert(srcSurf->Size().y <= dstSurf->Size().y);
 
