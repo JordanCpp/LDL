@@ -47,40 +47,41 @@ void PixelCopier::Copy24(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
 
 void PixelCopier::Copy32(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
 {
-	uint8_t dstBpp = dstSurf->BytesPerPixel();
-	uint8_t srcBpp = srcSurf->BytesPerPixel();
+	size_t   dst_w    = dstSurf->Size().x;
+	size_t   dst_h    = dstSurf->Size().y;
+	size_t   dst_bpp  = dstSurf->BytesPerPixel();
+	uint8_t* dst_data = dstSurf->Pixels();
 
-	uint8_t* dstPixels = dstSurf->Pixels() + (pos.x + pos.y * dstSurf->Size().x) * dstBpp;
-	uint8_t* srcPixels = srcSurf->Pixels();
+	size_t   src_w    = srcSurf->Size().x;
+	size_t   src_h    = srcSurf->Size().y;
+	size_t   src_bpp  = srcSurf->BytesPerPixel();
+	uint8_t* src_data = srcSurf->Pixels();
 
-	size_t dstStride = dstSurf->Size().x * dstBpp;
-	size_t srcStride = srcSurf->Size().x * srcBpp;
+	size_t limit = dst_w * dst_h * dst_bpp;
 
-	size_t w = srcSurf->Size().x;
-	size_t h = srcSurf->Size().y;
-
-	for (size_t y = 0; y < h; ++y)
+	for (size_t y = 0; y < src_h; ++y)
 	{
-		for (size_t x = 0; x < w; ++x)
+		for (size_t x = 0; x < src_w; ++x)
 		{
-			uint8_t* dst = dstPixels + x * dstBpp;
-			uint8_t* src = srcPixels + x * srcBpp;
+			size_t dst_index = (dst_w * (pos.y + y) + pos.x + x) * dst_bpp;
+			size_t src_index = (src_w * y + x) * src_bpp;
 
-			if (src[3] != 0)
+			if (dst_index < limit)
 			{
+				if (srcSurf->Pixels()[src_index + 3] != 0)
+				{
 #if defined(LDL_CONFIG_COLOR_BGRA)
-				dst[0] = src[2];
-				dst[1] = src[1];
-				dst[2] = src[0];
-#else 
-				dst[0] = src[0];
-				dst[1] = src[1];
-				dst[2] = src[2];
+					dstSurf->Pixels()[dst_index + 0] = srcSurf->Pixels()[src_index + 2];
+					dstSurf->Pixels()[dst_index + 1] = srcSurf->Pixels()[src_index + 1];
+					dstSurf->Pixels()[dst_index + 2] = srcSurf->Pixels()[src_index + 0];
+#else
+					dstSurf->Pixels()[dst_index + 0] = srcSurf->Pixels()[src_index + 0];
+					dstSurf->Pixels()[dst_index + 1] = srcSurf->Pixels()[src_index + 1];
+					dstSurf->Pixels()[dst_index + 2] = srcSurf->Pixels()[src_index + 2];
 #endif
+				}
+
 			}
 		}
-
-		srcPixels += srcStride;
-		dstPixels += dstStride;
 	}
 }

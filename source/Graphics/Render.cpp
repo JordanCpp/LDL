@@ -87,24 +87,14 @@ void Render::Line(const Vec2u& pos1, const Vec2u& pos2)
 	_RenderImpl->Line(pos1, pos2);
 }
 
-void Render::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
-{
-	_RenderImpl->Draw(image, pos, size);
-}
-
 void Render::Draw(Texture* image, const Vec2u& pos)
 {
 	_RenderImpl->Draw(image, pos);
 }
 
-void Render::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
+void Render::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
 {
 	_RenderImpl->Draw(image, pos, size);
-}
-
-void Render::Draw(Surface* image, const Vec2u& pos)
-{
-	_RenderImpl->Draw(image, pos);
 }
 
 void Render::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
@@ -115,6 +105,24 @@ void Render::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, cons
 void Render::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	_RenderImpl->Draw(image, dstPos, dstSize, srcPos, srcSize);
+}
+
+void Render::Draw(Surface* image, const Vec2u& pos)
+{
+	_RenderImpl->Draw(image, pos);
+}
+
+void Render::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
+{
+	_RenderImpl->Draw(image, pos, size);
+}
+
+void Render::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
+{
+}
+
+void Render::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
+{
 }
 
 void Render::Draw(TextureBatcher* textureBatcher)
