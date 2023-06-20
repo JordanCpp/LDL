@@ -1,6 +1,15 @@
 #include <LDL/Loaders/SoundLoader.hpp>
 #include "../dependencies/stb/stb_vorbis.c"
 
+#define DR_WAV_IMPLEMENTATION
+#include "../dependencies/dr_libs/dr_wav.h"
+
+#define DR_FLAC_IMPLEMENTATION
+#include "../dependencies/dr_libs/dr_flac.h"
+
+#define DR_MP3_IMPLEMENTATION
+#include "../dependencies/dr_libs/dr_mp3.h"
+
 using namespace LDL::Loaders;
 using namespace LDL::Allocators;
 
@@ -50,6 +59,32 @@ bool SoundLoader::LoadOgg(const std::string& path)
     stb_vorbis_close(file);
 
     return true;
+}
+
+bool SoundLoader::LoadWav(const std::string& path)
+{
+    unsigned int channels = 0;
+    unsigned int sampleRate = 0;
+    drwav_uint64 totalPCMFrameCount = 0;
+
+    float* data = drwav_open_file_and_read_pcm_frames_f32(path.c_str(), &channels, &sampleRate, &totalPCMFrameCount, NULL);
+
+    if (data != NULL)
+    {
+        drwav_free(data, NULL);
+    }
+
+    return false;
+}
+
+bool SoundLoader::LoadMp3(const std::string& path)
+{
+    return false;
+}
+
+bool SoundLoader::LoadFlac(const std::string& path)
+{
+    return false;
 }
 
 bool SoundLoader::Load(const std::string& path)

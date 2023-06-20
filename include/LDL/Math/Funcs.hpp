@@ -21,8 +21,6 @@ namespace LDL
 			return result * m;
 		}
 
-		//mat4_t mat4_rotate(mat4_t mat, double angle, vec3_t axis, mat4_t dest) {
-
 		template<typename T>
 		Mat4<T> Rotate(Mat4<T>& m, T angle, const Vec3<T>& axis)
 		{

@@ -16,6 +16,9 @@ namespace LDL
 			~SoundLoader();
 			void Clear();
 			bool LoadOgg(const std::string& path);
+			bool LoadWav(const std::string& path);
+			bool LoadMp3(const std::string& path);
+			bool LoadFlac(const std::string& path);
 			bool Load(const std::string& path);
 			LDL::Allocators::Allocator* Allocator();
 			size_t Channels();
