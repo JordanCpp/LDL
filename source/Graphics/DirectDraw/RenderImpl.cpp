@@ -3,8 +3,9 @@
 #include "../source/Platforms/Windows/Graphics/DirectDraw/WindowImpl.hpp"
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
-RenderImpl::RenderImpl(Window* window) :
+RenderImpl::RenderImpl(RenderContextImpl* renderContextImpl, Window* window) :
 	_Window(window),
 	_BaseRender(_Window->Size())
 {
@@ -62,7 +63,7 @@ LDL::Graphics::RenderImpl::~RenderImpl()
     }
 }
 
-void LDL::Graphics::RenderImpl::Buffer(uint8_t* dst)
+void RenderImpl::Buffer(uint8_t* dst)
 {
 }
 
@@ -121,7 +122,7 @@ void RenderImpl::Clear()
     ZeroMemory(&bltfx, sizeof(bltfx));
 
     bltfx.dwSize = sizeof(bltfx);
-    bltfx.dwFillColor = RGB(_BaseRender.Color().Red(), _BaseRender.Color().Green(), _BaseRender.Color().Blue());
+    bltfx.dwFillColor = RGB(_BaseRender.Color().r, _BaseRender.Color().g, _BaseRender.Color().b);
 
     HRESULT result;
 
@@ -148,25 +149,30 @@ void RenderImpl::Fill(const Vec2u& pos, const Vec2u& size)
 {
 }
 
-void RenderImpl::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
+void RenderImpl::Draw(Texture* image, const Math::Vec2u& pos, const Math::Vec2u& size)
 {
 }
 
-void RenderImpl::Draw(Texture* image, const Vec2u& pos)
+void RenderImpl::Draw(Texture* image, const Math::Vec2u& pos)
 {
-
 }
 
-void RenderImpl::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
+void RenderImpl::Draw(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size)
 {
-
 }
 
-void RenderImpl::Draw(Surface* image, const Vec2u& pos)
+void RenderImpl::Draw(Surface* image, const Math::Vec2u& pos)
 {
-
 }
 
-void RenderImpl::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
+void RenderImpl::Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize)
+{
+}
+
+void RenderImpl::Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize)
+{
+}
+
+void RenderImpl::Draw(TextureBatcher* textureBatcher)
 {
 }

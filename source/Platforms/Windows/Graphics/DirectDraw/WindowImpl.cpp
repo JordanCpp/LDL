@@ -2,6 +2,7 @@
 #include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Graphics;
+using namespace LDL::Math;
 
 WindowImpl::WindowImpl(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _Window(pos, size, title, mode)
@@ -10,6 +11,16 @@ WindowImpl::WindowImpl(const Vec2u& pos, const Vec2u& size, const std::string& t
 
 WindowImpl::~WindowImpl()
 {
+}
+
+bool WindowImpl::Running()
+{
+    return _Window.Running();
+}
+
+void WindowImpl::PollEvents()
+{
+    _Window.PollEvents();
 }
 
 void WindowImpl::Present(uint8_t* pixels, uint8_t bytesPerPixel)

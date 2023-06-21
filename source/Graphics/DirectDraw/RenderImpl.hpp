@@ -5,6 +5,7 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Graphics/Surface.hpp>
+#include <LDL/Graphics/TextureBatcher.hpp>
 #include <ddraw.h>
 
 namespace LDL
@@ -14,7 +15,7 @@ namespace LDL
 		class RenderImpl
 		{
 		public:
-			RenderImpl(Window* window);
+			RenderImpl(RenderContextImpl* renderContextImpl, Window* window);
 			~RenderImpl();
 			void Buffer(uint8_t * dst);
 			void Begin();
@@ -31,6 +32,8 @@ namespace LDL
 			void Draw(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size);
 			void Draw(Surface* image, const Math::Vec2u& pos);
 			void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
+			void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
+			void Draw(TextureBatcher* textureBatcher);
 		private:
 			Window* _Window;
 			BaseRender _BaseRender;

@@ -253,7 +253,10 @@ if (LDL_RENDER_DIRECTX1)
   set(SOURCE_RENDER
   "Graphics/DirectDraw/RenderImpl.cpp"
   "Graphics/DirectDraw/TextureImpl.cpp"
-  "Graphics/DirectDraw/ScreenshoterImpl.cpp")
+  "Graphics/DirectDraw/ScreenshoterImpl.cpp"
+  "Graphics/DirectDraw/RenderContextImpl.cpp"
+  "Graphics/DirectDraw/TextureBatcherImpl.cpp"
+  "Graphics/DirectDraw/CameraImpl.cpp")
 endif()
 
 if (WIN32 AND LDL_RENDER_DIRECTX1)
