@@ -41,3 +41,6 @@ target_link_libraries(13_TileMapBatcher LDL)
 
 add_executable(14_TextureCopy "14_TextureCopy.cpp")
 target_link_libraries(14_TextureCopy LDL)
+
+add_executable(15_AudioPlay "15_AudioPlay.cpp")
+target_link_libraries(15_AudioPlay LDL)

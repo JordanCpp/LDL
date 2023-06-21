@@ -104,6 +104,7 @@ set(SOURCE_FILES
 
 "Audio/Mixer.cpp"
 "Audio/Sound.cpp"
+"Audio/AudioContext.cpp"
 
 "Events/Eventer.cpp"
 
@@ -158,7 +159,8 @@ set(SOURCE_OPENGL_FILES
 if (LDL_AUDIO_DIRECT_SOUND_8)
   set(SOURCE_AUDIO
   "Audio/DirectSound8/MixerImpl.cpp"
-  "Audio/DirectSound8/SoundImpl.cpp")
+  "Audio/DirectSound8/SoundImpl.cpp"
+  "Audio/DirectSound8/AudioContextImpl.cpp")
 endif() 
 
 #

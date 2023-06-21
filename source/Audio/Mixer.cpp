@@ -9,14 +9,23 @@
 #endif
 
 using namespace LDL::Audio;
-using namespace LDL::Graphics;
 
-Mixer::Mixer(Window* window, size_t rate, size_t bits, size_t channels) :
-	_MixerImpl(new MixerImpl(window, rate, bits, channels))
+Mixer::Mixer() :
+	_MixerImpl(new MixerImpl())
 {
+}
+
+Mixer::~Mixer()
+{
+	delete _MixerImpl;
 }
 
 MixerImpl* Mixer::GetMixerImpl()
 {
 	return _MixerImpl;
+}
+
+void Mixer::Play(Sound* sound)
+{
+	_MixerImpl->Play(sound);
 }
