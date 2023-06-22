@@ -13,23 +13,6 @@
 using namespace LDL::Loaders;
 using namespace LDL::Allocators;
 
-struct WaveHeaderType
-{
-    char chunkId[4];
-    unsigned long chunkSize;
-    char format[4];
-    char subChunkId[4];
-    unsigned long subChunkSize;
-    unsigned short audioFormat;
-    unsigned short numChannels;
-    unsigned long sampleRate;
-    unsigned long bytesPerSecond;
-    unsigned short blockAlign;
-    unsigned short bitsPerSample;
-    char dataChunkId[4];
-    unsigned long dataSize;
-};
-
 SoundLoader::SoundLoader(LDL::Allocators::Allocator* allocator) :
     _Allocator(allocator),
     _Channels(0),
@@ -102,109 +85,7 @@ bool SoundLoader::LoadWav(const std::string& path)
 
 bool SoundLoader::LoadMp3(const std::string& path)
 {
-    int error;
-    FILE* filePtr;
-    unsigned int count;
-    WaveHeaderType waveFileHeader;
-    unsigned char* waveData;
-    unsigned char* bufferPtr;
-    unsigned long bufferSize;
-
-    filePtr = fopen(path.c_str(), "rb");
-    if (filePtr != NULL)
-    {
-        return false;
-    }
-
-    // Read in the wave file header.
-    count = fread(&waveFileHeader, sizeof(waveFileHeader), 1, filePtr);
-    if (count != 1)
-    {
-        return false;
-    }
-
-    // Check that the chunk ID is the RIFF format.
-    if ((waveFileHeader.chunkId[0] != 'R') || (waveFileHeader.chunkId[1] != 'I') ||
-        (waveFileHeader.chunkId[2] != 'F') || (waveFileHeader.chunkId[3] != 'F'))
-    {
-        return false;
-    }
-
-    // Check that the file format is the WAVE format.
-    if ((waveFileHeader.format[0] != 'W') || (waveFileHeader.format[1] != 'A') ||
-        (waveFileHeader.format[2] != 'V') || (waveFileHeader.format[3] != 'E'))
-    {
-        return false;
-    }
-
-    // Check that the sub chunk ID is the fmt format.
-    if ((waveFileHeader.subChunkId[0] != 'f') || (waveFileHeader.subChunkId[1] != 'm') ||
-        (waveFileHeader.subChunkId[2] != 't') || (waveFileHeader.subChunkId[3] != ' '))
-    {
-        return false;
-    }
-
-    // Check that the audio format is WAVE_FORMAT_PCM.
-    if (waveFileHeader.audioFormat != 1)
-    {
-        return false;
-    }
-
-    // Check that the wave file was recorded in stereo format.
-    if (waveFileHeader.numChannels != 2)
-    {
-        return false;
-    }
-
-    // Check that the wave file was recorded at a sample rate of 44.1 KHz.
-    if (waveFileHeader.sampleRate != 44100)
-    {
-        return false;
-    }
-
-    // Ensure that the wave file was recorded in 16 bit format.
-    if (waveFileHeader.bitsPerSample != 16)
-    {
-        return false;
-    }
-
-    // Check for the data chunk header.
-    if ((waveFileHeader.dataChunkId[0] != 'd') || (waveFileHeader.dataChunkId[1] != 'a') ||
-        (waveFileHeader.dataChunkId[2] != 't') || (waveFileHeader.dataChunkId[3] != 'a'))
-    {
-        return false;
-    }
-
-    // Move to the beginning of the wave data which starts at the end of the data chunk header.
-    fseek(filePtr, sizeof(WaveHeaderType), SEEK_SET);
-
-    // Create a temporary buffer to hold the wave file data.
-    waveData = new unsigned char[waveFileHeader.dataSize];
-    if (!waveData)
-    {
-        return false;
-    }
-
-    // Read in the wave file data into the newly created buffer.
-    count = fread(waveData, 1, waveFileHeader.dataSize, filePtr);
-    if (count != waveFileHeader.dataSize)
-    {
-        return false;
-    }
-
-    // Close the file once done reading.
-    error = fclose(filePtr);
-    if (error != 0)
-    {
-        return false;
-    }
-
-    _Channels = 2;
-    _Rate = 44100;
-    _Samples = waveFileHeader.dataSize;
-    _Bytes = (uint8_t*)&waveData;
-
-    return true;
+    return false;
 }
 
 bool SoundLoader::LoadFlac(const std::string& path)

@@ -7,31 +7,32 @@ using namespace LDL::Core;
 
 SoundImpl::SoundImpl(AudioContext* audioContext, size_t channels, size_t rate, size_t samples, uint8_t* bytes)
 {
+	AudioContextImpl* impl = audioContext->GetAudioContextImpl();
+
 	WAVEFORMATEX waveFormat;
 	ZeroMemory(&waveFormat, sizeof(WAVEFORMATEX));
 
 	waveFormat.wFormatTag      = WAVE_FORMAT_PCM;
-	waveFormat.nSamplesPerSec  = audioContext->GetAudioContextImpl()->Rate();
-	waveFormat.wBitsPerSample  = audioContext->GetAudioContextImpl()->Bits();
-	waveFormat.nChannels       = audioContext->GetAudioContextImpl()->Channels();
+	waveFormat.nSamplesPerSec  = (DWORD)impl->Rate();
+	waveFormat.wBitsPerSample  = (WORD)impl->Bits();
+	waveFormat.nChannels       = (WORD)impl->Channels();
 	waveFormat.nBlockAlign     = (waveFormat.wBitsPerSample / 8) * waveFormat.nChannels;
 	waveFormat.nAvgBytesPerSec = waveFormat.nSamplesPerSec * waveFormat.nBlockAlign;
 	waveFormat.cbSize          = 0;
 
-
 	DSBUFFERDESC bufferDesc;
 	ZeroMemory(&bufferDesc, sizeof(DSBUFFERDESC));
 
-	bufferDesc.dwSize = sizeof(DSBUFFERDESC);
-	bufferDesc.dwFlags = DSBCAPS_CTRLVOLUME;
-	bufferDesc.dwBufferBytes = samples;
-	bufferDesc.dwReserved = 0;
-	bufferDesc.lpwfxFormat = &waveFormat;
+	bufferDesc.dwSize          = sizeof(DSBUFFERDESC);
+	bufferDesc.dwFlags         = DSBCAPS_CTRLVOLUME;
+	bufferDesc.dwBufferBytes   = (DWORD)samples;
+	bufferDesc.dwReserved      = 0;
+	bufferDesc.lpwfxFormat     = &waveFormat;
 	bufferDesc.guid3DAlgorithm = GUID_NULL;
 
 	IDirectSoundBuffer* soundBuffer;
 
-	HRESULT result = audioContext->GetAudioContextImpl()->_DirectSound->CreateSoundBuffer(&bufferDesc, &soundBuffer, NULL);
+	HRESULT result = impl->_DirectSound->CreateSoundBuffer(&bufferDesc, &soundBuffer, NULL);
 	if (FAILED(result))
 		throw RuntimeError("CreateSoundBuffer failed");
 
@@ -45,7 +46,7 @@ SoundImpl::SoundImpl(AudioContext* audioContext, size_t channels, size_t rate, s
 	unsigned char* bufferPtr;
 	unsigned long bufferSize;
 
-	result = _SecondaryBuffer->Lock(0, samples, (void**)&bufferPtr, (DWORD*)&bufferSize, NULL, 0, 0);
+	result = _SecondaryBuffer->Lock(0, (DWORD)samples, (void**)&bufferPtr, (DWORD*)&bufferSize, NULL, 0, 0);
 	if (FAILED(result))
 		throw RuntimeError("Lock failed");
 
