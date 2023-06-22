@@ -9,7 +9,7 @@
 #include "OpenGL1/WindowImpl.hpp"
 #elif LDL_RENDER_OPENGL3
 #include "OpenGL3/WindowImpl.hpp"
-#elif LDL_RENDER_DIRECTX1
+#elif LDL_RENDER_DIRECT_DRAW
 #include "DirectDraw/WindowImpl.hpp"
 #elif LDL_RENDER_DIRECTX5
 #include "DirectX5/Direct3D/WindowImpl.hpp"

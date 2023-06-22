@@ -37,11 +37,7 @@ namespace LDL
 		private:
 			Window* _Window;
 			BaseRender _BaseRender;
-			LPDIRECTDRAW _DirectDraw;
-			DDSURFACEDESC _SurfaceDesc;
-			DDSCAPS _SurfaceCaps;
-			LPDIRECTDRAWSURFACE _Primary;
-			LPDIRECTDRAWCLIPPER _DirectDrawClipper;
+			RenderContextImpl* _RenderContextImpl;
 		};
 	}
 }

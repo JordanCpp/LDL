@@ -110,8 +110,8 @@ bool SoundLoader::LoadMp3(const std::string& path)
     unsigned char* bufferPtr;
     unsigned long bufferSize;
 
-    error = fopen_s(&filePtr, path.c_str(), "rb");
-    if (error != 0)
+    filePtr = fopen(path.c_str(), "rb");
+    if (filePtr != NULL)
     {
         return false;
     }

@@ -24,8 +24,8 @@ if (LDL_RENDER_OPENGL3)
   add_definitions(-DLDL_RENDER_OPENGL3)
 endif()
 
-if (LDL_RENDER_DIRECTX1)
-  add_definitions(-DLDL_RENDER_DIRECTX1)
+if (LDL_RENDER_DIRECT_DRAW)
+  add_definitions(-DLDL_RENDER_DIRECT_DRAW)
 endif()
 
 if (LDL_RENDER_DIRECTX5)
@@ -66,7 +66,7 @@ if (LDL_RENDER_DIRECTX5)
   link_directories("../ddependencies/dx5sdk/Lib")
 endif() 
 
-if (LDL_RENDER_DIRECTX1)
+if (LDL_RENDER_DIRECT_DRAW)
   include_directories("../ddependencies/dx1sdk/Include")
   link_directories("../ddependencies/dx1sdk/Lib")
 endif()
@@ -247,9 +247,9 @@ if (WIN32 AND LDL_RENDER_GDI)
 endif()
 
 #
-# DirectX1
+# DirectDraw
 #
-if (LDL_RENDER_DIRECTX1)
+if (LDL_RENDER_DIRECT_DRAW)
   set(SOURCE_RENDER
   "Graphics/DirectDraw/RenderImpl.cpp"
   "Graphics/DirectDraw/TextureImpl.cpp"
@@ -259,7 +259,7 @@ if (LDL_RENDER_DIRECTX1)
   "Graphics/DirectDraw/CameraImpl.cpp")
 endif()
 
-if (WIN32 AND LDL_RENDER_DIRECTX1)
+if (WIN32 AND LDL_RENDER_DIRECT_DRAW)
   set(SOURCE_RENDER_PLATFORM
   "Platforms/Windows/Graphics/DirectDraw/WindowImpl.cpp")
 endif() 
@@ -343,7 +343,7 @@ if (WIN32 AND (LDL_RENDER_OPENGL1 OR LDL_RENDER_OPENGL3))
   target_link_libraries(${PROJECT_NAME} opengl32)
 endif()
 
-if (WIN32 AND LDL_RENDER_DIRECTX1)
+if (WIN32 AND LDL_RENDER_DIRECT_DRAW)
   target_link_libraries(${PROJECT_NAME} ddraw)
 endif()
 

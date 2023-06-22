@@ -8,7 +8,7 @@
 #include "OpenGL1/RenderContextImpl.hpp"
 #elif LDL_RENDER_OPENGL3
 #include "OpenGL3/RenderContextImpl.hpp"
-#elif LDL_RENDER_DIRECTX1
+#elif LDL_RENDER_DIRECT_DRAW
 #include "DirectDraw/RenderContextImpl.hpp"
 #elif LDL_RENDER_DIRECTX5
 #include "DirectX5/Direct3D/RenderContextImpl.hpp"

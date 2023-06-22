@@ -8,7 +8,7 @@
 #include "OpenGL1/TextureBatcherImpl.hpp"
 #elif LDL_RENDER_OPENGL3
 #include "OpenGL3/TextureBatcherImpl.hpp"
-#elif LDL_RENDER_DIRECTX1
+#elif LDL_RENDER_DIRECT_DRAW
 #include "DirectDraw/TextureBatcherImpl.hpp"
 #elif LDL_RENDER_DIRECTX5
 #include "DirectX5/Direct3D/TextureBatcherImpl.hpp"

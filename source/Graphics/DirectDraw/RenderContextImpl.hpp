@@ -1,6 +1,8 @@
 #ifndef LDL_Graphics_DirectDraw1_RenderContextImpl_hpp
 #define LDL_Graphics_DirectDraw1_RenderContextImpl_hpp
 
+#include <LDL/Contexts/DirectDrawContext.hpp>
+
 namespace LDL
 {
 	namespace Graphics
@@ -8,7 +10,7 @@ namespace LDL
 		class RenderContextImpl
 		{
 		public:
-			int Context;
+			Contexts::DirectDrawContext Context;
 		};
 	}
 }
