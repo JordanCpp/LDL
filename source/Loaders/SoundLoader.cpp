@@ -63,21 +63,20 @@ bool SoundLoader::LoadOgg(const std::string& path)
 
 bool SoundLoader::LoadWav(const std::string& path)
 {
-    unsigned int channels = 0;
-    unsigned int sampleRate = 0;
-    drwav_uint64 totalPCMFrameCount = 0;
+    unsigned int channels        = 0;
+    unsigned int sampleRate      = 0;
+    drwav_uint64 totalFrameCount = 0;
 
-    float* data = drwav_open_file_and_read_pcm_frames_f32(path.c_str(), &channels, &sampleRate, &totalPCMFrameCount, NULL);
+    float* data = drwav_open_file_and_read_pcm_frames_f32(path.c_str(), &channels, &sampleRate, &totalFrameCount, NULL);
 
     if (data != NULL)
     {
         _Channels = channels;
-        _Rate = sampleRate;
-        _Samples = totalPCMFrameCount;
-        _Bytes = (uint8_t*)data;
+        _Rate     = sampleRate;
+        _Samples  = (size_t)totalFrameCount;
+        _Bytes    = (uint8_t*)data;
 
         return true;
-        //drwav_free(data, NULL);
     }
 
     return false;
@@ -85,7 +84,17 @@ bool SoundLoader::LoadWav(const std::string& path)
 
 bool SoundLoader::LoadMp3(const std::string& path)
 {
-    return false;
+    drmp3_config config;
+    drmp3_uint64 totalFrameCount;
+
+    float* data = drmp3_open_file_and_read_pcm_frames_f32(path.c_str(), &config, &totalFrameCount, NULL);
+
+    _Channels = config.channels;
+    _Rate     = config.sampleRate;
+    _Samples  = (size_t)totalFrameCount;
+    _Bytes    = (uint8_t*)data;
+
+    return true;
 }
 
 bool SoundLoader::LoadFlac(const std::string& path)

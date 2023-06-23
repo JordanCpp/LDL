@@ -17,19 +17,29 @@ void MixerImpl::Play(Sound* sound)
 {
 	HRESULT result;
 
-	SoundImpl* soundImpl = sound->GetSoundImpl();
+	IDirectSoundBuffer8* snd = sound->GetSoundImpl()->_SecondaryBuffer;
 
-	result = soundImpl->_SecondaryBuffer->SetCurrentPosition(0);
+	result = snd->SetCurrentPosition(0);
 	if (FAILED(result))
 		throw RuntimeError("SetCurrentPosition failed");
 
 
-	result = soundImpl->_SecondaryBuffer->SetVolume(DSBVOLUME_MAX);
+	result = snd->SetVolume(DSBVOLUME_MAX);
 	if (FAILED(result))
 		throw RuntimeError("SetVolume failed");
 
 
-	result = soundImpl->_SecondaryBuffer->Play(0, 0, 0);
+	result = snd->Play(0, 0, 0);
 	if (FAILED(result))
 		throw RuntimeError("QueryInterface failed");
+}
+
+void MixerImpl::Stop(Sound* sound)
+{
+	IDirectSoundBuffer8* snd = sound->GetSoundImpl()->_SecondaryBuffer;
+
+	HRESULT result = snd->Stop();
+
+	if (FAILED(result))
+		throw RuntimeError("Stop failed");
 }

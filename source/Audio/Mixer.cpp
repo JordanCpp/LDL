@@ -29,3 +29,8 @@ void Mixer::Play(Sound* sound)
 {
 	_MixerImpl->Play(sound);
 }
+
+void Mixer::Stop(Sound* sound)
+{
+	_MixerImpl->Stop(sound);
+}

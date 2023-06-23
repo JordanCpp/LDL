@@ -12,7 +12,7 @@ namespace LDL
 		class LDL_EXPORT SoundLoader
 		{
 		public:
-			SoundLoader(LDL::Allocators::Allocator* allocator);
+			SoundLoader(Allocators::Allocator* allocator);
 			~SoundLoader();
 			void Clear();
 			bool LoadOgg(const std::string& path);
@@ -20,13 +20,13 @@ namespace LDL
 			bool LoadMp3(const std::string& path);
 			bool LoadFlac(const std::string& path);
 			bool Load(const std::string& path);
-			LDL::Allocators::Allocator* Allocator();
+			Allocators::Allocator* Allocator();
 			size_t Channels();
 			size_t Rate();
 			size_t Samples();
 			uint8_t* Bytes();
 		private:
-			LDL::Allocators::Allocator* _Allocator;
+			Allocators::Allocator* _Allocator;
 			size_t _Channels;
 			size_t _Rate;
 			size_t _Samples;

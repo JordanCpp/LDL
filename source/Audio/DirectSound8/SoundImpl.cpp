@@ -16,7 +16,7 @@ SoundImpl::SoundImpl(AudioContext* audioContext, size_t channels, size_t rate, s
 	waveFormat.nSamplesPerSec  = (DWORD)impl->Rate();
 	waveFormat.wBitsPerSample  = (WORD)impl->Bits();
 	waveFormat.nChannels       = (WORD)impl->Channels();
-	waveFormat.nBlockAlign     = (waveFormat.wBitsPerSample / 8) * waveFormat.nChannels;
+	waveFormat.nBlockAlign     = (waveFormat.wBitsPerSample * waveFormat.nChannels) / 8;
 	waveFormat.nAvgBytesPerSec = waveFormat.nSamplesPerSec * waveFormat.nBlockAlign;
 	waveFormat.cbSize          = 0;
 

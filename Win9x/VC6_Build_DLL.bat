@@ -1,11 +1,13 @@
 
 call "C:\VC6\Microsoft Visual Studio\VC98\Bin\VCVARS32.BAT"
 
-CL /O2 /FeLDL_VC6.dll -LD -GX /I..\include /DLDL_SHARED_LIBRARY /DLDL_RENDER_OPENGL1  ^
+CL /O2 /FeLDL_VC6.dll -LD -GX /I..\dependencies\dx9sdk\Include /I..\include /DLDL_SHARED_LIBRARY /DLDL_RENDER_OPENGL1 /DLDL_AUDIO_DIRECT_SOUND_8  ^
 ..\source\Allocators\*.cpp ^
 ..\source\Core\*.cpp ^
 ..\source\Events\*.cpp ^
 ..\source\Time\*.cpp ^
+..\source\Audio\*.cpp ^
+..\source\Audio\DirectSound8\*.cpp ^
 ..\source\Platforms\Windows\Graphics\*.cpp ^
 ..\source\Platforms\Windows\Graphics\OpenGL\*.cpp ^
 ..\source\Platforms\Windows\Graphics\OpenGL1\*.cpp ^

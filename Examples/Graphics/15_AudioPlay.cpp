@@ -33,15 +33,14 @@ int main()
 
 		FpsLimiter fpsLimiter;
 
-		FixedLinear allocator(Allocator::Mb * 8);
+		FixedLinear allocator(Allocator::Mb * 128);
 		SoundLoader soundLoader(&allocator);
 
-		if (soundLoader.LoadMp3("sound01.wav"))
-		{
-			Sound sound(&audioContext, soundLoader.Channels(), soundLoader.Rate(), soundLoader.Samples(), soundLoader.Bytes());
+		//soundLoader.LoadMp3("Arcanum.mp3");
+		soundLoader.LoadOgg("1.ogg");
 
-			mixer.Play(&sound);
-		}
+		Sound sound(&audioContext, soundLoader.Channels(), soundLoader.Rate(), soundLoader.Samples(), soundLoader.Bytes());
+		mixer.Play(&sound);
 
 		while (window.Running())
 		{
@@ -53,6 +52,12 @@ int main()
 				{
 					window.StopEvent();
 				}
+
+				if (report.IsMousePressed(MouseButton::Left))
+					mixer.Stop(&sound);
+
+				if (report.IsMousePressed(MouseButton::Right))
+					mixer.Play(&sound);
 			}
 
 			render.Begin();

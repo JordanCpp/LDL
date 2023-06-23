@@ -17,6 +17,7 @@ namespace LDL
 			~Mixer();
 			MixerImpl* GetMixerImpl();
 			void Play(Sound* sound);
+			void Stop(Sound* sound);
 		private:
 			MixerImpl* _MixerImpl;
 		};

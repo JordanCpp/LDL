@@ -1,10 +1,12 @@
 call "C:\Downloads\codeblocks-12.11mingw-setup\MinGW\mingwvars.bat"
 
-g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DLDL_SHARED_LIBRARY -DLDL_RENDER_OPENGL1 ^
+g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DLDL_SHARED_LIBRARY -DLDL_RENDER_OPENGL1 -DLDL_AUDIO_DIRECT_SOUND_8 ^
 ..\source\Allocators\*.cpp ^
 ..\source\Core\*.cpp ^
 ..\source\Events\*.cpp ^
 ..\source\Time\*.cpp ^
+..\source\Audio\*.cpp ^
+..\source\Audio\DirectSound8\*.cpp ^
 ..\source\Platforms\Windows\Graphics\*.cpp ^
 ..\source\Platforms\Windows\Graphics\OpenGL\*.cpp ^
 ..\source\Platforms\Windows\Graphics\OpenGL1\*.cpp ^
@@ -22,6 +24,7 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DLDL_SHA
 ..\source\OpenGL\*.cpp ^
 ..\source\LDLC\*.cpp ^
 -I..\include\ ^
+-I..\dependencies\dx9sdk\Include ^
 -lgdi32 ^
 -lopengl32 ^
 -lwinmm ^
