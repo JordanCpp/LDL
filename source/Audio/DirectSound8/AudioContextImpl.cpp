@@ -14,7 +14,11 @@ AudioContextImpl::AudioContextImpl(LDL::Graphics::Window* window, size_t rate, s
 	_DirectSound(NULL),
 	_PrimaryBuffer(NULL)
 {
-	HRESULT result;
+	Library library("dsound.dll");
+
+	DirectSoundCreate8 = (PFNDirectSoundCreate8)library.Function("DirectSoundCreate8");
+
+	HRESULT result = DirectSoundCreate8(NULL, &_DirectSound, NULL);
 
 	result = DirectSoundCreate8(NULL, &_DirectSound, NULL);
 	if (FAILED(result))

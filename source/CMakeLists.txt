@@ -160,7 +160,8 @@ if (LDL_AUDIO_DIRECT_SOUND_8)
   set(SOURCE_AUDIO
   "Audio/DirectSound8/MixerImpl.cpp"
   "Audio/DirectSound8/SoundImpl.cpp"
-  "Audio/DirectSound8/AudioContextImpl.cpp")
+  "Audio/DirectSound8/AudioContextImpl.cpp"
+  "DirectX/DirectX9.cpp")
 endif() 
 
 #
@@ -353,8 +354,4 @@ endif()
 
 if (WIN32 AND LDL_RENDER_DIRECTX9)
   target_link_libraries(${PROJECT_NAME} d3d9 d3dx9)
-endif()
-
-if (WIN32 AND LDL_AUDIO_DIRECT_SOUND_8)
-  target_link_libraries(${PROJECT_NAME} dsound dxguid)
 endif()

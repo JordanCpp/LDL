@@ -17,17 +17,4 @@ call %2 11_Resize %pth%
 call %2 12_TileMap2 %pth%
 call %2 13_TileMapBatcher %pth%
 call %2 14_TextureCopy %pth%
-
-set pth=C:\Repos\Lib-LDL\Tutorials\NeHe\
-
-call %2 01_SettingUpAnOpenGLWindow %pth%
-call %2 02_YourFirstPolygon %pth%
-call %2 03_AddingColor %pth%
-call %2 04_Rotation %pth%
-call %2 05_3DShapes %pth%
-call %2 06_TextureMapping %pth%
-
-set pth=C:\Repos\Lib-LDL\test\Allocators\
-
-call %2 Allocator %pth%
-call %2 FixedLinear %pth%
+call %2 15_AudioPlay %pth%

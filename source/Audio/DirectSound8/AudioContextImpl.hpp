@@ -2,7 +2,7 @@
 #define LDL_Audio_DirectSound8_AudioContextImpl_hpp
 
 #include <LDL/Audio/AudioContext.hpp>
-#include <dsound.h>
+#include "../../DirectX/DirectX9.hpp"
 
 namespace LDL
 {

@@ -6,6 +6,7 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DLDL_SHA
 ..\source\Events\*.cpp ^
 ..\source\Time\*.cpp ^
 ..\source\Audio\*.cpp ^
+..\source\DirectX\DirectX9.cpp  ^
 ..\source\Audio\DirectSound8\*.cpp ^
 ..\source\Platforms\Windows\Graphics\*.cpp ^
 ..\source\Platforms\Windows\Graphics\OpenGL\*.cpp ^
