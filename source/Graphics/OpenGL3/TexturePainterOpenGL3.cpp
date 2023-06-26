@@ -1,5 +1,5 @@
-#include "TexturePainter.hpp"
-#include "TextureImpl.hpp"
+#include "TexturePainterOpenGL3.hpp"
+#include "TextureImplOpenGL3.hpp"
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;
@@ -69,7 +69,7 @@ TexturePainter::TexturePainter(ShaderLoader* shaderLoader) :
 
 void TexturePainter::Draw(Mat4f proj, Texture* texture)
 {
-   glBindTexture(GL_TEXTURE_2D, (GLuint)texture->GetTextureImpl()->Id());
+   glBindTexture(GL_TEXTURE_2D, ((TextureImplOpenGL3*)texture->GetTextureImpl())->Id());
 
    glUseProgram(_ShaderProgram);
 

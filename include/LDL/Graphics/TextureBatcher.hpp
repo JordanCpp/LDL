@@ -12,7 +12,7 @@ namespace LDL
 		class LDL_EXPORT TextureBatcher : public LDL::Core::FastPimpl
 		{
 		public:
-			TextureBatcher(Texture* texture, size_t count);
+			TextureBatcher(RenderContext* renderContext, Texture* texture, size_t count);
 			~TextureBatcher();
 			TextureBatcherImpl* GetTextureBatcherImpl();
 			void Draw(const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);

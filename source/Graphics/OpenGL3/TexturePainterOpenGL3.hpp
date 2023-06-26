@@ -2,7 +2,7 @@
 #define LDL_Graphics_OpenGL3_TexturePainter_hpp
 
 #include <LDL/OpenGL/OpenGL3_0.hpp>
-#include "ShaderLoader.hpp"
+#include "ShaderLoaderOpenGL3.hpp"
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Math/Mat4.hpp>
 

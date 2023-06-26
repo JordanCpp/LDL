@@ -186,7 +186,21 @@ if (LDL_RENDER_OPENGL1)
   "Graphics/Software/TextureBatcherImplSoftware.cpp"
   "Graphics/Software/CameraImplSoftware.cpp"
 
+  "Graphics/OpenGL3/RenderImplOpenGL3.cpp"
+  "Graphics/OpenGL3/TextureImplOpenGL3.cpp"
+  "Graphics/OpenGL3/ScreenOpenGL3.cpp"
+  "Graphics/OpenGL3/ScreenshoterImplOpenGL3.cpp"
+  "Graphics/OpenGL3/RenderContextImplOpenGL3.cpp"
+  "Graphics/OpenGL3/ShaderLoaderOpenGL3.cpp"
+  "Graphics/OpenGL3/LinePainterOpenGL3.cpp"
+  "Graphics/OpenGL3/TexturePainterOpenGL3.cpp"
+  "Graphics/OpenGL3/TextureBatcherImplOpenGL3.cpp"
+  "Graphics/OpenGL3/CameraImplOpenGL3.cpp"
+
   "Graphics/Creators/WindowImplCreator.cpp"
+  "Graphics/Creators/RenderImplCreator.cpp"
+  "Graphics/Creators/TextureImplCreator.cpp"
+  "Graphics/Creators/TextureBatcherImplCreator.cpp"
   ${SOURCE_OPENGL_FILES})
 endif() 
 

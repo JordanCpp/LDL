@@ -1,47 +1,17 @@
 #include <LDL/Graphics/Render.hpp>
-
-#ifdef LDL_RENDER_SOFTWARE
-
-#elif LDL_RENDER_GDI
-#include "GDI/RenderImpl.hpp"
-#elif LDL_RENDER_OPENGL1
-#include "Software/RenderImplSoftware.hpp"
-#include "OpenGL1/RenderImplOpenGL1.hpp"
-#elif LDL_RENDER_OPENGL3
-#include "OpenGL3/RenderImpl.hpp"
-#elif LDL_RENDER_DIRECT_DRAW
-#include "DirectDraw/RenderImpl.hpp"
-#elif LDL_RENDER_DIRECTX5
-#include "DirectX5/Direct3D/RenderImpl.hpp"
-#elif LDL_RENDER_DIRECTX9
-#include "DirectX9/Direct3D/RenderImpl.hpp"
-#elif LDL_RENDER_DIRECTX10
-#include "DirectX10/Direct3D/RenderImpl.hpp"
-#endif
-
+#include "Creators/RenderImplCreator.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
-
+using namespace LDL::Graphics::Creators;
 
 Render::Render(RenderContext* renderContext, Window* window)
 {
-	size_t mode = renderContext->Mode();
+	RenderImplCreator creator;
 
-	switch (mode)
-	{
-	case Enums::RenderMode::Software:
-		_RenderImpl = new RenderImplSoftware(renderContext->GetRenderContextImpl(), window);
-		break;
-	case Enums::RenderMode::OpenGL1:
-		_RenderImpl = new RenderImplOpenGL1(renderContext->GetRenderContextImpl(), window);
-		break;
-	default:
-		throw RuntimeError("Unknown graphics mode");
-		break;
-	}
+	_RenderImpl = creator.Create(renderContext, window);
 }
 
 Render::~Render()

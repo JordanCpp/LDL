@@ -56,7 +56,7 @@ int main()
 		Vec2u mapSize = Vec2u(100, 100);
 		Vec2u tileSize = Vec2u(128, 64);
 
-		TextureBatcher textureBatcher(&image, mapSize.x * mapSize.y);
+		TextureBatcher textureBatcher(&renderContext, &image, mapSize.x * mapSize.y);
 
 		size_t dx = 0;
 		size_t dy = 0;

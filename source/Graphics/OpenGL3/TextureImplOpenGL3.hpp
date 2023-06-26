@@ -1,8 +1,9 @@
 #ifndef LDL_Graphics_OpenGL3_TextureImpl_hpp
 #define LDL_Graphics_OpenGL3_TextureImpl_hpp
 
-#include "RenderContextImpl.hpp"
+#include "RenderContextImplOpenGL3.hpp"
 #include <LDL/Graphics/Surface.hpp>
+#include "../TextureImpl.hpp"
 
 namespace LDL
 {
@@ -10,12 +11,12 @@ namespace LDL
 	{
 		class RenderImpl;
 
-		class TextureImpl
+		class TextureImplOpenGL3 : public TextureImpl
 		{
 		public:
-			TextureImpl(RenderContextImpl* renderContextImpl, const Math::Vec2u & size, uint8_t* pixels, size_t bytesPerPixel);
-			TextureImpl(RenderContextImpl* renderContextImpl, const Math::Vec2u& size, size_t bytesPerPixel);
-			~TextureImpl();
+			TextureImplOpenGL3(RenderContextImpl* renderContextImpl, const Math::Vec2u & size, uint8_t* pixels, size_t bytesPerPixel);
+			TextureImplOpenGL3(RenderContextImpl* renderContextImpl, const Math::Vec2u& size, size_t bytesPerPixel);
+			~TextureImplOpenGL3();
 			const Math::Vec2u& Size();
 			const Math::Vec2u& Quad();
 			size_t Id();

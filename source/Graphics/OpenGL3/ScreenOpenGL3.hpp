@@ -7,11 +7,11 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class Screen
+		class ScreenOpenGL3
 		{
 		public:
-			Screen(const Math::Vec2u& size);
-			~Screen();
+			ScreenOpenGL3(const Math::Vec2u& size);
+			~ScreenOpenGL3();
 			void Draw(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size);
 			void Draw(Surface* image, const Math::Vec2u& pos);
 		private:

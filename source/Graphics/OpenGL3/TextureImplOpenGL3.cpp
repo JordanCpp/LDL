@@ -1,14 +1,13 @@
-#include "TextureImpl.hpp"
+#include "TextureImplOpenGL3.hpp"
 #include <LDL/OpenGL/OpenGL1_1.hpp>
 #include <assert.h>
-#include "Util.hpp"
+#include "../OpenGL/Util.hpp"
 #include <iostream>
-#include "TextureImpl.hpp"
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, size_t bytesPerPixel) :
+TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, size_t bytesPerPixel) :
 	_RenderContextImpl(renderContextImpl),
 	_Id(0)
 {
@@ -35,33 +34,33 @@ TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Vec2u& size
 	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_Size.x, (GLsizei)_Size.y, 0, format, GL_UNSIGNED_BYTE, pixels));
 }
 
-TextureImpl::TextureImpl(RenderContextImpl* renderContextImpl, const Vec2u& size, size_t bytesPerPixel) :
+TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, const Vec2u& size, size_t bytesPerPixel) :
 	_RenderContextImpl(renderContextImpl),
 	_Id(0)
 {
 }
 
-TextureImpl::~TextureImpl()
+TextureImplOpenGL3::~TextureImplOpenGL3()
 {
 	GL_CHECK(glDeleteTextures(0, (GLuint*)&_Id));
 }
 
-const Vec2u& TextureImpl::Size()
+const Vec2u& TextureImplOpenGL3::Size()
 {
 	return _Size;
 }
 
-const Vec2u& TextureImpl::Quad()
+const Vec2u& TextureImplOpenGL3::Quad()
 {
 	return _Quad;
 }
 
-size_t TextureImpl::Id()
+size_t TextureImplOpenGL3::Id()
 {
 	return _Id;
 }
 
-void TextureImpl::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, size_t bytesPerPixel)
+void TextureImplOpenGL3::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, size_t bytesPerPixel)
 {
 	GLint format = 0;
 
@@ -73,7 +72,7 @@ void TextureImpl::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixel
 	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)dstPos.x, (GLint)dstPos.y, (GLsizei)srcSize.x, (GLsizei)srcSize.y, format, GL_UNSIGNED_BYTE, pixels));
 }
 
-void TextureImpl::Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& srcSize)
+void TextureImplOpenGL3::Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& srcSize)
 {
 	Copy(dstPos, srcSize, surface->Pixels(), surface->BytesPerPixel());
 }

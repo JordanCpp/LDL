@@ -34,8 +34,8 @@ target_link_libraries(PixelPainter LDL)
 add_executable(Isometric "Isometric.cpp")
 target_link_libraries(Isometric LDL)
 
-add_executable(Camera "Camera.cpp")
-target_link_libraries(Camera LDL)
+#add_executable(Camera "Camera.cpp")
+#target_link_libraries(Camera LDL)
 
 add_executable(ImageResizer "ImageResizer.cpp")
 target_link_libraries(ImageResizer LDL)

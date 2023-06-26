@@ -1,4 +1,4 @@
-#include "LinePainter.hpp"
+#include "LinePainterOpenGL3.hpp"
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;

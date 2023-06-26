@@ -4,15 +4,16 @@
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Graphics/Base/BaseScreenshoter.hpp>
 #include <LDL/Graphics/ImageWritter.hpp>
+#include "../ScreenshoterImpl.hpp"
 
 namespace LDL
 {
 	namespace Graphics
 	{
-		class ScreenshoterImpl
+		class ScreenshoterImplOpenGL3 : public ScreenshoterImpl
 		{
 		public:
-			ScreenshoterImpl(const std::string& path, const std::string& name, Render* render, Surface* image);
+			ScreenshoterImplOpenGL3(const std::string& path, const std::string& name, Render* render, Surface* image);
 			void Shot();
 		private:
 			ImageWritter _ImageWritter;
