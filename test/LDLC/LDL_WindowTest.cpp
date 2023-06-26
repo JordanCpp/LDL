@@ -3,7 +3,9 @@
 
 int main()
 {
-	LDL_Window* window = LDL_WindowNew(5, 10, 640, 480, "LDL_WindowTest", 1);
+	LDL_RenderContext* renderContext = LDL_RenderContextNew();
+
+	LDL_Window* window = LDL_WindowNew(renderContext, 5, 10, 640, 480, "LDL_WindowTest", 1);
 
 	LDL_TEST_EQUAL(window != NULL);
 	LDL_TEST_EQUAL(LDL_WindowGetPosX(window)  == 5);

@@ -2,6 +2,7 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include "../../Platforms/Windows/Graphics/WindowImpl.hpp"
+#include <LDL/Core/Library.hpp>
 
 using namespace LDL::Audio;
 using namespace LDL::Core;

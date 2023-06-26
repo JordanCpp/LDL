@@ -4,10 +4,11 @@
 
 int main()
 {
-	LDL_Window* window = LDL_WindowNew(0, 0, 800, 600, "04_Rect", LDL_WindowModeResized);
-
 	LDL_RenderContext* renderContext = LDL_RenderContextNew();
+
+	LDL_Window* window = LDL_WindowNew(renderContext, 0, 0, 800, 600, "04_Rect", LDL_WindowModeResized);
 	LDL_Render* render = LDL_RenderNew(renderContext, window);
+
 	LDL_NumberToString* convert = LDL_NumberToStringNew();
 	LDL_FpsCounter* counter = LDL_FpsCounterNew();
 

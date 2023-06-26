@@ -1,11 +1,12 @@
 #include <LDL/Graphics/Texture.hpp>
 
 #ifdef LDL_RENDER_SOFTWARE
-#include "Software/TextureImpl.hpp"
+
 #elif LDL_RENDER_GDI
 #include "GDI/TextureImpl.hpp"
 #elif LDL_RENDER_OPENGL1
-#include "OpenGL1/TextureImpl.hpp"
+#include "OpenGL1/TextureImplOpenGL1.hpp"
+#include "Software/TextureImplSoftware.hpp"
 #elif LDL_RENDER_OPENGL3
 #include "OpenGL3/TextureImpl.hpp"
 #elif LDL_RENDER_DIRECT_DRAW
@@ -18,17 +19,34 @@
 #include "DirectX10/Direct3D/TextureImpl.hpp"
 #endif
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+#include <LDL/Core/RuntimeError.hpp>
 
-Texture::Texture(RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
-	_TextureImpl(new TextureImpl(renderContext->GetRenderContextImpl(), size, pixels, bytesPerPixel))
+using namespace LDL::Core;
+using namespace LDL::Math;
+using namespace LDL::Graphics;
+
+
+Texture::Texture(RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel)
 {
+	size_t mode = renderContext->Mode();
+
+	switch (mode)
+	{
+	case Enums::RenderMode::Software:
+		_TextureImpl = new TextureImplSoftware(renderContext->GetRenderContextImpl(), size, pixels, bytesPerPixel);
+		break;
+	case Enums::RenderMode::OpenGL1:
+		_TextureImpl = new TextureImplOpenGL1(renderContext->GetRenderContextImpl(), size, pixels, bytesPerPixel);
+		break;
+	default:
+		throw RuntimeError("Unknown graphics mode");
+		break;
+	}
 }
 
-Texture::Texture(RenderContext* renderContext, const Vec2u& size, uint8_t bytesPerPixel) :
-	_TextureImpl(new TextureImpl(renderContext->GetRenderContextImpl(), size, bytesPerPixel))
+Texture::Texture(RenderContext* renderContext, const Vec2u& size, uint8_t bytesPerPixel)
 {
+	_TextureImpl = new TextureImplOpenGL1(renderContext->GetRenderContextImpl(), size, bytesPerPixel);
 }
 
 Texture::~Texture()

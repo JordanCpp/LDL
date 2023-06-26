@@ -2,6 +2,7 @@
 #define LDL_Graphics_RenderContext_hpp
 
 #include <LDL/Core/FastPimpl.hpp>
+#include <LDL/Enums/RenderMode.hpp>
 
 namespace LDL
 {
@@ -12,9 +13,10 @@ namespace LDL
 		class LDL_EXPORT RenderContext : public LDL::Core::FastPimpl
 		{
 		public:
-			RenderContext();
+			RenderContext(size_t mode = Enums::RenderMode::OpenGL1);
 			~RenderContext();
 			RenderContextImpl* GetRenderContextImpl();
+			size_t Mode();
 			void* Context();
 		private:
 			RenderContextImpl* _RenderContextImpl;

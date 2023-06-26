@@ -6,6 +6,7 @@
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Enums/WindowMode.hpp>
 #include <LDL/Core/FastPimpl.hpp>
+#include <LDL/Graphics/RenderContext.hpp>
 
 namespace LDL
 {
@@ -16,7 +17,7 @@ namespace LDL
 		class LDL_EXPORT Window : public LDL::Core::FastPimpl
 		{
 		public:
-			Window(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
+			Window(RenderContext* renderContext, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
 			~Window();
 			bool Running();
 			void PollEvents();

@@ -3,10 +3,10 @@
 
 int main()
 {
-	LDL_Window* window = LDL_WindowNew(0, 0, 640, 480, "LDL_WindowTest", 1);
-
 	LDL_RenderContext* renderContext = LDL_RenderContextNew();
 	LDL_TEST_EQUAL(renderContext != NULL);
+
+	LDL_Window* window = LDL_WindowNew(renderContext, 0, 0, 640, 480, "LDL_WindowTest", 1);
 
 	LDL_Render* render = LDL_RenderNew(renderContext, window);
 	LDL_TEST_EQUAL(render != NULL);

@@ -13,9 +13,9 @@ int main()
 {
 	try
 	{
-		Window window(Vec2u(0, 0), Vec2u(800, 600), "Window!");
-
 		RenderContext renderContext;
+
+		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
 		Render render(&renderContext, &window);
 
 		Surface screen(Vec2u(800, 600), 4);

@@ -5,7 +5,7 @@
 #elif LDL_RENDER_GDI
 #include "GDI/ScreenshoterImpl.hpp"
 #elif LDL_RENDER_OPENGL1
-#include "OpenGL1/ScreenshoterImpl.hpp"
+#include "OpenGL1/ScreenshoterImplOpenGL1.hpp"
 #elif LDL_RENDER_OPENGL3
 #include "OpenGL3/ScreenshoterImpl.hpp"
 #elif LDL_RENDER_DIRECT_DRAW
@@ -20,9 +20,9 @@
 
 using namespace LDL::Graphics;
 
-Screenshoter::Screenshoter(const std::string& path, const std::string& name, Render* render, Surface* image) :
-	_ScreenshoterImpl(new ScreenshoterImpl(path, name, render, image))
+Screenshoter::Screenshoter(const std::string& path, const std::string& name, Render* render, Surface* image)
 {
+	_ScreenshoterImpl = new ScreenshoterImplOpenGL1(path, name, render, image);
 }
 
 Screenshoter::~Screenshoter()

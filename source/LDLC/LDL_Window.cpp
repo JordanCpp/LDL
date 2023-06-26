@@ -9,17 +9,17 @@ using namespace LDL::Math;
 struct LDL_Window
 {
 	Window _Window;
-	LDL_Window(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode);
+	LDL_Window(LDL_RenderContext* renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode);
 };
 
-LDL_Window::LDL_Window(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
-	_Window(pos, size, title, mode)
+LDL_Window::LDL_Window(LDL_RenderContext* renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+	_Window((RenderContext*)renderContext, pos, size, title, mode)
 {
 }
 
-LDL_Window* LDL_WindowNew(size_t x, size_t y,size_t w, size_t h, const char * title, size_t mode)
+LDL_Window* LDL_WindowNew(LDL_RenderContext* renderContext, size_t x, size_t y,size_t w, size_t h, const char * title, size_t mode)
 {
-	LDL_Window* p = new LDL_Window(Vec2u(x, y), Vec2u(w, h), title, mode);
+	LDL_Window* p = new LDL_Window(renderContext, Vec2u(x, y), Vec2u(w, h), title, mode);
 
 	return p;
 }

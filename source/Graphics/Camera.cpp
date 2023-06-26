@@ -5,7 +5,7 @@
 #elif LDL_RENDER_GDI
 #include "GDI/CameraImpl.hpp"
 #elif LDL_RENDER_OPENGL1
-#include "OpenGL1/CameraImpl.hpp"
+#include "OpenGL1/CameraImplOpenGL1.hpp"
 #elif LDL_RENDER_OPENGL3
 #include "OpenGL3/CameraImpl.hpp"
 #elif LDL_RENDER_DIRECT_DRAW
@@ -21,9 +21,9 @@
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-Camera::Camera(Render* render, const Vec2u& pos, const Vec2u& size) :
-	_CameraImpl(new CameraImpl(render->GetRenderImpl(), pos, size))
+Camera::Camera(Render* render, const Vec2u& pos, const Vec2u& size)
 {
+	_CameraImpl = new CameraImplOpenGL1(render->GetRenderImpl(), pos, size);
 }
 
 CameraImpl* Camera::GetCameraImpl()

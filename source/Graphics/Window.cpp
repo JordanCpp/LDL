@@ -1,13 +1,20 @@
 #include <LDL/Graphics/Window.hpp>
 
-#include "../Platforms/Windows/Graphics/WindowImpl.hpp"
+#include "Creators/WindowImplCreator.hpp"
 
-using namespace LDL::Graphics;
+#include <LDL/Graphics/RenderContext.hpp>
+#include <LDL/Core/RuntimeError.hpp>
+
+using namespace LDL::Core;
 using namespace LDL::Math;
+using namespace LDL::Graphics;
+using namespace LDL::Graphics::Creators;
 
-Window::Window(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
-	_WindowImpl(new WindowImpl(pos, size, title, mode))
+Window::Window(RenderContext* renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode)
 {
+	WindowImplCreator creator;
+
+	_WindowImpl = creator.Create(renderContext, pos, size, title, mode);
 }
 
 Window::~Window()

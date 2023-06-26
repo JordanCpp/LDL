@@ -5,7 +5,7 @@
 #elif LDL_RENDER_GDI
 #include "GDI/TextureBatcherImpl.hpp"
 #elif LDL_RENDER_OPENGL1
-#include "OpenGL1/TextureBatcherImpl.hpp"
+#include "OpenGL1/TextureBatcherImplOpenGL1.hpp"
 #elif LDL_RENDER_OPENGL3
 #include "OpenGL3/TextureBatcherImpl.hpp"
 #elif LDL_RENDER_DIRECT_DRAW
@@ -21,9 +21,9 @@
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-TextureBatcher::TextureBatcher(Texture* texture, size_t count) :
-	_TextureBatcherImpl(new TextureBatcherImpl(texture, count))
+TextureBatcher::TextureBatcher(Texture* texture, size_t count)
 {
+	_TextureBatcherImpl = new TextureBatcherImplOpenGL1(texture, count);
 }
 
 TextureBatcher::~TextureBatcher()

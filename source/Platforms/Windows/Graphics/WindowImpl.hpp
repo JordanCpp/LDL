@@ -1,22 +1,32 @@
 #ifndef LDL_Platforms_Windows_Graphics_WindowImpl_hpp
 #define LDL_Platforms_Windows_Graphics_WindowImpl_hpp
 
-#ifdef LDL_RENDER_SOFTWARE
-#include "Software/WindowImpl.hpp"
-#elif LDL_RENDER_GDI
-#include "GDI/WindowImpl.hpp"
-#elif LDL_RENDER_OPENGL1
-#include "OpenGL1/WindowImpl.hpp"
-#elif LDL_RENDER_OPENGL3
-#include "OpenGL3/WindowImpl.hpp"
-#elif LDL_RENDER_DIRECT_DRAW
-#include "DirectDraw/WindowImpl.hpp"
-#elif LDL_RENDER_DIRECTX5
-#include "DirectX5/Direct3D/WindowImpl.hpp"
-#elif LDL_RENDER_DIRECTX9
-#include "DirectX9/Direct3D/WindowImpl.hpp"
-#elif LDL_RENDER_DIRECTX10
-#include "DirectX10/Direct3D/WindowImpl.hpp"
-#endif
+#include "../source/Platforms/Windows/Windows.hpp"
+#include <LDL/Events/Event.hpp>
+#include <LDL/Math/Vec2.hpp>
+#include <string>
+
+namespace LDL
+{
+	namespace Graphics
+	{
+		class WindowImpl
+		{
+		public:
+			virtual bool Running() = 0;
+			virtual void Present() = 0;
+			virtual void PollEvents() = 0;
+			virtual bool GetEvent(LDL::Events::Event& event) = 0;
+			virtual bool WaitEvent(LDL::Events::Event& event) = 0;
+			virtual void StopEvent() = 0;
+			virtual void Title(const std::string& title) = 0;
+			virtual const std::string& Title() = 0;
+			virtual const Math::Vec2u& Size() = 0;
+			virtual const Math::Vec2u& Pos() = 0;
+			virtual HWND Hwnd() = 0;
+		private:
+		};
+	}
+}
 
 #endif   

@@ -23,9 +23,9 @@ int main()
 {
 	try
 	{
-		Window window(Vec2u(0, 0), Vec2u(800, 600), "10_TileMap");
-
 		RenderContext renderContext;
+
+		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "10_TileMap");
 		Render render(&renderContext, &window);
 
 		Event report;

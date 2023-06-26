@@ -169,22 +169,34 @@ endif()
 #
 if (LDL_RENDER_OPENGL1)
   set(SOURCE_RENDER
-  "Graphics/OpenGL1/RenderImpl.cpp"
-  "Graphics/OpenGL1/TextureImpl.cpp"
+  "Graphics/OpenGL1/RenderImplOpenGL1.cpp"
+  "Graphics/OpenGL1/TextureImplOpenGL1.cpp"
   "Graphics/OpenGL/Util.cpp"
-  "Graphics/OpenGL1/Screen.cpp"
-  "Graphics/OpenGL1/ScreenshoterImpl.cpp"
-  "Graphics/OpenGL1/RenderContextImpl.cpp"
-  "Graphics/OpenGL1/RenderBuffer.cpp"
-  "Graphics/OpenGL1/TextureBatcherImpl.cpp"
-  "Graphics/OpenGL1/CameraImpl.cpp"
+  "Graphics/OpenGL1/ScreenOpenGL1.cpp"
+  "Graphics/OpenGL1/ScreenshoterImplOpenGL1.cpp"
+  "Graphics/OpenGL1/RenderContextImplOpenGL1.cpp"
+  "Graphics/OpenGL1/RenderBufferOpenGL1.cpp"
+  "Graphics/OpenGL1/TextureBatcherImplOpenGL1.cpp"
+  "Graphics/OpenGL1/CameraImplOpenGL1.cpp"
+
+  "Graphics/Software/RenderImplSoftware.cpp"
+  "Graphics/Software/TextureImplSoftware.cpp"
+  "Graphics/Software/RenderContextImplSoftware.cpp"
+  "Graphics/Software/ScreenshoterImplSoftware.cpp"
+  "Graphics/Software/TextureBatcherImplSoftware.cpp"
+  "Graphics/Software/CameraImplSoftware.cpp"
+
+  "Graphics/Creators/WindowImplCreator.cpp"
   ${SOURCE_OPENGL_FILES})
 endif() 
 
-if (WIN32 AND LDL_RENDER_OPENGL1)
+if (WIN32)
 set(SOURCE_RENDER_PLATFORM
   "Platforms/Windows/Graphics/OpenGL/FunctionsImpl.cpp"
-  "Platforms/Windows/Graphics/OpenGL1/WindowImpl.cpp")
+  "Platforms/Windows/Graphics/OpenGL1/WindowImplOpenGL1.cpp"
+  "Platforms/Windows/Graphics/OpenGL3/WindowImplOpenGL3.cpp"
+  "Platforms/Windows/Graphics/Software/WindowImplSoftware.cpp"
+)
 endif()
 
 #
@@ -209,25 +221,7 @@ endif()
 if (WIN32 AND LDL_RENDER_OPENGL3)
   set(SOURCE_RENDER_PLATFORM
   "Platforms/Windows/Graphics/OpenGL/FunctionsImpl.cpp"
-  "Platforms/Windows/Graphics/OpenGL3/WindowImpl.cpp")
-endif()
-
-#
-# Software
-#
-if (LDL_RENDER_SOFTWARE)
-  set(SOURCE_RENDER
-  "Graphics/Software/RenderImpl.cpp"
-  "Graphics/Software/TextureImpl.cpp"
-  "Graphics/Software/RenderContextImpl.cpp"
-  "Graphics/Software/ScreenshoterImpl.cpp"
-  "Graphics/Software/TextureBatcherImpl.cpp"
-  "Graphics/Software/CameraImpl.cpp")
-endif() 
-
-if (WIN32 AND LDL_RENDER_SOFTWARE)
-  set(SOURCE_RENDER_PLATFORM
-  "Platforms/Windows/Graphics/Software/WindowImpl.cpp")
+  "Platforms/Windows/Graphics/OpenGL3/WindowImplOpenGL3.cpp")
 endif()
 
 #

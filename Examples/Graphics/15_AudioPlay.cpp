@@ -21,13 +21,14 @@ int main()
 {
 	try
 	{
-		Window window(Vec2u(0, 0), Vec2u(800, 600), "15_AudioPlay");
+		RenderContext renderContext;
+
+		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "15_AudioPlay");
+		Render render(&renderContext, &window);
+
 		AudioContext audioContext(&window, 44100, 16, 2);
 
 		Mixer mixer;
-
-		RenderContext renderContext;
-		Render render(&renderContext, &window);
 
 		Event report;
 

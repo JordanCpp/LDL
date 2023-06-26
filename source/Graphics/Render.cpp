@@ -1,11 +1,12 @@
 #include <LDL/Graphics/Render.hpp>
 
 #ifdef LDL_RENDER_SOFTWARE
-#include "Software/RenderImpl.hpp"
+
 #elif LDL_RENDER_GDI
 #include "GDI/RenderImpl.hpp"
 #elif LDL_RENDER_OPENGL1
-#include "OpenGL1/RenderImpl.hpp"
+#include "Software/RenderImplSoftware.hpp"
+#include "OpenGL1/RenderImplOpenGL1.hpp"
 #elif LDL_RENDER_OPENGL3
 #include "OpenGL3/RenderImpl.hpp"
 #elif LDL_RENDER_DIRECT_DRAW
@@ -18,12 +19,29 @@
 #include "DirectX10/Direct3D/RenderImpl.hpp"
 #endif
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+#include <LDL/Core/RuntimeError.hpp>
 
-Render::Render(RenderContext* renderContext, Window* window) :
-	_RenderImpl(new RenderImpl(renderContext->GetRenderContextImpl(), window))
+using namespace LDL::Core;
+using namespace LDL::Math;
+using namespace LDL::Graphics;
+
+
+Render::Render(RenderContext* renderContext, Window* window)
 {
+	size_t mode = renderContext->Mode();
+
+	switch (mode)
+	{
+	case Enums::RenderMode::Software:
+		_RenderImpl = new RenderImplSoftware(renderContext->GetRenderContextImpl(), window);
+		break;
+	case Enums::RenderMode::OpenGL1:
+		_RenderImpl = new RenderImplOpenGL1(renderContext->GetRenderContextImpl(), window);
+		break;
+	default:
+		throw RuntimeError("Unknown graphics mode");
+		break;
+	}
 }
 
 Render::~Render()

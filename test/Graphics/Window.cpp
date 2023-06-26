@@ -16,7 +16,9 @@ int main()
 
 		const std::string title = "LDL Window title!";
 
-		Window window(Vec2u(1, 2), Vec2u(640, 480), title);
+		RenderContext renderContext;
+
+		Window window(&renderContext, Vec2u(1, 2), Vec2u(640, 480), title);
 
 		LDL_TEST_EQUAL(window.Pos().x == 1);
 		LDL_TEST_EQUAL(window.Pos().y == 2);

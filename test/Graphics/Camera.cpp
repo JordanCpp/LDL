@@ -6,8 +6,9 @@ using namespace LDL::Math;
 
 void InitDefault()
 {
-	Window window(Vec2u(0, 0), Vec2u(800, 600), "Window!");
 	RenderContext renderContext;
+
+	Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
 	Render render(&renderContext, &window);
 
 	Camera camera(&render, Vec2u(50, 75), Vec2u(800, 600));
@@ -21,8 +22,9 @@ void InitDefault()
 
 void InitPos()
 {
-	Window window(Vec2u(0, 0), Vec2u(800, 600), "Window!");
 	RenderContext renderContext;
+
+	Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
 	Render render(&renderContext, &window);
 
 	Camera camera(&render, Vec2u(50, 75), Vec2u(800, 600));
@@ -38,8 +40,9 @@ void InitPos()
 
 void InitSize()
 {
-	Window window(Vec2u(0, 0), Vec2u(800, 600), "Window!");
 	RenderContext renderContext;
+
+	Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
 	Render render(&renderContext, &window);
 
 	Camera camera(&render, Vec2u(0, 0), Vec2u(800, 600));

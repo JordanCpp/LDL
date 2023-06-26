@@ -21,9 +21,9 @@ int main()
 {
 	try
 	{
-		Window window(Vec2u(0, 0), Vec2u(800, 600), "14_TextureCopy");
-
 		RenderContext renderContext;
+
+		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "14_TextureCopy");
 		Render render(&renderContext, &window);
 
 		Event report;
