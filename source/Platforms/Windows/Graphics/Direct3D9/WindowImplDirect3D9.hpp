@@ -3,17 +3,18 @@
 
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Enums/WindowMode.hpp>
-#include "../../MainWindow.hpp"
+#include "../MainWindow.hpp"
+#include "../WindowImpl.hpp"
 
 namespace LDL
 {
 	namespace Graphics
 	{
-			class WindowImpl
+			class WindowImplDirect3D9 : public WindowImpl
 			{
 			public:
-				WindowImpl(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Fixed);
-				~WindowImpl();
+				WindowImplDirect3D9(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Fixed);
+				~WindowImplDirect3D9();
 				void Present(uint8_t* pixels, uint8_t bytesPerPixel);
 				bool GetEvent(LDL::Events::Event& event);
 				bool WaitEvent(LDL::Events::Event& event);

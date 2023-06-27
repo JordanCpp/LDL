@@ -10,6 +10,7 @@ namespace LDL
 		class TextureImpl
 		{
 		public:
+			virtual ~TextureImpl() {};
 			virtual void Copy(const Math::Vec2u& dstPos, const Math::Vec2u& srcSize, uint8_t* pixels, size_t bytesPerPixel) = 0;
 			virtual void Copy(const Math::Vec2u& dstPos, Surface* surface, const Math::Vec2u& srcSize) = 0;
 			virtual const Math::Vec2u& Size() = 0;

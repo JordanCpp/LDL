@@ -12,11 +12,11 @@ ShaderLoader::~ShaderLoader()
 
 bool ShaderLoader::Load(const std::string& path)
 {
-	_File.open(path);
+	_File.open(path.c_str());
 
 	if (_File.is_open())
 	{
-		_Result.clear();
+		_Result = "";;
 
 		while (std::getline(_File, _Line))
 		{

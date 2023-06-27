@@ -10,6 +10,7 @@ namespace LDL
 		class RenderContextImpl
 		{
 		public:
+			virtual ~RenderContextImpl() {};
 			virtual size_t Mode() = 0;
 		private:
 		};

@@ -12,6 +12,7 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DLDL_SHA
 ..\source\Platforms\Windows\Graphics\OpenGL\*.cpp ^
 ..\source\Platforms\Windows\Graphics\OpenGL1\*.cpp ^
 ..\source\Platforms\Windows\Graphics\OpenGL3\*.cpp ^
+..\source\Platforms\Windows\Graphics\Direct3D9\*.cpp ^
 ..\source\Platforms\Windows\Graphics\Software\*.cpp ^
 ..\source\Platforms\Windows\Time\Ticks.cpp ^
 ..\source\Platforms\Windows\Core\*.cpp ^
@@ -22,6 +23,8 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DLDL_SHA
 ..\source\Graphics\Software\*.cpp ^
 ..\source\Graphics\OpenGL\*.cpp ^
 ..\source\Graphics\OpenGL1\*.cpp ^
+..\source\Graphics\OpenGL3\*.cpp ^
+..\source\Graphics\Direct3D9\*.cpp ^
 ..\source\Graphics\Primitives\*.cpp ^
 ..\source\Graphics\Utils\*.cpp ^
 ..\source\Loaders\*.cpp ^

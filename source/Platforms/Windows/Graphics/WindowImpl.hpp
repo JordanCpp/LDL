@@ -13,6 +13,7 @@ namespace LDL
 		class WindowImpl
 		{
 		public:
+			virtual ~WindowImpl() {};
 			virtual bool Running() = 0;
 			virtual void Present() = 0;
 			virtual void PollEvents() = 0;

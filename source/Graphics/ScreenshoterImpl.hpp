@@ -8,6 +8,7 @@ namespace LDL
 		class ScreenshoterImpl
 		{
 		public:
+			virtual ~ScreenshoterImpl() {};
 			virtual void Shot() = 0;
 		private:
 		};

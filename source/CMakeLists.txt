@@ -197,6 +197,13 @@ if (LDL_RENDER_OPENGL1)
   "Graphics/OpenGL3/TextureBatcherImplOpenGL3.cpp"
   "Graphics/OpenGL3/CameraImplOpenGL3.cpp"
 
+  "Graphics/Direct3D9/RenderImplDirect3D9.cpp"
+  "Graphics/Direct3D9/TextureImplDirect3D9.cpp"
+  "Graphics/Direct3D9/ScreenshoterImplDirect3D9.cpp"
+  "Graphics/Direct3D9/RenderContextImplDirect3D9.cpp"
+  "Graphics/Direct3D9/TextureBatcherImplDirect3D9.cpp"
+  "Graphics/Direct3D9/CameraImplDirect3D9.cpp"
+
   "Graphics/Creators/WindowImplCreator.cpp"
   "Graphics/Creators/RenderImplCreator.cpp"
   "Graphics/Creators/TextureImplCreator.cpp"
