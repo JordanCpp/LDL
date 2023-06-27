@@ -2,8 +2,8 @@
 #define LDL_Platforms_Windows_Graphics_OpenGL3_WindowImpl_hpp
 
 #include <LDL/Graphics/Window.hpp>
-#include "../MainWindow.hpp"
 #include <LDL/OpenGL/OpenGLLoader.hpp>
+#include "../MainWindow.hpp"
 #include "../WindowImpl.hpp"
 
 namespace LDL

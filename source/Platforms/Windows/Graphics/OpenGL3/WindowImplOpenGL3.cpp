@@ -4,6 +4,10 @@
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
+typedef HGLRC(WINAPI* PFNWGLCREATECONTEXT)(HDC);
+typedef BOOL (WINAPI* PFNWGLMAKECURRENT  )(HDC, HGLRC);
+typedef BOOL (WINAPI* PFNWGLDELETECONTEXT)(HGLRC);
+
 typedef HGLRC(WINAPI* PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareContext, const int* attribList);
 
 #define WGL_CONTEXT_MAJOR_VERSION_ARB             0x2091
@@ -19,6 +23,14 @@ WindowImplOpenGL3::WindowImplOpenGL3(const Vec2u& pos, const Vec2u& size, const 
     _Window(pos, size, title, mode),
     _HGLRC(NULL)
 {
+    PFNWGLCREATECONTEXT wglCreateContext = NULL;
+    PFNWGLMAKECURRENT   wglMakeCurrent   = NULL;
+    PFNWGLDELETECONTEXT wglDeleteContext = NULL;
+
+    wglCreateContext = (PFNWGLCREATECONTEXT)wglGetProcAddress("wglCreateContext");
+    wglMakeCurrent   = (PFNWGLMAKECURRENT  )wglGetProcAddress("wglMakeCurrent");
+    wglDeleteContext = (PFNWGLDELETECONTEXT)wglGetProcAddress("wglDeleteContext");
+
     PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
 
     int attribs[] =
@@ -39,9 +51,9 @@ WindowImplOpenGL3::WindowImplOpenGL3(const Vec2u& pos, const Vec2u& size, const 
     if (_Window._HDC == NULL)
         throw LDL::Core::RuntimeError("GetDC failed");
 
-    pfd.nSize = sizeof(pfd);
-    pfd.nVersion = 1;
-    pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+    pfd.nSize      = sizeof(pfd);
+    pfd.nVersion   = 1;
+    pfd.dwFlags    = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
     pfd.iPixelType = PFD_TYPE_RGBA;
     pfd.cColorBits = 32;
     pfd.cDepthBits = 24;

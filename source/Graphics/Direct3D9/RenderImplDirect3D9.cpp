@@ -1,17 +1,28 @@
 #include "RenderImplDirect3D9.hpp"
 #include "TextureImplDirect3D9.hpp"
 
+#include <LDL/Core/Library.hpp>
+#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Math/Funcs.hpp>
 #include "../source/Platforms/Windows/Graphics/Direct3D9/WindowImplDirect3D9.hpp"
 
-using namespace LDL::Graphics;
+using namespace LDL::Core;
 using namespace LDL::Math;
+using namespace LDL::Graphics;
 
 RenderImplDirect3D9::RenderImplDirect3D9(RenderContextImpl* renderContextImpl, Window* window) :
 	_Window(window),
 	_RenderContextImpl(renderContextImpl)
 {
 	Begin();
+
+	Library library("direct3d9.dll");
+
+	Direct3DCreate9 = (PFNDirect3DCreate9)library.Function("Direct3DCreate9");
+
+	_Direct = Direct3DCreate9(D3D_SDK_VERSION);
+	if (_Direct == NULL)
+		throw LDL::Core::RuntimeError("Direct3DCreate9 failed");
 }
 
 void RenderImplDirect3D9::Buffer(uint8_t* dst)

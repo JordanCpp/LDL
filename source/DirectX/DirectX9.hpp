@@ -215,7 +215,6 @@ DECLARE_INTERFACE_(IDirectSoundBuffer8, IDirectSoundBuffer)
 };
 
 typedef HRESULT(WINAPI* PFNDirectSoundCreate8)(_In_opt_ LPCGUID pcGuidDevice, _Outptr_ LPDIRECTSOUND8* ppDS8, _Pre_null_ LPUNKNOWN pUnkOuter);
-
 extern PFNDirectSoundCreate8 DirectSoundCreate8;
 
 typedef interface IDirect3D9                    IDirect3D9;
@@ -235,6 +234,24 @@ typedef interface IDirect3DSurface9             IDirect3DSurface9;
 typedef interface IDirect3DVolume9              IDirect3DVolume9;
 typedef interface IDirect3DSwapChain9           IDirect3DSwapChain9;
 typedef interface IDirect3DQuery9               IDirect3DQuery9;
+
+/* This identifier is passed to Direct3DCreate9 in order to ensure that an
+ * application was built against the correct header files. This number is
+ * incremented whenever a header (or other) change would require applications
+ * to be rebuilt. If the version doesn't match, Direct3DCreate9 will fail.
+ * (The number itself has no meaning.)*/
+
+#ifdef D3D_DEBUG_INFO
+#define D3D_SDK_VERSION   (32 | 0x80000000)
+#define D3D9b_SDK_VERSION (31 | 0x80000000)
+
+#else
+#define D3D_SDK_VERSION   32
+#define D3D9b_SDK_VERSION 31
+#endif
+
+typedef IDirect3D9* (WINAPI* PFNDirect3DCreate9)(UINT SDKVersion);
+extern PFNDirect3DCreate9 Direct3DCreate9;
 
 /* Adapter Identifier */
 
