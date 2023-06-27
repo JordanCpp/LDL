@@ -8,68 +8,8 @@ endif()
 
 include_directories("../include")
 
-if (LDL_RENDER_SOFTWARE)
-  add_definitions(-DLDL_RENDER_SOFTWARE)
-endif()
-
-if (LDL_RENDER_GDI)
-  add_definitions(-DLDL_RENDER_GDI)
-endif()
-
-if (LDL_RENDER_OPENGL1)
-  add_definitions(-DLDL_RENDER_OPENGL1)
-endif() 
-
-if (LDL_RENDER_OPENGL3)
-  add_definitions(-DLDL_RENDER_OPENGL3)
-endif()
-
-if (LDL_RENDER_DIRECT_DRAW)
-  add_definitions(-DLDL_RENDER_DIRECT_DRAW)
-endif()
-
-if (LDL_RENDER_DIRECTX5)
-  add_definitions(-DLDL_RENDER_DIRECTX5)
-endif()
-
-if (LDL_RENDER_DIRECTX9)
-  add_definitions(-DLDL_RENDER_DIRECTX9)
-endif()
-
-if (LDL_RENDER_DIRECTX10)
-  add_definitions(-DLDL_RENDER_DIRECTX10)
-endif()
-
 set(LDL_AUDIO_DIRECT_SOUND_8 true)
 add_definitions(-DLDL_AUDIO_DIRECT_SOUND_8)
-
-if (LDL_RENDER_DIRECTX10)
-  include_directories("../dependencies/dx10sdk/Include")
-  if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    link_directories("../ddependencies/dx10sdk/Lib/x64")
-  elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
-    link_directories("../ddependencies/dx10sdk/Lib/x86")
-  endif()
-endif() 
-
-if (LDL_RENDER_DIRECTX9 OR LDL_AUDIO_DIRECT_SOUND_8)
-  include_directories("../ddependencies/dx9sdk/Include")
-  if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    link_directories("../ddependencies/dx9sdk/Lib/x64")
-  elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
-    link_directories("../ddependencies/dx9sdk/Lib/x86")
-  endif()
-endif() 
-
-if (LDL_RENDER_DIRECTX5)
-  include_directories("../ddependencies/dx5sdk/Include")
-  link_directories("../ddependencies/dx5sdk/Lib")
-endif() 
-
-if (LDL_RENDER_DIRECT_DRAW)
-  include_directories("../ddependencies/dx1sdk/Include")
-  link_directories("../ddependencies/dx1sdk/Lib")
-endif()
 
 set(SOURCE_FILES
 "Core/TestEqual.cpp" 
@@ -164,11 +104,7 @@ if (LDL_AUDIO_DIRECT_SOUND_8)
   "DirectX/DirectX9.cpp")
 endif() 
 
-#
-# OpenGL1
-#
-if (LDL_RENDER_OPENGL1)
-  set(SOURCE_RENDER
+set(SOURCE_RENDERS
   "Graphics/OpenGL1/RenderImplOpenGL1.cpp"
   "Graphics/OpenGL1/TextureImplOpenGL1.cpp"
   "Graphics/OpenGL/Util.cpp"
@@ -206,126 +142,20 @@ if (LDL_RENDER_OPENGL1)
 
   "Graphics/Creators/WindowImplCreator.cpp"
   "Graphics/Creators/RenderImplCreator.cpp"
+  "Graphics/Creators/RenderContextImplCreator.cpp"
   "Graphics/Creators/TextureImplCreator.cpp"
   "Graphics/Creators/TextureBatcherImplCreator.cpp"
   ${SOURCE_OPENGL_FILES})
-endif() 
 
 if (WIN32)
 set(SOURCE_RENDER_PLATFORM
   "Platforms/Windows/Graphics/OpenGL/FunctionsImpl.cpp"
+  "Platforms/Windows/Graphics/Software/WindowImplSoftware.cpp"
   "Platforms/Windows/Graphics/OpenGL1/WindowImplOpenGL1.cpp"
   "Platforms/Windows/Graphics/OpenGL3/WindowImplOpenGL3.cpp"
-  "Platforms/Windows/Graphics/Software/WindowImplSoftware.cpp"
+  "Platforms/Windows/Graphics/Direct3D9/WindowImplDirect3D9.cpp"
 )
 endif()
-
-#
-# OpenGL3
-#
-if (LDL_RENDER_OPENGL3)
-  set(SOURCE_RENDER
-  "Graphics/OpenGL3/RenderImpl.cpp"
-  "Graphics/OpenGL3/TextureImpl.cpp"
-  "Graphics/OpenGL3/Util.cpp"
-  "Graphics/OpenGL3/Screen.cpp"
-  "Graphics/OpenGL3/ScreenshoterImpl.cpp"
-  "Graphics/OpenGL3/RenderContextImpl.cpp"
-  "Graphics/OpenGL3/ShaderLoader.cpp"
-  "Graphics/OpenGL3/LinePainter.cpp"
-  "Graphics/OpenGL3/TexturePainter.cpp"
-  "Graphics/OpenGL3/TextureBatcherImpl.cpp"
-  "Graphics/OpenGL3/CameraImpl.cpp"
-  ${SOURCE_OPENGL_FILES})
-endif() 
-
-if (WIN32 AND LDL_RENDER_OPENGL3)
-  set(SOURCE_RENDER_PLATFORM
-  "Platforms/Windows/Graphics/OpenGL/FunctionsImpl.cpp"
-  "Platforms/Windows/Graphics/OpenGL3/WindowImplOpenGL3.cpp")
-endif()
-
-#
-# GDI
-#
-if (LDL_RENDER_GDI)
-  set(SOURCE_RENDER
-  "Graphics/GDI/RenderImpl.cpp"
-  "Graphics/GDI/TextureImpl.cpp"
-  "Graphics/GDI/Util.cpp"
-  "Graphics/GDI/Screen.cpp"
-  "Graphics/GDI/ScreenshoterImpl.cpp")
-endif() 
-
-if (WIN32 AND LDL_RENDER_GDI)
-  set(SOURCE_RENDER_PLATFORM
-  "Platforms/Windows/Graphics/GDI/WindowImpl.cpp")
-endif()
-
-#
-# DirectDraw
-#
-if (LDL_RENDER_DIRECT_DRAW)
-  set(SOURCE_RENDER
-  "Graphics/DirectDraw/RenderImpl.cpp"
-  "Graphics/DirectDraw/TextureImpl.cpp"
-  "Graphics/DirectDraw/ScreenshoterImpl.cpp"
-  "Graphics/DirectDraw/RenderContextImpl.cpp"
-  "Graphics/DirectDraw/TextureBatcherImpl.cpp"
-  "Graphics/DirectDraw/CameraImpl.cpp")
-endif()
-
-if (WIN32 AND LDL_RENDER_DIRECT_DRAW)
-  set(SOURCE_RENDER_PLATFORM
-  "Platforms/Windows/Graphics/DirectDraw/WindowImpl.cpp")
-endif() 
-
-#
-# DirectX9
-#
-if (LDL_RENDER_DIRECTX9)
-  set(SOURCE_RENDER
-  "Graphics/DirectX9/Direct3D/RenderImpl.cpp"
-  "Graphics/DirectX9/Direct3D/TextureImpl.cpp"
-  "Graphics/DirectX9/Direct3D/ScreenshoterImpl.cpp"
-  "Graphics/DirectX9/Direct3D/RenderContextImpl.cpp")
-endif() 
-
-if (WIN32 AND LDL_RENDER_DIRECTX9)
-  set(SOURCE_RENDER_PLATFORM
-  "Platforms/Windows/Graphics/DirectX9/Direct3D/WindowImpl.cpp")
-endif() 
-
-#
-# DirectX10
-#
-if (LDL_RENDER_DIRECTX10)
-  set(SOURCE_RENDER
-  "Graphics/DirectX10/Direct3D/RenderImpl.cpp"
-  "Graphics/DirectX10/Direct3D/TextureImpl.cpp"
-  "Graphics/DirectX10/Direct3D/ScreenshoterImpl.cpp"
-  "Graphics/DirectX10/Direct3D/RenderContextImpl.cpp")
-endif() 
-
-if (WIN32 AND LDL_RENDER_DIRECTX10)
-  set(SOURCE_RENDER_PLATFORM
-  "Platforms/Windows/Graphics/DirectX10/Direct3D/WindowImpl.cpp")
-endif() 
-
-#
-# DirectX5
-#
-if (LDL_RENDER_DIRECTX5)
-  set(SOURCE_RENDER
-  "Graphics/DirectX5/Direct3D/RenderImpl.cpp"
-  "Graphics/DirectX5/Direct3D/TextureImpl.cpp"
-  "Graphics/DirectX5/Direct3D/ScreenshoterImpl.cpp")
-endif() 
-
-if (WIN32 AND LDL_RENDER_DIRECTX5)
-  set(SOURCE_RENDER_PLATFORM
-  "Platforms/Windows/Graphics/DirectX5/Direct3D/WindowImpl.cpp")
-endif() 
 
 #
 # Platform
@@ -343,7 +173,7 @@ elseif(UNIX AND NOT APPLE)
   "Platforms/Linux/Graphics/Window.cpp")
 endif() 
 
-set(SOURCE_ALL ${SOURCE_FILES} ${SOURCE_RENDER} ${SOURCE_RENDER_PLATFORM} ${SOURCE_PLATFORM} ${SOURCE_AUDIO})
+set(SOURCE_ALL ${SOURCE_FILES} ${SOURCE_RENDERS} ${SOURCE_RENDER_PLATFORM} ${SOURCE_PLATFORM} ${SOURCE_AUDIO})
 
 if (LDL_SHARED_LIBRARY)
   add_library(${PROJECT_NAME} SHARED  ${SOURCE_ALL})		
@@ -352,12 +182,8 @@ elseif (LDL_STATIC_LIBRARY)
 endif() 
 
 if (WIN32)
-  target_link_libraries(${PROJECT_NAME} winmm)
+  target_link_libraries(${PROJECT_NAME} winmm opengl32)
 endif() 
-
-if (WIN32 AND (LDL_RENDER_OPENGL1 OR LDL_RENDER_OPENGL3))
-  target_link_libraries(${PROJECT_NAME} opengl32)
-endif()
 
 if (WIN32 AND LDL_RENDER_DIRECT_DRAW)
   target_link_libraries(${PROJECT_NAME} ddraw)

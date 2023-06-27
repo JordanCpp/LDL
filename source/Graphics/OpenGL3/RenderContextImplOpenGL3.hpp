@@ -10,7 +10,12 @@ namespace LDL
 		class RenderContextImplOpenGL3 : public RenderContextImpl
 		{
 		public:
+			RenderContextImplOpenGL3(size_t mode);
+			size_t Mode();
 			int Context;
+
+		private:
+			size_t _Mode;
 		};
 	}
 }
