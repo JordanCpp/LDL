@@ -28,7 +28,7 @@ RenderContextImpl* RenderContextImplCreator::Create(size_t mode)
 		result = new RenderContextImplOpenGL3(mode);
 		break;
 
-#if defined(_WIN32)
+#if defined(_WIN321)
 	case RenderMode::Direct3D9:
 		result = new RenderContextImplDirect3D9(mode);
 		break;

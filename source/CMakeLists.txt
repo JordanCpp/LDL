@@ -33,6 +33,15 @@ file(GLOB SOURCE_FILES
     "Time/*.cpp"
     "LDLC/*.cpp")
 
+
+file(GLOB SOURCE_DIRECT3D
+    "Graphics/OpenGL/*.cpp"
+    "Graphics/OpenGL1/*.cpp"
+    "Graphics/Software/*.cpp"
+    "Graphics/OpenGL3/*.cpp"
+    #"Graphics/Direct3D9/*.cpp"
+    "Graphics/Creators/*.cpp")
+
 file(GLOB SOURCE_RENDERS
     "Graphics/OpenGL/*.cpp"
     "Graphics/OpenGL1/*.cpp"
@@ -61,8 +70,8 @@ set(SOURCE_RENDER_PLATFORM
   "Platforms/Windows/Graphics/OpenGL/FunctionsImpl.cpp"
   "Platforms/Windows/Graphics/Software/WindowImplSoftware.cpp"
   "Platforms/Windows/Graphics/OpenGL1/WindowImplOpenGL1.cpp"
-  "Platforms/Windows/Graphics/OpenGL3/WindowImplOpenGL3.cpp"
-  "Platforms/Windows/Graphics/Direct3D9/WindowImplDirect3D9.cpp")
+  "Platforms/Windows/Graphics/OpenGL3/WindowImplOpenGL3.cpp")
+  #"Platforms/Windows/Graphics/Direct3D9/WindowImplDirect3D9.cpp")
 elseif(UNIX AND NOT APPLE)
 set(SOURCE_RENDER_PLATFORM
   "Platforms/Linux/Graphics/OpenGL/FunctionsImpl.cpp"
