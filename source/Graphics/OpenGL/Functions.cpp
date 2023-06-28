@@ -1,5 +1,11 @@
 #include <LDL/OpenGL/OpenGL_Functions.hpp>
+
+#if defined(_WIN32)
 #include "../../Platforms/Windows/Graphics/OpenGL/FunctionsImpl.hpp"
+#elif defined(__unix__)
+#include "../../Platforms/Linux/Graphics/OpenGL/FunctionsImpl.hpp"
+#endif
+
 
 using namespace LDL::Graphics;
 

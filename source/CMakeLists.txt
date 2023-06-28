@@ -6,6 +6,12 @@ if (MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
 
+if(UNIX AND NOT APPLE)
+find_package(X11 REQUIRED)
+link_libraries(${X11_LIBRARIES})
+include_directories(${X11_INCLUDE_DIR})
+endif()
+
 include_directories("../include")
 
 set(LDL_AUDIO_DIRECT_SOUND_8 true)
@@ -32,15 +38,22 @@ file(GLOB SOURCE_RENDERS
     "Graphics/OpenGL1/*.cpp"
     "Graphics/Software/*.cpp"
     "Graphics/OpenGL3/*.cpp"
-    "Graphics/Direct3D9/*.cpp"
+    #"Graphics/Direct3D9/*.cpp"
     "Graphics/Creators/*.cpp")
 
+if (WIN32)
 if (LDL_AUDIO_DIRECT_SOUND_8)
   set(SOURCE_AUDIO
   "Audio/DirectSound8/MixerImpl.cpp"
   "Audio/DirectSound8/SoundImpl.cpp"
   "Audio/DirectSound8/AudioContextImpl.cpp"
   "DirectX/DirectX9.cpp")
+endif() 
+elseif (UNIX AND NOT APPLE)
+  set(SOURCE_AUDIO
+  "Audio/OpenAL/MixerImpl.cpp"
+  "Audio/OpenAL/SoundImpl.cpp"
+  "Audio/OpenAL/AudioContextImpl.cpp")
 endif() 
 
 if (WIN32)
@@ -50,6 +63,12 @@ set(SOURCE_RENDER_PLATFORM
   "Platforms/Windows/Graphics/OpenGL1/WindowImplOpenGL1.cpp"
   "Platforms/Windows/Graphics/OpenGL3/WindowImplOpenGL3.cpp"
   "Platforms/Windows/Graphics/Direct3D9/WindowImplDirect3D9.cpp")
+elseif(UNIX AND NOT APPLE)
+set(SOURCE_RENDER_PLATFORM
+  "Platforms/Linux/Graphics/OpenGL/FunctionsImpl.cpp"
+  "Platforms/Linux/Graphics/Software/WindowImplSoftware.cpp"
+  "Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.cpp"
+  "Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.cpp")
 endif()
 
 #
@@ -65,7 +84,12 @@ if (WIN32)
   "Platforms/Windows/Input/Mouse.cpp")
 elseif(UNIX AND NOT APPLE)
   set(SOURCE_PLATFORM
-  "Platforms/Linux/Graphics/Window.cpp")
+  "Platforms/Linux/Graphics/MainWindow.cpp"
+  "Platforms/Linux/Time/Ticks.cpp"
+  "Platforms/Linux/Core/DirectoryImpl.cpp"
+  "Platforms/Linux/Core/LibraryImpl.cpp"
+  "Platforms/Linux/Input/Display.cpp"
+  "Platforms/Linux/Input/Mouse.cpp")
 endif() 
 
 set(SOURCE_ALL ${SOURCE_FILES} ${SOURCE_RENDERS} ${SOURCE_RENDER_PLATFORM} ${SOURCE_PLATFORM} ${SOURCE_AUDIO})
@@ -78,4 +102,8 @@ endif()
 
 if (WIN32)
   target_link_libraries(${PROJECT_NAME} winmm opengl32)
+endif()
+
+if (UNIX AND NOT APPLE)
+  target_link_libraries(${PROJECT_NAME} X11)
 endif()

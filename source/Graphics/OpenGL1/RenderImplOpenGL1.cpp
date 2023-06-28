@@ -3,7 +3,12 @@
 #include "TextureImplOpenGL1.hpp"
 
 #include <LDL/Math/Funcs.hpp>
+
+#if defined(_WIN32)
 #include "../../Platforms/Windows/Graphics/OpenGL1/WindowImplOpenGL1.hpp"
+#elif defined(__unix__)
+#include "../../Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp"
+#endif
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;

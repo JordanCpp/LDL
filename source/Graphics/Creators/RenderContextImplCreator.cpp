@@ -27,9 +27,13 @@ RenderContextImpl* RenderContextImplCreator::Create(size_t mode)
 	case RenderMode::OpenGL3:
 		result = new RenderContextImplOpenGL3(mode);
 		break;
+
+#if defined(_WIN32)
 	case RenderMode::Direct3D9:
 		result = new RenderContextImplDirect3D9(mode);
 		break;
+#endif
+
 	default:
 		throw RuntimeError("Unknown graphics mode");
 		break;

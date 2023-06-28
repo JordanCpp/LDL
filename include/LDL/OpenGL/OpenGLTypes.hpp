@@ -4,7 +4,12 @@
 #include <LDL/Core/Types.hpp>
 #include <LDL/Config.hpp>
 
+#if defined(_WIN32)
 #define LDL_OPENGL_API_CALL  __stdcall *
+#elif defined(__unix__)
+#define LDL_OPENGL_API_CALL *
+#endif
+
 #define LDL_OPENGL_API_ENTRY LDL_EXPORT extern
 
 typedef unsigned int GLenum;

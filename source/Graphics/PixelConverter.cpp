@@ -15,10 +15,10 @@ void PixelConverter::Fill(uint8_t* pixels, const Vec2u& size, uint8_t bytesPerPi
 		pixels[i + 2] = color.r;
 		pixels[i + 3] = color.a;
 #else 
-		pixels[i + 0] = color.Red();
-		pixels[i + 1] = color.Green();
-		pixels[i + 2] = color.Blue();
-		pixels[i + 3] = color.Alpha();
+		pixels[i + 0] = color.r;
+		pixels[i + 1] = color.g;
+		pixels[i + 2] = color.b;
+		pixels[i + 3] = color.a;
 #endif
 	}
 }

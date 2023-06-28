@@ -1,5 +1,10 @@
 #include "RenderImplSoftware.hpp"
+
+#if defined(_WIN32)
 #include "../../Platforms/Windows/Graphics/Software/WindowImplSoftware.hpp"
+#elif defined(__unix__)
+#include "../../Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp"
+#endif
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;

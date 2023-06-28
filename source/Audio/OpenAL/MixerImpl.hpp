@@ -10,10 +10,11 @@ namespace LDL
 		class MixerImpl
 		{
 		public:
-			MixerImpl(LDL::Graphics::Window* window, size_t rate, size_t bits, size_t channels);
+			MixerImpl();
 			~MixerImpl();
+			void Play(Sound* sound);
+			void Stop(Sound* sound);
 		private:
-			LDL::Graphics::Window* _Window;
 		};
 	}
 }

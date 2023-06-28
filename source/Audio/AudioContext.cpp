@@ -1,10 +1,14 @@
 #include <LDL/Audio/AudioContext.hpp>
 
+#if defined(_WIN32)
 #ifdef LDL_AUDIO_DIRECT_SOUND_8
 #include "DirectSound8/AudioContextImpl.hpp"
 #elif LDL_AUDIO_XAUDIO2
 #include "XAudio2/AudioContextImpl.hpp"
 #elif LDL_AUDIO_OPENAL
+#include "OpenAL/AudioContextImpl.hpp"
+#endif
+#elif defined(__unix__)
 #include "OpenAL/AudioContextImpl.hpp"
 #endif
 

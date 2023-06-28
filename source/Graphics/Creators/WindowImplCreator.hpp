@@ -1,7 +1,12 @@
 #ifndef LDL_Graphics_Creators_WindowImplCreator_hpp
 #define LDL_Graphics_Creators_WindowImplCreator_hpp
 
+#if defined(_WIN32)
 #include "../../Platforms/Windows/Graphics/WindowImpl.hpp"
+#elif defined(__unix__)
+#include "../../Platforms/Linux/Graphics/WindowImpl.hpp"
+#endif
+
 #include <LDL/Graphics/RenderContext.hpp>
 #include <LDL/Math/Vec2.hpp>
 #include <string>

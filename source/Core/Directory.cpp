@@ -1,5 +1,10 @@
 #include <LDL/Core/Directory.hpp>
+
+#if defined(_WIN32)
 #include "../Platforms/Windows/Core/DirectoryImpl.hpp"
+#elif defined(__unix__)
+#include "../Platforms/Linux/Core/DirectoryImpl.hpp"
+#endif
 
 using namespace LDL::Core;
 

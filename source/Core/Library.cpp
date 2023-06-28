@@ -1,5 +1,11 @@
 #include <LDL/Core/Library.hpp>
+
+#if defined(_WIN32)
 #include "../Platforms/Windows/Core/LibraryImpl.hpp"
+#elif defined(__unix__)
+#include "../Platforms/Linux/Core/LibraryImpl.hpp"
+#endif
+
 
 using namespace LDL::Core;
 
