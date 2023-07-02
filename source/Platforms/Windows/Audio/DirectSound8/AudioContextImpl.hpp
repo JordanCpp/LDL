@@ -1,7 +1,8 @@
-#ifndef LDL_Audio_OpenAL_AudioContextImpl_hpp
-#define LDL_Audio_OpenAL_AudioContextImpl_hpp
+#ifndef LDL_Platforms_Windows_Audio_DirectSound8_AudioContextImpl_hpp
+#define LDL_Platforms_Windows_Audio_DirectSound8_AudioContextImpl_hpp
 
 #include <LDL/Audio/AudioContext.hpp>
+#include "../source/DirectX/DirectX9.hpp"
 
 namespace LDL
 {
@@ -19,6 +20,9 @@ namespace LDL
 			size_t _Rate;
 			size_t _Bits; 
 			size_t _Channels;
+		public:
+			IDirectSound8* _DirectSound;
+			IDirectSoundBuffer* _PrimaryBuffer;
 		};
 	}
 }

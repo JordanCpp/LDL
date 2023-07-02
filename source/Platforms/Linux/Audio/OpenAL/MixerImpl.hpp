@@ -1,5 +1,5 @@
-#ifndef LDL_Audio_OpenAL_MixerImpl_hpp
-#define LDL_Audio_OpenAL_MixerImpl_hpp
+#ifndef LDL_Platforms_Linux_Audio_OpenAL_MixerImpl_hpp
+#define LDL_Platforms_Linux_Audio_OpenAL_MixerImpl_hpp
 
 #include <LDL/Audio/Mixer.hpp>
 

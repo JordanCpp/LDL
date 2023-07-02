@@ -2,20 +2,18 @@
 
 #if defined(_WIN32)
 #ifdef LDL_AUDIO_DIRECT_SOUND_8
-#include "DirectSound8/AudioContextImpl.hpp"
+#include "../Platforms/Windows/Audio/DirectSound8/AudioContextImpl.hpp"
 #elif LDL_AUDIO_XAUDIO2
-#include "XAudio2/AudioContextImpl.hpp"
-#elif LDL_AUDIO_OPENAL
-#include "OpenAL/AudioContextImpl.hpp"
+#include "../Platforms/Windows/XAudio2/AudioContextImpl.hpp"
 #endif
 #elif defined(__unix__)
-#include "OpenAL/AudioContextImpl.hpp"
+#include "../Platforms/Linux/Audio/OpenAL/AudioContextImpl.hpp"
 #endif
 
 using namespace LDL::Audio;
 using namespace LDL::Graphics;
 
-AudioContext::AudioContext(LDL::Graphics::Window* window, size_t rate, size_t bits, size_t channels) :
+AudioContext::AudioContext(Window* window, size_t rate, size_t bits, size_t channels) :
 	_AudioContextImpl(new AudioContextImpl(window, rate, bits, channels))
 {
 }

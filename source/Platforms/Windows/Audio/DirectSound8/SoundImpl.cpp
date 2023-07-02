@@ -1,6 +1,6 @@
 #include "SoundImpl.hpp"
 #include <LDL/Core/RuntimeError.hpp>
-#include "../source/Audio/DirectSound8/AudioContextImpl.hpp"
+#include "../source/Platforms/Windows/Audio/DirectSound8/AudioContextImpl.hpp"
 
 using namespace LDL::Audio;
 using namespace LDL::Core;

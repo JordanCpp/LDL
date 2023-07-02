@@ -2,14 +2,12 @@
 
 #if defined(_WIN32)
 #ifdef LDL_AUDIO_DIRECT_SOUND_8
-#include "DirectSound8/MixerImpl.hpp"
+#include "../Platforms/Windows/Audio/DirectSound8/MixerImpl.hpp"
 #elif LDL_AUDIO_XAUDIO2
-#include "XAudio2/MixerImpl.hpp"
-#elif LDL_AUDIO_OPENAL
-#include "OpenAL/MixerImpl.hpp"
+#include "../Platforms/Windows/Audio/XAudio2/MixerImpl.hpp"
 #endif
 #elif defined(__unix__)
-#include "OpenAL/MixerImpl.hpp"
+#include "../Platforms/Linux/Audio/OpenAL/MixerImpl.hpp"
 #endif
 
 using namespace LDL::Audio;

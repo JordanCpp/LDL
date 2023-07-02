@@ -1,5 +1,5 @@
-#ifndef LDL_Audio_OpenAL_SoundImpl_hpp
-#define LDL_Audio_OpenAL_SoundImpl_hpp
+#ifndef LDL_Platforms_Linux_Audio_OpenAL_SoundImpl_hpp
+#define LDL_Platforms_Linux_Audio_OpenAL_SoundImpl_hpp
 
 #include <LDL/Core/Types.hpp>
 #include <LDL/Audio/AudioContext.hpp>

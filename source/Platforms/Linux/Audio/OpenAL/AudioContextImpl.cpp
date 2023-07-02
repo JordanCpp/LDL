@@ -7,7 +7,7 @@ using namespace LDL::Audio;
 using namespace LDL::Core;
 using namespace LDL::Graphics;
 
-AudioContextImpl::AudioContextImpl(LDL::Graphics::Window* window, size_t rate, size_t bits, size_t channels) :
+AudioContextImpl::AudioContextImpl(Window* window, size_t rate, size_t bits, size_t channels) :
 	_Rate(rate),
 	_Bits(bits),
 	_Channels(channels)

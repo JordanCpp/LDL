@@ -53,9 +53,9 @@ file(GLOB SOURCE_RENDERS
 if (WIN32)
 if (LDL_AUDIO_DIRECT_SOUND_8)
   set(SOURCE_AUDIO
-  "Audio/DirectSound8/MixerImpl.cpp"
-  "Audio/DirectSound8/SoundImpl.cpp"
-  "Audio/DirectSound8/AudioContextImpl.cpp"
+  "Platforms/Windows/Audio/DirectSound8/MixerImpl.cpp"
+  "Platforms/Windows/Audio/DirectSound8/SoundImpl.cpp"
+  "Platforms/Windows/Audio/DirectSound8/AudioContextImpl.cpp"
   "DirectX/DirectX9.cpp")
 endif() 
 elseif (UNIX AND NOT APPLE)
