@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 2.8)
+
+set(CMAKE_BUILD_TYPE Debug)
 
 project(LDL)
 
@@ -60,9 +62,9 @@ if (LDL_AUDIO_DIRECT_SOUND_8)
 endif() 
 elseif (UNIX AND NOT APPLE)
   set(SOURCE_AUDIO
-  "Audio/OpenAL/MixerImpl.cpp"
-  "Audio/OpenAL/SoundImpl.cpp"
-  "Audio/OpenAL/AudioContextImpl.cpp")
+  "Platforms/Linux/Audio/OpenAL/MixerImpl.cpp"
+  "Platforms/Linux/Audio/OpenAL/SoundImpl.cpp"
+  "Platforms/Linux/Audio/OpenAL/AudioContextImpl.cpp")
 endif() 
 
 if (WIN32)
@@ -114,5 +116,5 @@ if (WIN32)
 endif()
 
 if (UNIX AND NOT APPLE)
-  target_link_libraries(${PROJECT_NAME} X11)
+  target_link_libraries(${PROJECT_NAME} X11 GL GLX)
 endif()

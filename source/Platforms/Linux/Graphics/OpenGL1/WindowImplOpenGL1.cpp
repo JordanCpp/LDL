@@ -1,6 +1,7 @@
 #include "WindowImplOpenGL1.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 #include <assert.h>
+#include <iostream>
 
 using namespace LDL::Math;
 using namespace LDL::Graphics;
@@ -8,7 +9,7 @@ using namespace LDL::Graphics;
 WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _Window(pos, size, title, mode)
 {
-    _OpenGLLoader.Init(1, 1);
+    _OpenGLLoader.Init(1, 2);
 }
 
 WindowImplOpenGL1::~WindowImplOpenGL1()
