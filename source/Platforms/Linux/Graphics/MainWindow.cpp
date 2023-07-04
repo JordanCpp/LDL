@@ -10,8 +10,9 @@ using namespace LDL::Graphics;
 const size_t eventMask =
       PointerMotionMask 
     | ButtonMotionMask 
-    | KeyPressMask
     | ButtonPressMask
+    | ButtonReleaseMask
+    | KeyPressMask
     | KeyReleaseMask;
 
 size_t MainWindow::ConvertKey(size_t key)
@@ -301,6 +302,31 @@ void MainWindow::PollEvents()
             report.Type = Events::IsMouseMove;
             report.Mouse.PosX = event.xmotion.x;
             report.Mouse.PosY = event.xmotion.y;
+            _Eventer.Push(report);
+            break;
+
+        case ButtonPress:
+            report.Type = Events::IsMouseClick;
+            report.Mouse.State = LDL::Enums::ButtonState::Pressed;
+
+            size_t button = 0;
+
+            switch (event.xbutton.button)
+            {
+            case 1:
+                button = LDL::Enums::MouseButton::Left;
+                break;
+            case 2:
+                button = LDL::Enums::MouseButton::Right;
+                break;
+            case 3:
+                button = LDL::Enums::MouseButton::Middle;
+                break;
+            }
+
+            report.Mouse.Button = button;
+            report.Mouse.PosX = event.xbutton.x;
+            report.Mouse.PosY = event.xbutton.y;
             _Eventer.Push(report);
             break;
         }
