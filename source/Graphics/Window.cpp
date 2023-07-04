@@ -1,7 +1,5 @@
 #include <LDL/Graphics/Window.hpp>
-
 #include "Creators/WindowImplCreator.hpp"
-
 #include <LDL/Graphics/RenderContext.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 

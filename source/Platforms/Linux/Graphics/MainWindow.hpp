@@ -28,7 +28,7 @@ namespace LDL
 			const Math::Vec2u& Pos();
 			void Show();
 		private:
-		    BaseWindow _BaseWindow;
+			BaseWindow _BaseWindow;
 			size_t ConvertKey(size_t key);
 			LDL::Events::Eventer _Eventer;
 		public:
