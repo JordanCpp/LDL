@@ -369,6 +369,11 @@ const std::string& MainWindow::Title()
 
 const Vec2u& MainWindow::Size()
 {
+    XWindowAttributes attributes;
+    XGetWindowAttributes(_Display, _Window, &attributes);
+
+    _BaseWindow.Size(Vec2u(attributes.width, attributes.height));
+
     return _BaseWindow.Size();
 }
 
