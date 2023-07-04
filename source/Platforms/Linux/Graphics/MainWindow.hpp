@@ -36,6 +36,7 @@ namespace LDL
 			int      _ScreenId;
 			Screen*  _Screen;
 			Window   _Window;
+			size_t   _EventMask;
 		};
 	}
 }

@@ -6,10 +6,10 @@ using namespace LDL::Core;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
 
-WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u &pos, const Vec2u &size, const std::string &title, size_t mode) : 
     _Window(pos, size, title, mode)
 {
-    GLint major = 0; 
+    GLint major = 0;
     GLint minor = 0;
 
     glXQueryVersion(_Window._Display, &major, &minor);
@@ -33,23 +33,23 @@ WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u& pos, const Vec2u& size, const 
 
     XSetWindowAttributes windowAttribs;
 
-    windowAttribs.border_pixel      = BlackPixel(_Window._Display, _Window._ScreenId);
-    windowAttribs.background_pixel  = WhitePixel(_Window._Display, _Window._ScreenId);
+    windowAttribs.border_pixel = BlackPixel(_Window._Display, _Window._ScreenId);
+    windowAttribs.background_pixel = WhitePixel(_Window._Display, _Window._ScreenId);
     windowAttribs.override_redirect = True;
-    windowAttribs.colormap          = XCreateColormap(_Window._Display, RootWindow(_Window._Display, _Window._ScreenId), _Visual->visual, AllocNone);
-    windowAttribs.event_mask        = ExposureMask;
-    _Window._Window                 = XCreateWindow(_Window._Display, RootWindow(_Window._Display, _Window._ScreenId), 0, 0, 800, 600, 0, _Visual->depth, InputOutput, _Visual->visual, CWBackPixel | CWColormap | CWBorderPixel | CWEventMask, &windowAttribs);
+    windowAttribs.colormap = XCreateColormap(_Window._Display, RootWindow(_Window._Display, _Window._ScreenId), _Visual->visual, AllocNone);
+    windowAttribs.event_mask = ExposureMask;
+    _Window._Window = XCreateWindow(_Window._Display, RootWindow(_Window._Display, _Window._ScreenId), 0, 0, 800, 600, 0, _Visual->depth, InputOutput, _Visual->visual, CWBackPixel | CWColormap | CWBorderPixel | CWEventMask, &windowAttribs);
 
-    XSelectInput(_Window._Display, _Window._Window, KeyPressMask | ButtonMotionMask);
+    XSelectInput(_Window._Display, _Window._Window, _Window._EventMask);
 
     _Context = glXCreateContext(_Window._Display, _Visual, NULL, GL_TRUE);
-    
+
     glXMakeCurrent(_Window._Display, _Window._Window, _Context);
 
     _OpenGLLoader.Init(1, 2);
 
     _Window.Title(title);
-    
+
     _Window.Show();
 }
 
@@ -66,6 +66,7 @@ void WindowImplOpenGL1::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 
 void WindowImplOpenGL1::Present()
 {
+    glXSwapBuffers(_Window._Display, _Window._Window);
 }
 
 const Vec2u& WindowImplOpenGL1::Size()
