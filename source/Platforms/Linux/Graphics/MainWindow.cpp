@@ -20,41 +20,6 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
 
     _Screen   = DefaultScreenOfDisplay(_Display);
 	_ScreenId = DefaultScreen(_Display);
-
-        
-    GLint majorGLX = 0; 
-    GLint minorGLX = 0;
-
-        glXQueryVersion(_Display, &majorGLX, &minorGLX);
-
-GLint glxAttribs[] = {
-	GLX_RGBA,
-	GLX_DOUBLEBUFFER,
-	GLX_DEPTH_SIZE,     24,
-	GLX_STENCIL_SIZE,   8,
-	GLX_RED_SIZE,       8,
-	GLX_GREEN_SIZE,     8,
-	GLX_BLUE_SIZE,      8,
-	GLX_SAMPLE_BUFFERS, 0,
-	GLX_SAMPLES,        0,
-	None
-};
-XVisualInfo* visual = glXChooseVisual(_Display, _ScreenId, glxAttribs);
-
-XSetWindowAttributes windowAttribs;
-	windowAttribs.border_pixel = BlackPixel(_Display, _ScreenId);
-	windowAttribs.background_pixel = WhitePixel(_Display, _ScreenId);
-	windowAttribs.override_redirect = True;
-	windowAttribs.colormap = XCreateColormap(_Display, RootWindow(_Display, _ScreenId), visual->visual, AllocNone);
-	windowAttribs.event_mask = ExposureMask;
-	_Window = XCreateWindow(_Display, RootWindow(_Display, _ScreenId), 0, 0, 800, 600, 0, visual->depth, InputOutput, visual->visual, CWBackPixel | CWColormap | CWBorderPixel | CWEventMask, &windowAttribs);
-
-
-	GLXContext context = glXCreateContext(_Display, visual, NULL, GL_TRUE);
-	glXMakeCurrent(_Display, _Window, context);
-
-	XClearWindow(_Display, _Window);
-	XMapRaised(_Display, _Window);
 }
 
 MainWindow::~MainWindow()
@@ -103,6 +68,8 @@ void MainWindow::StopEvent()
 void MainWindow::Title(const std::string& title)
 {
     _BaseWindow.Title(title);
+
+    XStoreName(_Display, _Window, _BaseWindow.Title().c_str());
 }
 
 const std::string& MainWindow::Title()
@@ -118,4 +85,10 @@ const Vec2u& MainWindow::Size()
 const Vec2u& MainWindow::Pos()
 {
     return _BaseWindow.Pos();
+}
+
+void MainWindow::Show()
+{
+    XClearWindow(_Display, _Window);
+	XMapRaised(_Display, _Window); 
 }

@@ -9,11 +9,47 @@ using namespace LDL::Graphics;
 WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _Window(pos, size, title, mode)
 {
+    GLint major = 0; 
+    GLint minor = 0;
+
+    glXQueryVersion(_Window._Display, &major, &minor);
+
+    GLint glxAttribs[] = {
+        GLX_RGBA,
+        GLX_DOUBLEBUFFER,
+        GLX_DEPTH_SIZE, 24,
+        GLX_STENCIL_SIZE, 8,
+        GLX_RED_SIZE, 8,
+        GLX_GREEN_SIZE, 8,
+        GLX_BLUE_SIZE, 8,
+        GLX_SAMPLE_BUFFERS, 0,
+        GLX_SAMPLES, 0,
+        None};
+
+    _Visual = glXChooseVisual(_Window._Display, _Window._ScreenId, glxAttribs);
+
+    XSetWindowAttributes windowAttribs;
+
+    windowAttribs.border_pixel      = BlackPixel(_Window._Display, _Window._ScreenId);
+    windowAttribs.background_pixel  = WhitePixel(_Window._Display, _Window._ScreenId);
+    windowAttribs.override_redirect = True;
+    windowAttribs.colormap          = XCreateColormap(_Window._Display, RootWindow(_Window._Display, _Window._ScreenId), _Visual->visual, AllocNone);
+    windowAttribs.event_mask        = ExposureMask;
+    _Window._Window                 = XCreateWindow(_Window._Display, RootWindow(_Window._Display, _Window._ScreenId), 0, 0, 800, 600, 0, _Visual->depth, InputOutput, _Visual->visual, CWBackPixel | CWColormap | CWBorderPixel | CWEventMask, &windowAttribs);
+
+    _Context = glXCreateContext(_Window._Display, _Visual, NULL, GL_TRUE);
+    glXMakeCurrent(_Window._Display, _Window._Window, _Context);
+
     _OpenGLLoader.Init(1, 2);
+
+    _Window.Title(title);
+    
+    _Window.Show();
 }
 
 WindowImplOpenGL1::~WindowImplOpenGL1()
 {
+    glXDestroyContext(_Window._Display, _Context);
 }
 
 void WindowImplOpenGL1::Present(uint8_t* pixels, uint8_t bytesPerPixel)

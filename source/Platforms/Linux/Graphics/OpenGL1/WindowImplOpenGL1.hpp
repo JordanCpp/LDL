@@ -6,6 +6,8 @@
 #include "../MainWindow.hpp"
 #include "../WindowImpl.hpp"
 
+#include "../GLX.hpp"
+
 namespace LDL
 {
 	namespace Graphics
@@ -27,7 +29,9 @@ namespace LDL
 			const Math::Vec2u& Size();
 			const Math::Vec2u& Pos();
 		private:
-		    MainWindow _Window;
+		    MainWindow   _Window;
+			XVisualInfo* _Visual;
+			GLXContext   _Context;
 			OpenGLLoader _OpenGLLoader;
 		};
 	}
