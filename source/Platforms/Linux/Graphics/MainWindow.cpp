@@ -8,7 +8,7 @@ using namespace LDL::Enums;
 using namespace LDL::Graphics;
 
 const size_t eventMask =
-    PointerMotionMask 
+      PointerMotionMask 
     | ButtonMotionMask 
     | KeyPressMask
     | ButtonPressMask
@@ -273,6 +273,7 @@ void MainWindow::PollEvents()
 {
     XEvent event;
     Events::Event report;
+    size_t key  = 0;
 
     while (XPending(_Display))
     {
@@ -283,14 +284,16 @@ void MainWindow::PollEvents()
         case KeyPress:
             report.Type = LDL::Events::IsKeyboard;
             report.Keyboard.State = ButtonState::Pressed;
-            report.Keyboard.Key = ConvertKey(event.xkey.keycode);
+            key = ConvertKey(XKeycodeToKeysym(_Display, event.xkey.keycode, 0));
+            report.Keyboard.Key = key;
             _Eventer.Push(report);
             break;
 
         case KeyRelease:
             report.Type = LDL::Events::IsKeyboard;
             report.Keyboard.State = ButtonState::Released;
-            report.Keyboard.Key = ConvertKey(event.xkey.keycode);
+            key = ConvertKey(XKeycodeToKeysym(_Display, event.xkey.keycode, 0));
+            report.Keyboard.Key = key;
             _Eventer.Push(report);
             break;
 
