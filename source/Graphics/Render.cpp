@@ -107,10 +107,12 @@ void Render::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 
 void Render::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
+	_RenderImpl->Draw(image, dstPos, srcPos, srcSize);
 }
 
 void Render::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
+	_RenderImpl->Draw(image, dstPos, dstSize, srcPos, srcSize);
 }
 
 void Render::Draw(TextureBatcher* textureBatcher)

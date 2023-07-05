@@ -8,7 +8,6 @@ CL /O2 /FeLDL_VC6.dll -LD -GX /I..\include /DLDL_SHARED_LIBRARY /DLDL_RENDER_OPE
 ..\source\Time\*.cpp ^
 ..\source\Audio\*.cpp ^
 ..\source\DirectX\DirectX9.cpp  ^
-..\source\Audio\DirectSound8\*.cpp ^
 ..\source\Platforms\Windows\Graphics\*.cpp ^
 ..\source\Platforms\Windows\Graphics\OpenGL\*.cpp ^
 ..\source\Platforms\Windows\Graphics\OpenGL1\*.cpp ^
@@ -17,6 +16,7 @@ CL /O2 /FeLDL_VC6.dll -LD -GX /I..\include /DLDL_SHARED_LIBRARY /DLDL_RENDER_OPE
 ..\source\Platforms\Windows\Graphics\Software\*.cpp ^
 ..\source\Platforms\Windows\Time\Ticks.cpp ^
 ..\source\Platforms\Windows\Core\*.cpp ^
+..\source\Platforms\Windows\Audio\DirectSound8\*.cpp ^
 ..\source\Graphics\*.cpp ^
 ..\source\Graphics\Base\*.cpp ^
 ..\source\Graphics\Creators\*.cpp ^

@@ -7,7 +7,6 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DLDL_SHA
 ..\source\Time\*.cpp ^
 ..\source\Audio\*.cpp ^
 ..\source\DirectX\DirectX9.cpp  ^
-..\source\Audio\DirectSound8\*.cpp ^
 ..\source\Platforms\Windows\Graphics\*.cpp ^
 ..\source\Platforms\Windows\Graphics\OpenGL\*.cpp ^
 ..\source\Platforms\Windows\Graphics\OpenGL1\*.cpp ^
@@ -17,6 +16,7 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DLDL_SHA
 ..\source\Platforms\Windows\Time\Ticks.cpp ^
 ..\source\Platforms\Windows\Core\*.cpp ^
 ..\source\Platforms\Windows\Input\*.cpp ^
+..\source\Platforms\Windows\Audio\DirectSound8\*.cpp ^
 ..\source\Graphics\*.cpp ^
 ..\source\Graphics\Base\*.cpp ^
 ..\source\Graphics\Creators\*.cpp ^

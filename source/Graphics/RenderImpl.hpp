@@ -12,6 +12,7 @@ namespace LDL
 		class RenderImpl
 		{
 		public:
+			virtual ~RenderImpl() {};
 			virtual void Buffer(uint8_t* dst) = 0;
 			virtual void Begin() = 0;
 			virtual void End() = 0;

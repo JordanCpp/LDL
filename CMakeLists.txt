@@ -14,5 +14,5 @@ add_subdirectory("source")
 add_subdirectory("Examples")
 
 if (LDL_STATIC_LIBRARY)
-  #add_subdirectory("test")
+    #add_subdirectory("test")
 endif()
