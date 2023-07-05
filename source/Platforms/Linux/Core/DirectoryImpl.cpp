@@ -19,16 +19,35 @@ bool DirectoryImpl::Delete(const std::string& path)
 
 bool DirectoryImpl::Open(const std::string& path)
 {
-    return false;
+    Close();
+    
+    _Directory = opendir(path.c_str());
+
+    return _Directory != NULL;
 }
 
 void DirectoryImpl::Close()
 {
+    if (_Directory != NULL)
+    {
+        closedir(_Directory);
+    }
 }
 
-bool DirectoryImpl::Next(FileInfo& fileInfo)
+bool DirectoryImpl::Next(FileInfo &fileInfo)
 {
-    return false;
+    dirent *entry = readdir(_Directory);
+
+    if (entry == NULL)
+    {
+        return false;
+    }
+    else
+    {    
+        fileInfo.Name(entry->d_name);
+
+        return true;
+    }
 }
 
 bool DirectoryImpl::Remove(const std::string& path)

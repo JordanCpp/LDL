@@ -4,13 +4,16 @@
 
 size_t LDL::Time::Ticks()
 {
-	struct timespec ts;
-	unsigned theTick = 0U;
-	clock_gettime(CLOCK_REALTIME, &ts);
-	theTick = ts.tv_nsec / 1000000;
-	theTick += ts.tv_sec * 1000;
+	size_t result = 0;
 
-	return theTick;
+	timespec ts;
+
+	clock_gettime(CLOCK_REALTIME, &ts);
+	
+	result = ts.tv_nsec / 1000000;
+	result += ts.tv_sec * 1000;
+
+	return result;
 }
 
 void LDL::Time::Delay(size_t count)

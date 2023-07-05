@@ -3,6 +3,7 @@
 
 #include <LDL/Core/Directory.hpp>
 #include <LDL/Core/FileInfo.hpp>
+#include <dirent.h>
 
 namespace LDL
 {
@@ -19,6 +20,7 @@ namespace LDL
 			bool Next(FileInfo& fileInfo);
 			bool Remove(const std::string& path);
 		private:
+		    DIR * _Directory;
 		};
 	}
 }
