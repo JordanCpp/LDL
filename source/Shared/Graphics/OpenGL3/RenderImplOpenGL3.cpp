@@ -82,14 +82,9 @@ void RenderImplOpenGL3::Fill(const Vec2u& pos, const Vec2u& size)
 {
 }
 
-void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
+void RenderImplOpenGL3::Draw(Surface* image, const Vec2u& pos)
 {
-	_TexturePainter.Draw(projection, image);
-}
-
-void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& pos)
-{
-	Draw(image, pos, image->Size());
+	_Screen.Draw(image, pos);
 }
 
 void RenderImplOpenGL3::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
@@ -105,9 +100,14 @@ void RenderImplOpenGL3::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& d
 {
 }
 
-void RenderImplOpenGL3::Draw(Surface* image, const Vec2u& pos)
+void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& pos)
 {
-	_Screen.Draw(image, pos);
+	Draw(image, pos, image->Size());
+}
+
+void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
+{
+	_TexturePainter.Draw(projection, image);
 }
 
 void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
@@ -120,5 +120,4 @@ void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& d
 
 void RenderImplOpenGL3::Draw(TextureBatcher* textureBatcher)
 {
-
 }
