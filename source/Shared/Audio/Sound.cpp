@@ -3,7 +3,7 @@
 #if defined(_WIN32)
 #include "../source/Platforms/Windows/Audio/DirectSound8/SoundImpl.hpp"
 #elif defined(__unix__)
-#include "../Platforms/Linux/Audio/OpenAL/SoundImpl.hpp"
+#include "../source/Platforms/Linux/Audio/OpenAL/SoundImpl.hpp"
 #endif
 
 using namespace LDL::Audio;

@@ -3,7 +3,7 @@
 #if defined(_WIN32)
 #include "../source/Platforms/Windows/Audio/DirectSound8/MixerImpl.hpp"
 #elif defined(__unix__)
-#include "../Platforms/Linux/Audio/OpenAL/MixerImpl.hpp"
+#include "../source/Platforms/Linux/Audio/OpenAL/MixerImpl.hpp"
 #endif
 
 using namespace LDL::Audio;

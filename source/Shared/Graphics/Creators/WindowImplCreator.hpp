@@ -4,7 +4,7 @@
 #if defined(_WIN32)
 #include "../source/Platforms/Windows/Graphics/WindowImpl.hpp"
 #elif defined(__unix__)
-#include "../../Platforms/Linux/Graphics/WindowImpl.hpp"
+#include "../source/Platforms/Linux/Graphics/WindowImpl.hpp"
 #endif
 
 #include <LDL/Graphics/RenderContext.hpp>

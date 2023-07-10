@@ -3,7 +3,7 @@
 #if defined(_WIN32)
 #include "../source/Platforms/Windows/Core/LibraryImpl.hpp"
 #elif defined(__unix__)
-#include "../Platforms/Linux/Core/LibraryImpl.hpp"
+#include "../source/Platforms/Linux/Core/LibraryImpl.hpp"
 #endif
 
 using namespace LDL::Core;

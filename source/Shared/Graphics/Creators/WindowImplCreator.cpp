@@ -5,9 +5,9 @@
 #include "../source/Platforms/Windows/Graphics/OpenGL1/WindowImplOpenGL1.hpp"
 #include "../source/Platforms/Windows/Graphics/OpenGL3/WindowImplOpenGL3.hpp"
 #elif defined(__unix__)
-#include "../../Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp"
-#include "../../Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp"
-#include "../../Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp"
+#include "../source/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp"
+#include "../source/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp"
+#include "../source/Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp"
 #endif
 
 

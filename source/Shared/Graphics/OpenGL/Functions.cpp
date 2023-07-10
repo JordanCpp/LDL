@@ -3,7 +3,7 @@
 #if defined(_WIN32)
 #include "../source/Platforms/Windows/Graphics/OpenGL/FunctionsImpl.hpp"
 #elif defined(__unix__)
-#include "../../Platforms/Linux/Graphics/OpenGL/FunctionsImpl.hpp"
+#include "../source/Platforms/Linux/Graphics/OpenGL/FunctionsImpl.hpp"
 #endif
 
 
