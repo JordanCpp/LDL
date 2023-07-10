@@ -1,5 +1,6 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Core/NumberToString.hpp>
+#include <string.h>
 
 using namespace LDL::Core;
 

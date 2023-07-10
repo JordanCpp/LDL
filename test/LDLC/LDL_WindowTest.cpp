@@ -1,5 +1,6 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDLC/LDL_Window.h>
+#include <string.h>
 
 int main()
 {
