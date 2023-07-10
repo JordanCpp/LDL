@@ -12,94 +12,15 @@ endif()
 
 include_directories("../include")
 
-set(LDL_AUDIO_DIRECT_SOUND_8 true)
-add_definitions(-DLDL_AUDIO_DIRECT_SOUND_8)
-
-file(GLOB SOURCE_FILES
-    "Core/*.cpp"
-    "Graphics/*.cpp"
-    "Graphics/Base/*.cpp"
-    "Graphics/Software/*.cpp"
-    "Graphics/OpenGL/*.cpp"
-    "OpenGL/*.cpp"
-    "Graphics/Primitives/*.cpp"
-    "Graphics/Utils/*.cpp"
-    "Audio/*.cpp"
-    "Events/*.cpp"
-    "Allocators/*.cpp"
-    "Loaders/*.cpp"
-    "Time/*.cpp"
-    "LDLC/*.cpp")
-
-
-file(GLOB SOURCE_DIRECT3D
-    "Graphics/OpenGL/*.cpp"
-    "Graphics/OpenGL1/*.cpp"
-    "Graphics/Software/*.cpp"
-    "Graphics/OpenGL3/*.cpp"
-    #"Graphics/Direct3D9/*.cpp"
-    "Graphics/Creators/*.cpp")
-
-file(GLOB SOURCE_RENDERS
-    "Graphics/OpenGL/*.cpp"
-    "Graphics/OpenGL1/*.cpp"
-    "Graphics/Software/*.cpp"
-    "Graphics/OpenGL3/*.cpp"
-    #"Graphics/Direct3D9/*.cpp"
-    "Graphics/Creators/*.cpp")
+file(GLOB_RECURSE SHARED_FILES "Shared/*.cpp")
 
 if (WIN32)
-if (LDL_AUDIO_DIRECT_SOUND_8)
-  set(SOURCE_AUDIO
-  "Platforms/Windows/Audio/DirectSound8/MixerImpl.cpp"
-  "Platforms/Windows/Audio/DirectSound8/SoundImpl.cpp"
-  "Platforms/Windows/Audio/DirectSound8/AudioContextImpl.cpp"
-  "DirectX/DirectX9.cpp")
-endif() 
-elseif (UNIX AND NOT APPLE)
-  set(SOURCE_AUDIO
-  "Platforms/Linux/Audio/OpenAL/MixerImpl.cpp"
-  "Platforms/Linux/Audio/OpenAL/SoundImpl.cpp"
-  "Platforms/Linux/Audio/OpenAL/AudioContextImpl.cpp")
-endif() 
-
-if (WIN32)
-set(SOURCE_RENDER_PLATFORM
-  "Platforms/Windows/Graphics/OpenGL/FunctionsImpl.cpp"
-  "Platforms/Windows/Graphics/Software/WindowImplSoftware.cpp"
-  "Platforms/Windows/Graphics/OpenGL1/WindowImplOpenGL1.cpp"
-  "Platforms/Windows/Graphics/OpenGL3/WindowImplOpenGL3.cpp")
-  #"Platforms/Windows/Graphics/Direct3D9/WindowImplDirect3D9.cpp")
+  file(GLOB_RECURSE SOURCE_PLATFORM "Platforms/Windows/*.cpp")
 elseif(UNIX AND NOT APPLE)
-set(SOURCE_RENDER_PLATFORM
-  "Platforms/Linux/Graphics/OpenGL/FunctionsImpl.cpp"
-  "Platforms/Linux/Graphics/Software/WindowImplSoftware.cpp"
-  "Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.cpp"
-  "Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.cpp")
-endif()
-
-#
-# Platform
-#
-if (WIN32)
-  set(SOURCE_PLATFORM
-  "Platforms/Windows/Graphics/MainWindow.cpp"
-  "Platforms/Windows/Time/Ticks.cpp"
-  "Platforms/Windows/Core/DirectoryImpl.cpp"
-  "Platforms/Windows/Core/LibraryImpl.cpp"
-  "Platforms/Windows/Input/Display.cpp"
-  "Platforms/Windows/Input/Mouse.cpp")
-elseif(UNIX AND NOT APPLE)
-  set(SOURCE_PLATFORM
-  "Platforms/Linux/Graphics/MainWindow.cpp"
-  "Platforms/Linux/Time/Ticks.cpp"
-  "Platforms/Linux/Core/DirectoryImpl.cpp"
-  "Platforms/Linux/Core/LibraryImpl.cpp"
-  "Platforms/Linux/Input/Display.cpp"
-  "Platforms/Linux/Input/Mouse.cpp")
+  file(GLOB_RECURSE SOURCE_PLATFORM "Platforms/Linux/*.cpp")
 endif() 
 
-set(SOURCE_ALL ${SOURCE_FILES} ${SOURCE_RENDERS} ${SOURCE_RENDER_PLATFORM} ${SOURCE_PLATFORM} ${SOURCE_AUDIO})
+set(SOURCE_ALL ${SHARED_FILES} ${SOURCE_PLATFORM})
 
 if (LDL_SHARED_LIBRARY)
   add_library(${PROJECT_NAME} SHARED  ${SOURCE_ALL})		
@@ -108,9 +29,7 @@ elseif (LDL_STATIC_LIBRARY)
 endif() 
 
 if (WIN32)
-  target_link_libraries(${PROJECT_NAME} winmm opengl32)
-endif()
-
-if (UNIX AND NOT APPLE)
-  target_link_libraries(${PROJECT_NAME} X11 GL GLX)
+    target_link_libraries(${PROJECT_NAME} winmm opengl32)
+elseif (UNIX AND NOT APPLE)
+    target_link_libraries(${PROJECT_NAME} X11 GL GLX)
 endif()

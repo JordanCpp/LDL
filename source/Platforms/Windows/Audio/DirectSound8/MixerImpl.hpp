@@ -2,7 +2,7 @@
 #define LDL_Platforms_Windows_Audio_DirectSound8_MixerImpl_hpp
 
 #include <LDL/Audio/Mixer.hpp>
-#include "../source/DirectX/DirectX9.hpp"
+#include "../source/Platforms/Windows/DirectX/DirectX9.hpp"
 
 namespace LDL
 {
