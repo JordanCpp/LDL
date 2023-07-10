@@ -1,7 +1,3 @@
-cmake_minimum_required(VERSION 2.8)
-
-set(CMAKE_BUILD_TYPE Debug)
-
 project(LDL)
 
 if (MSVC)
@@ -9,9 +5,9 @@ if (MSVC)
 endif()
 
 if(UNIX AND NOT APPLE)
-find_package(X11 REQUIRED)
-link_libraries(${X11_LIBRARIES})
-include_directories(${X11_INCLUDE_DIR})
+    find_package(X11 REQUIRED)
+    link_libraries(${X11_LIBRARIES})
+    include_directories(${X11_INCLUDE_DIR})
 endif()
 
 include_directories("../include")

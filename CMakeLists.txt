@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 2.8)
-
 # Uncomment for build shared library 
 #set(LDL_SHARED_LIBRARY true)
 #add_definitions(-DLDL_SHARED_LIBRARY)

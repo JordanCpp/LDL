@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.8)
-
 add_executable(Vec2 "Vec2.cpp")
 target_link_libraries(Vec2 LDL)
 
