@@ -1,6 +1,6 @@
 #include "FunctionsImpl.hpp"
 #include <LDL/Core/RuntimeError.hpp>
-#include <GL/glx.h>
+#include "../GLX.hpp"
 
 using namespace LDL::Core;
 using namespace LDL::Graphics;

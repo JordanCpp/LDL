@@ -47,6 +47,10 @@ extern Bool glXMakeCurrent( Display *dpy, GLXDrawable drawable,
 
 extern void glXSwapBuffers( Display *dpy, GLXDrawable drawable );
 
+typedef unsigned char	GLubyte;
+
+extern void (*glXGetProcAddress(const GLubyte *procname))( void );
+
 #ifdef __cplusplus
 }
 #endif
