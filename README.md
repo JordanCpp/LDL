@@ -8,13 +8,15 @@ Free cross-platform library.
 3. We do not limit the developer.
 4. We support old and new platforms.
 5. Cross-platform.
-6. Static link.
+6. Static and dynamic link.
 
 # Install Linux
-1. git clone https://github.com/JordanCpp/Lib-LDL.git
-2. cd Lib-LDL
-3. cmake CMakeLists.txt
-4. make
+1. sudo apt-get install libx11-dev
+2. sudo apt-get install libgl1-mesa-dev
+3. git clone https://github.com/JordanCpp/Lib-LDL.git
+4. cd Lib-LDL
+5. cmake CMakeLists.txt
+6. make
 
 # Install for Windows (Static library)
 1. git clone https://github.com/JordanCpp/Lib-LDL.git dependencies/LDL 
