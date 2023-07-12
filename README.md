@@ -10,6 +10,12 @@ Free cross-platform library.
 5. Cross-platform.
 6. Static link.
 
+# Install Linux
+1. git clone https://github.com/JordanCpp/Lib-LDL.git
+2. cd Lib-LDL
+3. cmake CMakeLists.txt
+4. make
+
 # Install for Windows (Static library)
 1. git clone https://github.com/JordanCpp/Lib-LDL.git dependencies/LDL 
 2. Added to CMake
@@ -39,9 +45,6 @@ Free cross-platform library.
 - link_directories   (dependencies/LDL/MSVC2022_x64)
 - target_link_libraries(MyProject LDL)
 
-# Install Linux
-In the process of porting.
-
 # Support platforms.
 1. Windows 95
 2. Windows 98
@@ -53,7 +56,7 @@ In the process of porting.
 8. Windows 8
 9. Windows 10
 10. Windows 11
-11. Linux XLib (In the implementation)
+11. Linux XLib
 12. Linux Wayland (In the implementation)
 
 # Support renders.
