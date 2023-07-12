@@ -7,7 +7,7 @@
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, size_t bytesPerPixel) :
+TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
 	_RenderContextImpl(renderContextImpl),
 	_Id(0)
 {
@@ -34,7 +34,7 @@ TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, con
 	Copy(Vec2u(0, 0), _Size, pixels, bytesPerPixel);
 }
 
-TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Vec2u& size, size_t bytesPerPixel) :
+TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel) :
 	_RenderContextImpl(renderContextImpl),
 	_Id(0)
 {
@@ -59,7 +59,7 @@ TextureImplOpenGL1::~TextureImplOpenGL1()
 	Util::DeleteTexture((GLint)_Id);
 }
 
-void TextureImplOpenGL1::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, size_t bytesPerPixel)
+void TextureImplOpenGL1::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel)
 {
 	GLint format = 0;
 

@@ -27,13 +27,13 @@ WindowImpl* WindowImplCreator::Create(RenderContext* renderContext, const Vec2u&
 	switch (renderMode)
 	{
 	case Enums::RenderMode::Software:
-		result = new WindowImplSoftware(pos, size, title, renderMode);
+		result = new WindowImplSoftware(pos, size, title, mode);
 		break;
 	case Enums::RenderMode::OpenGL1:
-		result = new WindowImplOpenGL1(pos, size, title, renderMode);
+		result = new WindowImplOpenGL1(pos, size, title, mode);
 		break;
 	case Enums::RenderMode::OpenGL3:
-		result = new WindowImplOpenGL3(pos, size, title, renderMode);
+		result = new WindowImplOpenGL3(pos, size, title, mode);
 		break;
 	default:
 		throw RuntimeError("Unknown graphics mode");

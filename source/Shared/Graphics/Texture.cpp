@@ -27,7 +27,7 @@ Texture::~Texture()
 	delete _TextureImpl;
 }
 
-void Texture::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, size_t bytesPerPixel)
+void Texture::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel)
 {
 	_TextureImpl->Copy(dstPos, srcSize, pixels, bytesPerPixel);
 }

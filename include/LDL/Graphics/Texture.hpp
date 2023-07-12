@@ -18,7 +18,7 @@ namespace LDL
 			Texture(RenderContext* renderContext, const Math::Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);
 			Texture(RenderContext* renderContext, const Math::Vec2u& size, uint8_t bytesPerPixel);
 			~Texture();
-			void Copy(const Math::Vec2u& dstPos, const Math::Vec2u& srcSize, uint8_t* pixels, size_t bytesPerPixel);
+			void Copy(const Math::Vec2u& dstPos, const Math::Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
 			void Copy(const Math::Vec2u& dstPos, Surface * surface, const Math::Vec2u& srcSize);
 			const Math::Vec2u& Size();
 			TextureImpl* GetTextureImpl();

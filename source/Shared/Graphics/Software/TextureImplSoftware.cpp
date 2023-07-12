@@ -8,7 +8,7 @@ TextureImplSoftware::TextureImplSoftware(RenderContextImpl* renderContextImpl, c
 {
 }
 
-TextureImplSoftware::TextureImplSoftware(RenderContextImpl* renderContextImpl, const Vec2u& size, size_t bytesPerPixel) :
+TextureImplSoftware::TextureImplSoftware(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel) :
 	_Surface(size, size, bytesPerPixel)
 {
 }
@@ -17,7 +17,7 @@ TextureImplSoftware::~TextureImplSoftware()
 {
 }
 
-void TextureImplSoftware::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, size_t bytesPerPixel)
+void TextureImplSoftware::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel)
 {
 
 }

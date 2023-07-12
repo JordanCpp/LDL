@@ -47,6 +47,7 @@ int main()
 	LDL_NumberToStringFree(convert);
 	LDL_RenderFree(render);
 	LDL_WindowFree(window);
+	LDL_RenderContextFree(renderContext);
 
 	return 0;
 }

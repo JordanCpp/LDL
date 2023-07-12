@@ -69,13 +69,15 @@ TexturePainter::TexturePainter(ShaderLoader* shaderLoader) :
 
 void TexturePainter::Draw(Mat4f proj, Texture* texture)
 {
-   glBindTexture(GL_TEXTURE_2D, ((TextureImplOpenGL3*)texture->GetTextureImpl())->Id());
+    GLuint id = (GLuint)((TextureImplOpenGL3*)texture->GetTextureImpl())->Id();
 
-   glUseProgram(_ShaderProgram);
+    glBindTexture(GL_TEXTURE_2D, id);
 
-   //glUniformMatrix4fv(glGetUniformLocation(_ShaderProgram, "projection"), 1, GL_FALSE, proj.Values());
+    glUseProgram(_ShaderProgram);
 
-   glBindVertexArray(_VertexArraysObject);
+    //glUniformMatrix4fv(glGetUniformLocation(_ShaderProgram, "projection"), 1, GL_FALSE, proj.Values());
 
-   glDrawArrays(GL_TRIANGLES, 0, 6);
+    glBindVertexArray(_VertexArraysObject);
+
+    glDrawArrays(GL_TRIANGLES, 0, 6);
 }

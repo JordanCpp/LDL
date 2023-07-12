@@ -31,12 +31,13 @@ void LDL::Graphics::RenderImplOpenGL1::Buffer(uint8_t* dst)
 
 void RenderImplOpenGL1::Begin()
 {
-	GL_CHECK(glViewport(0, 0, (GLsizei)_Window->Size().x, (GLsizei)_Window->Size().y));
+	Vec2u size = _Window->Size();
 
+	GL_CHECK(glViewport(0, 0, (GLsizei)size.x, (GLsizei)size.y));
+
+	_Projection = Ortho(0.0f, (float)size.x, (float)size.y, 0.0f, 0.0f, 1.0f);
 	GL_CHECK(glMatrixMode(GL_PROJECTION));
-	_Projection = Ortho(0.0f, (float)_Window->Size().x, (float)_Window->Size().y, 0.0f, 0.0f, 1.0f);
 	GL_CHECK(glLoadMatrixf(_Projection.Values()));
-
 
 	GL_CHECK(glMatrixMode(GL_MODELVIEW));
 	GL_CHECK(glLoadMatrixf(_ModelView.Values()));
