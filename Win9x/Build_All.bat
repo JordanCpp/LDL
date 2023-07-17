@@ -18,3 +18,19 @@ call %2 12_TileMap2 %pth%
 call %2 13_TileMapBatcher %pth%
 call %2 14_TextureCopy %pth%
 call %2 15_AudioPlay %pth%
+
+set pth=C:\Repos\Lib-LDL\Examples\NeheOpenGL\
+
+call %2 Lesson01 %pth%
+call %2 Lesson02 %pth%
+call %2 Lesson03 %pth%
+call %2 Lesson04 %pth%
+call %2 Lesson05 %pth%
+call %2 Lesson06 %pth%
+call %2 Lesson07 %pth%
+call %2 Lesson08 %pth%
+call %2 Lesson09 %pth%
+call %2 Lesson10 %pth%
+call %2 Lesson11 %pth%
+call %2 Lesson12 %pth%
+call %2 Lesson16 %pth%

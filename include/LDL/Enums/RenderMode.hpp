@@ -12,10 +12,7 @@ namespace LDL
 			{
 				Software = 1,
 				OpenGL1,
-				OpenGL2,
-				OpenGL3,
-				DirectDraw,
-				Direct3D9
+				OpenGL3
 			};
 		};
 	}
