@@ -265,12 +265,12 @@ int main()
 				}
 				if (!report.IsKeyPressed(KeyboardKey::B))
 				{
-					bp = FALSE;
+					bp = false;
 				}
 
 				if (report.IsKeyPressed(KeyboardKey::F) && !fp)
 				{
-					fp = TRUE;
+					fp = true;
 					filter += 1;
 					if (filter > 2)
 					{
@@ -279,7 +279,7 @@ int main()
 				}
 				if (!report.IsKeyPressed(KeyboardKey::F))
 				{
-					fp = FALSE;
+					fp = false;
 				}
 
 				if (report.IsKeyPressed(KeyboardKey::PageUp))
