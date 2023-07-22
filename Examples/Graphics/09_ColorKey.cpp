@@ -30,7 +30,7 @@ int main()
 		FixedLinear allocator(Allocator::Mb * 8);
 		ImageLoader loader(&allocator);
 
-		loader.Load(Color(163, 73, 164), "Gorgosaurus_BW_transparent.bmp");
+		loader.Load(Color(163, 73, 164), "Data/Gorgosaurus_BW_transparent.bmp");
 		Surface image(loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
 		FpsCounter fpsCounter;

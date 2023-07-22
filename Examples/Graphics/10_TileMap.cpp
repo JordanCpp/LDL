@@ -33,7 +33,7 @@ int main()
 		FixedLinear allocator(Allocator::Mb * 8);
 		ImageLoader loader(&allocator);
 
-		loader.Load(Color(0, 0, 255), "bg1bg23d_0_0_0.bmp");
+		loader.Load(Color(0, 0, 255), "Data/bg1bg23d_0_0_0.bmp");
 		Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
 		FpsCounter fpsCounter;

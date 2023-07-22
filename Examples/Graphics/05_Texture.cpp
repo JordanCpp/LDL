@@ -29,7 +29,7 @@ int main()
 		FixedLinear allocator(Allocator::Mb * 4);
 		ImageLoader loader(&allocator);
 
-		loader.Load("trehmachtovyiy-korabl-kartina-maslom-60x50_512x.jpg");
+		loader.Load("Data/trehmachtovyiy-korabl-kartina-maslom-60x50_512x.jpg");
 		Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
 		FpsCounter fpsCounter;

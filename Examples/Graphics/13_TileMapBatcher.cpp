@@ -43,7 +43,7 @@ int main()
 		FixedLinear allocator(Allocator::Mb * 8);
 		ImageLoader loader(&allocator);
 
-		loader.Load("SeasonsTiles.png");
+		loader.Load("Data/SeasonsTiles.png");
 		Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
 		FpsCounter fpsCounter;

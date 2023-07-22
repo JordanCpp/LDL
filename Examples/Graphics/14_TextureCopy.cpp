@@ -33,7 +33,7 @@ int main()
 
 		Texture image(&renderContext, Vec2u(1024, 1024), loader.BytesPerPixel());
 
-		loader.Load("NeHe.bmp");
+		loader.Load("Data/NeHe.bmp");
 
 		for (size_t i = 0; i < 4; i++)
 		{
@@ -43,7 +43,7 @@ int main()
 			}
 		}
 
-		loader.Load(Color(0, 0, 255), "bg1bg23d_0_0_0.bmp");
+		loader.Load(Color(0, 0, 255), "Data/bg1bg23d_0_0_0.bmp");
 
 		Surface image2(loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 

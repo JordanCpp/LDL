@@ -36,7 +36,7 @@ int main()
 		FixedLinear allocator(Allocator::Mb * 1);
 		FontLoader fontLoader(&allocator);
 
-		fontLoader.Load("UbuntuMono-Regular.ttf");
+		fontLoader.Load("Data/UbuntuMono-Regular.ttf");
 		Font font(&rasterizerContext, 64, fontLoader.Font(), fontLoader.Size());
 
 		Surface* imageText = NULL;

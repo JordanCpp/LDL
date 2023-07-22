@@ -38,7 +38,7 @@ int main()
 		SoundLoader soundLoader(&allocator);
 
 		//soundLoader.LoadMp3("Arcanum.mp3");
-		soundLoader.LoadOgg("1.ogg");
+		soundLoader.LoadOgg("Data/1.ogg");
 
 		Sound sound(&audioContext, soundLoader.Channels(), soundLoader.Rate(), soundLoader.Samples(), soundLoader.Bytes());
 		mixer.Play(&sound);

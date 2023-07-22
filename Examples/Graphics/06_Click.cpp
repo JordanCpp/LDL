@@ -29,7 +29,7 @@ int main()
 		FixedLinear allocator(Allocator::Mb * 4);
 		ImageLoader loader(&allocator);
 
-		loader.Load("Gorgosaurus_BW_transparent.png");
+		loader.Load("Data/Gorgosaurus_BW_transparent.png");
 		Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
 		size_t x = 0;
