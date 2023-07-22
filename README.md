@@ -15,15 +15,16 @@ Free cross-platform library.
 2. sudo apt-get install libgl1-mesa-dev
 3. git clone https://github.com/JordanCpp/Lib-LDL.git
 4. cd Lib-LDL
-5. cmake CMakeLists.txt
-6. make
+5. Run dependencies_download.sh (download freetype source code)
+6. cmake CMakeLists.txt
+7. make
 
 # Install for Windows (Static library)
 1. git clone https://github.com/JordanCpp/Lib-LDL.git dependencies/LDL 
-2. Added to CMake
+2. Run dependencies_download.bat (download freetype source code)
+3. Added to CMake
 - set(LDL_STATIC_LIBRARY true)
 - add_definitions(-DLDL_STATIC_LIBRARY)
-- set(LDL_RENDER_OPENGL3 true)
 - add_subdirectory(dependencies/LDL/source)
 - include_directories(dependencies/LDL/include)
 - link_directories   (${CMAKE_CURRENT_BINARY_DIR}/dependencies/LDL)
@@ -32,7 +33,6 @@ Free cross-platform library.
 # Install for Windows (Dynamic library 32 bit)
 1. git clone https://github.com/JordanCpp/Lib-LDL-WindowsBuilds dependencies/LDL 
 2. Added to CMake
-- project(MyProject)
 - add_definitions(-DLDL_SHARED_LIBRARY)
 - include_directories(dependencies/LDL/MSVC2022_x86/include)
 - link_directories   (dependencies/LDL/MSVC2022_x86)
@@ -41,7 +41,6 @@ Free cross-platform library.
 # Install for Windows (Dynamic library 64 bit)
 1. git clone https://github.com/JordanCpp/Lib-LDL-WindowsBuilds dependencies/LDL 
 2. Added to CMake
-- project(MyProject)
 - add_definitions(-DLDL_SHARED_LIBRARY)
 - include_directories(dependencies/LDL/MSVC2022_x64/include)
 - link_directories   (dependencies/LDL/MSVC2022_x64)
