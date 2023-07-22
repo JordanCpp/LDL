@@ -4,12 +4,12 @@
 #include <LDLC/LDL_Export.h>
 #include <LDLC/LDL_RenderContext.h>
 #include <LDLC/LDL_Window.h>
+#include <LDLC/LDL_Texture.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef struct LDL_Texture LDL_Texture;
 typedef struct LDL_Render LDL_Render;
 
 LDL_EXPORT LDL_Render* LDL_RenderNew(LDL_RenderContext* renderContext, LDL_Window * window);

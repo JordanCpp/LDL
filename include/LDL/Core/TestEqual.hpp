@@ -15,6 +15,10 @@ namespace LDL
 
 #define LDL_TEST_EQUAL(x) LDL::Core::TestEqual(x, #x, "__FUNCTION__", __FILE__, __LINE__)
 
+#define S(x) #x
+#define S_(x) S(x)
+#define S__LINE__ S_(__LINE__)
+
 #define LDL_TEST_EXCEPTION( expression)              \
   try                                                \
   {                                                  \
@@ -25,7 +29,7 @@ namespace LDL
     std::cout << error.what()                        \
               << std::string( __FILE__ )             \
               << std::string( ":" )                  \
-              << std::to_string( __LINE__ )          \
+              << std::string( S__LINE__ )            \
               << std::string( " in " )               \
               << std::string( "__FUNCTION__" )       \
               << '\n';                               \

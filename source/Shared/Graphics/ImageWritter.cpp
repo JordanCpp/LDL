@@ -2,7 +2,7 @@
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #undef __STDC_LIB_EXT1__
-#include "../dependencies/stb/stb_image_write.h"  
+#include "../../Libraries/stb/stb_image_write.h"  
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;

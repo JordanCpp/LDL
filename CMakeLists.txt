@@ -6,6 +6,12 @@
 set(LDL_STATIC_LIBRARY true)
 add_definitions(-DLDL_STATIC_LIBRARY)
 
+#Install FreeType
+add_subdirectory(dependencies/freetype)
+include_directories(dependencies/freetype/include)
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/dependencies/freetype)
+link_directories(${CMAKE_CURRENT_BINARY_DIR}/dependencies/freetype)
+
 include_directories("include")
 
 add_subdirectory("source")

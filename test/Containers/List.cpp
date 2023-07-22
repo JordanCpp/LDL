@@ -36,7 +36,7 @@ void Append()
 
 	size_t j = 0;
 
-	for (ListNode<size_t> * i = list.Head; i != nullptr; i = i->Next)
+	for (ListNode<size_t> * i = list.Head; i != NULL; i = i->Next)
 	{
 		LDL_TEST_EQUAL(i->Content == j);
 

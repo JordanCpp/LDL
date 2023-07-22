@@ -7,7 +7,7 @@ static LDL::Allocators::Allocator* StbTrueTypeAllocator;
 #define STBTT_free(x,u)    ((void)(u),StbTrueTypeAllocator->Deallocate(x))
 
 #define STB_TRUETYPE_IMPLEMENTATION 
-#include "../dependencies/stb/stb_truetype.h"
+#include "../../Libraries/stb/stb_truetype.h"
 
 using namespace LDL::Graphics;
 

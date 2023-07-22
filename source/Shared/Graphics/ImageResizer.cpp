@@ -1,7 +1,7 @@
 #include <LDL/Graphics/ImageResizer.hpp>
 
 #define STB_IMAGE_RESIZE_IMPLEMENTATION
-#include "../../../dependencies/stb/stb_image_resize.h"
+#include "../../Libraries/stb/stb_image_resize.h"
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;

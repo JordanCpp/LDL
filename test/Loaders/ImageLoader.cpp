@@ -6,7 +6,7 @@
 
 uint8_t* FileSize(const std::string& path, size_t* bytes)
 {
-	std::fstream file(path, std::ios_base::in | std::ios::binary);
+	std::fstream file(path.c_str(), std::ios_base::in | std::ios::binary);
 
 	file.seekg(0, std::ios::end);
 	size_t size = static_cast<size_t>(file.tellg());
