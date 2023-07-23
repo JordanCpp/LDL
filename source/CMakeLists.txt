@@ -1,9 +1,5 @@
 project(LDL)
 
-if (MSVC)
-    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
-endif()
-
 if(UNIX AND NOT APPLE)
     find_package(X11 REQUIRED)
     link_libraries(${X11_LIBRARIES})

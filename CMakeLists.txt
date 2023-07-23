@@ -1,3 +1,7 @@
+if (MSVC)
+    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+endif()
+
 # Uncomment for build shared library 
 #set(LDL_SHARED_LIBRARY true)
 #add_definitions(-DLDL_SHARED_LIBRARY)
