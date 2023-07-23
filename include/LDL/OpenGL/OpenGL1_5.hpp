@@ -51,4 +51,4 @@ LDL_OPENGL_API_ENTRY PFNGLGETBUFFERPOINTERVPROC glGetBufferPointerv;
 }
 #endif
 
-#endif     
+#endif   

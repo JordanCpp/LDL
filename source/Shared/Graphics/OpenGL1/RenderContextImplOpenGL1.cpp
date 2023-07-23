@@ -11,3 +11,4 @@ size_t RenderContextImplOpenGL1::Mode()
 {
 	return _Mode;
 }
+
