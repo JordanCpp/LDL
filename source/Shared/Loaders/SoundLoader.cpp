@@ -1,14 +1,14 @@
 #include <LDL/Loaders/SoundLoader.hpp>
-#include "../../Libraries/stb/stb_vorbis.c"
+#include "../../../dependencies/stb/stb_vorbis.c"
 
 #define DR_WAV_IMPLEMENTATION
-#include "../../Libraries/dr_libs/dr_wav.h"
+#include "../../../dependencies/dr_libs/dr_wav.h"
 
 #define DR_FLAC_IMPLEMENTATION
-#include "../../Libraries/dr_libs/dr_flac.h"
+#include "../../../dependencies/dr_libs/dr_flac.h"
 
 #define DR_MP3_IMPLEMENTATION
-#include "../../Libraries/dr_libs/dr_mp3.h"
+#include "../../../dependencies/dr_libs/dr_mp3.h"
 
 using namespace LDL::Loaders;
 using namespace LDL::Allocators;

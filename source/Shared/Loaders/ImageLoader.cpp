@@ -36,7 +36,7 @@ void* ReallocateSized(void* ptr, size_t Oldbytes, size_t Newbytes)
 #define STB_IMAGE_IMPLEMENTATION
 #define STBI_NO_THREAD_LOCALS
 #define STBI_NO_SIMD
-#include "../../Libraries/stb/stb_image.h"  
+#include "../../../dependencies/stb/stb_image.h"  
 
 using namespace LDL::Graphics;
 using namespace LDL::Loaders;
