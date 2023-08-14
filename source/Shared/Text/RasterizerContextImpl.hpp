@@ -4,8 +4,7 @@
 #include <LDL/Config.hpp>
 #include <LDL/Core/Types.hpp>
 
-#include <ft2build.h>
-#include FT_FREETYPE_H 
+#include "FreeType.hpp"
 
 namespace LDL
 {

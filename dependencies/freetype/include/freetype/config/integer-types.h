@@ -62,11 +62,17 @@
 
 #ifndef FT_SIZEOF_LONG_LONG
 
-  /* The size of a `long long` type if available */
-#if defined( FT_ULLONG_MAX ) && FT_ULLONG_MAX >= 0xFFFFFFFFFFFFFFFFULL
-#define FT_SIZEOF_LONG_LONG  ( 64 / FT_CHAR_BIT )
+#if ( _MSC_VER <= 1600 )
+#define FT_ULLONG_MAX_VALUE 0xFFFFFFFFFFFFFFFF
 #else
-#define FT_SIZEOF_LONG_LONG  0
+#define FT_ULLONG_MAX_VALUE 0xFFFFFFFFFFFFFFFFULL
+#endif
+
+/* The size of a `long long` type if available */
+#if defined( FT_ULLONG_MAX ) && FT_ULLONG_MAX >= FT_ULLONG_MAX_VALUE
+#define FT_SIZEOF_LONG_LONG ( 64 / FT_CHAR_BIT )
+#else
+#define FT_SIZEOF_LONG_LONG 0
 #endif
 
 #endif /* !defined(FT_SIZEOF_LONG_LONG) */

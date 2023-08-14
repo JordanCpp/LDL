@@ -1,10 +1,11 @@
 #include <LDL/Text/Rasterizer.hpp>
 #include "RasterizerImpl.hpp"
 
+using namespace LDL::Math;
 using namespace LDL::Text;
 using namespace LDL::Graphics;
 
-Rasterizer::Rasterizer(const Math::Vec2u& bufferSize) :
+Rasterizer::Rasterizer(const Vec2u& bufferSize) :
 	_RasterizerImpl(new RasterizerImpl(bufferSize))
 {
 }

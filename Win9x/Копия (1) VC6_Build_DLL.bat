@@ -1,5 +1,5 @@
 
-call "C:\VC6\Microsoft Visual Studio\VC98\Bin\VCVARS32.BAT"
+call "C:\Program Files (x86)\DevStudio\VC\bin\VCVARS32.BAT"
 
 CL /O2 /FeLDL_VC6.dll -LD -GX /I..\include /I..\dependencies\freetype\include /DFT2_BUILD_LIBRARY /DLDL_SHARED_LIBRARY ^
 ..\source\Shared\Allocators\*.cpp ^

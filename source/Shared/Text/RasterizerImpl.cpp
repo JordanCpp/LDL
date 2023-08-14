@@ -7,7 +7,7 @@ using namespace LDL::Text;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
 
-RasterizerImpl::RasterizerImpl(const Math::Vec2u& bufferSize) :
+RasterizerImpl::RasterizerImpl(const Vec2u& bufferSize) :
 	_SymbolBuffer(Vec2u(100, 100), Vec2u(100, 100), 4),
 	_TextBuffer(bufferSize, bufferSize, 4)
 {

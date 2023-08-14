@@ -18,6 +18,7 @@ call %2 12_TileMap2 %pth%
 call %2 13_TileMapBatcher %pth%
 call %2 14_TextureCopy %pth%
 call %2 15_AudioPlay %pth%
+call %2 16_TextRasterizer %pth%
 
 set pth=C:\Repos\Lib-LDL\Examples\NeheOpenGL\
 
