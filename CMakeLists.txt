@@ -70,6 +70,7 @@ if (WIN32)
     "dependencies/freetype/src/psaux/psaux.c"
     "dependencies/freetype/src/type1/type1.c")	
 elseif (UNIX AND NOT APPLE)
+    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
     add_subdirectory(dependencies/freetype)
     include_directories(dependencies/freetype/include)
     include_directories(${CMAKE_CURRENT_BINARY_DIR}/dependencies/freetype)
