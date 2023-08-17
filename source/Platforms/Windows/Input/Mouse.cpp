@@ -22,3 +22,13 @@ void Mouse::Pos(const Vec2u& pos)
     if (!SetCursorPos((int)pos.x, (int)pos.y))
         throw LDL::Core::RuntimeError("SetCursorPos failed");
 }
+
+void Mouse::Hide()
+{
+    ShowCursor(FALSE);
+}
+
+void Mouse::Show()
+{
+    ShowCursor(TRUE);
+}

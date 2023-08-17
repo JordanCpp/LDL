@@ -1,0 +1,8 @@
+add_executable(01_FirstProgram "01_FirstProgram.cpp")
+target_link_libraries(01_FirstProgram LDL)
+
+add_executable(02_PointLineTriangleCircle "02_PointLineTriangleCircle.cpp")
+target_link_libraries(02_PointLineTriangleCircle LDL)
+
+add_executable(04_WeWriteMinesweeperGame "04_WeWriteMinesweeperGame.cpp")
+target_link_libraries(04_WeWriteMinesweeperGame LDL)

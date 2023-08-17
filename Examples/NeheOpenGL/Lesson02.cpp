@@ -1,3 +1,4 @@
+#include <iostream>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
@@ -7,9 +8,7 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 
-#include "NeheOpenGL.hpp"
-
-#include <iostream>
+#include "../GLU.hpp"
 
 using namespace LDL::Graphics;
 using namespace LDL::Enums;
@@ -19,6 +18,8 @@ using namespace LDL::Core;
 using namespace LDL::Allocators;
 using namespace LDL::Loaders;
 using namespace LDL::Math;
+
+using namespace GLU;
 
 void ReSizeGLScene(GLsizei width, GLsizei height)		// Resize And Initialize The GL Window
 {

@@ -13,6 +13,8 @@ namespace LDL
 		public:
 			const Math::Vec2u& Pos();
 			void Pos(const Math::Vec2u& pos);
+			void Hide();
+			void Show();
 		private:
 			LDL::Math::Vec2u _Pos;
 		};

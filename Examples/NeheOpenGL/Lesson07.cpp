@@ -1,3 +1,4 @@
+#include <iostream>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
@@ -7,8 +8,6 @@
 #include <LDL/Graphics/Render.hpp>
 
 #include "NeheOpenGL.hpp"
-
-#include <iostream>
 
 using namespace LDL::Graphics;
 using namespace LDL::Enums;

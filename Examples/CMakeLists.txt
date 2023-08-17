@@ -1,3 +1,6 @@
 add_subdirectory("Graphics")
 add_subdirectory("LDLC")
 add_subdirectory("NeheOpenGL")
+add_subdirectory("OpenGL1")
+add_subdirectory("VictorGordan")
+add_subdirectory("BeginEnd")

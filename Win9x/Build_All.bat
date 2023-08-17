@@ -35,3 +35,13 @@ call %2 Lesson10 %pth%
 call %2 Lesson11 %pth%
 call %2 Lesson12 %pth%
 call %2 Lesson16 %pth%
+
+set pth=C:\Repos\Lib-LDL\Examples\OpenGL1\
+
+call %2 Figures %pth%
+call %2 Primitive %pth%
+call %2 Sierpinski2D %pth%
+call %2 Sierpinski3D %pth%
+call %2 Tetrahedron %pth%
+call %2 Torus %pth%
+call %2 Triangle %pth%

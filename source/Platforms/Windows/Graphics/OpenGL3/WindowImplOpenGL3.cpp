@@ -1,8 +1,10 @@
 #include "WindowImplOpenGL3.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
-using namespace LDL::Graphics;
+using namespace LDL::Core;
 using namespace LDL::Math;
+using namespace LDL::Events;
+using namespace LDL::Graphics;
 
 typedef HGLRC(WINAPI* PFNWGLCREATECONTEXT)(HDC);
 typedef BOOL (WINAPI* PFNWGLMAKECURRENT  )(HDC, HGLRC);
@@ -18,19 +20,10 @@ typedef HGLRC(WINAPI* PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareC
 #define WGL_CONTEXT_CORE_PROFILE_BIT_ARB          0x00000001
 #define WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB 0x00000002
 
-
 WindowImplOpenGL3::WindowImplOpenGL3(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _Window(pos, size, title, mode),
     _HGLRC(NULL)
 {
-    PFNWGLCREATECONTEXT wglCreateContext = NULL;
-    PFNWGLMAKECURRENT   wglMakeCurrent   = NULL;
-    PFNWGLDELETECONTEXT wglDeleteContext = NULL;
-
-    wglCreateContext = (PFNWGLCREATECONTEXT)wglGetProcAddress("wglCreateContext");
-    wglMakeCurrent   = (PFNWGLMAKECURRENT  )wglGetProcAddress("wglMakeCurrent");
-    wglDeleteContext = (PFNWGLDELETECONTEXT)wglGetProcAddress("wglDeleteContext");
-
     PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
 
     int attribs[] =
@@ -49,7 +42,7 @@ WindowImplOpenGL3::WindowImplOpenGL3(const Vec2u& pos, const Vec2u& size, const 
     _Window._HDC = GetDC(_Window._HWND);
 
     if (_Window._HDC == NULL)
-        throw LDL::Core::RuntimeError("GetDC failed");
+        throw RuntimeError("GetDC failed");
 
     pfd.nSize      = sizeof(pfd);
     pfd.nVersion   = 1;
@@ -61,37 +54,37 @@ WindowImplOpenGL3::WindowImplOpenGL3(const Vec2u& pos, const Vec2u& size, const 
     int format = ChoosePixelFormat(_Window._HDC, &pfd);
 
     if (format == 0)
-        throw LDL::Core::RuntimeError("ChoosePixelFormat failed");
+        throw RuntimeError("ChoosePixelFormat failed");
 
     if (!SetPixelFormat(_Window._HDC, format, &pfd))
-        throw LDL::Core::RuntimeError("SetPixelFormat failed");
+        throw RuntimeError("SetPixelFormat failed");
 
     _HGLRC = wglCreateContext(_Window._HDC);
 
     if (!_HGLRC)
-        throw LDL::Core::RuntimeError("wglCreateContext failed");
+        throw RuntimeError("wglCreateContext failed");
 
     if (!wglMakeCurrent(_Window._HDC, _HGLRC))
-        throw LDL::Core::RuntimeError("wglMakeCurrent failed");
+        throw RuntimeError("wglMakeCurrent failed");
 
     wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
 
     if (!wglCreateContextAttribsARB)
-        throw LDL::Core::RuntimeError("wglGetProcAddress failed");
+        throw RuntimeError("wglGetProcAddress failed");
 
     if (!wglMakeCurrent(NULL, NULL))
-        throw LDL::Core::RuntimeError("wglMakeCurrent failed");
+        throw RuntimeError("wglMakeCurrent failed");
 
     if (!wglDeleteContext(_HGLRC))
-        throw LDL::Core::RuntimeError("wglDeleteContext failed");
+        throw RuntimeError("wglDeleteContext failed");
 
     _HGLRC = wglCreateContextAttribsARB(_Window._HDC, 0, attribs);
 
     if (!_HGLRC)
-        throw LDL::Core::RuntimeError("wglCreateContextAttribsARB failed");
+        throw RuntimeError("wglCreateContextAttribsARB failed");
 
     if (!wglMakeCurrent(_Window._HDC, _HGLRC))
-        throw LDL::Core::RuntimeError("wglMakeCurrent failed");
+        throw RuntimeError("wglMakeCurrent failed");
 
     _OpenGLLoader.Init(3, 3);
 }
@@ -117,7 +110,7 @@ void WindowImplOpenGL3::PollEvents()
 void WindowImplOpenGL3::Present()
 {
     if (!SwapBuffers(_Window._HDC))
-        throw LDL::Core::RuntimeError("SwapBuffers failed");
+        throw RuntimeError("SwapBuffers failed");
 }
 
 const Vec2u& WindowImplOpenGL3::Size()
@@ -130,12 +123,12 @@ const Vec2u& WindowImplOpenGL3::Pos()
     return _Window.Pos();
 }
 
-bool WindowImplOpenGL3::GetEvent(LDL::Events::Event& event)
+bool WindowImplOpenGL3::GetEvent(Event& event)
 {
     return _Window.GetEvent(event);
 }
 
-bool WindowImplOpenGL3::WaitEvent(LDL::Events::Event& event)
+bool WindowImplOpenGL3::WaitEvent(Event& event)
 {
     return _Window.WaitEvent(event);
 }
