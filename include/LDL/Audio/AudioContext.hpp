@@ -10,7 +10,7 @@ namespace LDL
 	{
 		class AudioContextImpl;
 
-		class LDL_EXPORT AudioContext : public LDL::Core::FastPimpl
+		class LDL_LIBRARY AudioContext : public LDL::Core::FastPimpl
 		{
 		public:
 			AudioContext(LDL::Graphics::Window* window, size_t rate, size_t bits, size_t channels);

@@ -8,8 +8,8 @@
 extern "C" {
 #endif
 
-LDL_EXPORT size_t LDL_Ticks();
-LDL_EXPORT void LDL_Delay(size_t count);
+LDL_LIBRARY size_t LDL_Ticks();
+LDL_LIBRARY void LDL_Delay(size_t count);
 
 #ifdef __cplusplus
 }

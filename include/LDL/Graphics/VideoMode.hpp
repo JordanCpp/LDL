@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class LDL_EXPORT VideoMode
+		class LDL_LIBRARY VideoMode
 		{
 		public:
 			enum

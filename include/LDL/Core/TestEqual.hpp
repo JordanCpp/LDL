@@ -9,7 +9,7 @@ namespace LDL
 {
 	namespace Core
 	{
-		void LDL_EXPORT TestEqual(bool condition, const char* description, const char* function, const char * file, size_t line);
+		void LDL_LIBRARY TestEqual(bool condition, const char* description, const char* function, const char * file, size_t line);
 	}
 }
 

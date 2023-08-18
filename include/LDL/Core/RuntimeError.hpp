@@ -8,7 +8,7 @@ namespace LDL
 {
     namespace Core
     {
-        class LDL_EXPORT RuntimeError
+        class LDL_LIBRARY RuntimeError
         {
         public:
             RuntimeError(const std::string& message);

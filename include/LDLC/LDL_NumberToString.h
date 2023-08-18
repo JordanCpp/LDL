@@ -10,9 +10,9 @@ extern "C" {
 
 typedef struct LDL_NumberToString LDL_NumberToString;
 
-LDL_EXPORT LDL_NumberToString* LDL_NumberToStringNew();
-LDL_EXPORT void LDL_NumberToStringFree(LDL_NumberToString* numberToString);
-LDL_EXPORT const char* LDL_NumberToStringConvertInt(LDL_NumberToString* numberToString, intmax_t num);
+LDL_LIBRARY LDL_NumberToString* LDL_NumberToStringNew();
+LDL_LIBRARY void LDL_NumberToStringFree(LDL_NumberToString* numberToString);
+LDL_LIBRARY const char* LDL_NumberToStringConvertInt(LDL_NumberToString* numberToString, intmax_t num);
 
 #ifdef __cplusplus
 }

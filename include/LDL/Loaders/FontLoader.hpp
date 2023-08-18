@@ -9,7 +9,7 @@ namespace LDL
 {
 	namespace Loaders
 	{
-		class LDL_EXPORT FontLoader
+		class LDL_LIBRARY FontLoader
 		{
 		public:
 			FontLoader(LDL::Allocators::Allocator* allocator);

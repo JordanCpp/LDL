@@ -10,10 +10,10 @@ extern "C" {
 
 typedef struct LDL_FpsLimiter LDL_FpsLimiter;
 
-LDL_EXPORT LDL_FpsLimiter* LDL_FpsLimiterNew(size_t fps);
-LDL_EXPORT void LDL_FpsLimiterFree(LDL_FpsLimiter* fpsLimiter);
-LDL_EXPORT void LDL_FpsLimiterMark(LDL_FpsLimiter* fpsLimiter);
-LDL_EXPORT void LDL_FpsLimiterThrottle(LDL_FpsLimiter* fpsLimiter);
+LDL_LIBRARY LDL_FpsLimiter* LDL_FpsLimiterNew(size_t fps);
+LDL_LIBRARY void LDL_FpsLimiterFree(LDL_FpsLimiter* fpsLimiter);
+LDL_LIBRARY void LDL_FpsLimiterMark(LDL_FpsLimiter* fpsLimiter);
+LDL_LIBRARY void LDL_FpsLimiterThrottle(LDL_FpsLimiter* fpsLimiter);
 
 #ifdef __cplusplus
 }

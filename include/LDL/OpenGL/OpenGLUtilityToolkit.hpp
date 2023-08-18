@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-LDL_EXPORT void glutWireTorus(GLdouble innerRadius, GLdouble outerRadius, GLint nsides, GLint rings);
+LDL_LIBRARY void glutWireTorus(GLdouble innerRadius, GLdouble outerRadius, GLint nsides, GLint rings);
 
 #ifdef __cplusplus
 }

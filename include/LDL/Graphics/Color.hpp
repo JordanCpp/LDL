@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class LDL_EXPORT Color
+		class LDL_LIBRARY Color
 		{
 		public:
 			Color();

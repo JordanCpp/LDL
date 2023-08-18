@@ -10,7 +10,7 @@ namespace LDL
 {
 	namespace Text
 	{
-		class LDL_EXPORT RasterizerContextImpl
+		class LDL_LIBRARY RasterizerContextImpl
 		{
 		public:
 			RasterizerContextImpl();

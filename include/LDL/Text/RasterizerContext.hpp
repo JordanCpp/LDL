@@ -9,7 +9,7 @@ namespace LDL
 	{
 		class RasterizerContextImpl;
 
-		class LDL_EXPORT RasterizerContext : public LDL::Core::FastPimpl
+		class LDL_LIBRARY RasterizerContext : public LDL::Core::FastPimpl
 		{
 		public:
 			RasterizerContext();

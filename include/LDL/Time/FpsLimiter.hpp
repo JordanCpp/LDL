@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Time
 	{
-		class LDL_EXPORT FpsLimiter
+		class LDL_LIBRARY FpsLimiter
 		{
 		public:
 			FpsLimiter(size_t fps = 60);

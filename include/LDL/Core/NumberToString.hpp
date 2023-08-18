@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Core
 	{
-		class LDL_EXPORT NumberToString
+		class LDL_LIBRARY NumberToString
 		{
 		public:
 			NumberToString();

@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Core
 	{
-		class LDL_EXPORT FastPimpl
+		class LDL_LIBRARY FastPimpl
 		{
 		public:
 			void* operator new(size_t bytes);

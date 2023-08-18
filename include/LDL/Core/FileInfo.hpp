@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Core
 	{
-		class LDL_EXPORT FileInfo
+		class LDL_LIBRARY FileInfo
 		{
 		public:
 			const std::string& Name();

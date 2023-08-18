@@ -10,7 +10,7 @@ namespace LDL
 	{
 		class MixerImpl;
 
-		class LDL_EXPORT Mixer : public Core::FastPimpl
+		class LDL_LIBRARY Mixer : public Core::FastPimpl
 		{
 		public:
 			Mixer();

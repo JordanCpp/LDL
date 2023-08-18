@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Allocators
 	{
-		class LDL_EXPORT FixedLinear : public Allocator
+		class LDL_LIBRARY FixedLinear : public Allocator
 		{
 		public:
 			FixedLinear(size_t bytes, Allocator* allocator = NULL);

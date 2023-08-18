@@ -9,7 +9,7 @@ namespace LDL
 {
 	namespace Loaders
 	{
-		class LDL_EXPORT SoundLoader
+		class LDL_LIBRARY SoundLoader
 		{
 		public:
 			SoundLoader(Allocators::Allocator* allocator);

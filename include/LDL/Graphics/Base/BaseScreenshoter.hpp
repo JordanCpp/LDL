@@ -9,7 +9,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class LDL_EXPORT BaseScreenshoter
+		class LDL_LIBRARY BaseScreenshoter
 		{
 		public:
 			const std::string Prefix();

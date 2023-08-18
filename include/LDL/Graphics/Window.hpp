@@ -14,7 +14,7 @@ namespace LDL
 	{
 		class WindowImpl;
 
-		class LDL_EXPORT Window : public LDL::Core::FastPimpl
+		class LDL_LIBRARY Window : public LDL::Core::FastPimpl
 		{
 		public:
 			Window(RenderContext* renderContext, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);

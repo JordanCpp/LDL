@@ -11,7 +11,7 @@ namespace LDL
 {
 	namespace Text
 	{
-		class LDL_EXPORT RasterizerImpl
+		class LDL_LIBRARY RasterizerImpl
 		{
 		public:
 			RasterizerImpl(const Math::Vec2u& bufferSize);

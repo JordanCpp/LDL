@@ -9,7 +9,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class LDL_EXPORT ImageWritter
+		class LDL_LIBRARY ImageWritter
 		{
 		public:
 			void Save(const std::string& path, const Math::Vec2u& size, size_t bytesPerPixel, uint8_t* pixels);

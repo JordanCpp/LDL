@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class LDL_EXPORT Surface
+		class LDL_LIBRARY Surface
 		{
 		public:
 			Surface(const Math::Vec2u& size, uint8_t bytesPerPixel);

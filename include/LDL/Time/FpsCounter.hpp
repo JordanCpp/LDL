@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Time
 	{
-		class LDL_EXPORT FpsCounter
+		class LDL_LIBRARY FpsCounter
 		{
 		public:
 			FpsCounter();

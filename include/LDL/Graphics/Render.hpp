@@ -15,7 +15,7 @@ namespace LDL
 		class RenderImpl;
 		class Texture;
 
-		class LDL_EXPORT Render: public LDL::Core::FastPimpl
+		class LDL_LIBRARY Render: public LDL::Core::FastPimpl
 		{
 		public:
 			Render(RenderContext* renderContext, Window* window);

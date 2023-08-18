@@ -5,7 +5,7 @@
 
 namespace LDL
 {
-	class LDL_EXPORT OpenGLLoader
+	class LDL_LIBRARY OpenGLLoader
 	{
 	public:
 		OpenGLLoader();

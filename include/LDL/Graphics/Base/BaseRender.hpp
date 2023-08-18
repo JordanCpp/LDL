@@ -9,7 +9,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class LDL_EXPORT BaseRender
+		class LDL_LIBRARY BaseRender
 		{
 		public:
 			BaseRender(const Math::Vec2u& size);

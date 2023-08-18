@@ -9,7 +9,7 @@ namespace LDL
 {
 	namespace Text
 	{
-		class LDL_EXPORT FontImpl
+		class LDL_LIBRARY FontImpl
 		{
 		public:
 			FontImpl(RasterizerContextImpl* rasterizerContextImpl, size_t fontSize, uint8_t* font, size_t size);

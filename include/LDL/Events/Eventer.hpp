@@ -9,7 +9,7 @@ namespace LDL
 {
 	namespace Events
 	{
-		class LDL_EXPORT Eventer
+		class LDL_LIBRARY Eventer
 		{
 		public:
 			Eventer();

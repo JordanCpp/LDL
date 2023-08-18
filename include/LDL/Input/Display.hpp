@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Input
 	{
-		class LDL_EXPORT Display
+		class LDL_LIBRARY Display
 		{
 		public:
 			Display();

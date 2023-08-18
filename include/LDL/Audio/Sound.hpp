@@ -10,7 +10,7 @@ namespace LDL
 	{
 		class SoundImpl;
 
-		class LDL_EXPORT Sound : public Core::FastPimpl
+		class LDL_LIBRARY Sound : public Core::FastPimpl
 		{
 		public:
 			Sound(AudioContext* audioContext, size_t channels, size_t rate, size_t samples, uint8_t* bytes);

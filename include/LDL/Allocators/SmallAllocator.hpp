@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Allocators
 	{
-		class LDL_EXPORT SmallAllocator
+		class LDL_LIBRARY SmallAllocator
 		{
 		public:
 			enum

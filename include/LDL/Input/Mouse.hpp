@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Input
 	{
-		class LDL_EXPORT Mouse
+		class LDL_LIBRARY Mouse
 		{
 		public:
 			const Math::Vec2u& Pos();

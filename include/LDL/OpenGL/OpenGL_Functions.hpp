@@ -10,7 +10,7 @@ namespace LDL
 	{
 		class OpenGLFunctionsImpl;
 
-		class LDL_EXPORT OpenGLFunctions : LDL::Core::FastPimpl
+		class LDL_LIBRARY OpenGLFunctions : LDL::Core::FastPimpl
 		{
 		public:
 			OpenGLFunctions();

@@ -9,7 +9,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class LDL_EXPORT BaseWindow
+		class LDL_LIBRARY BaseWindow
 		{
 		public:
 			BaseWindow(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title);

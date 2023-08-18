@@ -8,8 +8,8 @@ namespace LDL
 {
 	namespace Time
 	{
-		LDL_EXPORT size_t Ticks();
-		LDL_EXPORT void Delay(size_t count);
+		LDL_LIBRARY size_t Ticks();
+		LDL_LIBRARY void Delay(size_t count);
 	}
 }
 

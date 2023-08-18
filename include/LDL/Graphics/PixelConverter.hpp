@@ -8,7 +8,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class LDL_EXPORT PixelConverter
+		class LDL_LIBRARY PixelConverter
 		{
 		public:
 			void Fill(uint8_t* pixels, const Math::Vec2u& size, uint8_t bytesPerPixel, const Color& color);

@@ -10,7 +10,7 @@ namespace LDL
 	{
 		class RenderContextImpl;
 
-		class LDL_EXPORT RenderContext : public LDL::Core::FastPimpl
+		class LDL_LIBRARY RenderContext : public LDL::Core::FastPimpl
 		{
 		public:
 			RenderContext(size_t mode = Enums::RenderMode::OpenGL1);

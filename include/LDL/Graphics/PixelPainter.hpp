@@ -7,7 +7,7 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class LDL_EXPORT PixelPainter
+		class LDL_LIBRARY PixelPainter
 		{
 		public:
 			PixelPainter();

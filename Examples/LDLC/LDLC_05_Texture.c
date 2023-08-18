@@ -22,7 +22,7 @@ int main()
 
 	LDL_RenderSetColor(render, 0, 162, 232, 0);
 
-	LDL_ImageLoaderLoadFromFile(loader, "trehmachtovyiy-korabl-kartina-maslom-60x50_512x.jpg");
+	LDL_ImageLoaderLoadFromFile(loader, "Data/trehmachtovyiy-korabl-kartina-maslom-60x50_512x.jpg");
 
 	size_t w = LDL_ImageLoaderGetSizeX(loader);
 	size_t h = LDL_ImageLoaderGetSizeY(loader);

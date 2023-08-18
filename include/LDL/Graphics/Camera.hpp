@@ -10,7 +10,7 @@ namespace LDL
     {
         class CameraImpl;
 
-        class LDL_EXPORT Camera
+        class LDL_LIBRARY Camera
         {
         public:
             Camera(Render* render, const Math::Vec2u& pos, const Math::Vec2u& size);

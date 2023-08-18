@@ -8,7 +8,7 @@ namespace LDL
 {
     namespace Graphics
     {
-        class LDL_EXPORT Isometric
+        class LDL_LIBRARY Isometric
         {
         public:
             const Math::Vec2u& CartesianToIsometric(const Math::Vec2u& pt);

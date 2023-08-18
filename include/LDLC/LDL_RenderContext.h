@@ -10,9 +10,9 @@ extern "C" {
 
 typedef struct LDL_RenderContext LDL_RenderContext;
 
-LDL_EXPORT LDL_RenderContext* LDL_RenderContextNew();
-LDL_EXPORT void LDL_RenderContextFree(LDL_RenderContext* renderContext);
-LDL_EXPORT void LDL_RenderContextGetContext(LDL_RenderContext* renderContext);
+LDL_LIBRARY LDL_RenderContext* LDL_RenderContextNew();
+LDL_LIBRARY void LDL_RenderContextFree(LDL_RenderContext* renderContext);
+LDL_LIBRARY void LDL_RenderContextGetContext(LDL_RenderContext* renderContext);
 
 #ifdef __cplusplus
 }
