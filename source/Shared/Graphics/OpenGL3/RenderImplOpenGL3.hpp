@@ -4,7 +4,6 @@
 #include <LDL/Graphics/Base/BaseRender.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include "TextureImplOpenGL3.hpp"
-#include "ScreenOpenGL3.hpp"
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Math/Mat4.hpp>
 #include "LinePainterOpenGL3.hpp"
@@ -41,7 +40,6 @@ namespace LDL
 			void Draw(TextureBatcher* textureBatcher);
 		private:
 			Window* _Window;
-			ScreenOpenGL3 _Screen;
 			LDL::Graphics::Color _Color;
 			Math::Mat4f projection;
 			ShaderLoader _ShaderLoader;

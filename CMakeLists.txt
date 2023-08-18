@@ -85,3 +85,7 @@ add_subdirectory("Examples")
 if (LDL_STATIC_LIBRARY)
     add_subdirectory("test")
 endif()
+
+if (LDL_STATIC_LIBRARY)
+    add_subdirectory("ArcanumWorld")
+endif()

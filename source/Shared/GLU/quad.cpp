@@ -154,12 +154,15 @@ gluCylinder(GLUquadric *qobj, GLdouble baseRadius, GLdouble topRadius,
 		GLdouble height, GLint slices, GLint stacks)
 {
     GLint i,j;
-    GLfloat sinCache[CACHE_SIZE];
-    GLfloat cosCache[CACHE_SIZE];
-    GLfloat sinCache2[CACHE_SIZE];
-    GLfloat cosCache2[CACHE_SIZE];
-    GLfloat sinCache3[CACHE_SIZE];
-    GLfloat cosCache3[CACHE_SIZE];
+
+	GLfloat sinCache[CACHE_SIZE] = { 0 };
+    GLfloat cosCache[CACHE_SIZE] = { 0 };
+
+    GLfloat sinCache2[CACHE_SIZE] = { 0 };
+    GLfloat cosCache2[CACHE_SIZE] = { 0 };
+    GLfloat sinCache3[CACHE_SIZE] = { 0 };
+    GLfloat cosCache3[CACHE_SIZE] = { 0 };
+
     GLfloat angle;
     GLfloat zLow, zHigh;
     GLfloat sintemp, costemp;
@@ -210,26 +213,26 @@ gluCylinder(GLUquadric *qobj, GLdouble baseRadius, GLdouble topRadius,
 	angle = GLfloat(2 * PI * i / slices);
 	if (needCache2) {
 	    if (qobj->orientation == GLU_OUTSIDE) {
-		sinCache2[i] = xyNormalRatio * SIN(angle);
-		cosCache2[i] = xyNormalRatio * COS(angle);
+		sinCache2[i] = xyNormalRatio * (GLfloat)SIN(angle);
+		cosCache2[i] = xyNormalRatio * (GLfloat)COS(angle);
 	    } else {
-		sinCache2[i] = -xyNormalRatio * SIN(angle);
-		cosCache2[i] = -xyNormalRatio * COS(angle);
+		sinCache2[i] = -xyNormalRatio * (GLfloat)SIN(angle);
+		cosCache2[i] = -xyNormalRatio * (GLfloat)COS(angle);
 	    }
 	}
-	sinCache[i] = SIN(angle);
-	cosCache[i] = COS(angle);
+	sinCache[i] = (GLfloat)SIN(angle);
+	cosCache[i] = (GLfloat)COS(angle);
     }
 
     if (needCache3) {
 	for (i = 0; i < slices; i++) {
 	    angle = 2 * PI * (i-0.5) / slices;
 	    if (qobj->orientation == GLU_OUTSIDE) {
-		sinCache3[i] = xyNormalRatio * SIN(angle);
-		cosCache3[i] = xyNormalRatio * COS(angle);
+		sinCache3[i] = xyNormalRatio * (GLfloat)SIN(angle);
+		cosCache3[i] = xyNormalRatio * (GLfloat)COS(angle);
 	    } else {
-		sinCache3[i] = -xyNormalRatio * SIN(angle);
-		cosCache3[i] = -xyNormalRatio * COS(angle);
+		sinCache3[i] = -xyNormalRatio * (GLfloat)SIN(angle);
+		cosCache3[i] = -xyNormalRatio * (GLfloat)COS(angle);
 	    }
 	}
     }
@@ -436,8 +439,8 @@ gluPartialDisk(GLUquadric *qobj, GLdouble innerRadius,
 		   GLdouble startAngle, GLdouble sweepAngle)
 {
     GLint i,j;
-    GLfloat sinCache[CACHE_SIZE];
-    GLfloat cosCache[CACHE_SIZE];
+    GLfloat sinCache[CACHE_SIZE] = { 0 };
+    GLfloat cosCache[CACHE_SIZE] = { 0 };
     GLfloat angle;
     GLfloat sintemp, costemp;
     GLfloat deltaRadius;
@@ -642,8 +645,7 @@ gluPartialDisk(GLUquadric *qobj, GLdouble innerRadius,
 		}
 
 		if (qobj->textureCoords) {
-		    glTexCoord2f(texLow * sinCache[i] + 0.5,
-			    texLow * cosCache[i] + 0.5);
+			glTexCoord2f(texLow* sinCache[i] + 0.5, texLow* cosCache[i] + 0.5);
 		}
 		glVertex3f(radiusLow * sintemp, radiusLow * costemp, 0.0);
 	    }
@@ -657,10 +659,10 @@ gluPartialDisk(GLUquadric *qobj, GLdouble innerRadius,
 		costemp = cosCache[i];
 		glBegin(GL_LINE_STRIP);
 		for (j = 0; j <= loops; j++) {
-		    radiusLow = outerRadius - deltaRadius * ((float) j / loops);
+		    radiusLow = GLfloat(outerRadius - deltaRadius * ((float) j / loops));
 
 		    if (qobj->textureCoords) {
-			texLow = radiusLow / outerRadius / 2;
+			texLow = GLfloat(radiusLow / outerRadius / 2);
 			glTexCoord2f(texLow * sinCache[i] + 0.5,
 				texLow * cosCache[i] + 0.5);
 		    }
@@ -697,18 +699,20 @@ void GLAPIENTRY
 gluSphere(GLUquadric *qobj, GLdouble radius, GLint slices, GLint stacks)
 {
     GLint i,j;
-    GLfloat sinCache1a[CACHE_SIZE];
-    GLfloat cosCache1a[CACHE_SIZE];
-    GLfloat sinCache2a[CACHE_SIZE];
-    GLfloat cosCache2a[CACHE_SIZE];
-    GLfloat sinCache3a[CACHE_SIZE];
-    GLfloat cosCache3a[CACHE_SIZE];
-    GLfloat sinCache1b[CACHE_SIZE];
-    GLfloat cosCache1b[CACHE_SIZE];
-    GLfloat sinCache2b[CACHE_SIZE];
-    GLfloat cosCache2b[CACHE_SIZE];
-    GLfloat sinCache3b[CACHE_SIZE];
-    GLfloat cosCache3b[CACHE_SIZE];
+
+	GLfloat sinCache1a[CACHE_SIZE] = { 0 };
+	GLfloat cosCache1a[CACHE_SIZE] = { 0 };
+	GLfloat sinCache2a[CACHE_SIZE] = { 0 };
+	GLfloat cosCache2a[CACHE_SIZE] = { 0 };
+	GLfloat sinCache3a[CACHE_SIZE] = { 0 };
+	GLfloat cosCache3a[CACHE_SIZE] = { 0 };
+	GLfloat sinCache1b[CACHE_SIZE] = { 0 };
+	GLfloat cosCache1b[CACHE_SIZE] = { 0 };
+	GLfloat sinCache2b[CACHE_SIZE] = { 0 };
+	GLfloat cosCache2b[CACHE_SIZE] = { 0 };
+	GLfloat sinCache3b[CACHE_SIZE] = { 0 };
+	GLfloat cosCache3b[CACHE_SIZE] = { 0 };
+
     GLfloat angle;
     GLfloat zLow, zHigh;
     GLfloat sintemp1 = 0.0, sintemp2 = 0.0, sintemp3 = 0.0, sintemp4 = 0.0;
@@ -743,8 +747,8 @@ gluSphere(GLUquadric *qobj, GLdouble radius, GLint slices, GLint stacks)
 
     for (i = 0; i < slices; i++) {
 	angle = 2 * PI * i / slices;
-	sinCache1a[i] = SIN(angle);
-	cosCache1a[i] = COS(angle);
+	sinCache1a[i] = (GLfloat)SIN(angle);
+	cosCache1a[i] = (GLfloat)COS(angle);
 	if (needCache2) {
 	    sinCache2a[i] = sinCache1a[i];
 	    cosCache2a[i] = cosCache1a[i];
@@ -755,15 +759,15 @@ gluSphere(GLUquadric *qobj, GLdouble radius, GLint slices, GLint stacks)
 	angle = PI * j / stacks;
 	if (needCache2) {
 	    if (qobj->orientation == GLU_OUTSIDE) {
-		sinCache2b[j] = SIN(angle);
-		cosCache2b[j] = COS(angle);
+		sinCache2b[j] = (GLfloat)SIN(angle);
+		cosCache2b[j] = (GLfloat)COS(angle);
 	    } else {
-		sinCache2b[j] = -SIN(angle);
-		cosCache2b[j] = -COS(angle);
+		sinCache2b[j] = (GLfloat)-SIN(angle);
+		cosCache2b[j] = (GLfloat)-COS(angle);
 	    }
 	}
-	sinCache1b[j] = radius * SIN(angle);
-	cosCache1b[j] = radius * COS(angle);
+	sinCache1b[j] = radius * (GLfloat)SIN(angle);
+	cosCache1b[j] = radius * (GLfloat)COS(angle);
     }
     /* Make sure it comes to a point */
     sinCache1b[0] = 0;
@@ -772,17 +776,17 @@ gluSphere(GLUquadric *qobj, GLdouble radius, GLint slices, GLint stacks)
     if (needCache3) {
 	for (i = 0; i < slices; i++) {
 	    angle = 2 * PI * (i-0.5) / slices;
-	    sinCache3a[i] = SIN(angle);
-	    cosCache3a[i] = COS(angle);
+	    sinCache3a[i] = (GLfloat)SIN(angle);
+	    cosCache3a[i] = (GLfloat)COS(angle);
 	}
 	for (j = 0; j <= stacks; j++) {
 	    angle = PI * (j - 0.5) / stacks;
 	    if (qobj->orientation == GLU_OUTSIDE) {
-		sinCache3b[j] = SIN(angle);
-		cosCache3b[j] = COS(angle);
+		sinCache3b[j] = (GLfloat)SIN(angle);
+		cosCache3b[j] = (GLfloat)COS(angle);
 	    } else {
-		sinCache3b[j] = -SIN(angle);
-		cosCache3b[j] = -COS(angle);
+		sinCache3b[j] = (GLfloat)-SIN(angle);
+		cosCache3b[j] = (GLfloat)-COS(angle);
 	    }
 	}
     }

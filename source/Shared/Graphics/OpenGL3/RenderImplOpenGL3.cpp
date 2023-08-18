@@ -14,7 +14,6 @@ using namespace LDL::Math;
 
 RenderImplOpenGL3::RenderImplOpenGL3(RenderContextImpl* renderContextImpl, Window* window) :
 	_Window(window),
-	_Screen(_Window->Size()),
 	_LinePainter(&_ShaderLoader),
 	_TexturePainter(&_ShaderLoader)
 {
@@ -84,16 +83,17 @@ void RenderImplOpenGL3::Fill(const Vec2u& pos, const Vec2u& size)
 
 void RenderImplOpenGL3::Draw(Surface* image, const Vec2u& pos)
 {
-	_Screen.Draw(image, pos);
+	Draw(image, pos, image->Size(), Vec2u(0,0), image->Size());
 }
 
 void RenderImplOpenGL3::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
-	_Screen.Draw(image, pos, size);
+	Draw(image, pos, size, Vec2u(0, 0), image->Size());
 }
 
 void RenderImplOpenGL3::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
+	Draw(image, dstPos, image->Size(), srcPos, srcSize);
 }
 
 void RenderImplOpenGL3::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
@@ -102,20 +102,22 @@ void RenderImplOpenGL3::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& d
 
 void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& pos)
 {
-	Draw(image, pos, image->Size());
+	Draw(image, pos, image->Size(), Vec2u(0,0), image->Size());
 }
 
 void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
 {
-	_TexturePainter.Draw(projection, image);
+	Draw(image, pos, size, Vec2u(0, 0), image->Size());
 }
 
 void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
+	Draw(image, dstPos, image->Size(), srcPos, srcSize);
 }
 
 void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
+	_TexturePainter.Draw(projection, image);
 }
 
 void RenderImplOpenGL3::Draw(TextureBatcher* textureBatcher)
