@@ -8,8 +8,7 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/OpenGL/OpenGL1_2.hpp>
-#include "../GLU.hpp"
-#include "../GLUT.hpp"
+#include <LDL/OpenGL/OpenGLUtility.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Enums;

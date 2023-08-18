@@ -8,8 +8,7 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/OpenGL/OpenGL1_2.hpp>
-#include "../GLU.hpp"
-#include "../GLUT.hpp"
+#include <LDL/OpenGL/OpenGLUtility.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Enums;
@@ -48,7 +47,7 @@ void reshape(GLint w, GLint h)
 	glViewport(0, 0, w, h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	GLU::gluPerspective(100.0, GLfloat(w) / GLfloat(h), 10.0, 1500.0);
+	gluPerspective(100.0, GLfloat(w) / GLfloat(h), 10.0, 1500.0);
 }
 
 // Handles display requests.  All it has to do is clear the viewport because

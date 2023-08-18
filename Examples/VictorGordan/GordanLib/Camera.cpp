@@ -102,8 +102,8 @@ void Camera::Inputs(Event& window)
 		}
 
 		// Stores the coordinates of the cursor
-		double mouseX = mMouse.Pos().x;
-		double mouseY = mMouse.Pos().y;
+		double mouseX = (double)mMouse.Pos().x;
+		double mouseY = (double)mMouse.Pos().y;
 
 		// Normalizes and shifts the coordinates of the cursor such that they begin in the middle of the screen
 		// and then "transforms" them into degrees 

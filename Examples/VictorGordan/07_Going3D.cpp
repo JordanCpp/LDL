@@ -111,7 +111,7 @@ int main()
 
 		// Variables that help the rotation of the pyramid
 		float rotation = 0.0f;
-		double prevTime = Ticks();
+		double prevTime = (double)Ticks();
 
 		// Enables the Depth Buffer
 		glEnable(GL_DEPTH_TEST);
@@ -142,7 +142,7 @@ int main()
 			shaderProgram.Activate();
 
 			// Simple timer
-			double crntTime = Ticks();
+			double crntTime = (double)Ticks();
 			if (crntTime - prevTime >= 1 / 60)
 			{
 				rotation += 0.5f;

@@ -8,8 +8,8 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/OpenGL/OpenGL1_2.hpp>
-#include "../GLU.hpp"
-#include "../GLUT.hpp"
+#include <LDL/OpenGL/OpenGLUtility.hpp>
+#include <LDL/OpenGL/OpenGLUtilityToolkit.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Enums;
@@ -41,13 +41,13 @@ void Init()
 	// camera and greater than 40 units distant clipped away.
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	GLU::gluPerspective(60.0, 4.0 / 3.0, 1, 40);
+	gluPerspective(60.0, 4.0 / 3.0, 1, 40);
 
 	// Position camera at (4, 6, 5) looking at (0, 0, 0) with the vector
 	// <0, 1, 0> pointing upward.
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	GLU::gluLookAt(4, 6, 5, 0, 0, 0, 0, 1, 0);
+	gluLookAt(4, 6, 5, 0, 0, 0, 0, 1, 0);
 }
 
 void Display()
@@ -57,7 +57,7 @@ void Display()
 	// Draw a white torus of outer radius 3, inner radius 0.5 with 15 stacks
 	// and 30 slices.
 	glColor3f(1.0, 1.0, 1.0);
-	GLUT::glutWireTorus(0.5, 3, 15, 30);
+	glutWireTorus(0.5, 3, 15, 30);
 
 	// Draw a red x-axis, a green y-axis, and a blue z-axis.  Each of the
 	// axes are ten units long.

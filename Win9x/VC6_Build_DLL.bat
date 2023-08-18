@@ -18,6 +18,8 @@ CL /O2 /FeLDL_VC6.dll -LD -GX /I..\include /I..\dependencies\freetype\include /D
 ..\source\Shared\Graphics\Utils\*.cpp ^
 ..\source\Shared\Loaders\*.cpp ^
 ..\source\Shared\OpenGL\*.cpp ^
+..\source\Shared\GLU\*.cpp ^
+..\source\Shared\GLUT\*.cpp ^
 ..\source\Shared\LDLC\*.cpp ^
 ..\source\Shared\Text\*.cpp ^
 ..\source\Platforms\Windows\DirectX\*.cpp ^

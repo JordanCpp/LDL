@@ -6,8 +6,7 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
-
-#include "../GLU.hpp"
+#include <LDL/OpenGL/OpenGLUtility.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Enums;
@@ -17,8 +16,6 @@ using namespace LDL::Core;
 using namespace LDL::Allocators;
 using namespace LDL::Loaders;
 using namespace LDL::Math;
-
-using namespace GLU;
 
 GLfloat	xrot;				// X Rotation ( NEW )
 GLfloat	yrot;				// Y Rotation ( NEW )

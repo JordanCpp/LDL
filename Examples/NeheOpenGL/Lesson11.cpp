@@ -5,8 +5,7 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
-
-#include "NeheOpenGL.hpp"
+#include <LDL/OpenGL/OpenGLUtility.hpp>
 
 #include <iostream>
 #include <math.h>
@@ -38,7 +37,7 @@ void LoadGLTextures(ImageLoader& loader)
 
 	// Typical Texture Generation Using Data From The Bitmap
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
-	glTexImage2D(GL_TEXTURE_2D, 0, 3, loader.Size().x, loader.Size().y, 0, GL_RGB, GL_UNSIGNED_BYTE, loader.Pixels());
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, (GLsizei)loader.Size().x, (GLsizei)loader.Size().y, 0, GL_RGB, GL_UNSIGNED_BYTE, loader.Pixels());
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }

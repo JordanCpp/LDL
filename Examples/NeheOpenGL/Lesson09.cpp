@@ -1,3 +1,4 @@
+#include <iostream>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
@@ -5,10 +6,7 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
-
-#include "NeheOpenGL.hpp"
-
-#include <iostream>
+#include <LDL/OpenGL/OpenGLUtility.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Enums;
@@ -50,7 +48,7 @@ void LoadGLTextures(ImageLoader& loader)
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0, 3, loader.Size().x, loader.Size().y, 0, GL_RGB, GL_UNSIGNED_BYTE, loader.Pixels());
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, (GLsizei)loader.Size().x, (GLsizei)loader.Size().y, 0, GL_RGB, GL_UNSIGNED_BYTE, loader.Pixels());
 }
 
 void ReSizeGLScene(GLsizei width, GLsizei height)		// Resize And Initialize The GL Window
