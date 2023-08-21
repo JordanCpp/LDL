@@ -70,13 +70,18 @@ file(GLOB_RECURSE SOURCE_FREETYPE
     "../dependencies/freetype/src/psaux/psaux.c"
     "../dependencies/freetype/src/type1/type1.c")
 
-    add_definitions(-DFT2_BUILD_LIBRARY)
+add_definitions(-DFT2_BUILD_LIBRARY)
 include_directories(../dependencies/freetype/include)
 
 if (WIN32)
   add_library(freetype STATIC ${SOURCE_FREETYPE}
   "../dependencies/freetype/builds/windows/ftdebug.c"
   "../dependencies/freetype/builds/windows/ftsystem.c")
+elseif (UNIX AND NOT APPLE)
+  add_definitions(-DHAVE_FCNTL_H)
+  add_library(freetype STATIC ${SOURCE_FREETYPE}
+  "../dependencies/freetype/src/base/ftdebug.c"
+  "../dependencies/freetype/builds/unix/ftsystem.c")
 endif()
 
 set(SOURCE_ALL ${SHARED_FILES} ${SOURCE_PLATFORM})

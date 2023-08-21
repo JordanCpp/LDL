@@ -10,15 +10,6 @@ endif()
 set(LDL_STATIC_LIBRARY true)
 add_definitions(-DLDL_STATIC_LIBRARY)
 
-#Install FreeType
-if (UNIX AND NOT APPLE)
-    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-    add_subdirectory(dependencies/freetype)
-    include_directories(dependencies/freetype/include)
-    include_directories(${CMAKE_CURRENT_BINARY_DIR}/dependencies/freetype)
-    link_directories(${CMAKE_CURRENT_BINARY_DIR}/dependencies/freetype)
-endif()
-
 include_directories("include")
 
 add_subdirectory("source")
