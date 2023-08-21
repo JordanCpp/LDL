@@ -1,3 +1,4 @@
+
 if (MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
@@ -19,6 +20,6 @@ if (LDL_STATIC_LIBRARY)
     add_subdirectory("test")
 endif()
 
-#if (LDL_STATIC_LIBRARY)
-#    add_subdirectory("ArcanumWorld")
-#endif()
+if (LDL_STATIC_LIBRARY)
+    add_subdirectory("ArcanumWorld")
+endif()
