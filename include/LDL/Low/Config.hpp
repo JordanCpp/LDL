@@ -3,7 +3,7 @@
 
 #include <stdlib.h>
 
-#if (_MSC_VER <= 1600 && !__MINGW32__) || (__BORLANDC__)
+#if (__BORLANDC__)
 #include <alloc.h>
 #define LDL_FAR far
 #define LDL_MALLOC farmalloc
