@@ -1,6 +1,6 @@
 #include "SoftRend.hpp"
 
-#if defined(_WIN32_)
+#if defined(_WIN32)
 #include "../Windows/SoftWin.hpp"
 #elif defined(__unix__)
 #include "../Linux/SoftWin.hpp"
