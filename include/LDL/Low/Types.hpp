@@ -9,7 +9,7 @@
   #define LDL_COLOR_RGBA
 #endif 
 
-#if (_MSC_VER <= 1600 && !__MINGW32__) || (__BORLANDC__)
+#if ((_MSC_VER <= 1600 && !__MINGW32__) || (__BORLANDC__)) && (!__linux__)
 typedef signed char    int8_t;
 typedef unsigned char  uint8_t;
 

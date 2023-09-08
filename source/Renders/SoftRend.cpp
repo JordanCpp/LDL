@@ -1,5 +1,10 @@
 #include "SoftRend.hpp"
+
+#if defined(_WIN32_)
 #include "../Windows/SoftWin.hpp"
+#elif defined(__unix__)
+#include "../Linux/SoftWin.hpp"
+#endif
 
 LDL_SoftRender::LDL_SoftRender(LDL_IRenderContext* context, LDL_IWindow* window) :
 	_RenderContext(context),
