@@ -20,11 +20,11 @@ void LDL_PixelPainter::Clear(LDL_Surface& surface, const LDL_Color& color)
         for (size_t i = 0; i < count; i+=3)
         {
 #ifdef LDL_COLOR_RGBA
-            pixels[i] = color.r;
+            pixels[i    ] = color.r;
             pixels[i + 1] = color.g;
             pixels[i + 2] = color.b;
 #else
-            pixels[i] = color.b;
+            pixels[i    ] = color.b;
             pixels[i + 1] = color.g;
             pixels[i + 2] = color.r;
 #endif  
@@ -58,11 +58,11 @@ void LDL_PixelPainter::Line(LDL_Surface& surface, const LDL_Point2u& first, cons
         index = (py * size.x + px) * bpp;
 
 #ifdef LDL_COLOR_RGBA
-        pixels[index] = color.r;
+        pixels[index    ] = color.r;
         pixels[index + 1] = color.g;
         pixels[index + 2] = color.b;
 #else
-        pixels[index] = color.b;
+        pixels[index    ] = color.b;
         pixels[index + 1] = color.g;
         pixels[index + 2] = color.r;
 #endif  
@@ -90,11 +90,11 @@ void LDL_PixelPainter::Line(LDL_Surface& surface, const LDL_Point2u& first, cons
                 index = (py * size.x + px) * bpp;
 
 #ifdef LDL_COLOR_RGBA
-                pixels[index] = color.r;
+                pixels[index    ] = color.r;
                 pixels[index + 1] = color.g;
                 pixels[index + 2] = color.b;
 #else
-                pixels[index] = color.b;
+                pixels[index    ] = color.b;
                 pixels[index + 1] = color.g;
                 pixels[index + 2] = color.r;
 #endif  
@@ -123,11 +123,11 @@ void LDL_PixelPainter::Line(LDL_Surface& surface, const LDL_Point2u& first, cons
                 index = (py * size.x + px) * bpp;
 
 #ifdef LDL_COLOR_RGBA
-                pixels[index] = color.r;
+                pixels[index    ] = color.r;
                 pixels[index + 1] = color.g;
                 pixels[index + 2] = color.b;
 #else
-                pixels[index] = color.b;
+                pixels[index    ] = color.b;
                 pixels[index + 1] = color.g;
                 pixels[index + 2] = color.r;
 #endif  

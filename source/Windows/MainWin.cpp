@@ -85,6 +85,8 @@ void LDL_MainWinow::StopEvent()
 void LDL_MainWinow::Title(const char* title)
 {
     _BaseWindow.Title(title);
+
+    SetWindowText(_HWND, _BaseWindow.Title());
 }
 
 const char* LDL_MainWinow::Title()

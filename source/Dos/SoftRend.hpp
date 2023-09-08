@@ -1,5 +1,5 @@
-#ifndef LDL_ImpRender_hpp
-#define LDL_ImpRender_hpp
+#ifndef LDL_SoftRend_hpp
+#define LDL_SoftRend_hpp
 
 #include <LDL/Low/Abstract.hpp>
 #include <LDL/Low/PixPaint.hpp>
@@ -8,10 +8,10 @@
 #include <LDL/Low/Surface.hpp>
 #include <dos.h>
 
-class LDL_ImpRender: public LDL_IRender
+class LDL_SoftRend : public LDL_IRender
 {
 public:
-	LDL_ImpRender(LDL_IRenderContext* context, LDL_IWindow* window);
+	LDL_SoftRend(LDL_IRenderContext* context, LDL_IWindow* window);
 	void SetColor(const LDL_Color& color);
 	void Line(const LDL_Point2u& first, const LDL_Point2u& last);
 	void Fill(const LDL_Point2u& pos, const LDL_Point2u& size);

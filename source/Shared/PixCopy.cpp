@@ -17,21 +17,34 @@ void LDL_PixelCopier::Draw(LDL_Surface& dst, const LDL_Point2u& pos, LDL_Surface
 	uint8_t LDL_FAR* srcPixels = src.Pixels();
 	size_t   srcIndex  = 0;
 
-	for (size_t i = 0; i < srcSizeX; i++)
+	size_t limitSizeX = 0;
+	size_t limitSizeY = 0;
+
+	if (srcSizeX + x > dstSizeX)
+		limitSizeX = dstSizeX - x;
+	else
+		limitSizeX = srcSizeX;
+
+	if (srcSizeY + y > dstSizeY)
+		limitSizeY = dstSizeY - y;
+	else
+		limitSizeY = srcSizeY;
+
+	for (size_t i = 0; i < limitSizeX; i++)
 	{
-		for (size_t j = 0; j < srcSizeY; j++)
+		for (size_t j = 0; j < limitSizeY; j++)
 		{
 			dstIndex = (dstSizeX * (y + j) + (x + i)) * dstBpp;
 			srcIndex = (srcSizeX * j + i) * srcBpp;
 
 #ifdef LDL_COLOR_RGBA
-			dstPixels[dstIndex + 0] = srcPixels[srcIndex + 0];
+			dstPixels[dstIndex    ] = srcPixels[srcIndex    ];
 			dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
 			dstPixels[dstIndex + 2] = srcPixels[srcIndex + 2];
 #else
-			dstPixels[dstIndex + 2] = srcPixels[srcIndex + 0];
+			dstPixels[dstIndex + 2] = srcPixels[srcIndex    ];
 			dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
-			dstPixels[dstIndex + 0] = srcPixels[srcIndex + 2];
+			dstPixels[dstIndex    ] = srcPixels[srcIndex + 2];
 #endif  
 		}
 	}

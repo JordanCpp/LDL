@@ -3,13 +3,14 @@
 
 #include <LDL/Low/Creators.hpp>
 #include <LDL/Cpp/RContext.hpp>
+#include <LDL/Low/Enums.hpp>
 
 class LDL_Window
 {
 public:
-	LDL_Window(LDL_ErrorHandler* errorHandler, LDL_RenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title)
+	LDL_Window(LDL_ErrorHandler* errorHandler, LDL_RenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode = LDL_WindowMode::Resized)
 	{
-		_Window = WindowCreate(errorHandler, context->GetRenderContext(), pos, size, title);
+		_Window = WindowCreate(errorHandler, context->GetRenderContext(), pos, size, title, mode);
 	}
 
 	~LDL_Window()
@@ -49,6 +50,11 @@ public:
 	void StopEvent()
 	{
 		_Window->StopEvent();
+	}
+
+	void Title(const char* title)
+	{
+		_Window->Title(title);
 	}
 private:
 	LDL_IWindow* _Window;

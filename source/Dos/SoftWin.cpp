@@ -1,7 +1,7 @@
-#include "Window.hpp"
+#include "SoftWin.hpp"
 #include <dos.h>
 
-LDL_ImpWindow::LDL_ImpWindow(LDL_ErrorHandler* errorHandler, LDL_IRenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title) :
+LDL_SoftWin::LDL_SoftWin(LDL_ErrorHandler* errorHandler, LDL_IRenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title) :
 	_ErrorHandler(errorHandler),
 	_BaseWindow(pos, size, title),
 	_Context(context)
@@ -14,7 +14,7 @@ LDL_ImpWindow::LDL_ImpWindow(LDL_ErrorHandler* errorHandler, LDL_IRenderContext*
 	InitMouse();
 }
 
-LDL_ImpWindow::~LDL_ImpWindow()
+LDL_SoftWin::~LDL_SoftWin()
 {
 	union REGS regs;
 
@@ -24,16 +24,16 @@ LDL_ImpWindow::~LDL_ImpWindow()
 	int86(0x10, &regs, &regs);
 }
 
-bool LDL_ImpWindow::Running()
+bool LDL_SoftWin::Running()
 {
 	return _Eventer.Running();
 }
 
-void LDL_ImpWindow::Present()
+void LDL_SoftWin::Present()
 {
 }
 
-void LDL_ImpWindow::PollEvents()
+void LDL_SoftWin::PollEvents()
 {
 	LDL_Event event;
 
@@ -71,7 +71,7 @@ void LDL_ImpWindow::PollEvents()
 	}
 }
 
-bool LDL_ImpWindow::GetEvent(LDL_Event& event)
+bool LDL_SoftWin::GetEvent(LDL_Event& event)
 {
 	if (!_Eventer.Empty())
 	{
@@ -83,36 +83,36 @@ bool LDL_ImpWindow::GetEvent(LDL_Event& event)
 	return false;
 }
 
-bool LDL_ImpWindow::WaitEvent(LDL_Event& event)
+bool LDL_SoftWin::WaitEvent(LDL_Event& event)
 {
 	return false;
 }
 
-void LDL_ImpWindow::StopEvent()
+void LDL_SoftWin::StopEvent()
 {
 }
 
-void LDL_ImpWindow::Title(const char* title)
+void LDL_SoftWin::Title(const char* title)
 {
 	_BaseWindow.Title(title);
 }
 
-const char* LDL_ImpWindow::Title()
+const char* LDL_SoftWin::Title()
 {
 	return _BaseWindow.Title();
 }
 
-const LDL_Point2u& LDL_ImpWindow::Size()
+const LDL_Point2u& LDL_SoftWin::Size()
 {
 	return _BaseWindow.Size();
 }
 
-const LDL_Point2u& LDL_ImpWindow::Pos()
+const LDL_Point2u& LDL_SoftWin::Pos()
 {
 	return _BaseWindow.Pos();
 }
 
-bool LDL_ImpWindow::InitMouse()
+bool LDL_SoftWin::InitMouse()
 {
 	union REGS regs;
 
@@ -130,7 +130,7 @@ bool LDL_ImpWindow::InitMouse()
 	return _ErrorHandler->Ok();
 }
 
-bool LDL_ImpWindow::MousePress(size_t button)
+bool LDL_SoftWin::MousePress(size_t button)
 {
 	union REGS regs;
 

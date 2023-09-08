@@ -1,16 +1,16 @@
-#ifndef LDL_ImpWindow_hpp
-#define LDL_ImpWindow_hpp
+#ifndef LDL_SoftWin_hpp
+#define LDL_SoftWin_hpp
 
 #include <LDL/Low/Abstract.hpp>
 #include <LDL/Low/Eventer.hpp>
 #include <LDL/Low/EHandler.hpp>
 #include <LDL/Low/BaseWin.hpp>
 
-class LDL_ImpWindow : public LDL_IWindow
+class LDL_SoftWin : public LDL_IWindow
 {
 public:
-	LDL_ImpWindow(LDL_ErrorHandler* errorHandler, LDL_IRenderContext * context, const LDL_Point2u& pos, const LDL_Point2u& size, const char * title);
-	~LDL_ImpWindow();
+	LDL_SoftWin(LDL_ErrorHandler* errorHandler, LDL_IRenderContext * context, const LDL_Point2u& pos, const LDL_Point2u& size, const char * title);
+	~LDL_SoftWin();
 	bool Running();
 	void Present();
 	void PollEvents();

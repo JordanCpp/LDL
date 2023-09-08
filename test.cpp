@@ -10,6 +10,7 @@
 #include <LDL/Low/BaseRend.hpp>
 #include <LDL/Low/Palette.hpp>
 #include <LDL/Low/BmpLoad.hpp>
+#include <LDL/Low/FpsCount.hpp>
 
 #include <stdio.h>
 #include <string.h>
@@ -261,7 +262,7 @@ int main()
 	LDL_ErrorHandler errorHandler;
 	LDL_RenderContext renderContext;
 
-	LDL_Window window(&errorHandler, &renderContext, LDL_Point2u(0, 0), LDL_Point2u(800, 600), "");
+	LDL_Window window(&errorHandler, &renderContext, LDL_Point2u(0, 0), LDL_Point2u(800, 600), "", LDL_WindowMode::Fixed);
 
 	if (errorHandler.Ok())
 	{
@@ -271,6 +272,9 @@ int main()
 
 		size_t x = 0;
 		size_t y = 0;
+
+		LDL_FpsCounter fpsCounter;
+		LDL_NumberToString convert;
 
 		LDL_BmpLoader bmpLoader(&errorHandler);
 
@@ -285,6 +289,8 @@ int main()
 
 		while (window.Running())
 		{
+			fpsCounter.Start();
+
 			while (window.GetEvent(report))
 			{
 				if (report.Type == LDL_Events::IsQuit)
@@ -292,10 +298,10 @@ int main()
 					window.StopEvent();
 				}
 
-				if (report.IsMousePressed(LDL_MouseButton::Left))
+				if (report.Type == LDL_Events::IsMouseMove)
 				{
-					x = window.Size().x;
-					y = window.Size().y;
+					x = report.Mouse.PosX;
+					y = report.Mouse.PosY;
 				}
 			}
 
@@ -308,9 +314,15 @@ int main()
 
 			//render.Fill(LDL_Point2u(15, 15), LDL_Point2u(75, 75));
 
-			render.Draw(image, LDL_Point2u(25, 25));
+			render.Draw(image, LDL_Point2u(x, y));
 
 			render.End();
+
+			if (fpsCounter.Calc())
+			{
+				window.Title(convert.Convert(fpsCounter.Fps()));
+				fpsCounter.Clear();
+			}
 
 			window.PollEvents();
 		}
