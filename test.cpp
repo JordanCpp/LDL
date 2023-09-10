@@ -257,7 +257,7 @@ void Tests()
 
 int main()
 {
-	Tests();
+	//Tests();
 
 	LDL_ErrorHandler errorHandler;
 	LDL_RenderContext renderContext;
@@ -276,16 +276,16 @@ int main()
 		LDL_FpsCounter fpsCounter;
 		LDL_NumberToString convert;
 
-		LDL_BmpLoader bmpLoader(&errorHandler);
+		//LDL_BmpLoader bmpLoader(&errorHandler);
 
-		bmpLoader.Load("C:/4U5YEL4DEAOYnr9UT7e6bQ.bmp");
+		//bmpLoader.Load("C:/4U5YEL4DEAOYnr9UT7e6bQ.bmp");
 
-		if (!errorHandler.Ok())
-		{
-			printf("%s\n", errorHandler.Message());
-		}
+		//if (!errorHandler.Ok())
+		//{
+		//	printf("%s\n", errorHandler.Message());
+		//}
 
-		LDL_Surface image(bmpLoader.Size(), bmpLoader.Pixels(), bmpLoader.Bpp());
+		//LDL_Surface image(bmpLoader.Size(), bmpLoader.Pixels(), bmpLoader.Bpp());
 
 		while (window.Running())
 		{
@@ -314,7 +314,7 @@ int main()
 
 			//render.Fill(LDL_Point2u(15, 15), LDL_Point2u(75, 75));
 
-			render.Draw(image, LDL_Point2u(x, y));
+			//render.Draw(image, LDL_Point2u(x, y));
 
 			render.End();
 

@@ -4,6 +4,8 @@ LDL_SoftWindow::LDL_SoftWindow(LDL_ErrorHandler* errorHandler, const LDL_Point2u
 	_ErrorHandler(errorHandler),
 	_MainWindow(errorHandler, pos, size, title, mode)
 {
+	XClearWindow(_MainWindow._Display, _MainWindow._Window);
+	XMapRaised(_MainWindow._Display, _MainWindow._Window); 
 }
 
 bool LDL_SoftWindow::Running()

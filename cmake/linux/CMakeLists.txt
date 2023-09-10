@@ -1,6 +1,8 @@
 project(LDL)
 
-add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+find_package(X11 REQUIRED)
+link_libraries(${X11_LIBRARIES})
+include_directories(${X11_INCLUDE_DIR})
 
 include_directories("../../include")
 
