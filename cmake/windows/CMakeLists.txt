@@ -14,3 +14,9 @@ target_link_libraries(LDL winmm)
 
 add_executable(test "../../test.cpp")
 target_link_libraries(test LDL)
+
+add_executable(cpp01 "../../examples/cpp/cpp01.cpp")
+target_link_libraries(cpp01 LDL)
+
+add_executable(cpp02 "../../examples/cpp/cpp02.cpp")
+target_link_libraries(cpp02 LDL)
