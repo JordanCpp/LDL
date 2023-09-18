@@ -37,6 +37,10 @@ void LDL_SoftRend::Clear()
 	_PixelPainter.Clear(_ScreenBuffer, _BaseRender.Color());
 }
 
+void LDL_SoftRend::Begin()
+{
+}
+
 void LDL_SoftRend::End()
 {
 	size_t count = _BaseRender.Size().x * _BaseRender.Size().y;

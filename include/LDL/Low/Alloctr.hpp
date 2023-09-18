@@ -15,6 +15,7 @@ public:
 	};
 private:
 	virtual void* Allocate(size_t bytes) = 0;
+	virtual void Deallocate(void* ptr) = 0;
 };
 
 #endif

@@ -36,6 +36,7 @@ public:
 	virtual void Line(const LDL_Point2u& first, const LDL_Point2u& last) = 0;
 	virtual void Fill(const LDL_Point2u& pos, const LDL_Point2u& size) = 0;
 	virtual void Clear() = 0;
+	virtual void Begin() = 0;
 	virtual void End() = 0;
 	virtual void Draw(LDL_Surface& surface, const LDL_Point2u& pos) = 0;
 private:
@@ -47,5 +48,15 @@ public:
 private:
 };
 
+class LDL_ISurface
+{
+public:
+	virtual uint8_t LDL_FAR* Pixels() = 0;
+	virtual const LDL_Point2u& Size() = 0;
+	virtual uint8_t Bpp() = 0;
+	virtual size_t Capacity() = 0;
+	virtual void Resize(const LDL_Point2u& size, uint8_t bpp) = 0;
+private:
+};
 
 #endif

@@ -34,6 +34,10 @@ void LDL_SoftRender::Clear()
 	_PixelPainter.Clear(_Surface, _BaseRender.Color());
 }
 
+void LDL_SoftRender::Begin()
+{
+}
+
 void LDL_SoftRender::End()
 {
 	LDL_SoftWindow* p = (LDL_SoftWindow*)_Window;

@@ -16,6 +16,7 @@ public:
 	void Line(const LDL_Point2u& first, const LDL_Point2u& last);
 	void Fill(const LDL_Point2u& pos, const LDL_Point2u& size);
 	void Clear();
+	void Begin();
 	void End();
 	void Draw(LDL_Surface& surface, const LDL_Point2u& pos);
 private:

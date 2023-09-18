@@ -31,6 +31,8 @@ int main()
 				}
 			}
 
+			render.Begin();
+
 			render.SetColor(LDL_Color(0, 162, 232));
 			render.Clear();
 

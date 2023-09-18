@@ -33,6 +33,11 @@ public:
 		_Render->Clear();
 	}
 
+	void Begin()
+	{
+		_Render->Begin();
+	}
+
 	void End()
 	{
 		_Render->End();

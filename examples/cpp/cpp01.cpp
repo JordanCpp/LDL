@@ -31,6 +31,7 @@ int main()
 				}
 			}
 
+			render.Begin();
 			render.End();
 
 			if (fpsCounter.Calc())
