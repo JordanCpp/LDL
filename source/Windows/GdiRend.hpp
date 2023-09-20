@@ -17,7 +17,7 @@ public:
 	void Clear();
 	void Begin();
 	void End();
-	void Draw(LDL_Surface& surface, const LDL_Point2u& pos);
+	void Draw(LDL_ISurface* surface, const LDL_Point2u& pos);
 private:
 	LDL_IRenderContext* _RenderContext;
 	LDL_BaseRender      _BaseRender;

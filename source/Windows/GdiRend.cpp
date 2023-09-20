@@ -1,5 +1,6 @@
 #include "GdiRend.hpp"
 #include "GdiWin.hpp"
+#include "GdiSurf.hpp"
 
 LDL_GdiRender::LDL_GdiRender(LDL_IRenderContext* context, LDL_IWindow* window) :
 	_RenderContext(context),
@@ -71,6 +72,9 @@ void LDL_GdiRender::End()
 	EndPaint(_GdiWindow->_MainWindow._HWND, &_PaintStruct);
 }
 
-void LDL_GdiRender::Draw(LDL_Surface& surface, const LDL_Point2u& pos)
+void LDL_GdiRender::Draw(LDL_ISurface* surface, const LDL_Point2u& pos)
 {
+	LDL_GdiSurface* ptr = (LDL_GdiSurface*)surface;
+
+	BitBlt(_GdiWindow->_MainWindow._HDC, 0, 0, ptr->Size().x, ptr->Size().y, ptr->_CompatibleDC, 0, 0, SRCCOPY);
 }

@@ -16,12 +16,12 @@ public:
 	void Clear();
 	void Begin();
 	void End();
-	void Draw(LDL_Surface& surface, const LDL_Point2u& pos);
+	void Draw(LDL_ISurface* surface, const LDL_Point2u& pos);
 private:
 	LDL_IRenderContext* _RenderContext;
 	LDL_IWindow*        _Window;
 	LDL_BaseRender      _BaseRender;
-	LDL_Surface         _Surface;
+	LDL_ISurface*       _Surface;
 	LDL_PixelPainter    _PixelPainter;
 	LDL_PixelCopier     _PixelCopier;
 };

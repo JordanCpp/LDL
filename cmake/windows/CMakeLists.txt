@@ -23,3 +23,6 @@ target_link_libraries(cpp02 LDL)
 
 add_executable(cpp03 "../../examples/cpp/cpp03.cpp")
 target_link_libraries(cpp03 LDL)
+
+add_executable(cpp04 "../../examples/cpp/cpp04.cpp")
+target_link_libraries(cpp04 LDL)

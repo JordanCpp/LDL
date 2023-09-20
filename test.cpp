@@ -1,6 +1,6 @@
 #include <LDL/Low/Equal.hpp>
 #include <LDL/Low/EventQ.hpp>
-#include <LDL/Low/Surface.hpp>
+#include <LDL/Low/SoftSurf.hpp>
 #include <LDL/Low/Conv.hpp>
 #include <LDL/Low/Eventer.hpp>
 #include <LDL/Cpp/Render.hpp>
@@ -90,7 +90,11 @@ void Test_LDL_EventQueue()
 
 void Test_LDL_Surface()
 {
-	LDL_Surface surface(LDL_Point2u(640, 480), 1);
+	LDL_ErrorHandler errorHandler;
+	LDL_RenderContext renderContext;
+	LDL_Window window(&errorHandler, &renderContext, LDL_Point2u(0, 0), LDL_Point2u(800, 600), "", LDL_WindowMode::Fixed);
+
+	LDL_Surface surface(&renderContext, &window, LDL_Point2u(640, 480), 1);
 
 	LDL_TEST_EQUAL(surface.Pixels() != NULL);
 	LDL_TEST_EQUAL(surface.Size().x == 640);

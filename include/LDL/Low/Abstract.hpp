@@ -5,7 +5,6 @@
 #include <LDL/Low/Point2u.hpp>
 #include <LDL/Low/Event.hpp>
 #include <LDL/Low/Config.hpp>
-#include <LDL/Low/Surface.hpp>
 
 class LDL_ITexture
 {
@@ -29,6 +28,17 @@ public:
 private:
 };
 
+class LDL_ISurface
+{
+public:
+	virtual uint8_t LDL_FAR* Pixels() = 0;
+	virtual const LDL_Point2u& Size() = 0;
+	virtual uint8_t Bpp() = 0;
+	//virtual size_t Capacity() = 0;
+	//virtual void Resize(const LDL_Point2u& size, uint8_t bpp) = 0;
+private:
+};
+
 class LDL_IRender
 {
 public:
@@ -38,7 +48,7 @@ public:
 	virtual void Clear() = 0;
 	virtual void Begin() = 0;
 	virtual void End() = 0;
-	virtual void Draw(LDL_Surface& surface, const LDL_Point2u& pos) = 0;
+	virtual void Draw(LDL_ISurface* surface, const LDL_Point2u& pos) = 0;
 private:
 };
 
@@ -46,17 +56,6 @@ class LDL_IRenderContext
 {
 public:
 	virtual size_t Mode() = 0;
-private:
-};
-
-class LDL_ISurface
-{
-public:
-	virtual uint8_t LDL_FAR* Pixels() = 0;
-	virtual const LDL_Point2u& Size() = 0;
-	virtual uint8_t Bpp() = 0;
-	virtual size_t Capacity() = 0;
-	virtual void Resize(const LDL_Point2u& size, uint8_t bpp) = 0;
 private:
 };
 

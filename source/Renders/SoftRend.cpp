@@ -10,7 +10,7 @@ LDL_SoftRender::LDL_SoftRender(LDL_IRenderContext* context, LDL_IWindow* window)
 	_RenderContext(context),
 	_Window(window),
 	_BaseRender(_Window->Size()),
-	_Surface(_BaseRender.Size(), 3)
+	_Surface(new LDL_SoftwareSurface(_BaseRender.Size(), 3))
 {
 }
 
@@ -42,10 +42,10 @@ void LDL_SoftRender::End()
 {
 	LDL_SoftWindow* p = (LDL_SoftWindow*)_Window;
 
-	p->Present(_Surface.Pixels(), _Surface.Bpp());
+	p->Present(_Surface->Pixels(), _Surface->Bpp());
 }
 
-void LDL_SoftRender::Draw(LDL_Surface& surface, const LDL_Point2u& pos)
+void LDL_SoftRender::Draw(LDL_ISurface* surface, const LDL_Point2u& pos)
 {
 	_PixelCopier.Draw(_Surface, pos, surface);
 }

@@ -4,6 +4,54 @@
 #include "SoftWin.hpp"
 #include "GdiWin.hpp"
 #include "RContext.hpp"
+#include "GdiSurf.hpp"
+
+LDL_ISurface* SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow * window, const LDL_Point2u& size, uint8_t bpp)
+{
+    size_t renderMode = renderContext->Mode();
+
+    LDL_ISurface* result = NULL;
+
+    switch (renderMode)
+    {
+    case LDL_RenderMode::Software:
+        result = new LDL_SoftwareSurface(size, bpp);
+        break;
+    case LDL_RenderMode::GDI:
+        result = new LDL_GdiSurface(window, size, bpp);
+        break;
+    default:
+        break;
+    }
+
+    return result;
+}
+
+LDL_ISurface* SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow* window, const LDL_Point2u& size, uint8_t LDL_FAR* bytes, uint8_t bpp)
+{
+    size_t renderMode = renderContext->Mode();
+
+    LDL_ISurface* result = NULL;
+
+    switch (renderMode)
+    {
+    case LDL_RenderMode::Software:
+        result = new LDL_SoftwareSurface(size, bytes, bpp);
+        break;
+    case LDL_RenderMode::GDI:
+        result = new LDL_GdiSurface(window, size, bytes, bpp);
+        break;
+    default:
+        break;
+    }
+
+    return result;
+}
+
+void Destroy(LDL_ISurface* surface)
+{
+    delete surface;
+}
 
 LDL_IRender* RenderCreate(LDL_IRenderContext* context, LDL_IWindow* window)
 {

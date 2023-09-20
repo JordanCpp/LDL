@@ -3,19 +3,19 @@
 
 #define sgn(x) ((x<0)?-1:((x>0)?1:0))
 
-void LDL_PixelPainter::Clear(LDL_Surface& surface, const LDL_Color& color)
+void LDL_PixelPainter::Clear(LDL_ISurface* surface, const LDL_Color& color)
 {
-	size_t count = surface.Size().x * surface.Size().y * surface.Bpp();
-	uint8_t LDL_FAR* pixels = surface.Pixels();
+	size_t count = surface->Size().x * surface->Size().y * surface->Bpp();
+	uint8_t LDL_FAR* pixels = surface->Pixels();
 
-    if (surface.Bpp() == 1)
+    if (surface->Bpp() == 1)
     {
         for (size_t i = 0; i < count; i++)
         {
             pixels[i] = color.r;
         }
     }
-    else if (surface.Bpp() == 3)
+    else if (surface->Bpp() == 3)
     {
         for (size_t i = 0; i < count; i+=3)
         {
@@ -33,11 +33,11 @@ void LDL_PixelPainter::Clear(LDL_Surface& surface, const LDL_Color& color)
 }
 
 
-void LDL_PixelPainter::Line(LDL_Surface& surface, const LDL_Point2u& first, const LDL_Point2u& last, const LDL_Color& color)
+void LDL_PixelPainter::Line(LDL_ISurface* surface, const LDL_Point2u& first, const LDL_Point2u& last, const LDL_Color& color)
 {
-    uint8_t LDL_FAR* pixels = surface.Pixels();
-    LDL_Point2u size = surface.Size();
-    uint8_t bpp = surface.Bpp();
+    uint8_t LDL_FAR* pixels = surface->Pixels();
+    LDL_Point2u size = surface->Size();
+    uint8_t bpp = surface->Bpp();
     size_t index = 0;
 
     int i, dx, dy, sdx, sdy, dxabs, dyabs, x, y, px, py;
@@ -141,14 +141,14 @@ void LDL_PixelPainter::Line(LDL_Surface& surface, const LDL_Point2u& first, cons
     }
 }
 
-void LDL_PixelPainter::Fill(LDL_Surface& surface, const LDL_Point2u& pos, const LDL_Point2u& size, const LDL_Color& color)
+void LDL_PixelPainter::Fill(LDL_ISurface* surface, const LDL_Point2u& pos, const LDL_Point2u& size, const LDL_Color& color)
 {
     size_t x        = pos.x;
     size_t y        = pos.y;
     size_t index    = 0;
-    uint8_t LDL_FAR* pixels = surface.Pixels();
-    uint8_t bpp     = surface.Bpp();
-    size_t width    = surface.Size().x;
+    uint8_t LDL_FAR* pixels = surface->Pixels();
+    uint8_t bpp     = surface->Bpp();
+    size_t width    = surface->Size().x;
 
     if (bpp == 3)
     {

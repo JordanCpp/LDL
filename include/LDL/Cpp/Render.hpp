@@ -4,6 +4,7 @@
 #include <LDL/Low/Creators.hpp>
 #include <LDL/Cpp/RContext.hpp>
 #include <LDL/Cpp/Window.hpp>
+#include <LDL/Cpp/Surface.hpp>
 
 class LDL_Render
 {
@@ -53,9 +54,9 @@ public:
 		_Render->Fill(first, last);
 	}
 
-	void Draw(LDL_Surface& surface, const LDL_Point2u& pos)
+	void Draw(LDL_Surface* surface, const LDL_Point2u& pos)
 	{
-		_Render->Draw(surface, pos);
+		_Render->Draw(surface->GetSurface(), pos);
 	}
 private:
 	LDL_IRender* _Render;
