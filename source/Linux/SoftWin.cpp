@@ -2,10 +2,12 @@
 
 LDL_SoftWindow::LDL_SoftWindow(LDL_ErrorHandler* errorHandler, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
 	_ErrorHandler(errorHandler),
-	_MainWindow(errorHandler, pos, size, title, mode)
+	_MainWindow(errorHandler, pos, size, title, mode),
+	_Screen(NULL)
 {
-	XClearWindow(_MainWindow._Display, _MainWindow._Window);
-	XMapRaised(_MainWindow._Display, _MainWindow._Window); 
+	//XClearWindow(_MainWindow._Display, _MainWindow._Window);
+	//XMapRaised(_MainWindow._Display, _MainWindow._Window);
+	XMapWindow(_MainWindow._Display, _MainWindow._Window);
 }
 
 bool LDL_SoftWindow::Running()
@@ -19,6 +21,12 @@ void LDL_SoftWindow::Present()
 
 void LDL_SoftWindow::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 {
+	if (!_Screen)
+	{
+		_Screen = XCreateImage(_MainWindow._Display, _MainWindow._Visual, DefaultDepth(_MainWindow._Display,_MainWindow._Screen),ZPixmap,0,(char*)pixels,_MainWindow.Size().x,_MainWindow.Size().y,32,0);
+	}
+
+	XPutImage(_MainWindow._Display,_MainWindow._Root,DefaultGC(_MainWindow._Display,_MainWindow._Screen),_Screen,0,0,0,0,_MainWindow.Size().x,_MainWindow.Size().y);
 }
 
 void LDL_SoftWindow::PollEvents()

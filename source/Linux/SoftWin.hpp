@@ -22,6 +22,7 @@ public:
 private:
 	LDL_ErrorHandler* _ErrorHandler;
 	LDL_MainWinow     _MainWindow;
+	XImage*           _Screen;
 };
 
 #endif
