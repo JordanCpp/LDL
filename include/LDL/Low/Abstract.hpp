@@ -16,7 +16,6 @@ class LDL_IWindow
 {
 public:
 	virtual bool Running() = 0;
-	virtual void Present() = 0;
 	virtual void PollEvents() = 0;
 	virtual bool GetEvent(LDL_Event& event) = 0;
 	virtual bool WaitEvent(LDL_Event& event) = 0;

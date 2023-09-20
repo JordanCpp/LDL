@@ -12,20 +12,16 @@ bool LDL_SoftWindow::Running()
 	return _MainWindow.Running();
 }
 
-void LDL_SoftWindow::Present()
-{
-}
-
-void LDL_SoftWindow::Present(uint8_t* pixels, uint8_t bytesPerPixel)
+void LDL_SoftWindow::Present(LDL_ISurface* surface)
 {
 	_BITMAPINFO.bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
 	_BITMAPINFO.bmiHeader.biWidth       = (LONG)Size().x;
 	_BITMAPINFO.bmiHeader.biHeight      = -(LONG)Size().y;
 	_BITMAPINFO.bmiHeader.biPlanes      = 1;
-	_BITMAPINFO.bmiHeader.biBitCount    = bytesPerPixel * 8;
+	_BITMAPINFO.bmiHeader.biBitCount    = surface->Bpp() * 8;
 	_BITMAPINFO.bmiHeader.biCompression = BI_RGB;
 
-	if (SetDIBitsToDevice(_MainWindow._HDC, 0, 0, (DWORD)Size().x, (DWORD)Size().y, 0, 0, 0, (UINT)Size().y, pixels, &_BITMAPINFO, DIB_RGB_COLORS) == 0)
+	if (SetDIBitsToDevice(_MainWindow._HDC, 0, 0, (DWORD)Size().x, (DWORD)Size().y, 0, 0, 0, (UINT)Size().y, surface->Pixels(), &_BITMAPINFO, DIB_RGB_COLORS) == 0)
 	{
 		_ErrorHandler->Message("SetDIBitsToDevice failed");
 	}

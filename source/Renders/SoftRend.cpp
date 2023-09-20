@@ -42,7 +42,7 @@ void LDL_SoftRender::End()
 {
 	LDL_SoftWindow* p = (LDL_SoftWindow*)_Window;
 
-	p->Present(_Surface->Pixels(), _Surface->Bpp());
+	p->Present(_Surface);
 }
 
 void LDL_SoftRender::Draw(LDL_ISurface* surface, const LDL_Point2u& pos)
