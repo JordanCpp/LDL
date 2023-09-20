@@ -1,5 +1,5 @@
-#ifndef LDL_MainWin_hpp
-#define LDL_MainWin_hpp
+#ifndef LDL_Linux_MainWin_hpp
+#define LDL_Linux_MainWin_hpp
 
 #include <LDL/Low/Point2u.hpp>
 #include <LDL/Low/Eventer.hpp>

@@ -1,5 +1,5 @@
-#ifndef LDL_RContext_hpp
-#define LDL_RContext_hpp
+#ifndef LDL_Linux_RContext_hpp
+#define LDL_Linux_RContext_hpp
 
 #include <LDL/Low/Abstract.hpp>
 

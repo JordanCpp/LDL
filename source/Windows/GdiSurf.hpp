@@ -1,5 +1,5 @@
-#ifndef LDL_GdiSurf_hpp
-#define LDL_GdiSurf_hpp
+#ifndef LDL_Windows_GdiSurf_hpp
+#define LDL_Windows_GdiSurf_hpp
 
 #include <LDL/Low/Abstract.hpp>
 #include <LDL/Low/SoftSurf.hpp>

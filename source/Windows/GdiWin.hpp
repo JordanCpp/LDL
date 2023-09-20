@@ -1,5 +1,5 @@
-#ifndef LDL_GdiWin_hpp
-#define LDL_GdiWin_hpp
+#ifndef LDL_Windows_GdiWin_hpp
+#define LDL_Windows_GdiWin_hpp
 
 #include <LDL/Low/Abstract.hpp>
 #include "MainWin.hpp"

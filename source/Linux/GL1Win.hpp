@@ -1,5 +1,5 @@
-#ifndef LDL_GL1Window_hpp
-#define LDL_GL1Window_hpp
+#ifndef LDL_Linux_GL1Window_hpp
+#define LDL_Linux_GL1Window_hpp
 
 class GL1Win
 {

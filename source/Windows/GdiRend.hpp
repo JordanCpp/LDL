@@ -1,5 +1,5 @@
-#ifndef LDL_GdiRend_hpp
-#define LDL_GdiRend_hpp
+#ifndef LDL_Windows_GdiRend_hpp
+#define LDL_Windows_GdiRend_hpp
 
 #include <LDL/Low/Abstract.hpp>
 #include <LDL/Low/BaseRend.hpp>

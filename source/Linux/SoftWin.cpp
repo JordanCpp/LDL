@@ -23,10 +23,10 @@ void LDL_SoftWindow::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 {
 	if (!_Screen)
 	{
-		_Screen = XCreateImage(_MainWindow._Display, _MainWindow._Visual, DefaultDepth(_MainWindow._Display,_MainWindow._Screen),ZPixmap,0,(char*)pixels,_MainWindow.Size().x,_MainWindow.Size().y,32,0);
+		_Screen = XCreateImage(_MainWindow._Display, _MainWindow._Visual, DefaultDepth(_MainWindow._Display, _MainWindow._Screen), ZPixmap, 0, (char*)pixels, _MainWindow.Size().x, _MainWindow.Size().y, 32, 0);
 	}
 
-	XPutImage(_MainWindow._Display,_MainWindow._Root,DefaultGC(_MainWindow._Display,_MainWindow._Screen),_Screen,0,0,0,0,_MainWindow.Size().x,_MainWindow.Size().y);
+	XPutImage(_MainWindow._Display, _MainWindow._Root, DefaultGC(_MainWindow._Display, _MainWindow._Screen), _Screen, 0, 0, 0, 0, _MainWindow.Size().x, _MainWindow.Size().y);
 }
 
 void LDL_SoftWindow::PollEvents()

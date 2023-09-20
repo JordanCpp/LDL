@@ -1,5 +1,5 @@
-#ifndef LDL_MainWin_hpp
-#define LDL_MainWin_hpp
+#ifndef LDL_Windows_MainWin_hpp
+#define LDL_Windows_MainWin_hpp
 
 #include "WinX.hpp"
 #include <LDL/Low/Point2u.hpp>
