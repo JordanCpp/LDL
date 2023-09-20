@@ -22,6 +22,11 @@ public:
 	{
 	}
 
+	bool Equal(const LDL_Color& color) const
+	{
+		return color.r == r && color.g == g && color.b == b;
+	}
+
 #ifdef LDL_COLOR_RGBA
 	uint8_t r;
 	uint8_t g;

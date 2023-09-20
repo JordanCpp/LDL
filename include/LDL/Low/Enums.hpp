@@ -146,6 +146,7 @@ public:
 	enum
 	{
 		Software = 1,
+		GDI,
 		OpenGL1,
 		OpenGL3
 	};

@@ -1,8 +1,7 @@
 #ifndef LDL_MainWin_hpp
 #define LDL_MainWin_hpp
 
-#define  STRICT
-#include <windows.h>
+#include "WinX.hpp"
 #include <LDL/Low/Point2u.hpp>
 #include <LDL/Low/Eventer.hpp>
 #include <LDL/Low/EHandler.hpp>

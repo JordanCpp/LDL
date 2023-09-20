@@ -45,6 +45,7 @@ private:
 class LDL_IRenderContext
 {
 public:
+	virtual size_t Mode() = 0;
 private:
 };
 

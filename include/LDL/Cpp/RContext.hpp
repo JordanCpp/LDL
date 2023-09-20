@@ -6,9 +6,9 @@
 class LDL_RenderContext
 {
 public:
-	LDL_RenderContext()
+	LDL_RenderContext(size_t mode = LDL_RenderMode::GDI)
 	{
-		_RenderContext = RenderContextCreate();
+		_RenderContext = RenderContextCreate(mode);
 	}
 
 	~LDL_RenderContext()

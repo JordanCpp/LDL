@@ -6,7 +6,10 @@
 class LDL_ImpRenderContext : public LDL_IRenderContext
 {
 public:
+	LDL_ImpRenderContext(size_t mode);
+	size_t Mode();
 private:
+	size_t _Mode;
 };
 
 #endif

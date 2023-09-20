@@ -1,5 +1,5 @@
 #include <LDL/Low/Surface.hpp>
-#include <stdlib.h>
+#include <string.h>
 
 LDL_Surface::LDL_Surface(const LDL_Point2u& size, uint8_t bpp) :
 	_Pixels(NULL),
@@ -14,7 +14,10 @@ LDL_Surface::LDL_Surface(const LDL_Point2u& size, uint8_t LDL_FAR* bytes, uint8_
 	_Size(size),
 	_Bpp(bpp)
 {
-	//_Pixels = (uint8_t LDL_FAR*)LDL_MALLOC(_Size.x * _Size.y * _Bpp);
+	size_t count = _Size.x * _Size.y * _Bpp;
+
+	_Pixels = (uint8_t LDL_FAR*)LDL_MALLOC(_Size.x * _Size.y * _Bpp);
+	memcpy(_Pixels, bytes, count);
 }
 
 LDL_Surface::~LDL_Surface()
