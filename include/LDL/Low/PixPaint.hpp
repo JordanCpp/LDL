@@ -1,5 +1,5 @@
-#ifndef LDL_PixPaint_hpp
-#define LDL_PixPaint_hpp
+#ifndef LDL_Low_PixPaint_hpp
+#define LDL_Low_PixPaint_hpp
 
 #include <LDL/Low/SoftSurf.hpp>
 #include <LDL/Low/Color.hpp>

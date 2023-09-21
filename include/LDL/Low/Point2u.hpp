@@ -1,5 +1,5 @@
-#ifndef LDL_Point2u_hpp
-#define LDL_Point2u_hpp
+#ifndef LDL_Low_Point2u_hpp
+#define LDL_Low_Point2u_hpp
 
 #include <LDL/Low/Types.hpp>
 #include <LDL/Low/Config.hpp>

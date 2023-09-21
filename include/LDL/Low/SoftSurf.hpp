@@ -1,5 +1,5 @@
-#ifndef LDL_SoftSurf_hpp
-#define LDL_SoftSurf_hpp
+#ifndef LDL_Low_SoftSurf_hpp
+#define LDL_Low_SoftSurf_hpp
 
 #include <LDL/Low/Abstract.hpp>
 
@@ -13,8 +13,8 @@ public:
 	uint8_t Bpp();
 	const LDL_Point2u& Size();
 private:
-	uint8_t LDL_FAR* _Pixels;
 	uint8_t _Bpp;
+	uint8_t LDL_FAR* _Pixels;
 	LDL_Point2u _Size;
 };
 

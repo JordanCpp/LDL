@@ -66,7 +66,7 @@ bool LDL_MainWinow::WaitEvent(LDL_Event& event)
 {
     if (_Eventer.Running())
     {
-        BOOL result = GetMessage(&_MSG, _HWND, 0, 0);
+        GetMessage(&_MSG, _HWND, 0, 0);
 
         _Eventer.Pop(event);
 

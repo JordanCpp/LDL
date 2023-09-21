@@ -2,17 +2,17 @@
 #include <string.h>
 
 LDL_SoftwareSurface::LDL_SoftwareSurface(const LDL_Point2u& size, uint8_t bpp) :
+	_Bpp(bpp),
 	_Pixels(NULL),
-	_Size(size),
-	_Bpp(bpp)
+	_Size(size)
 {
 	_Pixels = (uint8_t LDL_FAR*)LDL_MALLOC(_Size.x * _Size.y * _Bpp);
 }
 
 LDL_SoftwareSurface::LDL_SoftwareSurface(const LDL_Point2u& size, uint8_t LDL_FAR* bytes, uint8_t bpp) :
+	_Bpp(bpp),
 	_Pixels(bytes),
-	_Size(size),
-	_Bpp(bpp)
+	_Size(size)
 {
 	size_t count = _Size.x * _Size.y * _Bpp;
 

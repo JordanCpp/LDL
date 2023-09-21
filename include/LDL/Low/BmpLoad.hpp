@@ -1,5 +1,5 @@
-#ifndef LDL_BmpLoad_hpp
-#define LDL_BmpLoad_hpp
+#ifndef LDL_Low_BmpLoad_hpp
+#define LDL_Low_BmpLoad_hpp
 
 #include <LDL/Low/Config.hpp>
 #include <LDL/Low/Point2u.hpp>

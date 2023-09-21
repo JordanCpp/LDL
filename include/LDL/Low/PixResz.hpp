@@ -1,5 +1,5 @@
-#ifndef LDL_PixResz_hpp
-#define LDL_PixResz_hpp
+#ifndef LDL_Low_PixResz_hpp
+#define LDL_Low_PixResz_hpp
 
 #include <LDL/Low/Types.hpp>
 

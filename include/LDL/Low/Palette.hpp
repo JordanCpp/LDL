@@ -1,5 +1,5 @@
-#ifndef LDL_Palette_hpp
-#define LDL_Palette_hpp
+#ifndef LDL_Low_Palette_hpp
+#define LDL_Low_Palette_hpp
 
 #include <LDL/Low/Color.hpp>
 

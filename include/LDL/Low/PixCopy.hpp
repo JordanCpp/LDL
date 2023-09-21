@@ -1,5 +1,5 @@
-#ifndef LDL_PixelCopier_hpp
-#define LDL_PixelCopier_hpp
+#ifndef LDL_Low_PixelCopier_hpp
+#define LDL_Low_PixelCopier_hpp
 
 #include <LDL/Low/SoftSurf.hpp>
 

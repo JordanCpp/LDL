@@ -1,5 +1,5 @@
-#ifndef LDL_BaseWindow_hpp
-#define LDL_BaseWindow_hpp
+#ifndef LDL_Low_BaseWindow_hpp
+#define LDL_Low_BaseWindow_hpp
 
 #include <LDL/Low/Point2u.hpp>
 #include <LDL/Low/String.hpp>

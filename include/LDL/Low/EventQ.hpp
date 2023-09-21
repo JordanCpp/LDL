@@ -1,5 +1,5 @@
-#ifndef LDL_RingBuf_hpp
-#define LDL_RingBuf_hpp
+#ifndef LDL_Low_RingBuf_hpp
+#define LDL_Low_RingBuf_hpp
 
 #include <LDL/Low/Types.hpp>
 #include <LDL/Low/Event.hpp>

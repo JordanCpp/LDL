@@ -1,5 +1,5 @@
-#ifndef LDL_Alloctr_hpp
-#define LDL_Alloctr_hpp
+#ifndef LDL_Low_Alloctr_hpp
+#define LDL_Low_Alloctr_hpp
 
 #include <LDL/Low/Types.hpp>
 

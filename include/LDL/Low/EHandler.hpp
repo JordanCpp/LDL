@@ -1,5 +1,5 @@
-#ifndef LDL_EHandler_hpp
-#define LDL_EHandler_hpp
+#ifndef LDL_Low_EHandler_hpp
+#define LDL_Low_EHandler_hpp
 
 #include <LDL/Low/String.hpp>
 

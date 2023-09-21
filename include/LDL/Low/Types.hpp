@@ -1,5 +1,5 @@
-#ifndef LDL_Types_hpp
-#define LDL_Types_hpp
+#ifndef LDL_Low_Types_hpp
+#define LDL_Low_Types_hpp
 
 #include <stddef.h>
 

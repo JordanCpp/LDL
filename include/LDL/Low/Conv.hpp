@@ -1,5 +1,5 @@
-#ifndef LDL_Conv_hpp
-#define LDL_Conv_hpp
+#ifndef LDL_Low_Conv_hpp
+#define LDL_Low_Conv_hpp
 
 #include <LDL/Low/Types.hpp>
 

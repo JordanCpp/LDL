@@ -1,5 +1,5 @@
-#ifndef LDL_TestEqual_hpp
-#define LDL_TestEqual_hpp
+#ifndef LDL_Low_TestEqual_hpp
+#define LDL_Low_TestEqual_hpp
 
 #include <LDL/Low/Types.hpp>
 

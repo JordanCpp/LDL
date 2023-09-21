@@ -1,5 +1,5 @@
-#ifndef LDL_Eventer_hpp
-#define LDL_Eventer_hpp
+#ifndef LDL_Low_Eventer_hpp
+#define LDL_Low_Eventer_hpp
 
 #include <LDL/Low/EventQ.hpp>
 

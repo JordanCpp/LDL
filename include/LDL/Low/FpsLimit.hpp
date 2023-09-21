@@ -1,5 +1,5 @@
-#ifndef LDL_FpsLimit_hpp
-#define LDL_FpsLimit_hpp
+#ifndef LDL_Low_FpsLimit_hpp
+#define LDL_Low_FpsLimit_hpp
 
 #include <LDL/Low/Types.hpp>
 

@@ -1,5 +1,5 @@
-#ifndef LDL_BmpFrmt_hpp
-#define LDL_BmpFrmt_hpp
+#ifndef LDL_Low_BmpFrmt_hpp
+#define LDL_Low_BmpFrmt_hpp
 
 #include <LDL/Low/Types.hpp>
 

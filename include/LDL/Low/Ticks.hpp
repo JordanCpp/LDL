@@ -1,5 +1,5 @@
-#ifndef LDL_Ticks_hpp
-#define LDL_Ticks_hpp
+#ifndef LDL_Low_Ticks_hpp
+#define LDL_Low_Ticks_hpp
 
 #include <LDL/Low/Types.hpp>
 

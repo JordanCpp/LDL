@@ -1,5 +1,5 @@
-#ifndef LDL_RgbArray_hpp
-#define LDL_RgbArray_hpp
+#ifndef LDL_Low_RgbArray_hpp
+#define LDL_Low_RgbArray_hpp
 
 #include <LDL/Low/Point2u.hpp>
 

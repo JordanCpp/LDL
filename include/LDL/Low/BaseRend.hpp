@@ -1,5 +1,5 @@
-#ifndef LDL_BaseRender_hpp
-#define LDL_BaseRender_hpp
+#ifndef LDL_Low_BaseRender_hpp
+#define LDL_Low_BaseRender_hpp
 
 #include <LDL/Low/Point2u.hpp>
 #include <LDL/Low/Color.hpp>

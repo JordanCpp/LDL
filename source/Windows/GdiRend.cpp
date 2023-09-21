@@ -4,9 +4,9 @@
 
 LDL_GdiRender::LDL_GdiRender(LDL_IRenderContext* context, LDL_IWindow* window) :
 	_RenderContext(context),
+	_BaseRender(window->Size()),
 	_Window(window),
-	_GdiWindow(NULL),
-	_BaseRender(window->Size())
+	_GdiWindow(NULL)
 {
 	_GdiWindow = (LDL_GdiWindow*)_Window;
 
@@ -42,18 +42,18 @@ void LDL_GdiRender::Line(const LDL_Point2u& first, const LDL_Point2u& last)
 {
 	POINT point;
 
-	MoveToEx(_GdiWindow->_MainWindow._HDC, first.x, first.y, &point);
-	LineTo(_GdiWindow->_MainWindow._HDC, last.x, last.y);
+	MoveToEx(_GdiWindow->_MainWindow._HDC, (int)first.x, (int)first.y, &point);
+	LineTo(_GdiWindow->_MainWindow._HDC, (int)last.x, (int)last.y);
 }
 
 void LDL_GdiRender::Fill(const LDL_Point2u& pos, const LDL_Point2u& size)
 {
 	RECT rect;
 
-	rect.left   = pos.x;
-	rect.top    = pos.y;
-	rect.right  = pos.x + size.x;
-	rect.bottom = pos.y + size.y;
+	rect.left   = (LONG)pos.x;
+	rect.top    = (LONG)pos.y;
+	rect.right  = (LONG)pos.x + (LONG)size.x;
+	rect.bottom = (LONG)pos.y + (LONG)size.y;
 
 	FillRect(_GdiWindow->_MainWindow._HDC, &rect, _Brush);
 }
@@ -76,5 +76,5 @@ void LDL_GdiRender::Draw(LDL_ISurface* surface, const LDL_Point2u& pos)
 {
 	LDL_GdiSurface* ptr = (LDL_GdiSurface*)surface;
 
-	BitBlt(_GdiWindow->_MainWindow._HDC, 0, 0, ptr->Size().x, ptr->Size().y, ptr->_CompatibleDC, 0, 0, SRCCOPY);
+	BitBlt(_GdiWindow->_MainWindow._HDC, (int)pos.x, (int)pos.y, (int)ptr->Size().x, (int)ptr->Size().y, ptr->_CompatibleDC, 0, 0, SRCCOPY);
 }

@@ -1,5 +1,5 @@
-#ifndef LDL_Enums_hpp
-#define LDL_Enums_hpp
+#ifndef LDL_Low_Enums_hpp
+#define LDL_Low_Enums_hpp
 
 class LDL_ButtonState
 {

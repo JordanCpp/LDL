@@ -10,7 +10,7 @@ LDL_GdiSurface::LDL_GdiSurface(LDL_IWindow* window, const LDL_Point2u& size, uin
 	_GdiWindow = (LDL_GdiWindow*)window;
 
 	_CompatibleDC = CreateCompatibleDC(_GdiWindow->_MainWindow._HDC);
-	_Bitmap = CreateBitmap(_Surface.Size().x, _Surface.Size().y, 1, bpp * 8, _Surface.Pixels());
+	_Bitmap = CreateBitmap((int)_Surface.Size().x, (int)_Surface.Size().y, 1, bpp * 8, _Surface.Pixels());
 	SelectObject(_CompatibleDC, _Bitmap);
 }
 
@@ -24,7 +24,7 @@ LDL_GdiSurface::LDL_GdiSurface(LDL_IWindow* window, const LDL_Point2u& size, uin
 	_GdiWindow = (LDL_GdiWindow*)window;
 
 	_CompatibleDC = CreateCompatibleDC(_GdiWindow->_MainWindow._HDC);
-	_Bitmap = CreateBitmap(_Surface.Size().x, _Surface.Size().y, 1, bpp * 8, _Surface.Pixels());
+	_Bitmap = CreateBitmap((int)_Surface.Size().x, (int)_Surface.Size().y, 1, bpp * 8, _Surface.Pixels());
 	SelectObject(_CompatibleDC, _Bitmap);
 }
 

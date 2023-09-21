@@ -1,5 +1,5 @@
-#ifndef LDL_Events_hpp
-#define LDL_Events_hpp
+#ifndef LDL_Low_Events_hpp
+#define LDL_Low_Events_hpp
 
 #include <LDL/Low/Types.hpp>
 #include <LDL/Low/Enums.hpp>
