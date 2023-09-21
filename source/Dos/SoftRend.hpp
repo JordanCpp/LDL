@@ -5,7 +5,7 @@
 #include <LDL/Low/PixPaint.hpp>
 #include <LDL/Low/PixCopy.hpp>
 #include <LDL/Low/BaseRend.hpp>
-#include <LDL/Low/Surface.hpp>
+#include <LDL/Low/SoftSurf.hpp>
 #include <dos.h>
 
 class LDL_SoftRend : public LDL_IRender
@@ -18,7 +18,7 @@ public:
 	void Clear();
 	void Begin();
 	void End();
-	void Draw(LDL_Surface& surface, const LDL_Point2u& pos);
+	void Draw(LDL_ISurface* surface, const LDL_Point2u& pos);
 private:
 	LDL_PixelPainter _PixelPainter;
 	LDL_PixelCopier _PixelCopier;
@@ -26,7 +26,7 @@ private:
 	LDL_IWindow* _Window;
 	uint8_t LDL_FAR* _Screen;
 	LDL_BaseRender _BaseRender;
-	LDL_Surface _ScreenBuffer;
+	LDL_ISurface* _ScreenBuffer;
 };
 
 #endif

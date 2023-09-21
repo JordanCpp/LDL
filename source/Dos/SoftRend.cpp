@@ -6,7 +6,7 @@ LDL_SoftRend::LDL_SoftRend(LDL_IRenderContext* context, LDL_IWindow* window) :
 	_Window(window),
 	_Screen(NULL),
 	_BaseRender(_Window->Size()),
-	_ScreenBuffer(_BaseRender.Size(), 1)
+	_ScreenBuffer(new LDL_SoftwareSurface(_BaseRender.Size(), 1))
 {
 	_Screen = (uint8_t LDL_FAR*)0xA0000000L;
 
@@ -44,7 +44,7 @@ void LDL_SoftRend::Begin()
 void LDL_SoftRend::End()
 {
 	size_t count = _BaseRender.Size().x * _BaseRender.Size().y;
-	uint8_t LDL_FAR* pixels = _ScreenBuffer.Pixels();
+	uint8_t LDL_FAR* pixels = _ScreenBuffer->Pixels();
 
 	for (size_t i = 0; i < count; i++)
 	{
@@ -52,7 +52,7 @@ void LDL_SoftRend::End()
 	}
 }
 
-void LDL_SoftRend::Draw(LDL_Surface& surface, const LDL_Point2u& pos)
+void LDL_SoftRend::Draw(LDL_ISurface* surface, const LDL_Point2u& pos)
 {
 	_PixelCopier.Draw(_ScreenBuffer, pos, surface);
 }
