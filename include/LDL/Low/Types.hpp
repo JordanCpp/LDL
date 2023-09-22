@@ -3,6 +3,8 @@
 
 #include <stddef.h>
 
+typedef void(*LDL_VoidFuncPtr)(void);
+
 #if defined(_WIN64) || defined(_WIN32)
   #define LDL_COLOR_BGRA
 #else

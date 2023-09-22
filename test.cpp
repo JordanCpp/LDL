@@ -11,7 +11,7 @@
 #include <LDL/Low/Palette.hpp>
 #include <LDL/Low/BmpLoad.hpp>
 #include <LDL/Low/FpsCount.hpp>
-
+#include <LDL/Cpp/Library.hpp>
 #include <stdio.h>
 #include <string.h>
 
@@ -261,80 +261,7 @@ void Tests()
 
 int main()
 {
-	//Tests();
-
-	LDL_ErrorHandler errorHandler;
-	LDL_RenderContext renderContext;
-
-	LDL_Window window(&errorHandler, &renderContext, LDL_Point2u(0, 0), LDL_Point2u(800, 600), "", LDL_WindowMode::Fixed);
-
-	if (errorHandler.Ok())
-	{
-		LDL_Render render(&renderContext, &window);
-
-		LDL_Event report;
-
-		size_t x = 0;
-		size_t y = 0;
-
-		LDL_FpsCounter fpsCounter;
-		LDL_NumberToString convert;
-
-		//LDL_BmpLoader bmpLoader(&errorHandler);
-
-		//bmpLoader.Load("C:/4U5YEL4DEAOYnr9UT7e6bQ.bmp");
-
-		//if (!errorHandler.Ok())
-		//{
-		//	printf("%s\n", errorHandler.Message());
-		//}
-
-		//LDL_Surface image(bmpLoader.Size(), bmpLoader.Pixels(), bmpLoader.Bpp());
-
-		while (window.Running())
-		{
-			fpsCounter.Start();
-
-			while (window.GetEvent(report))
-			{
-				if (report.Type == LDL_Events::IsQuit)
-				{
-					window.StopEvent();
-				}
-
-				if (report.Type == LDL_Events::IsMouseMove)
-				{
-					x = report.Mouse.PosX;
-					y = report.Mouse.PosY;
-				}
-			}
-
-			render.SetColor(LDL_Color(14, 14, 14));
-			render.Clear();
-
-			render.SetColor(LDL_Color(255, 0, 0));
-
-			//render.Line(LDL_Point2u(0, 0), LDL_Point2u(x, y));
-
-			//render.Fill(LDL_Point2u(15, 15), LDL_Point2u(75, 75));
-
-			//render.Draw(image, LDL_Point2u(x, y));
-
-			render.End();
-
-			if (fpsCounter.Calc())
-			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
-				fpsCounter.Clear();
-			}
-
-			window.PollEvents();
-		}
-	}
-	else
-	{
-		printf("%s\n", errorHandler.Message());
-	}
+	Tests();
 
 	return 0;
 }

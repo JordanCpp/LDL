@@ -4,6 +4,9 @@
 #include <LDL/Low/Abstract.hpp>
 #include <LDL/Low/EHandler.hpp>
 
+LDL_ILibrary* LibraryCreate(const char* path);
+void Destroy(LDL_ILibrary* library);
+
 LDL_ISurface* SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow* window, const LDL_Point2u& size, uint8_t bpp);
 LDL_ISurface* SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow* window, const LDL_Point2u& size, uint8_t LDL_FAR* bytes, uint8_t bpp);
 void Destroy(LDL_ISurface* surface);

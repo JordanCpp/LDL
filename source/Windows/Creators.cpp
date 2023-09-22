@@ -5,6 +5,17 @@
 #include "GdiWin.hpp"
 #include "RContext.hpp"
 #include "GdiSurf.hpp"
+#include "Library.hpp"
+
+LDL_ILibrary* LibraryCreate(const char* path)
+{
+    return new LDL_Library(path);
+}
+
+void Destroy(LDL_ILibrary* library)
+{
+    delete library;
+}
 
 LDL_ISurface* SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow * window, const LDL_Point2u& size, uint8_t bpp)
 {

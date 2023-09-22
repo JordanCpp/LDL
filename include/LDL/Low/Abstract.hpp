@@ -62,4 +62,12 @@ public:
 private:
 };
 
+class LDL_ILibrary
+{
+public:
+	virtual ~LDL_ILibrary() {};
+	virtual LDL_VoidFuncPtr Function(const char* name) = 0;
+private:
+};
+
 #endif
