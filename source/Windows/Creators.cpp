@@ -6,6 +6,18 @@
 #include "RContext.hpp"
 #include "GdiSurf.hpp"
 #include "Library.hpp"
+#include "GLLib.hpp"
+
+LDL_IOpenGLLibrary* OpenGLLibraryCreate()
+{
+    return new LDL_ImpOpenGLLibrary;
+}
+
+void Destroy(LDL_IOpenGLLibrary* library)
+{
+    delete library;
+}
+
 
 LDL_ILibrary* LibraryCreate(const char* path)
 {

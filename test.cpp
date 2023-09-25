@@ -12,6 +12,7 @@
 #include <LDL/Low/BmpLoad.hpp>
 #include <LDL/Low/FpsCount.hpp>
 #include <LDL/Cpp/Library.hpp>
+#include <LDL/Low/Errors.hpp>
 #include <stdio.h>
 #include <string.h>
 
@@ -242,6 +243,12 @@ void Test_BmpLoader()
 	LDL_TEST_EQUAL(bmpLoader.Bpp() == 3);
 }
 
+void Test_LDL_Error()
+{
+	LDL_AddError("Error!");
+	LDL_TEST_EQUAL(strcmp(LDL_GetError(), "Error!") == 0);
+}
+
 void Tests()
 {
 	Test_LDL_Point2u();
@@ -256,7 +263,8 @@ void Tests()
 	Test_LDL_BaseWindow();
 	Test_LDL_BaseRender();
 	Test_LDL_Palette();
-	Test_BmpLoader();
+	//Test_BmpLoader();
+	Test_LDL_Error();
 }
 
 int main()

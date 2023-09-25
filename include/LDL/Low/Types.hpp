@@ -22,6 +22,9 @@ typedef signed long    int32_t;
 typedef unsigned long  uint32_t;
 
 typedef int32_t        intmax_t;
+typedef size_t         intptr_t;
+
+typedef unsigned long int uint64_t;
 
 #define bool  int 
 #define true  1 

@@ -1,16 +1,19 @@
 project(LDL)
 
 add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+add_definitions(-D_LDL_STATIC_LIBRARY)
 
 include_directories("../../include")
 
 file(GLOB_RECURSE SOURCE_FILES 
 "../../source/Renders/*.cpp"
 "../../source/Shared/*.cpp"
-"../../source/Windows/*.cpp")
+"../../source/Windows/*.cpp"
+"../../source/OpenGL/*.cpp"
+"../../source/WinGL/*.cpp")
 
 add_library(LDL STATIC ${SOURCE_FILES})
-target_link_libraries(LDL winmm)
+target_link_libraries(LDL winmm opengl32)
 
 add_executable(test "../../test.cpp")
 target_link_libraries(test LDL)

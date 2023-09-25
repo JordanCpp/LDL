@@ -1,0 +1,132 @@
+#ifndef LDL_OpenGL_OpenGL3_3_hpp
+#define LDL_OpenGL_OpenGL3_3_hpp
+
+#include <LDL/OpenGL/OpenGL3_2.hpp>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef void (LDL_API_CALL PFNGLBINDFRAGDATALOCATIONINDEXEDPROC)(GLuint program, GLuint colorNumber, GLuint index, const GLchar* name);
+typedef GLint(LDL_API_CALL PFNGLGETFRAGDATAINDEXPROC)(GLuint program, const GLchar* name);
+typedef void (LDL_API_CALL PFNGLGENSAMPLERSPROC)(GLsizei count, GLuint* samplers);
+typedef void (LDL_API_CALL PFNGLDELETESAMPLERSPROC)(GLsizei count, const GLuint* samplers);
+typedef GLboolean(LDL_API_CALL PFNGLISSAMPLERPROC)(GLuint sampler);
+typedef void (LDL_API_CALL PFNGLBINDSAMPLERPROC)(GLuint unit, GLuint sampler);
+typedef void (LDL_API_CALL PFNGLSAMPLERPARAMETERIPROC)(GLuint sampler, GLenum pname, GLint param);
+typedef void (LDL_API_CALL PFNGLSAMPLERPARAMETERIVPROC)(GLuint sampler, GLenum pname, const GLint* param);
+typedef void (LDL_API_CALL PFNGLSAMPLERPARAMETERFPROC)(GLuint sampler, GLenum pname, GLfloat param);
+typedef void (LDL_API_CALL PFNGLSAMPLERPARAMETERFVPROC)(GLuint sampler, GLenum pname, const GLfloat* param);
+typedef void (LDL_API_CALL PFNGLSAMPLERPARAMETERIIVPROC)(GLuint sampler, GLenum pname, const GLint* param);
+typedef void (LDL_API_CALL PFNGLSAMPLERPARAMETERIUIVPROC)(GLuint sampler, GLenum pname, const GLuint* param);
+typedef void (LDL_API_CALL PFNGLGETSAMPLERPARAMETERIVPROC)(GLuint sampler, GLenum pname, GLint* params);
+typedef void (LDL_API_CALL PFNGLGETSAMPLERPARAMETERIIVPROC)(GLuint sampler, GLenum pname, GLint* params);
+typedef void (LDL_API_CALL PFNGLGETSAMPLERPARAMETERFVPROC)(GLuint sampler, GLenum pname, GLfloat* params);
+typedef void (LDL_API_CALL PFNGLGETSAMPLERPARAMETERIUIVPROC)(GLuint sampler, GLenum pname, GLuint* params);
+typedef void (LDL_API_CALL PFNGLQUERYCOUNTERPROC)(GLuint id, GLenum target);
+typedef void (LDL_API_CALL PFNGLGETQUERYOBJECTI64VPROC)(GLuint id, GLenum pname, GLint64* params);
+typedef void (LDL_API_CALL PFNGLGETQUERYOBJECTUI64VPROC)(GLuint id, GLenum pname, GLuint64* params);
+typedef void (LDL_API_CALL PFNGLVERTEXATTRIBDIVISORPROC)(GLuint index, GLuint divisor);
+typedef void (LDL_API_CALL PFNGLVERTEXATTRIBP1UIPROC)(GLuint index, GLenum type, GLboolean normalized, GLuint value);
+typedef void (LDL_API_CALL PFNGLVERTEXATTRIBP1UIVPROC)(GLuint index, GLenum type, GLboolean normalized, const GLuint* value);
+typedef void (LDL_API_CALL PFNGLVERTEXATTRIBP2UIPROC)(GLuint index, GLenum type, GLboolean normalized, GLuint value);
+typedef void (LDL_API_CALL PFNGLVERTEXATTRIBP2UIVPROC)(GLuint index, GLenum type, GLboolean normalized, const GLuint* value);
+typedef void (LDL_API_CALL PFNGLVERTEXATTRIBP3UIPROC)(GLuint index, GLenum type, GLboolean normalized, GLuint value);
+typedef void (LDL_API_CALL PFNGLVERTEXATTRIBP3UIVPROC)(GLuint index, GLenum type, GLboolean normalized, const GLuint* value);
+typedef void (LDL_API_CALL PFNGLVERTEXATTRIBP4UIPROC)(GLuint index, GLenum type, GLboolean normalized, GLuint value);
+typedef void (LDL_API_CALL PFNGLVERTEXATTRIBP4UIVPROC)(GLuint index, GLenum type, GLboolean normalized, const GLuint* value);
+typedef void (LDL_API_CALL PFNGLVERTEXP2UIPROC)(GLenum type, GLuint value);
+typedef void (LDL_API_CALL PFNGLVERTEXP2UIVPROC)(GLenum type, const GLuint* value);
+typedef void (LDL_API_CALL PFNGLVERTEXP3UIPROC)(GLenum type, GLuint value);
+typedef void (LDL_API_CALL PFNGLVERTEXP3UIVPROC)(GLenum type, const GLuint* value);
+typedef void (LDL_API_CALL PFNGLVERTEXP4UIPROC)(GLenum type, GLuint value);
+typedef void (LDL_API_CALL PFNGLVERTEXP4UIVPROC)(GLenum type, const GLuint* value);
+typedef void (LDL_API_CALL PFNGLTEXCOORDP1UIPROC)(GLenum type, GLuint coords);
+typedef void (LDL_API_CALL PFNGLTEXCOORDP1UIVPROC)(GLenum type, const GLuint* coords);
+typedef void (LDL_API_CALL PFNGLTEXCOORDP2UIPROC)(GLenum type, GLuint coords);
+typedef void (LDL_API_CALL PFNGLTEXCOORDP2UIVPROC)(GLenum type, const GLuint* coords);
+typedef void (LDL_API_CALL PFNGLTEXCOORDP3UIPROC)(GLenum type, GLuint coords);
+typedef void (LDL_API_CALL PFNGLTEXCOORDP3UIVPROC)(GLenum type, const GLuint* coords);
+typedef void (LDL_API_CALL PFNGLTEXCOORDP4UIPROC)(GLenum type, GLuint coords);
+typedef void (LDL_API_CALL PFNGLTEXCOORDP4UIVPROC)(GLenum type, const GLuint* coords);
+typedef void (LDL_API_CALL PFNGLMULTITEXCOORDP1UIPROC)(GLenum texture, GLenum type, GLuint coords);
+typedef void (LDL_API_CALL PFNGLMULTITEXCOORDP1UIVPROC)(GLenum texture, GLenum type, const GLuint* coords);
+typedef void (LDL_API_CALL PFNGLMULTITEXCOORDP2UIPROC)(GLenum texture, GLenum type, GLuint coords);
+typedef void (LDL_API_CALL PFNGLMULTITEXCOORDP2UIVPROC)(GLenum texture, GLenum type, const GLuint* coords);
+typedef void (LDL_API_CALL PFNGLMULTITEXCOORDP3UIPROC)(GLenum texture, GLenum type, GLuint coords);
+typedef void (LDL_API_CALL PFNGLMULTITEXCOORDP3UIVPROC)(GLenum texture, GLenum type, const GLuint* coords);
+typedef void (LDL_API_CALL PFNGLMULTITEXCOORDP4UIPROC)(GLenum texture, GLenum type, GLuint coords);
+typedef void (LDL_API_CALL PFNGLMULTITEXCOORDP4UIVPROC)(GLenum texture, GLenum type, const GLuint* coords);
+typedef void (LDL_API_CALL PFNGLNORMALP3UIPROC)(GLenum type, GLuint coords);
+typedef void (LDL_API_CALL PFNGLNORMALP3UIVPROC)(GLenum type, const GLuint* coords);
+typedef void (LDL_API_CALL PFNGLCOLORP3UIPROC)(GLenum type, GLuint color);
+typedef void (LDL_API_CALL PFNGLCOLORP3UIVPROC)(GLenum type, const GLuint* color);
+typedef void (LDL_API_CALL PFNGLCOLORP4UIPROC)(GLenum type, GLuint color);
+typedef void (LDL_API_CALL PFNGLCOLORP4UIVPROC)(GLenum type, const GLuint* color);
+typedef void (LDL_API_CALL PFNGLSECONDARYCOLORP3UIPROC)(GLenum type, GLuint color);
+typedef void (LDL_API_CALL PFNGLSECONDARYCOLORP3UIVPROC)(GLenum type, const GLuint* color);
+
+LDL_API_ENTRY PFNGLBINDFRAGDATALOCATIONINDEXEDPROC glBindFragDataLocationIndexed;
+LDL_API_ENTRY PFNGLGETFRAGDATAINDEXPROC glGetFragDataIndex;
+LDL_API_ENTRY PFNGLGENSAMPLERSPROC glGenSamplers;
+LDL_API_ENTRY PFNGLDELETESAMPLERSPROC glDeleteSamplers;
+LDL_API_ENTRY PFNGLISSAMPLERPROC glIsSampler;
+LDL_API_ENTRY PFNGLBINDSAMPLERPROC glBindSampler;
+LDL_API_ENTRY PFNGLSAMPLERPARAMETERIPROC glSamplerParameteri;
+LDL_API_ENTRY PFNGLSAMPLERPARAMETERIVPROC glSamplerParameteriv;
+LDL_API_ENTRY PFNGLSAMPLERPARAMETERFPROC glSamplerParameterf;
+LDL_API_ENTRY PFNGLSAMPLERPARAMETERFVPROC glSamplerParameterfv;
+LDL_API_ENTRY PFNGLSAMPLERPARAMETERIIVPROC glSamplerParameterIiv;
+LDL_API_ENTRY PFNGLSAMPLERPARAMETERIUIVPROC glSamplerParameterIuiv;
+LDL_API_ENTRY PFNGLGETSAMPLERPARAMETERIVPROC glGetSamplerParameteriv;
+LDL_API_ENTRY PFNGLGETSAMPLERPARAMETERIIVPROC glGetSamplerParameterIiv;
+LDL_API_ENTRY PFNGLGETSAMPLERPARAMETERFVPROC glGetSamplerParameterfv;
+LDL_API_ENTRY PFNGLGETSAMPLERPARAMETERIUIVPROC glGetSamplerParameterIuiv;
+LDL_API_ENTRY PFNGLQUERYCOUNTERPROC glQueryCounter;
+LDL_API_ENTRY PFNGLGETQUERYOBJECTI64VPROC glGetQueryObjecti64v;
+LDL_API_ENTRY PFNGLGETQUERYOBJECTUI64VPROC glGetQueryObjectui64v;
+LDL_API_ENTRY PFNGLVERTEXATTRIBDIVISORPROC glVertexAttribDivisor;
+LDL_API_ENTRY PFNGLVERTEXATTRIBP1UIPROC glVertexAttribP1ui;
+LDL_API_ENTRY PFNGLVERTEXATTRIBP1UIVPROC glVertexAttribP1uiv;
+LDL_API_ENTRY PFNGLVERTEXATTRIBP2UIPROC glVertexAttribP2ui;
+LDL_API_ENTRY PFNGLVERTEXATTRIBP2UIVPROC glVertexAttribP2uiv;
+LDL_API_ENTRY PFNGLVERTEXATTRIBP3UIPROC glVertexAttribP3ui;
+LDL_API_ENTRY PFNGLVERTEXATTRIBP3UIVPROC glVertexAttribP3uiv;
+LDL_API_ENTRY PFNGLVERTEXATTRIBP4UIPROC glVertexAttribP4ui;
+LDL_API_ENTRY PFNGLVERTEXATTRIBP4UIVPROC glVertexAttribP4uiv;
+LDL_API_ENTRY PFNGLVERTEXP2UIPROC glVertexP2ui;
+LDL_API_ENTRY PFNGLVERTEXP2UIVPROC glVertexP2uiv;
+LDL_API_ENTRY PFNGLVERTEXP3UIPROC glVertexP3ui;
+LDL_API_ENTRY PFNGLVERTEXP3UIVPROC glVertexP3uiv;
+LDL_API_ENTRY PFNGLVERTEXP4UIPROC glVertexP4ui;
+LDL_API_ENTRY PFNGLVERTEXP4UIVPROC glVertexP4uiv;
+LDL_API_ENTRY PFNGLTEXCOORDP1UIPROC glTexCoordP1ui;
+LDL_API_ENTRY PFNGLTEXCOORDP1UIVPROC glTexCoordP1uiv;
+LDL_API_ENTRY PFNGLTEXCOORDP2UIPROC glTexCoordP2ui;
+LDL_API_ENTRY PFNGLTEXCOORDP2UIVPROC glTexCoordP2uiv;
+LDL_API_ENTRY PFNGLTEXCOORDP3UIPROC glTexCoordP3ui;
+LDL_API_ENTRY PFNGLTEXCOORDP3UIVPROC glTexCoordP3uiv;
+LDL_API_ENTRY PFNGLTEXCOORDP4UIPROC glTexCoordP4ui;
+LDL_API_ENTRY PFNGLTEXCOORDP4UIVPROC glTexCoordP4uiv;
+LDL_API_ENTRY PFNGLMULTITEXCOORDP1UIPROC glMultiTexCoordP1ui;
+LDL_API_ENTRY PFNGLMULTITEXCOORDP1UIVPROC glMultiTexCoordP1uiv;
+LDL_API_ENTRY PFNGLMULTITEXCOORDP2UIPROC glMultiTexCoordP2ui;
+LDL_API_ENTRY PFNGLMULTITEXCOORDP2UIVPROC glMultiTexCoordP2uiv;
+LDL_API_ENTRY PFNGLMULTITEXCOORDP3UIPROC glMultiTexCoordP3ui;
+LDL_API_ENTRY PFNGLMULTITEXCOORDP3UIVPROC glMultiTexCoordP3uiv;
+LDL_API_ENTRY PFNGLMULTITEXCOORDP4UIPROC glMultiTexCoordP4ui;
+LDL_API_ENTRY PFNGLMULTITEXCOORDP4UIVPROC glMultiTexCoordP4uiv;
+LDL_API_ENTRY PFNGLNORMALP3UIPROC glNormalP3ui;
+LDL_API_ENTRY PFNGLNORMALP3UIVPROC glNormalP3uiv;
+LDL_API_ENTRY PFNGLCOLORP3UIPROC glColorP3ui;
+LDL_API_ENTRY PFNGLCOLORP3UIVPROC glColorP3uiv;
+LDL_API_ENTRY PFNGLCOLORP4UIPROC glColorP4ui;
+LDL_API_ENTRY PFNGLCOLORP4UIVPROC glColorP4uiv;
+LDL_API_ENTRY PFNGLSECONDARYCOLORP3UIPROC glSecondaryColorP3ui;
+LDL_API_ENTRY PFNGLSECONDARYCOLORP3UIVPROC glSecondaryColorP3uiv;
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif     

@@ -4,6 +4,9 @@
 #include <LDL/Low/Abstract.hpp>
 #include <LDL/Low/EHandler.hpp>
 
+LDL_IOpenGLLibrary* OpenGLLibraryCreate();
+void Destroy(LDL_IOpenGLLibrary* library);
+
 LDL_ILibrary* LibraryCreate(const char* path);
 void Destroy(LDL_ILibrary* library);
 

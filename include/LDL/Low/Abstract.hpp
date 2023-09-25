@@ -6,6 +6,14 @@
 #include <LDL/Low/Event.hpp>
 #include <LDL/Low/Config.hpp>
 
+class LDL_IOpenGLLibrary
+{
+public:
+	virtual ~LDL_IOpenGLLibrary() {};
+	virtual LDL_VoidFuncPtr Function(const char* name) = 0;
+private:
+};
+
 class LDL_ITexture
 {
 public:

@@ -1,4 +1,4 @@
-#ifndef LDL_WindowsLibrary_hpp
+#ifndef LDL_Windows_Library_hpp
 #define LDL_Windows_Library_hpp
 
 #include <LDL/Low/Abstract.hpp>
