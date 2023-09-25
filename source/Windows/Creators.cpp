@@ -7,6 +7,8 @@
 #include "GdiSurf.hpp"
 #include "Library.hpp"
 #include "GLLib.hpp"
+#include "../WinGL/GL1Win.hpp"
+#include "../Renders/GL1Rend.hpp"
 
 LDL_IOpenGLLibrary* OpenGLLibraryCreate()
 {
@@ -90,6 +92,9 @@ LDL_IRender* RenderCreate(LDL_IRenderContext* context, LDL_IWindow* window)
     case LDL_RenderMode::GDI:
         result = new LDL_GdiRender(context, window);
         break;
+    case LDL_RenderMode::OpenGL1:
+        result = new LDL_GL1Render(context, window);
+        break;
     default:
         break;
     }
@@ -115,6 +120,9 @@ LDL_IWindow* WindowCreate(LDL_IRenderContext* context, const LDL_Point2u& pos, c
         break;
     case LDL_RenderMode::GDI:
         result = new LDL_GdiWindow(pos, size, title, mode);
+        break;
+    case LDL_RenderMode::OpenGL1:
+        result = new LDL_GL1Window(pos, size, title, mode);
         break;
     default:
         break;

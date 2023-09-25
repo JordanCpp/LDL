@@ -1,5 +1,7 @@
 #include <LDL/Low/Errors.hpp>
 #include <LDL/Low/EHandler.hpp>
+#include <stdio.h>
+#include <stdlib.h>
 
 static LDL_ErrorHandler _ErrorHandler;
 
@@ -21,4 +23,10 @@ void LDL_AddError(const char* error)
 void LDL_AddError(const char* error, const char* detail)
 {
 	_ErrorHandler.Message(error, detail);
+}
+
+void LDL_Alert(const char* error)
+{
+	printf("%s\n", error);
+	abort();
 }

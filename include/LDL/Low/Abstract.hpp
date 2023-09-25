@@ -17,6 +17,9 @@ private:
 class LDL_ITexture
 {
 public:
+	virtual ~LDL_ITexture() {};
+	const LDL_Point2u& Size();
+	const LDL_Point2u& Quad();
 private:
 };
 

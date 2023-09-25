@@ -1,5 +1,5 @@
-#ifndef LDL_SoftRend_hpp
-#define LDL_SoftRend_hpp
+#ifndef LDL_Renders_SoftRend_hpp
+#define LDL_Renders_SoftRend_hpp
 
 #include <LDL/Low/Abstract.hpp>
 #include <LDL/Low/BaseRend.hpp>
