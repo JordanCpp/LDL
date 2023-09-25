@@ -6,13 +6,12 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL.dll -DLDL_SHARED_LI
 ..\source\Shared\*.cpp  ^
 ..\source\Windows\*.cpp ^
 ..\source\OpenGL\*.cpp  ^
+..\source\GLU\*.cpp ^
 ..\source\WinGL\*.cpp   ^
 -I..\include\ ^
 -lgdi32 ^
 -lopengl32 ^
 -lwinmm ^
--Wl,--out-implib,LDL.lib 
-
-del *.obj
+-Wl,--out-implib,LDL.lib
 
 pause
