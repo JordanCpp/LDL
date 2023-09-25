@@ -1,7 +1,7 @@
 #ifndef LDL_Renders_GL1Rend_hpp
 #define LDL_Renders_GL1Rend_hpp
 
-#include "../WinGL/GL1Win.hpp"
+#include <LDL/Low/Abstract.hpp>
 #include <LDL/Low/Mat4f.hpp>
 
 class LDL_GL1Render : public LDL_IRender

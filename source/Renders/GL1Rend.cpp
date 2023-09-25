@@ -1,7 +1,12 @@
 #include "GL1Rend.hpp"
 #include "OpenGL.hpp"
-#include "../WinGL/GL1Win.hpp"
 #include <LDL/OpenGL/OpenGL1_0.hpp>
+
+#if defined(_WIN32)
+#include "../WinGL/GL1Win.hpp"
+#elif defined(__unix__)
+#include "../Linux/GL1Win.hpp"
+#endif
 
 LDL_GL1Render::LDL_GL1Render(LDL_IRenderContext* context, LDL_IWindow* window) :
 	_RenderContext(context),

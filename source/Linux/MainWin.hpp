@@ -12,7 +12,7 @@
 class LDL_MainWinow
 {
 public:
-	LDL_MainWinow(LDL_ErrorHandler * errorHandler, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode);
+	LDL_MainWinow(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode);
 	~LDL_MainWinow();
 	size_t ConvertKey(size_t key);
 	bool Running();
@@ -26,7 +26,6 @@ public:
 	const LDL_Point2u& Pos();
 private:
 	LDL_BaseWindow    _BaseWindow;
-	LDL_ErrorHandler* _ErrorHandler;
 	LDL_Eventer       _Eventer;
 public:
 	Display*          _Display;

@@ -9,9 +9,11 @@ include_directories("../../include")
 file(GLOB_RECURSE SOURCE_FILES 
 "../../source/Renders/*.cpp"
 "../../source/Shared/*.cpp"
-"../../source/Linux/*.cpp")
+"../../source/Linux/*.cpp"
+"../../source/OpenGL/*.cpp")
 
 add_library(LDL STATIC ${SOURCE_FILES})
+target_link_libraries(LDL GL dl)
 
 add_executable(test "../../test.cpp")
 target_link_libraries(test LDL)
@@ -24,3 +26,6 @@ target_link_libraries(cpp02 LDL)
 
 add_executable(cpp03 "../../examples/cpp/cpp03.cpp")
 target_link_libraries(cpp03 LDL)
+
+add_executable(cpp04 "../../examples/cpp/cpp04.cpp")
+target_link_libraries(cpp04 LDL)

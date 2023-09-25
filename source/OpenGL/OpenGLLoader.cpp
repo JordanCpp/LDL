@@ -1,6 +1,6 @@
 #include <LDL/OpenGL/OpenGLLoader.hpp>
 #include <LDL/OpenGL/OpenGL4_6.hpp>
-#include <LDL/low/Conv.hpp>
+#include <LDL/Low/Conv.hpp>
 #include <LDL/Low/String.hpp>
 
 LDL_OpenGLLoader::LDL_OpenGLLoader() :

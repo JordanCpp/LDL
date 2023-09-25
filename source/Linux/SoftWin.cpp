@@ -1,8 +1,7 @@
 #include "SoftWin.hpp"
 
-LDL_SoftWindow::LDL_SoftWindow(LDL_ErrorHandler* errorHandler, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
-	_ErrorHandler(errorHandler),
-	_MainWindow(errorHandler, pos, size, title, mode),
+LDL_SoftWindow::LDL_SoftWindow(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
+	_MainWindow(pos, size, title, mode),
 	_Screen(NULL)
 {
 	//XClearWindow(_MainWindow._Display, _MainWindow._Window);

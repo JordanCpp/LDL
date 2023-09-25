@@ -241,9 +241,8 @@ size_t LDL_MainWinow::ConvertKey(size_t key)
     return LDL_KeyboardKey::Unknown;
 }
 
-LDL_MainWinow::LDL_MainWinow(LDL_ErrorHandler* errorHandler, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
+LDL_MainWinow::LDL_MainWinow(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
     _BaseWindow(pos, size, title),
-    _ErrorHandler(errorHandler),
     _EventMask(eventMask)
 {
     _Display = XOpenDisplay(NULL);
@@ -366,9 +365,9 @@ const char* LDL_MainWinow::Title()
     return _BaseWindow.Title();
 }
 
-const LDL_Point2u& LDL_MainWinow::Size()
+const LDL_Point2u &LDL_MainWinow::Size()
 {
-   XWindowAttributes attributes;
+    XWindowAttributes attributes;
     XGetWindowAttributes(_Display, _Window, &attributes);
 
     _BaseWindow.Size(LDL_Point2u(attributes.width, attributes.height));

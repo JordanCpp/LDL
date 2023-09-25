@@ -1,7 +1,31 @@
 #include <LDL/Low/Creators.hpp>
 #include "../Renders/SoftRend.hpp"
+#include "../Renders/GL1Rend.hpp"
 #include "SoftWin.hpp"
+#include "GL1Win.hpp"
 #include "RContext.hpp"
+#include "../Linux/Library.hpp"
+#include "GLLib.hpp"
+
+LDL_IOpenGLLibrary* OpenGLLibraryCreate()
+{
+    return new LDL_ImpOpenGLLibrary;
+}
+
+void Destroy(LDL_IOpenGLLibrary* library)
+{
+    delete library;
+}
+
+LDL_ILibrary* LibraryCreate(const char* path)
+{
+    return new LDL_Library(path);
+}
+
+void Destroy(LDL_ILibrary* library)
+{
+    delete library;
+}
 
 LDL_ISurface* SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow * window, const LDL_Point2u& size, uint8_t bpp)
 {
@@ -34,9 +58,6 @@ LDL_ISurface* SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow* wind
     case LDL_RenderMode::Software:
         result = new LDL_SoftwareSurface(size, bytes, bpp);
         break;
-    case LDL_RenderMode::GDI:
-
-        break;
     default:
         break;
     }
@@ -51,7 +72,23 @@ void Destroy(LDL_ISurface* surface)
 
 LDL_IRender* RenderCreate(LDL_IRenderContext* context, LDL_IWindow* window)
 {
-	return new LDL_SoftRender(context, window);
+    size_t renderMode = context->Mode();
+
+    LDL_IRender* result = NULL;
+
+    switch (renderMode)
+    {
+    case LDL_RenderMode::Software:
+        result = new LDL_SoftRender(context, window);
+        break;
+    case LDL_RenderMode::OpenGL1:
+        result = new LDL_GL1Render(context, window);
+        break;
+    default:
+        break;
+    }
+
+    return result;
 }
 
 void Destroy(LDL_IRender* render)
@@ -59,9 +96,25 @@ void Destroy(LDL_IRender* render)
 	delete render;
 }
 
-LDL_IWindow* WindowCreate(LDL_ErrorHandler* errorHandler, LDL_IRenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode)
+LDL_IWindow* WindowCreate(LDL_IRenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode)
 {
-	return new LDL_SoftWindow(errorHandler, pos, size, title, mode);
+    size_t renderMode = context->Mode();
+
+    LDL_IWindow* result = NULL;
+
+    switch (renderMode)
+    {
+    case LDL_RenderMode::Software:
+        result = new LDL_SoftWindow(pos, size, title, mode);
+        break;
+    case LDL_RenderMode::OpenGL1:
+        result = new LDL_GL1Window(pos, size, title, mode);
+        break;
+    default:
+        break;
+    }
+
+    return result;
 }
 
 void Destroy(LDL_IWindow* window)
