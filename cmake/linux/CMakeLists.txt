@@ -10,6 +10,7 @@ file(GLOB_RECURSE SOURCE_FILES
 "../../source/Renders/*.cpp"
 "../../source/Shared/*.cpp"
 "../../source/Linux/*.cpp"
+"../../source/GLU/*.cpp"
 "../../source/OpenGL/*.cpp")
 
 add_library(LDL STATIC ${SOURCE_FILES})

@@ -54,7 +54,7 @@ LDL_GL1Window::LDL_GL1Window(const LDL_Point2u& pos, const LDL_Point2u& size, co
 
 LDL_GL1Window::~LDL_GL1Window()
 {
-  glXDestroyContext(_MainWindow._Display, _Context);
+    glXDestroyContext(_MainWindow._Display, _Context);
 }
 
 bool LDL_GL1Window::Present()
