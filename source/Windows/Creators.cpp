@@ -102,7 +102,7 @@ void Destroy(LDL_IRender* render)
 	delete render;
 }
 
-LDL_IWindow* WindowCreate(LDL_ErrorHandler* errorHandler, LDL_IRenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode)
+LDL_IWindow* WindowCreate(LDL_IRenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode)
 {
     size_t renderMode = context->Mode();
 
@@ -111,10 +111,10 @@ LDL_IWindow* WindowCreate(LDL_ErrorHandler* errorHandler, LDL_IRenderContext* co
     switch (renderMode)
     {
     case LDL_RenderMode::Software:
-        result = new LDL_SoftWindow(errorHandler, pos, size, title, mode);
+        result = new LDL_SoftWindow(pos, size, title, mode);
         break;
     case LDL_RenderMode::GDI:
-        result = new LDL_GdiWindow(errorHandler, pos, size, title, mode);
+        result = new LDL_GdiWindow(pos, size, title, mode);
         break;
     default:
         break;

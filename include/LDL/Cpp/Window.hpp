@@ -8,9 +8,9 @@
 class LDL_Window
 {
 public:
-	LDL_Window(LDL_ErrorHandler* errorHandler, LDL_RenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode = LDL_WindowMode::Resized)
+	LDL_Window(LDL_RenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode = LDL_WindowMode::Resized)
 	{
-		_Window = WindowCreate(errorHandler, context->GetRenderContext(), pos, size, title, mode);
+		_Window = WindowCreate(context->GetRenderContext(), pos, size, title, mode);
 	}
 
 	~LDL_Window()

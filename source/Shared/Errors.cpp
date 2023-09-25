@@ -3,12 +3,22 @@
 
 static LDL_ErrorHandler _ErrorHandler;
 
+bool LDL_IsError()
+{
+	return _ErrorHandler.Ok() != true;
+}
+
 const char* LDL_GetError()
 {
 	return _ErrorHandler.Message();
 }
 
-void LDL_AddError(const char* name)
+void LDL_AddError(const char* error)
 {
-	_ErrorHandler.Message(name);
+	_ErrorHandler.Message(error);
+}
+
+void LDL_AddError(const char* error, const char* detail)
+{
+	_ErrorHandler.Message(error, detail);
 }

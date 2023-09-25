@@ -91,9 +91,8 @@ void Test_LDL_EventQueue()
 
 void Test_LDL_Surface()
 {
-	LDL_ErrorHandler errorHandler;
 	LDL_RenderContext renderContext;
-	LDL_Window window(&errorHandler, &renderContext, LDL_Point2u(0, 0), LDL_Point2u(800, 600), "", LDL_WindowMode::Fixed);
+	LDL_Window window(&renderContext, LDL_Point2u(0, 0), LDL_Point2u(800, 600), "", LDL_WindowMode::Fixed);
 
 	LDL_Surface surface(&renderContext, &window, LDL_Point2u(640, 480), 1);
 
@@ -233,11 +232,9 @@ void Test_LDL_Palette()
 
 void Test_BmpLoader()
 {
-	LDL_ErrorHandler errorHandler;
-	LDL_BmpLoader bmpLoader(&errorHandler);
+	LDL_BmpLoader bmpLoader;
 	
-	bmpLoader.Load("C:/4U5YEL4DEAOYnr9UT7e6bQ.bmp");
-	LDL_TEST_EQUAL(errorHandler.Ok() == true);
+	LDL_TEST_EQUAL(bmpLoader.Load("C:/4U5YEL4DEAOYnr9UT7e6bQ.bmp") == true);
 	LDL_TEST_EQUAL(bmpLoader.Size().x == 536);
 	LDL_TEST_EQUAL(bmpLoader.Size().y == 349);
 	LDL_TEST_EQUAL(bmpLoader.Bpp() == 3);
@@ -245,7 +242,10 @@ void Test_BmpLoader()
 
 void Test_LDL_Error()
 {
+	LDL_TEST_EQUAL(LDL_IsError() == false);
+
 	LDL_AddError("Error!");
+	LDL_TEST_EQUAL(LDL_IsError() == true);
 	LDL_TEST_EQUAL(strcmp(LDL_GetError(), "Error!") == 0);
 }
 

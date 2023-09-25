@@ -1,8 +1,8 @@
 #include "SoftWin.hpp"
+#include <LDL/Low/Errors.hpp>
 
-LDL_SoftWindow::LDL_SoftWindow(LDL_ErrorHandler* errorHandler, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
-	_ErrorHandler(errorHandler),
-	_MainWindow(errorHandler, pos, size, title, mode)
+LDL_SoftWindow::LDL_SoftWindow(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
+	_MainWindow(pos, size, title, mode)
 {
 	ZeroMemory(&_BITMAPINFO, sizeof(_BITMAPINFO));
 }
@@ -23,7 +23,7 @@ void LDL_SoftWindow::Present(LDL_ISurface* surface)
 
 	if (SetDIBitsToDevice(_MainWindow._HDC, 0, 0, (DWORD)Size().x, (DWORD)Size().y, 0, 0, 0, (UINT)Size().y, surface->Pixels(), &_BITMAPINFO, DIB_RGB_COLORS) == 0)
 	{
-		_ErrorHandler->Message("SetDIBitsToDevice failed");
+		LDL_AddError("SetDIBitsToDevice failed");
 	}
 }
 

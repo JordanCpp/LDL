@@ -7,7 +7,7 @@
 class LDL_SoftWindow: public LDL_IWindow
 {
 public:
-	LDL_SoftWindow(LDL_ErrorHandler* errorHandler, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode);
+	LDL_SoftWindow(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode);
 	bool Running();
 	void Present(LDL_ISurface* surface);
 	void PollEvents();
@@ -19,7 +19,6 @@ public:
 	const LDL_Point2u& Size();
 	const LDL_Point2u& Pos();
 private:
-	LDL_ErrorHandler* _ErrorHandler;
 	LDL_MainWinow     _MainWindow;
 	BITMAPINFO        _BITMAPINFO;
 };

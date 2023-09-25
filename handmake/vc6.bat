@@ -6,6 +6,7 @@ CL /O2 /FeLDL.dll -LD -GX /I..\include /DLDL_SHARED_LIBRARY ^
 ..\source\Shared\*.cpp ^
 ..\source\Windows\*.cpp ^
 ..\source\OpenGL\*.cpp ^
+..\source\WinGL\*.cpp  ^
 gdi32.lib ^
 user32.lib ^
 winmm.lib  ^

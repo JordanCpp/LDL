@@ -10,7 +10,7 @@
 class LDL_MainWinow
 {
 public:
-	LDL_MainWinow(LDL_ErrorHandler * errorHandler, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode);
+	LDL_MainWinow(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode);
 	~LDL_MainWinow();
 	bool Running();
 	void PollEvents();
@@ -32,7 +32,6 @@ private:
 	static LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
 	LRESULT CALLBACK Handler(UINT message, WPARAM wParam, LPARAM lParam);
 	LDL_BaseWindow _BaseWindow;
-	LDL_ErrorHandler* _ErrorHandler;
 	LDL_Eventer _Eventer;
 	WNDCLASS  _WNDCLASS;
 	HINSTANCE _HINSTANCE;

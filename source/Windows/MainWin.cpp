@@ -1,11 +1,11 @@
 #include "MainWin.hpp"
 #include <LDL/Low/Enums.hpp>
+#include <LDL/Low/Errors.hpp>
 
 static const char AppName[] = "MainWindow";
 
-LDL_MainWinow::LDL_MainWinow(LDL_ErrorHandler* errorHandler, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
-    _BaseWindow(pos, size, title),
-    _ErrorHandler(errorHandler)
+LDL_MainWinow::LDL_MainWinow(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
+    _BaseWindow(pos, size, title)
 {
     ClearStruct();
 
@@ -120,10 +120,12 @@ bool LDL_MainWinow::InitHinstance()
 
     if (_HINSTANCE == NULL)
     {
-        _ErrorHandler->Message("GetModuleHandle failed");
+        LDL_AddError("GetModuleHandle failed");
+
+        return false;
     }
 
-    return _ErrorHandler->Ok();
+    return true;
 }
 
 bool LDL_MainWinow::InitWndClass()
@@ -140,10 +142,12 @@ bool LDL_MainWinow::InitWndClass()
 
     if (_ATOM == INVALID_ATOM)
     {
-        _ErrorHandler->Message("RegisterClass failed");
+        LDL_AddError("RegisterClass failed");
+
+        return true;
     }
 
-    return _ErrorHandler->Ok();
+    return true;
 }
 
 bool LDL_MainWinow::InitHwnd(size_t mode)
@@ -164,7 +168,9 @@ bool LDL_MainWinow::InitHwnd(size_t mode)
 
     if (!AdjustWindowRect(&rect, style, FALSE))
     {
-        _ErrorHandler->Message("AdjustWindowRect failed");
+        LDL_AddError("AdjustWindowRect failed");
+
+        return false;
     }
     else
     {
@@ -172,11 +178,13 @@ bool LDL_MainWinow::InitHwnd(size_t mode)
 
         if (_HWND == INVALID_HANDLE_VALUE)
         {
-            _ErrorHandler->Message("CreateWindow failed");
+            LDL_AddError("CreateWindow failed");
+
+            return false;
         }
     }
 
-    return _ErrorHandler->Ok();
+    return true;
 }
 
 bool LDL_MainWinow::InitPointer()
@@ -198,10 +206,12 @@ bool LDL_MainWinow::InitHdc()
 
     if (_HDC == INVALID_HANDLE_VALUE)
     {
-        _ErrorHandler->Message("GetDC failed");
+        LDL_AddError("GetDC failed");
+
+        return false;
     }
 
-    return _ErrorHandler->Ok();
+    return true;
 }
 
 size_t LDL_MainWinow::ConvertKey(size_t key)

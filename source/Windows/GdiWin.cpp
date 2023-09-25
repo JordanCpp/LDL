@@ -1,22 +1,13 @@
 #include "GdiWin.hpp"
 
-LDL_GdiWindow::LDL_GdiWindow(LDL_ErrorHandler* errorHandler, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
-	_ErrorHandler(errorHandler),
-	_MainWindow(errorHandler, pos, size, title, mode)
+LDL_GdiWindow::LDL_GdiWindow(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
+	_MainWindow(pos, size, title, mode)
 {
 }
 
 bool LDL_GdiWindow::Running()
 {
 	return _MainWindow.Running();
-}
-
-void LDL_GdiWindow::Present()
-{
-}
-
-void LDL_GdiWindow::Present(uint8_t* pixels, uint8_t bytesPerPixel)
-{
 }
 
 void LDL_GdiWindow::PollEvents()
