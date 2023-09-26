@@ -8,6 +8,7 @@
 #elif defined(__unix__)
 #include "../Linux/GL1Win.hpp"
 #endif
+#include <LDL/Low/Assert.hpp>
 
 LDL_GL1Render::LDL_GL1Render(LDL_IRenderContext* context, LDL_IWindow* window) :
 	_RenderContext(context),
@@ -106,6 +107,8 @@ void LDL_GL1Render::Draw(LDL_ISurface* surface, const LDL_Point2u& pos)
 
 void LDL_GL1Render::Draw(LDL_ITexture* texture, const LDL_Point2u& pos)
 {
+	LDL_ASSERT(texture != NULL);
+
 	GL_CHECK(glEnable(GL_TEXTURE_2D));
 
 	LDL_GL1Texture* p = (LDL_GL1Texture*)texture;
