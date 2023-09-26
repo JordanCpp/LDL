@@ -19,6 +19,7 @@ public:
 	void Begin();
 	void End();
 	void Draw(LDL_ISurface* surface, const LDL_Point2u& pos);
+	void Draw(LDL_ITexture* texture, const LDL_Point2u& pos);
 private:
 	LDL_PixelPainter _PixelPainter;
 	LDL_PixelCopier _PixelCopier;
