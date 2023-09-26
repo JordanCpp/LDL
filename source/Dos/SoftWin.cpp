@@ -1,20 +1,20 @@
 #include "SoftWin.hpp"
+#include <LDL/Low/Errors.hpp>
 #include <dos.h>
 
-LDL_SoftWin::LDL_SoftWin(LDL_ErrorHandler* errorHandler, LDL_IRenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title) :
-	_ErrorHandler(errorHandler),
+LDL_SoftWindow::LDL_SoftWindow(LDL_IRenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title) :
 	_BaseWindow(pos, size, title),
 	_Context(context)
 {
 	if (_BaseWindow.Size().x != 320 && _BaseWindow.Size().y != 200)
 	{
-		_ErrorHandler->Message("Window resolution not support");
+		LDL_AddError("Window resolution not support");
 	}
 
 	InitMouse();
 }
 
-LDL_SoftWin::~LDL_SoftWin()
+LDL_SoftWindow::~LDL_SoftWindow()
 {
 	union REGS regs;
 
@@ -24,16 +24,16 @@ LDL_SoftWin::~LDL_SoftWin()
 	int86(0x10, &regs, &regs);
 }
 
-bool LDL_SoftWin::Running()
+bool LDL_SoftWindow::Running()
 {
 	return _Eventer.Running();
 }
 
-void LDL_SoftWin::Present()
+void LDL_SoftWindow::Present()
 {
 }
 
-void LDL_SoftWin::PollEvents()
+void LDL_SoftWindow::PollEvents()
 {
 	LDL_Event event;
 
@@ -71,7 +71,7 @@ void LDL_SoftWin::PollEvents()
 	}
 }
 
-bool LDL_SoftWin::GetEvent(LDL_Event& event)
+bool LDL_SoftWindow::GetEvent(LDL_Event& event)
 {
 	if (!_Eventer.Empty())
 	{
@@ -83,36 +83,36 @@ bool LDL_SoftWin::GetEvent(LDL_Event& event)
 	return false;
 }
 
-bool LDL_SoftWin::WaitEvent(LDL_Event& event)
+bool LDL_SoftWindow::WaitEvent(LDL_Event& event)
 {
 	return false;
 }
 
-void LDL_SoftWin::StopEvent()
+void LDL_SoftWindow::StopEvent()
 {
 }
 
-void LDL_SoftWin::Title(const char* title)
+void LDL_SoftWindow::Title(const char* title)
 {
 	_BaseWindow.Title(title);
 }
 
-const char* LDL_SoftWin::Title()
+const char* LDL_SoftWindow::Title()
 {
 	return _BaseWindow.Title();
 }
 
-const LDL_Point2u& LDL_SoftWin::Size()
+const LDL_Point2u& LDL_SoftWindow::Size()
 {
 	return _BaseWindow.Size();
 }
 
-const LDL_Point2u& LDL_SoftWin::Pos()
+const LDL_Point2u& LDL_SoftWindow::Pos()
 {
 	return _BaseWindow.Pos();
 }
 
-bool LDL_SoftWin::InitMouse()
+bool LDL_SoftWindow::InitMouse()
 {
 	union REGS regs;
 
@@ -124,13 +124,14 @@ bool LDL_SoftWin::InitMouse()
 
 	if (!result)
 	{
-		_ErrorHandler->Message("Mouse not found!");
+		LDL_AddError("Mouse not found!");
+		return false;
 	}
 
-	return _ErrorHandler->Ok();
+	return true;
 }
 
-bool LDL_SoftWin::MousePress(size_t button)
+bool LDL_SoftWindow::MousePress(size_t button)
 {
 	union REGS regs;
 

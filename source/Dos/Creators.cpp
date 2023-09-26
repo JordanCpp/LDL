@@ -46,7 +46,7 @@ void Destroy(LDL_ISurface* surface)
 
 LDL_IRender* RenderCreate(LDL_IRenderContext* context, LDL_IWindow* window)
 {
-	return new LDL_SoftRend(context, window);
+	return new LDL_SoftRender(context, window);
 }
 
 void Destroy(LDL_IRender* render)
@@ -54,9 +54,9 @@ void Destroy(LDL_IRender* render)
 	delete render;
 }
 
-LDL_IWindow* WindowCreate(LDL_ErrorHandler* errorHandler, LDL_IRenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode)
+LDL_IWindow* WindowCreate(LDL_IRenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode)
 {
-	return new LDL_SoftWin(errorHandler, context, pos, size, title);
+	return new LDL_SoftWindow(context, pos, size, title);
 }
 
 void Destroy(LDL_IWindow* window)

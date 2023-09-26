@@ -8,10 +8,10 @@
 #include <LDL/Low/SoftSurf.hpp>
 #include <dos.h>
 
-class LDL_SoftRend : public LDL_IRender
+class LDL_SoftRender : public LDL_IRender
 {
 public:
-	LDL_SoftRend(LDL_IRenderContext* context, LDL_IWindow* window);
+	LDL_SoftRender(LDL_IRenderContext* context, LDL_IWindow* window);
 	void SetColor(const LDL_Color& color);
 	void Line(const LDL_Point2u& first, const LDL_Point2u& last);
 	void Fill(const LDL_Point2u& pos, const LDL_Point2u& size);

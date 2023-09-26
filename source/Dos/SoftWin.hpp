@@ -6,11 +6,11 @@
 #include <LDL/Low/EHandler.hpp>
 #include <LDL/Low/BaseWin.hpp>
 
-class LDL_SoftWin : public LDL_IWindow
+class LDL_SoftWindow : public LDL_IWindow
 {
 public:
-	LDL_SoftWin(LDL_ErrorHandler* errorHandler, LDL_IRenderContext * context, const LDL_Point2u& pos, const LDL_Point2u& size, const char * title);
-	~LDL_SoftWin();
+	LDL_SoftWindow(LDL_IRenderContext * context, const LDL_Point2u& pos, const LDL_Point2u& size, const char * title);
+	~LDL_SoftWindow();
 	bool Running();
 	void Present();
 	void PollEvents();
@@ -25,7 +25,6 @@ private:
 	bool InitMouse();
 	bool MousePress(size_t button);
 	LDL_BaseWindow _BaseWindow;
-	LDL_ErrorHandler* _ErrorHandler;
 	LDL_IRenderContext* _Context;
 	LDL_Eventer _Eventer;
 };
