@@ -8,12 +8,12 @@ class LDL_OpenGLLibrary
 public:
 	LDL_OpenGLLibrary()
 	{
-		_Library = OpenGLLibraryCreate();
+		_Library = LDL_OpenGLLibraryCreate();
 	}
 
 	~LDL_OpenGLLibrary()
 	{
-		Destroy(_Library);
+		LDL_Destroy(_Library);
 	}
 
 	LDL_VoidFuncPtr Function(const char* name)

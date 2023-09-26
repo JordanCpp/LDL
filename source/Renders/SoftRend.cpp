@@ -49,3 +49,7 @@ void LDL_SoftRender::Draw(LDL_ISurface* surface, const LDL_Point2u& pos)
 {
 	_PixelCopier.Draw(_Surface, pos, surface);
 }
+
+void LDL_SoftRender::Draw(LDL_ITexture* texture, const LDL_Point2u& pos)
+{
+}

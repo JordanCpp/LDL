@@ -8,12 +8,12 @@ class LDL_RenderContext
 public:
 	LDL_RenderContext(size_t mode = LDL_RenderMode::OpenGL1)
 	{
-		_RenderContext = RenderContextCreate(mode);
+		_RenderContext = LDL_RenderContextCreate(mode);
 	}
 
 	~LDL_RenderContext()
 	{
-		Destroy(_RenderContext);
+		LDL_Destroy(_RenderContext);
 	}
 
 	LDL_IRenderContext* GetRenderContext()

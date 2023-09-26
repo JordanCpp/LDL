@@ -10,12 +10,12 @@ class LDL_Window
 public:
 	LDL_Window(LDL_RenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode = LDL_WindowMode::Resized)
 	{
-		_Window = WindowCreate(context->GetRenderContext(), pos, size, title, mode);
+		_Window = LDL_WindowCreate(context->GetRenderContext(), pos, size, title, mode);
 	}
 
 	~LDL_Window()
 	{
-		Destroy(_Window);
+		LDL_Destroy(_Window);
 	}
 
 	LDL_IWindow* GetWindow()

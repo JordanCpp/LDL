@@ -5,18 +5,19 @@
 #include <LDL/Cpp/RContext.hpp>
 #include <LDL/Cpp/Window.hpp>
 #include <LDL/Cpp/Surface.hpp>
+#include <LDL/Cpp/Texture.hpp>
 
 class LDL_Render
 {
 public:
 	LDL_Render(LDL_RenderContext* context, LDL_Window* window)
 	{
-		_Render = RenderCreate(context->GetRenderContext(), window->GetWindow());
+		_Render = LDL_RenderCreate(context->GetRenderContext(), window->GetWindow());
 	}
 
 	~LDL_Render()
 	{
-		 Destroy(_Render);
+		LDL_Destroy(_Render);
 	}
 
 	LDL_IRender* GetRender()
@@ -57,6 +58,11 @@ public:
 	void Draw(LDL_Surface* surface, const LDL_Point2u& pos)
 	{
 		_Render->Draw(surface->GetSurface(), pos);
+	}
+
+	void Draw(LDL_Texture* texture, const LDL_Point2u& pos)
+	{
+		_Render->Draw(texture->GetTexture(), pos);
 	}
 private:
 	LDL_IRender* _Render;

@@ -78,3 +78,7 @@ void LDL_GdiRender::Draw(LDL_ISurface* surface, const LDL_Point2u& pos)
 
 	BitBlt(_GdiWindow->_MainWindow._HDC, (int)pos.x, (int)pos.y, (int)ptr->Size().x, (int)ptr->Size().y, ptr->_CompatibleDC, 0, 0, SRCCOPY);
 }
+
+void LDL_GdiRender::Draw(LDL_ITexture* texture, const LDL_Point2u& pos)
+{
+}

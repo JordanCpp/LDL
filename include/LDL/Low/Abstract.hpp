@@ -18,8 +18,8 @@ class LDL_ITexture
 {
 public:
 	virtual ~LDL_ITexture() {};
-	const LDL_Point2u& Size();
-	const LDL_Point2u& Quad();
+	virtual const LDL_Point2u& Size() = 0;
+	virtual const LDL_Point2u& Quad() = 0;
 private:
 };
 
@@ -62,6 +62,7 @@ public:
 	virtual void Begin() = 0;
 	virtual void End() = 0;
 	virtual void Draw(LDL_ISurface* surface, const LDL_Point2u& pos) = 0;
+	virtual void Draw(LDL_ITexture* texture, const LDL_Point2u& pos) = 0;
 private:
 };
 

@@ -10,17 +10,17 @@ class LDL_Surface
 public:
 	LDL_Surface(LDL_RenderContext* renderContext, LDL_Window* window, const LDL_Point2u& size, uint8_t bpp)
 	{
-		_Surface = SurfaceCreate(renderContext->GetRenderContext(), window->GetWindow(), size, bpp);
+		_Surface = LDL_SurfaceCreate(renderContext->GetRenderContext(), window->GetWindow(), size, bpp);
 	}
 
 	LDL_Surface(LDL_RenderContext* renderContext, LDL_Window* window, const LDL_Point2u& size, uint8_t LDL_FAR* bytes, uint8_t bpp)
 	{
-		_Surface = SurfaceCreate(renderContext->GetRenderContext(), window->GetWindow(), size, bytes, bpp);
+		_Surface = LDL_SurfaceCreate(renderContext->GetRenderContext(), window->GetWindow(), size, bytes, bpp);
 	}
 
 	~LDL_Surface()
 	{
-		 Destroy(_Surface);
+		LDL_Destroy(_Surface);
 	}
 
 	LDL_ISurface* GetSurface()

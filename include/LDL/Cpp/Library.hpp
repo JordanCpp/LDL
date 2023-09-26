@@ -8,12 +8,12 @@ class LDL_Library
 public:
 	LDL_Library(const char* path)
 	{
-		_Library = LibraryCreate(path);
+		_Library = LDL_LibraryCreate(path);
 	}
 
 	~LDL_Library()
 	{
-		Destroy(_Library);
+		LDL_Destroy(_Library);
 	}
 
 	LDL_VoidFuncPtr Function(const char* name)

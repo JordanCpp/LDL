@@ -1,6 +1,7 @@
 #include "GL1Rend.hpp"
 #include "OpenGL.hpp"
-#include <LDL/OpenGL/OpenGL1_0.hpp>
+#include <LDL/OpenGL/OpenGL1_2.hpp>
+#include "GL1Texture.hpp"
 
 #if defined(_WIN32)
 #include "../WinGL/GL1Win.hpp"
@@ -101,4 +102,17 @@ void LDL_GL1Render::End()
 
 void LDL_GL1Render::Draw(LDL_ISurface* surface, const LDL_Point2u& pos)
 {
+}
+
+void LDL_GL1Render::Draw(LDL_ITexture* texture, const LDL_Point2u& pos)
+{
+	GL_CHECK(glEnable(GL_TEXTURE_2D));
+
+	LDL_GL1Texture* p = (LDL_GL1Texture*)texture;
+
+	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)p->Id()));
+
+	GLDrawQuad(pos, texture->Size(), LDL_Point2u(0, 0), texture->Size(), texture->Quad().x);
+
+	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }

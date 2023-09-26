@@ -4,6 +4,49 @@
 #include <LDL/Low/Conv.hpp>
 #include <LDL/Low/Errors.hpp>
 
+const size_t TextureCount = 12;
+const size_t TextureSizes[TextureCount] = { 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
+
+void GLDrawQuad(const LDL_Point2u& dstPos, const LDL_Point2u& dstSize, const LDL_Point2u& srcPos, const LDL_Point2u& srcSize, size_t textureSize)
+{
+	GLfloat x = (GLfloat)dstPos.x;
+	GLfloat y = (GLfloat)dstPos.y;
+	GLfloat w = (GLfloat)dstSize.x;
+	GLfloat h = (GLfloat)dstSize.y;
+
+	GLfloat cx = (GLfloat)srcPos.x;
+	GLfloat cy = (GLfloat)srcPos.y;
+	GLfloat cw = (GLfloat)srcSize.x;
+	GLfloat ch = (GLfloat)srcSize.y;
+
+	GLfloat dcx = cx / textureSize;
+	GLfloat dcy = cy / textureSize;
+
+	GLfloat dcw = (cx + cw) / textureSize;
+	GLfloat dch = (cy + ch) / textureSize;
+
+	glBegin(GL_QUADS);
+	glTexCoord2f(dcx, dcy); glVertex2f(x, y);
+	glTexCoord2f(dcw, dcy); glVertex2f(x + cw + (w - cw), y);
+	glTexCoord2f(dcw, dch); glVertex2f(x + cw + (w - cw), y + ch + (h - ch));
+	glTexCoord2f(dcx, dch); glVertex2f(x, y + ch + (h - ch));
+	glEnd();
+}
+
+size_t GLSelectTextureSize(const LDL_Point2u& size)
+{
+	size_t w = size.x;
+	size_t h = size.y;
+
+	for (size_t i = 0; i < TextureCount; i++)
+	{
+		if (w <= TextureSizes[i] && h <= TextureSizes[i])
+			return TextureSizes[i];
+	}
+
+	return 0;
+}
+
 void GLCheck(const char* file, size_t line, const char* expression)
 {
 	GLenum code = glGetError();

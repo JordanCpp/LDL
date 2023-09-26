@@ -24,7 +24,7 @@ int main()
 
 		if (bmpLoader.Load("C://img24.bmp"))
 		{
-			LDL_Surface surface(&renderContext, &window, bmpLoader.Size(), bmpLoader.Pixels(), bmpLoader.Bpp());
+			LDL_Texture surface(&renderContext, bmpLoader.Size(), bmpLoader.Pixels(), bmpLoader.Bpp());
 
 			while (window.Running())
 			{
