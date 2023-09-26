@@ -1,9 +1,10 @@
 #ifndef LDL_Low_Palette_hpp
 #define LDL_Low_Palette_hpp
 
+#include <LDL/Low/Config.hpp>
 #include <LDL/Low/Color.hpp>
 
-class LDL_Palette
+class LDL_LIBRARY LDL_Palette
 {
 public:
 	LDL_Palette(size_t count);

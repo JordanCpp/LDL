@@ -1,9 +1,10 @@
 #ifndef LDL_Low_FpsCount_hpp
 #define LDL_Low_FpsCount_hpp
 
+#include <LDL/Low/Config.hpp>
 #include <LDL/Low/Types.hpp>
 
-class LDL_FpsCounter
+class LDL_LIBRARY LDL_FpsCounter
 {
 public:
 	LDL_FpsCounter();

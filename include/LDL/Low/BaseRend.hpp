@@ -4,7 +4,7 @@
 #include <LDL/Low/Point2u.hpp>
 #include <LDL/Low/Color.hpp>
 
-class LDL_BaseRender
+class LDL_LIBRARY LDL_BaseRender
 {
 public:
 	LDL_BaseRender(const LDL_Point2u& size);

@@ -6,6 +6,10 @@ LDL_ErrorHandler::LDL_ErrorHandler() :
 {
 }
 
+LDL_ErrorHandler::~LDL_ErrorHandler()
+{
+}
+
 void LDL_ErrorHandler::Message(const char* message, const char* detail)
 {
 	_IsOk = false;

@@ -20,7 +20,6 @@ void Destroy(LDL_IOpenGLLibrary* library)
     delete library;
 }
 
-
 LDL_ILibrary* LibraryCreate(const char* path)
 {
     return new LDL_Library(path);

@@ -1,9 +1,10 @@
 #ifndef LDL_Low_Conv_hpp
 #define LDL_Low_Conv_hpp
 
+#include <LDL/Low/Config.hpp>
 #include <LDL/Low/Types.hpp>
 
-class LDL_NumberToString
+class LDL_LIBRARY LDL_NumberToString
 {
 public:
 	LDL_NumberToString();

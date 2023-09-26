@@ -1,12 +1,13 @@
 #ifndef LDL_Low_RingBuf_hpp
 #define LDL_Low_RingBuf_hpp
 
+#include <LDL/Low/Config.hpp>
 #include <LDL/Low/Types.hpp>
 #include <LDL/Low/Event.hpp>
 
 #define LDL_EventQueueMax (256)
 
-class LDL_EventQueue
+class LDL_LIBRARY LDL_EventQueue
 {
 public:
 	LDL_EventQueue();

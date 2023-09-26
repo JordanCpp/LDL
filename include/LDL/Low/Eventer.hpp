@@ -3,7 +3,7 @@
 
 #include <LDL/Low/EventQ.hpp>
 
-class LDL_Eventer
+class LDL_LIBRARY LDL_Eventer
 {
 public:
 	LDL_Eventer();

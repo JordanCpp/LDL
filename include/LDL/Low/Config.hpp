@@ -50,6 +50,6 @@
 #define LDL_API_CALL
 #endif  
 
-#define LDL_API_ENTRY LDL_EXPORT extern
+#define LDL_API_ENTRY LDL_LIBRARY extern
 
 #endif

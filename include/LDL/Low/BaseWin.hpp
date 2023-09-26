@@ -4,10 +4,11 @@
 #include <LDL/Low/Point2u.hpp>
 #include <LDL/Low/String.hpp>
 
-class LDL_BaseWindow
+class LDL_LIBRARY LDL_BaseWindow
 {
 public:
 	LDL_BaseWindow(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title);
+	~LDL_BaseWindow();
 	const LDL_Point2u& Pos();
 	const LDL_Point2u& Size();
 	void Size(const LDL_Point2u& size);

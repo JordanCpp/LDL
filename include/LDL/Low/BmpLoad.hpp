@@ -6,7 +6,7 @@
 #include <LDL/Low/BmpFrmt.hpp>
 #include <stdio.h>
 
-class LDL_BmpLoader
+class LDL_LIBRARY LDL_BmpLoader
 {
 public:
 	LDL_BmpLoader();

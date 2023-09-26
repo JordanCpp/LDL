@@ -1,9 +1,10 @@
 #ifndef LDL_Low_FpsLimit_hpp
 #define LDL_Low_FpsLimit_hpp
 
+#include <LDL/Low/Config.hpp>
 #include <LDL/Low/Types.hpp>
 
-class LDL_FpsLimiter
+class LDL_LIBRARY LDL_FpsLimiter
 {
 public:
 	LDL_FpsLimiter(size_t fps = 60);

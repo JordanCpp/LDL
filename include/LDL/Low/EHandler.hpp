@@ -3,10 +3,11 @@
 
 #include <LDL/Low/String.hpp>
 
-class LDL_ErrorHandler
+class LDL_LIBRARY LDL_ErrorHandler
 {
 public:
 	LDL_ErrorHandler();
+	~LDL_ErrorHandler();
 	void Message(const char* message, const char* detail = "");
 	const char* Message();
 	bool Ok();

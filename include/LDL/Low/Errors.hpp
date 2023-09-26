@@ -1,10 +1,12 @@
 #ifndef LDL_Low_Errors_hpp
 #define LDL_Low_Errors_hpp
 
-bool LDL_IsError();
-const char* LDL_GetError();
-void LDL_AddError(const char* error);
-void LDL_AddError(const char* error, const char* detail);
-void LDL_Alert(const char* error);
+#include <LDL/Low/Config.hpp>
+
+LDL_LIBRARY bool LDL_IsError();
+LDL_LIBRARY const char* LDL_GetError();
+LDL_LIBRARY void LDL_AddError(const char* error);
+LDL_LIBRARY void LDL_AddError(const char* error, const char* detail);
+LDL_LIBRARY void LDL_Alert(const char* error);
 
 #endif    

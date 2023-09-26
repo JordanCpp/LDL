@@ -7,6 +7,10 @@ LDL_BaseWindow::LDL_BaseWindow(const LDL_Point2u& pos, const LDL_Point2u& size, 
 {
 }
 
+LDL_BaseWindow::~LDL_BaseWindow()
+{
+}
+
 const LDL_Point2u& LDL_BaseWindow::Pos()
 {
 	return _Pos;
