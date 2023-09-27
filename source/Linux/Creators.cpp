@@ -6,28 +6,39 @@
 #include "RContext.hpp"
 #include "../Linux/Library.hpp"
 #include "GLLib.hpp"
+#include "../Renders/GL1Texture.hpp"
 
-LDL_IOpenGLLibrary* OpenGLLibraryCreate()
+LDL_ITexture* LDL_TextureCreate(LDL_IRenderContext* renderContext, const LDL_Point2u& size, uint8_t* pixels, uint8_t bpp)
+{
+    return new LDL_GL1Texture(renderContext, size, pixels, bpp);
+}
+
+void LDL_Destroy(LDL_ITexture* texture)
+{
+    delete texture;
+}
+
+LDL_IOpenGLLibrary* LDL_OpenGLLibraryCreate()
 {
     return new LDL_ImpOpenGLLibrary;
 }
 
-void Destroy(LDL_IOpenGLLibrary* library)
+void LDL_Destroy(LDL_IOpenGLLibrary* library)
 {
     delete library;
 }
 
-LDL_ILibrary* LibraryCreate(const char* path)
+LDL_ILibrary* LDL_LibraryCreate(const char* path)
 {
     return new LDL_Library(path);
 }
 
-void Destroy(LDL_ILibrary* library)
+void LDL_Destroy(LDL_ILibrary* library)
 {
     delete library;
 }
 
-LDL_ISurface* SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow * window, const LDL_Point2u& size, uint8_t bpp)
+LDL_ISurface* LDL_SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow * window, const LDL_Point2u& size, uint8_t bpp)
 {
     size_t renderMode = renderContext->Mode();
 
@@ -47,7 +58,7 @@ LDL_ISurface* SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow * win
     return result;
 }
 
-LDL_ISurface* SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow* window, const LDL_Point2u& size, uint8_t LDL_FAR* bytes, uint8_t bpp)
+LDL_ISurface* LDL_SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow* window, const LDL_Point2u& size, uint8_t LDL_FAR* bytes, uint8_t bpp)
 {
     size_t renderMode = renderContext->Mode();
 
@@ -65,12 +76,12 @@ LDL_ISurface* SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow* wind
     return result;
 }
 
-void Destroy(LDL_ISurface* surface)
+void LDL_Destroy(LDL_ISurface* surface)
 {
     delete surface;
 }
 
-LDL_IRender* RenderCreate(LDL_IRenderContext* context, LDL_IWindow* window)
+LDL_IRender* LDL_RenderCreate(LDL_IRenderContext* context, LDL_IWindow* window)
 {
     size_t renderMode = context->Mode();
 
@@ -91,12 +102,12 @@ LDL_IRender* RenderCreate(LDL_IRenderContext* context, LDL_IWindow* window)
     return result;
 }
 
-void Destroy(LDL_IRender* render)
+void LDL_Destroy(LDL_IRender* render)
 {
 	delete render;
 }
 
-LDL_IWindow* WindowCreate(LDL_IRenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode)
+LDL_IWindow* LDL_WindowCreate(LDL_IRenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode)
 {
     size_t renderMode = context->Mode();
 
@@ -117,17 +128,17 @@ LDL_IWindow* WindowCreate(LDL_IRenderContext* context, const LDL_Point2u& pos, c
     return result;
 }
 
-void Destroy(LDL_IWindow* window)
+void LDL_Destroy(LDL_IWindow* window)
 {
 	delete window;
 }
 
-LDL_IRenderContext* RenderContextCreate(size_t mode)
+LDL_IRenderContext* LDL_RenderContextCreate(size_t mode)
 {
 	return new LDL_ImpRenderContext(mode);
 }
 
-void Destroy(LDL_IRenderContext* context)
+void LDL_Destroy(LDL_IRenderContext* context)
 {
 	delete context;
 }
