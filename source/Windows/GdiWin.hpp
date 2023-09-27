@@ -7,7 +7,7 @@
 class LDL_GdiWindow: public LDL_IWindow
 {
 public:
-	LDL_GdiWindow(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode);
+	LDL_GdiWindow(const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode);
 	bool Running();
 	void PollEvents();
 	bool GetEvent(LDL_Event& event);
@@ -15,8 +15,8 @@ public:
 	void StopEvent();
 	void Title(const char* title);
 	const char* Title();
-	const LDL_Point2u& Size();
-	const LDL_Point2u& Pos();
+	const LDL_Vec2u& Size();
+	const LDL_Vec2u& Pos();
 public:
 	LDL_MainWinow     _MainWindow;
 };

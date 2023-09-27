@@ -8,8 +8,8 @@ class LDL_PixelPainter
 {
 public:
 	void Clear(LDL_ISurface* surface, const LDL_Color& color);
-	void Line(LDL_ISurface* surface, const LDL_Point2u& first, const LDL_Point2u& last, const LDL_Color& color);
-	void Fill(LDL_ISurface* surface, const LDL_Point2u& pos, const LDL_Point2u& size, const LDL_Color& color);
+	void Line(LDL_ISurface* surface, const LDL_Vec2u& first, const LDL_Vec2u& last, const LDL_Color& color);
+	void Fill(LDL_ISurface* surface, const LDL_Vec2u& pos, const LDL_Vec2u& size, const LDL_Color& color);
 private:
 };
 

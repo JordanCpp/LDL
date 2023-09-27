@@ -19,12 +19,12 @@ void LDL_SoftRender::SetColor(const LDL_Color& color)
 	_BaseRender.SetColor(color);
 }
 
-void LDL_SoftRender::Line(const LDL_Point2u& first, const LDL_Point2u& last)
+void LDL_SoftRender::Line(const LDL_Vec2u& first, const LDL_Vec2u& last)
 {
 	_PixelPainter.Line(_Surface, first, last, _BaseRender.Color());
 }
 
-void LDL_SoftRender::Fill(const LDL_Point2u& pos, const LDL_Point2u& size)
+void LDL_SoftRender::Fill(const LDL_Vec2u& pos, const LDL_Vec2u& size)
 {
 	_PixelPainter.Fill(_Surface, pos, size, _BaseRender.Color());
 }
@@ -45,11 +45,11 @@ void LDL_SoftRender::End()
 	p->Present(_Surface);
 }
 
-void LDL_SoftRender::Draw(LDL_ISurface* surface, const LDL_Point2u& pos)
+void LDL_SoftRender::Draw(LDL_ISurface* surface, const LDL_Vec2u& pos)
 {
 	_PixelCopier.Draw(_Surface, pos, surface);
 }
 
-void LDL_SoftRender::Draw(LDL_ITexture* texture, const LDL_Point2u& pos)
+void LDL_SoftRender::Draw(LDL_ITexture* texture, const LDL_Vec2u& pos)
 {
 }

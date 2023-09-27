@@ -2,7 +2,7 @@
 #include "OpenGL.hpp"
 #include <LDL/OpenGL/OpenGL1_2.hpp>
 
-LDL_GL1Texture::LDL_GL1Texture(LDL_IRenderContext* renderContext, const LDL_Point2u& size, uint8_t* pixels, uint8_t bpp) :
+LDL_GL1Texture::LDL_GL1Texture(LDL_IRenderContext* renderContext, const LDL_Vec2u& size, uint8_t* pixels, uint8_t bpp) :
 	_RenderContext(renderContext),
 	_Id(0)
 {
@@ -17,7 +17,7 @@ LDL_GL1Texture::LDL_GL1Texture(LDL_IRenderContext* renderContext, const LDL_Poin
 
 	size_t sz = GLSelectTextureSize(_Size);
 
-	_Quad = LDL_Point2u(sz, sz);
+	_Quad = LDL_Vec2u(sz, sz);
 
 	_Id = GLCreateTexture((GLsizei)_Quad.x, (GLsizei)_Quad.y, format);
 
@@ -29,12 +29,12 @@ LDL_GL1Texture::~LDL_GL1Texture()
 	GLDeleteTexture((GLint)_Id);
 }
 
-const LDL_Point2u& LDL_GL1Texture::Size()
+const LDL_Vec2u& LDL_GL1Texture::Size()
 {
 	return _Size;
 }
 
-const LDL_Point2u& LDL_GL1Texture::Quad()
+const LDL_Vec2u& LDL_GL1Texture::Quad()
 {
 	return _Quad;
 }

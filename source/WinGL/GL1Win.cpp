@@ -1,7 +1,7 @@
 #include "GL1Win.hpp"
 #include <LDL/Low/Errors.hpp>
 
-LDL_GL1Window::LDL_GL1Window(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
+LDL_GL1Window::LDL_GL1Window(const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
 	_HGLRC(NULL),
 	_MainWindow(pos, size, title, mode)
 {
@@ -73,12 +73,12 @@ const char* LDL_GL1Window::Title()
 	return _MainWindow.Title();
 }
 
-const LDL_Point2u& LDL_GL1Window::Size()
+const LDL_Vec2u& LDL_GL1Window::Size()
 {
 	return _MainWindow.Size();
 }
 
-const LDL_Point2u& LDL_GL1Window::Pos()
+const LDL_Vec2u& LDL_GL1Window::Pos()
 {
 	return _MainWindow.Pos();
 }

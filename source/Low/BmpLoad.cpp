@@ -44,7 +44,7 @@ bool LDL_BmpLoader::Load(const char* path)
 	return false;
 }
 
-const LDL_Point2u& LDL_BmpLoader::Size()
+const LDL_Vec2u& LDL_BmpLoader::Size()
 {
 	return _Size;
 }
@@ -138,7 +138,7 @@ bool LDL_BmpLoader::CheckInfoHeader()
 	fread(&_InfoHeader.biClrUsed, sizeof(_InfoHeader.biClrUsed), 1, _Input);
 	fread(&_InfoHeader.biClrImportant, sizeof(_InfoHeader.biClrImportant), 1, _Input);
 
-	_Size = LDL_Point2u(_InfoHeader.biWidth, _InfoHeader.biHeight);
+	_Size = LDL_Vec2u(_InfoHeader.biWidth, _InfoHeader.biHeight);
 	_Bpp = _InfoHeader.biBitCount / 8;
 
 	return !LDL_IsError();

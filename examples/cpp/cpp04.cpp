@@ -9,7 +9,7 @@ int main()
 {
 	LDL_RenderContext renderContext;
 
-	LDL_Window window(&renderContext, LDL_Point2u(0, 0), LDL_Point2u(800, 600), "", LDL_WindowMode::Fixed);
+	LDL_Window window(&renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), "", LDL_WindowMode::Fixed);
 
 	if (!LDL_IsError())
 	{
@@ -44,12 +44,12 @@ int main()
 				render.Clear();
 
 				render.SetColor(LDL_Color(237, 28, 36));
-				render.Line(LDL_Point2u(0, 50), LDL_Point2u(window.Size().x, 50));
+				render.Line(LDL_Vec2u(0, 50), LDL_Vec2u(window.Size().x, 50));
 
 				render.SetColor(LDL_Color(255, 127, 39));
-				render.Fill(LDL_Point2u(75, 75), LDL_Point2u(150, 100));
+				render.Fill(LDL_Vec2u(75, 75), LDL_Vec2u(150, 100));
 
-				render.Draw(&surface, LDL_Point2u(0, 0));
+				render.Draw(&surface, LDL_Vec2u(0, 0));
 
 				render.End();
 

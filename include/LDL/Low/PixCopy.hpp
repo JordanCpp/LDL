@@ -6,7 +6,7 @@
 class LDL_PixelCopier
 {
 public:
-	void Draw(LDL_ISurface* dst, const LDL_Point2u& pos, LDL_ISurface* src);
+	void Draw(LDL_ISurface* dst, const LDL_Vec2u& pos, LDL_ISurface* src);
 private:
 };
 

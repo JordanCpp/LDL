@@ -6,7 +6,7 @@ using namespace LDL::Graphics;
 int main()
 {
 	RenderContext renderContext;
-	Window window(&renderContext, LDL_Point2u(0, 0), LDL_Point2u(800, 600), "");
+	Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "");
 
 	Render render(&renderContext, &window);
 

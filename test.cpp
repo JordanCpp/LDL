@@ -18,11 +18,11 @@
 
 void Test_LDL_Point2u()
 {
-	LDL_Point2u point1;
+	LDL_Vec2u point1;
 	LDL_TEST_EQUAL(point1.x == 0);
 	LDL_TEST_EQUAL(point1.y == 0);
 
-	LDL_Point2u point2(25, 45);
+	LDL_Vec2u point2(25, 45);
 	LDL_TEST_EQUAL(point2.x == 25);
 	LDL_TEST_EQUAL(point2.y == 45);
 }
@@ -92,9 +92,9 @@ void Test_LDL_EventQueue()
 void Test_LDL_Surface()
 {
 	LDL_RenderContext renderContext;
-	LDL_Window window(&renderContext, LDL_Point2u(0, 0), LDL_Point2u(800, 600), "", LDL_WindowMode::Fixed);
+	LDL_Window window(&renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), "", LDL_WindowMode::Fixed);
 
-	LDL_Surface surface(&renderContext, &window, LDL_Point2u(640, 480), 1);
+	LDL_Surface surface(&renderContext, &window, LDL_Vec2u(640, 480), 1);
 
 	LDL_TEST_EQUAL(surface.Pixels() != NULL);
 	LDL_TEST_EQUAL(surface.Size().x == 640);
@@ -182,7 +182,7 @@ void Test_LDL_String()
 
 void Test_LDL_BaseWindow()
 {
-	LDL_BaseWindow baseWindow(LDL_Point2u(1, 2), LDL_Point2u(320, 200), "Title!");
+	LDL_BaseWindow baseWindow(LDL_Vec2u(1, 2), LDL_Vec2u(320, 200), "Title!");
 
 	LDL_TEST_EQUAL(baseWindow.Pos().x == 1);
 	LDL_TEST_EQUAL(baseWindow.Pos().y == 2);
@@ -193,7 +193,7 @@ void Test_LDL_BaseWindow()
 
 void Test_LDL_BaseRender()
 {
-	LDL_BaseRender baseRender(LDL_Point2u(320, 200));
+	LDL_BaseRender baseRender(LDL_Vec2u(320, 200));
 
 	LDL_TEST_EQUAL(baseRender.Size().x == 320);
 	LDL_TEST_EQUAL(baseRender.Size().y == 200);

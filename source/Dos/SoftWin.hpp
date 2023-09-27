@@ -9,7 +9,7 @@
 class LDL_SoftWindow : public LDL_IWindow
 {
 public:
-	LDL_SoftWindow(LDL_IRenderContext * context, const LDL_Point2u& pos, const LDL_Point2u& size, const char * title);
+	LDL_SoftWindow(LDL_IRenderContext * context, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char * title);
 	~LDL_SoftWindow();
 	bool Running();
 	void Present();
@@ -19,8 +19,8 @@ public:
 	void StopEvent();
 	void Title(const char* title);
 	const char* Title();
-	const LDL_Point2u& Size();
-	const LDL_Point2u& Pos();
+	const LDL_Vec2u& Size();
+	const LDL_Vec2u& Pos();
 private:
 	bool InitMouse();
 	bool MousePress(size_t button);

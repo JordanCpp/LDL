@@ -7,7 +7,7 @@ include_directories("../../../include")
 
 file(GLOB_RECURSE SOURCE_FILES 
 "../../../source/Renders/*.cpp"
-"../../../source/Shared/*.cpp"
+"../../../source/Low/*.cpp"
 "../../../source/Windows/*.cpp"
 "../../../source/OpenGL/*.cpp"
 "../../../source/GLU/*.cpp"

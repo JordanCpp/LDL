@@ -45,22 +45,22 @@ public:
 		_Render->End();
 	}
 
-	void Line(const LDL_Point2u& first, const LDL_Point2u& last)
+	void Line(const LDL_Vec2u& first, const LDL_Vec2u& last)
 	{
 		_Render->Line(first, last);
 	}
 
-	void Fill(const LDL_Point2u& first, const LDL_Point2u& last)
+	void Fill(const LDL_Vec2u& first, const LDL_Vec2u& last)
 	{
 		_Render->Fill(first, last);
 	}
 
-	void Draw(LDL_Surface* surface, const LDL_Point2u& pos)
+	void Draw(LDL_Surface* surface, const LDL_Vec2u& pos)
 	{
 		_Render->Draw(surface->GetSurface(), pos);
 	}
 
-	void Draw(LDL_Texture* texture, const LDL_Point2u& pos)
+	void Draw(LDL_Texture* texture, const LDL_Vec2u& pos)
 	{
 		_Render->Draw(texture->GetTexture(), pos);
 	}

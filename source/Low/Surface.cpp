@@ -1,7 +1,7 @@
 #include <LDL/Low/SoftSurf.hpp>
 #include <string.h>
 
-LDL_SoftwareSurface::LDL_SoftwareSurface(const LDL_Point2u& size, uint8_t bpp) :
+LDL_SoftwareSurface::LDL_SoftwareSurface(const LDL_Vec2u& size, uint8_t bpp) :
 	_Bpp(bpp),
 	_Pixels(NULL),
 	_Size(size)
@@ -9,7 +9,7 @@ LDL_SoftwareSurface::LDL_SoftwareSurface(const LDL_Point2u& size, uint8_t bpp) :
 	_Pixels = (uint8_t LDL_FAR*)LDL_MALLOC(_Size.x * _Size.y * _Bpp);
 }
 
-LDL_SoftwareSurface::LDL_SoftwareSurface(const LDL_Point2u& size, uint8_t LDL_FAR* bytes, uint8_t bpp) :
+LDL_SoftwareSurface::LDL_SoftwareSurface(const LDL_Vec2u& size, uint8_t LDL_FAR* bytes, uint8_t bpp) :
 	_Bpp(bpp),
 	_Pixels(bytes),
 	_Size(size)
@@ -35,7 +35,7 @@ uint8_t LDL_SoftwareSurface::Bpp()
 	return _Bpp;
 }
 
-const LDL_Point2u& LDL_SoftwareSurface::Size()
+const LDL_Vec2u& LDL_SoftwareSurface::Size()
 {
 	return _Size;
 }

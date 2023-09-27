@@ -1,7 +1,7 @@
 #include "SoftWin.hpp"
 #include <LDL/Low/Errors.hpp>
 
-LDL_SoftWindow::LDL_SoftWindow(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
+LDL_SoftWindow::LDL_SoftWindow(const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
 	_MainWindow(pos, size, title, mode)
 {
 	ZeroMemory(&_BITMAPINFO, sizeof(_BITMAPINFO));
@@ -57,12 +57,12 @@ const char* LDL_SoftWindow::Title()
 	return _MainWindow.Title();
 }
 
-const LDL_Point2u& LDL_SoftWindow::Size()
+const LDL_Vec2u& LDL_SoftWindow::Size()
 {
 	return _MainWindow.Size();
 }
 
-const LDL_Point2u& LDL_SoftWindow::Pos()
+const LDL_Vec2u& LDL_SoftWindow::Pos()
 {
 	return _MainWindow.Pos();
 }

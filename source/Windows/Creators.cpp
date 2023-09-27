@@ -11,7 +11,7 @@
 #include "../Renders/GL1Rend.hpp"
 #include "../Renders/GL1Texture.hpp"
 
-LDL_ITexture* LDL_TextureCreate(LDL_IRenderContext* renderContext, const LDL_Point2u& size, uint8_t* pixels, uint8_t bpp)
+LDL_ITexture* LDL_TextureCreate(LDL_IRenderContext* renderContext, const LDL_Vec2u& size, uint8_t* pixels, uint8_t bpp)
 {
     return new LDL_GL1Texture(renderContext, size, pixels, bpp);
 }
@@ -41,7 +41,7 @@ void LDL_Destroy(LDL_ILibrary* library)
     delete library;
 }
 
-LDL_ISurface* LDL_SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow * window, const LDL_Point2u& size, uint8_t bpp)
+LDL_ISurface* LDL_SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow * window, const LDL_Vec2u& size, uint8_t bpp)
 {
     size_t renderMode = renderContext->Mode();
 
@@ -62,7 +62,7 @@ LDL_ISurface* LDL_SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow *
     return result;
 }
 
-LDL_ISurface* LDL_SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow* window, const LDL_Point2u& size, uint8_t LDL_FAR* bytes, uint8_t bpp)
+LDL_ISurface* LDL_SurfaceCreate(LDL_IRenderContext* renderContext, LDL_IWindow* window, const LDL_Vec2u& size, uint8_t LDL_FAR* bytes, uint8_t bpp)
 {
     size_t renderMode = renderContext->Mode();
 
@@ -117,7 +117,7 @@ void LDL_Destroy(LDL_IRender* render)
 	delete render;
 }
 
-LDL_IWindow* LDL_WindowCreate(LDL_IRenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode)
+LDL_IWindow* LDL_WindowCreate(LDL_IRenderContext* context, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode)
 {
     size_t renderMode = context->Mode();
 

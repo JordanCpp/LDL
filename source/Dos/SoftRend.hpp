@@ -13,13 +13,13 @@ class LDL_SoftRender : public LDL_IRender
 public:
 	LDL_SoftRender(LDL_IRenderContext* context, LDL_IWindow* window);
 	void SetColor(const LDL_Color& color);
-	void Line(const LDL_Point2u& first, const LDL_Point2u& last);
-	void Fill(const LDL_Point2u& pos, const LDL_Point2u& size);
+	void Line(const LDL_Vec2u& first, const LDL_Vec2u& last);
+	void Fill(const LDL_Vec2u& pos, const LDL_Vec2u& size);
 	void Clear();
 	void Begin();
 	void End();
-	void Draw(LDL_ISurface* surface, const LDL_Point2u& pos);
-	void Draw(LDL_ITexture* texture, const LDL_Point2u& pos);
+	void Draw(LDL_ISurface* surface, const LDL_Vec2u& pos);
+	void Draw(LDL_ITexture* texture, const LDL_Vec2u& pos);
 private:
 	LDL_PixelPainter _PixelPainter;
 	LDL_PixelCopier _PixelCopier;

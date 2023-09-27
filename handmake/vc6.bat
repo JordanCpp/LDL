@@ -3,7 +3,7 @@ call "C:\VC6\Microsoft Visual Studio\VC98\Bin\VCVARS32.BAT"
 
 CL /O2 /FeLDL.dll -LD -GX /I..\include /DLDL_SHARED_LIBRARY ^
 ..\source\Renders\*.cpp ^
-..\source\Shared\*.cpp ^
+..\source\Low\*.cpp ^
 ..\source\Windows\*.cpp ^
 ..\source\OpenGL\*.cpp ^
 ..\source\GLU\*.cpp ^

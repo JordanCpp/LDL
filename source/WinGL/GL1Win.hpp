@@ -7,7 +7,7 @@
 class LDL_GL1Window : public LDL_IWindow
 {
 public:
-	LDL_GL1Window(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode);
+	LDL_GL1Window(const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode);
 	~LDL_GL1Window();
 	bool Present();
 	bool Running();
@@ -17,8 +17,8 @@ public:
 	void StopEvent();
 	void Title(const char* title);
 	const char* Title();
-	const LDL_Point2u& Size();
-	const LDL_Point2u& Pos();
+	const LDL_Vec2u& Size();
+	const LDL_Vec2u& Pos();
 private:
 	bool InitDC();
 	bool InitPixelFormat();

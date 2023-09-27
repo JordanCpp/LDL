@@ -33,10 +33,10 @@ void LDL_PixelPainter::Clear(LDL_ISurface* surface, const LDL_Color& color)
 }
 
 
-void LDL_PixelPainter::Line(LDL_ISurface* surface, const LDL_Point2u& first, const LDL_Point2u& last, const LDL_Color& color)
+void LDL_PixelPainter::Line(LDL_ISurface* surface, const LDL_Vec2u& first, const LDL_Vec2u& last, const LDL_Color& color)
 {
     uint8_t LDL_FAR* pixels = surface->Pixels();
-    LDL_Point2u size = surface->Size();
+    LDL_Vec2u size = surface->Size();
     uint8_t bpp = surface->Bpp();
     size_t index = 0;
 
@@ -141,7 +141,7 @@ void LDL_PixelPainter::Line(LDL_ISurface* surface, const LDL_Point2u& first, con
     }
 }
 
-void LDL_PixelPainter::Fill(LDL_ISurface* surface, const LDL_Point2u& pos, const LDL_Point2u& size, const LDL_Color& color)
+void LDL_PixelPainter::Fill(LDL_ISurface* surface, const LDL_Vec2u& pos, const LDL_Vec2u& size, const LDL_Color& color)
 {
     size_t x        = pos.x;
     size_t y        = pos.y;

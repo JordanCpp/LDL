@@ -29,7 +29,7 @@ void LDL_GL1Render::SetColor(const LDL_Color& color)
 	_Color = color;
 }
 
-void LDL_GL1Render::Line(const LDL_Point2u& first, const LDL_Point2u& last)
+void LDL_GL1Render::Line(const LDL_Vec2u& first, const LDL_Vec2u& last)
 {
 	GLclampf r = 0;
 	GLclampf g = 0;
@@ -44,7 +44,7 @@ void LDL_GL1Render::Line(const LDL_Point2u& first, const LDL_Point2u& last)
 	glEnd();
 }
 
-void LDL_GL1Render::Fill(const LDL_Point2u& pos, const LDL_Point2u& size)
+void LDL_GL1Render::Fill(const LDL_Vec2u& pos, const LDL_Vec2u& size)
 {
 	GLclampf r = 0;
 	GLclampf g = 0;
@@ -80,7 +80,7 @@ void LDL_GL1Render::Clear()
 
 void LDL_GL1Render::Begin()
 {
-	LDL_Point2u size = _Window->Size();
+	LDL_Vec2u size = _Window->Size();
 
 	GL_CHECK(glViewport(0, 0, (GLsizei)size.x, (GLsizei)size.y));
 
@@ -101,11 +101,11 @@ void LDL_GL1Render::End()
 	p->Present();
 }
 
-void LDL_GL1Render::Draw(LDL_ISurface* surface, const LDL_Point2u& pos)
+void LDL_GL1Render::Draw(LDL_ISurface* surface, const LDL_Vec2u& pos)
 {
 }
 
-void LDL_GL1Render::Draw(LDL_ITexture* texture, const LDL_Point2u& pos)
+void LDL_GL1Render::Draw(LDL_ITexture* texture, const LDL_Vec2u& pos)
 {
 	LDL_ASSERT(texture != NULL);
 
@@ -115,7 +115,7 @@ void LDL_GL1Render::Draw(LDL_ITexture* texture, const LDL_Point2u& pos)
 
 	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)p->Id()));
 
-	GLDrawQuad(pos, texture->Size(), LDL_Point2u(0, 0), texture->Size(), texture->Quad().x);
+	GLDrawQuad(pos, texture->Size(), LDL_Vec2u(0, 0), texture->Size(), texture->Quad().x);
 
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }

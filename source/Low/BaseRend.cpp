@@ -1,11 +1,11 @@
 #include <LDL/Low/BaseRend.hpp>
 
-LDL_BaseRender::LDL_BaseRender(const LDL_Point2u& size) :
+LDL_BaseRender::LDL_BaseRender(const LDL_Vec2u& size) :
 	_Size(size)
 {
 }
 
-const LDL_Point2u& LDL_BaseRender::Size()
+const LDL_Vec2u& LDL_BaseRender::Size()
 {
 	return _Size;
 }

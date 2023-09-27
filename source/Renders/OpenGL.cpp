@@ -7,7 +7,7 @@
 const size_t TextureCount = 12;
 const size_t TextureSizes[TextureCount] = { 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
 
-void GLDrawQuad(const LDL_Point2u& dstPos, const LDL_Point2u& dstSize, const LDL_Point2u& srcPos, const LDL_Point2u& srcSize, size_t textureSize)
+void GLDrawQuad(const LDL_Vec2u& dstPos, const LDL_Vec2u& dstSize, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize, size_t textureSize)
 {
 	GLfloat x = (GLfloat)dstPos.x;
 	GLfloat y = (GLfloat)dstPos.y;
@@ -33,7 +33,7 @@ void GLDrawQuad(const LDL_Point2u& dstPos, const LDL_Point2u& dstSize, const LDL
 	glEnd();
 }
 
-size_t GLSelectTextureSize(const LDL_Point2u& size)
+size_t GLSelectTextureSize(const LDL_Vec2u& size)
 {
 	size_t w = size.x;
 	size_t h = size.y;

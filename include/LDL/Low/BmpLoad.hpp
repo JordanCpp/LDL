@@ -2,7 +2,7 @@
 #define LDL_Low_BmpLoad_hpp
 
 #include <LDL/Low/Config.hpp>
-#include <LDL/Low/Point2u.hpp>
+#include <LDL/Low/Vec2u.hpp>
 #include <LDL/Low/BmpFrmt.hpp>
 #include <stdio.h>
 
@@ -12,7 +12,7 @@ public:
 	LDL_BmpLoader();
 	~LDL_BmpLoader();
 	bool Load(const char* path);
-	const LDL_Point2u& Size();
+	const LDL_Vec2u& Size();
 	uint8_t Bpp();
 	uint8_t LDL_FAR* Pixels();
 private:
@@ -25,7 +25,7 @@ private:
 	FILE* _Input;
 	BmpFileHeader _FileHeader;
 	BmpInfoHeader _InfoHeader;
-	LDL_Point2u _Size;
+	LDL_Vec2u _Size;
 	uint8_t _Bpp;
 };
 

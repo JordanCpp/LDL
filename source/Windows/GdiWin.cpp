@@ -1,6 +1,6 @@
 #include "GdiWin.hpp"
 
-LDL_GdiWindow::LDL_GdiWindow(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
+LDL_GdiWindow::LDL_GdiWindow(const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
 	_MainWindow(pos, size, title, mode)
 {
 }
@@ -40,12 +40,12 @@ const char* LDL_GdiWindow::Title()
 	return _MainWindow.Title();
 }
 
-const LDL_Point2u& LDL_GdiWindow::Size()
+const LDL_Vec2u& LDL_GdiWindow::Size()
 {
 	return _MainWindow.Size();
 }
 
-const LDL_Point2u& LDL_GdiWindow::Pos()
+const LDL_Vec2u& LDL_GdiWindow::Pos()
 {
 	return _MainWindow.Pos();
 }

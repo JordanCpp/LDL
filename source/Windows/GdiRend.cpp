@@ -38,7 +38,7 @@ void LDL_GdiRender::SetColor(const LDL_Color& color)
 	_BaseRender.SetColor(color);
 }
 
-void LDL_GdiRender::Line(const LDL_Point2u& first, const LDL_Point2u& last)
+void LDL_GdiRender::Line(const LDL_Vec2u& first, const LDL_Vec2u& last)
 {
 	POINT point;
 
@@ -46,7 +46,7 @@ void LDL_GdiRender::Line(const LDL_Point2u& first, const LDL_Point2u& last)
 	LineTo(_GdiWindow->_MainWindow._HDC, (int)last.x, (int)last.y);
 }
 
-void LDL_GdiRender::Fill(const LDL_Point2u& pos, const LDL_Point2u& size)
+void LDL_GdiRender::Fill(const LDL_Vec2u& pos, const LDL_Vec2u& size)
 {
 	RECT rect;
 
@@ -72,13 +72,13 @@ void LDL_GdiRender::End()
 	EndPaint(_GdiWindow->_MainWindow._HWND, &_PaintStruct);
 }
 
-void LDL_GdiRender::Draw(LDL_ISurface* surface, const LDL_Point2u& pos)
+void LDL_GdiRender::Draw(LDL_ISurface* surface, const LDL_Vec2u& pos)
 {
 	LDL_GdiSurface* ptr = (LDL_GdiSurface*)surface;
 
 	BitBlt(_GdiWindow->_MainWindow._HDC, (int)pos.x, (int)pos.y, (int)ptr->Size().x, (int)ptr->Size().y, ptr->_CompatibleDC, 0, 0, SRCCOPY);
 }
 
-void LDL_GdiRender::Draw(LDL_ITexture* texture, const LDL_Point2u& pos)
+void LDL_GdiRender::Draw(LDL_ITexture* texture, const LDL_Vec2u& pos)
 {
 }

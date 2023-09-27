@@ -8,7 +8,7 @@ int main()
 {
 	LDL_RenderContext renderContext;
 
-	LDL_Window window(&renderContext, LDL_Point2u(0, 0), LDL_Point2u(800, 600), "", LDL_WindowMode::Fixed);
+	LDL_Window window(&renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), "", LDL_WindowMode::Fixed);
 
 	if (!LDL_IsError())
 	{

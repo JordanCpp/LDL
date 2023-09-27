@@ -1,7 +1,7 @@
 #include <LDL/Low/RgbArray.hpp>
 #include <assert.h>
 
-LDL_RgbArray::LDL_RgbArray(const LDL_Point2u& size, uint8_t bpp, size_t capacity) :
+LDL_RgbArray::LDL_RgbArray(const LDL_Vec2u& size, uint8_t bpp, size_t capacity) :
 	_Capacity(capacity),
 	_Pixels(NULL),
 	_Bpp(bpp),
@@ -22,7 +22,7 @@ uint8_t LDL_FAR* LDL_RgbArray::Pixels()
 	return _Pixels;
 }
 
-const LDL_Point2u& LDL_RgbArray::Size()
+const LDL_Vec2u& LDL_RgbArray::Size()
 {
 	return _Size;
 }
@@ -37,7 +37,7 @@ size_t LDL_RgbArray::Capacity()
 	return _Capacity;
 }
 
-void LDL_RgbArray::Resize(const LDL_Point2u& size, uint8_t bpp)
+void LDL_RgbArray::Resize(const LDL_Vec2u& size, uint8_t bpp)
 {
 	assert(size.x * size.y * bpp <= _Capacity);
 

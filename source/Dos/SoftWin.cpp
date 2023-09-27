@@ -2,7 +2,7 @@
 #include <LDL/Low/Errors.hpp>
 #include <dos.h>
 
-LDL_SoftWindow::LDL_SoftWindow(LDL_IRenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title) :
+LDL_SoftWindow::LDL_SoftWindow(LDL_IRenderContext* context, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title) :
 	_BaseWindow(pos, size, title),
 	_Context(context)
 {
@@ -102,12 +102,12 @@ const char* LDL_SoftWindow::Title()
 	return _BaseWindow.Title();
 }
 
-const LDL_Point2u& LDL_SoftWindow::Size()
+const LDL_Vec2u& LDL_SoftWindow::Size()
 {
 	return _BaseWindow.Size();
 }
 
-const LDL_Point2u& LDL_SoftWindow::Pos()
+const LDL_Vec2u& LDL_SoftWindow::Pos()
 {
 	return _BaseWindow.Pos();
 }

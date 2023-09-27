@@ -4,7 +4,7 @@
 
 static const char AppName[] = "MainWindow";
 
-LDL_MainWinow::LDL_MainWinow(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode) :
+LDL_MainWinow::LDL_MainWinow(const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
     _BaseWindow(pos, size, title)
 {
     ClearStruct();
@@ -94,12 +94,12 @@ const char* LDL_MainWinow::Title()
     return _BaseWindow.Title();
 }
 
-const LDL_Point2u& LDL_MainWinow::Size()
+const LDL_Vec2u& LDL_MainWinow::Size()
 {
     return _BaseWindow.Size();
 }
 
-const LDL_Point2u& LDL_MainWinow::Pos()
+const LDL_Vec2u& LDL_MainWinow::Pos()
 {
     return _BaseWindow.Pos();
 }

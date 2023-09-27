@@ -8,7 +8,7 @@
 class LDL_Window
 {
 public:
-	LDL_Window(LDL_RenderContext* context, const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode = LDL_WindowMode::Resized)
+	LDL_Window(LDL_RenderContext* context, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode = LDL_WindowMode::Resized)
 	{
 		_Window = LDL_WindowCreate(context->GetRenderContext(), pos, size, title, mode);
 	}
@@ -42,7 +42,7 @@ public:
 		return _Window->WaitEvent(event);
 	}
 
-	const LDL_Point2u& Size()
+	const LDL_Vec2u& Size()
 	{
 		return _Window->Size();
 	}

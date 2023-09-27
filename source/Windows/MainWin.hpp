@@ -2,7 +2,7 @@
 #define LDL_Windows_MainWin_hpp
 
 #include "WinX.hpp"
-#include <LDL/Low/Point2u.hpp>
+#include <LDL/Low/Vec2u.hpp>
 #include <LDL/Low/Eventer.hpp>
 #include <LDL/Low/EHandler.hpp>
 #include <LDL/Low/BaseWin.hpp>
@@ -10,7 +10,7 @@
 class LDL_MainWinow
 {
 public:
-	LDL_MainWinow(const LDL_Point2u& pos, const LDL_Point2u& size, const char* title, size_t mode);
+	LDL_MainWinow(const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode);
 	~LDL_MainWinow();
 	bool Running();
 	void PollEvents();
@@ -19,8 +19,8 @@ public:
 	void StopEvent();
 	void Title(const char* title);
 	const char* Title();
-	const LDL_Point2u& Size();
-	const LDL_Point2u& Pos();
+	const LDL_Vec2u& Size();
+	const LDL_Vec2u& Pos();
 private:
 	void ClearStruct();
 	bool InitHinstance();

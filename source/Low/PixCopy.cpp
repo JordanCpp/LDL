@@ -1,6 +1,6 @@
 #include <LDL/Low/PixCopy.hpp>
 
-void LDL_PixelCopier::Draw(LDL_ISurface* dst, const LDL_Point2u& pos, LDL_ISurface* src)
+void LDL_PixelCopier::Draw(LDL_ISurface* dst, const LDL_Vec2u& pos, LDL_ISurface* src)
 {
 	size_t x = pos.x;
 	size_t y = pos.y;
