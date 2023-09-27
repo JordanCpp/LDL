@@ -3,7 +3,7 @@
 
 #include <stdlib.h>
 
-#if (__BORLANDC__)
+#if (__BORLANDC__) && (__BORLANDC__ <= 0x410)
 #include <alloc.h>
 #define LDL_FAR far
 #define LDL_MALLOC farmalloc

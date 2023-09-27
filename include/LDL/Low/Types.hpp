@@ -11,7 +11,7 @@ typedef void(*LDL_VoidFuncPtr)(void);
   #define LDL_COLOR_RGBA
 #endif 
 
-#if (__BORLANDC__)
+#if (__BORLANDC__) && (__BORLANDC__ <= 0x410)
 #define bool  int 
 #define true  1 
 #define false 0

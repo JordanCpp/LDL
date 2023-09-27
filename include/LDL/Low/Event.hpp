@@ -39,7 +39,7 @@ class LDL_EventMouse
 public:
 	uint8_t Type;
 	uint8_t State;
-	uint8_t Button;
+	size_t  Button;
 	size_t  PosX;
 	size_t  PosY;
 	size_t  Scroll;
