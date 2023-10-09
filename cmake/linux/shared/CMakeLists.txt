@@ -1,28 +1,16 @@
-
-if (MSVC)
-    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
-endif()
-
-set(LDL_STATIC_LIBRARY true)
-add_definitions(-DLDL_STATIC_LIBRARY)
-
 project(LDL)
 
-if(UNIX AND NOT APPLE)
-    find_package(X11 REQUIRED)
-    link_libraries(${X11_LIBRARIES})
-    include_directories(${X11_INCLUDE_DIR})
-endif()
+add_definitions(-DLDL_STATIC_LIBRARY)
+
+find_package(X11 REQUIRED)
+link_libraries(${X11_LIBRARIES})
+include_directories(${X11_INCLUDE_DIR})
 
 include_directories("include")
 
 file(GLOB_RECURSE SHARED_FILES "source/Shared/*.cpp")
 
-if (WIN32)
-  file(GLOB_RECURSE SOURCE_PLATFORM "source/Platforms/Windows/*.cpp")
-elseif(UNIX AND NOT APPLE)
-  file(GLOB_RECURSE SOURCE_PLATFORM "source/Platforms/Linux/*.cpp")
-endif()
+file(GLOB_RECURSE SOURCE_PLATFORM "source/Platforms/Linux/*.cpp")
 
 file(GLOB_RECURSE SOURCE_FREETYPE 
     "dependencies/freetype/src/sfnt/sfdriver.c"
@@ -81,36 +69,19 @@ file(GLOB_RECURSE SOURCE_FREETYPE
 add_definitions(-DFT2_BUILD_LIBRARY)
 include_directories(dependencies/freetype/include)
 
-if (WIN32)
-  add_library(freetype STATIC ${SOURCE_FREETYPE}
-  "dependencies/freetype/builds/windows/ftdebug.c"
-  "dependencies/freetype/builds/windows/ftsystem.c")
-elseif (UNIX AND NOT APPLE)
-  add_definitions(-DHAVE_FCNTL_H)
-  add_library(freetype STATIC ${SOURCE_FREETYPE}
+add_compile_options(-fPIC)
+
+add_definitions(-DHAVE_FCNTL_H)
+add_library(freetype STATIC ${SOURCE_FREETYPE}
   "dependencies/freetype/src/base/ftdebug.c"
   "dependencies/freetype/builds/unix/ftsystem.c")
-endif()
 
 set(SOURCE_ALL ${SHARED_FILES} ${SOURCE_PLATFORM})
 
-if (LDL_SHARED_LIBRARY)
-  add_library(${PROJECT_NAME} SHARED  ${SOURCE_ALL})		
-elseif (LDL_STATIC_LIBRARY)
-  add_library(${PROJECT_NAME} STATIC  ${SOURCE_ALL})		
-endif() 
+add_library(${PROJECT_NAME} SHARED ${SOURCE_ALL})		
 
-if (WIN32)
-    target_link_libraries(${PROJECT_NAME} winmm opengl32 freetype)
-elseif (UNIX AND NOT APPLE)
-    target_link_libraries(${PROJECT_NAME} X11 GL dl freetype)
-endif()
+target_link_libraries(${PROJECT_NAME} X11 GL dl freetype)
+
 add_subdirectory("Examples")
-
-if (LDL_STATIC_LIBRARY)
-    add_subdirectory("test")
-endif()
-
-if (LDL_STATIC_LIBRARY)
-    add_subdirectory("ArcanumWorld")
-endif()
+add_subdirectory("test")
+add_subdirectory("ArcanumWorld")

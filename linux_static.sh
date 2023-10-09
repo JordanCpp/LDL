@@ -1,0 +1,1 @@
+cp cmake/linux/static/CMakeLists.txt CMakeLists.txt

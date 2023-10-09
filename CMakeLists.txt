@@ -1,16 +1,16 @@
 project(LDL)
 
-if (MSVC)
-    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
-endif()
-
 add_definitions(-DLDL_STATIC_LIBRARY)
+
+find_package(X11 REQUIRED)
+link_libraries(${X11_LIBRARIES})
+include_directories(${X11_INCLUDE_DIR})
 
 include_directories("include")
 
 file(GLOB_RECURSE SHARED_FILES "source/Shared/*.cpp")
 
-file(GLOB_RECURSE SOURCE_PLATFORM "source/Platforms/Windows/*.cpp")
+file(GLOB_RECURSE SOURCE_PLATFORM "source/Platforms/Linux/*.cpp")
 
 file(GLOB_RECURSE SOURCE_FREETYPE 
     "dependencies/freetype/src/sfnt/sfdriver.c"
@@ -69,15 +69,18 @@ file(GLOB_RECURSE SOURCE_FREETYPE
 add_definitions(-DFT2_BUILD_LIBRARY)
 include_directories(dependencies/freetype/include)
 
+add_compile_options(-fPIC)
+
+add_definitions(-DHAVE_FCNTL_H)
 add_library(freetype STATIC ${SOURCE_FREETYPE}
-  "dependencies/freetype/builds/windows/ftdebug.c"
-  "dependencies/freetype/builds/windows/ftsystem.c")
+  "dependencies/freetype/src/base/ftdebug.c"
+  "dependencies/freetype/builds/unix/ftsystem.c")
 
 set(SOURCE_ALL ${SHARED_FILES} ${SOURCE_PLATFORM})
 
-add_library(${PROJECT_NAME} STATIC  ${SOURCE_ALL})		
+add_library(${PROJECT_NAME} SHARED ${SOURCE_ALL})		
 
-target_link_libraries(${PROJECT_NAME} winmm opengl32 freetype)
+target_link_libraries(${PROJECT_NAME} X11 GL dl freetype)
 
 add_subdirectory("Examples")
 add_subdirectory("test")

@@ -10,41 +10,28 @@ Free cross-platform library.
 5. Cross-platform.
 6. Static and dynamic link.
 
-# Install Linux
+# Build for Linux
 1. sudo apt-get install libx11-dev
 2. sudo apt-get install libgl1-mesa-dev
 3. git clone https://github.com/JordanCpp/Lib-LDL.git
 4. cd Lib-LDL
-5. Run dependencies_download.sh (download freetype source code)
-6. cmake CMakeLists.txt
+5. Run ./linux_static.sh (for static build) or ./linux_shared.sh (for dynamic build)
+6. cmake . or cmake -Bout
 7. make
 
-# Install for Windows (Static library)
-1. git clone https://github.com/JordanCpp/Lib-LDL.git dependencies/LDL 
-2. Run dependencies_download.bat (download freetype source code)
-3. Added to CMake
-- set(LDL_STATIC_LIBRARY true)
-- add_definitions(-DLDL_STATIC_LIBRARY)
-- add_subdirectory(dependencies/LDL/source)
+# Build for Windows
+1. git clone https://github.com/JordanCpp/Lib-LDL.git
+2. cd Lib-LDL
+3. Run windows_static.bat (for static build) or ./windows_shared.sh (for dynamic build)
+
+# Add LDL in your project
+1. git clone https://github.com/JordanCpp/Lib-LDL.git your_project/dependencies/LDL
+2. cd LDL
+3. Run windows_static.bat (for static build) or windows_shared.sh (for dynamic build)
+- add_subdirectory(dependencies/LDL)
 - include_directories(dependencies/LDL/include)
 - link_directories   (${CMAKE_CURRENT_BINARY_DIR}/dependencies/LDL)
 - target_link_libraries(${PROJECT_NAME} LDL)
-
-# Install for Windows (Dynamic library 32 bit)
-1. git clone https://github.com/JordanCpp/Lib-LDL-WindowsBuilds dependencies/LDL 
-2. Added to CMake
-- add_definitions(-DLDL_SHARED_LIBRARY)
-- include_directories(dependencies/LDL/MSVC2022_x86/include)
-- link_directories   (dependencies/LDL/MSVC2022_x86)
-- target_link_libraries(${PROJECT_NAME} LDL)
-
-# Install for Windows (Dynamic library 64 bit)
-1. git clone https://github.com/JordanCpp/Lib-LDL-WindowsBuilds dependencies/LDL 
-2. Added to CMake
-- add_definitions(-DLDL_SHARED_LIBRARY)
-- include_directories(dependencies/LDL/MSVC2022_x64/include)
-- link_directories   (dependencies/LDL/MSVC2022_x64)
-- target_link_libraries(MyProject LDL)
 
 # Support platforms.
 1. Windows 95
