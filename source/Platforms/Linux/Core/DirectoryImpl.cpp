@@ -2,6 +2,15 @@
 
 using namespace LDL::Core;
 
+const char* DirectoryImpl::AllFiles()
+{
+    _AllFiles[0] = '.';
+    _AllFiles[1] = '/';
+    _AllFiles[2] = '\0';
+
+    return _AllFiles;
+}
+
 bool DirectoryImpl::Create(const std::string& path)
 {
     return false;

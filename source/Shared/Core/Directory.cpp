@@ -18,6 +18,11 @@ Directory::~Directory()
     delete _DirectoryImpl;
 }
 
+const char* Directory::AllFiles()
+{
+    return _DirectoryImpl->AllFiles();
+}
+
 bool Directory::Create(const std::string& path)
 {
     return _DirectoryImpl->Create(path);

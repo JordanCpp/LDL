@@ -2,6 +2,7 @@
 #include <LDL/Enums/KeyboardKey.hpp>
 #include <LDL/OpenGL/OpenGL1_2.hpp>
 
+using namespace LDL::Core;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 using namespace LDL::Allocators;
@@ -9,10 +10,12 @@ using namespace LDL::Enums;
 using namespace LDL::Loaders;
 using namespace LDL::Events;
 using namespace LDL::Time;
+
 using namespace Arcanum::Game;
 using namespace Arcanum::Objects;
 
-Engine::Engine(Settings* settings) :
+Engine::Engine(CommandLineParser* commandLineParser, Settings* settings) :
+	_CommandLineParser(commandLineParser),
 	_Settings(settings),
 	_RenderContext(settings->Render()),
 	_PathManager(settings->Path()),

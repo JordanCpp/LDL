@@ -15,6 +15,7 @@ namespace LDL
 		public:
 			Directory();
 			~Directory();
+			const char* AllFiles();
 			bool Create(const std::string& path);
 			bool Exist(const std::string& path);
 			bool Delete(const std::string& path);

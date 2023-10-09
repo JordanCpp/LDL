@@ -9,6 +9,7 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
+#include <LDL/Core/CommandLineParser.hpp>
 #include <Arcanum/Managers/PathManager.hpp>
 #include <Arcanum/Game/Settings.hpp>
 #include <Arcanum/Loaders/ArtLoader.hpp>
@@ -34,12 +35,13 @@ namespace Arcanum
 		class Engine
 		{
 		public:
-			Engine(Settings* settings);
+			Engine(LDL::Core::CommandLineParser * commandLineParser, Settings* settings);
 			void ShowFps();
 			void Draw();
 			void Update();
 			void Run();
 		private:
+			LDL::Core::CommandLineParser* _CommandLineParser;
 			Readers::XmlReader _XmlReader;
 			Settings* _Settings;
 			LDL::Graphics::RenderContext _RenderContext;

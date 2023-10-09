@@ -1,6 +1,5 @@
 #include <Arcanum/Managers/FileManager.hpp>
 #include <LDL/Core/Directory.hpp>
-#include <Arcanum/Platforms.hpp>
 
 using namespace LDL::Core;
 using namespace Arcanum::Managers;
@@ -15,7 +14,7 @@ FileManager::FileManager(PathManager* pathManager) :
 	Directory directory;
 	FileInfo fileInfo;
 
-	if (directory.Open(CURRENT_DIRECTORY_PATH))
+	if (directory.Open(directory.AllFiles()))
 	{
 		while (directory.Next(fileInfo))
 		{
