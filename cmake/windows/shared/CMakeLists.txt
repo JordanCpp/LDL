@@ -4,7 +4,7 @@ if (MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
 
-add_definitions(-DLDL_STATIC_LIBRARY)
+add_definitions(-DLDL_SHARED_LIBRARY)
 
 include_directories("include")
 
@@ -75,10 +75,10 @@ add_library(freetype STATIC ${SOURCE_FREETYPE}
 
 set(SOURCE_ALL ${SHARED_FILES} ${SOURCE_PLATFORM})
 
-add_library(${PROJECT_NAME} STATIC  ${SOURCE_ALL})		
+add_library(${PROJECT_NAME} SHARED ${SOURCE_ALL})		
 
 target_link_libraries(${PROJECT_NAME} winmm opengl32 freetype)
 
-add_subdirectory("Examples")
-add_subdirectory("test")
-add_subdirectory("ArcanumWorld")
+#add_subdirectory("Examples")
+#add_subdirectory("test")
+#add_subdirectory("ArcanumWorld")
