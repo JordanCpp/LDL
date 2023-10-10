@@ -1,4 +1,5 @@
 #include "DirectoryImpl.hpp"
+#include <sys/stat.h>
 
 using namespace LDL::Core;
 
@@ -16,9 +17,16 @@ bool DirectoryImpl::Create(const std::string& path)
     return false;
 }
 
-bool DirectoryImpl::Exist(const std::string& path)
+bool DirectoryImpl::DirExist(const std::string& path)
 {
     return false;
+}
+
+bool DirectoryImpl::FileExist(const std::string& path)
+{
+    struct stat st;   
+
+    return (stat (path.c_str(), &st) == 0);
 }
 
 bool DirectoryImpl::Delete(const std::string& path)
