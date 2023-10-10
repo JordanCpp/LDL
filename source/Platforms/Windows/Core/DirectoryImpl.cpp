@@ -17,9 +17,18 @@ bool DirectoryImpl::Create(const std::string& path)
     return CreateDirectory(path.c_str(), NULL);
 }
 
-bool DirectoryImpl::Exist(const std::string& path)
+bool DirectoryImpl::DirExist(const std::string& path)
 {
-    return GetFileAttributes(path.c_str()) != DWORD(-1);
+    DWORD attr = GetFileAttributes(path.c_str());
+
+    return (attr != INVALID_FILE_ATTRIBUTES && (attr & FILE_ATTRIBUTE_DIRECTORY));
+}
+
+bool DirectoryImpl::FileExist(const std::string& path)
+{
+    DWORD attr = GetFileAttributes(path.c_str());
+
+    return (attr != INVALID_FILE_ATTRIBUTES && !(attr & FILE_ATTRIBUTE_DIRECTORY));
 }
 
 bool DirectoryImpl::Delete(const std::string& path)

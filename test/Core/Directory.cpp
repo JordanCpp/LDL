@@ -38,7 +38,7 @@ void Exist()
 {
 	Directory directory;
 
-	LDL_TEST_EQUAL(directory.Exist("TestFiles/Test") == true);
+	LDL_TEST_EQUAL(directory.DirExist("TestFiles/Test") == true);
 }
 
 void Delete()

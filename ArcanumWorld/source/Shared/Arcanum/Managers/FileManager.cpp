@@ -32,7 +32,7 @@ MemoryReader& FileManager::GetFile(const std::string& path)
 
 	const char* filePath = _PathManager->NewFullPath("data/", path).c_str();
 
-	if (directory.Exist(filePath))
+	if (directory.FileExist(filePath))
 	{
 		_MemoryReader.Reset(filePath);
 

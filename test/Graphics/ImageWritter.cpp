@@ -20,7 +20,7 @@ void Save()
 
 	Directory directory;
 
-	LDL_TEST_EQUAL(directory.Exist(path) == true);
+	LDL_TEST_EQUAL(directory.FileExist(path) == true);
 
 	directory.Remove(path);
 }

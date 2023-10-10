@@ -28,9 +28,14 @@ bool Directory::Create(const std::string& path)
     return _DirectoryImpl->Create(path);
 }
 
-bool Directory::Exist(const std::string& path)
+bool Directory::DirExist(const std::string& path)
 {
-    return _DirectoryImpl->Exist(path);
+    return _DirectoryImpl->DirExist(path);
+}
+
+bool Directory::FileExist(const std::string& path)
+{
+    return _DirectoryImpl->FileExist(path);
 }
 
 bool Directory::Delete(const std::string& path)
