@@ -15,19 +15,15 @@ Free cross-platform library.
 2. sudo apt-get install libgl1-mesa-dev
 3. git clone https://github.com/JordanCpp/Lib-LDL.git
 4. cd Lib-LDL
-5. Run ./linux_static.sh (for static build) or ./linux_shared.sh (for dynamic build)
-6. cmake . or cmake -Bout
-7. make
+5. cmake . or cmake -Bout
+6. make
 
 # Build for Windows
 1. git clone https://github.com/JordanCpp/Lib-LDL.git
 2. cd Lib-LDL
-3. Run windows_static.bat (for static build) or ./windows_shared.sh (for dynamic build)
 
 # Add LDL in your project
 1. git clone https://github.com/JordanCpp/Lib-LDL.git your_project/dependencies/LDL
-2. cd LDL
-3. Run windows_static.bat (for static build) or windows_shared.sh (for dynamic build)
 - add_subdirectory(dependencies/LDL)
 - include_directories(dependencies/LDL/include)
 - link_directories   (${CMAKE_CURRENT_BINARY_DIR}/dependencies/LDL)

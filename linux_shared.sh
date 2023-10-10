@@ -1,1 +1,0 @@
-cp cmake/linux/shared/CMakeLists.txt CMakeLists.txt
