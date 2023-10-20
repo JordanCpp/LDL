@@ -2,7 +2,7 @@
 #define LDL_Graphics_Creators_RenderContext_hpp
 
 #include <LDL/Graphics/RenderContext.hpp>
-#include "../RenderContextImpl.hpp"
+#include "../Impls/RenderContextImpl.hpp"
 
 namespace LDL
 {

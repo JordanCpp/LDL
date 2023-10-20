@@ -1,6 +1,6 @@
 #include <LDL/Graphics/Camera.hpp>
 
-#include "OpenGL1/CameraImplOpenGL1.hpp"
+#include "Renders/OpenGL1/CameraImplOpenGL1.hpp"
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;

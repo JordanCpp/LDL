@@ -2,9 +2,9 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Enums/RenderMode.hpp>
 
-#include "../Software/TextureBatcherImplSoftware.hpp"
-#include "../OpenGL1/TextureBatcherImplOpenGL1.hpp"
-#include "../OpenGL3/TextureBatcherImplOpenGL3.hpp"
+#include "../Renders/Software/TextureBatcherImplSoftware.hpp"
+#include "../Renders/OpenGL1/TextureBatcherImplOpenGL1.hpp"
+#include "../Renders/OpenGL3/TextureBatcherImplOpenGL3.hpp"
 #include "TextureBatcherImplCreator.hpp"
 
 using namespace LDL::Core;

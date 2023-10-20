@@ -1,8 +1,8 @@
 #include "RenderImplCreator.hpp"
 
-#include "../Software/RenderImplSoftware.hpp"
-#include "../OpenGL1/RenderImplOpenGL1.hpp"
-#include "../OpenGL3/RenderImplOpenGL3.hpp"
+#include "../Renders/Software/RenderImplSoftware.hpp"
+#include "../Renders/OpenGL1/RenderImplOpenGL1.hpp"
+#include "../Renders/OpenGL3/RenderImplOpenGL3.hpp"
 
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Enums/RenderMode.hpp>

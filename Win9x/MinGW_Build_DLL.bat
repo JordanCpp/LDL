@@ -9,10 +9,10 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DFT2_BUI
 ..\source\Shared\Graphics\*.cpp ^
 ..\source\Shared\Graphics\Base\*.cpp ^
 ..\source\Shared\Graphics\Creators\*.cpp ^
-..\source\Shared\Graphics\Software\*.cpp ^
-..\source\Shared\Graphics\OpenGL\*.cpp ^
-..\source\Shared\Graphics\OpenGL1\*.cpp ^
-..\source\Shared\Graphics\OpenGL3\*.cpp ^
+..\source\Shared\Graphics\Renders\Software\*.cpp ^
+..\source\Shared\Graphics\Renders\OpenGL\*.cpp ^
+..\source\Shared\Graphics\Renders\OpenGL1\*.cpp ^
+..\source\Shared\Graphics\Renders\OpenGL3\*.cpp ^
 ..\source\Shared\Graphics\Primitives\*.cpp ^
 ..\source\Shared\Graphics\Utils\*.cpp ^
 ..\source\Shared\Loaders\*.cpp ^

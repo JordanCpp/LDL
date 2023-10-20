@@ -10,10 +10,10 @@ CL /O2 /FeLDL_VC6.dll -LD -GX /I..\include /I..\dependencies\freetype\include /D
 ..\source\Shared\Graphics\*.cpp ^
 ..\source\Shared\Graphics\Base\*.cpp ^
 ..\source\Shared\Graphics\Creators\*.cpp ^
-..\source\Shared\Graphics\Software\*.cpp ^
-..\source\Shared\Graphics\OpenGL\*.cpp ^
-..\source\Shared\Graphics\OpenGL1\*.cpp ^
-..\source\Shared\Graphics\OpenGL3\*.cpp ^
+..\source\Shared\Graphics\Renders\Software\*.cpp ^
+..\source\Shared\Graphics\Renders\OpenGL\*.cpp ^
+..\source\Shared\Graphics\Renders\OpenGL1\*.cpp ^
+..\source\Shared\Graphics\Renders\OpenGL3\*.cpp ^
 ..\source\Shared\Graphics\Primitives\*.cpp ^
 ..\source\Shared\Graphics\Utils\*.cpp ^
 ..\source\Shared\Loaders\*.cpp ^

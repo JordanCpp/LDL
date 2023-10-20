@@ -1,8 +1,8 @@
 #include "TextureImplCreator.hpp"
 
-#include "../Software/TextureImplSoftware.hpp"
-#include "../OpenGL1/TextureImplOpenGL1.hpp"
-#include "../OpenGL3/TextureImplOpenGL3.hpp"
+#include "../Renders/Software/TextureImplSoftware.hpp"
+#include "../Renders/OpenGL1/TextureImplOpenGL1.hpp"
+#include "../Renders/OpenGL3/TextureImplOpenGL3.hpp"
 
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Enums/RenderMode.hpp>

@@ -1,27 +1,26 @@
-#ifndef LDL_Graphics_Render_hpp
-#define LDL_Graphics_Render_hpp
+#ifndef LDL_Graphics_Software_RenderImpl_hpp
+#define LDL_Graphics_Software_RenderImpl_hpp
 
-#include <LDL/Graphics/Surface.hpp>
+#include <LDL/Graphics/Base/BaseRender.hpp>
 #include <LDL/Graphics/Window.hpp>
+#include "TextureImplSoftware.hpp"
+#include <LDL/Graphics/Surface.hpp>
 #include <LDL/Graphics/Texture.hpp>
-#include <LDL/Graphics/RenderContext.hpp>
+#include <LDL/Graphics/PixelPainter.hpp>
+#include <LDL/Graphics/PixelCopier.hpp>
+#include <LDL/Graphics/ImageResizer.hpp>
 #include <LDL/Graphics/TextureBatcher.hpp>
-#include "../source/Shared/Graphics/Impls/RenderImpl.hpp"
+#include "../../Impls/RenderImpl.hpp"
 
 namespace LDL
 {
 	namespace Graphics
 	{
-		class RenderImpl;
-		class Texture;
-
-		class LDL_LIBRARY Render: public LDL::Core::FastPimpl
+		class RenderImplSoftware : public RenderImpl
 		{
 		public:
-			Render(RenderContext* renderContext, Window* window);
-			~Render();
-			RenderImpl* GetRenderImpl();
-			void Buffer(uint8_t* dst);
+			RenderImplSoftware(RenderContextImpl* renderContextImpl, Window* window);
+			void Buffer(uint8_t * dst);
 			void Begin();
 			void End();
 			const Math::Vec2u& Size();
@@ -41,9 +40,13 @@ namespace LDL
 			void Draw(Surface* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
 			void Draw(TextureBatcher* textureBatcher);
 		private:
-			RenderImpl* _RenderImpl;
+			Window* _Window;
+			Surface _Canvas;
+			PixelPainter _PixelPainter;
+			PixelCopier _PixelCopier;
+			ImageResizer _ImageResizer;
 		};
 	}
 }
 
-#endif 
+#endif   

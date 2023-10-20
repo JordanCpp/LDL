@@ -3,7 +3,7 @@
 
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
-#include "../TextureImpl.hpp"
+#include "../Impls/TextureImpl.hpp"
 
 namespace LDL
 {

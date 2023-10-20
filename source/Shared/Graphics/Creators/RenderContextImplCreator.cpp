@@ -2,9 +2,9 @@
 #include <LDL/Enums/RenderMode.hpp>
 #include "RenderContextImplCreator.hpp"
 
-#include "../Software/RenderContextImplSoftware.hpp"
-#include "../OpenGL1/RenderContextImplOpenGL1.hpp"
-#include "../OpenGL3/RenderContextImplOpenGL3.hpp"
+#include "../Renders/Software/RenderContextImplSoftware.hpp"
+#include "../Renders/OpenGL1/RenderContextImplOpenGL1.hpp"
+#include "../Renders/OpenGL3/RenderContextImplOpenGL3.hpp"
 
 using namespace LDL::Core;
 using namespace LDL::Enums;
