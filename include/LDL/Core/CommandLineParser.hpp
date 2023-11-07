@@ -3,12 +3,13 @@
 
 #include <vector>
 #include <string>
+#include <LDL/Config.hpp>
 
 namespace LDL
 {
 	namespace Core
 	{
-		class CommandLineParser
+		class LDL_LIBRARY CommandLineParser
 		{
 		public:
 			CommandLineParser(size_t argc, char* argv[]);
