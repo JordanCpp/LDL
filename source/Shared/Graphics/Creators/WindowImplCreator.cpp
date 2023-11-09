@@ -4,12 +4,12 @@
 #include "../source/Platforms/Windows/Graphics/Software/WindowImplSoftware.hpp"
 #include "../source/Platforms/Windows/Graphics/OpenGL1/WindowImplOpenGL1.hpp"
 #include "../source/Platforms/Windows/Graphics/OpenGL3/WindowImplOpenGL3.hpp"
+#include "../source/Platforms/Windows/Graphics/DirectDraw/WindowImplDirectDraw.hpp"
 #elif defined(__unix__)
 #include "../source/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp"
 #include "../source/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp"
 #include "../source/Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp"
 #endif
-
 
 #include <LDL/Core/RuntimeError.hpp>
 
@@ -26,6 +26,11 @@ WindowImpl* WindowImplCreator::Create(RenderContext* renderContext, const Vec2u&
 
 	switch (renderMode)
 	{
+#if defined(_WIN32)
+	case Enums::RenderMode::DirectDraw:
+		result = new WindowImplDirectDraw(pos, size, title, mode);
+		break;
+#endif
 	case Enums::RenderMode::Software:
 		result = new WindowImplSoftware(pos, size, title, mode);
 		break;
