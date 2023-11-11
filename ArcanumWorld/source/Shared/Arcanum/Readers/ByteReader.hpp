@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <LDL/Core/Types.hpp>
 
 namespace Arcanum
 {

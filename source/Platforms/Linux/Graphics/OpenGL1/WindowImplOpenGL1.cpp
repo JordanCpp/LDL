@@ -26,19 +26,20 @@ WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u &pos, const Vec2u &size, const 
         GLX_SAMPLES, 0,
         None};
 
-    _Visual = glXChooseVisual(_Window._Display, _Window._ScreenId, glxAttribs);
+    _Visual = glXChooseVisual(_Window._Display, _Window._Screen, glxAttribs);
 
     if (_Visual == NULL)
         throw RuntimeError("glXChooseVisual failed");
 
     XSetWindowAttributes windowAttribs;
 
-    windowAttribs.border_pixel = BlackPixel(_Window._Display, _Window._ScreenId);
-    windowAttribs.background_pixel = WhitePixel(_Window._Display, _Window._ScreenId);
+    windowAttribs.border_pixel = BlackPixel(_Window._Display, _Window._Screen);
+    windowAttribs.background_pixel = WhitePixel(_Window._Display, _Window._Screen);
     windowAttribs.override_redirect = True;
-    windowAttribs.colormap = XCreateColormap(_Window._Display, RootWindow(_Window._Display, _Window._ScreenId), _Visual->visual, AllocNone);
+    windowAttribs.colormap = XCreateColormap(_Window._Display, RootWindow(_Window._Display, _Window._Screen), _Visual->visual, AllocNone);
     windowAttribs.event_mask = ExposureMask;
-    _Window._Window = XCreateWindow(_Window._Display, RootWindow(_Window._Display, _Window._ScreenId), 0, 0, 800, 600, 0, _Visual->depth, InputOutput, _Visual->visual, CWBackPixel | CWColormap | CWBorderPixel | CWEventMask, &windowAttribs);
+    
+    _Window._Window = XCreateWindow(_Window._Display, RootWindow(_Window._Display, _Window._Screen), 0, 0, 800, 600, 0, _Visual->depth, InputOutput, _Visual->visual, CWBackPixel | CWColormap | CWBorderPixel | CWEventMask, &windowAttribs);
 
     XSelectInput(_Window._Display, _Window._Window, _Window._EventMask);
 

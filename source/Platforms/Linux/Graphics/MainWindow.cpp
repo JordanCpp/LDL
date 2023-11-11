@@ -254,14 +254,20 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
     if (_Display == NULL)
         throw RuntimeError("XOpenDisplay failed");
 
-    _Screen   = DefaultScreenOfDisplay(_Display);
-	_ScreenId = DefaultScreen(_Display);
+    _Screen  = DefaultScreen(_Display);
+    _Root   = RootWindow(_Display, _Screen);
+    _Visual = DefaultVisual(_Display, _Screen);
+
+    size_t x = _BaseWindow.Pos().x;
+    size_t y = _BaseWindow.Pos().y;
+    size_t w = _BaseWindow.Size().x;
+    size_t h = _BaseWindow.Size().y;
+
+    _Window = XCreateSimpleWindow(_Display, _Root, x, y, w, h, 1, 0, 0);
 }
 
 MainWindow::~MainWindow()
 {
-    XDestroyWindow(_Display, _Window);
-	XFree(_Screen);
 	XCloseDisplay(_Display);
 }
 

@@ -33,8 +33,9 @@ namespace LDL
 			LDL::Events::Eventer _Eventer;
 		public:
 			Display* _Display;
-			int      _ScreenId;
-			Screen*  _Screen;
+			int      _Screen;
+			Window   _Root;
+			Visual*  _Visual;
 			Window   _Window;
 			size_t   _EventMask;
 		};
