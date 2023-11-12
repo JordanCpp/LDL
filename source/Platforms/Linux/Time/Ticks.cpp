@@ -1,19 +1,13 @@
 #include <LDL/Time/Ticks.hpp>
-#include <unistd.h>
-#include <time.h>
+#include <sys/time.h>
 
 size_t LDL::Time::Ticks()
 {
-	size_t result = 0;
+	struct timeval tv;
 
-	timespec ts;
-
-	clock_gettime(CLOCK_REALTIME, &ts);
+	gettimeofday(&tv, NULL);
 	
-	result = ts.tv_nsec / 1000000;
-	result += ts.tv_sec * 1000;
-
-	return result;
+	return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 }
 
 void LDL::Time::Delay(size_t count)
