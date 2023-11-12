@@ -1,4 +1,5 @@
 #include <LDL/Time/Ticks.hpp>
+#include <unistd.h>
 #include <sys/time.h>
 
 size_t LDL::Time::Ticks()
