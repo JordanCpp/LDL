@@ -35,7 +35,6 @@ namespace LDL
 			Display* _Display;
 			int      _Screen;
 			Window   _Root;
-			Visual*  _Visual;
 			Window   _Window;
 			size_t   _EventMask;
 		};

@@ -14,7 +14,7 @@ WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u &pos, const Vec2u &size, const 
 
     glXQueryVersion(_Window._Display, &major, &minor);
 
-    GLint glxAttribs[] = {
+    GLint ga[] = {
         GLX_RGBA,
         GLX_DOUBLEBUFFER,
         GLX_DEPTH_SIZE, 24,
@@ -26,20 +26,25 @@ WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u &pos, const Vec2u &size, const 
         GLX_SAMPLES, 0,
         None};
 
-    _Visual = glXChooseVisual(_Window._Display, _Window._Screen, glxAttribs);
+    _Visual = glXChooseVisual(_Window._Display, _Window._Screen, ga);
 
     if (_Visual == NULL)
         throw RuntimeError("glXChooseVisual failed");
 
-    XSetWindowAttributes windowAttribs;
+    XSetWindowAttributes wa;
 
-    windowAttribs.border_pixel = BlackPixel(_Window._Display, _Window._Screen);
-    windowAttribs.background_pixel = WhitePixel(_Window._Display, _Window._Screen);
-    windowAttribs.override_redirect = True;
-    windowAttribs.colormap = XCreateColormap(_Window._Display, RootWindow(_Window._Display, _Window._Screen), _Visual->visual, AllocNone);
-    windowAttribs.event_mask = ExposureMask;
+    wa.border_pixel      = BlackPixel(_Window._Display, _Window._Screen);
+    wa.background_pixel  = WhitePixel(_Window._Display, _Window._Screen);
+    wa.override_redirect = True;
+    wa.colormap          = XCreateColormap(_Window._Display, _Window._Root, _Visual->visual, AllocNone);
+    wa.event_mask        = ExposureMask;
     
-    _Window._Window = XCreateWindow(_Window._Display, RootWindow(_Window._Display, _Window._Screen), 0, 0, 800, 600, 0, _Visual->depth, InputOutput, _Visual->visual, CWBackPixel | CWColormap | CWBorderPixel | CWEventMask, &windowAttribs);
+    size_t x = pos.x;
+    size_t y = pos.y;
+    size_t w = size.x;
+    size_t h = size.y;
+
+    _Window._Window = XCreateWindow(_Window._Display, _Window._Root, x, y, w, h, 0, _Visual->depth, InputOutput, _Visual->visual, CWBackPixel | CWColormap | CWBorderPixel | CWEventMask, &wa);
 
     XSelectInput(_Window._Display, _Window._Window, _Window._EventMask);
 
