@@ -107,5 +107,6 @@ elseif (UNIX AND NOT APPLE)
 endif()
 
 add_subdirectory("Examples")
+add_subdirectory("Tutorials")
 add_subdirectory("test")
 add_subdirectory("ArcanumWorld")

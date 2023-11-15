@@ -45,3 +45,13 @@ call %2 Sierpinski3D %pth%
 call %2 Tetrahedron %pth%
 call %2 Torus %pth%
 call %2 Triangle %pth%
+
+set pth=C:\Repos\Lib-LDL\Tutorials\OpenGL_SuperBible\
+
+call %2 Chapter_2_Bounce %pth%
+call %2 Chapter_2_GLRect %pth%
+call %2 Chapter_2_Simple %pth%
+call %2 Chapter_3_Lines %pth%
+call %2 Chapter_3_Linesw %pth%
+call %2 Chapter_3_Lstipple %pth%
+call %2 Chapter_3_LStrips %pth%
