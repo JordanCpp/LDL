@@ -55,3 +55,7 @@ call %2 Chapter_3_Lines %pth%
 call %2 Chapter_3_Linesw %pth%
 call %2 Chapter_3_Lstipple %pth%
 call %2 Chapter_3_LStrips %pth%
+
+set pth=C:\Repos\Lib-LDL\Examples\DirectX\DirectX9\
+
+call %2 DirectXLoader %pth%

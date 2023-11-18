@@ -36,6 +36,12 @@
   #define LDL_API_CALL
 #endif
 
+#if defined(_WIN32)
+#define LDL_CALL __stdcall
+#else
+#define LDL_CALL
+#endif
+
 #define LDL_API_ENTRY LDL_LIBRARY extern
 
 #endif    

@@ -17,6 +17,7 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DFT2_BUI
 ..\source\Shared\Graphics\Utils\*.cpp ^
 ..\source\Shared\Loaders\*.cpp ^
 ..\source\Shared\OpenGL\*.cpp ^
+..\source\Shared\DirectX\*.cpp ^
 ..\source\Shared\GLU\*.cpp ^
 ..\source\Shared\GLUT\*.cpp ^
 ..\source\Shared\LDLC\*.cpp ^
