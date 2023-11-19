@@ -1,7 +1,7 @@
 #include <LDL/OpenGL/OpenGL_Functions.hpp>
 
 #if defined(_WIN32)
-#include "../source/Platforms/Windows/Graphics/OpenGL/FunctionsImpl.hpp"
+#include "../source/Platforms/Windows/Graphics/OpenGLFunctionsImpl.hpp"
 #elif defined(__unix__)
 #include "../source/Platforms/Linux/Graphics/OpenGL/FunctionsImpl.hpp"
 #endif

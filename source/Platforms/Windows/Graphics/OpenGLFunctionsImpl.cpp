@@ -1,4 +1,4 @@
-#include "FunctionsImpl.hpp"
+#include "OpenGLFunctionsImpl.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Graphics;

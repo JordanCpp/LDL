@@ -1,10 +1,10 @@
 #include "WindowImplCreator.hpp"
 
 #if defined(_WIN32)
-#include "../source/Platforms/Windows/Graphics/Software/WindowImplSoftware.hpp"
-#include "../source/Platforms/Windows/Graphics/OpenGL1/WindowImplOpenGL1.hpp"
-#include "../source/Platforms/Windows/Graphics/OpenGL3/WindowImplOpenGL3.hpp"
-#include "../source/Platforms/Windows/Graphics/DirectDraw/WindowImplDirectDraw.hpp"
+#include "../source/Platforms/Windows/Graphics/WindowImplSoftware.hpp"
+#include "../source/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp"
+#include "../source/Platforms/Windows/Graphics/WindowImplOpenGL3.hpp"
+#include "../source/Platforms/Windows/Graphics/WindowImplDirectDraw.hpp"
 #elif defined(__unix__)
 #include "../source/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp"
 #include "../source/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp"

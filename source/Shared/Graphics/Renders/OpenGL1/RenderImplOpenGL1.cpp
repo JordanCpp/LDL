@@ -5,7 +5,7 @@
 #include <LDL/Math/Funcs.hpp>
 
 #if defined(_WIN32)
-#include "../source/Platforms/Windows/Graphics/OpenGL1/WindowImplOpenGL1.hpp"
+#include "../source/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp"
 #elif defined(__unix__)
 #include "../source/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp"
 #endif

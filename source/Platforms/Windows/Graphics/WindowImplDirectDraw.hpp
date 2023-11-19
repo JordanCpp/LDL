@@ -2,9 +2,9 @@
 #define LDL_Platforms_Windows_Graphics_DirectDraw_WindowImpl_hpp
 
 #include <LDL/Graphics/Window.hpp>
-#include "../MainWindow.hpp"
-#include "../WindowImpl.hpp"
-#include "../../DirectX/DirectDraw.hpp"
+#include "MainWindow.hpp"
+#include "WindowImpl.hpp"
+#include "../DirectX/DirectDraw.hpp"
 
 namespace LDL
 {

@@ -25,11 +25,6 @@ CL /O2 /FeLDL_VC6.dll -LD -GX /I..\include /I..\dependencies\freetype\include /D
 ..\source\Shared\Text\*.cpp ^
 ..\source\Platforms\Windows\DirectX\*.cpp ^
 ..\source\Platforms\Windows\Graphics\*.cpp ^
-..\source\Platforms\Windows\Graphics\OpenGL\*.cpp ^
-..\source\Platforms\Windows\Graphics\OpenGL1\*.cpp ^
-..\source\Platforms\Windows\Graphics\OpenGL3\*.cpp ^
-..\source\Platforms\Windows\Graphics\Software\*.cpp ^
-..\source\Platforms\Windows\Graphics\DirectDraw\*.cpp ^
 ..\source\Platforms\Windows\Time\Ticks.cpp ^
 ..\source\Platforms\Windows\Core\*.cpp ^
 ..\source\Platforms\Windows\Input\*.cpp ^

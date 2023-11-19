@@ -24,11 +24,6 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DFT2_BUI
 ..\source\Shared\Text\*.cpp ^
 ..\source\Platforms\Windows\DirectX\*.cpp ^
 ..\source\Platforms\Windows\Graphics\*.cpp ^
-..\source\Platforms\Windows\Graphics\OpenGL\*.cpp ^
-..\source\Platforms\Windows\Graphics\OpenGL1\*.cpp ^
-..\source\Platforms\Windows\Graphics\OpenGL3\*.cpp ^
-..\source\Platforms\Windows\Graphics\Software\*.cpp ^
-..\source\Platforms\Windows\Graphics\DirectDraw\*.cpp ^
 ..\source\Platforms\Windows\Time\Ticks.cpp ^
 ..\source\Platforms\Windows\Core\*.cpp ^
 ..\source\Platforms\Windows\Input\*.cpp ^

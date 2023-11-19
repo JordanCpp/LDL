@@ -1,8 +1,8 @@
 #ifndef LDL_Platforms_Windows_Graphics_Software_WindowImpl_hpp
 #define LDL_Platforms_Windows_Graphics_Software_WindowImpl_hpp
 
-#include "../MainWindow.hpp"
-#include "../WindowImpl.hpp"
+#include "MainWindow.hpp"
+#include "WindowImpl.hpp"
 
 namespace LDL
 {

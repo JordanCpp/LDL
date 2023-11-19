@@ -1,7 +1,7 @@
 #ifndef LDL_Contexts_Direct3D9_hpp
 #define LDL_Contexts_Direct3D9_hpp
 
-#include <d3d9.h>
+#include <LDL/DirectX/DirectX9.hpp>
 
 namespace LDL
 {
@@ -10,8 +10,8 @@ namespace LDL
         class Direct3D9
         {
         public:
-            IDirect3D9       * Direct;
-            IDirect3DDevice9 * Device;
+            DirectX9::LPDIRECT3D9 Direct;
+            DirectX9::LPDIRECT3DDEVICE9 Device;
         };
     }
 }

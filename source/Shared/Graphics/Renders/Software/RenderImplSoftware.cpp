@@ -1,7 +1,7 @@
 #include "RenderImplSoftware.hpp"
 
 #if defined(_WIN32)
-#include "../source/Platforms/Windows/Graphics/Software/WindowImplSoftware.hpp"
+#include "../source/Platforms/Windows/Graphics/WindowImplSoftware.hpp"
 #elif defined(__unix__)
 #include "../source/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp"
 #endif

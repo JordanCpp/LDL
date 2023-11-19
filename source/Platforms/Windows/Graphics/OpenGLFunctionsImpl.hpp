@@ -1,7 +1,7 @@
 #ifndef LDL_Platforms_Windows_Graphics_OpenGL_OpenGLFunctionsImpl_hpp
 #define LDL_Platforms_Windows_Graphics_OpenGL_OpenGLFunctionsImpl_hpp
 
-#include "../../Windows.hpp"
+#include "../Windows.hpp"
 #include <LDL/Core/Library.hpp>
 
 namespace LDL
