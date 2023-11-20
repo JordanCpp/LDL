@@ -14,7 +14,6 @@ CL /O2 /FeLDL_VC6.dll -LD -GX /I..\include /I..\dependencies\freetype\include /D
 ..\source\Shared\Graphics\Renders\OpenGL\*.cpp ^
 ..\source\Shared\Graphics\Renders\OpenGL1\*.cpp ^
 ..\source\Shared\Graphics\Renders\OpenGL3\*.cpp ^
-..\source\Shared\Graphics\Primitives\*.cpp ^
 ..\source\Shared\Graphics\Utils\*.cpp ^
 ..\source\Shared\Loaders\*.cpp ^
 ..\source\Shared\OpenGL\*.cpp ^
