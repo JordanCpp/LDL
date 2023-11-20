@@ -10,7 +10,7 @@ namespace LDL
 		class Color
 		{
 		public:
-			Color::Color() :
+			Color() :
 #if defined(LDL_CONFIG_COLOR_BGRA)
 				b(0),
 				g(0),
@@ -24,7 +24,7 @@ namespace LDL
 			{
 			}
 
-			Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha = 255) :
+			Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha = 255) :
 #if defined(LDL_CONFIG_COLOR_BGRA)
 				b(blue),
 				g(green),
@@ -38,7 +38,7 @@ namespace LDL
 			{
 			}
 
-			uint32_t Color::toInt() const
+			uint32_t toInt() const
 			{
 				return (uint32_t)((r << 24) | (g << 16) | (b << 8) | a);
 			}
