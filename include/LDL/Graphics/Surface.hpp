@@ -1,6 +1,7 @@
 #ifndef LDL_Graphics_Surface_hpp
 #define LDL_Graphics_Surface_hpp
 
+#include <LDL/Config.hpp>
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Graphics/Color.hpp>
 

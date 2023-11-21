@@ -9,6 +9,7 @@
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/OpenGL/OpenGL1_2.hpp>
 #include <LDL/OpenGL/OpenGLUtility.hpp>
+#include <stdlib.h>
 
 using namespace LDL::Graphics;
 using namespace LDL::Enums;

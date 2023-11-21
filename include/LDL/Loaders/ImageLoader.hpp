@@ -1,9 +1,10 @@
 #ifndef LDL_Loaders_ImageLoader_hpp
 #define LDL_Loaders_ImageLoader_hpp
 
+#include <LDL/Config.hpp>
 #include <LDL/Math/Vec2.hpp>
-#include <LDL/Allocators/Allocator.hpp>
 #include <LDL/Graphics/Color.hpp>
+#include <LDL/Allocators/Allocator.hpp>
 #include <string>
 
 namespace LDL

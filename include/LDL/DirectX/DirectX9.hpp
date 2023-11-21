@@ -2,6 +2,7 @@
 #define LDL_DirectX_DirectX9_hpp
 
 #include <LDL/Config.hpp>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {

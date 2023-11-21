@@ -1,7 +1,7 @@
 
 call %1
 
-set pth=C:\Repos\Lib-LDL\Examples\Graphics\
+set pth=..\Examples\LDLCpp\
 
 call %2 01_WindowAndRender %pth%
 call %2 02_Color %pth%
@@ -20,7 +20,7 @@ call %2 14_TextureCopy %pth%
 call %2 15_AudioPlay %pth%
 call %2 16_TextRasterizer %pth%
 
-set pth=C:\Repos\Lib-LDL\Examples\NeheOpenGL\
+set pth=..\Examples\NeheOpenGL\
 
 call %2 Lesson01 %pth%
 call %2 Lesson02 %pth%
@@ -36,7 +36,7 @@ call %2 Lesson11 %pth%
 call %2 Lesson12 %pth%
 call %2 Lesson16 %pth%
 
-set pth=C:\Repos\Lib-LDL\Examples\OpenGL1\
+set pth=..\Examples\OpenGL1\
 
 call %2 Figures %pth%
 call %2 Primitive %pth%
@@ -46,7 +46,7 @@ call %2 Tetrahedron %pth%
 call %2 Torus %pth%
 call %2 Triangle %pth%
 
-set pth=C:\Repos\Lib-LDL\Tutorials\OpenGL_SuperBible\
+set pth=..\Examples\OpenGL_SuperBible\
 
 call %2 Chapter_2_Bounce %pth%
 call %2 Chapter_2_GLRect %pth%
@@ -56,6 +56,6 @@ call %2 Chapter_3_Linesw %pth%
 call %2 Chapter_3_Lstipple %pth%
 call %2 Chapter_3_LStrips %pth%
 
-set pth=C:\Repos\Lib-LDL\Examples\DirectX\DirectX9\
+set pth=..\Examples\DirectX\DirectX9\
 
 call %2 DirectXLoader %pth%

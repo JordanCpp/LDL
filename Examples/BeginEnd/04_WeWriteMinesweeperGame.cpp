@@ -1,6 +1,3 @@
-#include <iostream>
-#include <time.h>
-#include <string.h>
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
@@ -10,6 +7,10 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/OpenGL/OpenGL1_2.hpp>
+#include <iostream>
+#include <time.h>
+#include <string.h>
+#include <stdlib.h>
 
 using namespace LDL::Graphics;
 using namespace LDL::Enums;

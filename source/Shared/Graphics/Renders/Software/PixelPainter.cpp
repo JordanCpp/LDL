@@ -1,5 +1,6 @@
 #include <LDL/Graphics/PixelPainter.hpp>
 #include <assert.h>
+#include <stdlib.h>
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;

@@ -82,7 +82,6 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DFT2_BUI
 ..\dependencies\freetype\src\psaux\psaux.c ^
 ..\dependencies\freetype\src\type1\type1.c ^
 -I..\include\ ^
--I..\dependencies\dx9sdk\Include ^
 -I..\dependencies\freetype\include ^
 -lgdi32 ^
 -lopengl32 ^

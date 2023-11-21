@@ -27,20 +27,20 @@ public:
 	LDL::Input::Mouse mMouse;
 	// Stores the main vectors of the camera
 	glm::vec3 Position;
-	glm::vec3 Orientation = glm::vec3(0.0f, 0.0f, -1.0f);
-	glm::vec3 Up = glm::vec3(0.0f, 1.0f, 0.0f);
-	glm::mat4 cameraMatrix = glm::mat4(1.0f);
+	glm::vec3 Orientation;
+	glm::vec3 Up;
+	glm::mat4 cameraMatrix;
 
 	// Prevents the camera from jumping around when first clicking left click
-	bool firstClick = true;
+	bool firstClick;
 
 	// Stores the width and height of the window
 	int width;
 	int height;
 
 	// Adjust the speed of the camera and it's sensitivity when looking around
-	float speed = 0.1f;
-	float sensitivity = 100.0f;
+	float speed;
+	float sensitivity;
 };
 
 #endif

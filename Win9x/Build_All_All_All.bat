@@ -1,5 +1,3 @@
 
-call MinGW_All
 call VC6_All
-
-pause
+call MinGW_All

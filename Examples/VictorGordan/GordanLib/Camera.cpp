@@ -1,11 +1,18 @@
 #include "Camera.h"
+#include <stdlib.h>
 
 using namespace LDL::Math;
 using namespace LDL::Enums;
 using namespace LDL::Events;
 using namespace LDL::Input;
 
-Camera::Camera(int width, int height, glm::vec3 position)
+Camera::Camera(int width, int height, glm::vec3 position) :
+	Orientation(glm::vec3(0.0f, 0.0f, -1.0f)),
+	Up(glm::vec3(0.0f, 1.0f, 0.0f)),
+	cameraMatrix(glm::mat4(1.0f)),
+	firstClick(true),
+	speed(0.1f),
+	sensitivity(100.0f)
 {
 	Camera::width = width;
 	Camera::height = height;

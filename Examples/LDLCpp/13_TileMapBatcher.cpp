@@ -9,7 +9,7 @@
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Graphics/Isometric.hpp>
 #include <LDL/Graphics/TextureBatcher.hpp>
-
+#include <stdlib.h>
 #include <vector>
 #include <time.h>
 
