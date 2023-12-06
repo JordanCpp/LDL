@@ -5,6 +5,7 @@
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
+static const UINT timePeriod = 1;
 static const char AppName[] = "MainWindow";
 
 size_t MainWindow::ConvertKey(size_t key)
@@ -271,6 +272,8 @@ LRESULT CALLBACK MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPA
 MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _BaseWindow(pos, size, title)
 {
+    timeBeginPeriod(timePeriod);
+
     ZeroMemory(&_WNDCLASS, sizeof(WNDCLASS));
     ZeroMemory(&_HINSTANCE, sizeof(HINSTANCE));
     ZeroMemory(&_MSG, sizeof(MSG));
@@ -339,9 +342,11 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
 
 MainWindow::~MainWindow()
 {
-        UnregisterClass(AppName, _HINSTANCE);
-        ReleaseDC(_HWND, _HDC);
-        PostQuitMessage(0);
+    timeEndPeriod(timePeriod);
+
+    UnregisterClass(AppName, _HINSTANCE);
+    ReleaseDC(_HWND, _HDC);
+    PostQuitMessage(0);
 }
 
 bool MainWindow::Running()
