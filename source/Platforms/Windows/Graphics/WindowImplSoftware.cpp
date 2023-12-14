@@ -2,6 +2,8 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include <assert.h>
 
+using namespace LDL::Core;
+using namespace LDL::Events;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
@@ -18,17 +20,17 @@ WindowImplSoftware::~WindowImplSoftware()
 void WindowImplSoftware::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 {
     assert(pixels != NULL);
-    assert(bytesPerPixel == 1 || bytesPerPixel == 2 || bytesPerPixel == 3 || bytesPerPixel == 4);
+    assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
 
-    _BITMAPINFO.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-    _BITMAPINFO.bmiHeader.biWidth = (LONG)_Window.Size().x;
-    _BITMAPINFO.bmiHeader.biHeight = -(LONG)_Window.Size().y;
-    _BITMAPINFO.bmiHeader.biPlanes = 1;
-    _BITMAPINFO.bmiHeader.biBitCount = bytesPerPixel * 8;
+    _BITMAPINFO.bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
+    _BITMAPINFO.bmiHeader.biWidth       = (LONG)_Window.Size().x;
+    _BITMAPINFO.bmiHeader.biHeight      = -(LONG)_Window.Size().y;
+    _BITMAPINFO.bmiHeader.biPlanes      = 1;
+    _BITMAPINFO.bmiHeader.biBitCount    = bytesPerPixel * 8;
     _BITMAPINFO.bmiHeader.biCompression = BI_RGB;
 
     if (SetDIBitsToDevice(_Window._HDC, 0, 0, (DWORD)_Window.Size().x, (DWORD)_Window.Size().y, 0, 0, 0, (UINT)_Window.Size().y, pixels, &_BITMAPINFO, DIB_RGB_COLORS) == 0)
-        throw LDL::Core::RuntimeError("SetDIBitsToDevice failed");
+        throw RuntimeError("SetDIBitsToDevice failed");
 }
 
 void WindowImplSoftware::Present()
@@ -55,12 +57,12 @@ void WindowImplSoftware::PollEvents()
     _Window.PollEvents();
 }
 
-bool WindowImplSoftware::GetEvent(LDL::Events::Event& event)
+bool WindowImplSoftware::GetEvent(Event& event)
 {
     return _Window.GetEvent(event);
 }
 
-bool WindowImplSoftware::WaitEvent(LDL::Events::Event& event)
+bool WindowImplSoftware::WaitEvent(Event& event)
 {
     return _Window.WaitEvent(event);
 }

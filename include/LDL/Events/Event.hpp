@@ -39,22 +39,22 @@ namespace LDL
 				LDL::Events::LostFocus   LostFocus;
 			};
 
-			bool IsKeyPressed(size_t key)
+			bool IsKeyPressed(uint8_t key)
 			{
 				return (Type == IsKeyboard && Keyboard.Key == key && Keyboard.State == Enums::ButtonState::Pressed);
 			}
 
-			bool IsKeyReleased(size_t key)
+			bool IsKeyReleased(uint8_t key)
 			{
 				return (Type == IsKeyboard && Keyboard.Key == key && Keyboard.State == Enums::ButtonState::Released);
 			}
 
-			bool IsMousePressed(size_t key)
+			bool IsMousePressed(uint8_t key)
 			{
 				return (Type == IsMouseClick && Mouse.Button == key && Mouse.State == Enums::ButtonState::Pressed);
 			}
 
-			bool IsMouseReleased(size_t key)
+			bool IsMouseReleased(uint8_t key)
 			{
 				return (Type == IsMouseClick && Mouse.Button == key && Mouse.State == Enums::ButtonState::Released);
 			}

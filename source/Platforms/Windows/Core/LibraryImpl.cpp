@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <LDL/Core/RuntimeError.hpp>
 
+using namespace LDL;
 using namespace LDL::Core;
 
 LibraryImpl::LibraryImpl(const std::string& path) :
@@ -19,12 +20,12 @@ LibraryImpl::~LibraryImpl()
     FreeLibrary(_HMODULE);
 }
 
-LDL::VoidFuncPtr LibraryImpl::Function(const std::string& name)
+VoidFuncPtr LibraryImpl::Function(const std::string& name)
 {
-    LDL::VoidFuncPtr result = (LDL::VoidFuncPtr)GetProcAddress(_HMODULE, name.c_str());
+    VoidFuncPtr result = (VoidFuncPtr)GetProcAddress(_HMODULE, name.c_str());
 
     if (result == NULL)
-        throw LDL::Core::RuntimeError("GetProcAddress failed: " + name);
+        throw RuntimeError("GetProcAddress failed: " + name);
 
     return result;
 }

@@ -66,16 +66,16 @@ void PixelCopier::Copy32(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
 
 			if (dst_index < limit)
 			{
-				if (srcSurf->Pixels()[src_index + 3] != 0)
+				if (src_data[src_index + 3] != 0)
 				{
 #if defined(LDL_CONFIG_COLOR_BGRA)
-					dstSurf->Pixels()[dst_index + 0] = srcSurf->Pixels()[src_index + 2];
-					dstSurf->Pixels()[dst_index + 1] = srcSurf->Pixels()[src_index + 1];
-					dstSurf->Pixels()[dst_index + 2] = srcSurf->Pixels()[src_index + 0];
+					dst_data[dst_index + 0] = src_data[src_index + 2];
+					dst_data[dst_index + 1] = src_data[src_index + 1];
+					dst_data[dst_index + 2] = src_data[src_index + 0];
 #else
-					dstSurf->Pixels()[dst_index + 0] = srcSurf->Pixels()[src_index + 0];
-					dstSurf->Pixels()[dst_index + 1] = srcSurf->Pixels()[src_index + 1];
-					dstSurf->Pixels()[dst_index + 2] = srcSurf->Pixels()[src_index + 2];
+					dst_data[dst_index + 0] = src_data[src_index + 0];
+					dst_data[dst_index + 1] = src_data[src_index + 1];
+					dst_data[dst_index + 2] = src_data[src_index + 2];
 #endif
 				}
 

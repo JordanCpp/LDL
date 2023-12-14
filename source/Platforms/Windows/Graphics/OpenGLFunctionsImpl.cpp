@@ -1,21 +1,27 @@
 #include "OpenGLFunctionsImpl.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
+using namespace LDL;
 using namespace LDL::Graphics;
 
-OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path) :
+OpenGLFunctionsImpl::OpenGLFunctionsImpl(const std::string& path) :
     _Library(path)
 {
 }
 
-LDL::VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
+VoidFuncPtr OpenGLFunctionsImpl::Function(const std::string& name)
 {
-    LDL::VoidFuncPtr p = (LDL::VoidFuncPtr)wglGetProcAddress(name);
+    VoidFuncPtr result = (VoidFuncPtr)wglGetProcAddress(name.c_str());
 
-    if (p == 0 || (p == (LDL::VoidFuncPtr)0x1) || (p == (LDL::VoidFuncPtr)0x2) || (p == (LDL::VoidFuncPtr)0x3) || (p == (LDL::VoidFuncPtr)-1))
+    if (IsValid(result))
     {
-        p = _Library.Function(name);
+        result = _Library.Function(name);
     }
 
-    return (LDL::VoidFuncPtr)p;
+    return result;
+}
+
+bool OpenGLFunctionsImpl::IsValid(VoidFuncPtr ptr)
+{
+    return (ptr == 0 || (ptr == (VoidFuncPtr)0x1) || (ptr == (VoidFuncPtr)0x2) || (ptr == (VoidFuncPtr)0x3) || (ptr == (VoidFuncPtr)-1));
 }

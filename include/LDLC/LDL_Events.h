@@ -29,7 +29,7 @@ typedef struct LDL_EventKeyboard
 {
 	uint8_t Type;
 	uint8_t State;
-	size_t  Key;
+	uint8_t Key;
 } LDL_EventKeyboard;
 
 typedef struct LDL_EventMouse

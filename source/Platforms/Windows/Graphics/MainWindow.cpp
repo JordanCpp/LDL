@@ -2,123 +2,126 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
 
+using namespace LDL::Core;
+using namespace LDL::Enums;
+using namespace LDL::Events;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 static const UINT timePeriod = 1;
-static const char AppName[] = "MainWindow";
+static const char AppName[]  = "MainWindow";
 
-size_t MainWindow::ConvertKey(size_t key)
+uint8_t MainWindow::ConvertKey(size_t key)
 {
     switch (key)
     {
-    case VK_LWIN:       return LDL::Enums::KeyboardKey::LSystem;
-    case VK_RWIN:       return LDL::Enums::KeyboardKey::RSystem;
-    case VK_APPS:       return LDL::Enums::KeyboardKey::Menu;
-    case VK_OEM_1:      return LDL::Enums::KeyboardKey::Semicolon;
-    case VK_OEM_2:      return LDL::Enums::KeyboardKey::Slash;
-    case VK_OEM_PLUS:   return LDL::Enums::KeyboardKey::Equal;
-    case VK_OEM_MINUS:  return LDL::Enums::KeyboardKey::Hyphen;
-    case VK_OEM_4:      return LDL::Enums::KeyboardKey::LBracket;
-    case VK_OEM_6:      return LDL::Enums::KeyboardKey::RBracket;
-    case VK_OEM_COMMA:  return LDL::Enums::KeyboardKey::Comma;
-    case VK_OEM_PERIOD: return LDL::Enums::KeyboardKey::Period;
-    case VK_OEM_7:      return LDL::Enums::KeyboardKey::Quote;
-    case VK_OEM_5:      return LDL::Enums::KeyboardKey::Backslash;
-    case VK_OEM_3:      return LDL::Enums::KeyboardKey::Tilde;
-    case VK_ESCAPE:     return LDL::Enums::KeyboardKey::Escape;
-    case VK_SPACE:      return LDL::Enums::KeyboardKey::Space;
-    case VK_RETURN:     return LDL::Enums::KeyboardKey::Enter;
-    case VK_BACK:       return LDL::Enums::KeyboardKey::Backspace;
-    case VK_TAB:        return LDL::Enums::KeyboardKey::Tab;
-    case VK_PRIOR:      return LDL::Enums::KeyboardKey::PageUp;
-    case VK_NEXT:       return LDL::Enums::KeyboardKey::PageDown;
-    case VK_END:        return LDL::Enums::KeyboardKey::End;
-    case VK_HOME:       return LDL::Enums::KeyboardKey::Home;
-    case VK_INSERT:     return LDL::Enums::KeyboardKey::Insert;
-    case VK_DELETE:     return LDL::Enums::KeyboardKey::Delete;
-    case VK_ADD:        return LDL::Enums::KeyboardKey::Add;
-    case VK_SUBTRACT:   return LDL::Enums::KeyboardKey::Subtract;
-    case VK_MULTIPLY:   return LDL::Enums::KeyboardKey::Multiply;
-    case VK_DIVIDE:     return LDL::Enums::KeyboardKey::Divide;
-    case VK_PAUSE:      return LDL::Enums::KeyboardKey::Pause;
-    case VK_F1:         return LDL::Enums::KeyboardKey::F1;
-    case VK_F2:         return LDL::Enums::KeyboardKey::F2;
-    case VK_F3:         return LDL::Enums::KeyboardKey::F3;
-    case VK_F4:         return LDL::Enums::KeyboardKey::F4;
-    case VK_F5:         return LDL::Enums::KeyboardKey::F5;
-    case VK_F6:         return LDL::Enums::KeyboardKey::F6;
-    case VK_F7:         return LDL::Enums::KeyboardKey::F7;
-    case VK_F8:         return LDL::Enums::KeyboardKey::F8;
-    case VK_F9:         return LDL::Enums::KeyboardKey::F9;
-    case VK_F10:        return LDL::Enums::KeyboardKey::F10;
-    case VK_F11:        return LDL::Enums::KeyboardKey::F11;
-    case VK_F12:        return LDL::Enums::KeyboardKey::F12;
-    case VK_F13:        return LDL::Enums::KeyboardKey::F13;
-    case VK_F14:        return LDL::Enums::KeyboardKey::F14;
-    case VK_F15:        return LDL::Enums::KeyboardKey::F15;
-    case VK_LEFT:       return LDL::Enums::KeyboardKey::Left;
-    case VK_RIGHT:      return LDL::Enums::KeyboardKey::Right;
-    case VK_UP:         return LDL::Enums::KeyboardKey::Up;
-    case VK_DOWN:       return LDL::Enums::KeyboardKey::Down;
-    case VK_NUMPAD0:    return LDL::Enums::KeyboardKey::Numpad0;
-    case VK_NUMPAD1:    return LDL::Enums::KeyboardKey::Numpad1;
-    case VK_NUMPAD2:    return LDL::Enums::KeyboardKey::Numpad2;
-    case VK_NUMPAD3:    return LDL::Enums::KeyboardKey::Numpad3;
-    case VK_NUMPAD4:    return LDL::Enums::KeyboardKey::Numpad4;
-    case VK_NUMPAD5:    return LDL::Enums::KeyboardKey::Numpad5;
-    case VK_NUMPAD6:    return LDL::Enums::KeyboardKey::Numpad6;
-    case VK_NUMPAD7:    return LDL::Enums::KeyboardKey::Numpad7;
-    case VK_NUMPAD8:    return LDL::Enums::KeyboardKey::Numpad8;
-    case VK_NUMPAD9:    return LDL::Enums::KeyboardKey::Numpad9;
-    case 'A':           return LDL::Enums::KeyboardKey::A;
-    case 'Z':           return LDL::Enums::KeyboardKey::Z;
-    case 'E':           return LDL::Enums::KeyboardKey::E;
-    case 'R':           return LDL::Enums::KeyboardKey::R;
-    case 'T':           return LDL::Enums::KeyboardKey::T;
-    case 'Y':           return LDL::Enums::KeyboardKey::Y;
-    case 'U':           return LDL::Enums::KeyboardKey::U;
-    case 'I':           return LDL::Enums::KeyboardKey::I;
-    case 'O':           return LDL::Enums::KeyboardKey::O;
-    case 'P':           return LDL::Enums::KeyboardKey::P;
-    case 'Q':           return LDL::Enums::KeyboardKey::Q;
-    case 'S':           return LDL::Enums::KeyboardKey::S;
-    case 'D':           return LDL::Enums::KeyboardKey::D;
-    case 'F':           return LDL::Enums::KeyboardKey::F;
-    case 'G':           return LDL::Enums::KeyboardKey::G;
-    case 'H':           return LDL::Enums::KeyboardKey::H;
-    case 'J':           return LDL::Enums::KeyboardKey::J;
-    case 'K':           return LDL::Enums::KeyboardKey::K;
-    case 'L':           return LDL::Enums::KeyboardKey::L;
-    case 'M':           return LDL::Enums::KeyboardKey::M;
-    case 'W':           return LDL::Enums::KeyboardKey::W;
-    case 'X':           return LDL::Enums::KeyboardKey::X;
-    case 'C':           return LDL::Enums::KeyboardKey::C;
-    case 'V':           return LDL::Enums::KeyboardKey::V;
-    case 'B':           return LDL::Enums::KeyboardKey::B;
-    case 'N':           return LDL::Enums::KeyboardKey::N;
-    case '0':           return LDL::Enums::KeyboardKey::Num0;
-    case '1':           return LDL::Enums::KeyboardKey::Num1;
-    case '2':           return LDL::Enums::KeyboardKey::Num2;
-    case '3':           return LDL::Enums::KeyboardKey::Num3;
-    case '4':           return LDL::Enums::KeyboardKey::Num4;
-    case '5':           return LDL::Enums::KeyboardKey::Num5;
-    case '6':           return LDL::Enums::KeyboardKey::Num6;
-    case '7':           return LDL::Enums::KeyboardKey::Num7;
-    case '8':           return LDL::Enums::KeyboardKey::Num8;
-    case '9':           return LDL::Enums::KeyboardKey::Num9;
-    case VK_LSHIFT:     return LDL::Enums::KeyboardKey::Leftshift;
-    case VK_RSHIFT:     return LDL::Enums::KeyboardKey::RightShift;
-    case VK_LCONTROL:   return LDL::Enums::KeyboardKey::LeftControl;
-    case VK_RCONTROL:   return LDL::Enums::KeyboardKey::RightControl;
+    case VK_LWIN:       return KeyboardKey::LSystem;
+    case VK_RWIN:       return KeyboardKey::RSystem;
+    case VK_APPS:       return KeyboardKey::Menu;
+    case VK_OEM_1:      return KeyboardKey::Semicolon;
+    case VK_OEM_2:      return KeyboardKey::Slash;
+    case VK_OEM_PLUS:   return KeyboardKey::Equal;
+    case VK_OEM_MINUS:  return KeyboardKey::Hyphen;
+    case VK_OEM_4:      return KeyboardKey::LBracket;
+    case VK_OEM_6:      return KeyboardKey::RBracket;
+    case VK_OEM_COMMA:  return KeyboardKey::Comma;
+    case VK_OEM_PERIOD: return KeyboardKey::Period;
+    case VK_OEM_7:      return KeyboardKey::Quote;
+    case VK_OEM_5:      return KeyboardKey::Backslash;
+    case VK_OEM_3:      return KeyboardKey::Tilde;
+    case VK_ESCAPE:     return KeyboardKey::Escape;
+    case VK_SPACE:      return KeyboardKey::Space;
+    case VK_RETURN:     return KeyboardKey::Enter;
+    case VK_BACK:       return KeyboardKey::Backspace;
+    case VK_TAB:        return KeyboardKey::Tab;
+    case VK_PRIOR:      return KeyboardKey::PageUp;
+    case VK_NEXT:       return KeyboardKey::PageDown;
+    case VK_END:        return KeyboardKey::End;
+    case VK_HOME:       return KeyboardKey::Home;
+    case VK_INSERT:     return KeyboardKey::Insert;
+    case VK_DELETE:     return KeyboardKey::Delete;
+    case VK_ADD:        return KeyboardKey::Add;
+    case VK_SUBTRACT:   return KeyboardKey::Subtract;
+    case VK_MULTIPLY:   return KeyboardKey::Multiply;
+    case VK_DIVIDE:     return KeyboardKey::Divide;
+    case VK_PAUSE:      return KeyboardKey::Pause;
+    case VK_F1:         return KeyboardKey::F1;
+    case VK_F2:         return KeyboardKey::F2;
+    case VK_F3:         return KeyboardKey::F3;
+    case VK_F4:         return KeyboardKey::F4;
+    case VK_F5:         return KeyboardKey::F5;
+    case VK_F6:         return KeyboardKey::F6;
+    case VK_F7:         return KeyboardKey::F7;
+    case VK_F8:         return KeyboardKey::F8;
+    case VK_F9:         return KeyboardKey::F9;
+    case VK_F10:        return KeyboardKey::F10;
+    case VK_F11:        return KeyboardKey::F11;
+    case VK_F12:        return KeyboardKey::F12;
+    case VK_F13:        return KeyboardKey::F13;
+    case VK_F14:        return KeyboardKey::F14;
+    case VK_F15:        return KeyboardKey::F15;
+    case VK_LEFT:       return KeyboardKey::Left;
+    case VK_RIGHT:      return KeyboardKey::Right;
+    case VK_UP:         return KeyboardKey::Up;
+    case VK_DOWN:       return KeyboardKey::Down;
+    case VK_NUMPAD0:    return KeyboardKey::Numpad0;
+    case VK_NUMPAD1:    return KeyboardKey::Numpad1;
+    case VK_NUMPAD2:    return KeyboardKey::Numpad2;
+    case VK_NUMPAD3:    return KeyboardKey::Numpad3;
+    case VK_NUMPAD4:    return KeyboardKey::Numpad4;
+    case VK_NUMPAD5:    return KeyboardKey::Numpad5;
+    case VK_NUMPAD6:    return KeyboardKey::Numpad6;
+    case VK_NUMPAD7:    return KeyboardKey::Numpad7;
+    case VK_NUMPAD8:    return KeyboardKey::Numpad8;
+    case VK_NUMPAD9:    return KeyboardKey::Numpad9;
+    case 'A':           return KeyboardKey::A;
+    case 'Z':           return KeyboardKey::Z;
+    case 'E':           return KeyboardKey::E;
+    case 'R':           return KeyboardKey::R;
+    case 'T':           return KeyboardKey::T;
+    case 'Y':           return KeyboardKey::Y;
+    case 'U':           return KeyboardKey::U;
+    case 'I':           return KeyboardKey::I;
+    case 'O':           return KeyboardKey::O;
+    case 'P':           return KeyboardKey::P;
+    case 'Q':           return KeyboardKey::Q;
+    case 'S':           return KeyboardKey::S;
+    case 'D':           return KeyboardKey::D;
+    case 'F':           return KeyboardKey::F;
+    case 'G':           return KeyboardKey::G;
+    case 'H':           return KeyboardKey::H;
+    case 'J':           return KeyboardKey::J;
+    case 'K':           return KeyboardKey::K;
+    case 'L':           return KeyboardKey::L;
+    case 'M':           return KeyboardKey::M;
+    case 'W':           return KeyboardKey::W;
+    case 'X':           return KeyboardKey::X;
+    case 'C':           return KeyboardKey::C;
+    case 'V':           return KeyboardKey::V;
+    case 'B':           return KeyboardKey::B;
+    case 'N':           return KeyboardKey::N;
+    case '0':           return KeyboardKey::Num0;
+    case '1':           return KeyboardKey::Num1;
+    case '2':           return KeyboardKey::Num2;
+    case '3':           return KeyboardKey::Num3;
+    case '4':           return KeyboardKey::Num4;
+    case '5':           return KeyboardKey::Num5;
+    case '6':           return KeyboardKey::Num6;
+    case '7':           return KeyboardKey::Num7;
+    case '8':           return KeyboardKey::Num8;
+    case '9':           return KeyboardKey::Num9;
+    case VK_LSHIFT:     return KeyboardKey::Leftshift;
+    case VK_RSHIFT:     return KeyboardKey::RightShift;
+    case VK_LCONTROL:   return KeyboardKey::LeftControl;
+    case VK_RCONTROL:   return KeyboardKey::RightControl;
     }
 
-    return LDL::Enums::KeyboardKey::Unknown;
+    return KeyboardKey::Unknown;
 }
 
 LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 {
-    LDL::Events::Event event;
+    Event event;
 
     ZeroMemory(&event, sizeof(event));
 
@@ -139,8 +142,8 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 
     case WM_LBUTTONDOWN:
         event.Type         = Events::IsMouseClick;
-        event.Mouse.State  = LDL::Enums::ButtonState::Pressed;
-        event.Mouse.Button = LDL::Enums::MouseButton::Left;
+        event.Mouse.State  = ButtonState::Pressed;
+        event.Mouse.Button = MouseButton::Left;
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
         _Eventer.Push(event);
@@ -148,8 +151,8 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 
     case WM_LBUTTONUP:
         event.Type         = Events::IsMouseClick;
-        event.Mouse.State  = LDL::Enums::ButtonState::Released;
-        event.Mouse.Button = LDL::Enums::MouseButton::Left;
+        event.Mouse.State  = ButtonState::Released;
+        event.Mouse.Button = MouseButton::Left;
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
         _Eventer.Push(event);
@@ -157,8 +160,8 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 
     case WM_RBUTTONDOWN:
         event.Type         = Events::IsMouseClick;
-        event.Mouse.State  = LDL::Enums::ButtonState::Pressed;
-        event.Mouse.Button = LDL::Enums::MouseButton::Right;
+        event.Mouse.State  = ButtonState::Pressed;
+        event.Mouse.Button = MouseButton::Right;
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
         _Eventer.Push(event);
@@ -166,8 +169,8 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 
     case WM_RBUTTONUP:
         event.Type         = Events::IsMouseClick;
-        event.Mouse.State  = LDL::Enums::ButtonState::Released;
-        event.Mouse.Button = LDL::Enums::MouseButton::Right;
+        event.Mouse.State  = ButtonState::Released;
+        event.Mouse.Button = MouseButton::Right;
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
         _Eventer.Push(event);
@@ -175,8 +178,8 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 
     case WM_MBUTTONDOWN:
         event.Type         = Events::IsMouseClick;
-        event.Mouse.State  = LDL::Enums::ButtonState::Pressed;
-        event.Mouse.Button = LDL::Enums::MouseButton::Middle;
+        event.Mouse.State  = ButtonState::Pressed;
+        event.Mouse.Button = MouseButton::Middle;
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
         _Eventer.Push(event);
@@ -184,8 +187,8 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 
     case WM_MBUTTONUP:
         event.Type         = Events::IsMouseClick;
-        event.Mouse.State  = LDL::Enums::ButtonState::Released;
-        event.Mouse.Button = LDL::Enums::MouseButton::Middle;
+        event.Mouse.State  = ButtonState::Released;
+        event.Mouse.Button = MouseButton::Middle;
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
         _Eventer.Push(event);
@@ -205,33 +208,33 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 
     case WM_KEYDOWN:
     case WM_SYSKEYDOWN:
-        event.Type           = LDL::Events::IsKeyboard;
-        event.Keyboard.State = LDL::Enums::ButtonState::Pressed;
+        event.Type           = IsKeyboard;
+        event.Keyboard.State = ButtonState::Pressed;
         event.Keyboard.Key   = ConvertKey(WParam);
         _Eventer.Push(event);
         break;
 
     case WM_KEYUP:
     case WM_SYSKEYUP:
-        event.Type           = LDL::Events::IsKeyboard;
-        event.Keyboard.State = LDL::Enums::ButtonState::Released;
+        event.Type           = IsKeyboard;
+        event.Keyboard.State = ButtonState::Released;
         event.Keyboard.Key   = ConvertKey(WParam);
         _Eventer.Push(event);
         break;
 
     case WM_SETFOCUS:
-        event.Type = LDL::Events::IsGainedFocus;
+        event.Type = IsGainedFocus;
         _Eventer.Push(event);
         break;
 
     case WM_KILLFOCUS:
-        event.Type = LDL::Events::IsLostFocus;
+        event.Type = IsLostFocus;
         _Eventer.Push(event);
         break;
 
     case WM_MOUSEWHEEL:
-        event.Type         = LDL::Events::IsMouseScroll;
-        event.Mouse.Scroll = LDL::Enums::MouseScroll::Vertical;
+        event.Type         = IsMouseScroll;
+        event.Mouse.Scroll = MouseScroll::Vertical;
         event.Mouse.Delta  = HIWORD(WParam);
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
@@ -239,8 +242,8 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_MOUSEHWHEEL:
-        event.Type         = LDL::Events::IsMouseScroll;
-        event.Mouse.Scroll = LDL::Enums::MouseScroll::Vertical;
+        event.Type         = IsMouseScroll;
+        event.Mouse.Scroll = MouseScroll::Vertical;
         event.Mouse.Delta  = HIWORD(WParam);
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
@@ -284,7 +287,7 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
     _HINSTANCE = GetModuleHandle(NULL);
     
     if (_HINSTANCE == NULL)
-        throw LDL::Core::RuntimeError("GetModuleHandle failed");
+        throw RuntimeError("GetModuleHandle failed");
 
     _WNDCLASS.hInstance = _HINSTANCE;
     _WNDCLASS.lpszClassName = AppName;
@@ -297,16 +300,16 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
     _ATOM = RegisterClass(&_WNDCLASS);
 
     if (_ATOM == INVALID_ATOM)
-        throw LDL::Core::RuntimeError("RegisterClass failed");
+        throw RuntimeError("RegisterClass failed");
     
     DWORD style = 0;
     
-    if (mode == LDL::Enums::WindowMode::Fixed)
+    if (mode == WindowMode::Fixed)
         style = WS_OVERLAPPED | WS_SYSMENU;
-    else if (mode == LDL::Enums::WindowMode::Resized)
+    else if (mode == WindowMode::Resized)
         style = WS_OVERLAPPEDWINDOW;
     else
-        throw LDL::Core::RuntimeError("WindowMode failed");
+        throw RuntimeError("WindowMode failed");
 
     RECT rect;
 
@@ -316,12 +319,12 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
     rect.bottom = (LONG)_BaseWindow.Size().y;
 
     if (!AdjustWindowRect(&rect, style, FALSE))
-        throw LDL::Core::RuntimeError("AdjustWindowRect failed");
+        throw RuntimeError("AdjustWindowRect failed");
 
     _HWND = CreateWindow(AppName, "", style, (int)_BaseWindow.Pos().x, (int)_BaseWindow.Pos().y, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _HINSTANCE, 0);
 
     if (_HWND == INVALID_HANDLE_VALUE)
-        throw LDL::Core::RuntimeError("CreateWindow failed");
+        throw RuntimeError("CreateWindow failed");
 
 #ifdef _WIN64
     SetWindowLongPtr(_HWND, GWLP_WNDPROC, (LONG_PTR)WndProc);
@@ -334,7 +337,7 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
     _HDC = GetDC(_HWND);
 
     if (_HDC == INVALID_HANDLE_VALUE)
-        throw LDL::Core::RuntimeError("GetDC failed");
+        throw RuntimeError("GetDC failed");
 
     Title(title);
     ShowWindow(_HWND, SW_SHOW);
@@ -363,7 +366,7 @@ void MainWindow::PollEvents()
     }
 }
 
-bool MainWindow::GetEvent(LDL::Events::Event& event)
+bool MainWindow::GetEvent(Event& event)
 {
     if (!_Eventer.Empty())
     {
@@ -375,7 +378,7 @@ bool MainWindow::GetEvent(LDL::Events::Event& event)
     return false;
 }
 
-bool MainWindow::WaitEvent(LDL::Events::Event& event)
+bool MainWindow::WaitEvent(Event& event)
 {
     BOOL result;
 
@@ -385,7 +388,7 @@ bool MainWindow::WaitEvent(LDL::Events::Event& event)
         
         if (result == -1)
         {
-            throw LDL::Core::RuntimeError("GetMessage failed");
+            throw RuntimeError("GetMessage failed");
         }
         else
         {
@@ -421,7 +424,7 @@ const Vec2u& MainWindow::Size()
     RECT rect;
 
     if (!GetClientRect(_HWND, &rect))
-        throw LDL::Core::RuntimeError("GetClientRect failed");
+        throw RuntimeError("GetClientRect failed");
 
     _BaseWindow.Size(Vec2u(rect.right + Pos().x, rect.bottom + Pos().y));
 

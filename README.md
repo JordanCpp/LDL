@@ -30,18 +30,9 @@ Free cross-platform library.
 - target_link_libraries(${PROJECT_NAME} LDL)
 
 # Support platforms.
-1. Windows 95
-2. Windows 98
-3. Windows 98 Me
-4. Windows 2000
-5. Windows XP
-6. Windows Vista
-7. Windows 7
-8. Windows 8
-9. Windows 10
-10. Windows 11
-11. Linux XLib
-12. Linux Wayland (In the implementation)
+1. Windows 95 and higher
+2. Linux (XLib) Debian 3 and higher
+3. Linux Wayland (In the implementation)
 
 # Support renders.
 1. OpenGL 1.0
@@ -60,9 +51,11 @@ Under a free license. Add interesting functionality.
 Boost Software License - Version 1.0 - August 17th, 2003
 
 # Support compillers
-1. MinGW
-2. Visual C++ 6.0 and higher
-3. Open Watcom V2
+1. MinGW (gcc 3) and higher
+2. GCC 3 and higher
+3. Visual C++ 6.0 and higher
+4. Open Watcom V2
+5. Borland C++ 6.0 and higher
 
 # Other
 I'm glad for everyone. The main language for communication is English. There are no restrictions on ideas or functionality. 

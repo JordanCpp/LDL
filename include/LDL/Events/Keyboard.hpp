@@ -14,7 +14,7 @@ namespace LDL
 		public:
 			uint8_t Type;
 			uint8_t State;
-			size_t Key;
+			uint8_t Key;
 		};
 	}
 }

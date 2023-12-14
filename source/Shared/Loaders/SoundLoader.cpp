@@ -1,4 +1,10 @@
 #include <LDL/Loaders/SoundLoader.hpp>
+
+#if defined(__BORLANDC__)
+#include <malloc.h>
+#include <cstdlib>
+#define qsort std::qsort
+#endif
 #include "../../../dependencies/stb/stb_vorbis.c"
 
 #define DR_WAV_IMPLEMENTATION

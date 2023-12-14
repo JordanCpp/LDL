@@ -1,6 +1,8 @@
 #include "WindowImplOpenGL1.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
+using namespace LDL::Core;
+using namespace LDL::Events;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
@@ -15,7 +17,7 @@ WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u& pos, const Vec2u& size, const 
     _Window._HDC = GetDC(_Window._HWND);
 
     if (_Window._HDC == NULL)
-        throw LDL::Core::RuntimeError("GetDC failed");
+        throw RuntimeError("GetDC failed");
 
     pfd.nSize = sizeof(pfd);
     pfd.nVersion = 1;
@@ -28,18 +30,18 @@ WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u& pos, const Vec2u& size, const 
     int format = ChoosePixelFormat(_Window._HDC, &pfd);
 
     if (format == 0)
-        throw LDL::Core::RuntimeError("ChoosePixelFormat failed");
+        throw RuntimeError("ChoosePixelFormat failed");
 
     if (!SetPixelFormat(_Window._HDC, format, &pfd))
-        throw LDL::Core::RuntimeError("SetPixelFormat failed");
+        throw RuntimeError("SetPixelFormat failed");
 
     _HGLRC = wglCreateContext(_Window._HDC);
 
     if (_HGLRC == NULL)
-        throw LDL::Core::RuntimeError("wglCreateContext failed");
+        throw RuntimeError("wglCreateContext failed");
 
     if (!wglMakeCurrent(_Window._HDC, _HGLRC))
-        throw LDL::Core::RuntimeError("wglMakeCurrent failed");
+        throw RuntimeError("wglMakeCurrent failed");
 
     _OpenGLLoader.Init(1, 1);
 }
@@ -60,7 +62,7 @@ bool WindowImplOpenGL1::Running()
 void WindowImplOpenGL1::Present()
 {
     if (!SwapBuffers(_Window._HDC))
-        throw LDL::Core::RuntimeError("SwapBuffers failed");
+        throw RuntimeError("SwapBuffers failed");
 }
 
 void WindowImplOpenGL1::PollEvents()
@@ -78,12 +80,12 @@ const Vec2u& WindowImplOpenGL1::Pos()
     return _Window.Pos();
 }
 
-bool WindowImplOpenGL1::GetEvent(LDL::Events::Event& event)
+bool WindowImplOpenGL1::GetEvent(Event& event)
 {
     return _Window.GetEvent(event);
 }
 
-bool WindowImplOpenGL1::WaitEvent(LDL::Events::Event& event)
+bool WindowImplOpenGL1::WaitEvent(Event& event)
 {
     return _Window.WaitEvent(event);
 }

@@ -2,6 +2,7 @@
 #include "../Windows.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 
+using namespace LDL::Core;
 using namespace LDL::Input;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
@@ -34,7 +35,7 @@ const VideoMode& Display::Current()
 	HDC hdc = GetDC(NULL);
 
 	if (hdc == NULL)
-		throw LDL::Core::RuntimeError("GetDC failed");
+		throw RuntimeError("GetDC failed");
 
 	int width  = GetDeviceCaps(hdc, HORZSIZE);
 	int height = GetDeviceCaps(hdc, VERTSIZE);
