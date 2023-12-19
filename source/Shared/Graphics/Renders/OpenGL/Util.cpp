@@ -1,5 +1,5 @@
 #include "Util.hpp"
-#include <LDL/OpenGL/OpenGL1_0.hpp>
+#include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
 #include <LDL/Core/NumberToString.hpp>
 #include <LDL/Core/RuntimeError.hpp>
 

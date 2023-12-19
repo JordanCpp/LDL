@@ -6,7 +6,7 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/OpenGL/OpenGLUtility.hpp>
+#include <LDL/APIs/OpenGL/OpenGLUtility.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Enums;

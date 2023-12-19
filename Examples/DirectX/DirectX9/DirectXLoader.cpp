@@ -6,7 +6,7 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/DirectX/DirectXLoader.hpp>
+#include <LDL/APIs/DirectX/DirectXLoader.hpp>
 #include <iostream>
 
 using namespace LDL::Graphics;

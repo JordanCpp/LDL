@@ -3,7 +3,7 @@
 
 #include <LDL/Graphics/Window.hpp>
 #include "MainWindow.hpp"
-#include "WindowImpl.hpp"
+#include "../../WindowImpl.hpp"
 #include "../DirectX/DirectDraw.hpp"
 
 namespace LDL
@@ -25,7 +25,7 @@ namespace LDL
 			const std::string& Title();
 			const Math::Vec2u& Size();
 			const Math::Vec2u& Pos();
-			HWND Hwnd();
+			void* NativeHandle();
 		private:
 			IDirectDraw*        _DirectDraw;
 			IDirectDrawSurface* _Primary;

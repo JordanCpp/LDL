@@ -10,7 +10,8 @@ LibraryImpl::LibraryImpl(const std::string& path) :
 {
     _HMODULE = LoadLibrary(path.c_str());
 
-    assert(_HMODULE != NULL);
+    if (_HMODULE == NULL)
+        throw RuntimeError("LoadLibrary failed: " + path);
 }
 
 LibraryImpl::~LibraryImpl()

@@ -38,10 +38,10 @@ Free cross-platform library.
 1. OpenGL 1.0
 2. OpenGL 3.0
 3. Software render
-4. DirectDraw (In the implementation)
-5. DirectX 5 Direct3D (In the implementation)
-6. DirectX 9 Direct3D (In the implementation)
-
+4. 3dfx Glide 
+5. DirectDraw (In the implementation)
+6. DirectX 5 Direct3D (In the implementation)
+7. DirectX 9 Direct3D (In the implementation)
 
 # The main idea is to write an analogue of the SDL library. 
 Accessible to everyone, without exception. 

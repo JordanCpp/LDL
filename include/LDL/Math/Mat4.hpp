@@ -1,7 +1,7 @@
 #ifndef LDL_Math_Mat4_hpp
 #define LDL_Math_Mat4_hpp
 
-#include <LDL/OpenGL/OpenGLTypes.hpp>
+#include <LDL/APIs/OpenGL/OpenGLTypes.hpp>
 #include <math.h>
 #include <string.h>
 

@@ -12,7 +12,7 @@
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Enums/ButtonState.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
-#include <LDL/OpenGL/OpenGL1_2.hpp>
+#include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
 #include <math.h>
 
 using namespace LDL::Graphics;

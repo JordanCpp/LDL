@@ -380,13 +380,9 @@ bool MainWindow::GetEvent(Event& event)
 
 bool MainWindow::WaitEvent(Event& event)
 {
-    BOOL result;
-
     if (_Eventer.Running())
     {
-        result = GetMessage(&_MSG, _HWND, 0, 0);
-        
-        if (result == -1)
+        if (GetMessage(&_MSG, _HWND, 0, 0) == -1)
         {
             throw RuntimeError("GetMessage failed");
         }

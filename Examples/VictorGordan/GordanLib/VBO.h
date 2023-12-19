@@ -1,7 +1,7 @@
 #ifndef VBO_CLASS_H
 #define VBO_CLASS_H
 
-#include <LDL/OpenGL/OpenGL3_3.hpp>
+#include <LDL/APIs/OpenGL/OpenGL3_3.hpp>
 
 class VBO
 {

@@ -3,6 +3,7 @@
 #include "../Renders/Software/TextureImplSoftware.hpp"
 #include "../Renders/OpenGL1/TextureImplOpenGL1.hpp"
 #include "../Renders/OpenGL3/TextureImplOpenGL3.hpp"
+#include "../Renders/Glide/TextureImplGlide.hpp"
 
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Enums/RenderMode.hpp>
@@ -29,6 +30,9 @@ TextureImpl* TextureImplCreator::Create(RenderContext* renderContext, const Vec2
 		break;
 	case RenderMode::OpenGL3:
 		result = new TextureImplOpenGL3(renderContext->GetRenderContextImpl(), size, pixels, bytesPerPixel);
+		break;
+	case RenderMode::Glide:
+		result = new TextureImplGlide(renderContext->GetRenderContextImpl(), size, pixels, bytesPerPixel);
 		break;
 	default:
 		throw RuntimeError("Unknown graphics mode");

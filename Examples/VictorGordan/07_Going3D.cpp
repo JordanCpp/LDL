@@ -8,7 +8,7 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/OpenGL/OpenGL3_3.hpp>
+#include <LDL/APIs/OpenGL/OpenGL3_3.hpp>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

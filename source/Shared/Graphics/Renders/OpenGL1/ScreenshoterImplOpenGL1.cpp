@@ -1,5 +1,5 @@
 #include "ScreenshoterImplOpenGL1.hpp"
-#include <LDL/OpenGL/OpenGL1_0.hpp>
+#include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
 #include "../OpenGL/Util.hpp"
 
 using namespace LDL::Graphics;

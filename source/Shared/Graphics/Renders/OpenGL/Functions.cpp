@@ -1,4 +1,4 @@
-#include <LDL/OpenGL/OpenGL_Functions.hpp>
+#include <LDL/APIs/OpenGL/OpenGL_Functions.hpp>
 
 #if defined(_WIN32)
 #include "../source/Platforms/Windows/Graphics/OpenGLFunctionsImpl.hpp"

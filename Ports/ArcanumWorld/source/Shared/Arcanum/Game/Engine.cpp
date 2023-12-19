@@ -1,6 +1,6 @@
 #include <Arcanum/Game/Engine.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
-#include <LDL/OpenGL/OpenGL1_2.hpp>
+#include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Graphics;

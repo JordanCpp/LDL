@@ -2,9 +2,9 @@
 #define LDL_Platforms_Windows_Graphics_OpenGL3_WindowImpl_hpp
 
 #include <LDL/Graphics/Window.hpp>
-#include <LDL/OpenGL/OpenGLLoader.hpp>
+#include <LDL/APIs/OpenGL/OpenGLLoader.hpp>
 #include "MainWindow.hpp"
-#include "WindowImpl.hpp"
+#include "../../WindowImpl.hpp"
 
 namespace LDL
 {
@@ -25,7 +25,7 @@ namespace LDL
 			const std::string& Title();
 			const Math::Vec2u& Size();
 			const Math::Vec2u& Pos();
-			HWND Hwnd();
+			void* NativeHandle();
 		private:
 			MainWindow _Window;
 			HGLRC _HGLRC;

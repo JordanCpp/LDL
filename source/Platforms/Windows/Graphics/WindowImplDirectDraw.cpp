@@ -137,7 +137,7 @@ void WindowImplDirectDraw::Title(const std::string& title)
     _Window.Title(title);
 }
 
-HWND WindowImplDirectDraw::Hwnd()
+void* WindowImplDirectDraw::NativeHandle()
 {
     return _Window._HWND;
 }

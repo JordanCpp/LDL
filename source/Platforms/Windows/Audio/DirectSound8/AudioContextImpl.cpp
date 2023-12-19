@@ -2,7 +2,7 @@
 #include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Core/Library.hpp>
-#include "../source/Platforms/Windows/Graphics/WindowImpl.hpp"
+#include "../source/Platforms/WindowImpl.hpp"
 
 using namespace LDL::Audio;
 using namespace LDL::Core;
@@ -25,7 +25,7 @@ AudioContextImpl::AudioContextImpl(LDL::Graphics::Window* window, size_t rate, s
 	if (FAILED(result))
 		throw RuntimeError("DirectSoundCreate8 failed");
 
-	result = _DirectSound->SetCooperativeLevel(window->GetWindowImpl()->Hwnd(), DSSCL_PRIORITY);
+	result = _DirectSound->SetCooperativeLevel((HWND)window->GetWindowImpl()->NativeHandle(), DSSCL_PRIORITY);
 	if (FAILED(result))
 		throw RuntimeError("SetCooperativeLevel failed");
 

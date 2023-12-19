@@ -1,7 +1,7 @@
 #ifndef VAO_CLASS_H
 #define VAO_CLASS_H
 
-#include <LDL/OpenGL/OpenGL3_3.hpp>
+#include <LDL/APIs/OpenGL/OpenGL3_3.hpp>
 #include "VBO.h"
 
 class VAO

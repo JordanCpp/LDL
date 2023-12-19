@@ -5,6 +5,7 @@
 #include "../source/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp"
 #include "../source/Platforms/Windows/Graphics/WindowImplOpenGL3.hpp"
 #include "../source/Platforms/Windows/Graphics/WindowImplDirectDraw.hpp"
+#include "../source/Platforms/Windows/Graphics/WindowImplGlide.hpp"
 #elif defined(__unix__)
 #include "../source/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp"
 #include "../source/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp"
@@ -39,6 +40,9 @@ WindowImpl* WindowImplCreator::Create(RenderContext* renderContext, const Vec2u&
 		break;
 	case Enums::RenderMode::OpenGL3:
 		result = new WindowImplOpenGL3(pos, size, title, mode);
+		break;
+	case Enums::RenderMode::Glide:
+		result = new WindowImplGlide(pos, size, title, mode);
 		break;
 	default:
 		throw RuntimeError("Unknown graphics mode");

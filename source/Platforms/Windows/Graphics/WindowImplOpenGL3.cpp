@@ -148,7 +148,7 @@ void WindowImplOpenGL3::Title(const std::string& title)
     _Window.Title(title);
 }
 
-HWND WindowImplOpenGL3::Hwnd()
+void* WindowImplOpenGL3::NativeHandle()
 {
     return _Window._HWND;
 }

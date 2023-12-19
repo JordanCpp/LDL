@@ -3,7 +3,7 @@
 
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Graphics/Color.hpp>
-#include <LDL/OpenGL/OpenGL1_1.hpp>
+#include <LDL/APIs/OpenGL/OpenGL1_1.hpp>
 #include <string>
 
 namespace LDL

@@ -69,3 +69,8 @@ WindowImpl* Window::GetWindowImpl()
 {
 	return _WindowImpl;
 }
+
+void* Window::NativeHandle()
+{
+	return _WindowImpl->NativeHandle();
+}

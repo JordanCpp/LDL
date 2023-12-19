@@ -29,6 +29,7 @@ namespace LDL
 			const Math::Vec2u& Size();
 			const Math::Vec2u& Pos();
 			WindowImpl* GetWindowImpl();
+			void* NativeHandle();
 		private:
 			WindowImpl* _WindowImpl;
 		};

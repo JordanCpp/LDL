@@ -82,7 +82,7 @@ void WindowImplSoftware::Title(const std::string& title)
     _Window.Title(title);
 }
 
-HWND WindowImplSoftware::Hwnd()
+void* WindowImplSoftware::NativeHandle()
 {
     return _Window._HWND;
 }

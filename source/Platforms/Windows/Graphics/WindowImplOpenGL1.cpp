@@ -105,7 +105,7 @@ void WindowImplOpenGL1::Title(const std::string& title)
     _Window.Title(title);
 }
 
-HWND WindowImplOpenGL1::Hwnd()
+void* WindowImplOpenGL1::NativeHandle()
 {
     return _Window._HWND;
 }
