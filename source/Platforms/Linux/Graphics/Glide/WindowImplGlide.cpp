@@ -1,4 +1,4 @@
-#include "WindowImplOpenGL1.hpp"
+#include "WindowImplGlide.hpp"
 #include <LDL/Core/RuntimeError.hpp>
 #include <assert.h>
 
@@ -6,7 +6,7 @@ using namespace LDL::Core;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
 
-WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u &pos, const Vec2u &size, const std::string &title, size_t mode) : 
+WindowImplGlide::WindowImplGlide(const Vec2u &pos, const Vec2u &size, const std::string &title, size_t mode) : 
     _Window(pos, size, title, mode)
 {
     GLint major = 0;
@@ -59,68 +59,68 @@ WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u &pos, const Vec2u &size, const 
     _Window.Show();
 }
 
-WindowImplOpenGL1::~WindowImplOpenGL1()
+WindowImplGlide::~WindowImplGlide()
 {
     glXDestroyContext(_Window._Display, _Context);
 }
 
-void WindowImplOpenGL1::Present(uint8_t* pixels, uint8_t bytesPerPixel)
+void WindowImplGlide::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 {
     assert(pixels != NULL);
     assert(bytesPerPixel == 1 || bytesPerPixel == 2 || bytesPerPixel == 3 || bytesPerPixel == 4);
 }
 
-void WindowImplOpenGL1::Present()
+void WindowImplGlide::Present()
 {
     glXSwapBuffers(_Window._Display, _Window._Window);
 }
 
-const Vec2u& WindowImplOpenGL1::Size()
+const Vec2u& WindowImplGlide::Size()
 {
     return _Window.Size();
 }
 
-const Vec2u& WindowImplOpenGL1::Pos()
+const Vec2u& WindowImplGlide::Pos()
 {
     return _Window.Pos();
 }
 
-bool WindowImplOpenGL1::Running()
+bool WindowImplGlide::Running()
 {
     return _Window.Running();
 }
 
-void WindowImplOpenGL1::PollEvents()
+void WindowImplGlide::PollEvents()
 {
     _Window.PollEvents();
 }
 
-bool WindowImplOpenGL1::GetEvent(LDL::Events::Event& event)
+bool WindowImplGlide::GetEvent(LDL::Events::Event& event)
 {
     return _Window.GetEvent(event);
 }
 
-bool WindowImplOpenGL1::WaitEvent(LDL::Events::Event& event)
+bool WindowImplGlide::WaitEvent(LDL::Events::Event& event)
 {
     return _Window.WaitEvent(event);
 }
 
-void WindowImplOpenGL1::StopEvent()
+void WindowImplGlide::StopEvent()
 {
     _Window.StopEvent();
 }
 
-const std::string& WindowImplOpenGL1::Title()
+const std::string& WindowImplGlide::Title()
 {
     return _Window.Title();
 }
 
-void WindowImplOpenGL1::Title(const std::string& title)
+void WindowImplGlide::Title(const std::string& title)
 {
     _Window.Title(title);
 }
 
-void* WindowImplOpenGL1::NativeHandle()
+void* WindowImplGlide::NativeHandle()
 {
     return NULL;
 }

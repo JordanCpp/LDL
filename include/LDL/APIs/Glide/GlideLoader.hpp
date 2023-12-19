@@ -1,7 +1,7 @@
 #ifndef LDL_Glide_GlideLoader_hpp
 #define LDL_Glide_GlideLoader_hpp
 
-#include <LDL/APIs/Glide/glide.hpp>
+#include <LDL/APIs/Glide/Glide.hpp>
 #include <LDL/Core/Library.hpp>
 
 namespace LDL

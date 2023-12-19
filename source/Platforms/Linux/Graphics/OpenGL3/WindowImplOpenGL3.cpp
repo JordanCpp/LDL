@@ -68,3 +68,8 @@ void WindowImplOpenGL3::Title(const std::string& title)
 {
     _Window.Title(title);
 }
+
+void* WindowImplOpenGL3::NativeHandle()
+{
+    return NULL;
+}

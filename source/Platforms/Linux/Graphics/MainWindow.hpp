@@ -4,7 +4,7 @@
 #include <LDL/Graphics/Base/BaseWindow.hpp>
 #include <LDL/Events/Eventer.hpp>
 #include <LDL/Enums/WindowMode.hpp>
-#include <LDL/OpenGL/OpenGL1_1.hpp>
+#include <LDL/APIs/OpenGL/OpenGL1_1.hpp>
 
 #include "GLX.hpp"
 

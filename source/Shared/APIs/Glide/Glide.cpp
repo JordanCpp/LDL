@@ -1,4 +1,4 @@
-#include <LDL/APIs/Glide/glide.hpp>
+#include <LDL/APIs/Glide/Glide.hpp>
 
 namespace LDL
 {

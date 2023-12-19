@@ -68,3 +68,8 @@ void WindowImplSoftware::Title(const std::string& title)
 {
     _Window.Title(title);
 }
+
+void* WindowImplSoftware::NativeHandle()
+{
+    return NULL;
+}
