@@ -58,4 +58,12 @@ call %2 Chapter_3_LStrips %pth%
 
 set pth=..\Examples\DirectX\DirectX9\
 
-call %2 DirectXLoader %pth%
+call %2 DirectX9Loader %pth%
+
+set pth=..\Examples\Glide\
+
+call %2 01_Glide_Screen %pth%
+
+set pth=..\Examples\DirectX\DirectX6\
+
+call %2 DirectX6Loader %pth%

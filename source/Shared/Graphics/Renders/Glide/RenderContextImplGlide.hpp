@@ -12,8 +12,8 @@ namespace LDL
 		public:
 			RenderContextImplGlide(size_t mode);
 			size_t Mode();
+		private:
 			size_t _Mode;
-			int Context;
 		};
 	}
 }

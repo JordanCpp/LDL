@@ -1,5 +1,6 @@
 add_subdirectory("BeginEnd")
 add_subdirectory("DirectX")
+add_subdirectory("Glide")
 add_subdirectory("LDLC")
 add_subdirectory("LDLCpp")
 add_subdirectory("NeheOpenGL")

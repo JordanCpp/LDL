@@ -14,7 +14,8 @@ namespace LDL
 				OpenGL1,
 				OpenGL3,
 				DirectDraw,
-				Glide
+				Glide,
+				Direct3D6
 			};
 		};
 	}

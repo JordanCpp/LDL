@@ -1,5 +1,4 @@
-
-bcc32 -w-8072 -O2 -tWD -e"LDL_BC6.dll" -I..\include -I..\dependencies\freetype\include /DFT2_BUILD_LIBRARY /DLDL_SHARED_LIBRARY ^
+clang++ -shared -o CLang.dll -I..\include -I..\dependencies\freetype\include -DFT2_BUILD_LIBRARY -DLDL_SHARED_LIBRARY ^
 ..\source\Shared\Allocators\*.cpp ^
 ..\source\Shared\Core\*.cpp ^
 ..\source\Shared\Events\*.cpp ^
@@ -13,13 +12,14 @@ bcc32 -w-8072 -O2 -tWD -e"LDL_BC6.dll" -I..\include -I..\dependencies\freetype\i
 ..\source\Shared\Graphics\Renders\OpenGL1\*.cpp ^
 ..\source\Shared\Graphics\Renders\OpenGL3\*.cpp ^
 ..\source\Shared\Graphics\Renders\Glide\*.cpp ^
+..\source\Shared\Graphics\Renders\Direct3D6\*.cpp ^
 ..\source\Shared\Graphics\Utils\*.cpp ^
 ..\source\Shared\Loaders\*.cpp ^
 ..\source\Shared\APIs\OpenGL\*.cpp ^
 ..\source\Shared\APIs\DirectX\*.cpp ^
+..\source\Shared\APIs\Glide\*.cpp ^
 ..\source\Shared\APIs\GLU\*.cpp ^
 ..\source\Shared\APIs\GLUT\*.cpp ^
-..\source\Shared\APIs\Glide\*.cpp ^
 ..\source\Shared\APIs\LDLC\*.cpp ^
 ..\source\Shared\Text\*.cpp ^
 ..\source\Platforms\Windows\DirectX\*.cpp ^
@@ -82,11 +82,11 @@ bcc32 -w-8072 -O2 -tWD -e"LDL_BC6.dll" -I..\include -I..\dependencies\freetype\i
 ..\dependencies\freetype\src\truetype\truetype.c ^
 ..\dependencies\freetype\src\psaux\psaux.c ^
 ..\dependencies\freetype\src\type1\type1.c ^
-gdi32.lib ^
-opengl32.lib ^
-winmm.lib   ^
-user32.lib
+-Lgdi32.lib ^
+-Lopengl32.lib ^
+-Lwinmm.lib   ^
+-Luser32.lib
 
-implib LDL_BC6.lib LDL_BC6.dll
+del *.obj
 
-del *.obj *.tds
+pause

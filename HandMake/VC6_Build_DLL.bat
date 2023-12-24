@@ -1,6 +1,7 @@
-call "C:\Downloads\codeblocks-12.11mingw-setup\MinGW\mingwvars.bat"
 
-g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DFT2_BUILD_LIBRARY -DLDL_SHARED_LIBRARY ^
+call "C:\VC6\Microsoft Visual Studio\VC98\Bin\VCVARS32.BAT"
+
+CL /O2 /FeLDL_VC6.dll -LD -GX /I..\include /I..\dependencies\freetype\include /DFT2_BUILD_LIBRARY /DLDL_SHARED_LIBRARY ^
 ..\source\Shared\Allocators\*.cpp ^
 ..\source\Shared\Core\*.cpp ^
 ..\source\Shared\Events\*.cpp ^
@@ -14,13 +15,14 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DFT2_BUI
 ..\source\Shared\Graphics\Renders\OpenGL1\*.cpp ^
 ..\source\Shared\Graphics\Renders\OpenGL3\*.cpp ^
 ..\source\Shared\Graphics\Renders\Glide\*.cpp ^
+..\source\Shared\Graphics\Renders\Direct3D6\*.cpp ^
 ..\source\Shared\Graphics\Utils\*.cpp ^
 ..\source\Shared\Loaders\*.cpp ^
 ..\source\Shared\APIs\OpenGL\*.cpp ^
 ..\source\Shared\APIs\DirectX\*.cpp ^
+..\source\Shared\APIs\Glide\*.cpp ^
 ..\source\Shared\APIs\GLU\*.cpp ^
 ..\source\Shared\APIs\GLUT\*.cpp ^
-..\source\Shared\APIs\Glide\*.cpp ^
 ..\source\Shared\APIs\LDLC\*.cpp ^
 ..\source\Shared\Text\*.cpp ^
 ..\source\Platforms\Windows\DirectX\*.cpp ^
@@ -83,9 +85,9 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DFT2_BUI
 ..\dependencies\freetype\src\truetype\truetype.c ^
 ..\dependencies\freetype\src\psaux\psaux.c ^
 ..\dependencies\freetype\src\type1\type1.c ^
--I..\include\ ^
--I..\dependencies\freetype\include ^
--lgdi32 ^
--lopengl32 ^
--lwinmm ^
--Wl,--out-implib,LDL_MinGW.lib
+gdi32.lib ^
+opengl32.lib ^
+winmm.lib   ^
+user32.lib
+
+del *.obj

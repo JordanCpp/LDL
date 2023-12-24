@@ -5,6 +5,8 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 
+#include <LDL/APIs/DirectX6/d3d.hpp>
+
 using namespace LDL::Graphics;
 using namespace LDL::Events;
 using namespace LDL::Time;

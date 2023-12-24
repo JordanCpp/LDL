@@ -1,7 +1,5 @@
 
-call "C:\VC6\Microsoft Visual Studio\VC98\Bin\VCVARS32.BAT"
-
-CL /O2 /FeLDL_VC6.dll -LD -GX /I..\include /I..\dependencies\freetype\include /DFT2_BUILD_LIBRARY /DLDL_SHARED_LIBRARY ^
+bcc32 -w-8072 -O2 -tWD -e"LDL_BC6.dll" -I..\include -I..\dependencies\freetype\include /DFT2_BUILD_LIBRARY /DLDL_SHARED_LIBRARY ^
 ..\source\Shared\Allocators\*.cpp ^
 ..\source\Shared\Core\*.cpp ^
 ..\source\Shared\Events\*.cpp ^
@@ -15,13 +13,14 @@ CL /O2 /FeLDL_VC6.dll -LD -GX /I..\include /I..\dependencies\freetype\include /D
 ..\source\Shared\Graphics\Renders\OpenGL1\*.cpp ^
 ..\source\Shared\Graphics\Renders\OpenGL3\*.cpp ^
 ..\source\Shared\Graphics\Renders\Glide\*.cpp ^
+..\source\Shared\Graphics\Renders\Direct3D6\*.cpp ^
 ..\source\Shared\Graphics\Utils\*.cpp ^
 ..\source\Shared\Loaders\*.cpp ^
 ..\source\Shared\APIs\OpenGL\*.cpp ^
 ..\source\Shared\APIs\DirectX\*.cpp ^
-..\source\Shared\APIs\Glide\*.cpp ^
 ..\source\Shared\APIs\GLU\*.cpp ^
 ..\source\Shared\APIs\GLUT\*.cpp ^
+..\source\Shared\APIs\Glide\*.cpp ^
 ..\source\Shared\APIs\LDLC\*.cpp ^
 ..\source\Shared\Text\*.cpp ^
 ..\source\Platforms\Windows\DirectX\*.cpp ^
@@ -89,4 +88,6 @@ opengl32.lib ^
 winmm.lib   ^
 user32.lib
 
-del *.obj
+implib LDL_BC6.lib LDL_BC6.dll
+
+del *.obj *.tds

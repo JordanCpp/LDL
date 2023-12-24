@@ -6,6 +6,7 @@
 #include "../source/Platforms/Windows/Graphics/WindowImplOpenGL3.hpp"
 #include "../source/Platforms/Windows/Graphics/WindowImplDirectDraw.hpp"
 #include "../source/Platforms/Windows/Graphics/WindowImplGlide.hpp"
+#include "../source/Platforms/Windows/Graphics/WindowImplDirect3D6.hpp"
 #elif defined(__unix__)
 #include "../source/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp"
 #include "../source/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp"
@@ -31,6 +32,10 @@ WindowImpl* WindowImplCreator::Create(RenderContext* renderContext, const Vec2u&
 #if defined(_WIN32)
 	case Enums::RenderMode::DirectDraw:
 		result = new WindowImplDirectDraw(pos, size, title, mode);
+		break;
+
+	case Enums::RenderMode::Direct3D6:
+		result = new WindowImplDirect3D6(pos, size, title, mode);
 		break;
 #endif
 	case Enums::RenderMode::Software:
