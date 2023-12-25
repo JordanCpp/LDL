@@ -7,6 +7,7 @@
 #include "../source/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp"
 #include "../source/Platforms/Windows/Graphics/WindowImplDirect3D6.hpp"
 #elif defined(__unix__)
+#include "../DirectX.hpp"
 #include "../source/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp"
 #endif
 
