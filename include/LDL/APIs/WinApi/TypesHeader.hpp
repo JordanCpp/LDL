@@ -35,6 +35,12 @@ typedef void* HWND;
 typedef void* HANDLE;
 typedef void* HDC;
 
+typedef struct tagSIZE
+{
+    LONG        cx;
+    LONG        cy;
+} SIZE, * PSIZE, * LPSIZE;
+
 typedef struct tagRECT
 {
     LONG    left;
@@ -111,4 +117,9 @@ inline bool SUCCEEDED(HRESULT hr)
 inline bool FAILED(HRESULT hr)
 {
     return hr < 0;
+}
+
+inline DWORD MAKEFOURCC(BYTE ch0, BYTE ch1, BYTE ch2, BYTE ch3)
+{
+    return DWORD(BYTE(ch0)) | (DWORD(BYTE(ch1)) << 8) | (DWORD(BYTE(ch2)) << 16) | (DWORD(BYTE(ch3)) << 24);
 }
