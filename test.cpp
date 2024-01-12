@@ -1,13 +1,14 @@
 #define LDL_RENDER_OPENGL1
-#include "LDL/LDL_WinX.hpp"
-#include "LDL/LDL_GL.hpp"
+#include <LDL/LDL_WinX.hpp>
+#include <LDL/LDL_GL.hpp>
+
 #include <stdio.h>
 
 int main()
 {
 	LDL_Result result;
 
-	LDL_Window window(&result, LDL_Point(0, 0), LDL_Point(800, 600), "test.cpp", LDL_WindowMode::Resized);
+	LDL_Window window(&result, LDL_Vec2i(0, 0), LDL_Vec2i(800, 600), "test.cpp", LDL_WindowMode::Resized);
 
 	if (result.Ok())
 	{

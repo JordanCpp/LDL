@@ -110,16 +110,16 @@ DEALINGS IN THE SOFTWARE.
 /********************************************************************************************************************************
 														LDL_Point
 ********************************************************************************************************************************/
-class LDL_Point
+class LDL_Vec2i
 {
 public:
-	LDL_Point():
+	LDL_Vec2i():
 		x(0),
 		y(0)
 	{
 	}
 
-	LDL_Point(int x, int y) :
+	LDL_Vec2i(int x, int y) :
 		x(x),
 		y(y)
 	{
@@ -539,7 +539,7 @@ public:
 		Max = 64
 	};
 
-	LDL_BaseWindow(const LDL_Point& pos, const LDL_Point& size, const char* title, int mode) :
+	LDL_BaseWindow(const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
 		_Pos(pos),
 		_Size(size),
 		_WindowMode(mode)
@@ -562,22 +562,22 @@ public:
 		strcpy(_Title, title);
 	}
 
-	const LDL_Point& Pos()
+	const LDL_Vec2i& Pos()
 	{
 		return _Pos;
 	}
 
-	void Pos(const LDL_Point& pos)
+	void Pos(const LDL_Vec2i& pos)
 	{
 		_Pos = pos;
 	}
 
-	const LDL_Point& Size()
+	const LDL_Vec2i& Size()
 	{
 		return _Size;
 	}
 
-	void Size(const LDL_Point& size)
+	void Size(const LDL_Vec2i& size)
 	{
 		_Size = size;
 	}
@@ -587,8 +587,8 @@ public:
 		return _WindowMode;
 	}
 private:
-	LDL_Point _Pos;
-	LDL_Point _Size;
+	LDL_Vec2i _Pos;
+	LDL_Vec2i _Size;
 	char      _Title[Max];
 	int       _WindowMode;
 };
@@ -598,7 +598,7 @@ private:
 class LDL_Surface
 {
 public:
-	LDL_Surface(const LDL_Point& capacity, int bpp):
+	LDL_Surface(const LDL_Vec2i& capacity, int bpp):
 		_Bpp(bpp),
 		_Capacity(capacity),
 		_Size(capacity)
@@ -608,7 +608,7 @@ public:
 		_Pixels = (unsigned char*)malloc(_Capacity.x * _Capacity.y * bpp);
 	}
 
-	LDL_Surface(const LDL_Point& capacity, const LDL_Point& size, int bpp) :
+	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, int bpp) :
 		_Bpp(bpp),
 		_Capacity(capacity),
 		_Size(size)
@@ -626,8 +626,8 @@ public:
 	}
 private:
 	int _Bpp;
-	LDL_Point _Capacity;
-	LDL_Point _Size;
+	LDL_Vec2i _Capacity;
+	LDL_Vec2i _Size;
 	unsigned char* _Pixels;
 };
 /********************************************************************************************************************************
@@ -640,7 +640,7 @@ static const UINT period = 1;
 class LDL_MainWindow
 {
 public:
-	LDL_MainWindow(LDL_Result* result, const LDL_Point& pos, const LDL_Point& size, const char* title, int mode) :
+	LDL_MainWindow(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
 		_Result(result),
 		_BaseWindow(pos, size, title, mode)
 	{
@@ -1099,19 +1099,19 @@ public:
 		return _BaseWindow.Title();
 	}
 
-	const LDL_Point& Size()
+	const LDL_Vec2i& Size()
 	{
 		RECT rect;
 
 		if (!GetClientRect(_HWND, &rect))
 			_Result->Message("GetClientRect failed");
 
-		_BaseWindow.Size(LDL_Point(rect.right + Pos().x, rect.bottom + Pos().y));
+		_BaseWindow.Size(LDL_Vec2i(rect.right + Pos().x, rect.bottom + Pos().y));
 
 		return _BaseWindow.Size();
 	}
 
-	const LDL_Point& Pos()
+	const LDL_Vec2i& Pos()
 	{
 		return _BaseWindow.Pos();
 	}
@@ -1134,7 +1134,7 @@ public:
 class LDL_Window
 {
 public:
-	LDL_Window(LDL_Result* result, const LDL_Point& pos, const LDL_Point& size, const char* title, int mode = LDL_WindowMode::Resized) :
+	LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized) :
 		_Result(result),
 		_HGLRC(NULL),
 		_Window(result, pos, size, title, mode)
@@ -1226,12 +1226,12 @@ public:
 		_Window.PollEvents();
 	}
 
-	const LDL_Point& Size()
+	const LDL_Vec2i& Size()
 	{
 		return _Window.Size();
 	}
 
-	const LDL_Point& Pos()
+	const LDL_Vec2i& Pos()
 	{
 		return _Window.Pos();
 	}
