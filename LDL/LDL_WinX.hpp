@@ -635,6 +635,7 @@ private:
 ********************************************************************************************************************************/
 #if defined(_WIN32)
 static const char LDL_AppName[] = "MainWindow";
+static const UINT period = 1;
 
 class LDL_MainWindow
 {
@@ -643,7 +644,8 @@ public:
 		_Result(result),
 		_BaseWindow(pos, size, title, mode)
 	{
-
+		timeBeginPeriod(period);
+		
 		ZeroMemory(&_WNDCLASS, sizeof(WNDCLASS));
 		ZeroMemory(&_HINSTANCE, sizeof(HINSTANCE));
 		ZeroMemory(&_MSG, sizeof(MSG));
@@ -674,6 +676,8 @@ public:
 
 	~LDL_MainWindow()
 	{
+		timeEndPeriod(period);
+
 		UnregisterClass(LDL_AppName, _HINSTANCE);
 		ReleaseDC(_HWND, _HDC);
 		PostQuitMessage(0);
