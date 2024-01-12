@@ -29,13 +29,79 @@ DEALINGS IN THE SOFTWARE.
 
 #include <stdio.h>
 
-typedef void(*LDL_VoidFuncPtr)(void);
+/********************************************************************************************************************************
+														LDL_Point
+********************************************************************************************************************************/
+class LDL_Vec2i
+{
+public:
+	LDL_Vec2i() :
+		x(0),
+		y(0)
+	{
+	}
+
+	LDL_Vec2i(int x, int y) :
+		x(x),
+		y(y)
+	{
+	}
+
+	int x;
+	int y;
+};
+
+/********************************************************************************************************************************
+														LDL_Result
+********************************************************************************************************************************/
+class LDL_Result
+{
+public:
+	enum
+	{
+		Max = 64
+	};
+
+	LDL_Result()
+	{
+		Clear();
+	}
+
+	void Clear()
+	{
+		_Ok = true;
+		memset(&_Message, 0, Max);
+	}
+
+	bool Ok()
+	{
+		return _Ok;
+	}
+
+	const char* Message()
+	{
+		return _Message;
+	}
+
+	void Message(const char* message)
+	{
+		Clear();
+
+		_Ok = false;
+		strcpy(_Message, message);
+	}
+private:
+	bool _Ok;
+	char _Message[Max];
+};
 
 void LDL_Abort(const char* message, const char* detail)
 {
 	printf("%s %s/n", message, detail);
 	abort();
 }
+
+typedef void(*LDL_VoidFuncPtr)(void);
 
 #if defined(_WIN32)
 #include <windows.h>
