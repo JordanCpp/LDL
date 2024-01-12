@@ -40,6 +40,16 @@ void LDL_Abort(const char* message, const char* detail)
 #if defined(_WIN32)
 #include <windows.h>
 
+size_t LDL_Ticks()
+{
+	return timeGetTime();
+}
+
+void LDL_Delay(size_t count)
+{
+	Sleep((DWORD)count);
+}
+
 class LDL_Library
 {
 public:
@@ -112,5 +122,80 @@ private:
 };
 
 #endif
+
+class LDL_FpsCounter
+{
+public:
+	LDL_FpsCounter() :
+		_Current(0),
+		_Delta(0),
+		_Old(0),
+		_Fps(0)
+	{
+	}
+
+	void Start()
+	{
+		_Current = LDL_Ticks();
+	}
+
+	bool Calc()
+	{
+		_Fps++;
+
+		_Delta = LDL_Ticks() - _Current;
+
+		_Old += _Delta;
+
+		if (_Old >= 1000)
+		{
+			return  true;
+		}
+
+		return false;
+	}
+
+	size_t Fps()
+	{
+		return _Fps;
+	}
+
+	void Clear()
+	{
+		_Fps = 0;
+		_Old = 0;
+	}
+private:
+	size_t _Current;
+	size_t	_Delta;
+	size_t	_Old;
+	size_t _Fps;
+};
+
+class LDL_FpsLimiter
+{
+public:
+	LDL_FpsLimiter(size_t fps = 60) :
+		_Fps(fps),
+		_Ticks(0)
+	{
+	}
+
+	void Mark()
+	{
+		_Ticks = LDL_Ticks();
+	}
+
+	void Throttle() const
+	{
+		if (1000 / _Fps > LDL_Ticks() - _Ticks)
+		{
+			LDL_Delay(1000 / _Fps - (LDL_Ticks() - _Ticks));
+		}
+	}
+private:
+	size_t _Fps;
+	size_t _Ticks;
+};
 
 #endif

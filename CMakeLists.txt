@@ -6,4 +6,4 @@ if (MSVC)
 endif()
 
 add_executable(test "test.cpp")
-target_link_libraries(test opengl32)
+target_link_libraries(test winmm opengl32)
