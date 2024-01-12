@@ -27,7 +27,15 @@ DEALINGS IN THE SOFTWARE.
 #ifndef LDL_Util_hpp
 #define LDL_Util_hpp
 
+#include <stdio.h>
+
 typedef void(*LDL_VoidFuncPtr)(void);
+
+void LDL_Abort(const char* message, const char* detail)
+{
+	printf("%s %s/n", message, detail);
+	abort();
+}
 
 #if defined(_WIN32)
 #include <windows.h>
@@ -85,6 +93,11 @@ public:
 		if (IsValid(result))
 		{
 			result = _Library.Function(name);
+
+			if (result == NULL)
+			{
+				LDL_Abort("Not found function:", name);
+			}
 		}
 
 		return result;

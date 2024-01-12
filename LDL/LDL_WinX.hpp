@@ -105,6 +105,7 @@ DEALINGS IN THE SOFTWARE.
 ********************************************************************************************************************************/
 
 #include <string.h>
+#include <assert.h>
 
 /********************************************************************************************************************************
 														LDL_Point
@@ -590,6 +591,44 @@ private:
 	LDL_Point _Size;
 	char      _Title[Max];
 	int       _WindowMode;
+};
+/********************************************************************************************************************************
+													   LDL_Surface
+********************************************************************************************************************************/
+class LDL_Surface
+{
+public:
+	LDL_Surface(const LDL_Point& capacity, int bpp):
+		_Bpp(bpp),
+		_Capacity(capacity),
+		_Size(capacity)
+	{
+		assert(bpp >= 0 && bpp <= 4);
+
+		_Pixels = (unsigned char*)malloc(_Capacity.x * _Capacity.y * bpp);
+	}
+
+	LDL_Surface(const LDL_Point& capacity, const LDL_Point& size, int bpp) :
+		_Bpp(bpp),
+		_Capacity(capacity),
+		_Size(size)
+	{
+		assert(bpp >= 0 && bpp <= 4);
+		assert(size.x <= capacity.x);
+		assert(size.y <= capacity.y);
+
+		_Pixels = (unsigned char*)malloc(_Capacity.x * _Capacity.y * bpp);
+	}
+
+	~LDL_Surface()
+	{
+		free(_Pixels);
+	}
+private:
+	int _Bpp;
+	LDL_Point _Capacity;
+	LDL_Point _Size;
+	unsigned char* _Pixels;
 };
 /********************************************************************************************************************************
 									         	   	  LDL_MainWindow
@@ -1174,6 +1213,8 @@ public:
 		{
 			_Result->Message("SwapBuffers failed");
 		}
+
+		Update();
 	}
 
 	void PollEvents()
