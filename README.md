@@ -15,8 +15,10 @@ Free cross-platform library.
 # Support platforms.
 1. Windows 95 and higher
 
+# Support graphics API.
+1. OpenGL >= 1.0 and <= 4.6
+
 # Support renders.
-1. OpenGL 1.2
 
 # The main idea is to write an analogue of the SDL library. 
 Accessible to everyone, without exception. 
@@ -36,7 +38,10 @@ Boost Software License - Version 1.0 - August 17th, 2003
 No dependencies
 
 ```c++
+//Support OpenGL >= 1.0
 #define LDL_RENDER_OPENGL1
+//Support OpenGL >= 3.0
+//#define LDL_RENDER_OPENGL3
 #include <LDL/LDL_WinX.hpp>
 #include <LDL/LDL_GL.hpp>
 
