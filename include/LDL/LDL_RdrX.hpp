@@ -24,10 +24,30 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Soft_hpp
-#define LDL_Soft_hpp
+#ifndef LDL_RdrX_hpp
+#define LDL_RdrX_hpp
 
-#define LDL_RENDER_SOFTWARE
 #include "LDL_WinX.hpp"
+
+/********************************************************************************************************************************
+														LDL_Texture
+********************************************************************************************************************************/
+#if defined(LDL_RENDER_OPENGL1)
+
+#elif defined(LDL_RENDER_OPENGL3)
+
+#elif defined(LDL_RENDER_SOFTWARE)
+
+#endif
+/********************************************************************************************************************************
+													     LDL_Render
+********************************************************************************************************************************/
+#if defined(LDL_RENDER_OPENGL1)
+
+#elif defined(LDL_RENDER_OPENGL3)
+
+#elif defined(LDL_RENDER_SOFTWARE)
+
+#endif
 
 #endif

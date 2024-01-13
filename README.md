@@ -12,6 +12,12 @@ Free cross-platform library.
 5. Cross-platform.
 6. Static and dynamic link.
 
+# Description of files
+LDL_Util.hpp - Common helper classes.
+LDL_WinX.hpp - Window and OS event handling.
+LDL_RdrX.hpp - Simple 2D render.
+LDL_GL.hpp   - Supports all versions of OpenGL (1.0 - 4.6).
+
 # Support platforms.
 1. Windows 95 and higher
 

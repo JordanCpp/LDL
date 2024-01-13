@@ -1428,5 +1428,88 @@ private:
 	LDL_MainWindow _Window;
 };
 #endif
+/********************************************************************************************************************************
+													LDL_MainWindow - Software
+********************************************************************************************************************************/
+#if defined(_WIN32) && defined(LDL_RENDER_SOFTWARE)
+class LDL_Window
+{
+public:
+	LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized) :
+		_Result(result),
+		_Window(result, pos, size, title, mode)
+	{
+	}
+
+	~LDL_Window()
+	{
+		ReleaseDC(_Window._HWND, _Window._HDC);
+	}
+
+	bool Running()
+	{
+		return _Window.Running();
+	}
+
+	void Present()
+	{
+		Update();
+	}
+
+	void PollEvents()
+	{
+		_Window.PollEvents();
+	}
+
+	const LDL_Vec2i& Size()
+	{
+		return _Window.Size();
+	}
+
+	const LDL_Vec2i& Pos()
+	{
+		return _Window.Pos();
+	}
+
+	bool GetEvent(LDL_Event& event)
+	{
+		return _Window.GetEvent(event);
+	}
+
+	bool WaitEvent(LDL_Event& event)
+	{
+		return _Window.WaitEvent(event);
+	}
+
+	void StopEvent()
+	{
+		_Window.StopEvent();
+	}
+
+	const char* Title()
+	{
+		return _Window.Title();
+	}
+
+	void Title(const char* title)
+	{
+		_Window.Title(title);
+	}
+
+	void* NativeHandle()
+	{
+		return _Window._HWND;
+	}
+
+	void Update()
+	{
+		_Window.Update();
+	}
+private:
+	LDL_Result* _Result;
+	LDL_MainWindow _Window;
+};
+#elif defined(__unix__)
+#endif
 
 #endif
