@@ -1089,7 +1089,7 @@ public:
 #elif defined(__unix__) 
 #endif
 /********************************************************************************************************************************
-													  LDL_MainWindow
+												    LDL_MainWindow - OpenGL 1
 ********************************************************************************************************************************/
 #if defined(_WIN32) && defined(LDL_RENDER_OPENGL1)
 class LDL_Window
@@ -1237,6 +1237,203 @@ private:
 	LDL_MainWindow _Window;
 };
 #elif defined(__unix__)
+#endif
+
+/********************************************************************************************************************************
+													LDL_MainWindow - OpenGL 3
+********************************************************************************************************************************/
+#if defined(_WIN32) && defined(LDL_RENDER_OPENGL3)
+typedef HGLRC(WINAPI* PFNWGLCREATECONTEXT)(HDC);
+typedef BOOL(WINAPI* PFNWGLMAKECURRENT)(HDC, HGLRC);
+typedef BOOL(WINAPI* PFNWGLDELETECONTEXT)(HGLRC);
+
+typedef HGLRC(WINAPI* PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareContext, const int* attribList);
+
+#define WGL_CONTEXT_MAJOR_VERSION_ARB             0x2091
+#define WGL_CONTEXT_MINOR_VERSION_ARB             0x2092  
+#define WGL_CONTEXT_FLAGS_ARB                     0x2094 
+#define WGL_CONTEXT_PROFILE_MASK_ARB              0x9126  
+#define WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB    0x00000002 
+#define WGL_CONTEXT_CORE_PROFILE_BIT_ARB          0x00000001
+#define WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB 0x00000002
+
+class LDL_Window
+{
+public:
+	LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized) :
+		_Result(result),
+		_HGLRC(NULL),
+		_Window(result, pos, size, title, mode)
+	{
+		PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
+
+		int attribs[] =
+		{
+			WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
+			WGL_CONTEXT_MINOR_VERSION_ARB, 3,
+			WGL_CONTEXT_FLAGS_ARB,         WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
+			WGL_CONTEXT_PROFILE_MASK_ARB,  WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
+			0
+		};
+
+		PIXELFORMATDESCRIPTOR pfd;
+
+		ZeroMemory(&pfd, sizeof(PIXELFORMATDESCRIPTOR));
+
+		_Window._HDC = GetDC(_Window._HWND);
+
+		if (_Window._HDC == NULL)
+		{
+			_Result->Message("GetDC failed");
+			return;
+		}
+
+		pfd.nSize = sizeof(pfd);
+		pfd.nVersion = 1;
+		pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+		pfd.iPixelType = PFD_TYPE_RGBA;
+		pfd.cColorBits = 32;
+		pfd.cDepthBits = 24;
+
+		int format = ChoosePixelFormat(_Window._HDC, &pfd);
+
+		if (format == 0)
+		{
+			_Result->Message("ChoosePixelFormat failed");
+			return;
+		}
+
+		if (!SetPixelFormat(_Window._HDC, format, &pfd))
+		{
+			_Result->Message("SetPixelFormat failed");
+			return;
+		}
+
+		_HGLRC = wglCreateContext(_Window._HDC);
+
+		if (!_HGLRC)
+		{
+			_Result->Message("wglCreateContext failed");
+			return;
+		}
+
+		if (!wglMakeCurrent(_Window._HDC, _HGLRC))
+		{
+			_Result->Message("wglMakeCurrent failed");
+			return;
+		}
+
+		wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
+
+		if (!wglCreateContextAttribsARB)
+		{
+			_Result->Message("wglGetProcAddress failed");
+			return;
+		}
+
+		if (!wglMakeCurrent(NULL, NULL))
+		{
+			_Result->Message("wglMakeCurrent failed");
+			return;
+		}
+
+		if (!wglDeleteContext(_HGLRC))
+		{
+			_Result->Message("wglDeleteContext failed");
+			return;
+		}
+
+		_HGLRC = wglCreateContextAttribsARB(_Window._HDC, 0, attribs);
+
+		if (!_HGLRC)
+		{
+			_Result->Message("wglCreateContextAttribsARB failed");
+			return;
+		}
+
+		if (!wglMakeCurrent(_Window._HDC, _HGLRC))
+		{
+			_Result->Message("wglMakeCurrent failed");
+			return;
+		}
+	}
+
+	~LDL_Window()
+	{
+		wglMakeCurrent(NULL, NULL);
+		wglDeleteContext(_HGLRC);
+		ReleaseDC(_Window._HWND, _Window._HDC);
+	}
+
+	bool Running()
+	{
+		return _Window.Running();
+	}
+
+	void Present()
+	{
+		if (!SwapBuffers(_Window._HDC))
+		{
+			_Result->Message("SwapBuffers failed");
+		}
+
+		Update();
+	}
+
+	void PollEvents()
+	{
+		_Window.PollEvents();
+	}
+
+	const LDL_Vec2i& Size()
+	{
+		return _Window.Size();
+	}
+
+	const LDL_Vec2i& Pos()
+	{
+		return _Window.Pos();
+	}
+
+	bool GetEvent(LDL_Event& event)
+	{
+		return _Window.GetEvent(event);
+	}
+
+	bool WaitEvent(LDL_Event& event)
+	{
+		return _Window.WaitEvent(event);
+	}
+
+	void StopEvent()
+	{
+		_Window.StopEvent();
+	}
+
+	const char* Title()
+	{
+		return _Window.Title();
+	}
+
+	void Title(const char* title)
+	{
+		_Window.Title(title);
+	}
+
+	void* NativeHandle()
+	{
+		return _Window._HWND;
+	}
+
+	void Update()
+	{
+		_Window.Update();
+	}
+private:
+	LDL_Result* _Result;
+	HGLRC _HGLRC;
+	LDL_MainWindow _Window;
+};
 #endif
 
 #endif

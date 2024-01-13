@@ -1,4 +1,7 @@
+//Support OpenGL >= 1.0
 #define LDL_RENDER_OPENGL1
+//Support OpenGL >= 3.0
+//#define LDL_RENDER_OPENGL3
 #include <LDL/LDL_WinX.hpp>
 #include <LDL/LDL_GL.hpp>
 
