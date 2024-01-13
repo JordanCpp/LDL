@@ -20,6 +20,7 @@ LDL_GL.hpp   - Supports all versions of OpenGL (1.0 - 4.6).
 
 # Support platforms.
 1. Windows 95 and higher
+2. Linux (In the process of implementation).
 
 # Support graphics API.
 1. OpenGL >= 1.0 and <= 4.6
