@@ -1104,57 +1104,50 @@ public:
 
 		ZeroMemory(&pfd, sizeof(PIXELFORMATDESCRIPTOR));
 
-		if (_Result->Ok())
+		if (!_Result->Ok())
+			return;
+
+		_Window._HDC = GetDC(_Window._HWND);
+
+		if (_Window._HDC == NULL)
 		{
-			_Window._HDC = GetDC(_Window._HWND);
-
-			if (_Window._HDC == NULL)
-			{
-				_Result->Message("GetDC failed");
-			}
-			else
-			{
-				pfd.nSize = sizeof(pfd);
-				pfd.nVersion = 1;
-				pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-				pfd.iPixelType = PFD_TYPE_RGBA;
-				pfd.cColorBits = 24;
-				pfd.cDepthBits = 16;
-				pfd.iLayerType = PFD_MAIN_PLANE;
-
-				int format = ChoosePixelFormat(_Window._HDC, &pfd);
-
-				if (format == 0)
-				{
-					_Result->Message("ChoosePixelFormat failed");
-				}
-				else
-				{
-					if (!SetPixelFormat(_Window._HDC, format, &pfd))
-					{
-						_Result->Message("SetPixelFormat failed");
-					}
-					else
-					{
-						_HGLRC = wglCreateContext(_Window._HDC);
-
-						if (_HGLRC == NULL)
-						{
-							_Result->Message("wglCreateContext failed");
-						}
-						else
-						{
-							if (!wglMakeCurrent(_Window._HDC, _HGLRC))
-							{
-								_Result->Message("wglMakeCurrent failed");
-							}
-						}
-					}
-				}
-			}
+			_Result->Message("GetDC failed");
+			return;
 		}
-		else
+
+		pfd.nSize = sizeof(pfd);
+		pfd.nVersion = 1;
+		pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+		pfd.iPixelType = PFD_TYPE_RGBA;
+		pfd.cColorBits = 24;
+		pfd.cDepthBits = 16;
+		pfd.iLayerType = PFD_MAIN_PLANE;
+
+		int format = ChoosePixelFormat(_Window._HDC, &pfd);
+
+		if (format == 0)
 		{
+			_Result->Message("ChoosePixelFormat failed");
+			return;
+		}
+
+		if (!SetPixelFormat(_Window._HDC, format, &pfd))
+		{
+			_Result->Message("SetPixelFormat failed");
+			return;
+		}
+
+		_HGLRC = wglCreateContext(_Window._HDC);
+
+		if (_HGLRC == NULL)
+		{
+			_Result->Message("wglCreateContext failed");
+			return;
+		}
+
+		if (!wglMakeCurrent(_Window._HDC, _HGLRC))
+		{
+			_Result->Message("wglMakeCurrent failed");
 			return;
 		}
 	}
