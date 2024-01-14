@@ -108,6 +108,56 @@ DEALINGS IN THE SOFTWARE.
 ********************************************************************************************************************************/
 typedef void(*LDL_VoidFuncPtr)(void);
 /********************************************************************************************************************************
+														  LDL_Color
+********************************************************************************************************************************/
+class LDL_Color
+{
+public:
+	LDL_Color() :
+#if defined(_WIN32)
+		b(0),
+		g(0),
+		r(0),
+#else
+		r(0),
+		g(0),
+		b(0),
+#endif
+		a(255)
+	{
+	}
+
+	LDL_Color(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha = 255) :
+#if defined(_WIN32)
+		b(blue),
+		g(green),
+		r(red),
+#else
+		r(red),
+		g(green),
+		b(blue),
+#endif
+		a(alpha)
+	{
+	}
+
+	int toInt() const
+	{
+		return (int)((r << 24) | (g << 16) | (b << 8) | a);
+	}
+
+#if defined(_WIN32)
+	unsigned char b;
+	unsigned char g;
+	unsigned char r;
+#else
+	unsigned char r;
+	unsigned char g;
+	unsigned char b;
+#endif
+	unsigned char a;
+};
+/********************************************************************************************************************************
 													      LDL_Mat4f
 ********************************************************************************************************************************/
 class LDL_Mat4f

@@ -28,7 +28,49 @@ DEALINGS IN THE SOFTWARE.
 #define LDL_RdrX_hpp
 
 #include "LDL_WinX.hpp"
+/********************************************************************************************************************************
+													  
+********************************************************************************************************************************/
+#if defined(LDL_RENDER_OPENGL1) || defined(LDL_RENDER_OPENGL3)
+#include "LDL_GL.hpp"
 
+void LDL_Normalize(const LDL_Color& color, GLclampf& r, GLclampf& g, GLclampf& b)
+{
+	r = color.r / 255.0f;
+	g = color.g / 255.0f;
+	b = color.b / 255.0f;
+}
+#endif
+/********************************************************************************************************************************
+												 	  LDL_BaseRender
+********************************************************************************************************************************/
+class LDL_BaseRender
+{
+public:
+	LDL_BaseRender(const LDL_Vec2i& size) :
+		_Size(size)
+	{
+	}
+
+	const LDL_Vec2i& Size()
+	{
+		return _Size;
+	}
+
+	const LDL_Color& Color()
+	{
+		return _Current;
+	}
+
+	void SetColor(const LDL_Color& color)
+	{
+		_Current = color;
+	}
+
+private:
+	LDL_Vec2i _Size;
+	LDL_Color _Current;
+};
 /********************************************************************************************************************************
 														LDL_Texture
 ********************************************************************************************************************************/
@@ -43,7 +85,46 @@ DEALINGS IN THE SOFTWARE.
 													     LDL_Render
 ********************************************************************************************************************************/
 #if defined(LDL_RENDER_OPENGL1)
+class LDL_Render
+{
+public:
+	LDL_Render(LDL_Window* window):
+		_Window(window),
+		_BaseRender(_Window->Size()),
+		_OpenGLLoader(1, 2)
+	{
+	}
 
+	void Begin()
+	{
+	}
+
+	void End()
+	{
+		_Window->Present();
+	}
+
+	void SetColor(const LDL_Color& color)
+	{
+		_BaseRender.SetColor(color);
+	}
+
+	void Clear()
+	{
+		GLclampf r;
+		GLclampf g;
+		GLclampf b;
+
+		LDL_Normalize(_BaseRender.Color(), r, g, b);
+
+		glClearColor(r, g, b, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	}
+private:
+	LDL_Window*    _Window;
+	LDL_BaseRender _BaseRender;
+	LDL_OpenGLLoader _OpenGLLoader;
+};
 #elif defined(LDL_RENDER_OPENGL3)
 
 #elif defined(LDL_RENDER_SOFTWARE)
