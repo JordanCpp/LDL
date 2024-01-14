@@ -2,7 +2,7 @@
 
 This project is an attempt to do only for headers. (https://github.com/JordanCpp/Lib-LDL)
 
-# LDL - Little Directmedia Layer (Header only)
+# LDL - Little no Dependencies Libraries (Header only)
 Free cross-platform library.
 
 1. Free for everyone.

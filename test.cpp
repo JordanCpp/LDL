@@ -11,7 +11,7 @@ int main()
 {
 	LDL_Result result;
 
-	LDL_Window window(&result, LDL_Vec2i(0, 0), LDL_Vec2i(800, 600), "test.cpp", LDL_WindowMode::Resized);
+	LDL_Window window(&result, LDL_Vec2i(0, 0), LDL_Vec2i(800, 600), "test.cpp");
 
 	if (result.Ok())
 	{
