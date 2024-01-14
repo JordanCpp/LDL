@@ -34,6 +34,52 @@ DEALINGS IN THE SOFTWARE.
 #if defined(LDL_RENDER_OPENGL1) || defined(LDL_RENDER_OPENGL3)
 #include "LDL_GL.hpp"
 
+void LDL_GL_Check(const char* file, int line, const char* expression)
+{
+	GLenum code = glGetError();
+
+	if (code != GL_NO_ERROR)
+	{
+		char error[32];
+		memset(error, 0, sizeof(error));
+
+		switch (code)
+		{
+		case GL_INVALID_ENUM:
+			 strcpy(error, "GL_INVALID_ENUM");
+			break;
+		case GL_INVALID_VALUE:
+			strcpy(error, "GL_INVALID_VALUE");
+			break;
+		case GL_INVALID_OPERATION:
+			strcpy(error, "GL_INVALID_OPERATION");
+			break;
+		case GL_STACK_OVERFLOW:
+			strcpy(error, "GL_STACK_OVERFLOW");
+			break;
+		case GL_STACK_UNDERFLOW:
+			strcpy(error, "GL_STACK_UNDERFLOW");
+			break;
+		case GL_OUT_OF_MEMORY:
+			strcpy(error, "GL_OUT_OF_MEMORY");
+			break;
+		default:
+			strcpy(error, "Unknown error");
+		}
+
+		printf("OpenGL Error: %s File: %s Line: %d Detail: %s", error, file, line, expression);
+		LDL_Abort();
+	}
+}
+
+#define LDL_GL_CHECK(expr)                       \
+    do                                           \
+    {                                            \
+        expr;                                    \
+        LDL_GL_Check(__FILE__, __LINE__, #expr); \
+    } while (false)    
+
+
 void LDL_Normalize(const LDL_Color& color, GLclampf& r, GLclampf& g, GLclampf& b)
 {
 	r = color.r / 255.0f;
@@ -97,11 +143,58 @@ public:
 
 	void Begin()
 	{
+		LDL_Vec2i size = _Window->Size();
+
+		LDL_GL_CHECK(glViewport(0, 0, (GLsizei)size.x, (GLsizei)size.y));
+
+		_Projection = Ortho(0.0f, (float)size.x, (float)size.y, 0.0f, -1.0f, 1.0f);
+		LDL_GL_CHECK(glMatrixMode(GL_PROJECTION));
+		LDL_GL_CHECK(glLoadMatrixf(_Projection.Values()));
+
+		LDL_GL_CHECK(glMatrixMode(GL_MODELVIEW));
+		LDL_GL_CHECK(glLoadMatrixf(_ModelView.Values()));
 	}
 
 	void End()
 	{
 		_Window->Present();
+	}
+
+	void Line(const LDL_Vec2i& pos1, const LDL_Vec2i& pos2)
+	{
+		GLclampf r;
+		GLclampf g;
+		GLclampf b;
+
+		LDL_Normalize(_BaseRender.Color(), r, g, b);
+
+		glBegin(GL_LINES);
+		glColor3f(r, g, b);
+		glVertex2i(pos1.x, pos1.y);
+		glVertex2i(pos2.x, pos2.y);
+		glEnd();
+	}
+
+	void Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size)
+	{
+		GLclampf r;
+		GLclampf g;
+		GLclampf b;
+
+		LDL_Normalize(_BaseRender.Color(), r, g, b);
+		glColor3f(r, g, b);
+
+		GLint x = (GLint)pos.x;
+		GLint y = (GLint)pos.y;
+		GLint w = (GLint)size.x;
+		GLint h = (GLint)size.y;
+
+		glBegin(GL_QUADS);
+		glVertex2i(x, y + h);
+		glVertex2i(x, y);
+		glVertex2i(x + w, y);
+		glVertex2i(x + w, y + h);
+		glEnd();
 	}
 
 	void SetColor(const LDL_Color& color)
@@ -121,9 +214,11 @@ public:
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 private:
-	LDL_Window*    _Window;
-	LDL_BaseRender _BaseRender;
+	LDL_Window*      _Window;
+	LDL_BaseRender   _BaseRender;
 	LDL_OpenGLLoader _OpenGLLoader;
+	LDL_Mat4f        _Projection;
+	LDL_Mat4f        _ModelView;
 };
 #elif defined(LDL_RENDER_OPENGL3)
 

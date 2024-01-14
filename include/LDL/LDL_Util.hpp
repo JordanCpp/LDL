@@ -110,6 +110,76 @@ typedef void(*LDL_VoidFuncPtr)(void);
 /********************************************************************************************************************************
 														  LDL_Color
 ********************************************************************************************************************************/
+class LDL_NumberToString
+{
+public:
+	const char* Convert(int num, unsigned char base = 10)
+	{
+		int i = 0;
+		bool isNegative = false;
+
+		/* Handle 0 explicitly, otherwise empty string is printed for 0 */
+		if (num == 0)
+		{
+			_Buffer[i++] = '0';
+			_Buffer[i] = '\0';
+		}
+
+		// In standard itoa(), negative numbers are handled only with
+		// base 10. Otherwise numbers are considered unsigned.
+		if (num < 0 && base == 10)
+		{
+			isNegative = true;
+			num = -num;
+		}
+
+		// Process individual digits
+		while (num != 0)
+		{
+			int rem = num % base;
+			_Buffer[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
+			num = num / base;
+		}
+
+		// If number is negative, append '-'
+		if (isNegative)
+			_Buffer[i++] = '-';
+
+		_Buffer[i] = '\0'; // Append string terminator
+
+		// Reverse the string
+		Reverse(_Buffer, i);
+
+		return _Buffer;
+	}
+
+private:
+	void Swap(char& t1, char& t2)
+	{
+		char tmp = t1;
+		t1 = t2;
+		t2 = tmp;
+	}
+
+	void Reverse(char* str, size_t length)
+	{
+		size_t start = 0;
+		size_t end = length - 1;
+
+		while (start < end)
+		{
+			Swap(*(str + start), *(str + end));
+			start++;
+			end--;
+		}
+	}
+
+	char _Buffer[32];
+	int _Result;
+};
+/********************************************************************************************************************************
+														  LDL_Color
+********************************************************************************************************************************/
 class LDL_Color
 {
 public:
@@ -163,6 +233,26 @@ public:
 class LDL_Mat4f
 {
 public:
+	LDL_Mat4f()
+	{
+		Identity();
+	}
+
+	LDL_Mat4f& operator=(const LDL_Mat4f& source)
+	{
+		if (this == &source)
+			return *this;
+
+		memcpy(&_Values, source._Values, sizeof(_Values));
+
+		return *this;
+	}
+
+	float* Values()
+	{
+		return _Values;
+	}
+
 	void Identity()
 	{
 		_Values[0] = 1;
@@ -182,8 +272,51 @@ public:
 		_Values[14] = 0;
 		_Values[15] = 1;
 	}
+
+	LDL_Mat4f operator * (const LDL_Mat4f& m) const {
+		LDL_Mat4f ret;
+
+		ret._Values[0] = ((_Values[0] * m._Values[0]) + (_Values[1] * m._Values[4]) + (_Values[2] * m._Values[8]) + (_Values[3] * m._Values[12]));
+		ret._Values[1] = ((_Values[0] * m._Values[1]) + (_Values[1] * m._Values[5]) + (_Values[2] * m._Values[9]) + (_Values[3] * m._Values[13]));
+		ret._Values[2] = ((_Values[0] * m._Values[2]) + (_Values[1] * m._Values[6]) + (_Values[2] * m._Values[10]) + (_Values[3] * m._Values[14]));
+		ret._Values[3] = ((_Values[0] * m._Values[3]) + (_Values[1] * m._Values[7]) + (_Values[2] * m._Values[11]) + (_Values[3] * m._Values[15]));
+
+		ret._Values[4] = ((_Values[4] * m._Values[0]) + (_Values[5] * m._Values[4]) + (_Values[6] * m._Values[8]) + (_Values[7] * m._Values[12]));
+		ret._Values[5] = ((_Values[4] * m._Values[1]) + (_Values[5] * m._Values[5]) + (_Values[6] * m._Values[9]) + (_Values[7] * m._Values[13]));
+		ret._Values[6] = ((_Values[4] * m._Values[2]) + (_Values[5] * m._Values[6]) + (_Values[6] * m._Values[10]) + (_Values[7] * m._Values[14]));
+		ret._Values[7] = ((_Values[4] * m._Values[3]) + (_Values[5] * m._Values[7]) + (_Values[6] * m._Values[11]) + (_Values[7] * m._Values[15]));
+
+		ret._Values[8] = ((_Values[8] * m._Values[0]) + (_Values[9] * m._Values[4]) + (_Values[10] * m._Values[8]) + (_Values[11] * m._Values[12]));
+		ret._Values[9] = ((_Values[8] * m._Values[1]) + (_Values[9] * m._Values[5]) + (_Values[10] * m._Values[9]) + (_Values[11] * m._Values[13]));
+		ret._Values[10] = ((_Values[8] * m._Values[2]) + (_Values[9] * m._Values[6]) + (_Values[10] * m._Values[10]) + (_Values[11] * m._Values[14]));
+		ret._Values[11] = ((_Values[8] * m._Values[3]) + (_Values[9] * m._Values[7]) + (_Values[10] * m._Values[11]) + (_Values[11] * m._Values[15]));
+
+		ret._Values[12] = ((_Values[12] * m._Values[0]) + (_Values[13] * m._Values[4]) + (_Values[14] * m._Values[8]) + (_Values[15] * m._Values[12]));
+		ret._Values[13] = ((_Values[12] * m._Values[1]) + (_Values[13] * m._Values[5]) + (_Values[14] * m._Values[9]) + (_Values[15] * m._Values[13]));
+		ret._Values[14] = ((_Values[12] * m._Values[2]) + (_Values[13] * m._Values[6]) + (_Values[14] * m._Values[10]) + (_Values[15] * m._Values[14]));
+		ret._Values[15] = ((_Values[12] * m._Values[3]) + (_Values[13] * m._Values[7]) + (_Values[14] * m._Values[11]) + (_Values[15] * m._Values[15]));
+
+		return ret;
+	}
+
 	float _Values[16];
 };
+/********************************************************************************************************************************
+												LDL_Mat4f - functions
+********************************************************************************************************************************/
+LDL_Mat4f Ortho(float left, float right, float bottom, float top, float farv, float nearv)
+{
+	LDL_Mat4f result;
+
+	result._Values[0] = (2.0f / (right - left));
+	result._Values[5] = (2.0f / (top - bottom));
+	result._Values[10] = (-1.0);
+	result._Values[12] = (-(right + left) / (right - left));
+	result._Values[13] = (-(top + bottom) / (top - bottom));
+	result._Values[14] = (-(farv + nearv) / (farv - nearv));
+
+	return result;
+}
 /********************************************************************************************************************************
 														LDL_Vec2i
 ********************************************************************************************************************************/
@@ -248,11 +381,23 @@ private:
 	bool _Ok;
 	char _Message[Max];
 };
-
+/********************************************************************************************************************************
+													      LDL_Abort
+********************************************************************************************************************************/
 void LDL_Abort(const char* message, const char* detail)
 {
 	printf("%s %s/n", message, detail);
 	abort();
+}
+
+void LDL_Abort(const char* message)
+{
+	LDL_Abort(message, "");
+}
+
+void LDL_Abort()
+{
+	LDL_Abort("", "");
 }
 /********************************************************************************************************************************
 									                        Ticks

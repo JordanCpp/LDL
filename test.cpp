@@ -26,9 +26,14 @@ int main()
 				}
 			}
 
+
 			render.Begin();
 
+			render.SetColor(LDL_Color(0, 162, 232));
 			render.Clear();
+
+			render.SetColor(LDL_Color(237, 28, 36));
+			render.Fill(LDL_Vec2i(0, 0), LDL_Vec2i(400, 300));
 
 			render.End();
 
