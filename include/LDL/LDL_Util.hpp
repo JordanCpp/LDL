@@ -32,7 +32,14 @@ DEALINGS IN THE SOFTWARE.
 #include <stdio.h>
 
 #if defined(_WIN32)
+#pragma comment(lib, "gdi32.lib" )
+#pragma comment(lib, "winmm.lib" )
+#pragma comment(lib, "user32.lib" )
+#pragma comment(lib, "opengl32.lib" )
+
 #define STRICT
+#undef UNICODE
+#undef _UNICODE
 
 #ifdef NOMINMAX
 #include <windows.h>

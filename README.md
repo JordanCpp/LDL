@@ -12,6 +12,9 @@ Free cross-platform library.
 5. Cross-platform.
 6. Static and dynamic link.
 
+# Integration into your project
+1. Copy folder include/LDL
+
 # Description of files
 LDL_Util.hpp - Common helper classes.
 LDL_WinX.hpp - Window and OS event handling.
