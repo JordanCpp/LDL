@@ -26,8 +26,31 @@ DEALINGS IN THE SOFTWARE.
 
 #ifndef LDL_RdrX_hpp
 #define LDL_RdrX_hpp
-
+/********************************************************************************************************************************
+                                                     Includes
+********************************************************************************************************************************/
 #include "LDL_WinX.hpp"
+/********************************************************************************************************************************
+
+********************************************************************************************************************************/
+const int LDL_TextureCount = 12;
+const int LDL_TextureSizes[LDL_TextureCount] = { 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
+
+int LDL_SelectTextureSize(const LDL_Vec2i& size)
+{
+	int w = size.x;
+	int h = size.y;
+
+	for (int i = 0; i < LDL_TextureCount; i++)
+	{
+		if (w <= LDL_TextureSizes[i] && h <= LDL_TextureSizes[i])
+		{
+			return LDL_TextureSizes[i];
+		}
+	}
+
+	return 0;
+}
 /********************************************************************************************************************************
 													  
 ********************************************************************************************************************************/
@@ -86,6 +109,57 @@ void LDL_Normalize(const LDL_Color& color, GLclampf& r, GLclampf& g, GLclampf& b
 	g = color.g / 255.0f;
 	b = color.b / 255.0f;
 }
+
+GLuint LDL_CreateTexture(GLsizei width, GLsizei heigth, GLint format)
+{
+	GLuint result = 0;
+
+	LDL_GL_CHECK(glGenTextures(1, (GLuint*)&result));
+
+	LDL_GL_CHECK(glEnable(GL_TEXTURE_2D));
+
+	LDL_GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)result));
+
+	LDL_GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+	LDL_GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+
+	LDL_GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, width, heigth, 0, format, GL_UNSIGNED_BYTE, NULL));
+
+	LDL_GL_CHECK(glDisable(GL_TEXTURE_2D));
+
+	return result;
+}
+
+void LDL_DeleteTexture(GLint id)
+{
+	LDL_GL_CHECK(glDeleteTextures(0, (GLuint*)&id));
+}
+
+void LDL_DrawQuad(const LDL_Vec2i& dstPos, const LDL_Vec2i& dstSize, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize, size_t textureSize)
+{
+	GLfloat x = (GLfloat)dstPos.x;
+	GLfloat y = (GLfloat)dstPos.y;
+	GLfloat w = (GLfloat)dstSize.x;
+	GLfloat h = (GLfloat)dstSize.y;
+
+	GLfloat cx = (GLfloat)srcPos.x;
+	GLfloat cy = (GLfloat)srcPos.y;
+	GLfloat cw = (GLfloat)srcSize.x;
+	GLfloat ch = (GLfloat)srcSize.y;
+
+	GLfloat dcx = cx / textureSize;
+	GLfloat dcy = cy / textureSize;
+
+	GLfloat dcw = (cx + cw) / textureSize;
+	GLfloat dch = (cy + ch) / textureSize;
+
+	glBegin(GL_QUADS);
+	glTexCoord2f(dcx, dcy); glVertex2f(x, y);
+	glTexCoord2f(dcw, dcy); glVertex2f(x + cw + (w - cw), y);
+	glTexCoord2f(dcw, dch); glVertex2f(x + cw + (w - cw), y + ch + (h - ch));
+	glTexCoord2f(dcx, dch); glVertex2f(x, y + ch + (h - ch));
+	glEnd();
+}
 #endif
 /********************************************************************************************************************************
 												 	  LDL_BaseRender
@@ -121,7 +195,95 @@ private:
 														LDL_Texture
 ********************************************************************************************************************************/
 #if defined(LDL_RENDER_OPENGL1)
+class LDL_Texture 
+{
+public:
+	LDL_Texture(const LDL_Vec2i& size, unsigned char* pixels, unsigned char bytesPerPixel) :
+		_Id(0)
+	{
+		assert(size.x > 0);
+		assert(size.y > 0);
+		assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
+		assert(pixels != NULL);
 
+		_Size = size;
+
+		GLint format = 0;
+
+		if (bytesPerPixel == 3)
+			format = GL_RGB;
+		else
+			format = GL_RGBA;
+
+		int sz = LDL_SelectTextureSize(_Size);
+
+		_Quad = LDL_Vec2i(sz, sz);
+
+		_Id = LDL_CreateTexture((GLsizei)_Quad.x, (GLsizei)_Quad.y, format);
+
+		Copy(LDL_Vec2i(0, 0), _Size, pixels, bytesPerPixel);
+	}
+
+	LDL_Texture(const LDL_Vec2i& size, unsigned char bytesPerPixel) :
+		_Id(0)
+	{
+		_Size = size;
+
+		GLint format = 0;
+
+		if (bytesPerPixel == 3)
+			format = GL_RGB;
+		else
+			format = GL_RGBA;
+
+		int sz = LDL_SelectTextureSize(_Size);
+
+		_Quad = LDL_Vec2i(sz, sz);
+
+		_Id = LDL_CreateTexture((GLsizei)_Quad.x, (GLsizei)_Quad.y, format);
+	}
+
+	~LDL_Texture()
+	{
+		LDL_DeleteTexture((GLint)_Id);
+	}
+
+	void Copy(const LDL_Vec2i& dstPos, const LDL_Vec2i& srcSize, unsigned char* pixels, unsigned char bytesPerPixel)
+	{
+		GLint format = 0;
+
+		if (bytesPerPixel == 3)
+			format = GL_RGB;
+		else
+			format = GL_RGBA;
+
+		LDL_GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)dstPos.x, (GLint)dstPos.y, (GLsizei)srcSize.x, (GLsizei)srcSize.y, format, GL_UNSIGNED_BYTE, pixels));
+	}
+
+	void Copy(const LDL_Vec2i& dstPos, LDL_Surface* surface, const LDL_Vec2i& srcSize)
+	{
+		Copy(dstPos, srcSize, surface->Pixels(), surface->BytesPerPixel());
+	}
+
+	const LDL_Vec2i& Size()
+	{
+		return _Size;
+	}
+
+	const LDL_Vec2i& Quad()
+	{
+		return _Quad;
+	}
+
+	GLuint Id()
+	{
+		return _Id;
+	}
+private:
+	GLuint    _Id;
+	LDL_Vec2i _Size;
+	LDL_Vec2i _Quad;
+};
 #elif defined(LDL_RENDER_OPENGL3)
 
 #elif defined(LDL_RENDER_SOFTWARE)
@@ -213,6 +375,34 @@ public:
 		glClearColor(r, g, b, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
+
+	void Draw(LDL_Texture* image, const LDL_Vec2i& pos)
+	{
+		Draw(image, pos, image->Size(), LDL_Vec2i(0, 0), image->Size());
+	}
+
+	void Draw(LDL_Texture* image, const LDL_Vec2i& pos, const LDL_Vec2i& size)
+	{
+		Draw(image, pos, size, LDL_Vec2i(0, 0), image->Size());
+	}
+
+	void Draw(LDL_Texture* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize)
+	{
+		Draw(image, dstPos, srcSize, srcPos, srcSize);
+	}
+
+	void Draw(LDL_Texture* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& dstSize, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize)
+	{
+		assert(image);
+
+		LDL_GL_CHECK(glEnable(GL_TEXTURE_2D));
+		LDL_GL_CHECK(glBindTexture(GL_TEXTURE_2D, image->Id()));
+
+		LDL_DrawQuad(dstPos, dstSize, srcPos, srcSize, image->Quad().x);
+
+		LDL_GL_CHECK(glDisable(GL_TEXTURE_2D));
+	}
+
 private:
 	LDL_Window*      _Window;
 	LDL_BaseRender   _BaseRender;
@@ -223,7 +413,88 @@ private:
 #elif defined(LDL_RENDER_OPENGL3)
 
 #elif defined(LDL_RENDER_SOFTWARE)
+class LDL_Render
+{
+public:
+	LDL_Render(LDL_Window* window) :
+		_Window(window),
+		_BaseRender(_Window->Size()),
+		_Screen(_Window->Size(), _Window->Size(), 3)
+	{
+	}
 
+	void Begin()
+	{
+	}
+
+	void End()
+	{
+		_Window->Present(_Screen.Pixels(), _Screen.BytesPerPixel());
+		_Window->Present();
+	}
+
+	void Line(const LDL_Vec2i& pos1, const LDL_Vec2i& pos2)
+	{
+	}
+
+	void Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size)
+	{
+		assert(size.x > 0);
+		assert(size.y > 0);
+
+		int x = pos.x;
+		int y = pos.y;
+
+		unsigned char* pixels = _Screen.Pixels();
+		LDL_Color color = _BaseRender.Color();
+
+		for (int i = 0; i < size.x; i++)
+		{
+			for (int j = 0; j < size.y; j++)
+			{
+				int idx = (_Screen.Size().x * (y + j) + (x + i)) * _Screen.BytesPerPixel();
+
+#if defined(_WIN32)
+				pixels[idx] = color.b;
+				pixels[idx + 2] = color.r;
+#else
+				pixels[idx] = color.r;
+				pixels[idx + 2] = color.b;
+#endif
+				pixels[idx + 1] = color.g;
+
+			}
+		}
+	}
+
+	void SetColor(const LDL_Color& color)
+	{
+		_BaseRender.SetColor(color);
+	}
+
+	void Clear()
+	{
+		size_t size = _Screen.Size().x * _Screen.Size().y * _Screen.BytesPerPixel();
+		unsigned char* pixels = _Screen.Pixels();
+		LDL_Color color = _BaseRender.Color();
+
+		for (size_t i = 0; i < size; i += 3)
+		{
+#if defined(_WIN32)
+			pixels[i] = color.b;
+			pixels[i + 2] = color.r;
+#else
+			pixels[i] = color.r;
+			pixels[i + 2] = color.b;
+#endif
+			pixels[i + 1] = color.g;
+		}
+	}
+private:
+	LDL_Window*    _Window;
+	LDL_BaseRender _BaseRender;
+	LDL_Surface    _Screen;
+};
 #endif
 
 #endif

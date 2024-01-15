@@ -494,6 +494,16 @@ public:
 		free(_Pixels);
 	}
 
+	unsigned char* Pixels()
+	{
+		return _Pixels;
+	}
+
+	unsigned char BytesPerPixel()
+	{
+		return _Bpp;
+	}
+
 	const LDL_Vec2i& Capacity()
 	{
 		return _Capacity;
@@ -1369,6 +1379,7 @@ public:
 		_Result(result),
 		_Window(result, pos, size, title, mode)
 	{
+		ZeroMemory(&_BITMAPINFO, sizeof(_BITMAPINFO));
 	}
 
 	~LDL_Window()
@@ -1384,6 +1395,24 @@ public:
 	void Present()
 	{
 		Update();
+	}
+
+	void Present(unsigned char* pixels, unsigned char bytesPerPixel)
+	{
+		assert(pixels != NULL);
+		assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
+
+		_BITMAPINFO.bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
+		_BITMAPINFO.bmiHeader.biWidth       =  (LONG)_Window.Size().x;
+		_BITMAPINFO.bmiHeader.biHeight      = -(LONG)_Window.Size().y;
+		_BITMAPINFO.bmiHeader.biPlanes      = 1;
+		_BITMAPINFO.bmiHeader.biBitCount    = bytesPerPixel * 8;
+		_BITMAPINFO.bmiHeader.biCompression = BI_RGB;
+
+		if (SetDIBitsToDevice(_Window._HDC, 0, 0, (DWORD)_Window.Size().x, (DWORD)_Window.Size().y, 0, 0, 0, (UINT)_Window.Size().y, pixels, &_BITMAPINFO, DIB_RGB_COLORS) == 0)
+		{
+			_Result->Message("SetDIBitsToDevice failed");
+		}
 	}
 
 	void PollEvents()
@@ -1438,6 +1467,7 @@ public:
 private:
 	LDL_Result* _Result;
 	LDL_MainWindow _Window;
+	BITMAPINFO _BITMAPINFO;
 };
 #elif defined(__unix__)
 #endif
