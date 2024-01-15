@@ -45,7 +45,7 @@ Boost Software License - Version 1.0 - August 17th, 2003
 5. Borland C++ 6.0 and higher
 
 # Example OpenGL 3.3 - Triangle
-![0](screenshots/01_GL3_Triangle.jpg)  
+![0](screenshots/01_GL3_Triangle.png)  
 
 ```c++
 #define LDL_RENDER_OPENGL3
