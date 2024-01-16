@@ -1,7 +1,6 @@
-#define LDL_RENDER_OPENGL1
-//#define LDL_RENDER_SOFTWARE
+//#define LDL_RENDER_OPENGL1
+#define LDL_RENDER_SOFTWARE
 #include <LDL/LDL_RdrX.hpp>
-#include <stdio.h>
 
 void LDL_ResultTest()
 {

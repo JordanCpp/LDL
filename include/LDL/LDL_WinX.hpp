@@ -32,9 +32,7 @@ DEALINGS IN THE SOFTWARE.
 /********************************************************************************************************************************
 														Includes
 ********************************************************************************************************************************/
-#include "LDL_Util.hpp"
-#include <string.h>
-#include <assert.h>
+#include "LDL/LDL_Util.hpp"
 /********************************************************************************************************************************
                                                         Enums
 ********************************************************************************************************************************/
@@ -1171,7 +1169,6 @@ private:
 };
 #elif defined(__unix__)
 #endif
-
 /********************************************************************************************************************************
 													LDL_MainWindow - OpenGL 3
 ********************************************************************************************************************************/
@@ -1470,6 +1467,85 @@ private:
 	BITMAPINFO _BITMAPINFO;
 };
 #elif defined(__unix__)
+#elif defined(__MSDOS__) && defined(LDL_RENDER_SOFTWARE)
+class LDL_Window
+{
+public:
+	LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized) :
+		_Result(result),
+		_BaseWindow(pos, size, title, mode)
+	{
+	}
+
+	~LDL_Window()
+	{
+	}
+
+	bool Running()
+	{
+		return false;
+	}
+
+	void Present()
+	{
+	}
+
+	void Present(unsigned char* pixels, unsigned char bytesPerPixel)
+	{
+		assert(pixels != NULL);
+		assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
+	}
+
+	void PollEvents()
+	{
+	}
+
+	const LDL_Vec2i& Size()
+	{
+		return _BaseWindow.Size();
+	}
+
+	const LDL_Vec2i& Pos()
+	{
+		return _BaseWindow.Pos();
+	}
+
+	bool GetEvent(LDL_Event& event)
+	{
+		return false;
+	}
+
+	bool WaitEvent(LDL_Event& event)
+	{
+		return false;
+	}
+
+	void StopEvent()
+	{
+	}
+
+	const char* Title()
+	{
+		return NULL;
+	}
+
+	void Title(const char* title)
+	{
+	}
+
+	void* NativeHandle()
+	{
+		return NULL;
+	}
+
+	void Update()
+	{
+	}
+private:
+	LDL_Result* _Result;
+	LDL_BaseWindow _BaseWindow;
+	LDL_Eventer    _Eventer;
+};
 #endif
 
 #endif

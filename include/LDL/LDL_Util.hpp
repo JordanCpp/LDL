@@ -26,11 +26,20 @@ DEALINGS IN THE SOFTWARE.
 
 #ifndef LDL_Util_hpp
 #define LDL_Util_hpp
+
+#if defined(__BORLANDC__)
+#include <mem.h>
+#define bool  char 
+#define true  1 
+#define false 0
+#endif
 /********************************************************************************************************************************
 													   	 Includes
 ********************************************************************************************************************************/
 #include <stdio.h>
 #include <assert.h>
+#include <string.h>
+#include <stdlib.h>
 
 #if defined(_WIN32)
 
@@ -121,7 +130,7 @@ typedef void(*LDL_VoidFuncPtr)(void);
 /********************************************************************************************************************************
 												       LDL_TestEqual
 ********************************************************************************************************************************/
-void LDL_TestEqual(bool condition, const char* description, const char* function, const char* file, size_t line)
+void LDL_TestEqual(bool condition, const char* description, const char* function, const char* file, int line)
 {
 	if (!condition)
 	{
@@ -640,6 +649,15 @@ size_t LDL_Ticks()
 void LDL_Delay(size_t count)
 {
 	Sleep((DWORD)count);
+}
+#elif defined(__MSDOS__)
+size_t LDL_Ticks()
+{
+	return 0;
+}
+
+void LDL_Delay(size_t count)
+{
 }
 #endif
 /********************************************************************************************************************************
