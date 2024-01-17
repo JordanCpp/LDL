@@ -10,3 +10,6 @@ target_link_libraries(03Fps ${libs})
 
 add_executable(04Clear "04Clear.cpp")
 target_link_libraries(04Clear ${libs})
+
+add_executable(05Img "05Img.cpp")
+target_link_libraries(05Img ${libs})

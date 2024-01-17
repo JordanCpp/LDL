@@ -3,17 +3,32 @@
 This project is an attempt to do only for headers. (https://github.com/JordanCpp/Lib-LDL)
 
 # LDL - Little no Dependencies Libraries (Header only)
-Free cross-platform library.
-
 1. Free for everyone.
 2. Consider and accept all ideas.
 3. We do not limit the developer.
 4. We support old and new platforms.
 5. Cross-platform.
-6. Static and dynamic link.
+6. Simple API.
 
-# Integration into your project
-1. Copy folder include/LDL
+# Library Features
+1. Creating a window.
+2. Event management.
+3. Drawing 2D graphics.
+4. Support OpenGL
+
+# Integration into your project (CMake Linux or Windows)
+include_directories("include")
+if (WIN32)
+    set(libs gdi32 user32 winmm opengl32)
+elseif (UNIX AND NOT APPLE)
+    set(libs X11 GL dl)
+endif()
+target_link_libraries(${CMAKE_PROJECT_NAME} ${libs})
+
+# Integration into your project (no CMake Linux or Windows)
+1. Copy include (include/LDL)
+2. For Linux   add libs: gdi32 user32 winmm opengl32
+2. For Windows add libs: X11 GL dl
 
 # Description of files
 LDL_Util.hpp - Common helper classes.
@@ -24,11 +39,14 @@ LDL_GL.hpp   - Supports all versions of OpenGL (1.0 - 4.6).
 # Support platforms.
 1. Windows 95 and higher.
 2. Linux (Debian 3) and higher.
+3. MS-DOS 16/32 (In the process of implementation)
 
 # Support graphics API.
 1. OpenGL >= 1.0 and <= 4.6
 
-# Support renders.
+# Support 2D renders.
+1. OpenGL1
+2. Software
 
 # The main idea is to write an analogue of the SDL library. 
 Accessible to everyone, without exception. 

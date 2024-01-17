@@ -2,9 +2,8 @@
 
 set pth=..\examples\
 
-call vc6 01Window %pth%
-call vc6 02Render %pth%
-call vc6 03Fps    %pth%
-call vc6 04Clear  %pth%
-
-pause
+call %1 01Window %pth%
+call %1 02Render %pth%
+call %1 03Fps    %pth%
+call %1 04Clear  %pth%
+call %1 05Img    %pth%

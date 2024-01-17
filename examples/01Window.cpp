@@ -1,7 +1,5 @@
 #define LDL_RENDER_OPENGL1
-#include <LDL/LDL_RdrX.hpp>
-
-#include <stdio.h>
+#include <LDL/LDL_WinX.hpp>
 
 int main()
 {

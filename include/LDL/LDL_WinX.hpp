@@ -472,7 +472,7 @@ public:
 	{
 		assert(bpp >= 0 && bpp <= 4);
 
-		_Pixels = (unsigned char*)malloc(_Capacity.x * _Capacity.y * bpp);
+		_Pixels = (unsigned char*)LDL_malloc(_Capacity.x * _Capacity.y * bpp);
 	}
 
 	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, int bpp) :
@@ -484,12 +484,12 @@ public:
 		assert(size.x <= capacity.x);
 		assert(size.y <= capacity.y);
 
-		_Pixels = (unsigned char*)malloc(_Capacity.x * _Capacity.y * bpp);
+		_Pixels = (unsigned char*)LDL_malloc(_Capacity.x * _Capacity.y * bpp);
 	}
 
 	~LDL_Surface()
 	{
-		free(_Pixels);
+		LDL_free(_Pixels);
 	}
 
 	unsigned char* Pixels()
@@ -497,7 +497,7 @@ public:
 		return _Pixels;
 	}
 
-	unsigned char BytesPerPixel()
+	unsigned char Bpp()
 	{
 		return _Bpp;
 	}
@@ -1011,7 +1011,7 @@ public:
 		return _BaseWindow.Pos();
 	}
 private:
-	LDL_Result* _Result;
+	LDL_Result*    _Result;
 	LDL_BaseWindow _BaseWindow;
 	LDL_Eventer    _Eventer;
 	WNDCLASS       _WNDCLASS;
@@ -2209,11 +2209,17 @@ public:
 
 	~LDL_Window()
 	{
+		union REGS regs;
+
+		regs.h.ah = 0x00;
+		regs.h.al = 0x03;
+
+		int86(0x10, &regs, &regs);
 	}
 
 	bool Running()
 	{
-		return false;
+		return _Eventer.Running();
 	}
 
 	void Present()
@@ -2228,6 +2234,40 @@ public:
 
 	void PollEvents()
 	{
+		LDL_Event event;
+
+		if (MousePress(0x00))
+		{
+			event.Type = LDL_Event::IsMouseClick;
+			event.Mouse.State = LDL_ButtonState::Pressed;
+			event.Mouse.Button = LDL_MouseButton::Left;
+			event.Mouse.PosX = 0;
+			event.Mouse.PosY = 0;
+
+			_Eventer.Push(event);
+		}
+
+		if (MousePress(0x01))
+		{
+			event.Type = LDL_Event::IsMouseClick;
+			event.Mouse.State = LDL_ButtonState::Pressed;
+			event.Mouse.Button = LDL_MouseButton::Right;
+			event.Mouse.PosX = 0;
+			event.Mouse.PosY = 0;
+
+			_Eventer.Push(event);
+		}
+
+		if (MousePress(0x02))
+		{
+			event.Type = LDL_Event::IsMouseClick;
+			event.Mouse.State = LDL_ButtonState::Pressed;
+			event.Mouse.Button = LDL_MouseButton::Middle;
+			event.Mouse.PosX = 0;
+			event.Mouse.PosY = 0;
+
+			_Eventer.Push(event);
+		}
 	}
 
 	const LDL_Vec2i& Size()
@@ -2242,6 +2282,13 @@ public:
 
 	bool GetEvent(LDL_Event& event)
 	{
+		if (!_Eventer.Empty())
+		{
+			_Eventer.Pop(event);
+
+			return true;
+		}
+
 		return false;
 	}
 
@@ -2256,11 +2303,12 @@ public:
 
 	const char* Title()
 	{
-		return NULL;
+		return _BaseWindow.Title();
 	}
 
 	void Title(const char* title)
 	{
+		_BaseWindow.Title(title);
 	}
 
 	void* NativeHandle()
@@ -2270,6 +2318,36 @@ public:
 
 	void Update()
 	{
+	}
+
+	bool InitMouse()
+	{
+		union REGS regs;
+
+		regs.x.ax = 0;
+
+		int86(0x33, &regs, &regs);
+
+		bool result = regs.x.ax;
+
+		if (!result)
+		{
+			_Result->Message("Mouse not found!");
+		}
+
+		return _Result->Ok();
+	}
+
+	bool MousePress(size_t button)
+	{
+		union REGS regs;
+
+		regs.x.ax = 0x05;
+		regs.x.bx = button;
+
+		int86(0x33, &regs, &regs);
+
+		return regs.x.bx;
 	}
 private:
 	LDL_Result* _Result;

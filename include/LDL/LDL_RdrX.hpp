@@ -45,7 +45,7 @@ int LDL_SelectTextureSize(const LDL_Vec2i& size)
 	{
 		if (w <= LDL_TextureSizes[i] && h <= LDL_TextureSizes[i])
 		{
-			return LDL_TextureSizes[i];
+			return (int)LDL_TextureSizes[i];
 		}
 	}
 
@@ -167,9 +167,16 @@ void LDL_DrawQuad(const LDL_Vec2i& dstPos, const LDL_Vec2i& dstSize, const LDL_V
 class LDL_BaseRender
 {
 public:
-	LDL_BaseRender(const LDL_Vec2i& size) :
+	LDL_BaseRender(const LDL_Vec2i& size, LDL_Palette* palette) :
 		_Size(size)
 	{
+		if (palette != NULL)
+		{
+			for (size_t i = 0; i < LDL_Palette::Max; i++)
+			{
+				_Palette.Set(i, palette->Get(i));
+			}
+		}
 	}
 
 	const LDL_Vec2i& Size()
@@ -187,9 +194,14 @@ public:
 		_Current = color;
 	}
 
+	LDL_Palette* Palette()
+	{
+		return &_Palette;
+	}
 private:
-	LDL_Vec2i _Size;
-	LDL_Color _Current;
+	LDL_Vec2i   _Size;
+	LDL_Color   _Current;
+	LDL_Palette _Palette;
 };
 /********************************************************************************************************************************
 														LDL_Texture
@@ -262,7 +274,7 @@ public:
 
 	void Copy(const LDL_Vec2i& dstPos, LDL_Surface* surface, const LDL_Vec2i& srcSize)
 	{
-		Copy(dstPos, srcSize, surface->Pixels(), surface->BytesPerPixel());
+		Copy(dstPos, srcSize, surface->Pixels(), surface->Bpp());
 	}
 
 	const LDL_Vec2i& Size()
@@ -296,9 +308,9 @@ private:
 class LDL_Render
 {
 public:
-	LDL_Render(LDL_Window* window) :
+	LDL_Render(LDL_Window* window, LDL_Palette* palette = NULL) :
 		_Window(window),
-		_BaseRender(_Window->Size()),
+		_BaseRender(_Window->Size(), palette),
 		_OpenGLLoader(1, 2)
 	{
 	}
@@ -416,9 +428,9 @@ private:
 class LDL_Render
 {
 public:
-	LDL_Render(LDL_Window* window) :
+	LDL_Render(LDL_Window* window, LDL_Palette* palette = NULL) :
 		_Window(window),
-		_BaseRender(_Window->Size()),
+		_BaseRender(_Window->Size(), palette),
 		_Screen(_Window->Size(), _Window->Size(), 3)
 	{
 	}
@@ -429,7 +441,7 @@ public:
 
 	void End()
 	{
-		_Window->Present(_Screen.Pixels(), _Screen.BytesPerPixel());
+		_Window->Present(_Screen.Pixels(), _Screen.Bpp());
 		_Window->Present();
 	}
 
@@ -452,7 +464,7 @@ public:
 		{
 			for (int j = 0; j < size.y; j++)
 			{
-				int idx = (_Screen.Size().x * (y + j) + (x + i)) * _Screen.BytesPerPixel();
+				int idx = (_Screen.Size().x * (y + j) + (x + i)) * _Screen.Bpp();
 
 #if defined(_WIN32)
 				pixels[idx] = color.b;
@@ -474,7 +486,7 @@ public:
 
 	void Clear()
 	{
-		size_t size = _Screen.Size().x * _Screen.Size().y * _Screen.BytesPerPixel();
+		size_t size = _Screen.Size().x * _Screen.Size().y * _Screen.Bpp();
 		unsigned char* pixels = _Screen.Pixels();
 		LDL_Color color = _BaseRender.Color();
 
@@ -495,6 +507,8 @@ private:
 	LDL_BaseRender _BaseRender;
 	LDL_Surface    _Screen;
 };
+#elif  defined(_WIN32) && defined(LDL_RENDER_NATIVE)
+#elif  defined(__unix__) && defined(LDL_RENDER_NATIVE)
 #endif
 
 #endif

@@ -8,7 +8,7 @@ endif()
 include_directories("include")
 
 if (WIN32)
-    set(libs winmm opengl32)
+    set(libs gdi32 user32 winmm opengl32)
 elseif (UNIX AND NOT APPLE)
     set(libs X11 GL dl)
 endif()

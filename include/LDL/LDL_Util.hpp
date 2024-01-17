@@ -164,13 +164,15 @@ extern "C" {
 	extern void glXSwapBuffers(Display* dpy, GLXDrawable drawable);
 	extern void (*glXGetProcAddress(const GLubyte* procname))(void);
 }
+#elif defined(__MSDOS__)
+#include <dos.h>
 #endif
 /********************************************************************************************************************************
-														   Types
+														       Types
 ********************************************************************************************************************************/
 typedef void(*LDL_VoidFuncPtr)(void);
 /********************************************************************************************************************************
-													   LDL_TestEqual
+													       LDL_TestEqual
 ********************************************************************************************************************************/
 void LDL_TestEqual(bool condition, const char* description, const char* function, const char* file, int line)
 {
@@ -182,7 +184,7 @@ void LDL_TestEqual(bool condition, const char* description, const char* function
 
 #define LDL_TEST_EQUAL(x) LDL_TestEqual(x, #x, "__FUNCTION__", __FILE__, __LINE__)
 /********************************************************************************************************************************
-														  LDL_Color
+														  LDL_NumberToString
 ********************************************************************************************************************************/
 class LDL_NumberToString
 {
@@ -305,6 +307,38 @@ public:
 	unsigned char b;
 #endif
 	unsigned char a;
+};
+/********************************************************************************************************************************
+														 LDL_Palette
+********************************************************************************************************************************/
+class LDL_Palette
+{
+public:
+	enum
+	{
+		Max = 256
+	};
+
+	LDL_Palette()
+	{
+		memset(&_Colors, 0, sizeof(_Colors));
+	}
+
+	const LDL_Color& Get(size_t index)
+	{
+		assert(index < Max);
+
+		return _Colors[index];
+	}
+
+	void Set(size_t index, const LDL_Color& color)
+	{
+		assert(index < Max);
+
+		_Colors[index] = color;
+	}
+private:
+	LDL_Color _Colors[Max];
 };
 /********************************************************************************************************************************
 														  LDL_Mat4f
@@ -454,6 +488,10 @@ public:
 		Clear();
 
 		_Ok = false;
+
+		size_t count = strlen(message) + strlen(detail);
+		assert(count < Max);
+
 		strcpy(_Message, message);
 		strcat(_Message, detail);
 	}
@@ -484,6 +522,36 @@ void LDL_Abort()
 {
 	LDL_Abort("", "");
 }
+/********************************************************************************************************************************
+														  Memory management
+********************************************************************************************************************************/
+void* LDL_malloc(size_t bytes, const char* file, int line)
+{
+	void* result = malloc(bytes);
+
+	if (result == NULL)
+	{
+		printf("Memory allocation error: File: %s Line: %d", file, line);
+		LDL_Abort();
+	}
+
+	return result;
+}
+
+#define LDL_malloc(x) LDL_malloc(x, __FILE__, __LINE__)
+
+void LDL_free(void* ptr, const char* file, int line)
+{
+	if (ptr == NULL)
+	{
+		printf("Passed pointer is null: File: %s Line: %d", file, line);
+		LDL_Abort();
+	}
+
+	free(ptr);
+}
+
+#define LDL_free(x) LDL_free(x, __FILE__, __LINE__)
 /********************************************************************************************************************************
 															LDL_BmpLoader
 ********************************************************************************************************************************/
@@ -528,7 +596,7 @@ public:
 	{
 		if (_Pixels)
 		{
-			free(_Pixels);
+			LDL_free(_Pixels);
 		}
 	}
 
@@ -657,7 +725,7 @@ private:
 	{
 		size_t bytes = _Bpp * _Size.x * abs(_InfoHeader.biHeight);
 
-		_Pixels = (unsigned char*)malloc(bytes);
+		_Pixels = (unsigned char*)LDL_malloc(bytes);
 
 		assert(_Pixels != NULL);
 
