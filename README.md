@@ -22,8 +22,8 @@ LDL_RdrX.hpp - Simple 2D render.
 LDL_GL.hpp   - Supports all versions of OpenGL (1.0 - 4.6).
 
 # Support platforms.
-1. Windows 95 and higher
-2. Linux (In the process of implementation).
+1. Windows 95 and higher.
+2. Linux (Debian 3) and higher.
 
 # Support graphics API.
 1. OpenGL >= 1.0 and <= 4.6

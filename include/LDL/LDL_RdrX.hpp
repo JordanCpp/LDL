@@ -27,7 +27,7 @@ DEALINGS IN THE SOFTWARE.
 #ifndef LDL_RdrX_hpp
 #define LDL_RdrX_hpp
 /********************************************************************************************************************************
-                                                     Includes
+													 Includes
 ********************************************************************************************************************************/
 #include "LDL/LDL_WinX.hpp"
 /********************************************************************************************************************************
@@ -52,7 +52,7 @@ int LDL_SelectTextureSize(const LDL_Vec2i& size)
 	return 0;
 }
 /********************************************************************************************************************************
-													  
+
 ********************************************************************************************************************************/
 #if defined(LDL_RENDER_OPENGL1) || defined(LDL_RENDER_OPENGL3)
 #include "LDL_GL.hpp"
@@ -69,7 +69,7 @@ void LDL_GL_Check(const char* file, int line, const char* expression)
 		switch (code)
 		{
 		case GL_INVALID_ENUM:
-			 strcpy(error, "GL_INVALID_ENUM");
+			strcpy(error, "GL_INVALID_ENUM");
 			break;
 		case GL_INVALID_VALUE:
 			strcpy(error, "GL_INVALID_VALUE");
@@ -162,7 +162,7 @@ void LDL_DrawQuad(const LDL_Vec2i& dstPos, const LDL_Vec2i& dstSize, const LDL_V
 }
 #endif
 /********************************************************************************************************************************
-												 	  LDL_BaseRender
+													  LDL_BaseRender
 ********************************************************************************************************************************/
 class LDL_BaseRender
 {
@@ -195,7 +195,7 @@ private:
 														LDL_Texture
 ********************************************************************************************************************************/
 #if defined(LDL_RENDER_OPENGL1)
-class LDL_Texture 
+class LDL_Texture
 {
 public:
 	LDL_Texture(const LDL_Vec2i& size, unsigned char* pixels, unsigned char bytesPerPixel) :
@@ -290,13 +290,13 @@ private:
 
 #endif
 /********************************************************************************************************************************
-													     LDL_Render
+														 LDL_Render
 ********************************************************************************************************************************/
 #if defined(LDL_RENDER_OPENGL1)
 class LDL_Render
 {
 public:
-	LDL_Render(LDL_Window* window):
+	LDL_Render(LDL_Window* window) :
 		_Window(window),
 		_BaseRender(_Window->Size()),
 		_OpenGLLoader(1, 2)
@@ -404,7 +404,7 @@ public:
 	}
 
 private:
-	LDL_Window*      _Window;
+	LDL_Window* _Window;
 	LDL_BaseRender   _BaseRender;
 	LDL_OpenGLLoader _OpenGLLoader;
 	LDL_Mat4f        _Projection;
@@ -491,7 +491,7 @@ public:
 		}
 	}
 private:
-	LDL_Window*    _Window;
+	LDL_Window* _Window;
 	LDL_BaseRender _BaseRender;
 	LDL_Surface    _Screen;
 };

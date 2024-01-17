@@ -1884,7 +1884,7 @@ typedef void (LDL_API_CALL GLDEBUGPROC)(GLenum source, GLenum type, GLuint id, G
 #define	GL_TRANSFORM_FEEDBACK_OVERFLOW	(0x82EC)
 #define	GL_TRANSFORM_FEEDBACK_STREAM_OVERFLOW	(0x82ED)
 /********************************************************************************************************************************
-													 	OpenGl 1.0
+														OpenGl 1.0
 ********************************************************************************************************************************/
 typedef void (LDL_API_CALL PFNGLCULLFACEPROC)(GLenum mode);
 typedef void (LDL_API_CALL PFNGLFRONTFACEPROC)(GLenum mode);

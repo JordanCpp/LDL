@@ -34,7 +34,7 @@ DEALINGS IN THE SOFTWARE.
 #define false 0
 #endif
 /********************************************************************************************************************************
-													   	 Includes
+														 Includes
 ********************************************************************************************************************************/
 #include <stdio.h>
 #include <assert.h>
@@ -149,20 +149,20 @@ extern "C" {
 #define GLX_ACCUM_BLUE_SIZE	  16
 #define GLX_ACCUM_ALPHA_SIZE  17
 
-typedef XID GLXDrawable;
-typedef struct __GLXcontextRec *GLXContext;
-typedef unsigned char	GLubyte;
+	typedef XID GLXDrawable;
+	typedef struct __GLXcontextRec* GLXContext;
+	typedef unsigned char	GLubyte;
 
 #define GLX_SAMPLE_BUFFERS              0x186a0 /*100000*/
 #define GLX_SAMPLES                     0x186a1 /*100001*/
 
-extern Bool glXQueryVersion( Display *dpy, int *maj, int *min );
-extern XVisualInfo* glXChooseVisual( Display *dpy, int screen, int *attribList );
-extern GLXContext glXCreateContext( Display *dpy, XVisualInfo *vis,GLXContext shareList, Bool direct );
-extern void glXDestroyContext( Display *dpy, GLXContext ctx );
-extern Bool glXMakeCurrent( Display *dpy, GLXDrawable drawable, GLXContext ctx);
-extern void glXSwapBuffers( Display *dpy, GLXDrawable drawable );
-extern void (*glXGetProcAddress(const GLubyte *procname))( void );
+	extern Bool glXQueryVersion(Display* dpy, int* maj, int* min);
+	extern XVisualInfo* glXChooseVisual(Display* dpy, int screen, int* attribList);
+	extern GLXContext glXCreateContext(Display* dpy, XVisualInfo* vis, GLXContext shareList, Bool direct);
+	extern void glXDestroyContext(Display* dpy, GLXContext ctx);
+	extern Bool glXMakeCurrent(Display* dpy, GLXDrawable drawable, GLXContext ctx);
+	extern void glXSwapBuffers(Display* dpy, GLXDrawable drawable);
+	extern void (*glXGetProcAddress(const GLubyte* procname))(void);
 }
 #endif
 /********************************************************************************************************************************
@@ -170,14 +170,14 @@ extern void (*glXGetProcAddress(const GLubyte *procname))( void );
 ********************************************************************************************************************************/
 typedef void(*LDL_VoidFuncPtr)(void);
 /********************************************************************************************************************************
-												       LDL_TestEqual
+													   LDL_TestEqual
 ********************************************************************************************************************************/
 void LDL_TestEqual(bool condition, const char* description, const char* function, const char* file, int line)
 {
 	if (!condition)
 	{
 		printf("Test failed: %s function %s file %s line %d", description, function, file, line);
-	} 
+	}
 }
 
 #define LDL_TEST_EQUAL(x) LDL_TestEqual(x, #x, "__FUNCTION__", __FILE__, __LINE__)
@@ -307,7 +307,7 @@ public:
 	unsigned char a;
 };
 /********************************************************************************************************************************
-													      LDL_Mat4f
+														  LDL_Mat4f
 ********************************************************************************************************************************/
 class LDL_Mat4f
 {
@@ -467,7 +467,7 @@ private:
 	char _Message[Max];
 };
 /********************************************************************************************************************************
-													      LDL_Abort
+														  LDL_Abort
 ********************************************************************************************************************************/
 void LDL_Abort(const char* message, const char* detail)
 {
@@ -680,7 +680,7 @@ private:
 	unsigned char _Bpp;
 };
 /********************************************************************************************************************************
-									                        Ticks
+															Ticks
 ********************************************************************************************************************************/
 #if defined(_WIN32)
 size_t LDL_Ticks()
@@ -707,7 +707,7 @@ size_t LDL_Ticks()
 	struct timeval tv;
 
 	gettimeofday(&tv, NULL);
-	
+
 	return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 }
 
@@ -720,7 +720,7 @@ void LDL_Delay(size_t count)
 }
 #endif
 /********************************************************************************************************************************
-													      LDL_Library
+														  LDL_Library
 ********************************************************************************************************************************/
 #if defined(_WIN32)
 class LDL_Library
@@ -763,16 +763,16 @@ public:
 	{
 		Close();
 
-        _Library = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
+		_Library = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
 
 		return _Library != NULL;
 	}
 
 	void Close()
 	{
-        if (_Library != NULL)
+		if (_Library != NULL)
 		{
-            dlclose(_Library);
+			dlclose(_Library);
 		}
 	}
 
@@ -783,14 +783,14 @@ public:
 
 	LDL_VoidFuncPtr Function(const char* name)
 	{
-        return (LDL_VoidFuncPtr)dlsym(_Library, name);
+		return (LDL_VoidFuncPtr)dlsym(_Library, name);
 	}
 private:
-    void* _Library;
+	void* _Library;
 };
 #endif
 /********************************************************************************************************************************
-												       LDL_OpenGLFunctions
+													   LDL_OpenGLFunctions
 ********************************************************************************************************************************/
 #if defined(_WIN32)
 class LDL_OpenGLFunctions
@@ -847,7 +847,7 @@ public:
 	LDL_VoidFuncPtr Function(const char* name)
 	{
 		LDL_VoidFuncPtr result = (LDL_VoidFuncPtr)glXGetProcAddress((const GLubyte*)name);
-		
+
 		if (result == NULL)
 		{
 			LDL_Abort("Not found function:", name);
