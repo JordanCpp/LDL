@@ -7,7 +7,11 @@ endif()
 
 include_directories("include")
 
-set(libs winmm opengl32)
+if (WIN32)
+    set(libs winmm opengl32)
+elseif (UNIX AND NOT APPLE)
+    set(libs X11 GL dl)
+endif()
 
 add_executable(test "test.cpp")
 target_link_libraries(test ${libs})

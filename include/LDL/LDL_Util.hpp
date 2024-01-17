@@ -122,6 +122,48 @@ DEALINGS IN THE SOFTWARE.
 #define WM_MOUSEHWHEEL 0x020E
 #endif
 #elif defined(__unix__)
+#include <unistd.h>
+#include <sys/time.h>
+#include <dlfcn.h>
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <X11/keysym.h>
+#include <stdint.h>
+
+extern "C" {
+#define GLX_USE_GL		      1
+#define GLX_BUFFER_SIZE		  2
+#define GLX_LEVEL		      3
+#define GLX_RGBA		      4
+#define GLX_DOUBLEBUFFER	  5
+#define GLX_STEREO		      6
+#define GLX_AUX_BUFFERS		  7
+#define GLX_RED_SIZE		  8
+#define GLX_GREEN_SIZE		  9
+#define GLX_BLUE_SIZE		  10
+#define GLX_ALPHA_SIZE		  11
+#define GLX_DEPTH_SIZE		  12
+#define GLX_STENCIL_SIZE	  13
+#define GLX_ACCUM_RED_SIZE	  14
+#define GLX_ACCUM_GREEN_SIZE  15
+#define GLX_ACCUM_BLUE_SIZE	  16
+#define GLX_ACCUM_ALPHA_SIZE  17
+
+typedef XID GLXDrawable;
+typedef struct __GLXcontextRec *GLXContext;
+typedef unsigned char	GLubyte;
+
+#define GLX_SAMPLE_BUFFERS              0x186a0 /*100000*/
+#define GLX_SAMPLES                     0x186a1 /*100001*/
+
+extern Bool glXQueryVersion( Display *dpy, int *maj, int *min );
+extern XVisualInfo* glXChooseVisual( Display *dpy, int screen, int *attribList );
+extern GLXContext glXCreateContext( Display *dpy, XVisualInfo *vis,GLXContext shareList, Bool direct );
+extern void glXDestroyContext( Display *dpy, GLXContext ctx );
+extern Bool glXMakeCurrent( Display *dpy, GLXDrawable drawable, GLXContext ctx);
+extern void glXSwapBuffers( Display *dpy, GLXDrawable drawable );
+extern void (*glXGetProcAddress(const GLubyte *procname))( void );
+}
 #endif
 /********************************************************************************************************************************
 														   Types
@@ -659,6 +701,23 @@ size_t LDL_Ticks()
 void LDL_Delay(size_t count)
 {
 }
+#elif defined(__unix__)
+size_t LDL_Ticks()
+{
+	struct timeval tv;
+
+	gettimeofday(&tv, NULL);
+	
+	return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+}
+
+void LDL_Delay(size_t count)
+{
+	if (count >= 1000)
+		sleep(count / 1000);
+
+	usleep((count % 1000) * 1000);
+}
 #endif
 /********************************************************************************************************************************
 													      LDL_Library
@@ -696,7 +755,39 @@ public:
 private:
 	HMODULE _HMODULE;
 };
-#elif defined(__unix__) 
+#elif defined(__unix__)
+class LDL_Library
+{
+public:
+	bool Open(const char* path)
+	{
+		Close();
+
+        _Library = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
+
+		return _Library != NULL;
+	}
+
+	void Close()
+	{
+        if (_Library != NULL)
+		{
+            dlclose(_Library);
+		}
+	}
+
+	~LDL_Library()
+	{
+		Close();
+	}
+
+	LDL_VoidFuncPtr Function(const char* name)
+	{
+        return (LDL_VoidFuncPtr)dlsym(_Library, name);
+	}
+private:
+    void* _Library;
+};
 #endif
 /********************************************************************************************************************************
 												       LDL_OpenGLFunctions
@@ -739,7 +830,34 @@ private:
 
 	LDL_Library _Library;
 };
-#elif defined(__unix__) 
+#elif defined(__unix__)
+class LDL_OpenGLFunctions
+{
+public:
+	LDL_OpenGLFunctions()
+	{
+		_Library.Open("opengl32.dll");
+	}
+
+	~LDL_OpenGLFunctions()
+	{
+		_Library.Close();
+	}
+
+	LDL_VoidFuncPtr Function(const char* name)
+	{
+		LDL_VoidFuncPtr result = (LDL_VoidFuncPtr)glXGetProcAddress((const GLubyte*)name);
+		
+		if (result == NULL)
+		{
+			LDL_Abort("Not found function:", name);
+		}
+
+		return result;
+	}
+private:
+	LDL_Library _Library;
+};
 #endif
 /********************************************************************************************************************************
 													   LDL_FpsCounter
