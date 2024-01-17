@@ -7,7 +7,7 @@ int main()
 {
 	LDL_Result result;
 
-	LDL_Window window(&result, LDL_Vec2i(0, 0), LDL_Vec2i(800, 600), "02Render");
+	LDL_Window window(&result, LDL_Vec2i(0, 0), LDL_Vec2i(800, 600), "03Fps");
 	LDL_Render render(&window);
 
 	LDL_FpsCounter     fpsCounter;

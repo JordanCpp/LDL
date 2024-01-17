@@ -30,10 +30,18 @@ void LDL_WindowTest()
 	LDL_TEST_EQUAL(strcmp(window.Title(), "WindowTest") == 0);
 }
 
+void LDL_RenderTest()
+{
+	LDL_Result result;
+	LDL_Window window(&result, LDL_Vec2i(0, 0), LDL_Vec2i(800, 600), "WindowTest");
+	LDL_Render render(&window);
+}
+
 int main()
 {
 	LDL_ResultTest();
 	LDL_WindowTest();
+	LDL_RenderTest();
 
 	return 0;
 }
