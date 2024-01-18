@@ -191,17 +191,17 @@ public:
 class LDL_EventQuit
 {
 public:
-	unsigned char Type;
+	uint8_t Type;
 };
 
 class LDL_EventMouse
 {
 public:
-	unsigned char Type;
+	uint8_t Type;
 	size_t  PosX;
 	size_t  PosY;
-	unsigned char State;
-	unsigned char Button;
+	uint8_t State;
+	uint8_t Button;
 	size_t  Scroll;
 	size_t  Delta;
 };
@@ -209,7 +209,7 @@ public:
 class LDL_EventResize
 {
 public:
-	unsigned char Type;
+	uint8_t Type;
 	size_t Width;
 	size_t Height;
 };
@@ -217,21 +217,21 @@ public:
 class LDL_EventKeyboard
 {
 public:
-	unsigned char Type;
-	unsigned char State;
-	unsigned char Key;
+	uint8_t Type;
+	uint8_t State;
+	uint8_t Key;
 };
 
 class LDL_EventGainedFocus
 {
 public:
-	unsigned char Type;
+	uint8_t Type;
 };
 
 class LDL_EventLostFocus
 {
 public:
-	unsigned char Type;
+	uint8_t Type;
 };
 /********************************************************************************************************************************
 														LDL_Event
@@ -253,7 +253,7 @@ public:
 
 	union
 	{
-		unsigned char Type;
+		uint8_t Type;
 		LDL_EventQuit        Quit;
 		LDL_EventMouse       Mouse;
 		LDL_EventResize      Resize;
@@ -262,22 +262,22 @@ public:
 		LDL_EventLostFocus   LostFocus;
 	};
 
-	bool IsKeyPressed(unsigned char key)
+	bool IsKeyPressed(uint8_t key)
 	{
 		return (Type == IsKeyboard && Keyboard.Key == key && Keyboard.State == LDL_ButtonState::Pressed);
 	}
 
-	bool IsKeyReleased(unsigned char key)
+	bool IsKeyReleased(uint8_t key)
 	{
 		return (Type == IsKeyboard && Keyboard.Key == key && Keyboard.State == LDL_ButtonState::Released);
 	}
 
-	bool IsMousePressed(unsigned char key)
+	bool IsMousePressed(uint8_t key)
 	{
 		return (Type == IsMouseClick && Mouse.Button == key && Mouse.State == LDL_ButtonState::Pressed);
 	}
 
-	bool IsMouseReleased(unsigned char key)
+	bool IsMouseReleased(uint8_t key)
 	{
 		return (Type == IsMouseClick && Mouse.Button == key && Mouse.State == LDL_ButtonState::Released);
 	}
@@ -472,7 +472,7 @@ public:
 	{
 		assert(bpp >= 0 && bpp <= 4);
 
-		_Pixels = (unsigned char*)LDL_malloc(_Capacity.x * _Capacity.y * bpp);
+		_Pixels = (uint8_t*)LDL_malloc(_Capacity.x * _Capacity.y * bpp);
 	}
 
 	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, int bpp) :
@@ -484,7 +484,7 @@ public:
 		assert(size.x <= capacity.x);
 		assert(size.y <= capacity.y);
 
-		_Pixels = (unsigned char*)LDL_malloc(_Capacity.x * _Capacity.y * bpp);
+		_Pixels = (uint8_t*)LDL_malloc(_Capacity.x * _Capacity.y * bpp);
 	}
 
 	~LDL_Surface()
@@ -492,12 +492,12 @@ public:
 		LDL_free(_Pixels);
 	}
 
-	unsigned char* Pixels()
+	uint8_t* Pixels()
 	{
 		return _Pixels;
 	}
 
-	unsigned char Bpp()
+	uint8_t Bpp()
 	{
 		return _Bpp;
 	}
@@ -515,7 +515,7 @@ private:
 	int _Bpp;
 	LDL_Vec2i _Capacity;
 	LDL_Vec2i _Size;
-	unsigned char* _Pixels;
+	uint8_t* _Pixels;
 };
 /********************************************************************************************************************************
 													   LDL_PixelCopier
@@ -583,7 +583,7 @@ public:
 		ShowWindow(_HWND, SW_SHOW);
 	}
 
-	unsigned char ConvertKey(size_t key)
+	uint8_t ConvertKey(size_t key)
 	{
 		switch (key)
 		{
@@ -2042,7 +2042,7 @@ public:
 		Update();
 	}
 
-	void Present(unsigned char* pixels, unsigned char bytesPerPixel)
+	void Present(uint8_t* pixels, uint8_t bytesPerPixel)
 	{
 		assert(pixels != NULL);
 		assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
@@ -2138,7 +2138,7 @@ public:
 		Update();
 	}
 
-	void Present(unsigned char* pixels, unsigned char bytesPerPixel)
+	void Present(uint8_t* pixels, uint8_t bytesPerPixel)
 	{
 		assert(pixels != NULL);
 		assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
@@ -2226,7 +2226,7 @@ public:
 	{
 	}
 
-	void Present(unsigned char* pixels, unsigned char bytesPerPixel)
+	void Present(uint8_t* pixels, uint8_t bytesPerPixel)
 	{
 		assert(pixels != NULL);
 		assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);

@@ -170,6 +170,18 @@ extern "C" {
 /********************************************************************************************************************************
 														       Types
 ********************************************************************************************************************************/
+#if (_MSC_VER <= 1600)
+typedef unsigned char uint8_t;
+typedef signed char   int8_t;
+
+typedef unsigned short uint16_t;
+typedef signed short   int16_t;
+
+typedef unsigned int   uint32_t;
+typedef signed int     int32_t;
+#else
+#include <stdint.h>
+#endif
 typedef void(*LDL_VoidFuncPtr)(void);
 /********************************************************************************************************************************
 													       LDL_TestEqual
@@ -189,7 +201,7 @@ void LDL_TestEqual(bool condition, const char* description, const char* function
 class LDL_NumberToString
 {
 public:
-	const char* Convert(int num, unsigned char base = 10)
+	const char* Convert(int num, uint8_t base = 10)
 	{
 		int i = 0;
 		bool isNegative = false;
@@ -278,7 +290,7 @@ public:
 	{
 	}
 
-	LDL_Color(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha = 255) :
+	LDL_Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha = 255) :
 #if defined(_WIN32)
 		b(blue),
 		g(green),
@@ -298,15 +310,15 @@ public:
 	}
 
 #if defined(_WIN32)
-	unsigned char b;
-	unsigned char g;
-	unsigned char r;
+	uint8_t b;
+	uint8_t g;
+	uint8_t r;
 #else
-	unsigned char r;
-	unsigned char g;
-	unsigned char b;
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
 #endif
-	unsigned char a;
+	uint8_t a;
 };
 /********************************************************************************************************************************
 														 LDL_Palette
@@ -557,26 +569,26 @@ void LDL_free(void* ptr, const char* file, int line)
 ********************************************************************************************************************************/
 struct BmpFileHeader
 {
-	unsigned short bfType;
-	unsigned int bfSize;
-	unsigned short bfReserved1;
-	unsigned short bfReserved2;
-	unsigned int bfOffBits;
+	uint16_t bfType;
+	uint32_t bfSize;
+	uint16_t bfReserved1;
+	uint16_t bfReserved2;
+	uint32_t bfOffBits;
 };
 
 struct BmpInfoHeader
 {
-	unsigned int biSize;
-	signed int  biWidth;
-	signed int  biHeight;
-	unsigned short biPlanes;
-	unsigned short biBitCount;
-	unsigned int biCompression;
-	unsigned int biSizeImage;
-	signed int  biXPelsPerMeter;
-	signed int  biYPelsPerMeter;
-	unsigned int biClrUsed;
-	unsigned int biClrImportant;
+	uint32_t biSize;
+	int32_t  biWidth;
+	int32_t  biHeight;
+	uint16_t biPlanes;
+	uint16_t biBitCount;
+	uint32_t biCompression;
+	uint32_t biSizeImage;
+	int32_t  biXPelsPerMeter;
+	int32_t  biYPelsPerMeter;
+	uint32_t biClrUsed;
+	uint32_t biClrImportant;
 };
 
 class LDL_BmpLoader
@@ -628,12 +640,12 @@ public:
 		return _Size;
 	}
 
-	unsigned char Bpp()
+	uint8_t Bpp()
 	{
 		return _Bpp;
 	}
 
-	unsigned char* Pixels()
+	uint8_t* Pixels()
 	{
 		return _Pixels;
 	}
@@ -642,8 +654,8 @@ private:
 	{
 		size_t count = Size().x * Size().y * Bpp();
 
-		unsigned char b = 0;
-		unsigned char r = 0;
+		uint8_t b = 0;
+		uint8_t r = 0;
 
 		for (size_t i = 0; i < count; i += 3)
 		{
@@ -725,7 +737,7 @@ private:
 	{
 		size_t bytes = _Bpp * _Size.x * abs(_InfoHeader.biHeight);
 
-		_Pixels = (unsigned char*)LDL_malloc(bytes);
+		_Pixels = (uint8_t*)LDL_malloc(bytes);
 
 		assert(_Pixels != NULL);
 
@@ -740,12 +752,12 @@ private:
 	}
 
 	LDL_Result* _Result;
-	unsigned char* _Pixels;
+	uint8_t* _Pixels;
 	FILE* _Input;
 	BmpFileHeader _FileHeader;
 	BmpInfoHeader _InfoHeader;
 	LDL_Vec2i _Size;
-	unsigned char _Bpp;
+	uint8_t _Bpp;
 };
 /********************************************************************************************************************************
 															Ticks

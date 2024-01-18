@@ -210,7 +210,7 @@ private:
 class LDL_Texture
 {
 public:
-	LDL_Texture(const LDL_Vec2i& size, unsigned char* pixels, unsigned char bytesPerPixel) :
+	LDL_Texture(const LDL_Vec2i& size, uint8_t* pixels, uint8_t bytesPerPixel) :
 		_Id(0)
 	{
 		assert(size.x > 0);
@@ -236,7 +236,7 @@ public:
 		Copy(LDL_Vec2i(0, 0), _Size, pixels, bytesPerPixel);
 	}
 
-	LDL_Texture(const LDL_Vec2i& size, unsigned char bytesPerPixel) :
+	LDL_Texture(const LDL_Vec2i& size, uint8_t bytesPerPixel) :
 		_Id(0)
 	{
 		_Size = size;
@@ -260,7 +260,7 @@ public:
 		LDL_DeleteTexture((GLint)_Id);
 	}
 
-	void Copy(const LDL_Vec2i& dstPos, const LDL_Vec2i& srcSize, unsigned char* pixels, unsigned char bytesPerPixel)
+	void Copy(const LDL_Vec2i& dstPos, const LDL_Vec2i& srcSize, uint8_t* pixels, uint8_t bytesPerPixel)
 	{
 		GLint format = 0;
 
@@ -457,7 +457,7 @@ public:
 		int x = pos.x;
 		int y = pos.y;
 
-		unsigned char* pixels = _Screen.Pixels();
+		uint8_t* pixels = _Screen.Pixels();
 		LDL_Color color = _BaseRender.Color();
 
 		for (int i = 0; i < size.x; i++)
@@ -487,7 +487,7 @@ public:
 	void Clear()
 	{
 		size_t size = _Screen.Size().x * _Screen.Size().y * _Screen.Bpp();
-		unsigned char* pixels = _Screen.Pixels();
+		uint8_t* pixels = _Screen.Pixels();
 		LDL_Color color = _BaseRender.Color();
 
 		for (size_t i = 0; i < size; i += 3)
