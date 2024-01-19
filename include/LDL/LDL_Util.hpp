@@ -565,6 +565,82 @@ void LDL_free(void* ptr, const char* file, int line)
 
 #define LDL_free(x) LDL_free(x, __FILE__, __LINE__)
 /********************************************************************************************************************************
+															LDL_Allocator
+********************************************************************************************************************************/
+class LDL_Allocator
+{
+public:
+	enum
+	{
+		Kb = 1024,
+		Mb = Kb * 1024,
+		Gb = Mb * 1024
+	};
+	virtual void* Allocate(size_t bytes) = 0;
+	virtual void Deallocate(void* ptr) = 0;
+	virtual size_t UsedBytes() = 0;
+	virtual void Reset() = 0;
+private:
+};
+/********************************************************************************************************************************
+														LDL_FixedLinear
+********************************************************************************************************************************/
+class LDL_FixedLinear : public LDL_Allocator
+{
+public:
+	LDL_FixedLinear(size_t bytes, LDL_Allocator* allocator) :
+		_Capacity(bytes),
+		_Position(0),
+		_Content(NULL),
+		_Allocator(allocator)
+	{
+		if (_Allocator)
+			_Content = (uint8_t*)_Allocator->Allocate(_Capacity);
+		else
+			_Content = (uint8_t*)LDL_malloc(_Capacity);
+	}
+
+	~LDL_FixedLinear()
+	{
+		if (_Allocator)
+			_Allocator->Deallocate(_Content);
+		else
+			LDL_free(_Content);
+	}
+
+	void* Allocate(size_t bytes)
+	{
+		assert(bytes > 0);
+		assert(_Position + bytes <= _Capacity);
+
+		void* result = _Content + _Position;
+
+		_Position += bytes;
+
+		return result;
+	}
+
+	void Deallocate(void* ptr)
+	{
+		assert(ptr != NULL);
+	}
+
+	size_t UsedBytes()
+	{
+		return _Position;
+	}
+
+	void Reset()
+	{
+		_Position = 0;
+	}
+private:
+	size_t _Capacity;
+	size_t _Position;
+	uint8_t* _Content;
+	LDL_Allocator* _Allocator;
+};
+/********************************************************************************************************************************
 															LDL_BmpLoader
 ********************************************************************************************************************************/
 struct BmpFileHeader

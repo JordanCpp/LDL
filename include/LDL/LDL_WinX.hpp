@@ -1431,7 +1431,7 @@ public:
 	LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized) :
 		_Result(result),
 		_HGLRC(NULL),
-		_Window(result, pos, size, title, mode)
+		_MainWindow(result, pos, size, title, mode)
 	{
 		PIXELFORMATDESCRIPTOR pfd;
 
@@ -1440,9 +1440,9 @@ public:
 		if (!_Result->Ok())
 			return;
 
-		_Window._HDC = GetDC(_Window._HWND);
+		_MainWindow._HDC = GetDC(_MainWindow._HWND);
 
-		if (_Window._HDC == NULL)
+		if (_MainWindow._HDC == NULL)
 		{
 			_Result->Message("GetDC failed");
 			return;
@@ -1456,7 +1456,7 @@ public:
 		pfd.cDepthBits = 16;
 		pfd.iLayerType = PFD_MAIN_PLANE;
 
-		int format = ChoosePixelFormat(_Window._HDC, &pfd);
+		int format = ChoosePixelFormat(_MainWindow._HDC, &pfd);
 
 		if (format == 0)
 		{
@@ -1464,13 +1464,13 @@ public:
 			return;
 		}
 
-		if (!SetPixelFormat(_Window._HDC, format, &pfd))
+		if (!SetPixelFormat(_MainWindow._HDC, format, &pfd))
 		{
 			_Result->Message("SetPixelFormat failed");
 			return;
 		}
 
-		_HGLRC = wglCreateContext(_Window._HDC);
+		_HGLRC = wglCreateContext(_MainWindow._HDC);
 
 		if (_HGLRC == NULL)
 		{
@@ -1478,7 +1478,7 @@ public:
 			return;
 		}
 
-		if (!wglMakeCurrent(_Window._HDC, _HGLRC))
+		if (!wglMakeCurrent(_MainWindow._HDC, _HGLRC))
 		{
 			_Result->Message("wglMakeCurrent failed");
 			return;
@@ -1489,18 +1489,16 @@ public:
 	{
 		wglMakeCurrent(NULL, NULL);
 		wglDeleteContext(_HGLRC);
-
-		ReleaseDC(_Window._HWND, _Window._HDC);
 	}
 
 	bool Running()
 	{
-		return _Window.Running();
+		return _MainWindow.Running();
 	}
 
 	void Present()
 	{
-		if (!SwapBuffers(_Window._HDC))
+		if (!SwapBuffers(_MainWindow._HDC))
 		{
 			_Result->Message("SwapBuffers failed");
 		}
@@ -1510,57 +1508,57 @@ public:
 
 	void PollEvents()
 	{
-		_Window.PollEvents();
+		_MainWindow.PollEvents();
 	}
 
 	const LDL_Vec2i& Size()
 	{
-		return _Window.Size();
+		return _MainWindow.Size();
 	}
 
 	const LDL_Vec2i& Pos()
 	{
-		return _Window.Pos();
+		return _MainWindow.Pos();
 	}
 
 	bool GetEvent(LDL_Event& event)
 	{
-		return _Window.GetEvent(event);
+		return _MainWindow.GetEvent(event);
 	}
 
 	bool WaitEvent(LDL_Event& event)
 	{
-		return _Window.WaitEvent(event);
+		return _MainWindow.WaitEvent(event);
 	}
 
 	void StopEvent()
 	{
-		_Window.StopEvent();
+		_MainWindow.StopEvent();
 	}
 
 	const char* Title()
 	{
-		return _Window.Title();
+		return _MainWindow.Title();
 	}
 
 	void Title(const char* title)
 	{
-		_Window.Title(title);
+		_MainWindow.Title(title);
 	}
 
 	void* NativeHandle()
 	{
-		return _Window._HWND;
+		return _MainWindow._HWND;
 	}
 
 	void Update()
 	{
-		_Window.Update();
+		_MainWindow.Update();
 	}
 private:
 	LDL_Result* _Result;
 	HGLRC _HGLRC;
-	LDL_MainWindow _Window;
+	LDL_MainWindow _MainWindow;
 };
 #elif defined(__unix__) && defined(LDL_RENDER_OPENGL1)
 class LDL_Window
@@ -1813,7 +1811,6 @@ public:
 	{
 		wglMakeCurrent(NULL, NULL);
 		wglDeleteContext(_HGLRC);
-		ReleaseDC(_Window._HWND, _Window._HDC);
 	}
 
 	bool Running()
@@ -2022,19 +2019,18 @@ class LDL_Window
 public:
 	LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized) :
 		_Result(result),
-		_Window(result, pos, size, title, mode)
+		_MainWindow(result, pos, size, title, mode)
 	{
 		ZeroMemory(&_BITMAPINFO, sizeof(_BITMAPINFO));
 	}
 
 	~LDL_Window()
 	{
-		ReleaseDC(_Window._HWND, _Window._HDC);
 	}
 
 	bool Running()
 	{
-		return _Window.Running();
+		return _MainWindow.Running();
 	}
 
 	void Present()
@@ -2047,14 +2043,17 @@ public:
 		assert(pixels != NULL);
 		assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
 
+		DWORD w = (DWORD)_MainWindow.Size().x;
+		DWORD h = (DWORD)_MainWindow.Size().y;
+
 		_BITMAPINFO.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-		_BITMAPINFO.bmiHeader.biWidth = (LONG)_Window.Size().x;
-		_BITMAPINFO.bmiHeader.biHeight = -(LONG)_Window.Size().y;
+		_BITMAPINFO.bmiHeader.biWidth = (LONG)w;
+		_BITMAPINFO.bmiHeader.biHeight = -(LONG)h;
 		_BITMAPINFO.bmiHeader.biPlanes = 1;
 		_BITMAPINFO.bmiHeader.biBitCount = bytesPerPixel * 8;
 		_BITMAPINFO.bmiHeader.biCompression = BI_RGB;
 
-		if (SetDIBitsToDevice(_Window._HDC, 0, 0, (DWORD)_Window.Size().x, (DWORD)_Window.Size().y, 0, 0, 0, (UINT)_Window.Size().y, pixels, &_BITMAPINFO, DIB_RGB_COLORS) == 0)
+		if (SetDIBitsToDevice(_MainWindow._HDC, 0, 0, w, h, 0, 0, 0, h, pixels, &_BITMAPINFO, DIB_RGB_COLORS) == 0)
 		{
 			_Result->Message("SetDIBitsToDevice failed");
 		}
@@ -2062,56 +2061,56 @@ public:
 
 	void PollEvents()
 	{
-		_Window.PollEvents();
+		_MainWindow.PollEvents();
 	}
 
 	const LDL_Vec2i& Size()
 	{
-		return _Window.Size();
+		return _MainWindow.Size();
 	}
 
 	const LDL_Vec2i& Pos()
 	{
-		return _Window.Pos();
+		return _MainWindow.Pos();
 	}
 
 	bool GetEvent(LDL_Event& event)
 	{
-		return _Window.GetEvent(event);
+		return _MainWindow.GetEvent(event);
 	}
 
 	bool WaitEvent(LDL_Event& event)
 	{
-		return _Window.WaitEvent(event);
+		return _MainWindow.WaitEvent(event);
 	}
 
 	void StopEvent()
 	{
-		_Window.StopEvent();
+		_MainWindow.StopEvent();
 	}
 
 	const char* Title()
 	{
-		return _Window.Title();
+		return _MainWindow.Title();
 	}
 
 	void Title(const char* title)
 	{
-		_Window.Title(title);
+		_MainWindow.Title(title);
 	}
 
 	void* NativeHandle()
 	{
-		return _Window._HWND;
+		return _MainWindow._HWND;
 	}
 
 	void Update()
 	{
-		_Window.Update();
+		_MainWindow.Update();
 	}
 private:
 	LDL_Result* _Result;
-	LDL_MainWindow _Window;
+	LDL_MainWindow _MainWindow;
 	BITMAPINFO _BITMAPINFO;
 };
 #elif defined(__unix__) && defined(LDL_RENDER_SOFTWARE)
