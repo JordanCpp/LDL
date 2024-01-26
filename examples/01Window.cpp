@@ -1,5 +1,6 @@
-#define LDL_RENDER_OPENGL1
-#include <LDL/LDL_WinX.hpp>
+#define LDL_IMPLEMENTATION
+#define LDL_SUPPORT_OPENGL1
+#include "../LDL.hpp"
 
 int main()
 {

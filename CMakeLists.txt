@@ -5,8 +5,6 @@ if (MSVC)
     add_definitions(-D_CRT_NONSTDC_NO_DEPRECATE)  
 endif()
 
-include_directories("include")
-
 if (WIN32)
     set(libs gdi32 user32 winmm opengl32)
 elseif (UNIX AND NOT APPLE)
@@ -17,5 +15,3 @@ add_executable(test "test.cpp")
 target_link_libraries(test ${libs})
 
 add_subdirectory("examples")
-add_subdirectory("OpenGL1")
-add_subdirectory("OpenGL3")
