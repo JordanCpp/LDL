@@ -30,6 +30,7 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/BaseWin.hpp>
 #include <LDL/Result.hpp>
 #include <LDL/Events.hpp>
+#include <LDL/Declare.hpp>
 
 class LDL_MainWindow
 {

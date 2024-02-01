@@ -4089,4 +4089,13 @@ private:
 	size_t _Minor;
 };
 
+void LDL_GL_Check(const char* file, int line, const char* expression);
+
+#define LDL_GL_CHECK(expr)                       \
+    do                                           \
+    {                                            \
+        expr;                                    \
+        LDL_GL_Check(__FILE__, __LINE__, #expr); \
+    } while (false)   
+
 #endif

@@ -1,4 +1,4 @@
-#include <LDL/Window.hpp>
+#include <LDL/LDL.hpp>
 #include <LDL/OpenGL.hpp>
 
 #include <stdio.h>

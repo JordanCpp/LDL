@@ -25,7 +25,8 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include <LDL/OpenGL.hpp>
-
+#include <LDL/Abort.hpp>
+#include <stdio.h>
 /********************************************************************************************************************************
 														OpenGl 1.0
 ********************************************************************************************************************************/
@@ -2541,4 +2542,42 @@ void LDL_OpenGLLoader::Init_4_6()
 	glMultiDrawArraysIndirectCount = (PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC)_Functions.Function("glMultiDrawArraysIndirectCount");
 	glMultiDrawElementsIndirectCount = (PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC)_Functions.Function("glMultiDrawElementsIndirectCount");
 	glPolygonOffsetClamp = (PFNGLPOLYGONOFFSETCLAMPPROC)_Functions.Function("glPolygonOffsetClamp");
+}
+
+void LDL_GL_Check(const char* file, int line, const char* expression)
+{
+	GLenum code = glGetError();
+
+	if (code != GL_NO_ERROR)
+	{
+		char error[32];
+		memset(error, 0, sizeof(error));
+
+		switch (code)
+		{
+		case GL_INVALID_ENUM:
+			strcpy(error, "GL_INVALID_ENUM");
+			break;
+		case GL_INVALID_VALUE:
+			strcpy(error, "GL_INVALID_VALUE");
+			break;
+		case GL_INVALID_OPERATION:
+			strcpy(error, "GL_INVALID_OPERATION");
+			break;
+		case GL_STACK_OVERFLOW:
+			strcpy(error, "GL_STACK_OVERFLOW");
+			break;
+		case GL_STACK_UNDERFLOW:
+			strcpy(error, "GL_STACK_UNDERFLOW");
+			break;
+		case GL_OUT_OF_MEMORY:
+			strcpy(error, "GL_OUT_OF_MEMORY");
+			break;
+		default:
+			strcpy(error, "Unknown error");
+		}
+
+		printf("OpenGL Error: %s File: %s Line: %d Detail: %s", error, file, line, expression);
+		LDL_Abort();
+	}
 }

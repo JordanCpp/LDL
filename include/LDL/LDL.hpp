@@ -28,18 +28,23 @@ DEALINGS IN THE SOFTWARE.
 #define LDL_hpp
 
 #include <LDL/Abort.hpp>
+#include <LDL/BaseRndr.hpp>
 #include <LDL/BaseWin.hpp>
+#include <LDL/BmpLoad.hpp>
 #include <LDL/Color.hpp>
 #include <LDL/Conv.hpp>
 #include <LDL/Enums.hpp>
+#include <LDL/Events.hpp>
 #include <LDL/Funcs.hpp>
 #include <LDL/Library.hpp>
 #include <LDL/MainWin.hpp>
 #include <LDL/Mat4f.hpp>
 #include <LDL/Palette.hpp>
+#include <LDL/Render.hpp>
 #include <LDL/Result.hpp>
 #include <LDL/Test.hpp>
 #include <LDL/Ticks.hpp>
 #include <LDL/Vec2i.hpp>
+#include <LDL/Window.hpp>
 
 #endif

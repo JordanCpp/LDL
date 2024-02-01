@@ -1,4 +1,4 @@
-#include <LDL/Window.hpp>
+#include <LDL/LDL.hpp>
 #include <stdio.h>
 
 int main()

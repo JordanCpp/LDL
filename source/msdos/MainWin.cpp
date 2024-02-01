@@ -24,25 +24,74 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Library_hpp
-#define LDL_Library_hpp
+#include <LDL/MainWin.hpp>
 
-#include <LDL/Config.hpp>
-#include <LDL/Declare.hpp>
-
-class LDL_Library
+LDL_MainWindow::LDL_MainWindow(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
+	_Result(result),
+	_BaseWindow(pos, size, title, mode)
 {
-public:
-	bool Open(const char* path);
-	void Close();
-	~LDL_Library();
-	LDL_VoidFuncPtr Function(const char* name);
-private:
-#if defined(_WIN32)
-	HMODULE _HMODULE;
-#elif defined(__unix__)
-	void* _Library;
-#endif
-};
+}
 
-#endif
+LDL_MainWindow::~LDL_MainWindow()
+{
+}
+
+void LDL_MainWindow::Update()
+{
+}
+
+uint8_t LDL_MainWindow::ConvertKey(size_t key)
+{
+	return LDL_KeyboardKey::Unknown;
+}
+
+bool LDL_MainWindow::Running()
+{
+	return _Eventer.Running();
+}
+
+void LDL_MainWindow::PollEvents()
+{
+}
+
+bool LDL_MainWindow::GetEvent(LDL_Event& event)
+{
+	if (!_Eventer.Empty())
+	{
+		_Eventer.Pop(event);
+
+		return true;
+	}
+
+	return false;
+}
+
+bool LDL_MainWindow::WaitEvent(LDL_Event& event)
+{
+	return _Eventer.Running();
+}
+
+void LDL_MainWindow::StopEvent()
+{
+	_Eventer.Stop();
+}
+
+void LDL_MainWindow::Title(const char* title)
+{
+	_BaseWindow.Title(title);
+}
+
+const char* LDL_MainWindow::Title()
+{
+	return _BaseWindow.Title();
+}
+
+const LDL_Vec2i& LDL_MainWindow::Size()
+{
+	return _BaseWindow.Size();
+}
+
+const LDL_Vec2i& LDL_MainWindow::Pos()
+{
+	return _BaseWindow.Pos();
+}

@@ -25,6 +25,7 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include <LDL/BmpLoad.hpp>
+#include <string.h>
 #include <assert.h>
 #include <math.h>
 

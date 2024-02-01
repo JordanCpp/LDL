@@ -35,10 +35,6 @@ DEALINGS IN THE SOFTWARE.
 #define true  1 
 #define false 0
 #endif
-
-#if defined(_WIN32)
-#include <Windows.h>
-#endif
 /********************************************************************************************************************************
 															   Types
 ********************************************************************************************************************************/
@@ -54,6 +50,7 @@ typedef signed int     int32_t;
 #else
 #include <stdint.h>
 #endif
+
 typedef void(*LDL_VoidFuncPtr)(void);
 
 #endif

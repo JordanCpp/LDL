@@ -24,25 +24,11 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Library_hpp
-#define LDL_Library_hpp
+#ifndef LDL_Declare_hpp
+#define LDL_Declare_hpp
 
-#include <LDL/Config.hpp>
-#include <LDL/Declare.hpp>
-
-class LDL_Library
-{
-public:
-	bool Open(const char* path);
-	void Close();
-	~LDL_Library();
-	LDL_VoidFuncPtr Function(const char* name);
-private:
 #if defined(_WIN32)
-	HMODULE _HMODULE;
-#elif defined(__unix__)
-	void* _Library;
+#include <Windows.h>
 #endif
-};
 
 #endif
