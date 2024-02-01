@@ -1,6 +1,6 @@
 # Greetings
 
-This project is an attempt to do only for headers. (https://github.com/JordanCpp/Lib-LDL)
+This project is an attempt to make the code more portable. (https://github.com/JordanCpp/Lib-LDL)
 
 # LDL - Little no Dependencies Libraries (Header only)
 1. Free for everyone.
@@ -14,27 +14,12 @@ This project is an attempt to do only for headers. (https://github.com/JordanCpp
 1. Creating a window.
 2. Event management.
 3. Drawing 2D graphics.
-4. Support OpenGL
+4. Supports all versions of OpenGL (1.0 - 4.6).
 
 # Integration into your project (CMake Linux or Windows)
-include_directories("include")
-if (WIN32)
-    set(libs gdi32 user32 winmm opengl32)
-elseif (UNIX AND NOT APPLE)
-    set(libs X11 GL dl)
-endif()
-target_link_libraries(${CMAKE_PROJECT_NAME} ${libs})
-
-# Integration into your project (no CMake Linux or Windows)
-1. Copy include (include/LDL)
-2. For Linux   add libs: gdi32 user32 winmm opengl32
-2. For Windows add libs: X11 GL dl
-
-# Description of files
-LDL_Util.hpp - Common helper classes.
-LDL_WinX.hpp - Window and OS event handling.
-LDL_RdrX.hpp - Simple 2D render.
-LDL_GL.hpp   - Supports all versions of OpenGL (1.0 - 4.6).
+add_subdirectory("LDL_Proj")
+include_directories("LDL_Proj/include")
+target_link_libraries(${CMAKE_PROJECT_NAME} (LDLGL1 or LDLGL3))
 
 # Support platforms.
 1. Windows 95 and higher.
@@ -66,9 +51,8 @@ Boost Software License - Version 1.0 - August 17th, 2003
 ![0](screenshots/01_GL3_Triangle.png)  
 
 ```c++
-#define LDL_RENDER_OPENGL3
-#include <LDL/LDL_WinX.hpp>
-#include <LDL/LDL_GL.hpp>
+#include <LDL/Window.hpp>
+#include <LDL/OpenGL.hpp>
 
 #include <stdio.h>
 #include <math.h>
@@ -170,6 +154,11 @@ int main()
 				{
 					window.StopEvent();
 				}
+
+				if (report.Type == LDL_Event::IsResize)
+				{
+					glViewport(0, 0, (GLsizei)window.Size().x, (GLsizei)window.Size().y);
+				}
 			}
 
 			// Specify the color of the background
@@ -204,12 +193,8 @@ int main()
 # Example OpenGL 1.2 - Screen color
 
 ```c++
-//Support OpenGL >= 1.0
-#define LDL_RENDER_OPENGL1
-//Support OpenGL >= 3.0
-//#define LDL_RENDER_OPENGL3
-#include <LDL/LDL_WinX.hpp>
-#include <LDL/LDL_GL.hpp>
+#include <LDL/Window.hpp>
+#include <LDL/OpenGL.hpp>
 
 #include <stdio.h>
 

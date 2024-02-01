@@ -1,6 +1,5 @@
-#define LDL_RENDER_OPENGL3
-#include <LDL/LDL_WinX.hpp>
-#include <LDL/LDL_GL.hpp>
+#include <LDL/Window.hpp>
+#include <LDL/OpenGL.hpp>
 
 #include <stdio.h>
 #include <math.h>
@@ -101,6 +100,11 @@ int main()
 				if (report.Type == LDL_Event::IsQuit)
 				{
 					window.StopEvent();
+				}
+
+				if (report.Type == LDL_Event::IsResize)
+				{
+					glViewport(0, 0, (GLsizei)window.Size().x, (GLsizei)window.Size().y);
 				}
 			}
 

@@ -1,3 +1,2 @@
-
 add_executable(01_GL1_ScreenColor "01_GL1_ScreenColor.cpp")
-target_link_libraries(01_GL1_ScreenColor ${libs})
+target_link_libraries(01_GL1_ScreenColor LDLGL1)

@@ -1,15 +1,18 @@
-#define LDL_IMPLEMENTATION
-#define LDL_SUPPORT_OPENGL1
-#include "LDL.hpp"
+#include <LDL/Window.hpp>
+#include <LDL/OpenGL.hpp>
+
+#include <stdio.h>
 
 int main()
 {
 	LDL_Result result;
 
-	LDL_Window window(&result, LDL_Vec2i(0, 0), LDL_Vec2i(800, 600), "01Window");
+	LDL_Window window(&result, LDL_Vec2i(0, 0), LDL_Vec2i(800, 600), "01_ScreenColor");
 
 	if (result.Ok())
 	{
+		LDL_OpenGLLoader loader(1, 2);
+
 		LDL_Event report;
 
 		while (window.Running())
@@ -21,6 +24,9 @@ int main()
 					window.StopEvent();
 				}
 			}
+
+			glClearColor(0.0f, 3.0f, 0.0f, 0.5f);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 			window.Present();
 			window.PollEvents();
