@@ -29,30 +29,14 @@ DEALINGS IN THE SOFTWARE.
 
 #include <LDL/MainWin.hpp>
 
-class LDL_Window
-{
-public:
-	LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized);
-	~LDL_Window();
-	bool Running();
-	void Present();
-	void PollEvents();
-	const LDL_Vec2i& Size();
-	const LDL_Vec2i& Pos();
-	bool GetEvent(LDL_Event& event);
-	bool WaitEvent(LDL_Event& event);
-	void StopEvent();
-	const char* Title();
-	void Title(const char* title);
-	void* NativeHandle();
-	void Update();
-private:
-	LDL_Result*    _Result;
-	LDL_MainWindow _MainWindow;
 #if defined(_WIN32)
-	HGLRC          _HGLRC;
-	BITMAPINFO     _BITMAPINFO;
+#if defined(LDL_SUPPORT_OPENGL1) || defined(LDL_SUPPORT_OPENGL3)
+#include <LDL/Windows/GL1Win.hpp>
+#elif defined(LDL_SUPPORT_SOFTWARE)
+#include <LDL/Windows/SoftWin.hpp>
 #endif
-};
+#elif defined(__MSDOS__)
+#include <LDL/DOS/SoftWin.hpp>
+#endif
 
 #endif

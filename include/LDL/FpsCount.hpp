@@ -24,24 +24,24 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Palette_hpp
-#define LDL_Palette_hpp
+#ifndef LDL_FpsCount_hpp
+#define LDL_FpsCount_hpp
 
-#include <LDL/Color.hpp>
+#include <LDL/Config.hpp>
 
-class LDL_Palette
+class LDL_FpsCounter
 {
 public:
-	enum
-	{
-		Max = 256
-	};
-
-	LDL_Palette();
-	const LDL_Color& Get(size_t index);
-	void Set(size_t index, const LDL_Color& color);
+	LDL_FpsCounter();
+	void Start();
+	bool Calc();
+	size_t Fps();
+	void Clear();
 private:
-	LDL_Color _Colors[Max];
+	size_t _Current;
+	size_t _Delta;
+	size_t _Old;
+	size_t _Fps;
 };
 
 #endif

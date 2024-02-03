@@ -30,19 +30,8 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/Config.hpp>
 #include <LDL/Declare.hpp>
 
-class LDL_Library
-{
-public:
-	bool Open(const char* path);
-	void Close();
-	~LDL_Library();
-	LDL_VoidFuncPtr Function(const char* name);
-private:
 #if defined(_WIN32)
-	HMODULE _HMODULE;
-#elif defined(__unix__)
-	void* _Library;
+#include <LDL/Windows/Library.hpp>
 #endif
-};
 
 #endif

@@ -24,74 +24,51 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#include <LDL/MainWin.hpp>
+#ifndef LDL_Windows_MainWin_hpp
+#define LDL_Windows_MainWin_hpp
 
-LDL_MainWindow::LDL_MainWindow(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
-	_Result(result),
-	_BaseWindow(pos, size, title, mode)
+#include <LDL/BaseWin.hpp>
+#include <LDL/Result.hpp>
+#include <LDL/Events.hpp>
+#include <LDL/Declare.hpp>
+
+class LDL_MainWindow
 {
-}
+public:
+	LDL_MainWindow(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode);
+	~LDL_MainWindow();
+	void Update();
+	uint8_t ConvertKey(size_t key);
+	LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
+	static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
+	bool InitHinstance();
+	bool InitWndClass();
+	bool InitStyle();
+	bool InitAdjustRect();
+	bool InitHwnd();
+	bool InitHdc();
+	bool Running();
+	void PollEvents();
+	bool GetEvent(LDL_Event& event);
+	bool WaitEvent(LDL_Event& event);
+	void StopEvent();
+	void Title(const char* title);
+	const char* Title();
+	const LDL_Vec2i& Size();
+	const LDL_Vec2i& Pos();
+private:
+	LDL_Result* _Result;
+	LDL_BaseWindow _BaseWindow;
+	LDL_Eventer    _Eventer;
+public:
+	WNDCLASS       _WNDCLASS;
+	HINSTANCE      _HINSTANCE;
+	MSG            _MSG;
+	ATOM           _ATOM;
+	DWORD          _Style;
+	RECT           _Rect;
+	HWND           _HWND;
+	HDC            _HDC;
+};
 
-LDL_MainWindow::~LDL_MainWindow()
-{
-}
-
-void LDL_MainWindow::Update()
-{
-}
-
-uint8_t LDL_MainWindow::ConvertKey(size_t key)
-{
-	return LDL_KeyboardKey::Unknown;
-}
-
-bool LDL_MainWindow::Running()
-{
-	return _Eventer.Running();
-}
-
-void LDL_MainWindow::PollEvents()
-{
-}
-
-bool LDL_MainWindow::GetEvent(LDL_Event& event)
-{
-	if (!_Eventer.Empty())
-	{
-		_Eventer.Pop(event);
-
-		return true;
-	}
-
-	return false;
-}
-
-bool LDL_MainWindow::WaitEvent(LDL_Event& event)
-{
-	return _Eventer.Running();
-}
-
-void LDL_MainWindow::StopEvent()
-{
-	_Eventer.Stop();
-}
-
-void LDL_MainWindow::Title(const char* title)
-{
-	_BaseWindow.Title(title);
-}
-
-const char* LDL_MainWindow::Title()
-{
-	return _BaseWindow.Title();
-}
-
-const LDL_Vec2i& LDL_MainWindow::Size()
-{
-	return _BaseWindow.Size();
-}
-
-const LDL_Vec2i& LDL_MainWindow::Pos()
-{
-	return _BaseWindow.Pos();
-}
+#endif

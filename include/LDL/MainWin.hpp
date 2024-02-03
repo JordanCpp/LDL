@@ -32,53 +32,10 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/Events.hpp>
 #include <LDL/Declare.hpp>
 
-class LDL_MainWindow
-{
-public:
-	LDL_MainWindow(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode);
-	~LDL_MainWindow();
-	void Update();
-	uint8_t ConvertKey(size_t key);
 #if defined(_WIN32)
-	LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
-	static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
-	bool InitHinstance();
-	bool InitWndClass();
-	bool InitStyle();
-	bool InitAdjustRect();
-	bool InitHwnd();
-	bool InitHdc();
+#include <LDL/Windows/MainWin.hpp>
+#elif defined(__MSDOS__)
+#include <LDL/DOS/MainWin.hpp>
 #endif
-	bool Running();
-	void PollEvents();
-	bool GetEvent(LDL_Event& event);
-	bool WaitEvent(LDL_Event& event);
-	void StopEvent();
-	void Title(const char* title);
-	const char* Title();
-	const LDL_Vec2i& Size();
-	const LDL_Vec2i& Pos();
-private:
-	LDL_Result* _Result;
-	LDL_BaseWindow _BaseWindow;
-	LDL_Eventer    _Eventer;
-public:
-#if defined(_WIN32)
-	WNDCLASS       _WNDCLASS;
-	HINSTANCE      _HINSTANCE;
-	MSG            _MSG;
-	ATOM           _ATOM;
-	DWORD          _Style;
-	RECT           _Rect;
-	HWND           _HWND;
-	HDC            _HDC;
-#elif defined(__unix__)
-	Display* _Display;
-	int      _Screen;
-	Window   _Root;
-	Window   _Window;
-	size_t   _EventMask;
-#endif
-};
 
 #endif

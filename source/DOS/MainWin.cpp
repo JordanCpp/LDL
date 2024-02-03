@@ -24,24 +24,74 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Palette_hpp
-#define LDL_Palette_hpp
+#include <LDL/DOS/MainWin.hpp>
 
-#include <LDL/Color.hpp>
-
-class LDL_Palette
+LDL_MainWindow::LDL_MainWindow(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
+	_Result(result),
+	_BaseWindow(pos, size, title, mode)
 {
-public:
-	enum
+}
+
+LDL_MainWindow::~LDL_MainWindow()
+{
+}
+
+void LDL_MainWindow::Update()
+{
+}
+
+uint8_t LDL_MainWindow::ConvertKey(size_t key)
+{
+	return LDL_KeyboardKey::Unknown;
+}
+
+bool LDL_MainWindow::Running()
+{
+	return _Eventer.Running();
+}
+
+void LDL_MainWindow::PollEvents()
+{
+}
+
+bool LDL_MainWindow::GetEvent(LDL_Event& event)
+{
+	if (!_Eventer.Empty())
 	{
-		Max = 256
-	};
+		_Eventer.Pop(event);
 
-	LDL_Palette();
-	const LDL_Color& Get(size_t index);
-	void Set(size_t index, const LDL_Color& color);
-private:
-	LDL_Color _Colors[Max];
-};
+		return true;
+	}
 
-#endif
+	return false;
+}
+
+bool LDL_MainWindow::WaitEvent(LDL_Event& event)
+{
+	return _Eventer.Running();
+}
+
+void LDL_MainWindow::StopEvent()
+{
+	_Eventer.Stop();
+}
+
+void LDL_MainWindow::Title(const char* title)
+{
+	_BaseWindow.Title(title);
+}
+
+const char* LDL_MainWindow::Title()
+{
+	return _BaseWindow.Title();
+}
+
+const LDL_Vec2i& LDL_MainWindow::Size()
+{
+	return _BaseWindow.Size();
+}
+
+const LDL_Vec2i& LDL_MainWindow::Pos()
+{
+	return _BaseWindow.Pos();
+}

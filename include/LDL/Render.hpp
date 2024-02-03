@@ -27,22 +27,10 @@ DEALINGS IN THE SOFTWARE.
 #ifndef LDL_Render_hpp
 #define LDL_Render_hpp
 
-#include <LDL/Window.hpp>
-#include <LDL/BaseRndr.hpp>
-
-class LDL_Render
-{
-public:
-	LDL_Render(LDL_Window* window, LDL_Palette* palette = NULL);
-	void Begin();
-	void End();
-	void Line(const LDL_Vec2i& pos1, const LDL_Vec2i& pos2);
-	void Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size);
-	void SetColor(const LDL_Color& color);
-	void Clear();
-private:
-	LDL_Window*    _Window;
-	LDL_BaseRender _BaseRender;
-};
+#if defined(LDL_SUPPORT_OPENGL1) 
+#include <LDL/Renders/GL1Rndr.hpp>
+#elif defined(LDL_SUPPORT_SOFTWARE)
+#include <LDL/Renders/SoftRndr.hpp>
+#endif
 
 #endif

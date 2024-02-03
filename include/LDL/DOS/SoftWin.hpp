@@ -24,24 +24,31 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Palette_hpp
-#define LDL_Palette_hpp
+#ifndef LDL_DOS_SoftWin_hpp
+#define LDL_DOS_SoftWin_hpp
 
-#include <LDL/Color.hpp>
+#include <LDL/MainWin.hpp>
 
-class LDL_Palette
+class LDL_Window
 {
 public:
-	enum
-	{
-		Max = 256
-	};
-
-	LDL_Palette();
-	const LDL_Color& Get(size_t index);
-	void Set(size_t index, const LDL_Color& color);
+	LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized);
+	~LDL_Window();
+	bool Running();
+	void Present();
+	void PollEvents();
+	const LDL_Vec2i& Size();
+	const LDL_Vec2i& Pos();
+	bool GetEvent(LDL_Event& event);
+	bool WaitEvent(LDL_Event& event);
+	void StopEvent();
+	const char* Title();
+	void Title(const char* title);
+	void* NativeHandle();
+	void Update();
 private:
-	LDL_Color _Colors[Max];
+	LDL_Result*    _Result;
+	LDL_MainWindow _MainWindow;
 };
 
 #endif

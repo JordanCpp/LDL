@@ -24,24 +24,26 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Palette_hpp
-#define LDL_Palette_hpp
+#ifndef LDL_Renders_SoftRndr_hpp
+#define LDL_Renders_SoftRndr_hpp
 
-#include <LDL/Color.hpp>
+#include <LDL/Window.hpp>
+#include <LDL/BaseRndr.hpp>
 
-class LDL_Palette
+class LDL_Render
 {
 public:
-	enum
-	{
-		Max = 256
-	};
-
-	LDL_Palette();
-	const LDL_Color& Get(size_t index);
-	void Set(size_t index, const LDL_Color& color);
+	LDL_Render(LDL_Window* window, LDL_Palette* palette);
+	void Begin();
+	void End();
+	void Line(const LDL_Vec2i& pos1, const LDL_Vec2i& pos2);
+	void Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size);
+	void SetColor(const LDL_Color& color);
+	void Clear();
 private:
-	LDL_Color _Colors[Max];
+	LDL_Window* _Window;
+	LDL_BaseRender _BaseRender;
+	LDL_Surface    _Screen;
 };
 
 #endif

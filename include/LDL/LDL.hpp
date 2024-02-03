@@ -35,6 +35,7 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/Conv.hpp>
 #include <LDL/Enums.hpp>
 #include <LDL/Events.hpp>
+#include <LDL/FpsCount.hpp>
 #include <LDL/Funcs.hpp>
 #include <LDL/Library.hpp>
 #include <LDL/MainWin.hpp>

@@ -24,24 +24,21 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Palette_hpp
-#define LDL_Palette_hpp
+#ifndef LDL_Windows_Library_hpp
+#define LDL_Windows_Library_hpp
 
-#include <LDL/Color.hpp>
+#include <LDL/Config.hpp>
+#include <LDL/Declare.hpp>
 
-class LDL_Palette
+class LDL_Library
 {
 public:
-	enum
-	{
-		Max = 256
-	};
-
-	LDL_Palette();
-	const LDL_Color& Get(size_t index);
-	void Set(size_t index, const LDL_Color& color);
+	bool Open(const char* path);
+	void Close();
+	~LDL_Library();
+	LDL_VoidFuncPtr Function(const char* name);
 private:
-	LDL_Color _Colors[Max];
+	HMODULE _HMODULE;
 };
 
 #endif

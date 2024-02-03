@@ -1,6 +1,5 @@
-#define LDL_IMPLEMENTATION
-#define LDL_SUPPORT_OPENGL1
-#include "../LDL.hpp"
+#include <LDL/LDL.hpp>
+#include <stdio.h>
 
 int main()
 {
