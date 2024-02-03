@@ -31,10 +31,10 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/BaseRndr.hpp>
 #include <LDL/Surface.hpp>
 
-class LDL_Render
+class LDL_RenderSoftware
 {
 public:
-	LDL_Render(LDL_Window* window, LDL_Palette* palette);
+	LDL_RenderSoftware(LDL_WindowSoftware* window, LDL_Palette* palette = NULL);
 	void Begin();
 	void End();
 	void Line(const LDL_Vec2i& pos1, const LDL_Vec2i& pos2);
@@ -42,9 +42,9 @@ public:
 	void SetColor(const LDL_Color& color);
 	void Clear();
 private:
-	LDL_Window*    _Window;
-	LDL_BaseRender _BaseRender;
-	LDL_Surface    _Screen;
+	LDL_WindowSoftware* _Window;
+	LDL_BaseRender      _BaseRender;
+	LDL_Surface         _Screen;
 };
 
 #endif

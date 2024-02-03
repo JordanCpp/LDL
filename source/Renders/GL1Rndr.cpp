@@ -112,14 +112,14 @@ GLuint LDL_Texture::Id()
 }
 
 
-LDL_Render::LDL_Render(LDL_Window* window, LDL_Palette* palette) :
+LDL_RenderOpenGL1::LDL_RenderOpenGL1(LDL_WindowOpenGL1* window, LDL_Palette* palette) :
 	_Window(window),
 	_BaseRender(_Window->Size(), palette),
 	_OpenGLLoader(1, 2)
 {
 }
 
-void LDL_Render::Begin()
+void LDL_RenderOpenGL1::Begin()
 {
 	LDL_Vec2i size = _Window->Size();
 
@@ -133,12 +133,12 @@ void LDL_Render::Begin()
 	LDL_GL_CHECK(glLoadMatrixf(_ModelView.Values()));
 }
 
-void LDL_Render::End()
+void LDL_RenderOpenGL1::End()
 {
 	_Window->Present();
 }
 
-void LDL_Render::Line(const LDL_Vec2i& pos1, const LDL_Vec2i& pos2)
+void LDL_RenderOpenGL1::Line(const LDL_Vec2i& pos1, const LDL_Vec2i& pos2)
 {
 	GLclampf r;
 	GLclampf g;
@@ -153,7 +153,7 @@ void LDL_Render::Line(const LDL_Vec2i& pos1, const LDL_Vec2i& pos2)
 	glEnd();
 }
 
-void LDL_Render::Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size)
+void LDL_RenderOpenGL1::Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size)
 {
 	GLclampf r;
 	GLclampf g;
@@ -175,12 +175,12 @@ void LDL_Render::Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size)
 	glEnd();
 }
 
-void LDL_Render::SetColor(const LDL_Color& color)
+void LDL_RenderOpenGL1::SetColor(const LDL_Color& color)
 {
 	_BaseRender.SetColor(color);
 }
 
-void LDL_Render::Clear()
+void LDL_RenderOpenGL1::Clear()
 {
 	GLclampf r;
 	GLclampf g;

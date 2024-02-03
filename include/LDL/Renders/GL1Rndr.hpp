@@ -50,10 +50,10 @@ private:
 	LDL_Vec2i _Quad;
 };
 
-class LDL_Render
+class LDL_RenderOpenGL1
 {
 public:
-	LDL_Render(LDL_Window* window, LDL_Palette* palette = NULL);
+	LDL_RenderOpenGL1(LDL_WindowOpenGL1* window, LDL_Palette* palette = NULL);
 	void Begin();
 	void End();
 	void Line(const LDL_Vec2i& pos1, const LDL_Vec2i& pos2);
@@ -61,7 +61,7 @@ public:
 	void SetColor(const LDL_Color& color);
 	void Clear();
 private:
-	LDL_Window* _Window;
+	LDL_WindowOpenGL1* _Window;
 	LDL_BaseRender   _BaseRender;
 	LDL_OpenGLLoader _OpenGLLoader;
 	LDL_Mat4f        _Projection;

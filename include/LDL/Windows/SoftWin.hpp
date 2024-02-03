@@ -29,11 +29,11 @@ DEALINGS IN THE SOFTWARE.
 
 #include <LDL/MainWin.hpp>
 
-class LDL_Window
+class LDL_WindowSoftware
 {
 public:
-	LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized);
-	~LDL_Window();
+	LDL_WindowSoftware(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized);
+	~LDL_WindowSoftware();
 	void Present(uint8_t* pixels, uint8_t bytesPerPixel);
 	bool Running();
 	void Present();

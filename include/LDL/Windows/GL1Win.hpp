@@ -29,11 +29,11 @@ DEALINGS IN THE SOFTWARE.
 
 #include <LDL/MainWin.hpp>
 
-class LDL_Window
+class LDL_WindowOpenGL1
 {
 public:
-	LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized);
-	~LDL_Window();
+	LDL_WindowOpenGL1(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized);
+	~LDL_WindowOpenGL1();
 	bool Running();
 	void Present();
 	void PollEvents();

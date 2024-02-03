@@ -24,17 +24,32 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Render_hpp
-#define LDL_Render_hpp
+#ifndef LDL_Windows_GL3Win_hpp
+#define LDL_Windows_GL3Win_hpp
 
+#include <LDL/MainWin.hpp>
 
-#include <LDL/Renders/GL1Rndr.hpp>
-#include <LDL/Renders/SoftRndr.hpp>
-
-#if defined(LDL_SUPPORT_OPENGL1) 
-typedef LDL_RenderOpenGL1 LDL_Render;
-#elif defined(LDL_SUPPORT_SOFTWARE)
-typedef LDL_RenderSoftware LDL_Render;
-#endif
+class LDL_WindowOpenGL3
+{
+public:
+	LDL_WindowOpenGL3(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized);
+	~LDL_WindowOpenGL3();
+	bool Running();
+	void Present();
+	void PollEvents();
+	const LDL_Vec2i& Size();
+	const LDL_Vec2i& Pos();
+	bool GetEvent(LDL_Event& event);
+	bool WaitEvent(LDL_Event& event);
+	void StopEvent();
+	const char* Title();
+	void Title(const char* title);
+	void* NativeHandle();
+	void Update();
+private:
+	LDL_Result*    _Result;
+	LDL_MainWindow _MainWindow;
+	HGLRC          _HGLRC;
+};
 
 #endif

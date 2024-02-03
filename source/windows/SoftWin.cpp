@@ -27,28 +27,28 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/Windows/SoftWin.hpp>
 #include <assert.h>
 
-LDL_Window::LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
+LDL_WindowSoftware::LDL_WindowSoftware(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
 	_Result(result),
 	_MainWindow(result, pos, size, title, mode)
 {
 	ZeroMemory(&_BITMAPINFO, sizeof(_BITMAPINFO));
 }
 
-LDL_Window::~LDL_Window()
+LDL_WindowSoftware::~LDL_WindowSoftware()
 {
 }
 
-bool LDL_Window::Running()
+bool LDL_WindowSoftware::Running()
 {
 	return _MainWindow.Running();
 }
 
-void LDL_Window::Present()
+void LDL_WindowSoftware::Present()
 {
 	Update();
 }
 
-void LDL_Window::Present(uint8_t* pixels, uint8_t bytesPerPixel)
+void LDL_WindowSoftware::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 {
 	assert(pixels != NULL);
 	assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
@@ -69,52 +69,52 @@ void LDL_Window::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 	}
 }
 
-void LDL_Window::PollEvents()
+void LDL_WindowSoftware::PollEvents()
 {
 	_MainWindow.PollEvents();
 }
 
-const LDL_Vec2i& LDL_Window::Size()
+const LDL_Vec2i& LDL_WindowSoftware::Size()
 {
 	return _MainWindow.Size();
 }
 
-const LDL_Vec2i& LDL_Window::Pos()
+const LDL_Vec2i& LDL_WindowSoftware::Pos()
 {
 	return _MainWindow.Pos();
 }
 
-bool LDL_Window::GetEvent(LDL_Event& event)
+bool LDL_WindowSoftware::GetEvent(LDL_Event& event)
 {
 	return _MainWindow.GetEvent(event);
 }
 
-bool LDL_Window::WaitEvent(LDL_Event& event)
+bool LDL_WindowSoftware::WaitEvent(LDL_Event& event)
 {
 	return _MainWindow.WaitEvent(event);
 }
 
-void LDL_Window::StopEvent()
+void LDL_WindowSoftware::StopEvent()
 {
 	_MainWindow.StopEvent();
 }
 
-const char* LDL_Window::Title()
+const char* LDL_WindowSoftware::Title()
 {
 	return _MainWindow.Title();
 }
 
-void LDL_Window::Title(const char* title)
+void LDL_WindowSoftware::Title(const char* title)
 {
 	_MainWindow.Title(title);
 }
 
-void* LDL_Window::NativeHandle()
+void* LDL_WindowSoftware::NativeHandle()
 {
 	return _MainWindow._HWND;
 }
 
-void LDL_Window::Update()
+void LDL_WindowSoftware::Update()
 {
 	_MainWindow.Update();
 }

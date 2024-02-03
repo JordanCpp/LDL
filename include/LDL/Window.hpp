@@ -30,10 +30,15 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/MainWin.hpp>
 
 #if defined(_WIN32)
-#if defined(LDL_SUPPORT_OPENGL1) || defined(LDL_SUPPORT_OPENGL3)
 #include <LDL/Windows/GL1Win.hpp>
-#elif defined(LDL_SUPPORT_SOFTWARE)
+#include <LDL/Windows/GL3Win.hpp>
 #include <LDL/Windows/SoftWin.hpp>
+#if defined(LDL_SUPPORT_OPENGL1)
+typedef LDL_WindowOpenGL1 LDL_Window;
+#elif defined(LDL_SUPPORT_OPENGL3)
+typedef LDL_WindowOpenGL3 LDL_Window;
+#elif defined(LDL_SUPPORT_SOFTWARE)
+typedef LDL_WindowSoftware LDL_Window;
 #endif
 #elif defined(__MSDOS__)
 #include <LDL/DOS/SoftWin.hpp>

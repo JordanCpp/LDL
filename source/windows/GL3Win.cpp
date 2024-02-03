@@ -24,19 +24,42 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#include <LDL/Windows/GL1Win.hpp>
+#include <LDL/Windows/GL3Win.hpp>
 
-LDL_Window::LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
+typedef HGLRC(WINAPI* PFNWGLCREATECONTEXT)(HDC);
+typedef BOOL(WINAPI* PFNWGLMAKECURRENT)(HDC, HGLRC);
+typedef BOOL(WINAPI* PFNWGLDELETECONTEXT)(HGLRC);
+
+typedef HGLRC(WINAPI* PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareContext, const int* attribList);
+
+#define WGL_CONTEXT_MAJOR_VERSION_ARB             0x2091
+#define WGL_CONTEXT_MINOR_VERSION_ARB             0x2092  
+#define WGL_CONTEXT_FLAGS_ARB                     0x2094 
+#define WGL_CONTEXT_PROFILE_MASK_ARB              0x9126  
+#define WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB    0x00000002 
+#define WGL_CONTEXT_CORE_PROFILE_BIT_ARB          0x00000001
+#define WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB 0x00000002
+
+
+LDL_WindowOpenGL3::LDL_WindowOpenGL3(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
 	_Result(result),
 	_HGLRC(NULL),
 	_MainWindow(result, pos, size, title, mode)
 {
+	PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
+
+	int attribs[] =
+	{
+		WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
+		WGL_CONTEXT_MINOR_VERSION_ARB, 3,
+		WGL_CONTEXT_FLAGS_ARB,         WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
+		WGL_CONTEXT_PROFILE_MASK_ARB,  WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
+		0
+	};
+
 	PIXELFORMATDESCRIPTOR pfd;
 
 	ZeroMemory(&pfd, sizeof(PIXELFORMATDESCRIPTOR));
-
-	if (!_Result->Ok())
-		return;
 
 	_MainWindow._HDC = GetDC(_MainWindow._HWND);
 
@@ -50,9 +73,8 @@ LDL_Window::LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i
 	pfd.nVersion = 1;
 	pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
 	pfd.iPixelType = PFD_TYPE_RGBA;
-	pfd.cColorBits = 24;
-	pfd.cDepthBits = 16;
-	pfd.iLayerType = PFD_MAIN_PLANE;
+	pfd.cColorBits = 32;
+	pfd.cDepthBits = 24;
 
 	int format = ChoosePixelFormat(_MainWindow._HDC, &pfd);
 
@@ -70,7 +92,7 @@ LDL_Window::LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i
 
 	_HGLRC = wglCreateContext(_MainWindow._HDC);
 
-	if (_HGLRC == NULL)
+	if (!_HGLRC)
 	{
 		_Result->Message("wglCreateContext failed");
 		return;
@@ -81,20 +103,54 @@ LDL_Window::LDL_Window(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i
 		_Result->Message("wglMakeCurrent failed");
 		return;
 	}
+
+	wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
+
+	if (!wglCreateContextAttribsARB)
+	{
+		_Result->Message("wglGetProcAddress failed");
+		return;
+	}
+
+	if (!wglMakeCurrent(NULL, NULL))
+	{
+		_Result->Message("wglMakeCurrent failed");
+		return;
+	}
+
+	if (!wglDeleteContext(_HGLRC))
+	{
+		_Result->Message("wglDeleteContext failed");
+		return;
+	}
+
+	_HGLRC = wglCreateContextAttribsARB(_MainWindow._HDC, 0, attribs);
+
+	if (!_HGLRC)
+	{
+		_Result->Message("wglCreateContextAttribsARB failed");
+		return;
+	}
+
+	if (!wglMakeCurrent(_MainWindow._HDC, _HGLRC))
+	{
+		_Result->Message("wglMakeCurrent failed");
+		return;
+	}
 }
 
-LDL_Window::~LDL_Window()
+LDL_WindowOpenGL3::~LDL_WindowOpenGL3()
 {
 	wglMakeCurrent(NULL, NULL);
 	wglDeleteContext(_HGLRC);
 }
 
-bool LDL_Window::Running()
+bool LDL_WindowOpenGL3::Running()
 {
 	return _MainWindow.Running();
 }
 
-void LDL_Window::Present()
+void LDL_WindowOpenGL3::Present()
 {
 	if (!SwapBuffers(_MainWindow._HDC))
 	{
@@ -104,52 +160,52 @@ void LDL_Window::Present()
 	Update();
 }
 
-void LDL_Window::PollEvents()
+void LDL_WindowOpenGL3::PollEvents()
 {
 	_MainWindow.PollEvents();
 }
 
-const LDL_Vec2i& LDL_Window::Size()
+const LDL_Vec2i& LDL_WindowOpenGL3::Size()
 {
 	return _MainWindow.Size();
 }
 
-const LDL_Vec2i& LDL_Window::Pos()
+const LDL_Vec2i& LDL_WindowOpenGL3::Pos()
 {
 	return _MainWindow.Pos();
 }
 
-bool LDL_Window::GetEvent(LDL_Event& event)
+bool LDL_WindowOpenGL3::GetEvent(LDL_Event& event)
 {
 	return _MainWindow.GetEvent(event);
 }
 
-bool LDL_Window::WaitEvent(LDL_Event& event)
+bool LDL_WindowOpenGL3::WaitEvent(LDL_Event& event)
 {
 	return _MainWindow.WaitEvent(event);
 }
 
-void LDL_Window::StopEvent()
+void LDL_WindowOpenGL3::StopEvent()
 {
 	_MainWindow.StopEvent();
 }
 
-const char* LDL_Window::Title()
+const char* LDL_WindowOpenGL3::Title()
 {
 	return _MainWindow.Title();
 }
 
-void LDL_Window::Title(const char* title)
+void LDL_WindowOpenGL3::Title(const char* title)
 {
 	_MainWindow.Title(title);
 }
 
-void* LDL_Window::NativeHandle()
+void* LDL_WindowOpenGL3::NativeHandle()
 {
 	return _MainWindow._HWND;
 }
 
-void LDL_Window::Update()
+void LDL_WindowOpenGL3::Update()
 {
 	_MainWindow.Update();
 }
