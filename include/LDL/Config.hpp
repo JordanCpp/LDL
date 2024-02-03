@@ -38,7 +38,7 @@ DEALINGS IN THE SOFTWARE.
 /********************************************************************************************************************************
 															   Types
 ********************************************************************************************************************************/
-#if (_MSC_VER <= 1600)
+#if (_MSC_VER <= 1600 && !__MINGW32__)
 typedef unsigned char uint8_t;
 typedef signed char   int8_t;
 
@@ -49,6 +49,7 @@ typedef unsigned int   uint32_t;
 typedef signed int     int32_t;
 #else
 #include <stdint.h>
+#include <stddef.h>
 #endif
 
 typedef void(*LDL_VoidFuncPtr)(void);

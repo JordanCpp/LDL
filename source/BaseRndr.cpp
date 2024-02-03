@@ -25,6 +25,7 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include <LDL/BaseRndr.hpp>
+#include <stdlib.h>
 
 LDL_BaseRender::LDL_BaseRender(const LDL_Vec2i& size, LDL_Palette* palette) :
 	_Size(size)

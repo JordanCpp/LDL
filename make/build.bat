@@ -1,6 +1,6 @@
 @echo off
 
-set pth=..\examples\
+set pth=..\examples\Lessons\
 
 call %1 01Window %pth%
 call %1 02Render %pth%

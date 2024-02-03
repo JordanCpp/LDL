@@ -28,8 +28,8 @@ DEALINGS IN THE SOFTWARE.
 
 LDL_WindowOpenGL1::LDL_WindowOpenGL1(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
 	_Result(result),
-	_HGLRC(NULL),
-	_MainWindow(result, pos, size, title, mode)
+	_MainWindow(result, pos, size, title, mode),
+	_HGLRC(NULL)
 {
 	PIXELFORMATDESCRIPTOR pfd;
 

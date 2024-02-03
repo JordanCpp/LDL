@@ -43,8 +43,8 @@ typedef HGLRC(WINAPI* PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareC
 
 LDL_WindowOpenGL3::LDL_WindowOpenGL3(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
 	_Result(result),
-	_HGLRC(NULL),
-	_MainWindow(result, pos, size, title, mode)
+	_MainWindow(result, pos, size, title, mode),
+	_HGLRC(NULL)
 {
 	PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
 

@@ -46,6 +46,11 @@ void LDL_RenderSoftware::End()
 
 void LDL_RenderSoftware::Line(const LDL_Vec2i& pos1, const LDL_Vec2i& pos2)
 {
+	assert(pos1.x >= 0);
+	assert(pos1.y >= 0);
+
+	assert(pos2.x >= 0);
+	assert(pos2.y >= 0);
 }
 
 void LDL_RenderSoftware::Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size)
