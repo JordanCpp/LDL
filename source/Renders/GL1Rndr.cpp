@@ -1,12 +1,6 @@
 #include <LDL/Renders/GL1Rndr.hpp>
 #include <LDL/Funcs.hpp>
-
-void LDL_Normalize(const LDL_Color& color, GLclampf& r, GLclampf& g, GLclampf& b)
-{
-	r = color.r / 255.0f;
-	g = color.g / 255.0f;
-	b = color.b / 255.0f;
-}
+#include <LDL/UtilGL.hpp>
 
 LDL_Render::LDL_Render(LDL_Window* window, LDL_Palette* palette) :
 	_Window(window),
