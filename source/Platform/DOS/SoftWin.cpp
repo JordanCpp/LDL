@@ -24,20 +24,75 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Render_hpp
-#define LDL_Render_hpp
+#include <LDL/DOS/SoftWin.hpp>
+#include <assert.h>
 
-#if defined(_WIN32)
-#include <LDL/Renders/GL1Rndr.hpp>
-#include <LDL/Renders/SoftRndr.hpp>
-#if defined(LDL_SUPPORT_OPENGL1)
-typedef LDL_RenderOpenGL1 LDL_Render;
-#elif defined(LDL_SUPPORT_SOFTWARE)
-typedef LDL_RenderSoftware LDL_Render;
-#endif
-#elif defined(__MSDOS__)
-#include <LDL/Renders/SoftRndr.hpp>
-typedef LDL_RenderSoftware LDL_Render;
-#endif
+LDL_WindowSoftware::LDL_WindowSoftware(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
+	_Result(result),
+	_MainWindow(result, pos, size, title, mode)
+{
+}
 
-#endif
+LDL_WindowSoftware::~LDL_WindowSoftware()
+{
+}
+
+bool LDL_WindowSoftware::Running()
+{
+	return _MainWindow.Running();
+}
+
+void LDL_WindowSoftware::Present()
+{
+	Update();
+}
+
+void LDL_WindowSoftware::PollEvents()
+{
+	_MainWindow.PollEvents();
+}
+
+const LDL_Vec2i& LDL_WindowSoftware::Size()
+{
+	return _MainWindow.Size();
+}
+
+const LDL_Vec2i& LDL_WindowSoftware::Pos()
+{
+	return _MainWindow.Pos();
+}
+
+bool LDL_WindowSoftware::GetEvent(LDL_Event& event)
+{
+	return _MainWindow.GetEvent(event);
+}
+
+bool LDL_WindowSoftware::WaitEvent(LDL_Event& event)
+{
+	return _MainWindow.WaitEvent(event);
+}
+
+void LDL_WindowSoftware::StopEvent()
+{
+	_MainWindow.StopEvent();
+}
+
+const char* LDL_WindowSoftware::Title()
+{
+	return _MainWindow.Title();
+}
+
+void LDL_WindowSoftware::Title(const char* title)
+{
+	_MainWindow.Title(title);
+}
+
+void* LDL_WindowSoftware::NativeHandle()
+{
+	return NULL;
+}
+
+void LDL_WindowSoftware::Update()
+{
+	_MainWindow.Update();
+}
