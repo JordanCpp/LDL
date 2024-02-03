@@ -26,6 +26,25 @@ DEALINGS IN THE SOFTWARE.
 
 #include <LDL/UtilGL.hpp>
 
+const int LDL_TextureCount = 12;
+const int LDL_TextureSizes[LDL_TextureCount] = { 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
+
+int LDL_SelectTextureSize(const LDL_Vec2i& size)
+{
+	int w = size.x;
+	int h = size.y;
+
+	for (int i = 0; i < LDL_TextureCount; i++)
+	{
+		if (w <= LDL_TextureSizes[i] && h <= LDL_TextureSizes[i])
+		{
+			return (int)LDL_TextureSizes[i];
+		}
+	}
+
+	return 0;
+}
+
 void LDL_Normalize(const LDL_Color& color, GLclampf& r, GLclampf& g, GLclampf& b)
 {
 	r = color.r / 255.0f;

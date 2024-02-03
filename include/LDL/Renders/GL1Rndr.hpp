@@ -31,6 +31,24 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/BaseRndr.hpp>
 #include <LDL/OpenGL.hpp>
 #include <LDL/Mat4f.hpp>
+#include <LDL/Surface.hpp>
+
+class LDL_Texture
+{
+public:
+	LDL_Texture(const LDL_Vec2i& size, uint8_t* pixels, uint8_t bytesPerPixel);
+	LDL_Texture(const LDL_Vec2i& size, uint8_t bytesPerPixel);
+	~LDL_Texture();
+	void Copy(const LDL_Vec2i& dstPos, const LDL_Vec2i& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
+	void Copy(const LDL_Vec2i& dstPos, LDL_Surface* surface, const LDL_Vec2i& srcSize);
+	const LDL_Vec2i& Size();
+	const LDL_Vec2i& Quad();
+	GLuint Id();
+private:
+	GLuint    _Id;
+	LDL_Vec2i _Size;
+	LDL_Vec2i _Quad;
+};
 
 class LDL_Render
 {
