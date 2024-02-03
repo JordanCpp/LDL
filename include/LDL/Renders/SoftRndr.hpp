@@ -29,6 +29,7 @@ DEALINGS IN THE SOFTWARE.
 
 #include <LDL/Window.hpp>
 #include <LDL/BaseRndr.hpp>
+#include <LDL/Surface.hpp>
 
 class LDL_Render
 {
@@ -41,7 +42,7 @@ public:
 	void SetColor(const LDL_Color& color);
 	void Clear();
 private:
-	LDL_Window* _Window;
+	LDL_Window*    _Window;
 	LDL_BaseRender _BaseRender;
 	LDL_Surface    _Screen;
 };
