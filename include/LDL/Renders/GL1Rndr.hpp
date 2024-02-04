@@ -33,12 +33,12 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/Mat4f.hpp>
 #include <LDL/Surface.hpp>
 
-class LDL_Texture
+class LDL_TextureOpenGL1
 {
 public:
-	LDL_Texture(const LDL_Vec2i& size, uint8_t* pixels, uint8_t bytesPerPixel);
-	LDL_Texture(const LDL_Vec2i& size, uint8_t bytesPerPixel);
-	~LDL_Texture();
+	LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, uint8_t bytesPerPixel);
+	LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t bytesPerPixel);
+	~LDL_TextureOpenGL1();
 	void Copy(const LDL_Vec2i& dstPos, const LDL_Vec2i& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
 	void Copy(const LDL_Vec2i& dstPos, LDL_Surface* surface, const LDL_Vec2i& srcSize);
 	const LDL_Vec2i& Size();

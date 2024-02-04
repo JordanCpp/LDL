@@ -89,13 +89,10 @@ void LDL_BmpLoader::BgrToRgb()
 {
 	size_t count = Size().x * Size().y * Bpp();
 
-	uint8_t b = 0;
-	uint8_t r = 0;
-
 	for (size_t i = 0; i < count; i += 3)
 	{
-		b = _Pixels[i];
-		r = _Pixels[i + 2];
+		uint8_t b = _Pixels[i];
+		uint8_t r = _Pixels[i + 2];
 
 		_Pixels[i] = r;
 		_Pixels[i + 2] = b;
