@@ -31,7 +31,8 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/Renders/GL1Rndr.hpp>
 #include <LDL/Renders/SoftRndr.hpp>
 #if defined(LDL_SUPPORT_OPENGL1)
-typedef LDL_RenderOpenGL1 LDL_Render;
+typedef LDL_RenderOpenGL1  LDL_Render;
+typedef LDL_TextureOpenGL1 LDL_Texture;
 #elif defined(LDL_SUPPORT_SOFTWARE)
 typedef LDL_RenderSoftware LDL_Render;
 #endif

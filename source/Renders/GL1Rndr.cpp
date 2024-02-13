@@ -122,6 +122,9 @@ LDL_RenderOpenGL1::LDL_RenderOpenGL1(LDL_WindowOpenGL1* window, LDL_Palette* pal
 	_BaseRender(_Window->Size(), palette),
 	_OpenGLLoader(1, 2)
 {
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
 }
 
 void LDL_RenderOpenGL1::Begin()
@@ -195,4 +198,31 @@ void LDL_RenderOpenGL1::Clear()
 
 	glClearColor(r, g, b, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void LDL_RenderOpenGL1::Draw(LDL_TextureOpenGL1* image, const LDL_Vec2i& pos)
+{
+	Draw(image, pos, image->Size(), LDL_Vec2i(0, 0), image->Size());
+}
+
+void LDL_RenderOpenGL1::Draw(LDL_TextureOpenGL1* image, const LDL_Vec2i& pos, const LDL_Vec2i& size)
+{
+	Draw(image, pos, size, LDL_Vec2i(0, 0), image->Size());
+}
+
+void LDL_RenderOpenGL1::Draw(LDL_TextureOpenGL1* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize)
+{
+	Draw(image, dstPos, srcSize, srcPos, srcSize);
+}
+
+void LDL_RenderOpenGL1::Draw(LDL_TextureOpenGL1* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& dstSize, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize)
+{
+	assert(image);
+
+	LDL_GL_CHECK(glEnable(GL_TEXTURE_2D));
+	LDL_GL_CHECK(glBindTexture(GL_TEXTURE_2D, image->Id()));
+
+	LDL_DrawQuad(dstPos, dstSize, srcPos, srcSize, image->Quad().x);
+
+	LDL_GL_CHECK(glDisable(GL_TEXTURE_2D));
 }

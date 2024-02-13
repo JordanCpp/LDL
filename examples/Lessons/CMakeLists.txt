@@ -10,5 +10,5 @@ target_link_libraries(03Fps LDL)
 add_executable(04Clear "04Clear.cpp")
 target_link_libraries(04Clear LDL)
 
-#add_executable(05Img "05Img.cpp")
-#target_link_libraries(05Img ${libs})
+add_executable(05Img "05Img.cpp")
+target_link_libraries(05Img LDL)

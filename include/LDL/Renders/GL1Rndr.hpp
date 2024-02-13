@@ -60,6 +60,10 @@ public:
 	void Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size);
 	void SetColor(const LDL_Color& color);
 	void Clear();
+	void Draw(LDL_TextureOpenGL1* image, const LDL_Vec2i& pos);
+	void Draw(LDL_TextureOpenGL1* image, const LDL_Vec2i& pos, const LDL_Vec2i& size);
+	void Draw(LDL_TextureOpenGL1* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize);
+	void Draw(LDL_TextureOpenGL1* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& dstSize, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize);
 private:
 	LDL_WindowOpenGL1* _Window;
 	LDL_BaseRender   _BaseRender;

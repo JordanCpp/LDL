@@ -1,6 +1,5 @@
-#define LDL_IMPLEMENTATION
-#define LDL_SUPPORT_OPENGL1
-#include "../LDL.hpp"
+#include <LDL/LDL.hpp>
+#include <stdio.h>
 
 int main()
 {
@@ -40,7 +39,7 @@ int main()
 			render.SetColor(LDL_Color(0, 162, 232));
 			render.Clear();
 
-			render.Draw(&texture, LDL_Vec2i(0, 0));
+			render.Draw(&texture, LDL_Vec2i(15, 30));
 
 			render.End();
 
