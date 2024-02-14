@@ -24,68 +24,98 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_BmpLoad_hpp
-#define LDL_BmpLoad_hpp
+#include "Structs.hpp"
+#include <string.h>
 
-#include <LDL/Result.hpp>
-#include <LDL/Vec2i.hpp>
-#include <stdio.h>
-
-struct LDL_BmpFileHeader
+List::List() :
+    Head(NULL),
+    Tail(NULL)
 {
-	uint16_t bfType;
-	uint32_t bfSize;
-	uint16_t bfReserved1;
-	uint16_t bfReserved2;
-	uint32_t bfOffBits;
-};
+}
 
-struct LDL_BmpInfoHeader
+List::~List()
 {
-	uint32_t biSize;
-	int32_t  biWidth;
-	int32_t  biHeight;
-	uint16_t biPlanes;
-	uint16_t biBitCount;
-	uint32_t biCompression;
-	uint32_t biSizeImage;
-	int32_t  biXPelsPerMeter;
-	int32_t  biYPelsPerMeter;
-	uint32_t biClrUsed;
-	uint32_t biClrImportant;
-};
+    ListNode* tmp  = Head;
+    ListNode* next = NULL;
 
-struct LDL_BmpPalette
+    while (tmp) 
+    {
+        next = tmp->Next;
+        tmp = next;
+    }
+}
+
+void List::PushBack(ListNode* node)
 {
-	uint8_t blue;
-	uint8_t green;
-	uint8_t red;
-	uint8_t alpha;
-};
+    node->Next = NULL;
+    node->Prev = Tail;
 
-class LDL_BmpLoader
+    if (Tail) 
+    {
+        Tail->Next = node;
+    }
+    
+    Tail = node;
+
+    if (Head == NULL) {
+        Head = node;
+    }
+}
+
+HashTable::HashTable()
 {
-public:
-	LDL_BmpLoader(LDL_Result* result);
-	~LDL_BmpLoader();
-	bool Load(const char* path);
-	const LDL_Vec2i& Size();
-	uint8_t Bpp();
-	uint8_t* Pixels();
-private:
-	void BgrToRgb();
-	bool CheckOpen(const char* path);
-	bool CheckFileHeader();
-	bool CheckInfoHeader();
-	bool ReadBytes();
+}
 
-	LDL_Result* _Result;
-	uint8_t* _Pixels;
-	FILE* _Input;
-	LDL_BmpFileHeader _FileHeader;
-	LDL_BmpInfoHeader _InfoHeader;
-	LDL_Vec2i _Size;
-	uint8_t _Bpp;
-};
+HashTable::~HashTable()
+{
+}
 
-#endif
+size_t HashTable::HashLy(const char* str)
+{
+    unsigned int hash = 0;
+
+    for (; *str; str++)
+        hash = (hash * 1664525) + (unsigned char)(*str) + 1013904223;
+
+    return hash;
+}
+
+HashItem* HashTable::Contains(const char* name)
+{
+    size_t h = HashLy(name) % Max;
+
+    for (ListNode* i = _Table[h].Head; i != NULL; i = i->Next)
+    {
+        HashItem* item = (HashItem*)i;
+
+        if (strcmp(name, item->Key) == 0)
+        {
+            return item;
+        }
+    }
+
+    return NULL;
+}
+
+void HashTable::Add(HashItem* item, const char* name)
+{
+    if (!Contains(name))
+    {
+        size_t h = HashLy(name) % Max;
+
+        strcpy(item->Key, name);
+
+        _Table[h].PushBack(item);
+    }
+}
+
+ListNode::ListNode() :
+    Next(NULL),
+    Prev(NULL)
+{
+}
+
+HashItem::HashItem()
+{
+    memset(Key, 0, sizeof(Key));
+}

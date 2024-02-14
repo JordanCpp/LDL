@@ -42,12 +42,7 @@ LDL_TextureOpenGL1::LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, u
 
 	_Size = size;
 
-	GLint format = 0;
-
-	if (bytesPerPixel == 3)
-		format = GL_RGB;
-	else
-		format = GL_RGBA;
+	GLint format = GetFormat(bytesPerPixel);
 
 	int sz = LDL_SelectTextureSize(_Size);
 
@@ -63,12 +58,7 @@ LDL_TextureOpenGL1::LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t bytesPerPi
 {
 	_Size = size;
 
-	GLint format = 0;
-
-	if (bytesPerPixel == 3)
-		format = GL_RGB;
-	else
-		format = GL_RGBA;
+	GLint format = GetFormat(bytesPerPixel);
 
 	int sz = LDL_SelectTextureSize(_Size);
 
@@ -84,12 +74,7 @@ LDL_TextureOpenGL1::~LDL_TextureOpenGL1()
 
 void LDL_TextureOpenGL1::Copy(const LDL_Vec2i& dstPos, const LDL_Vec2i& srcSize, uint8_t* pixels, uint8_t bytesPerPixel)
 {
-	GLint format = 0;
-
-	if (bytesPerPixel == 3)
-		format = GL_RGB;
-	else
-		format = GL_RGBA;
+	GLint format = GetFormat(bytesPerPixel);
 
 	LDL_GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)dstPos.x, (GLint)dstPos.y, (GLsizei)srcSize.x, (GLsizei)srcSize.y, format, GL_UNSIGNED_BYTE, pixels));
 }
@@ -112,6 +97,16 @@ const LDL_Vec2i& LDL_TextureOpenGL1::Quad()
 GLuint LDL_TextureOpenGL1::Id()
 {
 	return _Id;
+}
+
+GLint LDL_TextureOpenGL1::GetFormat(uint8_t bpp)
+{
+	if (bpp == 3)
+	{
+		return GL_RGB;
+	}
+	
+	return GL_RGBA;
 }
 
 /********************************************************************************************************************************

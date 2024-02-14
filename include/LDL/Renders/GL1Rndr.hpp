@@ -45,6 +45,7 @@ public:
 	const LDL_Vec2i& Quad();
 	GLuint Id();
 private:
+	GLint GetFormat(uint8_t bpp);
 	GLuint    _Id;
 	LDL_Vec2i _Size;
 	LDL_Vec2i _Quad;

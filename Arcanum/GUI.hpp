@@ -24,68 +24,58 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_BmpLoad_hpp
-#define LDL_BmpLoad_hpp
+#ifndef LDL_Arcanum_GUI_hpp
+#define LDL_Arcanum_GUI_hpp
 
-#include <LDL/Result.hpp>
-#include <LDL/Vec2i.hpp>
-#include <stdio.h>
+#include "Structs.hpp"
 
-struct LDL_BmpFileHeader
-{
-	uint16_t bfType;
-	uint32_t bfSize;
-	uint16_t bfReserved1;
-	uint16_t bfReserved2;
-	uint32_t bfOffBits;
-};
-
-struct LDL_BmpInfoHeader
-{
-	uint32_t biSize;
-	int32_t  biWidth;
-	int32_t  biHeight;
-	uint16_t biPlanes;
-	uint16_t biBitCount;
-	uint32_t biCompression;
-	uint32_t biSizeImage;
-	int32_t  biXPelsPerMeter;
-	int32_t  biYPelsPerMeter;
-	uint32_t biClrUsed;
-	uint32_t biClrImportant;
-};
-
-struct LDL_BmpPalette
-{
-	uint8_t blue;
-	uint8_t green;
-	uint8_t red;
-	uint8_t alpha;
-};
-
-class LDL_BmpLoader
+class GuiPoint2i
 {
 public:
-	LDL_BmpLoader(LDL_Result* result);
-	~LDL_BmpLoader();
-	bool Load(const char* path);
-	const LDL_Vec2i& Size();
-	uint8_t Bpp();
-	uint8_t* Pixels();
-private:
-	void BgrToRgb();
-	bool CheckOpen(const char* path);
-	bool CheckFileHeader();
-	bool CheckInfoHeader();
-	bool ReadBytes();
+	GuiPoint2i();
+	GuiPoint2i(int x, int y);
+	int x;
+	int y;
+};
 
-	LDL_Result* _Result;
-	uint8_t* _Pixels;
-	FILE* _Input;
-	LDL_BmpFileHeader _FileHeader;
-	LDL_BmpInfoHeader _InfoHeader;
-	LDL_Vec2i _Size;
-	uint8_t _Bpp;
+class GuiRect2i
+{
+public:
+	GuiRect2i();
+	GuiRect2i(int x, int y, int w, int h);
+	int x;
+	int y;
+	int w;
+	int h;
+};
+
+class GuiWidget : public ListNode
+{
+public:
+private:
+};
+
+class GuiContainer
+{
+public:
+	void Attach(GuiWidget* widget);
+private:
+	List _Widgets;
+};
+
+class GuiButton : public GuiWidget
+{
+public:
+private:
+	GuiRect2i _Area;
+};
+
+class GuiForm : public GuiWidget
+{
+public:
+
+private:
+	GuiContainer _Widgets;
 };
 
 #endif

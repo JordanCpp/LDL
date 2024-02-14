@@ -12,3 +12,6 @@ target_link_libraries(04Clear LDL)
 
 add_executable(05Img "05Img.cpp")
 target_link_libraries(05Img LDL)
+
+add_executable(06Surf "06Surf.cpp")
+target_link_libraries(06Surf LDL)

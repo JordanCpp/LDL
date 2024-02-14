@@ -46,8 +46,6 @@ LDL_WindowOpenGL3::LDL_WindowOpenGL3(LDL_Result* result, const LDL_Vec2i& pos, c
 	_MainWindow(result, pos, size, title, mode),
 	_HGLRC(NULL)
 {
-	PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
-
 	int attribs[] =
 	{
 		WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
@@ -104,7 +102,7 @@ LDL_WindowOpenGL3::LDL_WindowOpenGL3(LDL_Result* result, const LDL_Vec2i& pos, c
 		return;
 	}
 
-	wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
+	PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
 
 	if (!wglCreateContextAttribsARB)
 	{
