@@ -24,43 +24,32 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Config_hpp
-#define LDL_Config_hpp
-/********************************************************************************************************************************
-														Portability
-********************************************************************************************************************************/
-#if defined(__BORLANDC__)
-#include <mem.h>
-#define bool  char 
-#define true  1 
-#define false 0
-#endif
+#include <LDL/UNIX/Library.hpp>
+#include <dlfcn.h>
 
-#if defined(__MSDOS__)
-#define LDL_FAR  far
-#define LDL_NEAR near
-#else
-#define LDL_FAR
-#define LDL_NEAR
-#endif
-/********************************************************************************************************************************
-															   Types
-********************************************************************************************************************************/
-#if (_MSC_VER <= 1600 && !__MINGW32__)
-typedef unsigned char uint8_t;
-typedef signed char   int8_t;
+bool LDL_Library::Open(const char* path)
+{
+		Close();
 
-typedef unsigned short uint16_t;
-typedef signed short   int16_t;
+		_Library = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
 
-typedef unsigned int   uint32_t;
-typedef signed int     int32_t;
+		return _Library != NULL;
+}
 
-#include <stddef.h>
-#else
-#include <stdint.h>
-#endif
+	void LDL_Library::Close()
+	{
+		if (_Library != NULL)
+		{
+			dlclose(_Library);
+		}
+	}
 
-typedef void(*LDL_VoidFuncPtr)(void);
+	LDL_Library::~LDL_Library()
+	{
+		Close();
+	}
 
-#endif
+	LDL_VoidFuncPtr LDL_Library::Function(const char* name)
+	{
+		return (LDL_VoidFuncPtr)dlsym(_Library, name);
+	}

@@ -24,43 +24,28 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Config_hpp
-#define LDL_Config_hpp
-/********************************************************************************************************************************
-														Portability
-********************************************************************************************************************************/
-#if defined(__BORLANDC__)
-#include <mem.h>
-#define bool  char 
-#define true  1 
-#define false 0
-#endif
+#include <LDL/GLFuncs.hpp>
+#include <LDL/Abort.hpp>
+#include <LDL/UNIX/GLX.hpp>
 
-#if defined(__MSDOS__)
-#define LDL_FAR  far
-#define LDL_NEAR near
-#else
-#define LDL_FAR
-#define LDL_NEAR
-#endif
-/********************************************************************************************************************************
-															   Types
-********************************************************************************************************************************/
-#if (_MSC_VER <= 1600 && !__MINGW32__)
-typedef unsigned char uint8_t;
-typedef signed char   int8_t;
+	LDL_OpenGLFunctions::LDL_OpenGLFunctions()
+	{
+		_Library.Open("opengl32.dll");
+	}
 
-typedef unsigned short uint16_t;
-typedef signed short   int16_t;
+	LDL_OpenGLFunctions::~LDL_OpenGLFunctions()
+	{
+		_Library.Close();
+	}
 
-typedef unsigned int   uint32_t;
-typedef signed int     int32_t;
+	LDL_VoidFuncPtr LDL_OpenGLFunctions::Function(const char* name)
+	{
+		LDL_VoidFuncPtr result = (LDL_VoidFuncPtr)glXGetProcAddress((const GLubyte*)name);
 
-#include <stddef.h>
-#else
-#include <stdint.h>
-#endif
+		if (result == NULL)
+		{
+			LDL_Abort("Not found function:", name);
+		}
 
-typedef void(*LDL_VoidFuncPtr)(void);
-
-#endif
+		return result;
+	}

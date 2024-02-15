@@ -28,10 +28,12 @@ DEALINGS IN THE SOFTWARE.
 #define LDL_Library_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/Declare.hpp>
 
 #if defined(_WIN32)
+#include <LDL/Declare.hpp>
 #include <LDL/Windows/Library.hpp>
+#elif defined(__unix__)
+#include <LDL/UNIX/Library.hpp>
 #endif
 
 #endif

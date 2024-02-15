@@ -40,6 +40,9 @@ typedef LDL_WindowOpenGL3 LDL_Window;
 #elif defined(LDL_SUPPORT_SOFTWARE)
 typedef LDL_WindowSoftware LDL_Window;
 #endif
+#elif defined(__unix__)
+#include <LDL/UNIX/GL1Win.hpp>
+typedef LDL_WindowOpenGL1 LDL_Window;
 #elif defined(__MSDOS__)
 #include <LDL/DOS/SoftWin.hpp>
 typedef LDL_WindowSoftware LDL_Window;

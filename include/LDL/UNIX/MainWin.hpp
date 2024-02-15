@@ -24,43 +24,43 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Config_hpp
-#define LDL_Config_hpp
-/********************************************************************************************************************************
-														Portability
-********************************************************************************************************************************/
-#if defined(__BORLANDC__)
-#include <mem.h>
-#define bool  char 
-#define true  1 
-#define false 0
-#endif
+#ifndef LDL_UNIX_MainWin_hpp
+#define LDL_UNIX_MainWin_hpp
 
-#if defined(__MSDOS__)
-#define LDL_FAR  far
-#define LDL_NEAR near
-#else
-#define LDL_FAR
-#define LDL_NEAR
-#endif
-/********************************************************************************************************************************
-															   Types
-********************************************************************************************************************************/
-#if (_MSC_VER <= 1600 && !__MINGW32__)
-typedef unsigned char uint8_t;
-typedef signed char   int8_t;
+#include <LDL/BaseWin.hpp>
+#include <LDL/Result.hpp>
+#include <LDL/Events.hpp>
 
-typedef unsigned short uint16_t;
-typedef signed short   int16_t;
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <X11/keysym.h>
 
-typedef unsigned int   uint32_t;
-typedef signed int     int32_t;
-
-#include <stddef.h>
-#else
-#include <stdint.h>
-#endif
-
-typedef void(*LDL_VoidFuncPtr)(void);
+class LDL_MainWindow
+{
+public:
+	LDL_MainWindow(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode);
+	~LDL_MainWindow();
+	void Update();
+	uint8_t ConvertKey(size_t key);
+	bool Running();
+	void PollEvents();
+	bool GetEvent(LDL_Event& event);
+	bool WaitEvent(LDL_Event& event);
+	void StopEvent();
+	void Title(const char* title);
+	const char* Title();
+	const LDL_Vec2i& Size();
+	const LDL_Vec2i& Pos();
+private:
+	LDL_Result* _Result;
+	LDL_BaseWindow _BaseWindow;
+	LDL_Eventer    _Eventer;
+public:
+	Display* _Display;
+	int      _Screen;
+	Window   _Root;
+	Window   _Window;
+	size_t   _EventMask;
+};
 
 #endif

@@ -34,6 +34,8 @@ DEALINGS IN THE SOFTWARE.
 
 #if defined(_WIN32)
 #include <LDL/Windows/MainWin.hpp>
+#elif defined(__unix__)
+#include <LDL/UNIX/MainWin.hpp>
 #elif defined(__MSDOS__)
 #include <LDL/DOS/MainWin.hpp>
 #endif

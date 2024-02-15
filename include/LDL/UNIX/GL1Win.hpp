@@ -24,43 +24,35 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Config_hpp
-#define LDL_Config_hpp
-/********************************************************************************************************************************
-														Portability
-********************************************************************************************************************************/
-#if defined(__BORLANDC__)
-#include <mem.h>
-#define bool  char 
-#define true  1 
-#define false 0
-#endif
+#ifndef LDL_UNIX_GL1Win_hpp
+#define LDL_UNIX_GL1Win_hpp
 
-#if defined(__MSDOS__)
-#define LDL_FAR  far
-#define LDL_NEAR near
-#else
-#define LDL_FAR
-#define LDL_NEAR
-#endif
-/********************************************************************************************************************************
-															   Types
-********************************************************************************************************************************/
-#if (_MSC_VER <= 1600 && !__MINGW32__)
-typedef unsigned char uint8_t;
-typedef signed char   int8_t;
+#include <LDL/MainWin.hpp>
+#include <LDL/UNIX/GLX.hpp>
 
-typedef unsigned short uint16_t;
-typedef signed short   int16_t;
-
-typedef unsigned int   uint32_t;
-typedef signed int     int32_t;
-
-#include <stddef.h>
-#else
-#include <stdint.h>
-#endif
-
-typedef void(*LDL_VoidFuncPtr)(void);
+class LDL_WindowOpenGL1
+{
+public:
+	LDL_WindowOpenGL1(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized);
+	~LDL_WindowOpenGL1();
+	bool Running();
+	void Present(uint8_t* pixels, uint8_t bytesPerPixel);
+	void Present();
+	void PollEvents();
+	const LDL_Vec2i& Size();
+	const LDL_Vec2i& Pos();
+	bool GetEvent(LDL_Event& event);
+	bool WaitEvent(LDL_Event& event);
+	void StopEvent();
+	const char* Title();
+	void Title(const char* title);
+	void* NativeHandle();
+	void Update();
+private:
+	LDL_Result*    _Result;
+	LDL_MainWindow _Window;
+	XVisualInfo*   _Visual;
+	GLXContext     _Context;
+};
 
 #endif

@@ -37,6 +37,10 @@ typedef LDL_TextureOpenGL1 LDL_Texture;
 typedef LDL_RenderSoftware  LDL_Render;
 typedef LDL_TextureSoftware LDL_Texture;
 #endif
+#elif defined(__unix__)
+#include <LDL/Renders/GL1Rndr.hpp>
+typedef LDL_RenderOpenGL1  LDL_Render;
+typedef LDL_TextureOpenGL1 LDL_Texture;
 #elif defined(__MSDOS__)
 #include <LDL/Renders/SoftRndr.hpp>
 typedef LDL_RenderSoftware  LDL_Render;
