@@ -34,11 +34,13 @@ DEALINGS IN THE SOFTWARE.
 typedef LDL_RenderOpenGL1  LDL_Render;
 typedef LDL_TextureOpenGL1 LDL_Texture;
 #elif defined(LDL_SUPPORT_SOFTWARE)
-typedef LDL_RenderSoftware LDL_Render;
+typedef LDL_RenderSoftware  LDL_Render;
+typedef LDL_TextureSoftware LDL_Texture;
 #endif
 #elif defined(__MSDOS__)
 #include <LDL/Renders/SoftRndr.hpp>
-typedef LDL_RenderSoftware LDL_Render;
+typedef LDL_RenderSoftware  LDL_Render;
+typedef LDL_TextureSoftware LDL_Texture;
 #endif
 
 #endif

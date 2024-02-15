@@ -60,15 +60,37 @@ class HashTable
 public:
     enum
     {
-        Max = 1024
+        Small = 512,
+        Medium = 1024,
+        Large = 4096,
+        Huge = 8192
     };
-    HashTable();
+    HashTable(size_t length);
     ~HashTable();
     size_t HashLy(const char* str);
     HashItem* Contains(const char* name);
     void Add(HashItem* item, const char* name);
 private:
-    List _Table[Max];
+    size_t _Length;
+    List* _Table;
+};
+
+class Vector
+{
+public:
+    Vector(size_t capacity, size_t elementSize);
+    ~Vector();
+    size_t Capacity();
+    size_t Size();
+    void* Get(size_t index);
+    void Set(size_t index, void* element);
+    void PushBack(void* element);
+    void Resize(size_t count);
+private:
+    size_t _Position;
+    size_t _Capacity;
+    size_t _ElementSize;
+    void*  _Content;
 };
 
 #endif

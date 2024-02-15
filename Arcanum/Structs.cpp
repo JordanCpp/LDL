@@ -26,6 +26,7 @@ DEALINGS IN THE SOFTWARE.
 
 #include "Structs.hpp"
 #include <string.h>
+#include <assert.h>
 
 List::List() :
     Head(NULL),
@@ -62,12 +63,15 @@ void List::PushBack(ListNode* node)
     }
 }
 
-HashTable::HashTable()
+HashTable::HashTable(size_t length) :
+    _Length(length)
 {
+    _Table = new List[_Length];
 }
 
 HashTable::~HashTable()
 {
+    delete _Table;
 }
 
 size_t HashTable::HashLy(const char* str)
@@ -82,7 +86,7 @@ size_t HashTable::HashLy(const char* str)
 
 HashItem* HashTable::Contains(const char* name)
 {
-    size_t h = HashLy(name) % Max;
+    size_t h = HashLy(name) % _Length;
 
     for (ListNode* i = _Table[h].Head; i != NULL; i = i->Next)
     {
@@ -101,7 +105,7 @@ void HashTable::Add(HashItem* item, const char* name)
 {
     if (!Contains(name))
     {
-        size_t h = HashLy(name) % Max;
+        size_t h = HashLy(name) % _Length;
 
         strcpy(item->Key, name);
 
@@ -118,4 +122,59 @@ ListNode::ListNode() :
 HashItem::HashItem()
 {
     memset(Key, 0, sizeof(Key));
+}
+
+Vector::Vector(size_t capacity, size_t elementSize) :
+    _Capacity(capacity),
+    _Position(0),
+    _ElementSize(elementSize),
+    _Content(NULL)
+{
+    _Content = new char[_Capacity * _ElementSize];
+}
+
+Vector::~Vector()
+{
+    //delete [] _Content;
+}
+
+size_t Vector::Capacity()
+{
+    return _Capacity;
+}
+
+size_t Vector::Size()
+{
+    return _Position;
+}
+
+void* Vector::Get(size_t index)
+{
+    assert(index <= _Capacity);
+
+    return &_Content + (index * _ElementSize);
+}
+
+void Vector::Set(size_t index, void* element)
+{
+    assert(index <= _Capacity);
+    assert(element != NULL);
+
+    memcpy(&_Content + (index * _ElementSize), element, _ElementSize);
+}
+
+void Vector::PushBack(void* element)
+{
+    assert(_Position + 1 <= _Capacity);
+
+    Set(_Position, element);
+
+    _Position++;
+}
+
+void Vector::Resize(size_t count)
+{
+    assert(count <= _Capacity);
+
+    _Position = count;
 }

@@ -35,6 +35,14 @@ DEALINGS IN THE SOFTWARE.
 #define true  1 
 #define false 0
 #endif
+
+#if defined(__MSDOS__)
+#define LDL_FAR  far
+#define LDL_NEAR near
+#else
+#define LDL_FAR
+#define LDL_NEAR
+#endif
 /********************************************************************************************************************************
 															   Types
 ********************************************************************************************************************************/

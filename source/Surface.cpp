@@ -27,24 +27,30 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/Surface.hpp>
 #include <assert.h>
 
-LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, int bpp) :
+LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp) :
 	_Bpp(bpp),
 	_Capacity(capacity),
 	_Size(capacity)
 {
-	assert(bpp >= 0 && bpp <= 4);
+	assert(capacity.x > 0);
+	assert(capacity.y > 0);
+	assert(bpp >= 1 && bpp <= 4);
 
 	_Pixels = new uint8_t[_Capacity.x * _Capacity.y * bpp];
 }
 
-LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, int bpp) :
+LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp) :
 	_Bpp(bpp),
 	_Capacity(capacity),
 	_Size(size)
 {
-	assert(bpp >= 0 && bpp <= 4);
+	assert(capacity.x > 0);
+	assert(capacity.y > 0);
+	assert(size.x > 0);
+	assert(size.y > 0);
 	assert(size.x <= capacity.x);
 	assert(size.y <= capacity.y);
+	assert(bpp >= 1 && bpp <= 4);
 
 	_Pixels = new uint8_t[_Capacity.x * _Capacity.y * bpp];
 }

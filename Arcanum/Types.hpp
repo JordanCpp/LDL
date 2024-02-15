@@ -24,36 +24,28 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_DOS_MainWin_hpp
-#define LDL_DOS_MainWin_hpp
+#ifndef Arcanum_Types_hpp
+#define Arcanum_Types_hpp
 
-#include <LDL/BaseWin.hpp>
-#include <LDL/Result.hpp>
-#include <LDL/Events.hpp>
-#include <LDL/Declare.hpp>
+#if defined(__BORLANDC__)
+#include <mem.h>
+#define bool  char 
+#define true  1 
+#define false 0
+#endif
 
-class LDL_MainWindow
-{
-public:
-	LDL_MainWindow(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode);
-	~LDL_MainWindow();
-	void Update();
-	uint8_t ConvertKey(size_t key);
-	bool Running();
-	void PollEvents();
-	bool GetEvent(LDL_Event& event);
-	bool WaitEvent(LDL_Event& event);
-	void StopEvent();
-	void Title(const char* title);
-	const char* Title();
-	const LDL_Vec2i& Size();
-	const LDL_Vec2i& Pos();
-private:
-	bool InitMouse();
-	bool MousePress(size_t button);
-	LDL_Result* _Result;
-	LDL_BaseWindow _BaseWindow;
-	LDL_Eventer    _Eventer;
-};
+#if (_MSC_VER <= 1600 && !__MINGW32__)
+typedef unsigned char uint8_t;
+typedef signed char   int8_t;
+
+typedef unsigned short uint16_t;
+typedef signed short   int16_t;
+
+typedef unsigned long   uint32_t;
+typedef signed long     int32_t;
+#else
+#include <stdint.h>
+#include <stddef.h>
+#endif
 
 #endif

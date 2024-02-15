@@ -31,6 +31,21 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/BaseRndr.hpp>
 #include <LDL/Surface.hpp>
 
+class LDL_TextureSoftware
+{
+public:
+	LDL_TextureSoftware(const LDL_Vec2i& size, uint8_t* pixels, uint8_t bytesPerPixel);
+	LDL_TextureSoftware(const LDL_Vec2i& size, uint8_t bytesPerPixel);
+	~LDL_TextureSoftware();
+	void Copy(const LDL_Vec2i& dstPos, const LDL_Vec2i& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
+	void Copy(const LDL_Vec2i& dstPos, LDL_Surface* surface, const LDL_Vec2i& srcSize);
+	const LDL_Vec2i& Size();
+	const LDL_Vec2i& Quad();
+private:
+	LDL_Vec2i _Size;
+	LDL_Vec2i _Quad;
+};
+
 class LDL_RenderSoftware
 {
 public:
@@ -41,7 +56,13 @@ public:
 	void Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size);
 	void SetColor(const LDL_Color& color);
 	void Clear();
+	void Draw(LDL_TextureSoftware* image, const LDL_Vec2i& pos);
+	void Draw(LDL_TextureSoftware* image, const LDL_Vec2i& pos, const LDL_Vec2i& size);
+	void Draw(LDL_TextureSoftware* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize);
+	void Draw(LDL_TextureSoftware* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& dstSize, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize);
+
 private:
+	uint8_t CalcBpp();
 	LDL_WindowSoftware* _Window;
 	LDL_BaseRender      _BaseRender;
 	LDL_Surface         _Screen;

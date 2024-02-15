@@ -25,15 +25,24 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include <LDL/DOS/MainWin.hpp>
+#include <assert.h>
+#include <dos.h>
 
 LDL_MainWindow::LDL_MainWindow(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
 	_Result(result),
 	_BaseWindow(pos, size, title, mode)
 {
+	InitMouse();
 }
 
 LDL_MainWindow::~LDL_MainWindow()
 {
+	union REGS regs;
+
+	regs.h.ah = 0x00;
+	regs.h.al = 0x03;
+
+	int86(0x10, &regs, &regs);
 }
 
 void LDL_MainWindow::Update()
@@ -42,6 +51,8 @@ void LDL_MainWindow::Update()
 
 uint8_t LDL_MainWindow::ConvertKey(size_t key)
 {
+	assert(key >= 0);
+
 	return LDL_KeyboardKey::Unknown;
 }
 
@@ -52,6 +63,40 @@ bool LDL_MainWindow::Running()
 
 void LDL_MainWindow::PollEvents()
 {
+	LDL_Event event;
+
+	if (MousePress(0x00))
+	{
+		event.Type = LDL_Event::IsMouseClick;
+		event.Mouse.State = LDL_ButtonState::Pressed;
+		event.Mouse.Button = LDL_MouseButton::Left;
+		event.Mouse.PosX = 0;
+		event.Mouse.PosY = 0;
+
+		_Eventer.Push(event);
+	}
+
+	if (MousePress(0x01))
+	{
+		event.Type = LDL_Event::IsMouseClick;
+		event.Mouse.State = LDL_ButtonState::Pressed;
+		event.Mouse.Button = LDL_MouseButton::Right;
+		event.Mouse.PosX = 0;
+		event.Mouse.PosY = 0;
+
+		_Eventer.Push(event);
+	}
+
+	if (MousePress(0x02))
+	{
+		event.Type = LDL_Event::IsMouseClick;
+		event.Mouse.State = LDL_ButtonState::Pressed;
+		event.Mouse.Button = LDL_MouseButton::Middle;
+		event.Mouse.PosX = 0;
+		event.Mouse.PosY = 0;
+
+		_Eventer.Push(event);
+	}
 }
 
 bool LDL_MainWindow::GetEvent(LDL_Event& event)
@@ -94,4 +139,34 @@ const LDL_Vec2i& LDL_MainWindow::Size()
 const LDL_Vec2i& LDL_MainWindow::Pos()
 {
 	return _BaseWindow.Pos();
+}
+
+bool LDL_MainWindow::InitMouse()
+{
+	union REGS regs;
+
+	regs.x.ax = 0;
+
+	int86(0x33, &regs, &regs);
+
+	bool result = regs.x.ax;
+
+	if (!result)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool LDL_MainWindow::MousePress(size_t button)
+{
+	union REGS regs;
+
+	regs.x.ax = 0x05;
+	regs.x.bx = button;
+
+	int86(0x33, &regs, &regs);
+
+	return regs.x.bx;
 }

@@ -27,16 +27,35 @@ DEALINGS IN THE SOFTWARE.
 #ifndef LDL_Arcanum_Objects_hpp
 #define LDL_Arcanum_Objects_hpp
 
+#include <stddef.h>
+
 class Tile
 {
 public:
+	enum
+	{
+		Max = 16
+	};
+	void Init(const char* name);
+	const char* Body();
 private:
+	char _Body[Tile::Max];
 };
 
 class Location
 {
 public:
+	enum
+	{
+		LimitTiles = 10 * 10
+	};
+
+	void TilesCount(size_t count);
+	size_t TilesCount();
+	Tile* Tiles();
 private:
+	size_t _Total;
+	Tile _Tiles[LimitTiles];
 };
 
 #endif

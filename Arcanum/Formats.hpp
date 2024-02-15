@@ -24,36 +24,95 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_DOS_MainWin_hpp
-#define LDL_DOS_MainWin_hpp
+#ifndef LDL_Arcanum_Formats_hpp
+#define LDL_Arcanum_Formats_hpp
 
-#include <LDL/BaseWin.hpp>
-#include <LDL/Result.hpp>
-#include <LDL/Events.hpp>
-#include <LDL/Declare.hpp>
+#include "Types.hpp"
+#include "Structs.hpp"
+#include <stdio.h>
 
-class LDL_MainWindow
+struct ArtColor
+{
+	ArtColor();
+	uint8_t b;
+	uint8_t	g;
+	uint8_t	r;
+	uint8_t	a;
+};
+
+inline bool in_palette(ArtColor col)
+{
+	return (col.a | col.b | col.g | col.r) != 0;
+}
+
+struct ArtTable
+{
+	ArtColor colors[256];
+};
+
+struct ArtHeader
+{
+	void Clear();
+	uint32_t h0[3];
+	ArtColor stupid_color[4];
+	uint32_t frame_num_low;
+	uint32_t frame_num;
+	ArtColor palette_data1[8];
+	ArtColor palette_data2[8];
+	ArtColor palette_data3[8];
+};
+
+struct ArtFrameHeader
+{
+	enum
+	{
+		Max = 8 * 16
+	};
+
+	ArtFrameHeader();
+	uint32_t width;
+	uint32_t height;
+	uint32_t size;
+	uint32_t c_x;
+	uint32_t c_y;
+	uint32_t d_x;
+	uint32_t d_y;
+};
+
+struct ArtFrame
+{
+	enum
+	{
+		Max = 256 * 100
+	};
+
+	ArtFrameHeader _Header;
+	uint8_t _Pixels[ArtFrame::Max];
+};
+
+class ArtFile
 {
 public:
-	LDL_MainWindow(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode);
-	~LDL_MainWindow();
-	void Update();
-	uint8_t ConvertKey(size_t key);
-	bool Running();
-	void PollEvents();
-	bool GetEvent(LDL_Event& event);
-	bool WaitEvent(LDL_Event& event);
-	void StopEvent();
-	void Title(const char* title);
-	const char* Title();
-	const LDL_Vec2i& Size();
-	const LDL_Vec2i& Pos();
+	void Clear();
+	bool Load(const char* name);
+	size_t Frames();
+	void Frame(ArtFrame *frame);
 private:
-	bool InitMouse();
-	bool MousePress(size_t button);
-	LDL_Result* _Result;
-	LDL_BaseWindow _BaseWindow;
-	LDL_Eventer    _Eventer;
+	bool Inc(ArtFrame* frame);
+	void Dec(ArtFrame* frame);
+	void Decode(ArtFrame* frame);
+	size_t Index(ArtFrame* frame, int x, int y);
+	FILE* _File;
+	int _Palettes;
+	int _Frames;
+	int _KeyFrame;
+	bool _Animated;
+	ArtHeader       _Header;
+	ArtFrameHeader  _FrameHeaders[ArtFrameHeader::Max];
+	ArtTable        _PaletteData[3];
+	uint8_t      data[ArtFrame::Max];
+	int px;
+	int py;
 };
 
 #endif

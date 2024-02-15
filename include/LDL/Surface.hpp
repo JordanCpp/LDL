@@ -32,8 +32,8 @@ DEALINGS IN THE SOFTWARE.
 class LDL_Surface
 {
 public:
-	LDL_Surface(const LDL_Vec2i& capacity, int bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, int bpp);
+	LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp);
+	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp);
 	~LDL_Surface();
 	uint8_t* Pixels();
 	uint8_t Bpp();

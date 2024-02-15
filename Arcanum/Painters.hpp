@@ -24,36 +24,19 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_DOS_MainWin_hpp
-#define LDL_DOS_MainWin_hpp
+#ifndef LDL_Arcanum_Painters_hpp
+#define LDL_Arcanum_Painters_hpp
 
-#include <LDL/BaseWin.hpp>
-#include <LDL/Result.hpp>
-#include <LDL/Events.hpp>
-#include <LDL/Declare.hpp>
+#include "Objects.hpp"
+#include "Managers.hpp"
 
-class LDL_MainWindow
+class LocationPainter
 {
 public:
-	LDL_MainWindow(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode);
-	~LDL_MainWindow();
-	void Update();
-	uint8_t ConvertKey(size_t key);
-	bool Running();
-	void PollEvents();
-	bool GetEvent(LDL_Event& event);
-	bool WaitEvent(LDL_Event& event);
-	void StopEvent();
-	void Title(const char* title);
-	const char* Title();
-	const LDL_Vec2i& Size();
-	const LDL_Vec2i& Pos();
+	LocationPainter(ImageManager* imageManager);
+	void Draw(Location* location);
 private:
-	bool InitMouse();
-	bool MousePress(size_t button);
-	LDL_Result* _Result;
-	LDL_BaseWindow _BaseWindow;
-	LDL_Eventer    _Eventer;
+	ImageManager* _ImageManager;
 };
 
 #endif

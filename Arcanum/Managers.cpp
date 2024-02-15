@@ -24,36 +24,16 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_DOS_MainWin_hpp
-#define LDL_DOS_MainWin_hpp
+#include "Managers.hpp"
 
-#include <LDL/BaseWin.hpp>
-#include <LDL/Result.hpp>
-#include <LDL/Events.hpp>
-#include <LDL/Declare.hpp>
-
-class LDL_MainWindow
+ImageManager::ImageManager() :
+	_Table(HashTable::Large)
 {
-public:
-	LDL_MainWindow(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode);
-	~LDL_MainWindow();
-	void Update();
-	uint8_t ConvertKey(size_t key);
-	bool Running();
-	void PollEvents();
-	bool GetEvent(LDL_Event& event);
-	bool WaitEvent(LDL_Event& event);
-	void StopEvent();
-	void Title(const char* title);
-	const char* Title();
-	const LDL_Vec2i& Size();
-	const LDL_Vec2i& Pos();
-private:
-	bool InitMouse();
-	bool MousePress(size_t button);
-	LDL_Result* _Result;
-	LDL_BaseWindow _BaseWindow;
-	LDL_Eventer    _Eventer;
-};
+}
 
-#endif
+ImageX* ImageManager::GetImage(const char* name)
+{
+	ImageX* result = (ImageX*)_Table.Contains(name);
+
+	return result;
+}

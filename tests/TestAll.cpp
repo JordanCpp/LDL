@@ -1,4 +1,5 @@
 #include <LDL/LDL.hpp>
+#include <string.h>
 
 void LDL_ColorTest()
 {

@@ -25,3 +25,33 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include "Objects.hpp"
+#include <string.h>
+#include <assert.h>
+
+void Tile::Init(const char* name)
+{
+	assert(name != NULL);
+	assert(strlen(name) < Tile::Max);
+
+	strcpy(_Body, name);
+}
+
+const char* Tile::Body()
+{
+	return _Body;
+}
+
+void Location::TilesCount(size_t count)
+{
+	_Total = count;
+}
+
+size_t Location::TilesCount()
+{
+	return _Total;
+}
+
+Tile* Location::Tiles()
+{
+	return _Tiles;
+}

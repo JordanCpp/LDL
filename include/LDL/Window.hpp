@@ -42,6 +42,7 @@ typedef LDL_WindowSoftware LDL_Window;
 #endif
 #elif defined(__MSDOS__)
 #include <LDL/DOS/SoftWin.hpp>
+typedef LDL_WindowSoftware LDL_Window;
 #endif
 
 #endif

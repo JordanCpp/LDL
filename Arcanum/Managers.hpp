@@ -24,36 +24,19 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_DOS_MainWin_hpp
-#define LDL_DOS_MainWin_hpp
+#ifndef LDL_Arcanum_Managers_hpp
+#define LDL_Arcanum_Managers_hpp
 
-#include <LDL/BaseWin.hpp>
-#include <LDL/Result.hpp>
-#include <LDL/Events.hpp>
-#include <LDL/Declare.hpp>
+#include "FrmX.hpp"
+#include "Structs.hpp"
 
-class LDL_MainWindow
+class ImageManager
 {
 public:
-	LDL_MainWindow(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode);
-	~LDL_MainWindow();
-	void Update();
-	uint8_t ConvertKey(size_t key);
-	bool Running();
-	void PollEvents();
-	bool GetEvent(LDL_Event& event);
-	bool WaitEvent(LDL_Event& event);
-	void StopEvent();
-	void Title(const char* title);
-	const char* Title();
-	const LDL_Vec2i& Size();
-	const LDL_Vec2i& Pos();
+	ImageManager();
+	ImageX* GetImage(const char* name);
 private:
-	bool InitMouse();
-	bool MousePress(size_t button);
-	LDL_Result* _Result;
-	LDL_BaseWindow _BaseWindow;
-	LDL_Eventer    _Eventer;
+	HashTable _Table;
 };
 
 #endif

@@ -34,6 +34,7 @@ class LDL_WindowSoftware
 public:
 	LDL_WindowSoftware(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized);
 	~LDL_WindowSoftware();
+	void Present(uint8_t* pixels, uint8_t bytesPerPixel);
 	bool Running();
 	void Present();
 	void PollEvents();
@@ -47,8 +48,9 @@ public:
 	void* NativeHandle();
 	void Update();
 private:
-	LDL_Result*    _Result;
-	LDL_MainWindow _MainWindow;
+	LDL_Result*      _Result;
+	uint8_t LDL_FAR* _Screen;
+	LDL_MainWindow   _MainWindow;
 };
 
 #endif

@@ -1,17 +1,16 @@
-#include "Structs.hpp"
+#include "Formats.hpp"
 #include <stdio.h>
 
 int main()
 {
-	HashTable table;
+	ArtFile* file = new ArtFile;
+	ArtFrame* frame = new ArtFrame;
 
-	printf("%d\n", table.Contains("hello") != NULL);
+	printf("%d\n", file->Load("grsbse0c.ART"));
 
-	HashItem* item = new HashItem;
+	file->Frame(frame);
 
-	table.Add(item, "hello");
-
-	printf("%d\n", table.Contains("hello") != NULL);
+	printf("%d\n", frame->_Header.size);
 
 	return 0;
 }
