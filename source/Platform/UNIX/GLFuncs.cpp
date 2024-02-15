@@ -28,24 +28,24 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/Abort.hpp>
 #include <LDL/UNIX/GLX.hpp>
 
-	LDL_OpenGLFunctions::LDL_OpenGLFunctions()
+LDL_OpenGLFunctions::LDL_OpenGLFunctions()
+{
+	_Library.Open("opengl32.dll");
+}
+
+LDL_OpenGLFunctions::~LDL_OpenGLFunctions()
+{
+	_Library.Close();
+}
+
+LDL_VoidFuncPtr LDL_OpenGLFunctions::Function(const char* name)
+{
+	LDL_VoidFuncPtr result = (LDL_VoidFuncPtr)glXGetProcAddress((const GLubyte*)name);
+
+	if (result == NULL)
 	{
-		_Library.Open("opengl32.dll");
+		LDL_Abort("Not found function:", name);
 	}
 
-	LDL_OpenGLFunctions::~LDL_OpenGLFunctions()
-	{
-		_Library.Close();
-	}
-
-	LDL_VoidFuncPtr LDL_OpenGLFunctions::Function(const char* name)
-	{
-		LDL_VoidFuncPtr result = (LDL_VoidFuncPtr)glXGetProcAddress((const GLubyte*)name);
-
-		if (result == NULL)
-		{
-			LDL_Abort("Not found function:", name);
-		}
-
-		return result;
-	}
+	return result;
+}

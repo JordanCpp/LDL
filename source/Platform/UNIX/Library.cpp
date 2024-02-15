@@ -29,27 +29,27 @@ DEALINGS IN THE SOFTWARE.
 
 bool LDL_Library::Open(const char* path)
 {
-		Close();
+	Close();
 
-		_Library = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
+	_Library = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
 
-		return _Library != NULL;
+	return _Library != NULL;
 }
 
-	void LDL_Library::Close()
+void LDL_Library::Close()
+{
+	if (_Library != NULL)
 	{
-		if (_Library != NULL)
-		{
-			dlclose(_Library);
-		}
+		dlclose(_Library);
 	}
+}
 
-	LDL_Library::~LDL_Library()
-	{
-		Close();
-	}
+LDL_Library::~LDL_Library()
+{
+	Close();
+}
 
-	LDL_VoidFuncPtr LDL_Library::Function(const char* name)
-	{
-		return (LDL_VoidFuncPtr)dlsym(_Library, name);
-	}
+LDL_VoidFuncPtr LDL_Library::Function(const char* name)
+{
+	return (LDL_VoidFuncPtr)dlsym(_Library, name);
+}

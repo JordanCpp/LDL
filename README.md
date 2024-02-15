@@ -19,7 +19,7 @@ This project is an attempt to make the code more portable. (https://github.com/J
 # Integration into your project (CMake Linux or Windows)
 add_subdirectory("LDL_Proj")
 include_directories("LDL_Proj/include")
-target_link_libraries(${CMAKE_PROJECT_NAME} (LDLGL1 or LDLGL3))
+target_link_libraries(${CMAKE_PROJECT_NAME} LDL)
 
 # Support platforms.
 1. Windows 95 and higher.
@@ -30,7 +30,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME} (LDLGL1 or LDLGL3))
 1. OpenGL >= 1.0 and <= 4.6
 
 # Support 2D renders.
-1. OpenGL1
+1. OpenGL 1.2
 2. Software
 
 # The main idea is to write an analogue of the SDL library. 

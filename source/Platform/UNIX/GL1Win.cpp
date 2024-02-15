@@ -27,120 +27,120 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/UNIX/GL1Win.hpp>
 #include <assert.h>
 
-	LDL_WindowOpenGL1::LDL_WindowOpenGL1(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
-		_Result(result),
-		_Window(result, pos, size, title, mode)
-	{
-		int major = 0;
-		int minor = 0;
+LDL_WindowOpenGL1::LDL_WindowOpenGL1(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
+	_Result(result),
+	_Window(result, pos, size, title, mode)
+{
+	int major = 0;
+	int minor = 0;
 
-		glXQueryVersion(_Window._Display, &major, &minor);
+	glXQueryVersion(_Window._Display, &major, &minor);
 
-		int ga[] = {
-			GLX_RGBA,
-			GLX_DOUBLEBUFFER,
-			GLX_DEPTH_SIZE, 24,
-			GLX_STENCIL_SIZE, 8,
-			GLX_RED_SIZE, 8,
-			GLX_GREEN_SIZE, 8,
-			GLX_BLUE_SIZE, 8,
-			GLX_SAMPLE_BUFFERS, 0,
-			GLX_SAMPLES, 0,
-			None };
+	int ga[] = {
+		GLX_RGBA,
+		GLX_DOUBLEBUFFER,
+		GLX_DEPTH_SIZE, 24,
+		GLX_STENCIL_SIZE, 8,
+		GLX_RED_SIZE, 8,
+		GLX_GREEN_SIZE, 8,
+		GLX_BLUE_SIZE, 8,
+		GLX_SAMPLE_BUFFERS, 0,
+		GLX_SAMPLES, 0,
+		None };
 
-		_Visual = glXChooseVisual(_Window._Display, _Window._Screen, ga);
+	_Visual = glXChooseVisual(_Window._Display, _Window._Screen, ga);
 
-		if (_Visual == NULL)
-			_Result->Message("glXChooseVisual failed");
+	if (_Visual == NULL)
+		_Result->Message("glXChooseVisual failed");
 
-		XSetWindowAttributes wa;
+	XSetWindowAttributes wa;
 
-		wa.border_pixel = BlackPixel(_Window._Display, _Window._Screen);
-		wa.background_pixel = WhitePixel(_Window._Display, _Window._Screen);
-		wa.override_redirect = True;
-		wa.colormap = XCreateColormap(_Window._Display, _Window._Root, _Visual->visual, AllocNone);
-		wa.event_mask = ExposureMask;
+	wa.border_pixel = BlackPixel(_Window._Display, _Window._Screen);
+	wa.background_pixel = WhitePixel(_Window._Display, _Window._Screen);
+	wa.override_redirect = True;
+	wa.colormap = XCreateColormap(_Window._Display, _Window._Root, _Visual->visual, AllocNone);
+	wa.event_mask = ExposureMask;
 
-		size_t x = pos.x;
-		size_t y = pos.y;
-		size_t w = size.x;
-		size_t h = size.y;
+	size_t x = pos.x;
+	size_t y = pos.y;
+	size_t w = size.x;
+	size_t h = size.y;
 
-		_Window._Window = XCreateWindow(_Window._Display, _Window._Root, x, y, w, h, 0, _Visual->depth, InputOutput, _Visual->visual, CWBackPixel | CWColormap | CWBorderPixel | CWEventMask, &wa);
+	_Window._Window = XCreateWindow(_Window._Display, _Window._Root, x, y, w, h, 0, _Visual->depth, InputOutput, _Visual->visual, CWBackPixel | CWColormap | CWBorderPixel | CWEventMask, &wa);
 
-		XSelectInput(_Window._Display, _Window._Window, _Window._EventMask);
+	XSelectInput(_Window._Display, _Window._Window, _Window._EventMask);
 
-		_Context = glXCreateContext(_Window._Display, _Visual, NULL, true);
+	_Context = glXCreateContext(_Window._Display, _Visual, NULL, true);
 
-		glXMakeCurrent(_Window._Display, _Window._Window, _Context);
+	glXMakeCurrent(_Window._Display, _Window._Window, _Context);
 
-		_Window.Title(title);
+	_Window.Title(title);
 
-		_Window.Update();
-	}
+	_Window.Update();
+}
 
-	LDL_WindowOpenGL1::~LDL_WindowOpenGL1()
-	{
-		glXDestroyContext(_Window._Display, _Context);
-	}
+LDL_WindowOpenGL1::~LDL_WindowOpenGL1()
+{
+	glXDestroyContext(_Window._Display, _Context);
+}
 
-	void LDL_WindowOpenGL1::Present(uint8_t* pixels, uint8_t bytesPerPixel)
-	{
-		assert(pixels != NULL);
-		assert(bytesPerPixel == 1 || bytesPerPixel == 2 || bytesPerPixel == 3 || bytesPerPixel == 4);
-	}
+void LDL_WindowOpenGL1::Present(uint8_t* pixels, uint8_t bytesPerPixel)
+{
+	assert(pixels != NULL);
+	assert(bytesPerPixel == 1 || bytesPerPixel == 2 || bytesPerPixel == 3 || bytesPerPixel == 4);
+}
 
-	void LDL_WindowOpenGL1::Present()
-	{
-		glXSwapBuffers(_Window._Display, _Window._Window);
-	}
+void LDL_WindowOpenGL1::Present()
+{
+	glXSwapBuffers(_Window._Display, _Window._Window);
+}
 
-	const LDL_Vec2i& LDL_WindowOpenGL1::Size()
-	{
-		return _Window.Size();
-	}
+const LDL_Vec2i& LDL_WindowOpenGL1::Size()
+{
+	return _Window.Size();
+}
 
-	const LDL_Vec2i& LDL_WindowOpenGL1::Pos()
-	{
-		return _Window.Pos();
-	}
+const LDL_Vec2i& LDL_WindowOpenGL1::Pos()
+{
+	return _Window.Pos();
+}
 
-	bool LDL_WindowOpenGL1::Running()
-	{
-		return _Window.Running();
-	}
+bool LDL_WindowOpenGL1::Running()
+{
+	return _Window.Running();
+}
 
-	void LDL_WindowOpenGL1::PollEvents()
-	{
-		_Window.PollEvents();
-	}
+void LDL_WindowOpenGL1::PollEvents()
+{
+	_Window.PollEvents();
+}
 
-	bool LDL_WindowOpenGL1::GetEvent(LDL_Event& event)
-	{
-		return _Window.GetEvent(event);
-	}
+bool LDL_WindowOpenGL1::GetEvent(LDL_Event& event)
+{
+	return _Window.GetEvent(event);
+}
 
-	bool LDL_WindowOpenGL1::WaitEvent(LDL_Event& event)
-	{
-		return _Window.WaitEvent(event);
-	}
+bool LDL_WindowOpenGL1::WaitEvent(LDL_Event& event)
+{
+	return _Window.WaitEvent(event);
+}
 
-	void LDL_WindowOpenGL1::StopEvent()
-	{
-		_Window.StopEvent();
-	}
+void LDL_WindowOpenGL1::StopEvent()
+{
+	_Window.StopEvent();
+}
 
-	const char* LDL_WindowOpenGL1::Title()
-	{
-		return _Window.Title();
-	}
+const char* LDL_WindowOpenGL1::Title()
+{
+	return _Window.Title();
+}
 
-	void LDL_WindowOpenGL1::Title(const char* title)
-	{
-		_Window.Title(title);
-	}
+void LDL_WindowOpenGL1::Title(const char* title)
+{
+	_Window.Title(title);
+}
 
-	void* LDL_WindowOpenGL1::NativeHandle()
-	{
-		return NULL;
-	}
+void* LDL_WindowOpenGL1::NativeHandle()
+{
+	return NULL;
+}
