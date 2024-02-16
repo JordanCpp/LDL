@@ -205,16 +205,16 @@ void LDL_RenderSoftware::Draw(LDL_TextureSoftware* image, const LDL_Vec2i& dstPo
 	size_t   dstSizeY = _Screen->Size().y;
 	uint8_t  dstBpp   = _Screen->Bpp();
 	uint8_t LDL_FAR* dstPixels = _Screen->Pixels();
-	size_t   dstIndex = 0;
+	size_t   dstIndex;
 
 	size_t   srcSizeX = image->GetSurface()->Size().x;
 	size_t   srcSizeY = image->GetSurface()->Size().y;
 	uint8_t  srcBpp = image->GetSurface()->Bpp();
 	uint8_t LDL_FAR* srcPixels = image->GetSurface()->Pixels();
-	size_t   srcIndex = 0;
+	size_t   srcIndex;
 
-	size_t limitSizeX = 0;
-	size_t limitSizeY = 0;
+	size_t limitSizeX;
+	size_t limitSizeY;
 
 	if (srcSizeX + x > dstSizeX)
 		limitSizeX = dstSizeX - x;
