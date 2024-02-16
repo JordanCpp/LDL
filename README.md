@@ -45,7 +45,7 @@ Boost Software License - Version 1.0 - August 17th, 2003
 2. GCC 3 and higher
 3. Visual C++ 5.0 and higher
 4. Open Watcom V2
-5. Borland C++ 6.0 and higher
+5. Borland C++ 2.0 and higher
 
 # Example OpenGL 3.3 - Triangle
 ![0](screenshots/01_GL3_Triangle.png)  
