@@ -24,19 +24,37 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Arcanum_FrmX_hpp
-#define LDL_Arcanum_FrmX_hpp
+#include "Engine.hpp"
 
-class ImageX
+Engine::Engine() :
+	_Window(&_Result, LDL_Vec2i(0,0), LDL_Vec2i(800, 600), "", LDL_WindowMode::Fixed),
+	_Render(&_Window),
+	_PathManager("")
 {
-public:
-private:
-};
+}
 
-class RenderX
+void Engine::Run()
 {
-public:
-private:
-};
+	if (_Result.Ok())
+	{
+		_Render.SetColor(LDL_Color(0, 162, 232));
 
-#endif
+		LDL_Event report;
+
+		while (_Window.Running())
+		{
+			while (_Window.GetEvent(report))
+			{
+				if (report.Type == LDL_Event::IsQuit)
+				{
+					_Window.StopEvent();
+				}
+			}
+
+			_Render.Begin();
+			_Render.End();
+
+			_Window.PollEvents();
+		}
+	}
+}

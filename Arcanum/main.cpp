@@ -1,16 +1,10 @@
-#include "Formats.hpp"
 #include <stdio.h>
+#include "Engine.hpp"
 
 int main()
 {
-	ArtFile* file = new ArtFile;
-	ArtFrame* frame = new ArtFrame;
-
-	printf("%d\n", file->Load("grsbse0c.ART"));
-
-	file->Frame(frame);
-
-	printf("%d\n", frame->_Header.size);
+	Engine engine;
+	engine.Run();
 
 	return 0;
 }

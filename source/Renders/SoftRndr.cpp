@@ -26,16 +26,21 @@ DEALINGS IN THE SOFTWARE.
 
 #include <LDL/Renders/SoftRndr.hpp>
 #include <assert.h>
+#include <string.h>
 
-LDL_TextureSoftware::LDL_TextureSoftware(const LDL_Vec2i& size, uint8_t* pixels, uint8_t bpp)
+LDL_TextureSoftware::LDL_TextureSoftware(const LDL_Vec2i& size, uint8_t* pixels, uint8_t bpp) :
+	_Surface(size, size, bpp)
 {
 	assert(size.x >= 0);
 	assert(size.y >= 0);
 	assert(pixels != NULL);
 	assert(bpp >= 1 && bpp <= 4);
+
+	memcpy(_Surface.Pixels(), pixels, size.x * size.y * bpp);
 }
 
-LDL_TextureSoftware::LDL_TextureSoftware(const LDL_Vec2i& size, uint8_t bpp)
+LDL_TextureSoftware::LDL_TextureSoftware(const LDL_Vec2i& size, uint8_t bpp) :
+	_Surface(size, size, bpp)
 {
 	assert(size.x >= 0);
 	assert(size.y >= 0);
@@ -73,6 +78,11 @@ const LDL_Vec2i& LDL_TextureSoftware::Size()
 const LDL_Vec2i& LDL_TextureSoftware::Quad()
 {
 	return _Quad;
+}
+
+LDL_Surface* LDL_TextureSoftware::GetSurface()
+{
+	return &_Surface;
 }
 
 LDL_RenderSoftware::LDL_RenderSoftware(LDL_WindowSoftware* window, LDL_Palette* palette) :
@@ -185,4 +195,51 @@ void LDL_RenderSoftware::Draw(LDL_TextureSoftware* image, const LDL_Vec2i& dstPo
 
 	assert(srcSize.x >= 0);
 	assert(srcSize.y >= 0);
+
+	size_t x = dstPos.x;
+	size_t y = dstPos.y;
+
+	size_t   dstSizeX = _Screen.Size().x;
+	size_t   dstSizeY = _Screen.Size().y;
+	uint8_t  dstBpp   = _Screen.Bpp();
+	uint8_t LDL_FAR* dstPixels = _Screen.Pixels();
+	size_t   dstIndex = 0;
+
+	size_t   srcSizeX = image->GetSurface()->Size().x;
+	size_t   srcSizeY = image->GetSurface()->Size().y;
+	uint8_t  srcBpp = image->GetSurface()->Bpp();
+	uint8_t LDL_FAR* srcPixels = image->GetSurface()->Pixels();
+	size_t   srcIndex = 0;
+
+	size_t limitSizeX = 0;
+	size_t limitSizeY = 0;
+
+	if (srcSizeX + x > dstSizeX)
+		limitSizeX = dstSizeX - x;
+	else
+		limitSizeX = srcSizeX;
+
+	if (srcSizeY + y > dstSizeY)
+		limitSizeY = dstSizeY - y;
+	else
+		limitSizeY = srcSizeY;
+
+	for (size_t i = 0; i < limitSizeX; i++)
+	{
+		for (size_t j = 0; j < limitSizeY; j++)
+		{
+			dstIndex = (dstSizeX * (y + j) + (x + i)) * dstBpp;
+			srcIndex = (srcSizeX * j + i) * srcBpp;
+
+#if defined (_WIN32)
+			dstPixels[dstIndex] = srcPixels[srcIndex];
+			dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
+			dstPixels[dstIndex + 2] = srcPixels[srcIndex + 2];
+#else
+			dstPixels[dstIndex + 2] = srcPixels[srcIndex];
+			dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
+			dstPixels[dstIndex] = srcPixels[srcIndex + 2];
+#endif  
+		}
+	}
 }

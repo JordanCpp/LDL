@@ -27,16 +27,31 @@ DEALINGS IN THE SOFTWARE.
 #ifndef LDL_Arcanum_Managers_hpp
 #define LDL_Arcanum_Managers_hpp
 
-#include "FrmX.hpp"
 #include "Structs.hpp"
+#include <LDL/LDL.hpp>
 
 class ImageManager
 {
 public:
 	ImageManager();
-	ImageX* GetImage(const char* name);
+	LDL_Texture* GetImage(const char* name);
 private:
 	HashTable _Table;
+};
+
+class PathManager
+{
+public:
+	enum
+	{
+		ShortMax = 64,
+		FullMax = 256
+	};
+	PathManager(const char* path);
+	const char* Path(const char* dir, const char* file);
+private:
+	char _ShortPath[PathManager::ShortMax];
+	char _FullPath[PathManager::FullMax];
 };
 
 #endif

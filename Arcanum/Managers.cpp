@@ -25,15 +25,40 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include "Managers.hpp"
+#include <assert.h>
+#include <string.h>
 
 ImageManager::ImageManager() :
 	_Table(HashTable::Large)
 {
 }
 
-ImageX* ImageManager::GetImage(const char* name)
+LDL_Texture* ImageManager::GetImage(const char* name)
 {
-	ImageX* result = (ImageX*)_Table.Contains(name);
+	LDL_Texture* result = (LDL_Texture*)_Table.Contains(name);
 
 	return result;
+}
+
+PathManager::PathManager(const char* path)
+{
+	assert(strlen(path) < PathManager::ShortMax);
+
+	memset(_ShortPath, 0, sizeof(_ShortPath));
+	memset(_FullPath, 0, sizeof(_FullPath));
+
+	strcpy(_ShortPath, path);
+}
+
+const char* PathManager::Path(const char* dir, const char* file)
+{
+	assert(strlen(_ShortPath) + strlen(dir) + strlen(file) < PathManager::FullMax);
+
+	memset(_FullPath, 0, sizeof(_FullPath));
+
+	strcpy(_FullPath, _ShortPath);
+	strcat(_FullPath, dir);
+	strcat(_FullPath, file);
+
+	return _FullPath;
 }

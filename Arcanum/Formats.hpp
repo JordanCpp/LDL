@@ -27,7 +27,7 @@ DEALINGS IN THE SOFTWARE.
 #ifndef LDL_Arcanum_Formats_hpp
 #define LDL_Arcanum_Formats_hpp
 
-#include "Types.hpp"
+#include <LDL/LDL.hpp>
 #include "Structs.hpp"
 #include <stdio.h>
 

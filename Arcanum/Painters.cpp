@@ -40,6 +40,6 @@ void LocationPainter::Draw(Location* location)
 	{
 		Tile* tile = &tiles[i];
 
-		ImageX* image = _ImageManager->GetImage(tile->Body());
+		LDL_Texture* image = _ImageManager->GetImage(tile->Body());
 	}
 }

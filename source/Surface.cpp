@@ -60,7 +60,7 @@ LDL_Surface::~LDL_Surface()
 	delete _Pixels;
 }
 
-uint8_t* LDL_Surface::Pixels()
+uint8_t* LDL_FAR LDL_Surface::Pixels()
 {
 	return _Pixels;
 }

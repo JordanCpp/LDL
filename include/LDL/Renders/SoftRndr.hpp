@@ -41,9 +41,11 @@ public:
 	void Copy(const LDL_Vec2i& dstPos, LDL_Surface* surface, const LDL_Vec2i& srcSize);
 	const LDL_Vec2i& Size();
 	const LDL_Vec2i& Quad();
+	LDL_Surface* GetSurface();
 private:
-	LDL_Vec2i _Size;
-	LDL_Vec2i _Quad;
+	LDL_Vec2i   _Size;
+	LDL_Vec2i   _Quad;
+	LDL_Surface _Surface;
 };
 
 class LDL_RenderSoftware
