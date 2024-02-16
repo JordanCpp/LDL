@@ -232,13 +232,13 @@ void LDL_RenderSoftware::Draw(LDL_TextureSoftware* image, const LDL_Vec2i& dstPo
 			srcIndex = (srcSizeX * j + i) * srcBpp;
 
 #if defined (_WIN32)
-			dstPixels[dstIndex] = srcPixels[srcIndex];
-			dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
-			dstPixels[dstIndex + 2] = srcPixels[srcIndex + 2];
-#else
 			dstPixels[dstIndex + 2] = srcPixels[srcIndex];
 			dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
 			dstPixels[dstIndex] = srcPixels[srcIndex + 2];
+#else
+			dstPixels[dstIndex] = srcPixels[srcIndex];
+			dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
+			dstPixels[dstIndex + 2] = srcPixels[srcIndex + 2];
 #endif  
 		}
 	}
