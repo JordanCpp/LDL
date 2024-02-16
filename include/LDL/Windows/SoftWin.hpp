@@ -28,13 +28,13 @@ DEALINGS IN THE SOFTWARE.
 #define LDL_Windows_SoftWin_hpp
 
 #include <LDL/MainWin.hpp>
+#include <LDL/Surface.hpp>
 
 class LDL_WindowSoftware
 {
 public:
 	LDL_WindowSoftware(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode = LDL_WindowMode::Resized);
 	~LDL_WindowSoftware();
-	void Present(uint8_t* pixels, uint8_t bytesPerPixel);
 	bool Running();
 	void Present();
 	void PollEvents();
@@ -48,10 +48,12 @@ public:
 	void* NativeHandle();
 	void Update();
 	uint8_t GetBpp();
+	LDL_Surface* GetScreen();
 private:
 	LDL_Result*    _Result;
 	LDL_MainWindow _MainWindow;
 	BITMAPINFO     _BITMAPINFO;
+	LDL_Surface    _Screen;
 };
 
 #endif

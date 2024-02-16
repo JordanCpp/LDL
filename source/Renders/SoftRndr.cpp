@@ -88,7 +88,7 @@ LDL_Surface* LDL_TextureSoftware::GetSurface()
 LDL_RenderSoftware::LDL_RenderSoftware(LDL_WindowSoftware* window, LDL_Palette* palette) :
 	_Window(window),
 	_BaseRender(_Window->Size(), palette),
-	_Screen(_Window->Size(), _Window->Size(), _Window->GetBpp())
+	_Screen(_Window->GetScreen())
 {
 }
 
@@ -98,7 +98,6 @@ void LDL_RenderSoftware::Begin()
 
 void LDL_RenderSoftware::End()
 {
-	_Window->Present(_Screen.Pixels(), _Screen.Bpp());
 	_Window->Present();
 }
 
@@ -119,14 +118,17 @@ void LDL_RenderSoftware::Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size)
 	int x = pos.x;
 	int y = pos.y;
 
-	uint8_t* pixels = _Screen.Pixels();
+	int sx  = _Screen->Size().x;
+	int bpp = _Screen->Bpp();
+
+	uint8_t* pixels = _Screen->Pixels();
 	LDL_Color color = _BaseRender.Color();
 
 	for (int i = 0; i < size.x; i++)
 	{
 		for (int j = 0; j < size.y; j++)
 		{
-			int idx = (_Screen.Size().x * (y + j) + (x + i)) * _Screen.Bpp();
+			int idx = (sx * (y + j) + (x + i)) * bpp;
 
 #if defined(_WIN32)
 			pixels[idx] = color.b;
@@ -148,8 +150,8 @@ void LDL_RenderSoftware::SetColor(const LDL_Color& color)
 
 void LDL_RenderSoftware::Clear()
 {
-	size_t size = _Screen.Size().x * _Screen.Size().y * _Screen.Bpp();
-	uint8_t* pixels = _Screen.Pixels();
+	size_t size     = _Screen->Size().x * _Screen->Size().y * _Screen->Bpp();
+	uint8_t* pixels = _Screen->Pixels();
 	LDL_Color color = _BaseRender.Color();
 
 	for (size_t i = 0; i < size; i += 3)
@@ -199,10 +201,10 @@ void LDL_RenderSoftware::Draw(LDL_TextureSoftware* image, const LDL_Vec2i& dstPo
 	size_t x = dstPos.x;
 	size_t y = dstPos.y;
 
-	size_t   dstSizeX = _Screen.Size().x;
-	size_t   dstSizeY = _Screen.Size().y;
-	uint8_t  dstBpp   = _Screen.Bpp();
-	uint8_t LDL_FAR* dstPixels = _Screen.Pixels();
+	size_t   dstSizeX = _Screen->Size().x;
+	size_t   dstSizeY = _Screen->Size().y;
+	uint8_t  dstBpp   = _Screen->Bpp();
+	uint8_t LDL_FAR* dstPixels = _Screen->Pixels();
 	size_t   dstIndex = 0;
 
 	size_t   srcSizeX = image->GetSurface()->Size().x;

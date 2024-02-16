@@ -29,7 +29,8 @@ DEALINGS IN THE SOFTWARE.
 
 LDL_WindowSoftware::LDL_WindowSoftware(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
 	_Result(result),
-	_MainWindow(result, pos, size, title, mode)
+	_MainWindow(result, pos, size, title, mode),
+	_Screen(size, size, GetBpp())
 {
 	ZeroMemory(&_BITMAPINFO, sizeof(_BITMAPINFO));
 }
@@ -45,28 +46,22 @@ bool LDL_WindowSoftware::Running()
 
 void LDL_WindowSoftware::Present()
 {
-	Update();
-}
-
-void LDL_WindowSoftware::Present(uint8_t* pixels, uint8_t bytesPerPixel)
-{
-	assert(pixels != NULL);
-	assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
-
-	DWORD w = (DWORD)_MainWindow.Size().x;
-	DWORD h = (DWORD)_MainWindow.Size().y;
+	DWORD w = (DWORD)_Screen.Size().x;
+	DWORD h = (DWORD)_Screen.Size().y;
 
 	_BITMAPINFO.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 	_BITMAPINFO.bmiHeader.biWidth = (LONG)w;
 	_BITMAPINFO.bmiHeader.biHeight = -(LONG)h;
 	_BITMAPINFO.bmiHeader.biPlanes = 1;
-	_BITMAPINFO.bmiHeader.biBitCount = bytesPerPixel * 8;
+	_BITMAPINFO.bmiHeader.biBitCount = _Screen.Bpp() * 8;
 	_BITMAPINFO.bmiHeader.biCompression = BI_RGB;
 
-	if (SetDIBitsToDevice(_MainWindow._HDC, 0, 0, w, h, 0, 0, 0, h, pixels, &_BITMAPINFO, DIB_RGB_COLORS) == 0)
+	if (SetDIBitsToDevice(_MainWindow._HDC, 0, 0, w, h, 0, 0, 0, h, _Screen.Pixels(), &_BITMAPINFO, DIB_RGB_COLORS) == 0)
 	{
 		_Result->Message("SetDIBitsToDevice failed");
 	}
+
+	Update();
 }
 
 void LDL_WindowSoftware::PollEvents()
@@ -122,4 +117,9 @@ void LDL_WindowSoftware::Update()
 uint8_t LDL_WindowSoftware::GetBpp()
 {
 	return 3;
+}
+
+LDL_Surface* LDL_WindowSoftware::GetScreen()
+{
+	return &_Screen;
 }

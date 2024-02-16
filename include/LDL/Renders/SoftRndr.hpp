@@ -65,7 +65,7 @@ public:
 private:
 	LDL_WindowSoftware* _Window;
 	LDL_BaseRender      _BaseRender;
-	LDL_Surface         _Screen;
+	LDL_Surface*        _Screen;
 };
 
 #endif

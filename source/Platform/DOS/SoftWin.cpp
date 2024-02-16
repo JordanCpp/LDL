@@ -30,28 +30,16 @@ DEALINGS IN THE SOFTWARE.
 
 LDL_WindowSoftware::LDL_WindowSoftware(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
 	_Result(result),
-	_MainWindow(result, pos, size, title, mode)
+	_MainWindow(result, pos, size, title, mode),
+	_Screen(size, size, GetBpp())
 {
-	_Screen = (uint8_t LDL_FAR*)0xA0000000L;
+	_Video = (uint8_t LDL_FAR*)0xA0000000L;
 
 	union REGS regs;
 
 	regs.h.ah = 0x00;
 	regs.h.al = 0x13;
 	int86(0x10, &regs, &regs);
-}
-
-void LDL_WindowSoftware::Present(uint8_t* pixels, uint8_t bytesPerPixel)
-{
-	assert(pixels != NULL);
-	assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
-
-	size_t count = _MainWindow.Size().x * _MainWindow.Size().y;
-
-	for (size_t i = 0; i < count; i++)
-	{
-		_Screen[i] = pixels[i];
-	}
 }
 
 LDL_WindowSoftware::~LDL_WindowSoftware()
@@ -65,6 +53,14 @@ bool LDL_WindowSoftware::Running()
 
 void LDL_WindowSoftware::Present()
 {
+	size_t   count  = _Screen.Size().x * _Screen.Size().y;
+	uint8_t* pixels = _Screen.Pixels();
+
+	for (size_t i = 0; i < count; i++)
+	{
+		_Video[i] = pixels[i];
+	}
+
 	Update();
 }
 
@@ -121,4 +117,9 @@ void LDL_WindowSoftware::Update()
 uint8_t LDL_WindowSoftware::GetBpp()
 {
 	return 1;
+}
+
+LDL_Surface* LDL_WindowSoftware::GetScreen()
+{
+	return &_Screen;
 }
