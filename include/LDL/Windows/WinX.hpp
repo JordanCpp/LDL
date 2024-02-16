@@ -24,8 +24,8 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Declare_hpp
-#define LDL_Declare_hpp
+#ifndef LDL_Windows_WinX_hpp
+#define LDL_Windows_WinX_hpp
 
 #if defined(_WIN32)
 #define STRICT

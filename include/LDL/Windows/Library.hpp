@@ -28,7 +28,7 @@ DEALINGS IN THE SOFTWARE.
 #define LDL_Windows_Library_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/Declare.hpp>
+#include <LDL/Windows/WinX.hpp>
 
 class LDL_Library
 {

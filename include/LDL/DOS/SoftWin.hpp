@@ -47,6 +47,7 @@ public:
 	void Title(const char* title);
 	void* NativeHandle();
 	void Update();
+	uint8_t GetBpp();
 private:
 	LDL_Result*      _Result;
 	uint8_t LDL_FAR* _Screen;

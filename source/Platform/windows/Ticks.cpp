@@ -25,7 +25,7 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include <LDL/Ticks.hpp>
-#include <LDL/Declare.hpp>
+#include <LDL/Windows/WinX.hpp>
 
 size_t LDL_Ticks()
 {

@@ -60,9 +60,7 @@ public:
 	void Draw(LDL_TextureSoftware* image, const LDL_Vec2i& pos, const LDL_Vec2i& size);
 	void Draw(LDL_TextureSoftware* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize);
 	void Draw(LDL_TextureSoftware* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& dstSize, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize);
-
 private:
-	uint8_t CalcBpp();
 	LDL_WindowSoftware* _Window;
 	LDL_BaseRender      _BaseRender;
 	LDL_Surface         _Screen;

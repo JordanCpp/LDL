@@ -64,12 +64,28 @@ void LDL_WindowTest()
 	LDL_TEST_EQUAL(strcmp(window.Title(), "LDL_WindowTest") == 0);
 }
 
+void LDL_RenderTest()
+{
+	LDL_Result result;
+
+	LDL_Window window(&result, LDL_Vec2i(5, 15), LDL_Vec2i(800, 600), "LDL_WindowTest");
+	LDL_Render render(&window);
+
+	LDL_TEST_EQUAL(result.Ok()     == true);
+	LDL_TEST_EQUAL(window.Pos().x  == 5);
+	LDL_TEST_EQUAL(window.Pos().y  == 15);
+	LDL_TEST_EQUAL(window.Size().x == 800);
+	LDL_TEST_EQUAL(window.Size().y == 600);
+	LDL_TEST_EQUAL(strcmp(window.Title(), "LDL_WindowTest") == 0);
+}
+
 int main()
 {
 	LDL_ColorTest();
 	LDL_Vec2iTest();
 	LDL_PaletteTest();
 	LDL_WindowTest();
+	LDL_RenderTest();
 
 	return 0;
 }

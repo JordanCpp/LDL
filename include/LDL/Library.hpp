@@ -30,7 +30,6 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/Config.hpp>
 
 #if defined(_WIN32)
-#include <LDL/Declare.hpp>
 #include <LDL/Windows/Library.hpp>
 #elif defined(__unix__)
 #include <LDL/UNIX/Library.hpp>

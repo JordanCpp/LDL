@@ -78,7 +78,7 @@ const LDL_Vec2i& LDL_TextureSoftware::Quad()
 LDL_RenderSoftware::LDL_RenderSoftware(LDL_WindowSoftware* window, LDL_Palette* palette) :
 	_Window(window),
 	_BaseRender(_Window->Size(), palette),
-	_Screen(_Window->Size(), _Window->Size(), CalcBpp())
+	_Screen(_Window->Size(), _Window->Size(), _Window->GetBpp())
 {
 }
 
@@ -153,15 +153,6 @@ void LDL_RenderSoftware::Clear()
 #endif
 		pixels[i + 1] = color.g;
 	}
-}
-
-uint8_t LDL_RenderSoftware::CalcBpp()
-{
-#if defined(__MSDOS__)
-	return 1;
-#else
-	return 3;
-#endif
 }
 
 void LDL_RenderSoftware::Draw(LDL_TextureSoftware* image, const LDL_Vec2i& pos)

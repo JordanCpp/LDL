@@ -55,11 +55,11 @@ typedef signed short   int16_t;
 
 typedef unsigned int   uint32_t;
 typedef signed int     int32_t;
-
-#include <stddef.h>
 #else
 #include <stdint.h>
 #endif
+
+#include <stddef.h>
 
 typedef void(*LDL_VoidFuncPtr)(void);
 

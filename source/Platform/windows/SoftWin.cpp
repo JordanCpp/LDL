@@ -118,3 +118,8 @@ void LDL_WindowSoftware::Update()
 {
 	_MainWindow.Update();
 }
+
+uint8_t LDL_WindowSoftware::GetBpp()
+{
+	return 3;
+}
