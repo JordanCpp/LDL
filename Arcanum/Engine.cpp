@@ -29,7 +29,8 @@ DEALINGS IN THE SOFTWARE.
 Engine::Engine() :
 	_Window(&_Result, LDL_Vec2i(0,0), LDL_Vec2i(800, 600), "", LDL_WindowMode::Fixed),
 	_Render(&_Window),
-	_PathManager("")
+	_PathManager(""),
+	_LocationPainter(&_Render, &_ImageManager)
 {
 }
 
@@ -37,8 +38,6 @@ void Engine::Run()
 {
 	if (_Result.Ok())
 	{
-		_Render.SetColor(LDL_Color(0, 162, 232));
-
 		LDL_Event report;
 
 		while (_Window.Running())

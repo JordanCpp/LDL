@@ -29,6 +29,7 @@ DEALINGS IN THE SOFTWARE.
 
 #include <LDL/LDL.hpp>
 #include "Managers.hpp"
+#include "Painters.hpp"
 
 class Engine
 {
@@ -36,11 +37,12 @@ public:
 	Engine();
 	void Run();
 private:
-	LDL_Result   _Result;
-	LDL_Window   _Window;
-	LDL_Render   _Render;
-	PathManager  _PathManager;
-	ImageManager _ImageManager;
+	LDL_Result      _Result;
+	LDL_Window      _Window;
+	LDL_Render      _Render;
+	PathManager     _PathManager;
+	ImageManager    _ImageManager;
+	LocationPainter _LocationPainter;
 };
 
 #endif

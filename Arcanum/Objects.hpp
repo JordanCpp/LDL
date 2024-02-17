@@ -27,7 +27,7 @@ DEALINGS IN THE SOFTWARE.
 #ifndef LDL_Arcanum_Objects_hpp
 #define LDL_Arcanum_Objects_hpp
 
-#include <stddef.h>
+#include <LDL/LDL.hpp>
 
 class Tile
 {
@@ -37,8 +37,10 @@ public:
 		Max = 16
 	};
 	void Init(const char* name);
+	const LDL_Vec2i& Pos();
 	const char* Body();
 private:
+	LDL_Vec2i _Pos;
 	char _Body[Tile::Max];
 };
 

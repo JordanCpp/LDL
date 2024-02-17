@@ -26,7 +26,8 @@ DEALINGS IN THE SOFTWARE.
 
 #include "Painters.hpp"
 
-LocationPainter::LocationPainter(ImageManager* imageManager) :
+LocationPainter::LocationPainter(LDL_Render* render, ImageManager* imageManager) :
+	_Render(render),
 	_ImageManager(imageManager)
 {
 }
@@ -34,12 +35,13 @@ LocationPainter::LocationPainter(ImageManager* imageManager) :
 void LocationPainter::Draw(Location* location)
 {
 	size_t count = location->TilesCount();
-	Tile* tiles = location->Tiles();
+	Tile* tiles  = location->Tiles();
 
 	for (size_t i = 0; i < count; i++)
 	{
 		Tile* tile = &tiles[i];
-
 		LDL_Texture* image = _ImageManager->GetImage(tile->Body());
+
+		_Render->Draw(image, tile->Pos());
 	}
 }

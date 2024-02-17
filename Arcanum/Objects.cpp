@@ -36,6 +36,11 @@ void Tile::Init(const char* name)
 	strcpy(_Body, name);
 }
 
+const LDL_Vec2i& Tile::Pos()
+{
+	return _Pos;
+}
+
 const char* Tile::Body()
 {
 	return _Body;

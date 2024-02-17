@@ -27,15 +27,17 @@ DEALINGS IN THE SOFTWARE.
 #ifndef LDL_Arcanum_Painters_hpp
 #define LDL_Arcanum_Painters_hpp
 
+#include <LDL/LDL.hpp>
 #include "Objects.hpp"
 #include "Managers.hpp"
 
 class LocationPainter
 {
 public:
-	LocationPainter(ImageManager* imageManager);
+	LocationPainter(LDL_Render* render, ImageManager* imageManager);
 	void Draw(Location* location);
 private:
+	LDL_Render*   _Render;
 	ImageManager* _ImageManager;
 };
 
