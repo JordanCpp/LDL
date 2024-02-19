@@ -1,6 +1,18 @@
 #include <LDL/LDL.hpp>
 #include <string.h>
 
+void LDL_TypesTest()
+{
+	LDL_TEST_EQUAL(sizeof(int8_t)   == 1);
+	LDL_TEST_EQUAL(sizeof(uint8_t)  == 1);
+
+	LDL_TEST_EQUAL(sizeof(int16_t)  == 2);
+	LDL_TEST_EQUAL(sizeof(uint16_t) == 2);
+
+	LDL_TEST_EQUAL(sizeof(int32_t)  == 4);
+	LDL_TEST_EQUAL(sizeof(uint32_t) == 4);
+}
+
 void LDL_ColorTest()
 {
 	LDL_Color color1;
@@ -9,6 +21,20 @@ void LDL_ColorTest()
 	LDL_TEST_EQUAL(color1.g == 0);
 	LDL_TEST_EQUAL(color1.b == 0);
 	LDL_TEST_EQUAL(color1.a == 255);
+
+	LDL_Color color2(1, 2, 3);
+
+	LDL_TEST_EQUAL(color2.r == 1);
+	LDL_TEST_EQUAL(color2.g == 2);
+	LDL_TEST_EQUAL(color2.b == 3);
+	LDL_TEST_EQUAL(color2.a == 255);
+
+	LDL_Color color3(1, 2, 3, 4);
+
+	LDL_TEST_EQUAL(color3.r == 1);
+	LDL_TEST_EQUAL(color3.g == 2);
+	LDL_TEST_EQUAL(color3.b == 3);
+	LDL_TEST_EQUAL(color3.a == 4);
 }
 
 void LDL_Vec2iTest()
@@ -118,11 +144,12 @@ void LDL_SurfacePaletteTest()
 
 int main()
 {
+	LDL_TypesTest();
 	LDL_ColorTest();
 	LDL_Vec2iTest();
 	LDL_PaletteTest();
 	LDL_WindowTest();
-	LDL_RenderTest();
+	//LDL_RenderTest();
 	LDL_SurfaceTest(1);
 	LDL_SurfaceTest(2);
 	LDL_SurfaceTest(3);

@@ -31,6 +31,6 @@ void LDL_TestEqual(bool condition, const char* description, const char* file, in
 {
 	if (!condition)
 	{
-		printf("Test failed: %s file %s line %d", description, file, line);
+		printf("Test failed: %s file %s line %d\n", description, file, line);
 	}
 }
