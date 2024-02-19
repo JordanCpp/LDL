@@ -79,6 +79,43 @@ void LDL_RenderTest()
 	LDL_TEST_EQUAL(strcmp(window.Title(), "LDL_WindowTest") == 0);
 }
 
+void LDL_SurfaceTest(uint8_t bpp)
+{
+	LDL_Surface surface(LDL_Vec2i(150, 200), LDL_Vec2i(50, 75), bpp);
+
+	LDL_TEST_EQUAL(surface.Capacity().x        == 150);
+	LDL_TEST_EQUAL(surface.Capacity().y        == 200);
+	LDL_TEST_EQUAL(surface.Size().x            == 50);
+	LDL_TEST_EQUAL(surface.Size().y            == 75);
+	LDL_TEST_EQUAL(surface.Bpp()               == bpp);
+	LDL_TEST_EQUAL(surface.Pixels()            != NULL);
+	LDL_TEST_EQUAL(surface.Palette()->Empty()  == true);
+
+	surface.Resize(LDL_Vec2i(150, 200));
+
+	LDL_TEST_EQUAL(surface.Capacity().x       == 150);
+	LDL_TEST_EQUAL(surface.Capacity().y       == 200);
+	LDL_TEST_EQUAL(surface.Size().x           == 150);
+	LDL_TEST_EQUAL(surface.Size().y           == 200);
+	LDL_TEST_EQUAL(surface.Bpp()              == bpp);
+	LDL_TEST_EQUAL(surface.Pixels()           != NULL);
+	LDL_TEST_EQUAL(surface.Palette()->Empty() == true);
+}
+
+void LDL_SurfacePaletteTest()
+{
+	LDL_Palette palette;
+	LDL_Surface surface(LDL_Vec2i(150, 200), LDL_Vec2i(50, 75), &palette);
+
+	LDL_TEST_EQUAL(surface.Capacity().x       == 150);
+	LDL_TEST_EQUAL(surface.Capacity().y       == 200);
+	LDL_TEST_EQUAL(surface.Size().x           == 50);
+	LDL_TEST_EQUAL(surface.Size().y           == 75);
+	LDL_TEST_EQUAL(surface.Bpp()              == 1);
+	LDL_TEST_EQUAL(surface.Pixels()           != NULL);
+	LDL_TEST_EQUAL(surface.Palette()->Empty() == false);
+}
+
 int main()
 {
 	LDL_ColorTest();
@@ -86,6 +123,11 @@ int main()
 	LDL_PaletteTest();
 	LDL_WindowTest();
 	LDL_RenderTest();
+	LDL_SurfaceTest(1);
+	LDL_SurfaceTest(2);
+	LDL_SurfaceTest(3);
+	LDL_SurfaceTest(4);
+	LDL_SurfacePaletteTest();
 
 	return 0;
 }

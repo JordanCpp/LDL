@@ -28,6 +28,7 @@ DEALINGS IN THE SOFTWARE.
 #include <stdlib.h>
 
 LDL_BaseRender::LDL_BaseRender(const LDL_Vec2i& size, LDL_Palette* palette) :
+	_PaletteColor(0),
 	_Size(size)
 {
 	if (palette != NULL)
@@ -44,9 +45,29 @@ const LDL_Vec2i& LDL_BaseRender::Size()
 	return _Size;
 }
 
+uint8_t LDL_BaseRender::ColorIndex()
+{
+	return _PaletteColor;
+}
+
 const LDL_Color& LDL_BaseRender::Color()
 {
+	return Color(_PaletteColor);
+}
+
+const LDL_Color& LDL_BaseRender::Color(uint8_t index)
+{
+	if (!_Palette.Empty())
+	{
+		_Current = _Palette.Get(index);
+	}
+
 	return _Current;
+}
+
+void LDL_BaseRender::SetColor(uint8_t index)
+{
+	_PaletteColor = index;
 }
 
 void LDL_BaseRender::SetColor(const LDL_Color& color)

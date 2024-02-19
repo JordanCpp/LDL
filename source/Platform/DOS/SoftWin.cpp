@@ -26,12 +26,13 @@ DEALINGS IN THE SOFTWARE.
 
 #include <LDL/DOS/SoftWin.hpp>
 #include <assert.h>
+#include <string.h>
 #include <dos.h>
 
 LDL_WindowSoftware::LDL_WindowSoftware(LDL_Result* result, const LDL_Vec2i& pos, const LDL_Vec2i& size, const char* title, int mode) :
 	_Result(result),
 	_MainWindow(result, pos, size, title, mode),
-	_Screen(size, size, GetBpp())
+	_Screen(size, size, &_Palette)
 {
 	_Video = (uint8_t LDL_FAR*)0xA0000000L;
 
@@ -53,15 +54,30 @@ bool LDL_WindowSoftware::Running()
 
 void LDL_WindowSoftware::Present()
 {
-	size_t   count  = _Screen.Size().x * _Screen.Size().y;
-	uint8_t* pixels = _Screen.Pixels();
+	size_t           count   = _Screen.Size().x * _Screen.Size().y * _Screen.Bpp();
+	uint8_t LDL_FAR* pixels  = _Screen.Pixels();
+	LDL_Palette*     palette = _Screen.Palette();
 
+	if (_Palette.Empty())
+	{
+		_Palette.Assign(palette);
+
+		outp(0x03c8, 0);
+
+		for (size_t i = 0; i < _Palette.Max; i++)
+		{
+			LDL_Color color = _Palette.Get(i);
+
+			outp(0x03c9, color.r);
+			outp(0x03c9, color.g);
+			outp(0x03c9, color.b);
+		}
+	}
+	
 	for (size_t i = 0; i < count; i++)
 	{
 		_Video[i] = pixels[i];
 	}
-
-	Update();
 }
 
 void LDL_WindowSoftware::PollEvents()

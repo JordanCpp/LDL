@@ -30,7 +30,8 @@ DEALINGS IN THE SOFTWARE.
 LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp) :
 	_Bpp(bpp),
 	_Capacity(capacity),
-	_Size(capacity)
+	_Size(capacity),
+	_Pixels(NULL)
 {
 	assert(capacity.x > 0);
 	assert(capacity.y > 0);
@@ -42,7 +43,8 @@ LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp) :
 LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp) :
 	_Bpp(bpp),
 	_Capacity(capacity),
-	_Size(size)
+	_Size(size),
+	_Pixels(NULL)
 {
 	assert(capacity.x > 0);
 	assert(capacity.y > 0);
@@ -53,6 +55,39 @@ LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8
 	assert(bpp >= 1 && bpp <= 4);
 
 	_Pixels = new uint8_t[_Capacity.x * _Capacity.y * bpp];
+}
+
+LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, LDL_Palette* palette) :
+	_Bpp(1),
+	_Capacity(capacity),
+	_Size(capacity),
+	_Pixels(NULL)
+{
+	assert(capacity.x > 0);
+	assert(capacity.y > 0);
+	assert(palette != NULL);
+
+	Palette(palette);
+
+	_Pixels = new uint8_t[_Capacity.x * _Capacity.y * _Bpp];
+}
+
+LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, LDL_Palette* palette) :
+	_Bpp(1),
+	_Capacity(capacity),
+	_Size(size),
+	_Pixels(NULL)
+{
+	assert(capacity.x > 0);
+	assert(capacity.y > 0);
+	assert(size.x > 0);
+	assert(size.y > 0);
+	assert(size.x <= capacity.x);
+	assert(size.y <= capacity.y);
+
+	Palette(palette);
+
+	_Pixels = new uint8_t[_Capacity.x * _Capacity.y * _Bpp];
 }
 
 LDL_Surface::~LDL_Surface()
@@ -78,4 +113,27 @@ const LDL_Vec2i& LDL_Surface::Capacity()
 const LDL_Vec2i& LDL_Surface::Size()
 {
 	return _Size;
+}
+
+LDL_Palette* LDL_Surface::Palette()
+{
+	return &_Palette;
+}
+
+void LDL_Surface::Palette(LDL_Palette* palette)
+{
+	assert(palette != NULL);
+
+	for (size_t i = 0; i < palette->Max; i++)
+	{
+		_Palette.Set(i, palette->Get(i));
+	}
+}
+
+void LDL_Surface::Resize(const LDL_Vec2i& size)
+{
+	assert(size.x <= _Capacity.x);
+	assert(size.y <= _Capacity.y);
+
+	_Size = size;
 }

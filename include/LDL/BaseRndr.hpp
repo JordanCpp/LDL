@@ -35,10 +35,14 @@ class LDL_BaseRender
 public:
 	LDL_BaseRender(const LDL_Vec2i& size, LDL_Palette* palette);
 	const LDL_Vec2i& Size();
+	uint8_t ColorIndex();
 	const LDL_Color& Color();
+	const LDL_Color& Color(uint8_t index);
+	void SetColor(uint8_t index);
 	void SetColor(const LDL_Color& color);
 	LDL_Palette* Palette();
 private:
+	uint8_t     _PaletteColor;
 	LDL_Vec2i   _Size;
 	LDL_Color   _Current;
 	LDL_Palette _Palette;

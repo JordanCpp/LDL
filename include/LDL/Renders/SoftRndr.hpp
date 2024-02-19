@@ -56,6 +56,7 @@ public:
 	void End();
 	void Line(const LDL_Vec2i& pos1, const LDL_Vec2i& pos2);
 	void Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size);
+	void SetColor(uint8_t index);
 	void SetColor(const LDL_Color& color);
 	void Clear();
 	void Draw(LDL_TextureSoftware* image, const LDL_Vec2i& pos);

@@ -28,22 +28,29 @@ DEALINGS IN THE SOFTWARE.
 #define LDL_Surface_hpp
 
 #include <LDL/Vec2i.hpp>
+#include <LDL/Palette.hpp>
 
 class LDL_Surface
 {
 public:
 	LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp);
 	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp);
+	LDL_Surface(const LDL_Vec2i& capacity, LDL_Palette* palette);
+	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, LDL_Palette* palette);
 	~LDL_Surface();
 	uint8_t* LDL_FAR Pixels();
 	uint8_t Bpp();
 	const LDL_Vec2i& Capacity();
 	const LDL_Vec2i& Size();
+	LDL_Palette* Palette();
+	void Palette(LDL_Palette* palette);
+	void Resize(const LDL_Vec2i& size);
 private:
-	int _Bpp;
-	LDL_Vec2i _Capacity;
-	LDL_Vec2i _Size;
+	uint8_t          _Bpp;
+	LDL_Vec2i        _Capacity;
+	LDL_Vec2i        _Size;
 	uint8_t* LDL_FAR _Pixels;
+	LDL_Palette      _Palette;
 };
 
 #endif

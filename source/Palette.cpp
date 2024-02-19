@@ -28,9 +28,20 @@ DEALINGS IN THE SOFTWARE.
 #include <string.h>
 #include <assert.h>
 
-LDL_Palette::LDL_Palette()
+LDL_Palette::LDL_Palette() :
+	_Empty(true)
 {
 	memset(&_Colors, 0, sizeof(_Colors));
+}
+
+void LDL_Palette::Assign(LDL_Palette* palette)
+{
+	assert(palette != NULL);
+
+	for (size_t i = 0; i < palette->Max; i++)
+	{
+		Set(i, palette->Get(i));
+	}
 }
 
 const LDL_Color& LDL_Palette::Get(size_t index)
@@ -44,5 +55,11 @@ void LDL_Palette::Set(size_t index, const LDL_Color& color)
 {
 	assert(index < Max);
 
+	_Empty = false;
 	_Colors[index] = color;
+}
+
+bool LDL_Palette::Empty()
+{
+	return _Empty;
 }

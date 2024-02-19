@@ -178,6 +178,11 @@ void LDL_RenderOpenGL1::Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size)
 	glEnd();
 }
 
+void LDL_RenderOpenGL1::SetColor(uint8_t index)
+{
+	_BaseRender.SetColor(index);
+}
+
 void LDL_RenderOpenGL1::SetColor(const LDL_Color& color)
 {
 	_BaseRender.SetColor(color);

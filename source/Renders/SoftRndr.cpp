@@ -90,6 +90,10 @@ LDL_RenderSoftware::LDL_RenderSoftware(LDL_WindowSoftware* window, LDL_Palette* 
 	_BaseRender(_Window->Size(), palette),
 	_Screen(_Window->GetScreen())
 {
+	if (palette != NULL)
+	{
+		_Screen->Palette(palette);
+	}
 }
 
 void LDL_RenderSoftware::Begin()
@@ -121,26 +125,45 @@ void LDL_RenderSoftware::Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size)
 	int sx  = _Screen->Size().x;
 	int bpp = _Screen->Bpp();
 
-	uint8_t* pixels = _Screen->Pixels();
-	LDL_Color color = _BaseRender.Color();
+	uint8_t*  pixels     = _Screen->Pixels();
+	uint8_t   colorIndex = _BaseRender.ColorIndex();
+	LDL_Color colorRgb   = _BaseRender.Color();
 
-	for (int i = 0; i < size.x; i++)
+	if (bpp == 1)
 	{
-		for (int j = 0; j < size.y; j++)
+		for (size_t i = 0; i < size.x; i++)
 		{
-			int idx = (sx * (y + j) + (x + i)) * bpp;
-
-#if defined(_WIN32)
-			pixels[idx] = color.b;
-			pixels[idx + 2] = color.r;
-#else
-			pixels[idx] = color.r;
-			pixels[idx + 2] = color.b;
-#endif
-			pixels[idx + 1] = color.g;
-
+			for (size_t j = 0; j < size.y; j++)
+			{
+				pixels[sx * (y + j) + (x + i)] = colorIndex;
+			}
 		}
 	}
+	else
+	{
+		for (int i = 0; i < size.x; i++)
+		{
+			for (int j = 0; j < size.y; j++)
+			{
+				int idx = (sx * (y + j) + (x + i)) * bpp;
+
+#if defined(_WIN32)
+				pixels[idx] = colorRgb.b;
+				pixels[idx + 2] = colorRgb.r;
+#else
+				pixels[idx] = colorRgb.r;
+				pixels[idx + 2] = colorRgb.b;
+#endif
+				pixels[idx + 1] = colorRgb.g;
+
+			}
+		}
+	}
+}
+
+void LDL_RenderSoftware::SetColor(uint8_t index)
+{
+	_BaseRender.SetColor(index);
 }
 
 void LDL_RenderSoftware::SetColor(const LDL_Color& color)
@@ -150,20 +173,33 @@ void LDL_RenderSoftware::SetColor(const LDL_Color& color)
 
 void LDL_RenderSoftware::Clear()
 {
-	size_t size     = _Screen->Size().x * _Screen->Size().y * _Screen->Bpp();
-	uint8_t* pixels = _Screen->Pixels();
-	LDL_Color color = _BaseRender.Color();
+	uint8_t          bpp    = _Screen->Bpp();
+	size_t           size   = _Screen->Size().x * _Screen->Size().y * _Screen->Bpp();
+	uint8_t LDL_FAR* pixels = _Screen->Pixels();
 
-	for (size_t i = 0; i < size; i += 3)
+	uint8_t   colorIndex = _BaseRender.ColorIndex();
+	LDL_Color colorRgb   = _BaseRender.Color();
+
+	if (bpp == 1)
 	{
+		for (size_t i = 0; i < size; i++)
+		{
+			pixels[i] = colorIndex;
+		}
+	}
+	else
+	{
+		for (size_t i = 0; i < size; i += 3)
+		{
 #if defined(_WIN32)
-		pixels[i] = color.b;
-		pixels[i + 2] = color.r;
+			pixels[i] = colorRgb.b;
+			pixels[i + 2] = colorRgb.r;
 #else
-		pixels[i] = color.r;
-		pixels[i + 2] = color.b;
+			pixels[i] = colorRgb.r;
+			pixels[i + 2] = colorRgb.b;
 #endif
-		pixels[i + 1] = color.g;
+			pixels[i + 1] = colorRgb.g;
+		}
 	}
 }
 

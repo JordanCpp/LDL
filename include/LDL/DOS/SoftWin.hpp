@@ -53,6 +53,7 @@ private:
 	LDL_Result*      _Result;
 	uint8_t LDL_FAR* _Video;
 	LDL_MainWindow   _MainWindow;
+	LDL_Palette      _Palette;
 	LDL_Surface      _Screen;
 };
 

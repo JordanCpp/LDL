@@ -66,9 +66,8 @@ LDL_MainWindow::LDL_MainWindow(LDL_Result* result, const LDL_Vec2i& pos, const L
 LDL_MainWindow::~LDL_MainWindow()
 {
 	timeEndPeriod(period);
-
-	UnregisterClass(AppName, _HINSTANCE);
 	ReleaseDC(_HWND, _HDC);
+	UnregisterClass(AppName, _HINSTANCE);
 	PostQuitMessage(0);
 }
 

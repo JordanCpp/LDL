@@ -38,10 +38,13 @@ public:
 	};
 
 	LDL_Palette();
+	void Assign(LDL_Palette* palette);
 	const LDL_Color& Get(size_t index);
 	void Set(size_t index, const LDL_Color& color);
+	bool Empty();
 private:
 	LDL_Color _Colors[Max];
+	bool _Empty;
 };
 
 #endif
