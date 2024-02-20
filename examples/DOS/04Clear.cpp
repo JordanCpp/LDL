@@ -1,7 +1,6 @@
 #include <LDL/LDL.hpp>
 #include <stdio.h>
 
-
 void InitPalette(LDL_Palette& palette)
 {
 	palette.Set(0, LDL_Color(0, 162, 232));

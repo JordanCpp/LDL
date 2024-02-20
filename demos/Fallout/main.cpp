@@ -24,34 +24,52 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Surface_hpp
-#define LDL_Surface_hpp
+#include "Engine.hpp"
+#include "Frm.hpp"
 
-#include <LDL/Vec2i.hpp>
-#include <LDL/Palette.hpp>
-
-class LDL_Surface
+class PaletteLoader
 {
 public:
-	LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t * pixels, LDL_Palette* palette);
-	~LDL_Surface();
-	uint8_t* LDL_FAR Pixels();
-	uint8_t Bpp();
-	const LDL_Vec2i& Capacity();
-	const LDL_Vec2i& Size();
-	LDL_Palette* Palette();
-	void Palette(LDL_Palette* palette);
-	void Resize(const LDL_Vec2i& size);
+	bool Load(const char* path, LDL_Palette& palette)
+	{
+		_File = fopen(path, "rb");
+
+		if (_File != NULL)
+		{
+			LDL_Color color;
+
+			for (size_t i = 0; i < 256; i++)
+			{
+				int result = fread(&color, 3, 1, _File);
+
+				palette.Set(i, color);
+			}
+
+			fclose(_File);
+
+			return true;
+		}
+
+		return false;
+	}
 private:
-	uint8_t          _Bpp;
-	LDL_Vec2i        _Capacity;
-	LDL_Vec2i        _Size;
-	uint8_t* LDL_FAR _Pixels;
-	LDL_Palette      _Palette;
+	FILE* _File;
 };
 
+#if defined(__MSDOS__)
+LDL_Vec2i windowSize(320, 200);
+#else
+LDL_Vec2i windowSize(800, 600);
 #endif
+
+int main()
+{
+	LDL_Palette palette;
+	PaletteLoader paletteLoader;
+	paletteLoader.Load("data/COLOR.PAL", palette);
+
+	Engine engine(windowSize, &palette);
+	engine.Run();
+
+	return 0;
+}

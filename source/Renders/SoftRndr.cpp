@@ -47,6 +47,11 @@ LDL_TextureSoftware::LDL_TextureSoftware(const LDL_Vec2i& size, uint8_t bpp) :
 	assert(bpp >= 1 && bpp <= 4);
 }
 
+LDL_TextureSoftware::LDL_TextureSoftware(const LDL_Vec2i& size, uint8_t* pixels, LDL_Palette* palette) :
+	_Surface(size, size, pixels, palette)
+{
+}
+
 LDL_TextureSoftware::~LDL_TextureSoftware()
 {
 }
@@ -205,20 +210,40 @@ void LDL_RenderSoftware::Clear()
 
 void LDL_RenderSoftware::Draw(LDL_TextureSoftware* image, const LDL_Vec2i& pos)
 {
-	Draw(image, pos, image->Size(), LDL_Vec2i(0, 0), image->Size());
+	Draw(image->GetSurface(), pos, image->Size(), LDL_Vec2i(0, 0), image->Size());
 }
 
 void LDL_RenderSoftware::Draw(LDL_TextureSoftware* image, const LDL_Vec2i& pos, const LDL_Vec2i& size)
 {
-	Draw(image, pos, size, LDL_Vec2i(0, 0), image->Size());
+	Draw(image->GetSurface(), pos, size, LDL_Vec2i(0, 0), image->Size());
 }
 
 void LDL_RenderSoftware::Draw(LDL_TextureSoftware* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize)
 {
-	Draw(image, dstPos, srcSize, srcPos, srcSize);
+	Draw(image->GetSurface(), dstPos, srcSize, srcPos, srcSize);
 }
 
 void LDL_RenderSoftware::Draw(LDL_TextureSoftware* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& dstSize, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize)
+{
+	Draw(image->GetSurface(), dstPos, dstSize, srcPos, srcSize);
+}
+
+void LDL_RenderSoftware::Draw(LDL_Surface* image, const LDL_Vec2i& pos)
+{
+	Draw(image, pos, image->Size(), LDL_Vec2i(0, 0), image->Size());
+}
+
+void LDL_RenderSoftware::Draw(LDL_Surface* image, const LDL_Vec2i& pos, const LDL_Vec2i& size)
+{
+	Draw(image, pos, size, LDL_Vec2i(0, 0), image->Size());
+}
+
+void LDL_RenderSoftware::Draw(LDL_Surface* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize)
+{
+	Draw(image, dstPos, srcSize, srcPos, srcSize);
+}
+
+void LDL_RenderSoftware::Draw(LDL_Surface* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& dstSize, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize)
 {
 	assert(image != NULL);
 
@@ -243,10 +268,11 @@ void LDL_RenderSoftware::Draw(LDL_TextureSoftware* image, const LDL_Vec2i& dstPo
 	uint8_t LDL_FAR* dstPixels = _Screen->Pixels();
 	size_t   dstIndex;
 
-	size_t   srcSizeX = image->GetSurface()->Size().x;
-	size_t   srcSizeY = image->GetSurface()->Size().y;
-	uint8_t  srcBpp = image->GetSurface()->Bpp();
-	uint8_t LDL_FAR* srcPixels = image->GetSurface()->Pixels();
+	size_t   srcSizeX = image->Size().x;
+	size_t   srcSizeY = image->Size().y;
+	uint8_t  srcBpp   = image->Bpp();
+	LDL_Palette* srcPalette = image->Palette();
+	uint8_t LDL_FAR* srcPixels = image->Pixels();
 	size_t   srcIndex;
 
 	size_t limitSizeX;
@@ -262,22 +288,63 @@ void LDL_RenderSoftware::Draw(LDL_TextureSoftware* image, const LDL_Vec2i& dstPo
 	else
 		limitSizeY = srcSizeY;
 
-	for (size_t i = 0; i < limitSizeX; i++)
-	{
-		for (size_t j = 0; j < limitSizeY; j++)
+	if (dstBpp == 1 && srcBpp == 1)
+	{ 
+		for (size_t i = 0; i < limitSizeX; i++)
 		{
-			dstIndex = (dstSizeX * (y + j) + (x + i)) * dstBpp;
-			srcIndex = (srcSizeX * j + i) * srcBpp;
+			for (size_t j = 0; j < limitSizeY; j++)
+			{
+				dstIndex = (dstSizeX * (y + j) + (x + i)) * dstBpp;
+				srcIndex = (srcSizeX * j + i) * srcBpp;
+
+				dstPixels[dstIndex] = srcPixels[srcIndex];
+			}
+		}
+	}
+	else if (dstBpp == 3 && srcBpp == 1)
+	{
+		LDL_Color color;
+
+		for (size_t i = 0; i < limitSizeX; i++)
+		{
+			for (size_t j = 0; j < limitSizeY; j++)
+			{
+				dstIndex = (dstSizeX * (y + j) + (x + i)) * dstBpp;
+				srcIndex = (srcSizeX * j + i) * srcBpp;
+
+				color = srcPalette->Get(srcPixels[srcIndex]);
 
 #if defined (_WIN32)
-			dstPixels[dstIndex + 2] = srcPixels[srcIndex];
-			dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
-			dstPixels[dstIndex] = srcPixels[srcIndex + 2];
+				dstPixels[dstIndex    ] = color.b;
+				dstPixels[dstIndex + 1] = color.g;
+				dstPixels[dstIndex + 2] = color.r;
 #else
-			dstPixels[dstIndex] = srcPixels[srcIndex];
-			dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
-			dstPixels[dstIndex + 2] = srcPixels[srcIndex + 2];
+				dstPixels[dstIndex    ] = color.r;
+				dstPixels[dstIndex + 1] = color.g;
+				dstPixels[dstIndex + 2] = color.b;
 #endif  
+			}
+		}
+	}
+	else
+	{
+		for (size_t i = 0; i < limitSizeX; i++)
+		{
+			for (size_t j = 0; j < limitSizeY; j++)
+			{
+				dstIndex = (dstSizeX * (y + j) + (x + i)) * dstBpp;
+				srcIndex = (srcSizeX * j + i) * srcBpp;
+
+#if defined (_WIN32)
+				dstPixels[dstIndex + 2] = srcPixels[srcIndex];
+				dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
+				dstPixels[dstIndex] = srcPixels[srcIndex + 2];
+#else
+				dstPixels[dstIndex] = srcPixels[srcIndex];
+				dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
+				dstPixels[dstIndex + 2] = srcPixels[srcIndex + 2];
+#endif  
+			}
 		}
 	}
 }

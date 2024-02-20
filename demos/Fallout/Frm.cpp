@@ -24,34 +24,81 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Surface_hpp
-#define LDL_Surface_hpp
+#include "Frm.hpp"
 
-#include <LDL/Vec2i.hpp>
-#include <LDL/Palette.hpp>
-
-class LDL_Surface
+FrmReader::FrmReader(ByteReader* reader) :
+	_Reader(reader)
 {
-public:
-	LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t * pixels, LDL_Palette* palette);
-	~LDL_Surface();
-	uint8_t* LDL_FAR Pixels();
-	uint8_t Bpp();
-	const LDL_Vec2i& Capacity();
-	const LDL_Vec2i& Size();
-	LDL_Palette* Palette();
-	void Palette(LDL_Palette* palette);
-	void Resize(const LDL_Vec2i& size);
-private:
-	uint8_t          _Bpp;
-	LDL_Vec2i        _Capacity;
-	LDL_Vec2i        _Size;
-	uint8_t* LDL_FAR _Pixels;
-	LDL_Palette      _Palette;
-};
+}
 
-#endif
+FrmReader::~FrmReader()
+{
+}
+
+bool FrmReader::Open(const char* path)
+{
+	return _Reader->Open(path, ByteReader::LittleEndian);
+}
+
+void FrmReader::ReadFrmFile(FrmFile* dest)
+{
+	dest->version              = _Reader->u32();
+	dest->frames_per_second    = _Reader->u16();
+	dest->action_frame         = _Reader->u16();
+	dest->frames_per_direction = _Reader->u16();
+
+	ReadShiftX(dest);
+	ReadShiftY(dest);
+	ReadOffsets(dest);
+
+	dest->dirs = 1;
+
+	for (size_t i = 1; i < FrmFile::Max; i++)
+	{
+		if (dest->offset[i] != 0)
+		{
+			dest->dirs++;
+		}
+	}
+
+	dest->size = _Reader->u32();
+}
+
+void FrmReader::ReadFrmFrame(FrmFrame* dest)
+{
+	dest->width  = _Reader->u16();
+	dest->height = _Reader->u16();
+
+	_Reader->u32();
+	_Reader->u16();
+	_Reader->u16();
+
+	for (size_t i = 0; i < dest->width * dest->height; i++)
+	{
+		dest->indexes[i] = _Reader->u8();
+	}
+}
+
+void FrmReader::ReadShiftX(FrmFile* dest)
+{
+	for (size_t i = 0; i < FrmFile::Max; i++)
+	{
+		dest->shift_x[i] = _Reader->u16();
+	}
+}
+
+void FrmReader::ReadShiftY(FrmFile* dest)
+{
+	for (size_t i = 0; i < FrmFile::Max; i++)
+	{
+		dest->shift_y[i] = _Reader->u16();
+	}
+}
+
+void FrmReader::ReadOffsets(FrmFile* dest)
+{
+	for (size_t i = 0; i < FrmFile::Max; i++)
+	{
+		dest->offset[i] = _Reader->u32();
+	}
+}

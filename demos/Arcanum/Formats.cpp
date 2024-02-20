@@ -164,7 +164,7 @@ void ArtFile::Decode(ArtFrame* frame)
 
 	if (frame->_Header.size < (frame->_Header.height * frame->_Header.width))
 	{
-		for (int p = 0; p < (frame->_Header.size); p++)
+		for (size_t p = 0; p < (frame->_Header.size); p++)
 		{
 			uint8_t ch = (data[p]);
 
@@ -194,7 +194,7 @@ void ArtFile::Decode(ArtFrame* frame)
 	}
 	else
 	{
-		for (int p = 0; p < (frame->_Header.size); p++)
+		for (size_t p = 0; p < (frame->_Header.size); p++)
 		{
 			frame->_Pixels[Index(frame, px, py)] = data[p];
 			Inc(frame);

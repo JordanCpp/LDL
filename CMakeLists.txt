@@ -41,4 +41,4 @@ add_definitions(-DLDL_SUPPORT_OPENGL1)
 
 add_subdirectory("examples")
 add_subdirectory("tests")
-add_subdirectory("Arcanum")
+add_subdirectory("demos")

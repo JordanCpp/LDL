@@ -26,6 +26,7 @@ DEALINGS IN THE SOFTWARE.
 
 #include <LDL/Surface.hpp>
 #include <assert.h>
+#include <string.h>
 
 LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp) :
 	_Bpp(bpp),
@@ -90,9 +91,36 @@ LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, LDL_P
 	_Pixels = new uint8_t[_Capacity.x * _Capacity.y * _Bpp];
 }
 
+LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t* pixels, LDL_Palette* palette) :
+	_Bpp(1),
+	_Capacity(capacity),
+	_Size(size),
+	_Pixels(NULL)
+{
+	assert(capacity.x > 0);
+	assert(capacity.y > 0);
+	assert(size.x > 0);
+	assert(size.y > 0);
+	assert(size.x <= capacity.x);
+	assert(size.y <= capacity.y);
+	assert(pixels != NULL);
+
+	Palette(palette);
+
+	size_t count = _Capacity.x * _Capacity.y * _Bpp;
+
+	_Pixels = new uint8_t[count];
+
+	memcpy(_Pixels, pixels, count);
+}
+
 LDL_Surface::~LDL_Surface()
 {
-	delete _Pixels;
+#if (__BORLANDC__ == 0x200)
+	delete [_Capacity.x * _Capacity.y * _Bpp] _Pixels;
+#else
+	delete[] _Pixels;
+#endif
 }
 
 uint8_t* LDL_FAR LDL_Surface::Pixels()

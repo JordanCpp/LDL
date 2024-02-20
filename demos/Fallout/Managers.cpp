@@ -24,34 +24,41 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Surface_hpp
-#define LDL_Surface_hpp
+#include "Managers.hpp"
+#include <assert.h>
+#include <string.h>
 
-#include <LDL/Vec2i.hpp>
-#include <LDL/Palette.hpp>
-
-class LDL_Surface
+ImageManager::ImageManager() :
+	_Table(HashTable::Large)
 {
-public:
-	LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t * pixels, LDL_Palette* palette);
-	~LDL_Surface();
-	uint8_t* LDL_FAR Pixels();
-	uint8_t Bpp();
-	const LDL_Vec2i& Capacity();
-	const LDL_Vec2i& Size();
-	LDL_Palette* Palette();
-	void Palette(LDL_Palette* palette);
-	void Resize(const LDL_Vec2i& size);
-private:
-	uint8_t          _Bpp;
-	LDL_Vec2i        _Capacity;
-	LDL_Vec2i        _Size;
-	uint8_t* LDL_FAR _Pixels;
-	LDL_Palette      _Palette;
-};
+}
 
-#endif
+LDL_Texture* ImageManager::GetImage(const char* name)
+{
+	LDL_Texture* result = (LDL_Texture*)_Table.Contains(name);
+
+	return result;
+}
+
+PathManager::PathManager(const char* path)
+{
+	assert(strlen(path) < PathManager::ShortMax);
+
+	memset(_ShortPath, 0, sizeof(_ShortPath));
+	memset(_FullPath, 0, sizeof(_FullPath));
+
+	strcpy(_ShortPath, path);
+}
+
+const char* PathManager::Path(const char* dir, const char* file)
+{
+	assert(strlen(_ShortPath) + strlen(dir) + strlen(file) < PathManager::FullMax);
+
+	memset(_FullPath, 0, sizeof(_FullPath));
+
+	strcpy(_FullPath, _ShortPath);
+	strcat(_FullPath, dir);
+	strcat(_FullPath, file);
+
+	return _FullPath;
+}

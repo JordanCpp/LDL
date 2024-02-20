@@ -24,34 +24,34 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Surface_hpp
-#define LDL_Surface_hpp
+#ifndef LDL_Arcanum_Managers_hpp
+#define LDL_Arcanum_Managers_hpp
 
-#include <LDL/Vec2i.hpp>
-#include <LDL/Palette.hpp>
+#include "Structs.hpp"
+#include <LDL/LDL.hpp>
 
-class LDL_Surface
+class ImageManager
 {
 public:
-	LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t * pixels, LDL_Palette* palette);
-	~LDL_Surface();
-	uint8_t* LDL_FAR Pixels();
-	uint8_t Bpp();
-	const LDL_Vec2i& Capacity();
-	const LDL_Vec2i& Size();
-	LDL_Palette* Palette();
-	void Palette(LDL_Palette* palette);
-	void Resize(const LDL_Vec2i& size);
+	ImageManager();
+	LDL_Texture* GetImage(const char* name);
 private:
-	uint8_t          _Bpp;
-	LDL_Vec2i        _Capacity;
-	LDL_Vec2i        _Size;
-	uint8_t* LDL_FAR _Pixels;
-	LDL_Palette      _Palette;
+	HashTable _Table;
+};
+
+class PathManager
+{
+public:
+	enum
+	{
+		ShortMax = 64,
+		FullMax = 256
+	};
+	PathManager(const char* path);
+	const char* Path(const char* dir, const char* file);
+private:
+	char _ShortPath[PathManager::ShortMax];
+	char _FullPath[PathManager::FullMax];
 };
 
 #endif

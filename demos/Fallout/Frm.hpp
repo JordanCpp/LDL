@@ -24,34 +24,57 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Surface_hpp
-#define LDL_Surface_hpp
+#ifndef Frm_hpp
+#define Frm_hpp
 
-#include <LDL/Vec2i.hpp>
-#include <LDL/Palette.hpp>
+#include "ByteRead.hpp"
 
-class LDL_Surface
+struct FrmFile
+{
+	enum
+	{
+		Max = 6
+	};
+	uint32_t version;
+	uint16_t frames_per_second;
+	uint16_t action_frame;
+	uint16_t frames_per_direction;
+	uint16_t shift_x[FrmFile::Max];
+	uint16_t shift_y[FrmFile::Max];
+	uint16_t offset[FrmFile::Max];
+	uint32_t size;
+	uint32_t dirs;
+};
+
+struct FrmFrame
+{
+	enum
+	{
+		Max = 1024 * 32
+	};
+	FrmFrame()
+	{
+		indexes = new uint8_t[FrmFrame::Max];
+	}
+
+	uint16_t width;
+	uint16_t height;
+	uint8_t* indexes;
+};
+
+class FrmReader
 {
 public:
-	LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t * pixels, LDL_Palette* palette);
-	~LDL_Surface();
-	uint8_t* LDL_FAR Pixels();
-	uint8_t Bpp();
-	const LDL_Vec2i& Capacity();
-	const LDL_Vec2i& Size();
-	LDL_Palette* Palette();
-	void Palette(LDL_Palette* palette);
-	void Resize(const LDL_Vec2i& size);
+	FrmReader(ByteReader* reader);
+	~FrmReader();
+	bool Open(const char* path);
+	void ReadFrmFile(FrmFile* dest);
+	void ReadFrmFrame(FrmFrame* dest);
 private:
-	uint8_t          _Bpp;
-	LDL_Vec2i        _Capacity;
-	LDL_Vec2i        _Size;
-	uint8_t* LDL_FAR _Pixels;
-	LDL_Palette      _Palette;
+	void ReadShiftX(FrmFile* dest);
+	void ReadShiftY(FrmFile* dest);
+	void ReadOffsets(FrmFile* dest);
+	ByteReader* _Reader;
 };
 
 #endif

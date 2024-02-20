@@ -24,34 +24,29 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Surface_hpp
-#define LDL_Surface_hpp
+#ifndef Engine_hpp
+#define Engine_hpp
 
-#include <LDL/Vec2i.hpp>
-#include <LDL/Palette.hpp>
+#include <LDL/LDL.hpp>
+#include "Frm.hpp"
 
-class LDL_Surface
+class Engine
 {
 public:
-	LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t * pixels, LDL_Palette* palette);
-	~LDL_Surface();
-	uint8_t* LDL_FAR Pixels();
-	uint8_t Bpp();
-	const LDL_Vec2i& Capacity();
-	const LDL_Vec2i& Size();
-	LDL_Palette* Palette();
-	void Palette(LDL_Palette* palette);
-	void Resize(const LDL_Vec2i& size);
+	Engine(const LDL_Vec2i& size, LDL_Palette* palette);
+	~Engine();
+	void Run();
 private:
-	uint8_t          _Bpp;
-	LDL_Vec2i        _Capacity;
-	LDL_Vec2i        _Size;
-	uint8_t* LDL_FAR _Pixels;
-	LDL_Palette      _Palette;
+	LDL_Result         _Result;
+	LDL_Window         _Window;
+	LDL_Render         _Render;
+	LDL_FpsCounter     _FpsCounter;
+	LDL_NumberToString _Convert;
+	ByteReader         _ByteReader;
+	FrmReader          _FrmReader;
+	FrmFile            _FrmFile;
+	FrmFrame           _FrmFrame;
+	LDL_Texture*       _Image;
 };
 
 #endif

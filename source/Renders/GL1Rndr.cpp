@@ -67,6 +67,33 @@ LDL_TextureOpenGL1::LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t bytesPerPi
 	_Id = LDL_CreateTexture((GLsizei)_Quad.x, (GLsizei)_Quad.y, format);
 }
 
+LDL_TextureOpenGL1::LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, LDL_Palette* palette) :
+	_Id(0)
+{
+	_Size = size;
+
+	GLint format = GetFormat(3);
+
+	int sz = LDL_SelectTextureSize(_Size);
+
+	_Quad = LDL_Vec2i(sz, sz);
+
+	_Id = LDL_CreateTexture((GLsizei)_Quad.x, (GLsizei)_Quad.y, format);
+
+	uint8_t* LDL_FAR rgbPixels = new uint8_t[size.x * size.y * 3];
+
+	for (size_t i = 0; i < size.x * size.y; i++)
+	{
+		size_t index = i * 3;
+
+		rgbPixels[index] = palette->Get(pixels[i]).r;
+		rgbPixels[index] = palette->Get(pixels[i]).g;
+		rgbPixels[index] = palette->Get(pixels[i]).b;
+	}
+
+	Copy(LDL_Vec2i(0, 0), _Size, rgbPixels, 3);
+}
+
 LDL_TextureOpenGL1::~LDL_TextureOpenGL1()
 {
 	LDL_DeleteTexture((GLint)_Id);
@@ -225,4 +252,35 @@ void LDL_RenderOpenGL1::Draw(LDL_TextureOpenGL1* image, const LDL_Vec2i& dstPos,
 	LDL_DrawQuad(dstPos, dstSize, srcPos, srcSize, image->Quad().x);
 
 	LDL_GL_CHECK(glDisable(GL_TEXTURE_2D));
+}
+
+void LDL_RenderOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2i& pos)
+{
+	Draw(image, pos, image->Size(), LDL_Vec2i(0, 0), image->Size());
+}
+
+void LDL_RenderOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2i& pos, const LDL_Vec2i& size)
+{
+	Draw(image, pos, size, LDL_Vec2i(0, 0), image->Size());
+}
+
+void LDL_RenderOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize)
+{
+	Draw(image, dstPos, srcSize, srcPos, srcSize);
+}
+
+void LDL_RenderOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& dstSize, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize)
+{
+	LDL_GL_CHECK(glPixelZoom(1.0, -1.0));
+
+	LDL_GL_CHECK(glRasterPos2i((GLint)dstPos.x, (GLint)dstPos.y));
+
+	GLenum format;
+
+	if (image->Bpp() == 4)
+		format = GL_RGBA;
+	else
+		format = GL_RGB;
+
+	LDL_GL_CHECK(glDrawPixels((GLsizei)image->Size().x, (GLsizei)image->Size().y, format, GL_UNSIGNED_BYTE, image->Pixels()));
 }

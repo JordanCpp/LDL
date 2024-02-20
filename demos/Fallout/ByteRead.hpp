@@ -24,34 +24,34 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Surface_hpp
-#define LDL_Surface_hpp
+#ifndef ByteRead_hpp
+#define ByteRead_hpp
 
-#include <LDL/Vec2i.hpp>
-#include <LDL/Palette.hpp>
+#include <stdio.h>
+#include <LDL/LDL.hpp>
 
-class LDL_Surface
+class ByteReader
 {
 public:
-	LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t * pixels, LDL_Palette* palette);
-	~LDL_Surface();
-	uint8_t* LDL_FAR Pixels();
-	uint8_t Bpp();
-	const LDL_Vec2i& Capacity();
-	const LDL_Vec2i& Size();
-	LDL_Palette* Palette();
-	void Palette(LDL_Palette* palette);
-	void Resize(const LDL_Vec2i& size);
+	enum
+	{
+		LittleEndian,
+		BigEndian
+	};
+	ByteReader();
+	~ByteReader();
+	bool Open(const char* path, uint8_t endian = ByteReader::BigEndian);
+	void Close();
+	bool IsOpen();
+	uint8_t u8();
+	int8_t i8();
+	uint16_t u16();
+	int16_t i16();
+	uint32_t u32();
+	int32_t i32();
 private:
-	uint8_t          _Bpp;
-	LDL_Vec2i        _Capacity;
-	LDL_Vec2i        _Size;
-	uint8_t* LDL_FAR _Pixels;
-	LDL_Palette      _Palette;
+	uint8_t _Endian;
+	FILE* _File;
 };
 
 #endif

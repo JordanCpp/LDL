@@ -24,34 +24,104 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Surface_hpp
-#define LDL_Surface_hpp
+#include "ByteRead.hpp"
 
-#include <LDL/Vec2i.hpp>
-#include <LDL/Palette.hpp>
-
-class LDL_Surface
+ByteReader::ByteReader() :
+	_Endian(ByteReader::BigEndian),
+	_File(NULL)
 {
-public:
-	LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t * pixels, LDL_Palette* palette);
-	~LDL_Surface();
-	uint8_t* LDL_FAR Pixels();
-	uint8_t Bpp();
-	const LDL_Vec2i& Capacity();
-	const LDL_Vec2i& Size();
-	LDL_Palette* Palette();
-	void Palette(LDL_Palette* palette);
-	void Resize(const LDL_Vec2i& size);
-private:
-	uint8_t          _Bpp;
-	LDL_Vec2i        _Capacity;
-	LDL_Vec2i        _Size;
-	uint8_t* LDL_FAR _Pixels;
-	LDL_Palette      _Palette;
-};
+}
 
-#endif
+ByteReader::~ByteReader()
+{
+	Close();
+}
+
+bool ByteReader::Open(const char* path, uint8_t endian)
+{
+	_Endian = endian;
+
+	Close();
+
+	_File = fopen(path, "rb");
+
+	return IsOpen();
+}
+
+void ByteReader::Close()
+{
+	if (IsOpen())
+	{
+		fclose(_File);
+	}
+}
+
+bool ByteReader::IsOpen()
+{
+	return _File != NULL;
+}
+
+uint8_t ByteReader::u8()
+{
+	uint8_t result;
+	uint8_t bytes[1];
+
+	fread((char*)bytes, sizeof(bytes), 1, _File);
+
+	result = bytes[0];
+
+	return result;
+}
+
+int8_t ByteReader::i8()
+{
+	return u8();
+}
+
+uint16_t ByteReader::u16()
+{
+	uint16_t result;
+	uint8_t bytes[2];
+
+	fread((char*)bytes, sizeof(bytes), 1, _File);
+
+	if (_Endian == ByteReader::BigEndian)
+	{
+		memcpy(&result, bytes, sizeof(bytes));
+	}
+	else
+	{
+		result = bytes[1] | (bytes[0] << 8);
+	}
+
+	return result;
+}
+
+int16_t ByteReader::i16()
+{
+	return u16();
+}
+
+uint32_t ByteReader::u32()
+{
+	uint32_t result;
+	uint8_t bytes[4];
+
+	fread((char*)bytes, sizeof(bytes), 1, _File);
+
+	if (_Endian == ByteReader::BigEndian)
+	{
+		memcpy(&result, bytes, sizeof(bytes));
+	}
+	else
+	{
+		result = bytes[3] | (bytes[2] << 8) | (bytes[1] << 16) | (bytes[0] << 24);
+	}
+
+	return result;
+}
+
+int32_t ByteReader::i32()
+{
+	return u32();
+}

@@ -24,34 +24,64 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Surface_hpp
-#define LDL_Surface_hpp
+#include "Engine.hpp"
 
-#include <LDL/Vec2i.hpp>
-#include <LDL/Palette.hpp>
-
-class LDL_Surface
+Engine::Engine(const LDL_Vec2i& size, LDL_Palette* palette) :
+	_Window(&_Result, LDL_Vec2i(0,0), size, "", LDL_WindowMode::Fixed),
+	_Render(&_Window, palette),
+	_FrmReader(&_ByteReader)
 {
-public:
-	LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t * pixels, LDL_Palette* palette);
-	~LDL_Surface();
-	uint8_t* LDL_FAR Pixels();
-	uint8_t Bpp();
-	const LDL_Vec2i& Capacity();
-	const LDL_Vec2i& Size();
-	LDL_Palette* Palette();
-	void Palette(LDL_Palette* palette);
-	void Resize(const LDL_Vec2i& size);
-private:
-	uint8_t          _Bpp;
-	LDL_Vec2i        _Capacity;
-	LDL_Vec2i        _Size;
-	uint8_t* LDL_FAR _Pixels;
-	LDL_Palette      _Palette;
-};
+	if (_FrmReader.Open("data/art/critters/HANPWRAA.frm"))
+	{
+		_FrmReader.ReadFrmFile(&_FrmFile);
+		_FrmReader.ReadFrmFrame(&_FrmFrame);
 
-#endif
+		LDL_Vec2i sz = LDL_Vec2i(_FrmFrame.width, _FrmFrame.height);
+
+		_Image = new LDL_Texture(sz, _FrmFrame.indexes, palette);
+	}
+}
+
+Engine::~Engine()
+{
+	delete _Image;
+}
+
+void Engine::Run()
+{
+	if (_Result.Ok())
+	{
+		LDL_Event report;
+
+		while (_Window.Running())
+		{
+			_FpsCounter.Start();
+
+			while (_Window.GetEvent(report))
+			{
+				if (report.Type == LDL_Event::IsQuit)
+				{
+					_Window.StopEvent();
+				}
+			}
+
+			_Render.Begin();
+
+			_Render.Draw(_Image, LDL_Vec2i(5, 10));
+
+			_Render.End();
+
+			if (_FpsCounter.Calc())
+			{
+				_Window.Title(_Convert.Convert(_FpsCounter.Fps()));
+				_FpsCounter.Clear();
+			}
+
+			_Window.PollEvents();
+		}
+	}
+	else
+	{
+		printf("%s/n", _Result.Message());
+	}
+}

@@ -24,34 +24,73 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Surface_hpp
-#define LDL_Surface_hpp
+#ifndef LDL_Arcanum_Structs_hpp
+#define LDL_Arcanum_Structs_hpp
 
-#include <LDL/Vec2i.hpp>
-#include <LDL/Palette.hpp>
+#include <stddef.h>
 
-class LDL_Surface
+class ListNode
 {
 public:
-	LDL_Surface(const LDL_Vec2i& capacity, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp);
-	LDL_Surface(const LDL_Vec2i& capacity, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t * pixels, LDL_Palette* palette);
-	~LDL_Surface();
-	uint8_t* LDL_FAR Pixels();
-	uint8_t Bpp();
-	const LDL_Vec2i& Capacity();
-	const LDL_Vec2i& Size();
-	LDL_Palette* Palette();
-	void Palette(LDL_Palette* palette);
-	void Resize(const LDL_Vec2i& size);
+    ListNode();
+    ListNode* Next;
+    ListNode* Prev;
+};
+
+class List
+{
+public:
+    List();
+    ~List();
+    ListNode* Head;
+    ListNode* Tail;
+
+    void PushBack(ListNode* node);
+};
+
+class HashItem : public ListNode
+{
+public:
+    HashItem();
+    char Key[32];
+};
+
+class HashTable
+{
+public:
+    enum
+    {
+        Small = 512,
+        Medium = 1024,
+        Large = 4096,
+        Huge = 8192
+    };
+    HashTable(size_t length);
+    ~HashTable();
+    size_t HashLy(const char* str);
+    HashItem* Contains(const char* name);
+    void Add(HashItem* item, const char* name);
 private:
-	uint8_t          _Bpp;
-	LDL_Vec2i        _Capacity;
-	LDL_Vec2i        _Size;
-	uint8_t* LDL_FAR _Pixels;
-	LDL_Palette      _Palette;
+    size_t _Length;
+    List* _Table;
+};
+
+class Vector
+{
+public:
+    Vector(size_t capacity, size_t elementSize);
+    ~Vector();
+    size_t Capacity();
+    size_t Size();
+    void* Get(size_t index);
+    void Set(size_t index, void* element);
+    void PushBack(void* element);
+    void Resize(size_t count);
+private:
+    size_t _Position;
+    size_t _Capacity;
+    size_t _ElementSize;
+    void*  _Content;
 };
 
 #endif

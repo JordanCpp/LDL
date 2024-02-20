@@ -71,7 +71,11 @@ HashTable::HashTable(size_t length) :
 
 HashTable::~HashTable()
 {
-    delete _Table;
+#if (__BORLANDC__ == 0x200)
+    delete[_Length] _Table;
+#else
+    delete[] _Table;
+#endif
 }
 
 size_t HashTable::HashLy(const char* str)
@@ -135,7 +139,11 @@ Vector::Vector(size_t capacity, size_t elementSize) :
 
 Vector::~Vector()
 {
-    //delete [] _Content;
+#if (__BORLANDC__ == 0x200)
+    delete[_Capacity * _ElementSize] _Content;
+#else
+    delete[] _Content;
+#endif
 }
 
 size_t Vector::Capacity()
