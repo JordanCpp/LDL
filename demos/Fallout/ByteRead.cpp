@@ -25,6 +25,7 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include "ByteRead.hpp"
+#include <string.h>
 
 ByteReader::ByteReader() :
 	_Endian(ByteReader::BigEndian),
