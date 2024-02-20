@@ -86,12 +86,14 @@ LDL_TextureOpenGL1::LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, L
 	{
 		size_t index = i * 3;
 
-		rgbPixels[index] = palette->Get(pixels[i]).r;
-		rgbPixels[index] = palette->Get(pixels[i]).g;
-		rgbPixels[index] = palette->Get(pixels[i]).b;
+		rgbPixels[index    ] = palette->Get(pixels[i]).r;
+		rgbPixels[index + 1] = palette->Get(pixels[i]).g;
+		rgbPixels[index + 2] = palette->Get(pixels[i]).b;
 	}
 
 	Copy(LDL_Vec2i(0, 0), _Size, rgbPixels, 3);
+
+	delete[] rgbPixels;
 }
 
 LDL_TextureOpenGL1::~LDL_TextureOpenGL1()
