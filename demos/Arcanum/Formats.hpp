@@ -104,15 +104,15 @@ private:
 	size_t Index(ArtFrame* frame, int x, int y);
 	FILE* _File;
 	int _Palettes;
-	int _Frames;
+	size_t _Frames;
 	int _KeyFrame;
 	bool _Animated;
 	ArtHeader       _Header;
 	ArtFrameHeader  _FrameHeaders[ArtFrameHeader::Max];
 	ArtTable        _PaletteData[3];
 	uint8_t      data[ArtFrame::Max];
-	int px;
-	int py;
+	size_t px;
+	size_t py;
 };
 
 #endif

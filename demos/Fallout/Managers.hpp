@@ -28,14 +28,15 @@ DEALINGS IN THE SOFTWARE.
 #define LDL_Arcanum_Managers_hpp
 
 #include "Structs.hpp"
-#include <LDL/LDL.hpp>
+#include "Loaders.hpp"
 
-class ImageManager
+class SpriteManager
 {
 public:
-	ImageManager();
-	LDL_Texture* GetImage(const char* name);
+	SpriteManager(SpriteLoader* spriteLoader);
+	Sprite* GetSprite(const char* name);
 private:
+	SpriteLoader* _SpriteLoader;
 	HashTable _Table;
 };
 

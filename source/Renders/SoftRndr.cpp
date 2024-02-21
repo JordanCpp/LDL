@@ -304,6 +304,7 @@ void LDL_RenderSoftware::Draw(LDL_Surface* image, const LDL_Vec2i& dstPos, const
 	else if (dstBpp == 3 && srcBpp == 1)
 	{
 		LDL_Color color;
+		uint8_t srcAlpha = image->Alpha().Index();
 
 		for (size_t i = 0; i < limitSizeX; i++)
 		{
@@ -312,17 +313,20 @@ void LDL_RenderSoftware::Draw(LDL_Surface* image, const LDL_Vec2i& dstPos, const
 				dstIndex = (dstSizeX * (y + j) + (x + i)) * dstBpp;
 				srcIndex = (srcSizeX * j + i) * srcBpp;
 
-				color = srcPalette->Get(srcPixels[srcIndex]);
+				if (srcPixels[srcIndex] != srcAlpha)
+				{
+					color = srcPalette->Get(srcPixels[srcIndex]);
 
 #if defined (_WIN32)
-				dstPixels[dstIndex    ] = color.b;
-				dstPixels[dstIndex + 1] = color.g;
-				dstPixels[dstIndex + 2] = color.r;
+					dstPixels[dstIndex] = color.b;
+					dstPixels[dstIndex + 1] = color.g;
+					dstPixels[dstIndex + 2] = color.r;
 #else
-				dstPixels[dstIndex    ] = color.r;
-				dstPixels[dstIndex + 1] = color.g;
-				dstPixels[dstIndex + 2] = color.b;
+					dstPixels[dstIndex] = color.r;
+					dstPixels[dstIndex + 1] = color.g;
+					dstPixels[dstIndex + 2] = color.b;
 #endif  
+				}
 			}
 		}
 	}

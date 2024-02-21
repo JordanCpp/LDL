@@ -35,6 +35,9 @@ struct FrmFile
 	{
 		Max = 6
 	};
+
+	FrmFile();
+
 	uint32_t version;
 	uint16_t frames_per_second;
 	uint16_t action_frame;
@@ -52,10 +55,9 @@ struct FrmFrame
 	{
 		Max = 1024 * 32
 	};
-	FrmFrame()
-	{
-		indexes = new uint8_t[FrmFrame::Max];
-	}
+
+	FrmFrame();
+	~FrmFrame();
 
 	uint16_t width;
 	uint16_t height;

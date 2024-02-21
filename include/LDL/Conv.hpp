@@ -32,13 +32,14 @@ DEALINGS IN THE SOFTWARE.
 class LDL_NumberToString
 {
 public:
+	LDL_NumberToString();
 	const char* Convert(int num, uint8_t base = 10);
 	const char* Convert(size_t num);
 private:
 	void Swap(char& t1, char& t2);
 	void Reverse(char* str, size_t length);
+	int  _Result;
 	char _Buffer[32];
-	int _Result;
 };
 
 #endif

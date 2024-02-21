@@ -52,7 +52,7 @@ class HashItem : public ListNode
 {
 public:
     HashItem();
-    char Key[32];
+    char Key[64];
 };
 
 class HashTable
@@ -60,10 +60,10 @@ class HashTable
 public:
     enum
     {
-        Small = 512,
+        Small  = 512,
         Medium = 1024,
-        Large = 4096,
-        Huge = 8192
+        Large  = 4096,
+        Huge   = 8192
     };
     HashTable(size_t length);
     ~HashTable();

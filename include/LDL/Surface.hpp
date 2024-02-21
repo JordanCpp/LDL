@@ -29,6 +29,7 @@ DEALINGS IN THE SOFTWARE.
 
 #include <LDL/Vec2i.hpp>
 #include <LDL/Palette.hpp>
+#include <LDL/Alpha.hpp>
 
 class LDL_Surface
 {
@@ -46,12 +47,15 @@ public:
 	LDL_Palette* Palette();
 	void Palette(LDL_Palette* palette);
 	void Resize(const LDL_Vec2i& size);
+	const LDL_Alpha& Alpha();
+	void SetAlpha(LDL_Alpha& alpha);
 private:
 	uint8_t          _Bpp;
+	uint8_t* LDL_FAR _Pixels;
 	LDL_Vec2i        _Capacity;
 	LDL_Vec2i        _Size;
-	uint8_t* LDL_FAR _Pixels;
 	LDL_Palette      _Palette;
+	LDL_Alpha        _Alpha;
 };
 
 #endif

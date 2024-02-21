@@ -24,75 +24,59 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#include <LDL/LDL.hpp>
-#include <stdio.h>
+#include "Loaders.hpp"
 
-int main()
+PaletteLoader::PaletteLoader(ByteReader* reader, const char* path) :
+	_Reader(reader)
 {
-	LDL_Result result;
+	_Reader->Open(path);
 
-	LDL_Window window(&result, LDL_Vec2i(0, 0), LDL_Vec2i(800, 600), "05Img");
-	LDL_Render render(&window);
-
-	LDL_FpsCounter     fpsCounter;
-	LDL_NumberToString convert;
-
-	LDL_Surface surf(LDL_Vec2i(800, 600), LDL_Vec2i(800, 600), 4);
-
-	LDL_Color* pixels = (LDL_Color*)surf.Pixels();
-
-	size_t count = surf.Size().x * surf.Size().y;
-
-	for (size_t i = 0; i < count; i++)
+	if (_Reader->IsOpen())
 	{
-		pixels[i].r = 34;
-		pixels[i].g = 177;
-		pixels[i].b = 76;
-		pixels[i].a = 255;
-	}
+		LDL_Color color;
 
-	if (result.Ok())
-	{
-		LDL_Texture texture(surf.Size(), (uint8_t*)surf.Pixels(), surf.Bpp());
-
-		render.SetColor(LDL_Color(0, 162, 232));
-
-		LDL_Event report;
-
-		while (window.Running())
+		for (size_t i = 0; i < 256; i++)
 		{
-			fpsCounter.Start();
+			color.r = _Reader->u8();
+			color.g = _Reader->u8();
+			color.b = _Reader->u8();
 
-			while (window.GetEvent(report))
-			{
-				if (report.Type == LDL_Event::IsQuit)
-				{
-					window.StopEvent();
-				}
-			}
-
-			render.Begin();
-
-			render.SetColor(LDL_Color(0, 162, 232));
-			render.Clear();
-
-			render.Draw(&texture, LDL_Vec2i(0, 0));
-
-			render.End();
-
-			if (fpsCounter.Calc())
-			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
-				fpsCounter.Clear();
-			}
-
-			window.PollEvents();
+			_Palette.Set(i, color);
 		}
+
+		_Reader->Close();
 	}
-	else
+}
+
+LDL_Palette* PaletteLoader::Result()
+{
+	return &_Palette;
+}
+
+SpriteLoader::SpriteLoader(FrmReader* frmReader, LDL_Palette* palette) :
+	_FrmReader(frmReader),
+	_Palette(palette)
+{
+}
+
+Sprite* SpriteLoader::GetSprite(const char* path)
+{
+	Sprite* result = NULL;
+
+	if (_FrmReader->Open(path))
 	{
-		printf("%s/n", result.Message());
+		_FrmReader->ReadFrmFile(&_FrmFile);
+
+		_FrmReader->ReadFrmFrame(&_FrmFrame);
+
+		result = new Sprite();
+
+		LDL_Texture* texture = new LDL_Texture(LDL_Vec2i(_FrmFrame.width, _FrmFrame.height), _FrmFrame.indexes, _Palette);
+		
+		SpriteFrame* frame = new SpriteFrame(texture);
+		
+		result->Append(0, frame);
 	}
 
-	return 0;
+	return result;
 }

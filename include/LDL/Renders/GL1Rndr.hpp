@@ -36,11 +36,11 @@ DEALINGS IN THE SOFTWARE.
 class LDL_TextureOpenGL1
 {
 public:
-	LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, uint8_t bytesPerPixel);
-	LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t bytesPerPixel);
+	LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, uint8_t bpp);
+	LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t bpp);
 	LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, LDL_Palette* palette);
 	~LDL_TextureOpenGL1();
-	void Copy(const LDL_Vec2i& dstPos, const LDL_Vec2i& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
+	void Copy(const LDL_Vec2i& dstPos, const LDL_Vec2i& srcSize, uint8_t* pixels, uint8_t bpp);
 	void Copy(const LDL_Vec2i& dstPos, LDL_Surface* surface, const LDL_Vec2i& srcSize);
 	const LDL_Vec2i& Size();
 	const LDL_Vec2i& Quad();
@@ -73,10 +73,10 @@ public:
 	void Draw(LDL_Surface* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& dstSize, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize);
 private:
 	LDL_WindowOpenGL1* _Window;
-	LDL_BaseRender   _BaseRender;
-	LDL_OpenGLLoader _OpenGLLoader;
-	LDL_Mat4f        _Projection;
-	LDL_Mat4f        _ModelView;
+	LDL_BaseRender     _BaseRender;
+	LDL_OpenGLLoader   _OpenGLLoader;
+	LDL_Mat4f          _Projection;
+	LDL_Mat4f          _ModelView;
 };
 
 #endif

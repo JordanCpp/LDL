@@ -25,36 +25,8 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include "Engine.hpp"
+#include "Loaders.hpp"
 #include "Frm.hpp"
-
-class PaletteLoader
-{
-public:
-	bool Load(const char* path, LDL_Palette& palette)
-	{
-		_File = fopen(path, "rb");
-
-		if (_File != NULL)
-		{
-			LDL_Color color;
-
-			for (size_t i = 0; i < 256; i++)
-			{
-				size_t result = fread(&color, 3, 1, _File);
-
-				palette.Set(i, color);
-			}
-
-			fclose(_File);
-
-			return true;
-		}
-
-		return false;
-	}
-private:
-	FILE* _File;
-};
 
 #if defined(__MSDOS__)
 LDL_Vec2i windowSize(320, 200);
@@ -64,11 +36,7 @@ LDL_Vec2i windowSize(800, 600);
 
 int main()
 {
-	LDL_Palette palette;
-	PaletteLoader paletteLoader;
-	paletteLoader.Load("data/COLOR.PAL", palette);
-
-	Engine engine(windowSize, &palette);
+	Engine engine(windowSize);
 	engine.Run();
 
 	return 0;

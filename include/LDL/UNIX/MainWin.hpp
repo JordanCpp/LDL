@@ -52,7 +52,7 @@ public:
 	const LDL_Vec2i& Size();
 	const LDL_Vec2i& Pos();
 private:
-	LDL_Result* _Result;
+	LDL_Result*    _Result;
 	LDL_BaseWindow _BaseWindow;
 	LDL_Eventer    _Eventer;
 public:

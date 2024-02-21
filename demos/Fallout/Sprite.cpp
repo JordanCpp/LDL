@@ -24,75 +24,55 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#include <LDL/LDL.hpp>
-#include <stdio.h>
+#include "Sprite.hpp"
+#include <assert.h>
+#include <string.h>
 
-int main()
+SpriteFrame::SpriteFrame(LDL_Texture* image) :
+	_Image(image)
 {
-	LDL_Result result;
+}
 
-	LDL_Window window(&result, LDL_Vec2i(0, 0), LDL_Vec2i(800, 600), "05Img");
-	LDL_Render render(&window);
+LDL_Texture* SpriteFrame::GetImage()
+{
+	return _Image;
+}
 
-	LDL_FpsCounter     fpsCounter;
-	LDL_NumberToString convert;
+Sprite::Sprite()
+{
+	memset(&_Frames, 0, sizeof(_Frames));
+}
 
-	LDL_Surface surf(LDL_Vec2i(800, 600), LDL_Vec2i(800, 600), 4);
+void Sprite::Append(size_t dir, SpriteFrame* frame)
+{
+	assert(dir < Sprite::MaxDirs);
+	assert(frame != NULL);
 
-	LDL_Color* pixels = (LDL_Color*)surf.Pixels();
+	size_t i = 0;
 
-	size_t count = surf.Size().x * surf.Size().y;
-
-	for (size_t i = 0; i < count; i++)
+	while (_Frames[dir][i] != NULL)
 	{
-		pixels[i].r = 34;
-		pixels[i].g = 177;
-		pixels[i].b = 76;
-		pixels[i].a = 255;
+		i++;
 	}
 
-	if (result.Ok())
+	assert(i < Sprite::MaxFrames);
+
+	_Frames[dir][i] = frame;
+}
+
+SpriteFrame* Sprite::GetFrame(size_t dir, size_t frame)
+{
+	return _Frames[dir][frame];
+}
+
+size_t Sprite::Frames()
+{
+	size_t i = 0;
+
+	while (_Frames[0][i] != NULL)
 	{
-		LDL_Texture texture(surf.Size(), (uint8_t*)surf.Pixels(), surf.Bpp());
-
-		render.SetColor(LDL_Color(0, 162, 232));
-
-		LDL_Event report;
-
-		while (window.Running())
-		{
-			fpsCounter.Start();
-
-			while (window.GetEvent(report))
-			{
-				if (report.Type == LDL_Event::IsQuit)
-				{
-					window.StopEvent();
-				}
-			}
-
-			render.Begin();
-
-			render.SetColor(LDL_Color(0, 162, 232));
-			render.Clear();
-
-			render.Draw(&texture, LDL_Vec2i(0, 0));
-
-			render.End();
-
-			if (fpsCounter.Calc())
-			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
-				fpsCounter.Clear();
-			}
-
-			window.PollEvents();
-		}
-	}
-	else
-	{
-		printf("%s/n", result.Message());
+		i++;
 	}
 
-	return 0;
+	return i;
 }

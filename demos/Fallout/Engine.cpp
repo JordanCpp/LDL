@@ -26,25 +26,18 @@ DEALINGS IN THE SOFTWARE.
 
 #include "Engine.hpp"
 
-Engine::Engine(const LDL_Vec2i& size, LDL_Palette* palette) :
+Engine::Engine(const LDL_Vec2i& size) :
+	_PaletteLoader(&_ByteReader, "data/COLOR.PAL"),
 	_Window(&_Result, LDL_Vec2i(0,0), size, "", LDL_WindowMode::Fixed),
-	_Render(&_Window, palette),
-	_FrmReader(&_ByteReader)
+	_Render(&_Window, _PaletteLoader.Result()),
+	_FrmReader(&_ByteReader),
+	_SpriteLoader(&_FrmReader, _PaletteLoader.Result()),
+	_SpriteManager(&_SpriteLoader)
 {
-	if (_FrmReader.Open("data/art/critters/HANPWRAA.frm"))
-	{
-		_FrmReader.ReadFrmFile(&_FrmFile);
-		_FrmReader.ReadFrmFrame(&_FrmFrame);
-
-		LDL_Vec2i sz = LDL_Vec2i(_FrmFrame.width, _FrmFrame.height);
-
-		_Image = new LDL_Texture(sz, _FrmFrame.indexes, palette);
-	}
 }
 
 Engine::~Engine()
 {
-	delete _Image;
 }
 
 void Engine::Run()
@@ -67,7 +60,8 @@ void Engine::Run()
 
 			_Render.Begin();
 
-			_Render.Draw(_Image, LDL_Vec2i(5, 10));
+			Sprite* sprite = _SpriteManager.GetSprite("data/art/critters/HANPWRAA.frm");
+			_Render.Draw(sprite->GetFrame(0, 0)->GetImage(), LDL_Vec2i(5, 10));
 
 			_Render.End();
 

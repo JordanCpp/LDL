@@ -25,6 +25,13 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include <LDL/Conv.hpp>
+#include <string.h>
+
+LDL_NumberToString::LDL_NumberToString() :
+	_Result(0)
+{
+	memset(&_Buffer, 0, sizeof(_Buffer));
+}
 
 const char* LDL_NumberToString::Convert(int num, uint8_t base)
 {

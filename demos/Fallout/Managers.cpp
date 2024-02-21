@@ -28,14 +28,21 @@ DEALINGS IN THE SOFTWARE.
 #include <assert.h>
 #include <string.h>
 
-ImageManager::ImageManager() :
+SpriteManager::SpriteManager(SpriteLoader* spriteLoader) :
+	_SpriteLoader(spriteLoader),
 	_Table(HashTable::Large)
 {
 }
 
-LDL_Texture* ImageManager::GetImage(const char* name)
+Sprite* SpriteManager::GetSprite(const char* name)
 {
-	LDL_Texture* result = (LDL_Texture*)_Table.Contains(name);
+	Sprite* result = (Sprite*)_Table.Contains(name);
+
+	if (result == NULL)
+	{
+		result = _SpriteLoader->GetSprite(name);
+		_Table.Add((HashItem*)result, name);
+	}
 
 	return result;
 }

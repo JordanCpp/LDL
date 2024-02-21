@@ -28,25 +28,25 @@ DEALINGS IN THE SOFTWARE.
 #define Engine_hpp
 
 #include <LDL/LDL.hpp>
-#include "Frm.hpp"
+#include "Managers.hpp"
 
 class Engine
 {
 public:
-	Engine(const LDL_Vec2i& size, LDL_Palette* palette);
+	Engine(const LDL_Vec2i& size);
 	~Engine();
 	void Run();
 private:
+	ByteReader         _ByteReader;
+	PaletteLoader      _PaletteLoader;
 	LDL_Result         _Result;
 	LDL_Window         _Window;
 	LDL_Render         _Render;
 	LDL_FpsCounter     _FpsCounter;
 	LDL_NumberToString _Convert;
-	ByteReader         _ByteReader;
 	FrmReader          _FrmReader;
-	FrmFile            _FrmFile;
-	FrmFrame           _FrmFrame;
-	LDL_Texture*       _Image;
+	SpriteLoader       _SpriteLoader;
+	SpriteManager      _SpriteManager;
 };
 
 #endif

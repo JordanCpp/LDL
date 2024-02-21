@@ -24,75 +24,31 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#include <LDL/LDL.hpp>
-#include <stdio.h>
+#include <LDL/Alpha.hpp>
 
-int main()
+LDL_Alpha::LDL_Alpha() :
+	_IsAlpha(false)
 {
-	LDL_Result result;
+}
 
-	LDL_Window window(&result, LDL_Vec2i(0, 0), LDL_Vec2i(800, 600), "05Img");
-	LDL_Render render(&window);
+LDL_Alpha::LDL_Alpha(const LDL_Color& color) :
+	_IsAlpha(true),
+	_Color(color)
+{
+}
 
-	LDL_FpsCounter     fpsCounter;
-	LDL_NumberToString convert;
+LDL_Alpha::LDL_Alpha(uint8_t index) :
+	_IsAlpha(true),
+	_Color(index, 0, 0)
+{
+}
 
-	LDL_Surface surf(LDL_Vec2i(800, 600), LDL_Vec2i(800, 600), 4);
+const LDL_Color& LDL_Alpha::Color() const
+{
+	return _Color;
+}
 
-	LDL_Color* pixels = (LDL_Color*)surf.Pixels();
-
-	size_t count = surf.Size().x * surf.Size().y;
-
-	for (size_t i = 0; i < count; i++)
-	{
-		pixels[i].r = 34;
-		pixels[i].g = 177;
-		pixels[i].b = 76;
-		pixels[i].a = 255;
-	}
-
-	if (result.Ok())
-	{
-		LDL_Texture texture(surf.Size(), (uint8_t*)surf.Pixels(), surf.Bpp());
-
-		render.SetColor(LDL_Color(0, 162, 232));
-
-		LDL_Event report;
-
-		while (window.Running())
-		{
-			fpsCounter.Start();
-
-			while (window.GetEvent(report))
-			{
-				if (report.Type == LDL_Event::IsQuit)
-				{
-					window.StopEvent();
-				}
-			}
-
-			render.Begin();
-
-			render.SetColor(LDL_Color(0, 162, 232));
-			render.Clear();
-
-			render.Draw(&texture, LDL_Vec2i(0, 0));
-
-			render.End();
-
-			if (fpsCounter.Calc())
-			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
-				fpsCounter.Clear();
-			}
-
-			window.PollEvents();
-		}
-	}
-	else
-	{
-		printf("%s/n", result.Message());
-	}
-
-	return 0;
+uint8_t LDL_Alpha::Index() const
+{
+	return _Color.r;
 }

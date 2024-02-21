@@ -4,6 +4,8 @@ add_executable(Fallout
 "Frm.cpp" 
 "Structs.cpp" 
 "Managers.cpp" 
-"Engine.cpp")
+"Engine.cpp" 
+"Sprite.cpp" 
+"Loaders.cpp")
 
 target_link_libraries(Fallout LDL)

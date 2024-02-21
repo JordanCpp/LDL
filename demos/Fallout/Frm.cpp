@@ -25,6 +25,26 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include "Frm.hpp"
+#include <string.h>
+
+FrmFile::FrmFile()
+{
+	memset(this, 0, sizeof(FrmFile));
+}
+
+
+FrmFrame::FrmFrame() :
+	width(0),
+	height(0),
+	indexes(NULL)
+{
+	indexes = new uint8_t[FrmFrame::Max];
+}
+
+FrmFrame::~FrmFrame()
+{
+	delete indexes;
+}
 
 FrmReader::FrmReader(ByteReader* reader) :
 	_Reader(reader)
@@ -73,7 +93,9 @@ void FrmReader::ReadFrmFrame(FrmFrame* dest)
 	_Reader->u16();
 	_Reader->u16();
 
-	for (size_t i = 0; i < dest->width * dest->height; i++)
+	size_t count = dest->width * dest->height;
+
+	for (size_t i = 0; i < count; i++)
 	{
 		dest->indexes[i] = _Reader->u8();
 	}
