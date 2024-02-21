@@ -136,9 +136,9 @@ void LDL_RenderSoftware::Fill(const LDL_Vec2i& pos, const LDL_Vec2i& size)
 
 	if (bpp == 1)
 	{
-		for (size_t i = 0; i < size.x; i++)
+		for (int i = 0; i < size.x; i++)
 		{
-			for (size_t j = 0; j < size.y; j++)
+			for (int j = 0; j < size.y; j++)
 			{
 				pixels[sx * (y + j) + (x + i)] = colorIndex;
 			}

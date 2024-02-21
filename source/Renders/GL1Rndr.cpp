@@ -80,11 +80,11 @@ LDL_TextureOpenGL1::LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, L
 
 	_Id = LDL_CreateTexture((GLsizei)_Quad.x, (GLsizei)_Quad.y, format);
 
-	uint8_t* LDL_FAR rgbPixels = new uint8_t[size.x * size.y * 3];
+	uint8_t* rgbPixels = new uint8_t[size.x * size.y * 3];
 
-	for (size_t i = 0; i < size.x * size.y; i++)
+	for (int i = 0; i < size.x * size.y; i++)
 	{
-		size_t index = i * 3;
+		int index = i * 3;
 
 		rgbPixels[index    ] = palette->Get(pixels[i]).r;
 		rgbPixels[index + 1] = palette->Get(pixels[i]).g;
@@ -273,6 +273,16 @@ void LDL_RenderOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2i& dstPos, const 
 
 void LDL_RenderOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& dstSize, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize)
 {
+	assert(image != NULL);
+	assert(dstPos.x >= 0);
+	assert(dstPos.y >= 0);
+	assert(dstSize.x > 0);
+	assert(dstSize.y > 0);
+	assert(srcPos.x >= 0);
+	assert(srcPos.y >= 0);
+	assert(srcSize.x > 0);
+	assert(srcSize.y > 0);
+
 	LDL_GL_CHECK(glPixelZoom(1.0, -1.0));
 
 	LDL_GL_CHECK(glRasterPos2i((GLint)dstPos.x, (GLint)dstPos.y));
