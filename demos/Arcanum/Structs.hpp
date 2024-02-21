@@ -90,7 +90,7 @@ private:
     size_t _Position;
     size_t _Capacity;
     size_t _ElementSize;
-    void*  _Content;
+    char*  _Content;
 };
 
 #endif

@@ -40,7 +40,7 @@ public:
 
 			for (size_t i = 0; i < 256; i++)
 			{
-				int result = fread(&color, 3, 1, _File);
+				size_t result = fread(&color, 3, 1, _File);
 
 				palette.Set(i, color);
 			}
