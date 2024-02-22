@@ -28,6 +28,43 @@ DEALINGS IN THE SOFTWARE.
 #include "Loaders.hpp"
 #include "Frm.hpp"
 
+void HashTableTest()
+{
+	class Item : HashItem
+	{
+	public:
+		Item(size_t value) :
+			Value(value)
+		{
+		}
+
+		size_t Value;
+	};
+
+	HashTable table(HashTable::Small);
+	LDL_NumberToString conv;
+
+	for (size_t i = 0; i < 100; i++)
+	{
+		LDL_TEST_EQUAL(table.Contains(conv.Convert(i)) == NULL);
+	}
+
+	for (size_t j = 0; j < 100; j++)
+	{
+		Item* item = new Item(j);
+
+		table.Add((HashItem*)item, conv.Convert(j));
+    }
+
+	for (size_t k = 0; k < 100; k++)
+	{
+		Item* item = (Item*)table.Contains(conv.Convert(k));
+
+		LDL_TEST_EQUAL(item != NULL);
+		LDL_TEST_EQUAL(item->Value == k);
+	}
+}
+
 #if defined(__MSDOS__)
 LDL_Vec2i windowSize(320, 200);
 #else
@@ -36,6 +73,8 @@ LDL_Vec2i windowSize(800, 600);
 
 int main()
 {
+	//HashTableTest();
+
 	Engine engine(windowSize);
 	engine.Run();
 

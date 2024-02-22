@@ -202,7 +202,7 @@ void ArtFile::Decode(ArtFrame* frame)
 	}
 }
 
-size_t ArtFile::Index(ArtFrame* frame, int x, int y)
+size_t ArtFile::Index(ArtFrame* frame, size_t x, size_t y)
 {
 	return ((frame->_Header.width * y) + x);
 }

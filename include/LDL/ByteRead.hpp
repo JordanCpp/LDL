@@ -24,13 +24,13 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef ByteRead_hpp
-#define ByteRead_hpp
+#ifndef LDL_ByteRead_hpp
+#define LDL_ByteRead_hpp
 
+#include <LDL/Config.hpp>
 #include <stdio.h>
-#include <LDL/LDL.hpp>
 
-class ByteReader
+class LDL_ByteReader
 {
 public:
 	enum
@@ -38,9 +38,9 @@ public:
 		LittleEndian,
 		BigEndian
 	};
-	ByteReader();
-	~ByteReader();
-	bool Open(const char* path, uint8_t endian = ByteReader::BigEndian);
+	LDL_ByteReader();
+	~LDL_ByteReader();
+	bool Open(const char* path, uint8_t endian = LDL_ByteReader::BigEndian);
 	void Close();
 	bool IsOpen();
 	uint8_t u8();

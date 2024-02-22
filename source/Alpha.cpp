@@ -43,6 +43,11 @@ LDL_Alpha::LDL_Alpha(uint8_t index) :
 {
 }
 
+bool LDL_Alpha::IsAlpha()
+{
+	return _IsAlpha;
+}
+
 const LDL_Color& LDL_Alpha::Color() const
 {
 	return _Color;

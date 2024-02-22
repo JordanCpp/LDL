@@ -26,7 +26,7 @@ DEALINGS IN THE SOFTWARE.
 
 #include "Loaders.hpp"
 
-PaletteLoader::PaletteLoader(ByteReader* reader, const char* path) :
+PaletteLoader::PaletteLoader(LDL_ByteReader* reader, const char* path) :
 	_Reader(reader)
 {
 	_Reader->Open(path);
@@ -71,7 +71,7 @@ Sprite* SpriteLoader::GetSprite(const char* path)
 
 		result = new Sprite();
 
-		LDL_Texture* texture = new LDL_Texture(LDL_Vec2i(_FrmFrame.width, _FrmFrame.height), _FrmFrame.indexes, _Palette);
+		LDL_Texture* texture = new LDL_Texture(LDL_Vec2i(_FrmFrame.width, _FrmFrame.height), _FrmFrame.indexes, _Palette, &LDL_Alpha(0));
 		
 		SpriteFrame* frame = new SpriteFrame(texture);
 		

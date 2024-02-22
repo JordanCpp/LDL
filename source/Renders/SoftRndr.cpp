@@ -52,6 +52,11 @@ LDL_TextureSoftware::LDL_TextureSoftware(const LDL_Vec2i& size, uint8_t* pixels,
 {
 }
 
+LDL_TextureSoftware::LDL_TextureSoftware(const LDL_Vec2i& size, uint8_t* pixels, LDL_Palette* palette, LDL_Alpha* alpha) :
+	_Surface(size, size, pixels, palette, alpha)
+{
+}
+
 LDL_TextureSoftware::~LDL_TextureSoftware()
 {
 }
@@ -88,6 +93,13 @@ const LDL_Vec2i& LDL_TextureSoftware::Quad()
 LDL_Surface* LDL_TextureSoftware::GetSurface()
 {
 	return &_Surface;
+}
+
+LDL_RenderSoftware::LDL_RenderSoftware(LDL_WindowSoftware* window) :
+	_Window(window),
+	_BaseRender(_Window->Size(), NULL),
+	_Screen(_Window->GetScreen())
+{
 }
 
 LDL_RenderSoftware::LDL_RenderSoftware(LDL_WindowSoftware* window, LDL_Palette* palette) :

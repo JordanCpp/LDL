@@ -1,6 +1,5 @@
 add_executable(Fallout 
 "main.cpp" 
-"ByteRead.cpp" 
 "Frm.cpp" 
 "Structs.cpp" 
 "Managers.cpp" 

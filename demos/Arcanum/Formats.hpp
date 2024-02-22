@@ -101,7 +101,7 @@ private:
 	bool Inc(ArtFrame* frame);
 	void Dec(ArtFrame* frame);
 	void Decode(ArtFrame* frame);
-	size_t Index(ArtFrame* frame, int x, int y);
+	size_t Index(ArtFrame* frame, size_t x, size_t y);
 	FILE* _File;
 	int _Palettes;
 	size_t _Frames;

@@ -31,6 +31,7 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/BaseRndr.hpp>
 #include <LDL/BaseWin.hpp>
 #include <LDL/BmpLoad.hpp>
+#include <LDL/ByteRead.hpp>
 #include <LDL/Color.hpp>
 #include <LDL/Conv.hpp>
 #include <LDL/Enums.hpp>

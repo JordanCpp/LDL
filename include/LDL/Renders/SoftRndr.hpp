@@ -37,6 +37,7 @@ public:
 	LDL_TextureSoftware(const LDL_Vec2i& size, uint8_t* pixels, uint8_t bytesPerPixel);
 	LDL_TextureSoftware(const LDL_Vec2i& size, uint8_t bytesPerPixel);
 	LDL_TextureSoftware(const LDL_Vec2i& size, uint8_t* pixels, LDL_Palette* palette);
+	LDL_TextureSoftware(const LDL_Vec2i& size, uint8_t* pixels, LDL_Palette* palette, LDL_Alpha* alpha);
 	~LDL_TextureSoftware();
 	void Copy(const LDL_Vec2i& dstPos, const LDL_Vec2i& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
 	void Copy(const LDL_Vec2i& dstPos, LDL_Surface* surface, const LDL_Vec2i& srcSize);
@@ -46,13 +47,15 @@ public:
 private:
 	LDL_Vec2i   _Size;
 	LDL_Vec2i   _Quad;
+	LDL_Alpha   _Alpha;
 	LDL_Surface _Surface;
 };
 
 class LDL_RenderSoftware
 {
 public:
-	LDL_RenderSoftware(LDL_WindowSoftware* window, LDL_Palette* palette = NULL);
+	LDL_RenderSoftware(LDL_WindowSoftware* window);
+	LDL_RenderSoftware(LDL_WindowSoftware* window, LDL_Palette* palette);
 	void Begin();
 	void End();
 	void Line(const LDL_Vec2i& pos1, const LDL_Vec2i& pos2);

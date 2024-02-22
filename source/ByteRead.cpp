@@ -24,21 +24,21 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#include "ByteRead.hpp"
+#include <LDL/ByteRead.hpp>
 #include <string.h>
 
-ByteReader::ByteReader() :
-	_Endian(ByteReader::BigEndian),
+LDL_ByteReader::LDL_ByteReader() :
+	_Endian(LDL_ByteReader::BigEndian),
 	_File(NULL)
 {
 }
 
-ByteReader::~ByteReader()
+LDL_ByteReader::~LDL_ByteReader()
 {
 	Close();
 }
 
-bool ByteReader::Open(const char* path, uint8_t endian)
+bool LDL_ByteReader::Open(const char* path, uint8_t endian)
 {
 	_Endian = endian;
 
@@ -49,7 +49,7 @@ bool ByteReader::Open(const char* path, uint8_t endian)
 	return IsOpen();
 }
 
-void ByteReader::Close()
+void LDL_ByteReader::Close()
 {
 	if (IsOpen())
 	{
@@ -57,12 +57,12 @@ void ByteReader::Close()
 	}
 }
 
-bool ByteReader::IsOpen()
+bool LDL_ByteReader::IsOpen()
 {
 	return _File != NULL;
 }
 
-uint8_t ByteReader::u8()
+uint8_t LDL_ByteReader::u8()
 {
 	uint8_t result;
 	uint8_t bytes[1];
@@ -74,19 +74,19 @@ uint8_t ByteReader::u8()
 	return result;
 }
 
-int8_t ByteReader::i8()
+int8_t LDL_ByteReader::i8()
 {
 	return u8();
 }
 
-uint16_t ByteReader::u16()
+uint16_t LDL_ByteReader::u16()
 {
 	uint16_t result;
 	uint8_t bytes[2];
 
 	fread((char*)bytes, sizeof(bytes), 1, _File);
 
-	if (_Endian == ByteReader::BigEndian)
+	if (_Endian == LDL_ByteReader::BigEndian)
 	{
 		memcpy(&result, bytes, sizeof(bytes));
 	}
@@ -98,19 +98,19 @@ uint16_t ByteReader::u16()
 	return result;
 }
 
-int16_t ByteReader::i16()
+int16_t LDL_ByteReader::i16()
 {
 	return u16();
 }
 
-uint32_t ByteReader::u32()
+uint32_t LDL_ByteReader::u32()
 {
 	uint32_t result;
 	uint8_t bytes[4];
 
 	fread((char*)bytes, sizeof(bytes), 1, _File);
 
-	if (_Endian == ByteReader::BigEndian)
+	if (_Endian == LDL_ByteReader::BigEndian)
 	{
 		memcpy(&result, bytes, sizeof(bytes));
 	}
@@ -122,7 +122,7 @@ uint32_t ByteReader::u32()
 	return result;
 }
 
-int32_t ByteReader::i32()
+int32_t LDL_ByteReader::i32()
 {
 	return u32();
 }

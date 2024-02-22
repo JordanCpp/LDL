@@ -37,7 +37,7 @@ public:
 	~Engine();
 	void Run();
 private:
-	ByteReader         _ByteReader;
+	LDL_ByteReader     _ByteReader;
 	PaletteLoader      _PaletteLoader;
 	LDL_Result         _Result;
 	LDL_Window         _Window;

@@ -35,6 +35,7 @@ public:
 	LDL_Alpha();
 	LDL_Alpha(const LDL_Color& color);
 	LDL_Alpha(uint8_t index);
+	bool IsAlpha();
 	const LDL_Color& Color() const;
 	uint8_t Index() const;
 private:

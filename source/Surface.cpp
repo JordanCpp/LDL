@@ -114,6 +114,30 @@ LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8
 	memcpy(_Pixels, pixels, count);
 }
 
+LDL_Surface::LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t* pixels, LDL_Palette* palette, LDL_Alpha* alpha) :
+	_Bpp(1),
+	_Pixels(NULL),
+	_Capacity(capacity),
+	_Size(size),
+	_Alpha(alpha->Index())
+{
+	assert(capacity.x > 0);
+	assert(capacity.y > 0);
+	assert(size.x > 0);
+	assert(size.y > 0);
+	assert(size.x <= capacity.x);
+	assert(size.y <= capacity.y);
+	assert(pixels != NULL);
+
+	Palette(palette);
+
+	size_t count = _Capacity.x * _Capacity.y * _Bpp;
+
+	_Pixels = new uint8_t[count];
+
+	memcpy(_Pixels, pixels, count);
+}
+
 LDL_Surface::~LDL_Surface()
 {
 #if (__BORLANDC__ == 0x200)

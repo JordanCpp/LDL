@@ -39,6 +39,7 @@ public:
 	LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, uint8_t bpp);
 	LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t bpp);
 	LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, LDL_Palette* palette);
+	LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, LDL_Palette* palette, LDL_Alpha* alpha);
 	~LDL_TextureOpenGL1();
 	void Copy(const LDL_Vec2i& dstPos, const LDL_Vec2i& srcSize, uint8_t* pixels, uint8_t bpp);
 	void Copy(const LDL_Vec2i& dstPos, LDL_Surface* surface, const LDL_Vec2i& srcSize);

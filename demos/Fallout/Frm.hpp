@@ -27,7 +27,7 @@ DEALINGS IN THE SOFTWARE.
 #ifndef Frm_hpp
 #define Frm_hpp
 
-#include "ByteRead.hpp"
+#include <LDL/LDL.hpp>
 
 struct FrmFile
 {
@@ -67,7 +67,7 @@ struct FrmFrame
 class FrmReader
 {
 public:
-	FrmReader(ByteReader* reader);
+	FrmReader(LDL_ByteReader* reader);
 	~FrmReader();
 	bool Open(const char* path);
 	void ReadFrmFile(FrmFile* dest);
@@ -76,7 +76,7 @@ private:
 	void ReadShiftX(FrmFile* dest);
 	void ReadShiftY(FrmFile* dest);
 	void ReadOffsets(FrmFile* dest);
-	ByteReader* _Reader;
+	LDL_ByteReader* _Reader;
 };
 
 #endif

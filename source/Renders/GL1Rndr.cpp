@@ -72,7 +72,7 @@ LDL_TextureOpenGL1::LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, L
 {
 	_Size = size;
 
-	GLint format = GetFormat(3);
+	GLint format = GetFormat(4);
 
 	int sz = LDL_SelectTextureSize(_Size);
 
@@ -80,18 +80,59 @@ LDL_TextureOpenGL1::LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, L
 
 	_Id = LDL_CreateTexture((GLsizei)_Quad.x, (GLsizei)_Quad.y, format);
 
-	uint8_t* rgbPixels = new uint8_t[size.x * size.y * 3];
+	uint8_t* rgbPixels = new uint8_t[size.x * size.y * 4];
 
 	for (int i = 0; i < size.x * size.y; i++)
 	{
-		int index = i * 3;
+		int index = i * 4;
 
-		rgbPixels[index    ] = palette->Get(pixels[i]).r;
+		rgbPixels[index + 0] = palette->Get(pixels[i]).r;
 		rgbPixels[index + 1] = palette->Get(pixels[i]).g;
 		rgbPixels[index + 2] = palette->Get(pixels[i]).b;
+		rgbPixels[index + 3] = 255;
 	}
 
-	Copy(LDL_Vec2i(0, 0), _Size, rgbPixels, 3);
+	Copy(LDL_Vec2i(0, 0), _Size, rgbPixels, 4);
+
+	delete[] rgbPixels;
+}
+
+LDL_TextureOpenGL1::LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, LDL_Palette* palette, LDL_Alpha* alpha) :
+	_Id(0)
+{
+	_Size = size;
+
+	GLint format = GetFormat(4);
+
+	int sz = LDL_SelectTextureSize(_Size);
+
+	_Quad = LDL_Vec2i(sz, sz);
+
+	_Id = LDL_CreateTexture((GLsizei)_Quad.x, (GLsizei)_Quad.y, format);
+
+	uint8_t* rgbPixels = new uint8_t[size.x * size.y * 4];
+
+	for (int i = 0; i < size.x * size.y; i++)
+	{
+		int index = i * 4;
+
+		if (pixels[i] != alpha->Index())
+		{
+			rgbPixels[index + 0] = palette->Get(pixels[i]).r;
+			rgbPixels[index + 1] = palette->Get(pixels[i]).g;
+			rgbPixels[index + 2] = palette->Get(pixels[i]).b;
+			rgbPixels[index + 3] = 255;
+		}
+		else
+		{
+			rgbPixels[index + 0] = 0;
+			rgbPixels[index + 1] = 0;
+			rgbPixels[index + 2] = 0;
+			rgbPixels[index + 3] = 0;
+		}
+	}
+
+	Copy(LDL_Vec2i(0, 0), _Size, rgbPixels, 4);
 
 	delete[] rgbPixels;
 }

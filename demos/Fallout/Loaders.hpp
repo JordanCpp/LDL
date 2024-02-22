@@ -28,17 +28,16 @@ DEALINGS IN THE SOFTWARE.
 #define Loaders_hpp
 
 #include <LDL/LDL.hpp>
-#include "ByteRead.hpp"
 #include "Sprite.hpp"
 #include "Frm.hpp"
 
 class PaletteLoader
 {
 public:
-	PaletteLoader(ByteReader* reader, const char* path);
+	PaletteLoader(LDL_ByteReader* reader, const char* path);
 	LDL_Palette* Result();
 private:
-	ByteReader* _Reader;
+	LDL_ByteReader* _Reader;
 	LDL_Palette _Palette;
 };
 

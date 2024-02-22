@@ -46,7 +46,7 @@ FrmFrame::~FrmFrame()
 	delete indexes;
 }
 
-FrmReader::FrmReader(ByteReader* reader) :
+FrmReader::FrmReader(LDL_ByteReader* reader) :
 	_Reader(reader)
 {
 }
@@ -57,7 +57,7 @@ FrmReader::~FrmReader()
 
 bool FrmReader::Open(const char* path)
 {
-	return _Reader->Open(path, ByteReader::LittleEndian);
+	return _Reader->Open(path, LDL_ByteReader::LittleEndian);
 }
 
 void FrmReader::ReadFrmFile(FrmFile* dest)

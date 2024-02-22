@@ -38,7 +38,8 @@ public:
 	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t bpp);
 	LDL_Surface(const LDL_Vec2i& capacity, LDL_Palette* palette);
 	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, LDL_Palette* palette);
-	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t * pixels, LDL_Palette* palette);
+	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t* pixels, LDL_Palette* palette);
+	LDL_Surface(const LDL_Vec2i& capacity, const LDL_Vec2i& size, uint8_t* pixels, LDL_Palette* palette, LDL_Alpha* alpha);
 	~LDL_Surface();
 	uint8_t* LDL_FAR Pixels();
 	uint8_t Bpp();
