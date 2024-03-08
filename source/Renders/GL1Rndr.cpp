@@ -56,6 +56,10 @@ LDL_TextureOpenGL1::LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, u
 LDL_TextureOpenGL1::LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t bpp) :
 	_Id(0)
 {
+	assert(size.x > 0);
+	assert(size.y > 0);
+	assert(bpp >= 1 && bpp <= 4);
+
 	_Size = size;
 
 	GLint format = GetFormat(bpp);
@@ -70,6 +74,10 @@ LDL_TextureOpenGL1::LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t bpp) :
 LDL_TextureOpenGL1::LDL_TextureOpenGL1(const LDL_Vec2i& size, uint8_t* pixels, LDL_Palette* palette) :
 	_Id(0)
 {
+	assert(size.x > 0);
+	assert(size.y > 0);
+	assert(pixels != NULL);
+
 	_Size = size;
 
 	GLint format = GetFormat(4);
@@ -287,7 +295,7 @@ void LDL_RenderOpenGL1::Draw(LDL_TextureOpenGL1* image, const LDL_Vec2i& dstPos,
 
 void LDL_RenderOpenGL1::Draw(LDL_TextureOpenGL1* image, const LDL_Vec2i& dstPos, const LDL_Vec2i& dstSize, const LDL_Vec2i& srcPos, const LDL_Vec2i& srcSize)
 {
-	assert(image);
+	assert(image != NULL);
 
 	LDL_GL_CHECK(glEnable(GL_TEXTURE_2D));
 	LDL_GL_CHECK(glBindTexture(GL_TEXTURE_2D, image->Id()));

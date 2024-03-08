@@ -36,8 +36,8 @@ endif()
 add_library(LDL STATIC ${SRC_FILES})
 target_link_libraries(LDL ${libs})	
 
-add_definitions(-DLDL_SUPPORT_SOFTWARE)
-#add_definitions(-DLDL_SUPPORT_OPENGL1)
+#add_definitions(-DLDL_SUPPORT_SOFTWARE)
+add_definitions(-DLDL_SUPPORT_OPENGL1)
 
 add_subdirectory("examples")
 add_subdirectory("tests")
