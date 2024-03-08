@@ -24,8 +24,8 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Arcanum_Engine_hpp
-#define LDL_Arcanum_Engine_hpp
+#ifndef Arcanum_Engine_hpp
+#define Arcanum_Engine_hpp
 
 #include <LDL/LDL.hpp>
 #include "Managers.hpp"
@@ -38,6 +38,7 @@ public:
 	void Run();
 private:
 	LDL_Result      _Result;
+	LDL_ByteReader  _ByteReader;
 	LDL_Window      _Window;
 	LDL_Render      _Render;
 	PathManager     _PathManager;

@@ -126,3 +126,8 @@ int32_t LDL_ByteReader::i32()
 {
 	return u32();
 }
+
+size_t LDL_ByteReader::Read(void* dest, size_t bytes)
+{
+	return fread(dest, bytes, 1, _File);
+}

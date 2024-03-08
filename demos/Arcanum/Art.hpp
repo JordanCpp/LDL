@@ -24,12 +24,10 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Arcanum_Formats_hpp
-#define LDL_Arcanum_Formats_hpp
+#ifndef Arcanum_Art_hpp
+#define Arcanum_Art_hpp
 
 #include <LDL/LDL.hpp>
-#include "Structs.hpp"
-#include <stdio.h>
 
 struct ArtColor
 {
@@ -40,7 +38,7 @@ struct ArtColor
 	uint8_t	a;
 };
 
-inline bool in_palette(ArtColor col)
+inline bool InPalette(ArtColor col)
 {
 	return (col.a | col.b | col.g | col.r) != 0;
 }
@@ -50,9 +48,9 @@ struct ArtTable
 	ArtColor colors[256];
 };
 
-struct ArtHeader
+struct ArtFileHeader
 {
-	void Clear();
+	ArtFileHeader();
 	uint32_t h0[3];
 	ArtColor stupid_color[4];
 	uint32_t frame_num_low;
@@ -62,14 +60,14 @@ struct ArtHeader
 	ArtColor palette_data3[8];
 };
 
-struct ArtFrameHeader
+struct ArtFrame
 {
 	enum
 	{
-		Max = 8 * 16
+		Max = 8 * 8
 	};
 
-	ArtFrameHeader();
+	ArtFrame();
 	uint32_t width;
 	uint32_t height;
 	uint32_t size;
@@ -79,40 +77,29 @@ struct ArtFrameHeader
 	uint32_t d_y;
 };
 
-struct ArtFrame
+struct ArtFrameInfo : ArtFrame 
 {
-	enum
-	{
-		Max = 256 * 100
-	};
-
-	ArtFrameHeader _Header;
-	uint8_t _Pixels[ArtFrame::Max];
+	ArtFrameInfo();
+	uint8_t  pixels[1024 * 32];
 };
 
-class ArtFile
+struct ArtFile
+{
+	ArtFileHeader header;
+	ArtTable      palletes[3];
+	ArtFrame      frames[ArtFrame::Max];
+};
+
+class ArtReader
 {
 public:
-	void Clear();
-	bool Load(const char* name);
-	size_t Frames();
-	void Frame(ArtFrame *frame);
+	ArtReader(LDL_ByteReader* reader);
+	bool Open(const char* path);
+	size_t Frames(ArtFile* dest);
+	void Read(ArtFile* dest);
+	void Read(ArtFrameInfo* dest, ArtFile* src, size_t index);
 private:
-	bool Inc(ArtFrame* frame);
-	void Dec(ArtFrame* frame);
-	void Decode(ArtFrame* frame);
-	size_t Index(ArtFrame* frame, size_t x, size_t y);
-	FILE* _File;
-	int _Palettes;
-	size_t _Frames;
-	int _KeyFrame;
-	bool _Animated;
-	ArtHeader       _Header;
-	ArtFrameHeader  _FrameHeaders[ArtFrameHeader::Max];
-	ArtTable        _PaletteData[3];
-	uint8_t      data[ArtFrame::Max];
-	size_t px;
-	size_t py;
+	LDL_ByteReader* _Reader;
 };
 
 #endif

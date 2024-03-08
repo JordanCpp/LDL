@@ -24,58 +24,21 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef Arcanum_GUI_hpp
-#define Arcanum_GUI_hpp
+#ifndef LDL_MemRead_hpp
+#define LDL_MemRead_hpp
 
-#include "Structs.hpp"
+#include <LDL/Reader.hpp>
 
-class GuiPoint2i
+class LDL_MemoryReader : public LDL_Reader
 {
 public:
-	GuiPoint2i();
-	GuiPoint2i(int x, int y);
-	int x;
-	int y;
-};
-
-class GuiRect2i
-{
-public:
-	GuiRect2i();
-	GuiRect2i(int x, int y, int w, int h);
-	int x;
-	int y;
-	int w;
-	int h;
-};
-
-class GuiWidget : public ListNode
-{
-public:
+	LDL_MemoryReader();
+	void Reset(uint8_t* buffer, size_t total);
+	size_t Read(void* dest, size_t bytes);
 private:
-};
-
-class GuiContainer
-{
-public:
-	void Attach(GuiWidget* widget);
-private:
-	List _Widgets;
-};
-
-class GuiButton : public GuiWidget
-{
-public:
-private:
-	GuiRect2i _Area;
-};
-
-class GuiForm : public GuiWidget
-{
-public:
-
-private:
-	GuiContainer _Widgets;
+	uint8_t* _Buffer;
+	size_t   _Total;
+	size_t   _Position;
 };
 
 #endif

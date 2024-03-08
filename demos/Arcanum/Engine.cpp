@@ -25,6 +25,7 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include "Engine.hpp"
+#include "Art.hpp"
 
 Engine::Engine() :
 	_Window(&_Result, LDL_Vec2i(0,0), LDL_Vec2i(800, 600), "", LDL_WindowMode::Fixed),
@@ -32,6 +33,17 @@ Engine::Engine() :
 	_PathManager(""),
 	_LocationPainter(&_Render, &_ImageManager)
 {
+
+	ArtReader reader(&_ByteReader);
+	ArtFile artFile;
+	ArtFrameInfo artFrame;
+
+	if (reader.Open("data/art/scenery/engine.ART"))
+	{
+		reader.Read(&artFile);
+
+		reader.Read(&artFrame, &artFile, 0);
+	}
 }
 
 void Engine::Run()

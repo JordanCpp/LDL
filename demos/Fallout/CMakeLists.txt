@@ -1,10 +1,4 @@
-add_executable(Fallout 
-"main.cpp" 
-"Frm.cpp" 
-"Structs.cpp" 
-"Managers.cpp" 
-"Engine.cpp" 
-"Sprite.cpp" 
-"Loaders.cpp")
 
+file(GLOB SOURCE_FILES "*.cpp")
+add_executable(Fallout ${SOURCE_FILES})
 target_link_libraries(Fallout LDL)

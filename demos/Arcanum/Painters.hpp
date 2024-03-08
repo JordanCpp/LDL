@@ -24,8 +24,8 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Arcanum_Painters_hpp
-#define LDL_Arcanum_Painters_hpp
+#ifndef Arcanum_Painters_hpp
+#define Arcanum_Painters_hpp
 
 #include <LDL/LDL.hpp>
 #include "Objects.hpp"

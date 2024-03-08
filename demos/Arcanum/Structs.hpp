@@ -24,8 +24,8 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_Arcanum_Structs_hpp
-#define LDL_Arcanum_Structs_hpp
+#ifndef Arcanum_Structs_hpp
+#define Arcanum_Structs_hpp
 
 #include <stddef.h>
 

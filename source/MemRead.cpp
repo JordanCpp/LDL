@@ -24,58 +24,37 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef Arcanum_GUI_hpp
-#define Arcanum_GUI_hpp
+#include <LDL/MemRead.hpp>
+#include <string.h>
+#include <assert.h>
 
-#include "Structs.hpp"
-
-class GuiPoint2i
+LDL_MemoryReader::LDL_MemoryReader() :
+	_Buffer(NULL),
+	_Total(0),
+	_Position(0)
 {
-public:
-	GuiPoint2i();
-	GuiPoint2i(int x, int y);
-	int x;
-	int y;
-};
+}
 
-class GuiRect2i
+void LDL_MemoryReader::Reset(uint8_t* buffer, size_t total)
 {
-public:
-	GuiRect2i();
-	GuiRect2i(int x, int y, int w, int h);
-	int x;
-	int y;
-	int w;
-	int h;
-};
+	assert(buffer != NULL);
+	assert(total > 0);
 
-class GuiWidget : public ListNode
+	_Buffer = buffer;
+	_Total  = total;
+}
+
+size_t LDL_MemoryReader::Read(void* dest, size_t bytes)
 {
-public:
-private:
-};
+	size_t result = 0;
 
-class GuiContainer
-{
-public:
-	void Attach(GuiWidget* widget);
-private:
-	List _Widgets;
-};
+	if (_Position + bytes <= _Total)
+	{
+		memcpy(dest, &_Buffer[_Position], bytes);
+		_Position += bytes;
 
-class GuiButton : public GuiWidget
-{
-public:
-private:
-	GuiRect2i _Area;
-};
+		result = bytes;
+	}
 
-class GuiForm : public GuiWidget
-{
-public:
-
-private:
-	GuiContainer _Widgets;
-};
-
-#endif
+	return result;
+}

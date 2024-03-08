@@ -32,17 +32,17 @@ DEALINGS IN THE SOFTWARE.
 
 namespace LDL
 {
-	void Abort(const std::string& message, const std::string& detail)
+	inline void Abort(const std::string& message, const std::string& detail)
 	{
 		LDL_Abort(message.c_str(), detail.c_str());
 	}
 
-	void Abort(const std::string& message)
+	inline void Abort(const std::string& message)
 	{
 		LDL_Abort(message.c_str());
 	}
 
-	void Abort()
+	inline void Abort()
 	{
 		LDL_Abort()
 	}

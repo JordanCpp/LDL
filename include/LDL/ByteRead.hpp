@@ -27,10 +27,10 @@ DEALINGS IN THE SOFTWARE.
 #ifndef LDL_ByteRead_hpp
 #define LDL_ByteRead_hpp
 
-#include <LDL/Config.hpp>
+#include <LDL/Reader.hpp>
 #include <stdio.h>
 
-class LDL_ByteReader
+class LDL_ByteReader : public LDL_Reader
 {
 public:
 	enum
@@ -49,6 +49,7 @@ public:
 	int16_t i16();
 	uint32_t u32();
 	int32_t i32();
+	size_t Read(void* dest, size_t bytes);
 private:
 	uint8_t _Endian;
 	FILE* _File;
