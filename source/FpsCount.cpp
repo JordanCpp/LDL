@@ -25,9 +25,10 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include <LDL/FpsCount.hpp>
+#include "FpsCount.hpp"
 #include <LDL/Ticks.hpp>
 
-LDL_FpsCounter::LDL_FpsCounter() :
+LDL_FpsCounterImpl::LDL_FpsCounterImpl() :
 	_Current(0),
 	_Delta(0),
 	_Old(0),
@@ -35,12 +36,12 @@ LDL_FpsCounter::LDL_FpsCounter() :
 {
 }
 
-void LDL_FpsCounter::Start()
+void LDL_FpsCounterImpl::Start()
 {
 	_Current = LDL_Ticks();
 }
 
-bool LDL_FpsCounter::Calc()
+bool LDL_FpsCounterImpl::Calc()
 {
 	_Fps++;
 
@@ -56,13 +57,38 @@ bool LDL_FpsCounter::Calc()
 	return false;
 }
 
-size_t LDL_FpsCounter::Fps()
+size_t LDL_FpsCounterImpl::Fps()
 {
 	return _Fps;
 }
 
-void LDL_FpsCounter::Clear()
+void LDL_FpsCounterImpl::Clear()
 {
 	_Fps = 0;
 	_Old = 0;
+}
+
+LDL_FpsCounter::LDL_FpsCounter() :
+	_Impl(new(&_ImplData[0]) LDL_FpsCounterImpl)
+{
+}
+
+void LDL_FpsCounter::Start()
+{
+	_Impl->Start();
+}
+
+bool LDL_FpsCounter::Calc()
+{
+	return _Impl->Calc();
+}
+
+size_t LDL_FpsCounter::Fps()
+{
+	return _Impl->Fps();
+}
+
+void LDL_FpsCounter::Clear()
+{
+	_Impl->Clear();
 }

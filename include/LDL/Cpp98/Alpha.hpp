@@ -24,76 +24,48 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#include <LDL/Result.hpp>
-#include "Result.hpp"
-#include <string.h>
-#include <assert.h>
+#ifndef LDL_Cpp98_Alpha_hpp
+#define LDL_Cpp98_Alpha_hpp
 
-LDL_ResultImpl::LDL_ResultImpl()
+#include <LDL/Alpha.hpp>
+
+namespace LDL
 {
-	Clear();
+	class Alpha
+	{
+	public:
+		inline Alpha() :
+			_Alpha()
+		{
+		}
+
+		inline Alpha(const LDL_Color& color) :
+			_Alpha(color)
+		{
+		}
+
+		inline Alpha(uint8_t index) :
+			_Alpha(index)
+		{
+		}
+
+		inline bool IsAlpha()
+		{
+			return _Alpha.IsAlpha();
+		}
+
+		inline const LDL_Color& Color() const
+		{
+			return _Alpha.Color();
+		}
+
+		inline uint8_t Index() const
+		{
+			return _Alpha.Index();
+		}
+	private:
+		LDL_Alpha _Alpha;
+	};
 }
 
-void LDL_ResultImpl::Clear()
-{
-	_Ok = true;
-	memset(&_Message, 0, Max);
-}
-
-bool LDL_ResultImpl::Ok()
-{
-	return _Ok;
-}
-
-const char* LDL_ResultImpl::Message()
-{
-	return _Message;
-}
-
-void LDL_ResultImpl::Message(const char* message, const char* detail)
-{
-	Clear();
-
-	_Ok = false;
-
-	size_t count = strlen(message) + strlen(detail);
-	assert(count < Max);
-
-	strcpy(_Message, message);
-	strcat(_Message, detail);
-}
-
-void LDL_ResultImpl::Message(const char* message)
-{
-	Message(message, "");
-}
-
-LDL_Result::LDL_Result() :
-	_Impl(new(&_ImplData[0]) LDL_ResultImpl)
-{
-}
-
-void LDL_Result::Clear()
-{
-	_Impl->Clear();
-}
-
-bool LDL_Result::Ok()
-{
-	return _Impl->Ok();
-}
-
-const char* LDL_Result::Message()
-{
-	return _Impl->Message();
-}
-
-void LDL_Result::Message(const char* message, const char* detail)
-{
-	_Impl->Message(message, detail);
-}
-
-void LDL_Result::Message(const char* message)
-{
-	_Impl->Message(message, "");
-}
+#endif

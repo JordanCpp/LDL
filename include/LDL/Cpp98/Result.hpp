@@ -24,76 +24,40 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
+#ifndef LDL_Cpp98_Result_hpp
+#define LDL_Cpp98_Result_hpp
+
 #include <LDL/Result.hpp>
-#include "Result.hpp"
-#include <string.h>
-#include <assert.h>
+#include <string>
 
-LDL_ResultImpl::LDL_ResultImpl()
+namespace LDL
 {
-	Clear();
+	class Result
+	{
+	public:
+		inline void Clear()
+		{
+			_Result.Clear();
+		}
+		inline bool Ok()
+		{
+			return _Result.Ok();
+		}
+		inline const std::string& Message()
+		{
+			return _Result.Message();
+		}
+		inline void Message(const std::string& message, const std::string& detail)
+		{
+			_Result.Message(message.c_str(), detail.c_str());
+		}
+		inline void Message(const std::string& message)
+		{
+			_Result.Message(message.c_str());
+		}
+	private:
+		LDL_Result _Result;
+	};
 }
 
-void LDL_ResultImpl::Clear()
-{
-	_Ok = true;
-	memset(&_Message, 0, Max);
-}
-
-bool LDL_ResultImpl::Ok()
-{
-	return _Ok;
-}
-
-const char* LDL_ResultImpl::Message()
-{
-	return _Message;
-}
-
-void LDL_ResultImpl::Message(const char* message, const char* detail)
-{
-	Clear();
-
-	_Ok = false;
-
-	size_t count = strlen(message) + strlen(detail);
-	assert(count < Max);
-
-	strcpy(_Message, message);
-	strcat(_Message, detail);
-}
-
-void LDL_ResultImpl::Message(const char* message)
-{
-	Message(message, "");
-}
-
-LDL_Result::LDL_Result() :
-	_Impl(new(&_ImplData[0]) LDL_ResultImpl)
-{
-}
-
-void LDL_Result::Clear()
-{
-	_Impl->Clear();
-}
-
-bool LDL_Result::Ok()
-{
-	return _Impl->Ok();
-}
-
-const char* LDL_Result::Message()
-{
-	return _Impl->Message();
-}
-
-void LDL_Result::Message(const char* message, const char* detail)
-{
-	_Impl->Message(message, detail);
-}
-
-void LDL_Result::Message(const char* message)
-{
-	_Impl->Message(message, "");
-}
+#endif

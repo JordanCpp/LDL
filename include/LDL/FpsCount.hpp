@@ -28,6 +28,9 @@ DEALINGS IN THE SOFTWARE.
 #define LDL_FpsCount_hpp
 
 #include <LDL/Config.hpp>
+#include <LDL/PimplSz.hpp>
+
+class LDL_FpsCounterImpl;
 
 class LDL_FpsCounter
 {
@@ -38,10 +41,8 @@ public:
 	size_t Fps();
 	void Clear();
 private:
-	size_t _Current;
-	size_t _Delta;
-	size_t _Old;
-	size_t _Fps;
+	LDL_FpsCounterImpl* _Impl;
+	char _ImplData[LDL_PimplSizer::FpsCounterSize];
 };
 
 #endif

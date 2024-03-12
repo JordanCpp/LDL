@@ -26,6 +26,8 @@ DEALINGS IN THE SOFTWARE.
 
 #ifndef LDL_Config_hpp
 #define LDL_Config_hpp
+
+#include <stddef.h>
 /********************************************************************************************************************************
 														Portability
 ********************************************************************************************************************************/
@@ -59,7 +61,7 @@ typedef signed int     int32_t;
 #include <stdint.h>
 #endif
 
-#include <stddef.h>
+void* operator new (size_t n, void* ptr);
 
 typedef void(*LDL_VoidFuncPtr)(void);
 

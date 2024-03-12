@@ -25,15 +25,16 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include <LDL/Conv.hpp>
+#include "Conv.hpp"
 #include <string.h>
 
-LDL_NumberToString::LDL_NumberToString() :
+LDL_NumberToStringImpl::LDL_NumberToStringImpl() :
 	_Result(0)
 {
 	memset(&_Buffer, 0, sizeof(_Buffer));
 }
 
-const char* LDL_NumberToString::Convert(int num, uint8_t base)
+const char* LDL_NumberToStringImpl::Convert(int num, uint8_t base)
 {
 	int i = 0;
 	bool isNegative = false;
@@ -67,20 +68,20 @@ const char* LDL_NumberToString::Convert(int num, uint8_t base)
 	return _Buffer;
 }
 
-const char* LDL_NumberToString::Convert(size_t num)
+const char* LDL_NumberToStringImpl::Convert(size_t num)
 {
 	return Convert((int)num, 10);
 }
 
 
-void LDL_NumberToString::Swap(char& t1, char& t2)
+void LDL_NumberToStringImpl::Swap(char& t1, char& t2)
 {
 	char tmp = t1;
 	t1 = t2;
 	t2 = tmp;
 }
 
-void LDL_NumberToString::Reverse(char* str, size_t length)
+void LDL_NumberToStringImpl::Reverse(char* str, size_t length)
 {
 	size_t start = 0;
 	size_t end = length - 1;
@@ -91,4 +92,23 @@ void LDL_NumberToString::Reverse(char* str, size_t length)
 		start++;
 		end--;
 	}
+}
+
+LDL_NumberToString::LDL_NumberToString() :
+	_Impl(new(&_ImplData[0]) LDL_NumberToStringImpl)
+{
+}
+
+LDL_NumberToString::~LDL_NumberToString()
+{
+}
+
+const char* LDL_NumberToString::Convert(int num, uint8_t base)
+{
+	return _Impl->Convert(num, base);
+}
+
+const char* LDL_NumberToString::Convert(size_t num)
+{
+	return _Impl->Convert((int)num, 10);
 }

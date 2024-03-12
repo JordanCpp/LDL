@@ -24,76 +24,28 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#include <LDL/Result.hpp>
-#include "Result.hpp"
-#include <string.h>
-#include <assert.h>
+#ifndef LDL_ResultImpl_hpp
+#define LDL_ResultImpl_hpp
 
-LDL_ResultImpl::LDL_ResultImpl()
+#include <LDL/Config.hpp>
+
+class LDL_ResultImpl
 {
-	Clear();
-}
+public:
+	enum
+	{
+		Max = 64
+	};
 
-void LDL_ResultImpl::Clear()
-{
-	_Ok = true;
-	memset(&_Message, 0, Max);
-}
+	LDL_ResultImpl();
+	void Clear();
+	bool Ok();
+	const char* Message();
+	void Message(const char* message, const char* detail);
+	void Message(const char* message);
+private:
+	bool _Ok;
+	char _Message[Max];
+};
 
-bool LDL_ResultImpl::Ok()
-{
-	return _Ok;
-}
-
-const char* LDL_ResultImpl::Message()
-{
-	return _Message;
-}
-
-void LDL_ResultImpl::Message(const char* message, const char* detail)
-{
-	Clear();
-
-	_Ok = false;
-
-	size_t count = strlen(message) + strlen(detail);
-	assert(count < Max);
-
-	strcpy(_Message, message);
-	strcat(_Message, detail);
-}
-
-void LDL_ResultImpl::Message(const char* message)
-{
-	Message(message, "");
-}
-
-LDL_Result::LDL_Result() :
-	_Impl(new(&_ImplData[0]) LDL_ResultImpl)
-{
-}
-
-void LDL_Result::Clear()
-{
-	_Impl->Clear();
-}
-
-bool LDL_Result::Ok()
-{
-	return _Impl->Ok();
-}
-
-const char* LDL_Result::Message()
-{
-	return _Impl->Message();
-}
-
-void LDL_Result::Message(const char* message, const char* detail)
-{
-	_Impl->Message(message, detail);
-}
-
-void LDL_Result::Message(const char* message)
-{
-	_Impl->Message(message, "");
-}
+#endif

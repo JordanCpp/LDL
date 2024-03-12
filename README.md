@@ -1,7 +1,5 @@
 # Greetings
 
-This project is an attempt to make the code more portable. (https://github.com/JordanCpp/Lib-LDL)
-
 # LDL - Little Directmedia Layer
 1. Free for everyone.
 2. Consider and accept all ideas.
@@ -19,14 +17,14 @@ This project is an attempt to make the code more portable. (https://github.com/J
 # Build for Linux
 1. sudo apt-get install libx11-dev
 2. sudo apt-get install libgl1-mesa-dev
-3. git clone https://github.com/JordanCpp/LDL_Proj.git
+3. git clone https://github.com/JordanCpp/LDL.git
 4. cd Lib-LDL
 5. cmake. or cmake -Bout
 6. make
 
 # Integration into your project (CMake Linux or Windows)
-add_subdirectory("LDL_Proj")
-include_directories("LDL_Proj/include")
+add_subdirectory("LDL")
+include_directories("LDL/include")
 target_link_libraries(${CMAKE_PROJECT_NAME} LDL)
 
 # Support platforms.

@@ -24,28 +24,20 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#ifndef LDL_cpp98_hpp
-#define LDL_cpp98_hpp
+#ifndef LDL_PimplSizer_hpp
+#define LDL_PimplSizer_hpp
 
-#include <LDL/LDL.hpp>
-#include <string>
+#include <LDL/Config.hpp>
 
-namespace LDL
+class LDL_PimplSizer
 {
-	inline void Abort(const std::string& message, const std::string& detail)
+public:
+	enum
 	{
-		LDL_Abort(message.c_str(), detail.c_str());
-	}
-
-	inline void Abort(const std::string& message)
-	{
-		LDL_Abort(message.c_str());
-	}
-
-	inline void Abort()
-	{
-		LDL_Abort()
-	}
-}
+		NumberToStringSize = 64,
+		ResultSize         = 128,
+		FpsCounterSize     = 64
+	};
+};
 
 #endif

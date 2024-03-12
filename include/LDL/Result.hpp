@@ -28,6 +28,9 @@ DEALINGS IN THE SOFTWARE.
 #define LDL_Result_hpp
 
 #include <LDL/Config.hpp>
+#include <LDL/PimplSz.hpp>
+
+class LDL_ResultImpl;
 
 class LDL_Result
 {
@@ -44,8 +47,8 @@ public:
 	void Message(const char* message, const char* detail);
 	void Message(const char* message);
 private:
-	bool _Ok;
-	char _Message[Max];
+	LDL_ResultImpl* _Impl;
+	char _ImplData[LDL_PimplSizer::ResultSize];
 };
 
 #endif

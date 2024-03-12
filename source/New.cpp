@@ -1,3 +1,4 @@
+
 /*
 Boost Software License - Version 1.0 - August 17th, 2003
 
@@ -24,76 +25,13 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#include <LDL/Result.hpp>
-#include "Result.hpp"
-#include <string.h>
+#include <LDL/Config.hpp>
 #include <assert.h>
 
-LDL_ResultImpl::LDL_ResultImpl()
-{
-	Clear();
-}
+void* operator new (size_t size, void* ptr) 
+{ 
+	assert(size > 0);
+	assert(ptr != NULL);
 
-void LDL_ResultImpl::Clear()
-{
-	_Ok = true;
-	memset(&_Message, 0, Max);
-}
-
-bool LDL_ResultImpl::Ok()
-{
-	return _Ok;
-}
-
-const char* LDL_ResultImpl::Message()
-{
-	return _Message;
-}
-
-void LDL_ResultImpl::Message(const char* message, const char* detail)
-{
-	Clear();
-
-	_Ok = false;
-
-	size_t count = strlen(message) + strlen(detail);
-	assert(count < Max);
-
-	strcpy(_Message, message);
-	strcat(_Message, detail);
-}
-
-void LDL_ResultImpl::Message(const char* message)
-{
-	Message(message, "");
-}
-
-LDL_Result::LDL_Result() :
-	_Impl(new(&_ImplData[0]) LDL_ResultImpl)
-{
-}
-
-void LDL_Result::Clear()
-{
-	_Impl->Clear();
-}
-
-bool LDL_Result::Ok()
-{
-	return _Impl->Ok();
-}
-
-const char* LDL_Result::Message()
-{
-	return _Impl->Message();
-}
-
-void LDL_Result::Message(const char* message, const char* detail)
-{
-	_Impl->Message(message, detail);
-}
-
-void LDL_Result::Message(const char* message)
-{
-	_Impl->Message(message, "");
+	return ptr; 
 }
