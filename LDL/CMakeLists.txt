@@ -33,6 +33,3 @@ target_link_libraries(LDL ${libs})
 
 #add_definitions(-DLDL_SUPPORT_SOFTWARE)
 add_definitions(-DLDL_SUPPORT_OPENGL1)
-
-add_subdirectory("demos")
-add_subdirectory("examples")
