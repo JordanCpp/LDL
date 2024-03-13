@@ -29,7 +29,7 @@ DEALINGS IN THE SOFTWARE.
 #define STB_IMAGE_IMPLEMENTATION
 #define STBI_NO_THREAD_LOCALS
 #define STBI_NO_SIMD
-#include "stb_image.h"  
+#include "../dependencies/stb_image.h"  
 
 LDL_ImageLoader::LDL_ImageLoader() :
 	_Bpp(0),
