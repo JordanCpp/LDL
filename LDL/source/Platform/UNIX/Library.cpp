@@ -27,6 +27,11 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/UNIX/Library.hpp>
 #include <dlfcn.h>
 
+LDL_Library::LDL_Library()
+{
+	_Library = NULL;
+}
+
 bool LDL_Library::Open(const char* path)
 {
 	Close();

@@ -30,7 +30,7 @@ DEALINGS IN THE SOFTWARE.
 
 LDL_OpenGLFunctions::LDL_OpenGLFunctions()
 {
-	_Library.Open("opengl32.dll");
+	_Library.Open("libGL.so");
 }
 
 LDL_OpenGLFunctions::~LDL_OpenGLFunctions()

@@ -32,6 +32,7 @@ DEALINGS IN THE SOFTWARE.
 class LDL_Library
 {
 public:
+	LDL_Library();
 	bool Open(const char* path);
 	void Close();
 	~LDL_Library();
