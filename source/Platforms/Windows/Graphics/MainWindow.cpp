@@ -419,10 +419,10 @@ const Vec2u& MainWindow::Size()
 {
     RECT rect;
 
-    if (!GetClientRect(_HWND, &rect))
-        throw RuntimeError("GetClientRect failed");
-
-    _BaseWindow.Size(Vec2u(rect.right + Pos().x, rect.bottom + Pos().y));
+    if (GetClientRect(_HWND, &rect))
+    {
+        _BaseWindow.Size(Vec2u(rect.right + Pos().x, rect.bottom + Pos().y));
+    }
 
     return _BaseWindow.Size();
 }

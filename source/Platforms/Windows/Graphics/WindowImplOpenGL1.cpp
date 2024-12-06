@@ -61,8 +61,7 @@ bool WindowImplOpenGL1::Running()
 
 void WindowImplOpenGL1::Present()
 {
-    if (!SwapBuffers(_Window._HDC))
-        throw RuntimeError("SwapBuffers failed");
+    SwapBuffers(_Window._HDC);
 }
 
 void WindowImplOpenGL1::PollEvents()
