@@ -6,7 +6,6 @@
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
 #include <LDL/Graphics/TextureBatcher.hpp>
-#include "../source/Shared/Graphics/Impls/RenderImpl.hpp"
 
 namespace LDL
 {

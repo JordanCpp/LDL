@@ -2,7 +2,7 @@
 #define LDL_Graphics_Renders_Glide_ScreenshoterImplGlide_hpp
 
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/Graphics/Base/BaseScreenshoter.hpp>
+#include "../../Base/BaseScreenshoter.hpp"
 #include <LDL/Graphics/ImageWritter.hpp>
 #include "../../Impls/ScreenshoterImpl.hpp"
 

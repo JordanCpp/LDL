@@ -1,7 +1,7 @@
 #ifndef LDL_Graphics_Renders_Glide_RenderImplGlide_hpp
 #define LDL_Graphics_Renders_Glide_RenderImplGlide_hpp
 
-#include <LDL/Graphics/Base/BaseRender.hpp>
+#include "../../Base/BaseRender.hpp"
 #include <LDL/Graphics/Window.hpp>
 #include "TextureImplGlide.hpp"
 #include <LDL/Graphics/Texture.hpp>

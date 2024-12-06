@@ -1,4 +1,3 @@
-add_subdirectory("Base")
 add_subdirectory("Utils")
 
 add_executable(Rectu "Rectu.cpp")

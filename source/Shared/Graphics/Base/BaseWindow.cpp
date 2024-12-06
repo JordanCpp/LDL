@@ -1,4 +1,4 @@
-#include <LDL/Graphics/Base/BaseWindow.hpp>
+#include "BaseWindow.hpp"
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;

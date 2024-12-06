@@ -1,4 +1,4 @@
-#include <LDL/Graphics/Base/BaseScreenshoter.hpp>
+#include "BaseScreenshoter.hpp"
 #include <time.h>
 
 using namespace LDL::Graphics;

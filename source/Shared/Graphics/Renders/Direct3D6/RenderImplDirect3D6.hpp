@@ -1,7 +1,7 @@
 #ifndef LDL_Graphics_Direct3D6_RenderImpl_hpp
 #define LDL_Graphics_Direct3D6_RenderImpl_hpp
 
-#include <LDL/Graphics/Base/BaseRender.hpp>
+#include "../../Base/BaseRender.hpp"
 #include <LDL/Graphics/Window.hpp>
 #include "TextureImplDirect3D6.hpp"
 #include <LDL/Graphics/Texture.hpp>
