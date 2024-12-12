@@ -9,16 +9,16 @@
 using namespace LDL::Core;
 
 Library::Library(const std::string& path) :
-    _LibraryImpl(new LDL::Core::LibraryImpl(path))
+    _impl(new LDL::Core::LibraryImpl(path))
 {
 }
 
 Library::~Library()
 {
-    _LibraryImpl->~LibraryImpl();
+    _impl->~LibraryImpl();
 }
 
 LDL::VoidFuncPtr Library::Function(const std::string& name)
 {
-    return (LDL::VoidFuncPtr)_LibraryImpl->Function(name);
+    return (LDL::VoidFuncPtr)_impl->Function(name);
 }

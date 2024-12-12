@@ -2,7 +2,6 @@
 #define LDL_OpenGL_OpenGLTypes_hpp
 
 #include <LDL/Core/Types.hpp>
-#include <LDL/Config.hpp>
 
 typedef unsigned int GLenum;
 typedef unsigned char GLboolean;
@@ -27,6 +26,6 @@ typedef uint64_t GLint64;
 typedef uint64_t GLuint64;
 typedef struct __GLsync* GLsync;
 
-typedef void (LDL_API_CALL GLDEBUGPROC)(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
+typedef void (LDL_API_CALL* GLDEBUGPROC)(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
 
 #endif      

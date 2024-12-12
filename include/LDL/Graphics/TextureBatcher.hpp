@@ -18,7 +18,7 @@ namespace LDL
 			void Draw(const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
 			void Clear();
 		private:
-			TextureBatcherImpl* _TextureBatcherImpl;
+			TextureBatcherImpl* _impl;
 		};
 	}
 }

@@ -6,20 +6,20 @@ using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 CameraImplSoftware::CameraImplSoftware(RenderImpl* renderImpl, const Vec2u& pos, const Vec2u& size) :
-	_RenderImpl(renderImpl),
-	_Pos(pos),
-	_Size(size)
+	_impl(renderImpl),
+	_pos(pos),
+	_size(size)
 {
 }
 
 const Vec2u& CameraImplSoftware::Pos()
 {
-	return _Pos;
+	return _pos;
 }
 
 const Vec2u& CameraImplSoftware::Size()
 {
-	return _Size;
+	return _size;
 }
 
 void CameraImplSoftware::Pos(const Vec2u& pos)

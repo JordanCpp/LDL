@@ -1,4 +1,3 @@
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Enums/RenderMode.hpp>
 #include "RenderContextImplCreator.hpp"
 
@@ -8,6 +7,8 @@
 #include "../Renders/Glide/RenderContextImplGlide.hpp"
 #include "../Renders/Direct3D6/RenderContextImplDirect3D6.hpp"
 
+#include <LDL/Core/Assert.hpp>
+
 using namespace LDL::Core;
 using namespace LDL::Enums;
 using namespace LDL::Graphics;
@@ -16,6 +17,8 @@ using namespace LDL::Graphics::Creators;
 RenderContextImpl* RenderContextImplCreator::Create(size_t mode)
 {
 	RenderContextImpl* result = NULL;
+
+	LDL_ASSERT_DETAIL(mode < RenderMode::Max, "Unknown graphics mode");
 
 	switch (mode)
 	{
@@ -33,9 +36,6 @@ RenderContextImpl* RenderContextImplCreator::Create(size_t mode)
 		break;
 	case RenderMode::Direct3D6:
 		result = new RenderContextImplDirect3D6(mode);
-		break;
-	default:
-		throw RuntimeError("Unknown graphics mode");
 		break;
 	}
 

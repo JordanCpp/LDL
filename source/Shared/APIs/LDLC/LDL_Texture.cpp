@@ -7,12 +7,12 @@ using namespace LDL::Math;
 
 struct LDL_Texture
 {
-	Texture _Texture;
+	Texture _texture;
 	LDL_Texture(LDL_RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);
 };
 
 LDL_Texture::LDL_Texture(LDL_RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
-	_Texture((RenderContext*)renderContext, size, pixels, bytesPerPixel)
+	_texture((RenderContext*)renderContext, size, pixels, bytesPerPixel)
 {
 }
 
@@ -30,10 +30,10 @@ void LDL_TextureFree(LDL_Texture* render)
 
 size_t LDL_TextureGetSizeX(LDL_Texture* render)
 {
-	return render->_Texture.Size().x;
+	return render->_texture.Size().x;
 }
 
 size_t LDL_TextureGetSizeY(LDL_Texture* render)
 {
-	return render->_Texture.Size().y;
+	return render->_texture.Size().y;
 }

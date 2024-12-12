@@ -24,10 +24,10 @@ namespace LDL
 			const Math::Vec2u& Quad();
 			size_t Id();
 		private:
-			RenderContextImpl* _RenderContextImpl;
-			size_t  _Id;
-			LDL::Math::Vec2u _Size;
-			LDL::Math::Vec2u _Quad;
+			RenderContextImpl* _renderContextImpl;
+			size_t             _id;
+			LDL::Math::Vec2u   _size;
+			LDL::Math::Vec2u   _quad;
 		};
 	}
 }

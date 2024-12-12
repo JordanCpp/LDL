@@ -1,6 +1,5 @@
 #include <LDL/Graphics/Render.hpp>
 #include "Creators/RenderImplCreator.hpp"
-#include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Math;
@@ -11,111 +10,111 @@ Render::Render(RenderContext* renderContext, Window* window)
 {
 	RenderImplCreator creator;
 
-	_RenderImpl = creator.Create(renderContext, window);
+	_impl = creator.Create(renderContext, window);
 }
 
 Render::~Render()
 {
-	delete _RenderImpl;
+	delete _impl;
 }
 
 RenderImpl* Render::GetRenderImpl()
 {
-	return _RenderImpl;
+	return _impl;
 }
 
 
 void Render::Buffer(uint8_t* dst)
 {
-	_RenderImpl->Buffer(dst);
+	_impl->Buffer(dst);
 }
 
 void Render::Begin()
 {
-	_RenderImpl->Begin();
+	_impl->Begin();
 }
 
 void Render::End()
 {
-	_RenderImpl->End();
+	_impl->End();
 }
 
 const Vec2u& Render::Size()
 {
-	return _RenderImpl->Size();
+	return _impl->Size();
 }
 
 const Color& Render::Color()
 {
-	return _RenderImpl->Color();
+	return _impl->Color();
 }
 
 void Render::Clear()
 {
-	_RenderImpl->Clear();
+	_impl->Clear();
 }
 
 void Render::Color(const LDL::Graphics::Color& color)
 {
-	_RenderImpl->Color(color);
+	_impl->Color(color);
 }
 
 void Render::Pixel(const Vec2u& pos)
 {
-	_RenderImpl->Pixel(pos);
+	_impl->Pixel(pos);
 }
 
 void Render::Fill(const Vec2u& pos, const Vec2u& size)
 {
-	_RenderImpl->Fill(pos, size);
+	_impl->Fill(pos, size);
 }
 
 void Render::Line(const Vec2u& pos1, const Vec2u& pos2)
 {
-	_RenderImpl->Line(pos1, pos2);
+	_impl->Line(pos1, pos2);
 }
 
 void Render::Draw(Texture* image, const Vec2u& pos)
 {
-	_RenderImpl->Draw(image, pos);
+	_impl->Draw(image, pos);
 }
 
 void Render::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
 {
-	_RenderImpl->Draw(image, pos, size);
+	_impl->Draw(image, pos, size);
 }
 
 void Render::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
-	_RenderImpl->Draw(image, dstPos, srcPos, srcSize);
+	_impl->Draw(image, dstPos, srcPos, srcSize);
 }
 
 void Render::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
-	_RenderImpl->Draw(image, dstPos, dstSize, srcPos, srcSize);
+	_impl->Draw(image, dstPos, dstSize, srcPos, srcSize);
 }
 
 void Render::Draw(Surface* image, const Vec2u& pos)
 {
-	_RenderImpl->Draw(image, pos);
+	_impl->Draw(image, pos);
 }
 
 void Render::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
-	_RenderImpl->Draw(image, pos, size);
+	_impl->Draw(image, pos, size);
 }
 
 void Render::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
-	_RenderImpl->Draw(image, dstPos, srcPos, srcSize);
+	_impl->Draw(image, dstPos, srcPos, srcSize);
 }
 
 void Render::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
-	_RenderImpl->Draw(image, dstPos, dstSize, srcPos, srcSize);
+	_impl->Draw(image, dstPos, dstSize, srcPos, srcSize);
 }
 
 void Render::Draw(TextureBatcher* textureBatcher)
 {
-	_RenderImpl->Draw(textureBatcher);
+	_impl->Draw(textureBatcher);
 }

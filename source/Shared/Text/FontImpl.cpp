@@ -1,5 +1,5 @@
 #include "FontImpl.hpp"
-#include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Core/Assert.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Text;
@@ -8,14 +8,10 @@ FontImpl::FontImpl(RasterizerContextImpl* rasterizerContextImpl, size_t fontSize
 	_Face(NULL)
 {
 	FT_Error error = FT_New_Memory_Face(rasterizerContextImpl->GetLibrary(), font, (FT_Long)size, 0, &_Face);
-
-	if (error != 0)
-		throw RuntimeError("FT_Init_FreeType failed");
+	LDL_ASSERT_DETAIL(error == 0, "FT_Init_FreeType failed");
 
 	error = FT_Set_Pixel_Sizes(_Face, 0, (FT_Long)fontSize);
-
-	if (error != 0)
-		throw RuntimeError("FT_Set_Pixel_Sizes failed");
+	LDL_ASSERT_DETAIL(error == 0, "FT_Set_Pixel_Sizes failed");
 }
 
 FontImpl::~FontImpl()

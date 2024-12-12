@@ -7,12 +7,12 @@ using namespace LDL::Allocators;
 
 struct LDL_ImageLoader
 {
-	ImageLoader _ImageLoader;
+	ImageLoader _imageLoader;
 	LDL_ImageLoader(void* allocator);
 };
 
 LDL_ImageLoader::LDL_ImageLoader(void* allocator) :
-	_ImageLoader((Allocator*)allocator)
+	_imageLoader((Allocator*)allocator)
 {
 }
 
@@ -30,40 +30,40 @@ void LDL_ImageLoaderFree(LDL_ImageLoader* ptr)
 
 size_t LDL_ImageLoaderGetSizeX(LDL_ImageLoader * imageLoader)
 {
-	return imageLoader->_ImageLoader.Size().x;
+	return imageLoader->_imageLoader.Size().x;
 }
 
 size_t LDL_ImageLoaderGetSizeY(LDL_ImageLoader* imageLoader)
 {
-	return imageLoader->_ImageLoader.Size().y;
+	return imageLoader->_imageLoader.Size().y;
 }
 
 uint8_t LDL_ImageLoaderGetBytesPerPixel(LDL_ImageLoader* imageLoader)
 {
-	return imageLoader->_ImageLoader.BytesPerPixel();
+	return imageLoader->_imageLoader.BytesPerPixel();
 }
 
 uint8_t* LDL_ImageLoaderGetPixels(LDL_ImageLoader* imageLoader)
 {
-	return imageLoader->_ImageLoader.Pixels();
+	return imageLoader->_imageLoader.Pixels();
 }
 
 void LDL_ImageLoaderLoadFromFile(LDL_ImageLoader* imageLoader, const char* path)
 {
-	imageLoader->_ImageLoader.Load(path);
+	imageLoader->_imageLoader.Load(path);
 }
 
 void LDL_ImageLoaderLoadColorKeyFromFile(LDL_ImageLoader* imageLoader, uint8_t r, uint8_t g, uint8_t b, uint8_t a, const char* path)
 {
-	imageLoader->_ImageLoader.Load(Color(r,g,b,a), path);
+	imageLoader->_imageLoader.Load(Color(r,g,b,a), path);
 }
 
 void LDL_ImageLoaderLoadFromMemory(LDL_ImageLoader* imageLoader, uint8_t* data, size_t bytes)
 {
-	imageLoader->_ImageLoader.Load(data, bytes);
+	imageLoader->_imageLoader.Load(data, bytes);
 }
 
 void LDL_ImageLoaderLoadColorKeyFromMemory(LDL_ImageLoader* imageLoader, uint8_t r, uint8_t g, uint8_t b, uint8_t a, uint8_t* data, size_t bytes)
 {
-	imageLoader->_ImageLoader.Load(Color(r, g, b, a), data, bytes);
+	imageLoader->_imageLoader.Load(Color(r, g, b, a), data, bytes);
 }

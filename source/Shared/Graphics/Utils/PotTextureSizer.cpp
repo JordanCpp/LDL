@@ -14,7 +14,9 @@ size_t Utils::PotTextureSizer::Calc(const Vec2u& size)
 	for (size_t i = 0; i < _TextureCount; i++)
 	{
 		if (w <= _TextureSizes[i] && h <= _TextureSizes[i])
+		{
 			return _TextureSizes[i];
+		}
 	}
 
 	return 0;

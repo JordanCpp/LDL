@@ -1,6 +1,6 @@
 #include "RasterizerImpl.hpp"
 #include "FontImpl.hpp"
-#include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Core/Assert.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Text;
@@ -37,19 +37,13 @@ bool RasterizerImpl::RenderText(const std::string& text, Font* font, const Color
 	for (size_t i = 0; i < text.size(); i++)
 	{
 		FT_UInt index = FT_Get_Char_Index(face, text[i]);
-
-		if (!index)
-			throw RuntimeError("FT_Get_Char_Index failed");
+		LDL_ASSERT_DETAIL(index, "FT_Get_Char_Index failed");
 
 		FT_Error error = FT_Load_Glyph(face, index, FT_LOAD_DEFAULT);
-
-		if (error != 0)
-			throw RuntimeError("FT_Load_Glyph failed");
+		LDL_ASSERT_DETAIL(error, "FT_Load_Glyph failed");
 
 		error = FT_Render_Glyph(face->glyph, FT_RENDER_MODE_NORMAL);
-
-		if (error != 0)
-			throw RuntimeError("FT_Render_Glyph failed");
+		LDL_ASSERT_DETAIL(error, "FT_Render_Glyph failed");
 
 		FT_Bitmap bitmap = face->glyph->bitmap;
 

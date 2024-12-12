@@ -1,32 +1,27 @@
 #include "LibraryImpl.hpp"
-#include <assert.h>
-#include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Core/Assert.hpp>
 
 using namespace LDL;
 using namespace LDL::Core;
 
 LibraryImpl::LibraryImpl(const std::string& path) :
-    _HMODULE(NULL)
+    _module(NULL)
 {
-    _HMODULE = LoadLibrary(path.c_str());
-
-    if (_HMODULE == NULL)
-        throw RuntimeError("LoadLibrary failed: " + path);
+    _module = LoadLibrary(path.c_str());
+    LDL_ASSERT_DETAIL(_module != NULL, "LoadLibrary failed: " + path);
 }
 
 LibraryImpl::~LibraryImpl()
 {
-    assert(_HMODULE != NULL);
+    LDL_ASSERT(_module != NULL);
 
-    FreeLibrary(_HMODULE);
+    FreeLibrary(_module);
 }
 
 VoidFuncPtr LibraryImpl::Function(const std::string& name)
 {
-    VoidFuncPtr result = (VoidFuncPtr)GetProcAddress(_HMODULE, name.c_str());
-
-    if (result == NULL)
-        throw RuntimeError("GetProcAddress failed: " + name);
+    VoidFuncPtr result = (VoidFuncPtr)GetProcAddress(_module, name.c_str());
+    LDL_ASSERT_DETAIL(result != NULL, "GetProcAddress failed: " + name);
 
     return result;
 }

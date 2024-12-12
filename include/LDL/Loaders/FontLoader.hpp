@@ -1,7 +1,6 @@
 #ifndef LDL_Loaders_FontLoader_hpp
 #define LDL_Loaders_FontLoader_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Allocators/Allocator.hpp>
 #include <string>
 
@@ -19,8 +18,8 @@ namespace LDL
 			uint8_t* Font();
 			size_t Size();
 		private:
-			LDL::Allocators::Allocator* _Allocator;
-			uint8_t* _Buffer;
+			LDL::Allocators::Allocator* _allocator;
+			uint8_t* _buffer;
 		};
 	}
 }

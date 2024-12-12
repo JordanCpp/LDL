@@ -4,12 +4,12 @@ using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 TextureImplDirect3D6::TextureImplDirect3D6(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
-	_RenderContextImpl(renderContextImpl)
+	_renderContextImpl(renderContextImpl)
 {
 }
 
 TextureImplDirect3D6::TextureImplDirect3D6(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel) :
-	_RenderContextImpl(renderContextImpl)
+	_renderContextImpl(renderContextImpl)
 {
 }
 
@@ -28,10 +28,10 @@ void TextureImplDirect3D6::Copy(const Vec2u& dstPos, Surface* surface, const Vec
 
 const Vec2u& TextureImplDirect3D6::Size()
 {
-	return _Size;
+	return _size;
 }
 
 const Vec2u& TextureImplDirect3D6::Quad()
 {
-	return _Quad;
+	return _quad;
 }

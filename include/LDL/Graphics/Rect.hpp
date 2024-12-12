@@ -12,52 +12,52 @@ namespace LDL
 		{
 		public:
 			Rect() :
-				_Pos(0, 0),
-				_Size(0, 0)
+				_pos(0, 0),
+				_size(0, 0)
 			{
 			}
 
 			Rect(const TYPE& x, const TYPE& y, const TYPE& w, const TYPE& h) :
-				_Pos(x, y),
-				_Size(w, h)
+				_pos(x, y),
+				_size(w, h)
 			{
 			}
 
 			Rect(const LDL::Math::Vec2<TYPE>& pos, const LDL::Math::Vec2<TYPE>& size) :
-				_Pos(pos),
-				_Size(size)
+				_pos(pos),
+				_size(size)
 			{
 			}
 
 			const LDL::Math::Vec2<TYPE>& Pos() const
 			{
-				return _Pos;
+				return _pos;
 			}
 
 			const LDL::Math::Vec2<TYPE>& Size() const
 			{
-				return _Size;
+				return _size;
 			}
 
 			void Pos(const TYPE& x, const TYPE& y)
 			{
-				_Pos.x = x;
-				_Pos.y = y;
+				_pos.x = x;
+				_pos.y = y;
 			}
 
 			void Size(const TYPE& x, const TYPE& y)
 			{
-				_Size.x = x;
-				_Size.y = y;
+				_size.x = x;
+				_size.y = y;
 			}
 
 			bool Contains(const LDL::Math::Vec2<TYPE>& Pt)
 			{
-				return Pt.x >= _Pos.x && Pt.y >= _Pos.y && Pt.x <= _Pos.x + _Size.x && Pt.y <= _Pos.y + _Size.y;
+				return Pt.x >= _pos.x && Pt.y >= _pos.y && Pt.x <= _pos.x + _size.x && Pt.y <= _pos.y + _size.y;
 			}
 		private:
-			LDL::Math::Vec2<TYPE> _Pos;
-			LDL::Math::Vec2<TYPE> _Size;
+			LDL::Math::Vec2<TYPE> _pos;
+			LDL::Math::Vec2<TYPE> _size;
 		};
 
 		typedef Rect<size_t>   Rectu;

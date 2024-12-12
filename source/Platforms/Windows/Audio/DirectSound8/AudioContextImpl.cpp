@@ -1,7 +1,7 @@
 #include "AudioContextImpl.hpp"
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Core/Library.hpp>
+#include <LDL/Core/Assert.hpp>
 #include "../source/Platforms/WindowImpl.hpp"
 
 using namespace LDL::Audio;
@@ -9,25 +9,23 @@ using namespace LDL::Core;
 using namespace LDL::Graphics;
 
 AudioContextImpl::AudioContextImpl(LDL::Graphics::Window* window, size_t rate, size_t bits, size_t channels) :
-	_Rate(rate),
-	_Bits(bits),
-	_Channels(channels),
-	_DirectSound(NULL),
-	_PrimaryBuffer(NULL)
+	_rate(rate),
+	_bits(bits),
+	_channels(channels),
+	_directSound(NULL),
+	_primaryBuffer(NULL)
 {
 	Library library("dsound.dll");
 
 	DirectSoundCreate8 = (PFNDirectSoundCreate8)library.Function("DirectSoundCreate8");
 
-	HRESULT result = DirectSoundCreate8(NULL, &_DirectSound, NULL);
+	HRESULT result = DirectSoundCreate8(NULL, &_directSound, NULL);
 
-	result = DirectSoundCreate8(NULL, &_DirectSound, NULL);
-	if (FAILED(result))
-		throw RuntimeError("DirectSoundCreate8 failed");
+	result = DirectSoundCreate8(NULL, &_directSound, NULL);
+	LDL_ASSERT_DETAIL(!FAILED(result), "DirectSoundCreate8 failed");
 
-	result = _DirectSound->SetCooperativeLevel((HWND)window->GetWindowImpl()->NativeHandle(), DSSCL_PRIORITY);
-	if (FAILED(result))
-		throw RuntimeError("SetCooperativeLevel failed");
+	result = _directSound->SetCooperativeLevel((HWND)window->GetWindowImpl()->NativeHandle(), DSSCL_PRIORITY);
+	LDL_ASSERT_DETAIL(!FAILED(result), "SetCooperativeLevel failed");
 
 	DSBUFFERDESC bufferDesc;
 	ZeroMemory(&bufferDesc, sizeof(DSBUFFERDESC));
@@ -39,52 +37,50 @@ AudioContextImpl::AudioContextImpl(LDL::Graphics::Window* window, size_t rate, s
 	bufferDesc.lpwfxFormat     = NULL;
 	bufferDesc.guid3DAlgorithm = GUID_NULL;
 
-	result = _DirectSound->CreateSoundBuffer(&bufferDesc, &_PrimaryBuffer, NULL);
-	if (FAILED(result))
-		throw RuntimeError("CreateSoundBuffer failed");
+	result = _directSound->CreateSoundBuffer(&bufferDesc, &_primaryBuffer, NULL);
+	LDL_ASSERT_DETAIL(!FAILED(result), "CreateSoundBuffer failed");
 
 	WAVEFORMATEX waveFormat;
 	ZeroMemory(&waveFormat, sizeof(WAVEFORMATEX));
 
 	waveFormat.cbSize          = 0;
 	waveFormat.wFormatTag      = WAVE_FORMAT_PCM;
-	waveFormat.nChannels       = (WORD)_Channels;
-	waveFormat.nSamplesPerSec  = (DWORD)_Rate;
-	waveFormat.wBitsPerSample  = (WORD)_Bits;
+	waveFormat.nChannels       = (WORD)_channels;
+	waveFormat.nSamplesPerSec  = (DWORD)_rate;
+	waveFormat.wBitsPerSample  = (WORD)_bits;
 	waveFormat.nBlockAlign     = (waveFormat.wBitsPerSample / 8) * waveFormat.nChannels;
 	waveFormat.nAvgBytesPerSec = waveFormat.nSamplesPerSec * waveFormat.nBlockAlign;
 
-	result = _PrimaryBuffer->SetFormat(&waveFormat);
-	if (FAILED(result))
-		throw RuntimeError("SetFormat failed");
+	result = _primaryBuffer->SetFormat(&waveFormat);
+	LDL_ASSERT_DETAIL(!FAILED(result), "SetFormat failed");
 }
 
 AudioContextImpl::~AudioContextImpl()
 {
-	if (_PrimaryBuffer)
+	if (_primaryBuffer)
 	{
-		_PrimaryBuffer->Release();
-		_PrimaryBuffer = NULL;
+		_primaryBuffer->Release();
+		_primaryBuffer = NULL;
 	}
 
-	if (_DirectSound)
+	if (_directSound)
 	{
-		_DirectSound->Release();
-		_DirectSound = NULL;
+		_directSound->Release();
+		_directSound = NULL;
 	}
 }
 
 size_t AudioContextImpl::Rate()
 {
-	return _Rate;
+	return _rate;
 }
 
 size_t AudioContextImpl::Bits()
 {
-	return _Bits;
+	return _bits;
 }
 
 size_t AudioContextImpl::Channels()
 {
-	return _Channels;
+	return _channels;
 }

@@ -1,39 +1,17 @@
 #ifndef LDL_Core_TestEqual_hpp
 #define LDL_Core_TestEqual_hpp
 
+#include <string>
 #include <LDL/Core/Types.hpp>
-#include <LDL/Core/RuntimeError.hpp>
-#include <iostream>
 
 namespace LDL
 {
 	namespace Core
 	{
-		void LDL_LIBRARY TestEqual(bool condition, const char* description, const char* function, const char * file, size_t line);
+		void LDL_LIBRARY TestEqual(bool condition, const std::string& description, const std::string& function, const std::string& file, size_t line);
 	}
 }
 
 #define LDL_TEST_EQUAL(x) LDL::Core::TestEqual(x, #x, "__FUNCTION__", __FILE__, __LINE__)
-
-#define S(x) #x
-#define S_(x) S(x)
-#define S__LINE__ S_(__LINE__)
-
-#define LDL_TEST_EXCEPTION( expression)              \
-  try                                                \
-  {                                                  \
-    (expression);                                    \
-  }                                                  \
-  catch( LDL::Core::RuntimeError& error )            \
-  {                                                  \
-    std::cout << error.what()                        \
-              << std::string( __FILE__ )             \
-              << std::string( ":" )                  \
-              << std::string( S__LINE__ )            \
-              << std::string( " in " )               \
-              << std::string( "__FUNCTION__" )       \
-              << '\n';                               \
-  }                                                  \
-
 
 #endif    

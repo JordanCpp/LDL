@@ -6,12 +6,12 @@ using namespace LDL::Math;
 
 RenderBuffer::RenderBuffer()
 {
-	_Elements.reserve(1024 * 8);
+	_elements.reserve(1024 * 8);
 }
 
 void RenderBuffer::Reset()
 {
-	_Elements.clear();
+	_elements.clear();
 }
 
 void RenderBuffer::Texture(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize, size_t textureId, size_t textureQuad)
@@ -30,7 +30,7 @@ void RenderBuffer::Texture(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2
 	element.textureElement.textureId   = (uint16_t)textureId;
 	element.textureElement.textureQuad = (uint16_t)textureQuad;
 
-	_Elements.push_back(element);
+	_elements.push_back(element);
 }
 
 void RenderBuffer::Line(const Vec2u& first, const Vec2u& last, const Color& color)
@@ -46,7 +46,7 @@ void RenderBuffer::Line(const Vec2u& first, const Vec2u& last, const Color& colo
 	element.lineElement.lastX  = (uint16_t)last.x;
 	element.lineElement.lastY  = (uint16_t)last.y;
 
-	_Elements.push_back(element);
+	_elements.push_back(element);
 }
 
 void RenderBuffer::Fill(const Vec2u& pos, const Vec2u& size, const Color& color)
@@ -62,7 +62,7 @@ void RenderBuffer::Fill(const Vec2u& pos, const Vec2u& size, const Color& color)
 	element.fillElement.sizeX = (uint16_t)size.x;
 	element.fillElement.sizeY = (uint16_t)size.y;
 
-	_Elements.push_back(element);
+	_elements.push_back(element);
 }
 
 void RenderBuffer::TextureBatcher(size_t textureId, size_t count, Util::Quad* quads)
@@ -74,7 +74,7 @@ void RenderBuffer::TextureBatcher(size_t textureId, size_t count, Util::Quad* qu
 	element.textureBatcherElement.count   = count;
 	element.textureBatcherElement.quads   = quads;
 
-	_Elements.push_back(element);
+	_elements.push_back(element);
 }
 
 void RenderBuffer::Clear(const Color& color)
@@ -86,23 +86,23 @@ void RenderBuffer::Clear(const Color& color)
 	element.clearElement.g = color.g;
 	element.clearElement.b = color.b;
 
-	_Elements.push_back(element);
+	_elements.push_back(element);
 }
 
 void RenderBuffer::Draw()
 {
-	for (size_t i = 0; i < _Elements.size(); i++)
+	for (size_t i = 0; i < _elements.size(); i++)
 	{
-		if (_Elements[i].type == RenderElement::IsTexture)
-			Draw(_Elements[i].textureElement);
-		else if (_Elements[i].type == RenderElement::IsLine)
-			Draw(_Elements[i].lineElement);
-		else if (_Elements[i].type == RenderElement::IsFill)
-			Draw(_Elements[i].fillElement);
-		else if (_Elements[i].type == RenderElement::IsClear)
-			Draw(_Elements[i].clearElement);
-		else if (_Elements[i].type == RenderElement::IsTextureBatcher)
-			Draw(_Elements[i].textureBatcherElement);
+		if (_elements[i].type == RenderElement::IsTexture)
+			Draw(_elements[i].textureElement);
+		else if (_elements[i].type == RenderElement::IsLine)
+			Draw(_elements[i].lineElement);
+		else if (_elements[i].type == RenderElement::IsFill)
+			Draw(_elements[i].fillElement);
+		else if (_elements[i].type == RenderElement::IsClear)
+			Draw(_elements[i].clearElement);
+		else if (_elements[i].type == RenderElement::IsTextureBatcher)
+			Draw(_elements[i].textureBatcherElement);
 	}
 }
 

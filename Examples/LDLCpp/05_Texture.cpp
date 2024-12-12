@@ -1,5 +1,3 @@
-#include <iostream>
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/NumberToString.hpp>
@@ -17,57 +15,50 @@ using namespace LDL::Math;
 
 int main()
 {
-	try
+	RenderContext renderContext;
+
+	Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
+	Render render(&renderContext, &window);
+
+	Event report;
+
+	FixedLinear allocator(Allocator::Mb * 4);
+	ImageLoader loader(&allocator);
+
+	loader.Load("Data/trehmachtovyiy-korabl-kartina-maslom-60x50_512x.jpg");
+	Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
+
+	FpsCounter fpsCounter;
+	NumberToString convert;
+
+	while (window.Running())
 	{
-		RenderContext renderContext;
+		fpsCounter.Start();
 
-		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
-		Render render(&renderContext, &window);
-
-		Event report;
-
-		FixedLinear allocator(Allocator::Mb * 4);
-		ImageLoader loader(&allocator);
-
-		loader.Load("Data/trehmachtovyiy-korabl-kartina-maslom-60x50_512x.jpg");
-		Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
-
-		FpsCounter fpsCounter;
-		NumberToString convert;
-
-		while (window.Running())
+		while (window.GetEvent(report))
 		{
-			fpsCounter.Start();
-
-			while (window.GetEvent(report))
+			if (report.Type == IsQuit)
 			{
-				if (report.Type == IsQuit)
-				{
-					window.StopEvent();
-				}
+				window.StopEvent();
 			}
-
-			render.Begin();
-
-			render.Color(Color(0, 162, 232));
-			render.Clear();
-
-			render.Draw(&image, Vec2u(0, 0), window.Size(), Vec2u(0, 0), image.Size());
-
-			render.End();
-
-			if (fpsCounter.Calc())
-			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
-				fpsCounter.Clear();
-			}
-
-			window.PollEvents();
 		}
-	}
-	catch (const RuntimeError& error)
-	{
-		std::cout << error.what() << '\n';
+
+		render.Begin();
+
+		render.Color(Color(0, 162, 232));
+		render.Clear();
+
+		render.Draw(&image, Vec2u(0, 0), window.Size(), Vec2u(0, 0), image.Size());
+
+		render.End();
+
+		if (fpsCounter.Calc())
+		{
+			window.Title(convert.Convert(fpsCounter.Fps()));
+			fpsCounter.Clear();
+		}
+
+		window.PollEvents();
 	}
 
 	return 0;

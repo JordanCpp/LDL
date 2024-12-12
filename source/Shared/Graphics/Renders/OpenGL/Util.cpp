@@ -1,7 +1,7 @@
 #include "Util.hpp"
 #include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
 #include <LDL/Core/NumberToString.hpp>
-#include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Core/Assert.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;
@@ -142,7 +142,7 @@ void Util::Check(const std::string& file, size_t line, const std::string& expres
 
 		LDL::Core::NumberToString conv;
 
-		throw LDL::Core::RuntimeError("OpenGL error: " + error + " File: " + file + " Line: " + conv.Convert(line) + " Detail: " + expression);
+		LDL_ASSERT_DETAIL(code == GL_NO_ERROR, "OpenGL error: " + error + " File: " + file + " Line: " + conv.Convert(line) + " Detail: " + expression);
     }
 }
 
@@ -158,7 +158,9 @@ size_t Util::MaxTextureSize()
 bool Util::IsMaxTextureSize(const Vec2u& resolutionSize, size_t textureSize)
 {
 	if (textureSize >= resolutionSize.x && textureSize >= resolutionSize.y)
+	{
 		return true;
+	}
 
 	return false;
 }
@@ -171,7 +173,9 @@ size_t Util::SelectTextureSize(const Vec2u& size)
 	for (size_t i = 0; i < TextureCount; i++)
 	{
 		if (w <= TextureSizes[i] && h <= TextureSizes[i])
+		{
 			return TextureSizes[i];
+		}
 	}
 	
 	return 0;

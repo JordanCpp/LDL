@@ -1,5 +1,5 @@
+#include <LDL/Core/Assert.hpp>
 #include "WindowImplOpenGL1.hpp"
-#include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Events;
@@ -15,9 +15,8 @@ WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u& pos, const Vec2u& size, const 
     ZeroMemory(&pfd, sizeof(PIXELFORMATDESCRIPTOR));
 
     _Window._HDC = GetDC(_Window._HWND);
+    LDL_ASSERT_DETAIL(_Window._HDC != NULL, "GetDC failed");
 
-    if (_Window._HDC == NULL)
-        throw RuntimeError("GetDC failed");
 
     pfd.nSize = sizeof(pfd);
     pfd.nVersion = 1;
@@ -28,20 +27,16 @@ WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u& pos, const Vec2u& size, const 
     pfd.iLayerType = PFD_MAIN_PLANE;
 
     int format = ChoosePixelFormat(_Window._HDC, &pfd);
+    LDL_ASSERT_DETAIL(format != 0, "ChoosePixelFormat failed");
 
-    if (format == 0)
-        throw RuntimeError("ChoosePixelFormat failed");
-
-    if (!SetPixelFormat(_Window._HDC, format, &pfd))
-        throw RuntimeError("SetPixelFormat failed");
+    BOOL result = SetPixelFormat(_Window._HDC, format, &pfd);
+    LDL_ASSERT_DETAIL(result, "SetPixelFormat failed");
 
     _HGLRC = wglCreateContext(_Window._HDC);
+    LDL_ASSERT_DETAIL(_HGLRC != NULL, "wglCreateContext failed");
 
-    if (_HGLRC == NULL)
-        throw RuntimeError("wglCreateContext failed");
-
-    if (!wglMakeCurrent(_Window._HDC, _HGLRC))
-        throw RuntimeError("wglMakeCurrent failed");
+    result = wglMakeCurrent(_Window._HDC, _HGLRC);
+    LDL_ASSERT_DETAIL(result, "wglMakeCurrent failed");
 
     _OpenGLLoader.Init(1, 1);
 }

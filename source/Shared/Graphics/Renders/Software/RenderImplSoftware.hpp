@@ -40,11 +40,11 @@ namespace LDL
 			void Draw(Surface* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
 			void Draw(TextureBatcher* textureBatcher);
 		private:
-			Window* _Window;
-			Surface _Canvas;
-			PixelPainter _PixelPainter;
-			PixelCopier _PixelCopier;
-			ImageResizer _ImageResizer;
+			Window*      _window;
+			Surface      _canvas;
+			PixelPainter _pixelPainter;
+			PixelCopier  _pixelCopier;
+			ImageResizer _imageResizer;
 		};
 	}
 }

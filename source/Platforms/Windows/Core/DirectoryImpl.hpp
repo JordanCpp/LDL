@@ -22,9 +22,9 @@ namespace LDL
 			bool Next(FileInfo& fileInfo);
 			bool Remove(const std::string& path);
 		private:
-			char _AllFiles[4];
-			HANDLE _File;
-			WIN32_FIND_DATA _Data;
+			char            _allFiles[4];
+			HANDLE          _file;
+			WIN32_FIND_DATA _data;
 		};
 	}
 }

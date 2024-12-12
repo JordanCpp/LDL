@@ -6,26 +6,26 @@ using namespace LDL::Text;
 using namespace LDL::Graphics;
 
 Rasterizer::Rasterizer(const Vec2u& bufferSize) :
-	_RasterizerImpl(new RasterizerImpl(bufferSize))
+	_impl(new RasterizerImpl(bufferSize))
 {
 }
 
 Rasterizer::~Rasterizer()
 {
-	delete _RasterizerImpl;
+	delete _impl;
 }
 
 RasterizerImpl* Rasterizer::GetRasterizerImpl()
 {
-	return _RasterizerImpl;
+	return _impl;
 }
 
 Surface* Rasterizer::Result()
 {
-	return _RasterizerImpl->Result();
+	return _impl->Result();
 }
 
 bool Rasterizer::RenderText(const std::string& text, Font* font, const Color& color)
 {
-	return _RasterizerImpl->RenderText(text, font, color);
+	return _impl->RenderText(text, font, color);
 }

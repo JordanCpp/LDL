@@ -1,5 +1,5 @@
 #include "WindowImplOpenGL3.hpp"
-#include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Core/Assert.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Math;
@@ -40,9 +40,8 @@ WindowImplOpenGL3::WindowImplOpenGL3(const Vec2u& pos, const Vec2u& size, const 
     ZeroMemory(&pfd, sizeof(PIXELFORMATDESCRIPTOR));
 
     _Window._HDC = GetDC(_Window._HWND);
+    LDL_ASSERT_DETAIL(_Window._HDC != NULL, "GetDC failed");
 
-    if (_Window._HDC == NULL)
-        throw RuntimeError("GetDC failed");
 
     pfd.nSize      = sizeof(pfd);
     pfd.nVersion   = 1;
@@ -52,39 +51,31 @@ WindowImplOpenGL3::WindowImplOpenGL3(const Vec2u& pos, const Vec2u& size, const 
     pfd.cDepthBits = 24;
 
     int format = ChoosePixelFormat(_Window._HDC, &pfd);
+    LDL_ASSERT_DETAIL(format != 0, "ChoosePixelFormat failed");
 
-    if (format == 0)
-        throw RuntimeError("ChoosePixelFormat failed");
-
-    if (!SetPixelFormat(_Window._HDC, format, &pfd))
-        throw RuntimeError("SetPixelFormat failed");
+    bool result = SetPixelFormat(_Window._HDC, format, &pfd);
+    LDL_ASSERT_DETAIL(result, "SetPixelFormat failed");
 
     _HGLRC = wglCreateContext(_Window._HDC);
+    LDL_ASSERT_DETAIL(_HGLRC != NULL, "wglCreateContext failed");
 
-    if (!_HGLRC)
-        throw RuntimeError("wglCreateContext failed");
-
-    if (!wglMakeCurrent(_Window._HDC, _HGLRC))
-        throw RuntimeError("wglMakeCurrent failed");
+    result = wglMakeCurrent(_Window._HDC, _HGLRC);
+    LDL_ASSERT_DETAIL(result, "wglMakeCurrent failed");
 
     wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
+    LDL_ASSERT_DETAIL(wglCreateContextAttribsARB != NULL, "wglGetProcAddress failed");
 
-    if (!wglCreateContextAttribsARB)
-        throw RuntimeError("wglGetProcAddress failed");
+    result = wglMakeCurrent(NULL, NULL);
+    LDL_ASSERT_DETAIL(result, "wglMakeCurrent failed");
 
-    if (!wglMakeCurrent(NULL, NULL))
-        throw RuntimeError("wglMakeCurrent failed");
-
-    if (!wglDeleteContext(_HGLRC))
-        throw RuntimeError("wglDeleteContext failed");
+    result = wglDeleteContext(_HGLRC);
+    LDL_ASSERT_DETAIL(result, "wglDeleteContext failed");
 
     _HGLRC = wglCreateContextAttribsARB(_Window._HDC, 0, attribs);
+    LDL_ASSERT_DETAIL(_HGLRC != NULL, "wglCreateContextAttribsARB failed");
 
-    if (!_HGLRC)
-        throw RuntimeError("wglCreateContextAttribsARB failed");
-
-    if (!wglMakeCurrent(_Window._HDC, _HGLRC))
-        throw RuntimeError("wglMakeCurrent failed");
+    result = wglMakeCurrent(_Window._HDC, _HGLRC);
+    LDL_ASSERT_DETAIL(result, "wglMakeCurrent failed");
 
     _OpenGLLoader.Init(3, 3);
 }
@@ -109,8 +100,8 @@ void WindowImplOpenGL3::PollEvents()
 
 void WindowImplOpenGL3::Present()
 {
-    if (!SwapBuffers(_Window._HDC))
-        throw RuntimeError("SwapBuffers failed");
+    BOOL result = SwapBuffers(_Window._HDC);
+    LDL_ASSERT_DETAIL(result, "SwapBuffers failed");
 }
 
 const Vec2u& WindowImplOpenGL3::Size()

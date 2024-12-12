@@ -1,6 +1,5 @@
 #include <iostream>
 #include <LDL/Core/TestEqual.hpp>
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
 
@@ -10,8 +9,6 @@ using namespace LDL::Math;
 
 int main()
 {
-	try
-	{
 		FixedLinear graphicsAllocator(Allocator::Mb * 1);
 
 		const std::string title = "LDL Window title!";
@@ -27,11 +24,6 @@ int main()
 		LDL_TEST_EQUAL(window.Size().y == 480);
 
 		LDL_TEST_EQUAL(window.Title() == title);
-	}
-	catch (const LDL::Core::RuntimeError& error)
-	{
-		std::cout << error.what() << '\n';
-	}
 
 	return 0;
 }

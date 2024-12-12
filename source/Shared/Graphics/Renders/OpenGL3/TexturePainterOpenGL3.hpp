@@ -17,10 +17,10 @@ namespace LDL
 			void Draw(LDL::Math::Mat4f proj, Texture * texture);
 		private:
 			ShaderLoader* _ShaderLoader;
-			GLuint _ShaderProgram;
-			GLuint _VertexBufferObject;
-			GLuint _VertexArraysObject;
-			GLuint _ElementBufferObject;
+			GLuint        _ShaderProgram;
+			GLuint        _VertexBufferObject;
+			GLuint        _VertexArraysObject;
+			GLuint        _ElementBufferObject;
 		};
 	}
 }

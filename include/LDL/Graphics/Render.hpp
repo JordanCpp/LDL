@@ -40,7 +40,7 @@ namespace LDL
 			void Draw(Surface* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
 			void Draw(TextureBatcher* textureBatcher);
 		private:
-			RenderImpl* _RenderImpl;
+			RenderImpl* _impl;
 		};
 	}
 }

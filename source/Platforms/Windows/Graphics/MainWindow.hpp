@@ -3,7 +3,7 @@
 
 #include "../Windows.hpp"
 #include "../source/Shared/Graphics/Base/BaseWindow.hpp"
-#include <LDL/Events/Eventer.hpp>
+#include "../source/Shared/Events/Eventer.hpp"
 #include <LDL/Enums/WindowMode.hpp>
 
 namespace LDL
@@ -28,12 +28,12 @@ namespace LDL
 			uint8_t ConvertKey(size_t key);
 			static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 			LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
-			BaseWindow _BaseWindow;
-			LDL::Events::Eventer _Eventer;
-			WNDCLASS  _WNDCLASS;
-			HINSTANCE _HINSTANCE;
-			MSG       _MSG;
-			ATOM      _ATOM;
+			BaseWindow           _baseWindow;
+			LDL::Events::Eventer _eventer;
+			WNDCLASS             _windowClass;
+			HINSTANCE            _instance;
+			MSG                  _msg;
+			ATOM                 _atom;
 		public:
 			HWND _HWND;
 			HDC  _HDC;

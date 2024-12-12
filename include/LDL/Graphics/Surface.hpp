@@ -1,7 +1,6 @@
 #ifndef LDL_Graphics_Surface_hpp
 #define LDL_Graphics_Surface_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Graphics/Color.hpp>
 
@@ -25,10 +24,10 @@ namespace LDL
 			uint8_t* Pixels();
 			Color Pixel(const Math::Vec2u& pos);
 		private:
-			LDL::Math::Vec2u _Capacity;
-			LDL::Math::Vec2u _Size;
-			uint8_t _BytesPerPixel;
-			uint8_t* _Pixels;
+			LDL::Math::Vec2u _capacity;
+			LDL::Math::Vec2u _size;
+			uint8_t          _bytesPerPixel;
+			uint8_t*         _pixels;
 		};
 	}
 }

@@ -1,5 +1,3 @@
-#include <iostream>
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/NumberToString.hpp>
 #include <LDL/Graphics/Window.hpp>
@@ -13,45 +11,38 @@ using namespace LDL::Math;
 
 int main()
 {
-	try
+	RenderContext renderContext;
+
+	Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
+	Render render(&renderContext, &window);
+
+	Event report;
+
+	FpsCounter fpsCounter;
+	NumberToString convert;
+
+	while (window.Running())
 	{
-		RenderContext renderContext;
+		fpsCounter.Start();
 
-		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
-		Render render(&renderContext, &window);
-
-		Event report;
-
-		FpsCounter fpsCounter;
-		NumberToString convert;
-
-		while (window.Running())
+		while (window.GetEvent(report))
 		{
-			fpsCounter.Start();
-
-			while (window.GetEvent(report))
+			if (report.Type == IsQuit)
 			{
-				if (report.Type == IsQuit)
-				{
-					window.StopEvent();
-				}
+				window.StopEvent();
 			}
-
-			render.Begin();
-			render.End();
-
-			if (fpsCounter.Calc())
-			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
-				fpsCounter.Clear();
-			}
-
-			window.PollEvents();
 		}
-	}
-	catch (const RuntimeError& error)
-	{
-		std::cout << error.what() << '\n';
+
+		render.Begin();
+		render.End();
+
+		if (fpsCounter.Calc())
+		{
+			window.Title(convert.Convert(fpsCounter.Fps()));
+			fpsCounter.Clear();
+		}
+
+		window.PollEvents();
 	}
 
 	return 0;

@@ -8,15 +8,15 @@ using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
-	_RenderContextImpl(renderContextImpl),
-	_Id(0)
+	_renderContextImpl(renderContextImpl),
+	_id(0)
 {
 	assert(size.x > 0);
 	assert(size.y > 0);
 	assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
 	assert(pixels != NULL);
 
-	_Size = size;
+	_size = size;
 
 	GLint format = 0;
 
@@ -25,20 +25,20 @@ TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, con
 	else
 		format = GL_RGBA;
 
-	size_t sz = Util::SelectTextureSize(_Size);
+	size_t sz = Util::SelectTextureSize(_size);
 
-	_Quad = Vec2u(sz, sz);
+	_quad = Vec2u(sz, sz);
 
-	_Id = Util::CreateTexture((GLsizei)_Quad.x, (GLsizei)_Quad.y, format);
+	_id = Util::CreateTexture((GLsizei)_quad.x, (GLsizei)_quad.y, format);
 
-	Copy(Vec2u(0, 0), _Size, pixels, bytesPerPixel);
+	Copy(Vec2u(0, 0), _size, pixels, bytesPerPixel);
 }
 
 TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel) :
-	_RenderContextImpl(renderContextImpl),
-	_Id(0)
+	_renderContextImpl(renderContextImpl),
+	_id(0)
 {
-	_Size = size;
+	_size = size;
 
 	GLint format = 0;
 
@@ -47,16 +47,16 @@ TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, con
 	else
 		format = GL_RGBA;
 
-	size_t sz = Util::SelectTextureSize(_Size);
+	size_t sz = Util::SelectTextureSize(_size);
 
-	_Quad = Vec2u(sz, sz);
+	_quad = Vec2u(sz, sz);
 
-	_Id = Util::CreateTexture((GLsizei)_Quad.x, (GLsizei)_Quad.y, format);
+	_id = Util::CreateTexture((GLsizei)_quad.x, (GLsizei)_quad.y, format);
 }
 
 TextureImplOpenGL1::~TextureImplOpenGL1()
 {
-	Util::DeleteTexture((GLint)_Id);
+	Util::DeleteTexture((GLint)_id);
 }
 
 void TextureImplOpenGL1::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel)
@@ -78,15 +78,15 @@ void TextureImplOpenGL1::Copy(const Vec2u& dstPos, Surface* surface, const Vec2u
 
 const Vec2u& TextureImplOpenGL1::Size()
 {
-	return _Size;
+	return _size;
 }
 
 const Vec2u& TextureImplOpenGL1::Quad()
 {
-	return _Quad;
+	return _quad;
 }
 
 size_t TextureImplOpenGL1::Id()
 {
-	return _Id;
+	return _id;
 }

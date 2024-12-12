@@ -9,56 +9,56 @@
 using namespace LDL::Core;
 
 Directory::Directory() :
-    _DirectoryImpl(new LDL::Core::DirectoryImpl())
+    _impl(new LDL::Core::DirectoryImpl())
 {
 }
 
 Directory::~Directory()
 {
-    delete _DirectoryImpl;
+    delete _impl;
 }
 
 const char* Directory::AllFiles()
 {
-    return _DirectoryImpl->AllFiles();
+    return _impl->AllFiles();
 }
 
 bool Directory::Create(const std::string& path)
 {
-    return _DirectoryImpl->Create(path);
+    return _impl->Create(path);
 }
 
 bool Directory::DirExist(const std::string& path)
 {
-    return _DirectoryImpl->DirExist(path);
+    return _impl->DirExist(path);
 }
 
 bool Directory::FileExist(const std::string& path)
 {
-    return _DirectoryImpl->FileExist(path);
+    return _impl->FileExist(path);
 }
 
 bool Directory::Delete(const std::string& path)
 {
-    return _DirectoryImpl->Delete(path);
+    return _impl->Delete(path);
 }
 
 bool Directory::Open(const std::string& path)
 {
-    return _DirectoryImpl->Open(path);
+    return _impl->Open(path);
 }
 
 void Directory::Close()
 {
-    _DirectoryImpl->Close();
+    _impl->Close();
 }
 
 bool Directory::Next(LDL::Core::FileInfo& fileInfo)
 {
-    return _DirectoryImpl->Next(fileInfo);
+    return _impl->Next(fileInfo);
 }
 
 bool Directory::Remove(const std::string& path)
 {
-    return _DirectoryImpl->Remove(path);
+    return _impl->Remove(path);
 }

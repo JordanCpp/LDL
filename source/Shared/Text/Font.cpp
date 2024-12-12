@@ -5,16 +5,16 @@ using namespace LDL::Core;
 using namespace LDL::Text;
 
 Font::Font(RasterizerContext* rasterizerContext,size_t fontSize, uint8_t* font, size_t size) :
-	_FontImpl(new FontImpl(rasterizerContext->GetRasterizerContextImpl(), fontSize, font, size))
+	_impl(new FontImpl(rasterizerContext->GetRasterizerContextImpl(), fontSize, font, size))
 {
 }
 
 Font::~Font()
 {
-	delete _FontImpl;
+	delete _impl;
 }
 
 FontImpl* Font::GetFontImpl()
 {
-	return _FontImpl;
+	return _impl;
 }

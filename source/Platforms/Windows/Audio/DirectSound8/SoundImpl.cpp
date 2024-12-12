@@ -1,5 +1,5 @@
 #include "SoundImpl.hpp"
-#include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Core/Assert.hpp>
 #include "../source/Platforms/Windows/Audio/DirectSound8/AudioContextImpl.hpp"
 
 using namespace LDL::Audio;
@@ -32,13 +32,11 @@ SoundImpl::SoundImpl(AudioContext* audioContext, size_t channels, size_t rate, s
 
 	IDirectSoundBuffer* soundBuffer;
 
-	HRESULT result = impl->_DirectSound->CreateSoundBuffer(&bufferDesc, &soundBuffer, NULL);
-	if (FAILED(result))
-		throw RuntimeError("CreateSoundBuffer failed");
+	HRESULT result = impl->_directSound->CreateSoundBuffer(&bufferDesc, &soundBuffer, NULL);
+	LDL_ASSERT_DETAIL(!FAILED(result), "CreateSoundBuffer failed");
 
-	result = soundBuffer->QueryInterface(IID_IDirectSoundBuffer8, (LPVOID*)&_SecondaryBuffer);
-	if (FAILED(result))
-		throw RuntimeError("QueryInterface failed");
+	result = soundBuffer->QueryInterface(IID_IDirectSoundBuffer8, (LPVOID*)&_secondaryBuffer);
+	LDL_ASSERT_DETAIL(!FAILED(result), "QueryInterface failed");
 
 	soundBuffer->Release();
 	soundBuffer = NULL;
@@ -46,22 +44,20 @@ SoundImpl::SoundImpl(AudioContext* audioContext, size_t channels, size_t rate, s
 	unsigned char* bufferPtr;
 	unsigned long bufferSize;
 
-	result = _SecondaryBuffer->Lock(0, (DWORD)samples, (void**)&bufferPtr, (DWORD*)&bufferSize, NULL, 0, 0);
-	if (FAILED(result))
-		throw RuntimeError("Lock failed");
+	result = _secondaryBuffer->Lock(0, (DWORD)samples, (void**)&bufferPtr, (DWORD*)&bufferSize, NULL, 0, 0);
+	LDL_ASSERT_DETAIL(!FAILED(result), "Lock failed");
 
 	memcpy(bufferPtr, bytes, samples);
 
-	result = _SecondaryBuffer->Unlock(bufferPtr, bufferSize, NULL, 0);
-	if (FAILED(result))
-		throw RuntimeError("Unlock failed");
+	result = _secondaryBuffer->Unlock(bufferPtr, bufferSize, NULL, 0);
+	LDL_ASSERT_DETAIL(!FAILED(result), "Unlock failed");
 }
 
 SoundImpl::~SoundImpl()
 {
-	if (_SecondaryBuffer)
+	if (_secondaryBuffer)
 	{
-		_SecondaryBuffer->Release();
-		_SecondaryBuffer = NULL;
+		_secondaryBuffer->Release();
+		_secondaryBuffer = NULL;
 	}
 }

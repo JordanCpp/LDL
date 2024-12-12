@@ -1,5 +1,3 @@
-#include <iostream>
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/NumberToString.hpp>
@@ -94,8 +92,6 @@ GLuint lightIndices[] =
 
 int main()
 {
-	try
-	{
 		RenderContext renderContext(RenderMode::OpenGL3);
 
 		Window window(&renderContext, Vec2u(0, 0), Vec2u(width, height), "YoutubeOpenGL");
@@ -256,11 +252,6 @@ int main()
 		lightVBO.Delete();
 		lightEBO.Delete();
 		lightShader.Delete();
-	}
-	catch (const RuntimeError& error)
-	{
-		std::cout << error.what() << '\n';
-	}
 
 	return 0;
 }

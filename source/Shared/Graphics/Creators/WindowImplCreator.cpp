@@ -14,9 +14,10 @@
 #include "../source/Platforms/Linux/Graphics/Glide/WindowImplGlide.hpp"
 #endif
 
-#include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Core/Assert.hpp>
 
 using namespace LDL::Core;
+using namespace LDL::Enums;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
 using namespace LDL::Graphics::Creators;
@@ -24,34 +25,32 @@ using namespace LDL::Graphics::Creators;
 WindowImpl* WindowImplCreator::Create(RenderContext* renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode)
 {
 	size_t renderMode = renderContext->Mode();
+	LDL_ASSERT_DETAIL(renderMode < RenderMode::Max, "Unknown graphics mode");
 
 	WindowImpl* result = NULL;
 
 	switch (renderMode)
 	{
 #if defined(_WIN32)
-	case Enums::RenderMode::DirectDraw:
+	case RenderMode::DirectDraw:
 		result = new WindowImplDirectDraw(pos, size, title, mode);
 		break;
 
-	case Enums::RenderMode::Direct3D6:
+	case RenderMode::Direct3D6:
 		result = new WindowImplDirect3D6(pos, size, title, mode);
 		break;
 #endif
-	case Enums::RenderMode::Software:
+	case RenderMode::Software:
 		result = new WindowImplSoftware(pos, size, title, mode);
 		break;
-	case Enums::RenderMode::OpenGL1:
+	case RenderMode::OpenGL1:
 		result = new WindowImplOpenGL1(pos, size, title, mode);
 		break;
-	case Enums::RenderMode::OpenGL3:
+	case RenderMode::OpenGL3:
 		result = new WindowImplOpenGL3(pos, size, title, mode);
 		break;
-	case Enums::RenderMode::Glide:
+	case RenderMode::Glide:
 		result = new WindowImplGlide(pos, size, title, mode);
-		break;
-	default:
-		throw RuntimeError("Unknown graphics mode");
 		break;
 	}
 

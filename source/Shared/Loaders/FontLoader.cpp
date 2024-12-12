@@ -1,12 +1,12 @@
 #include <LDL/Loaders/FontLoader.hpp>
-#include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Core/Assert.hpp>
 #include <stdio.h>
 
 using namespace LDL::Loaders;
 
 FontLoader::FontLoader(LDL::Allocators::Allocator* allocator) :
-    _Allocator(allocator),
-	_Buffer(NULL)
+    _allocator(allocator),
+	_buffer(NULL)
 {
 }
 
@@ -16,37 +16,35 @@ FontLoader::~FontLoader()
 
 void FontLoader::Clear()
 {
-    _Buffer = NULL;
-    _Allocator->Reset();
+    _buffer = NULL;
+    _allocator->Reset();
 }
 
 void FontLoader::Load(const std::string& path)
 {
-    if (path.empty())
-        throw LDL::Core::RuntimeError("Argument path is empty");
+    LDL_ASSERT_DETAIL(!path.empty(), "Argument path is empty");
 
     FILE* file = fopen(path.c_str(), "rb");
 
-    if (file == NULL)
-        throw LDL::Core::RuntimeError("Not load " + path);
+    LDL_ASSERT_DETAIL(file != NULL, "Not load " + path);
 
     fseek(file, 0, SEEK_END);
     size_t bytes = ftell(file);
     fseek(file, 0, SEEK_SET);
 
-    _Buffer = (uint8_t*)_Allocator->Allocate(bytes);
+    _buffer = (uint8_t*)_allocator->Allocate(bytes);
 
-    fread(_Buffer, bytes, 1, file);
+    fread(_buffer, bytes, 1, file);
 
     fclose(file);
 }
 
 uint8_t* FontLoader::Font()
 {
-    return _Buffer;
+    return _buffer;
 }
 
 size_t FontLoader::Size()
 {
-    return _Allocator->UsedBytes();
+    return _allocator->UsedBytes();
 }

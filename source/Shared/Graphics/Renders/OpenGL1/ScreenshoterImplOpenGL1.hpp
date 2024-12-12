@@ -16,13 +16,13 @@ namespace LDL
 			ScreenshoterImplOpenGL1(const std::string& path, const std::string& name, Render* render, Surface* image);
 			void Shot();
 		private:
-			ImageWritter _ImageWritter;
+			ImageWritter     _ImageWritter;
 			BaseScreenshoter _BaseScreenshoter;
-			std::string _ShortPath;
-			std::string _Name;
-			std::string _FullPath;
-			Render* _Render;
-			Surface* _Image;
+			std::string      _ShortPath;
+			std::string      _Name;
+			std::string      _FullPath;
+			Render*          _Render;
+			Surface*         _Image;
 		};
 	}
 }

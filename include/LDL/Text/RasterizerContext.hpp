@@ -16,7 +16,7 @@ namespace LDL
 			~RasterizerContext();
 			RasterizerContextImpl* GetRasterizerContextImpl();
 		private:
-			RasterizerContextImpl* _RasterizerContextImpl;
+			RasterizerContextImpl* _impl;
 		};
 	}
 }

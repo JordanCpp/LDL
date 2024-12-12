@@ -1,6 +1,5 @@
 #include <LDL/Graphics/Texture.hpp>
 #include "Creators/TextureImplCreator.hpp"
-#include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Math;
@@ -11,7 +10,7 @@ Texture::Texture(RenderContext* renderContext, const Vec2u& size, uint8_t* pixel
 {
 	TextureImplCreator creator;
 
-	_TextureImpl = creator.Create(renderContext, size, pixels, bytesPerPixel);
+	_impl = creator.Create(renderContext, size, pixels, bytesPerPixel);
 
 }
 
@@ -19,30 +18,30 @@ Texture::Texture(RenderContext* renderContext, const Vec2u& size, uint8_t bytesP
 {
 	TextureImplCreator creator;
 
-	_TextureImpl = creator.Create(renderContext, size, bytesPerPixel);
+	_impl = creator.Create(renderContext, size, bytesPerPixel);
 }
 
 Texture::~Texture()
 {
-	delete _TextureImpl;
+	delete _impl;
 }
 
 void Texture::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel)
 {
-	_TextureImpl->Copy(dstPos, srcSize, pixels, bytesPerPixel);
+	_impl->Copy(dstPos, srcSize, pixels, bytesPerPixel);
 }
 
 void Texture::Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& srcSize)
 {
-	_TextureImpl->Copy(dstPos, surface, srcSize);
+	_impl->Copy(dstPos, surface, srcSize);
 }
 
 const Vec2u& Texture::Size()
 {
-	return _TextureImpl->Size();
+	return _impl->Size();
 }
 
 TextureImpl* Texture::GetTextureImpl()
 {
-	return _TextureImpl;
+	return _impl;
 }

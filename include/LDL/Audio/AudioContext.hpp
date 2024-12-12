@@ -18,7 +18,7 @@ namespace LDL
 			AudioContextImpl* GetAudioContextImpl();
 			void* Context();
 		private:
-			AudioContextImpl* _AudioContextImpl;
+			AudioContextImpl* _impl;
 		};
 	}
 }

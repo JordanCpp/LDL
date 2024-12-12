@@ -3,12 +3,12 @@
 using namespace LDL::Graphics;
 
 RenderContextImplDirect3D6::RenderContextImplDirect3D6(size_t mode) :
-	_Mode(mode)
+	_mode(mode)
 {
 }
 
 size_t RenderContextImplDirect3D6::Mode()
 {
-	return _Mode;
+	return _mode;
 }
 

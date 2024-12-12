@@ -16,7 +16,7 @@ namespace LDL
 			~Font();
 			FontImpl* GetFontImpl();
 		private:
-			FontImpl* _FontImpl;
+			FontImpl* _impl;
 		};
 	}
 }

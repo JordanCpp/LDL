@@ -4,12 +4,12 @@ using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 TextureImplGlide::TextureImplGlide(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
-	_RenderContextImpl(renderContextImpl)
+	_renderContextImpl(renderContextImpl)
 {
 }
 
 TextureImplGlide::TextureImplGlide(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel) :
-	_RenderContextImpl(renderContextImpl)
+	_renderContextImpl(renderContextImpl)
 {
 }
 
@@ -28,10 +28,10 @@ void TextureImplGlide::Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& 
 
 const Vec2u& TextureImplGlide::Size()
 {
-	return _Size;
+	return _size;
 }
 
 const Vec2u& TextureImplGlide::Quad()
 {
-	return _Quad;
+	return _quad;
 }

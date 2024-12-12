@@ -1,7 +1,6 @@
 #ifndef LDL_Glide_Glide_hpp
 #define LDL_Glide_Glide_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Core/Types.hpp>
 #include <LDL/APIs/Glide/3dfx.hpp>
 
@@ -127,40 +126,40 @@ namespace LDL
         const FxI32 GR_BUFFER_ALPHABUFFER  = 0x4;
         const FxI32 GR_BUFFER_TRIPLEBUFFER = 0x5;
 
-        typedef void (LDL_API_CALL PFN_grGlideInit)();
+        typedef void (LDL_API_CALL* PFN_grGlideInit)();
         LDL_API_ENTRY PFN_grGlideInit grGlideInit;
 
-        typedef void (LDL_API_CALL PFN_grGlideShutdown)();
+        typedef void (LDL_API_CALL* PFN_grGlideShutdown)();
         LDL_API_ENTRY PFN_grGlideShutdown grGlideShutdown;
 
-        typedef void (LDL_API_CALL PFN_grSstSelect)(int which_sst);
+        typedef void (LDL_API_CALL* PFN_grSstSelect)(int which_sst);
         LDL_API_ENTRY PFN_grSstSelect grSstSelect;
 
-        typedef FxBool(LDL_API_CALL PFN_grSstWinOpen)(FxU32 hWnd, GrScreenResolution_t screen_resolution, GrScreenRefresh_t refresh_rate, GrColorFormat_t color_format, GrOriginLocation_t origin_location, int nColBuffers, int nAuxBuffers);
+        typedef FxBool(LDL_API_CALL* PFN_grSstWinOpen)(FxU32 hWnd, GrScreenResolution_t screen_resolution, GrScreenRefresh_t refresh_rate, GrColorFormat_t color_format, GrOriginLocation_t origin_location, int nColBuffers, int nAuxBuffers);
         LDL_API_ENTRY PFN_grSstWinOpen grSstWinOpen;
 
-        typedef void (LDL_API_CALL PFN_grVertexLayout)(FxU32 param, FxI32 offset, FxU32 mode);
+        typedef void (LDL_API_CALL* PFN_grVertexLayout)(FxU32 param, FxI32 offset, FxU32 mode);
         LDL_API_ENTRY PFN_grVertexLayout grVertexLayout;
 
-        typedef void (LDL_API_CALL PFN_grColorCombine)(GrCombineFunction_t function, GrCombineFactor_t factor, GrCombineLocal_t local, GrCombineOther_t other, FxBool invert);
+        typedef void (LDL_API_CALL* PFN_grColorCombine)(GrCombineFunction_t function, GrCombineFactor_t factor, GrCombineLocal_t local, GrCombineOther_t other, FxBool invert);
         LDL_API_ENTRY PFN_grColorCombine grColorCombine;
 
-        typedef void (LDL_API_CALL PFN_grConstantColorValue)(GrColor_t value);
+        typedef void (LDL_API_CALL* PFN_grConstantColorValue)(GrColor_t value);
         LDL_API_ENTRY PFN_grConstantColorValue grConstantColorValue;
 
-        typedef void (LDL_API_CALL PFN_grDrawLine)(const void* v1, const void* v2);
+        typedef void (LDL_API_CALL* PFN_grDrawLine)(const void* v1, const void* v2);
         LDL_API_ENTRY PFN_grDrawLine grDrawLine;
 
 /*
 ** buffer management
 */
-        typedef void (LDL_API_CALL PFN_grBufferClear)(GrColor_t color, GrAlpha_t alpha, FxU32 depth);
+        typedef void (LDL_API_CALL* PFN_grBufferClear)(GrColor_t color, GrAlpha_t alpha, FxU32 depth);
         LDL_API_ENTRY PFN_grBufferClear grBufferClear;
 
-        typedef void (LDL_API_CALL PFN_grBufferSwap)(FxU32 swap_interval);
+        typedef void (LDL_API_CALL* PFN_grBufferSwap)(FxU32 swap_interval);
         LDL_API_ENTRY PFN_grBufferSwap grBufferSwap;
 
-        typedef void (LDL_API_CALL PFN_grRenderBuffer)(GrBuffer_t buffer);
+        typedef void (LDL_API_CALL* PFN_grRenderBuffer)(GrBuffer_t buffer);
         LDL_API_ENTRY PFN_grRenderBuffer grRenderBuffer;
     }
 }

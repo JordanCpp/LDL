@@ -19,7 +19,7 @@ namespace LDL
 			~Library();
 			VoidFuncPtr Function(const std::string& name);
 		private:
-			LibraryImpl* _LibraryImpl;
+			LibraryImpl* _impl;
 		};
 	}
 }

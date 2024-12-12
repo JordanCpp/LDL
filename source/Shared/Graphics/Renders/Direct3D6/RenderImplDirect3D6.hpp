@@ -42,10 +42,10 @@ namespace LDL
 			void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
 			void Draw(TextureBatcher* textureBatcher);
 		private:
-			DirectX6::DirectX6Loader _DirectX6Loader;
-			Window* _Window;
-			LDL::Graphics::Color _Color;
-			RenderContextImpl* _RenderContextImpl;
+			DirectX6::DirectX6Loader       _directX6Loader;
+			Window*                        _window;
+			LDL::Graphics::Color           _color;
+			RenderContextImpl*             _renderContextImpl;
 			DirectX6::LPDIRECTDRAW         g_pDD1;
 			DirectX6::LPDIRECTDRAW4        g_pDD4;
 			DirectX6::LPDIRECTDRAWSURFACE4 g_pddsPrimary;

@@ -17,12 +17,12 @@ namespace LDL
 			~LinePainter();
 			void Draw(Math::Mat4f proj, Math::Vec3f start, Math::Vec3f end, Math::Vec3f color);
 		private:
-			Math::Vec3f _Lines[2];
-			Math::Vec3f _Color;
-			GLuint _ShaderProgram;
-			GLuint _VertexBufferObject;
-			GLuint _VertexArraysObject;
-			ShaderLoader* _ShaderLoader;
+			Math::Vec3f   _lines[2];
+			Math::Vec3f   _color;
+			GLuint        _shaderProgram;
+			GLuint        _vertexBufferObject;
+			GLuint        _vertexArraysObject;
+			ShaderLoader* _shaderLoader;
 		};
 	}
 }

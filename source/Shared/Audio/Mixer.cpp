@@ -9,26 +9,26 @@
 using namespace LDL::Audio;
 
 Mixer::Mixer() :
-	_MixerImpl(new MixerImpl())
+	_impl(new MixerImpl())
 {
 }
 
 Mixer::~Mixer()
 {
-	delete _MixerImpl;
+	delete _impl;
 }
 
 MixerImpl* Mixer::GetMixerImpl()
 {
-	return _MixerImpl;
+	return _impl;
 }
 
 void Mixer::Play(Sound* sound)
 {
-	_MixerImpl->Play(sound);
+	_impl->Play(sound);
 }
 
 void Mixer::Stop(Sound* sound)
 {
-	_MixerImpl->Stop(sound);
+	_impl->Stop(sound);
 }

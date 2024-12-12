@@ -5,8 +5,6 @@
 // rwright@starstonesoftware.com  
 // Modifed for LDL framework by Zoshchuk Evgeniy (Jordan)
 
-#include <iostream>
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/NumberToString.hpp>
 #include <LDL/Graphics/Window.hpp>
@@ -140,8 +138,6 @@ void ChangeSize(int w, int h)
 // Main Program Entry Point
 int main()
 {
-	try
-	{
 		RenderContext renderContext;
 
 		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Lines Example");
@@ -187,11 +183,6 @@ int main()
 
 			window.PollEvents();
 		}
-	}
-	catch (const RuntimeError& error)
-	{
-		std::cout << error.what() << '\n';
-	}
 
 	return 0;
 }

@@ -1,7 +1,6 @@
 #ifndef LDL_Graphics_BaseScreenshoter_hpp
 #define LDL_Graphics_BaseScreenshoter_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Core/NumberToString.hpp>
 #include <string>
 

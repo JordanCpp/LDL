@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include <LDL/Config.hpp>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {
@@ -15,7 +15,7 @@ namespace LDL
 			CommandLineParser(size_t argc, char* argv[]);
 			const std::vector<std::string>& Lines();
 		private:
-			std::vector<std::string> _Lines;
+			std::vector<std::string> _lines;
 		};
 	}
 }

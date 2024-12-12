@@ -39,14 +39,14 @@ namespace LDL
 			void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
 			void Draw(TextureBatcher* textureBatcher);
 		private:
-			Window* _Window;
-			ScreenOpenGL1 _Screen;
-			LDL::Graphics::Color _Color;
-			RenderContextImpl* _RenderContextImpl;
-			RenderBuffer _RenderBuffer;
+			Window*              _window;
+			ScreenOpenGL1        _screen;
+			LDL::Graphics::Color _color;
+			RenderContextImpl*   _renderContextImpl;
+			RenderBuffer         _renderBuffer;
 		public:
-			LDL::Math::Mat4f _Projection;
-			LDL::Math::Mat4f _ModelView;
+			LDL::Math::Mat4f     _projection;
+			LDL::Math::Mat4f     _modelView;
 		};
 	}
 }

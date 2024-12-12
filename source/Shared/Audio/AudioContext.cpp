@@ -10,18 +10,18 @@ using namespace LDL::Audio;
 using namespace LDL::Graphics;
 
 AudioContext::AudioContext(Window* window, size_t rate, size_t bits, size_t channels) :
-	_AudioContextImpl(new AudioContextImpl(window, rate, bits, channels))
+	_impl(new AudioContextImpl(window, rate, bits, channels))
 {
 }
 
 AudioContext::~AudioContext()
 {
-	delete _AudioContextImpl;
+	delete _impl;
 }
 
 AudioContextImpl* AudioContext::GetAudioContextImpl()
 {
-	return _AudioContextImpl;
+	return _impl;
 }
 
 void* AudioContext::Context()

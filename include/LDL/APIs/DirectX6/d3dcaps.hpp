@@ -346,7 +346,7 @@ namespace LDL
 
         const DWORD  D3DDEVICEDESCSIZE = (sizeof(D3DDEVICEDESC));
 
-        typedef HRESULT(LDL_CALL* LPD3DENUMDEVICESCALLBACK)(GUID* lpGuid, LPSTR lpDeviceDescription, LPSTR lpDeviceName, LPD3DDEVICEDESC, LPD3DDEVICEDESC, LPVOID);
+        typedef HRESULT(LDL_API_CALL* LPD3DENUMDEVICESCALLBACK)(GUID* lpGuid, LPSTR lpDeviceDescription, LPSTR lpDeviceName, LPD3DDEVICEDESC, LPD3DDEVICEDESC, LPVOID);
 
         /* D3DDEVICEDESC dwFlags indicating valid fields */
 

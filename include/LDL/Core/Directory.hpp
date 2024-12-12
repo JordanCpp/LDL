@@ -25,7 +25,7 @@ namespace LDL
 			bool Next(FileInfo& fileInfo);
 			bool Remove(const std::string& path);
 		private:
-			DirectoryImpl* _DirectoryImpl;
+			DirectoryImpl* _impl;
 		};
 	}
 }

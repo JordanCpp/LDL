@@ -3,11 +3,11 @@
 using namespace Arcanum::Core;
 
 RuntimeError::RuntimeError(const std::string& message) :
-	_RuntimeError(message)
+	_runtime_error(message)
 {
 }
 
 const char* RuntimeError::what() const
 {
-	return _RuntimeError.what();
+	return _runtime_error.what();
 }

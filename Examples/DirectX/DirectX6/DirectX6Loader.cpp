@@ -1,9 +1,8 @@
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
+#include <LDL/Core/Assert.hpp>
 #include <LDL/APIs/DirectX6/DirectX6Loader.hpp>
-#include <iostream>
 #include <string.h>
 #include <time.h>
 
@@ -487,8 +486,6 @@ HRESULT Render3DEnvironment()
 
 int main()
 {
-	try
-	{
 		DirectX6Loader directXLoader;
 		RenderContext renderContext(RenderMode::Direct3D6);
 
@@ -506,8 +503,8 @@ int main()
 		g_rcViewportRect.right  = (LONG)window.Size().x;
 		g_rcViewportRect.bottom = (LONG)window.Size().y;
 
-		if (FAILED(Initialize3DEnvironment(window)))
-			throw RuntimeError("Initialize3DEnvironment failed");
+		HRESULT result = Initialize3DEnvironment(window);
+		LDL_ASSERT_DETAIL(!FAILED(result), "Initialize3DEnvironment failed");
 
 		while (window.Running())
 		{
@@ -522,19 +519,13 @@ int main()
 					window.StopEvent();
 			}
 
-			if (FAILED(Render3DEnvironment()))
-				throw RuntimeError("Initialize3DEnvironment failed");
+			result = Render3DEnvironment();
+			LDL_ASSERT_DETAIL(!FAILED(result), "Initialize3DEnvironment failed");
 
 			window.PollEvents();
 		}
 
 		Cleanup3DEnvironment();
-
-	}
-	catch (const RuntimeError& error)
-	{
-		std::cout << error.what() << '\n';
-	}
 
 	return 0;
 }

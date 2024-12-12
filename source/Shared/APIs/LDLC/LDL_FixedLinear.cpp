@@ -5,12 +5,12 @@ using namespace LDL::Allocators;
 
 struct LDL_FixedLinear
 {
-	FixedLinear _FixedLinear;
+	FixedLinear _fixedLinear;
 	LDL_FixedLinear(size_t bytes, void * allocator);
 };
 
 LDL_FixedLinear::LDL_FixedLinear(size_t bytes, void* allocator) :
-	_FixedLinear(bytes, (Allocator*)allocator)
+	_fixedLinear(bytes, (Allocator*)allocator)
 {
 }
 
@@ -28,20 +28,20 @@ void LDL_FixedLinearFree(LDL_FixedLinear* ptr)
 
 void* LDL_FixedLinearAllocate(LDL_FixedLinear* fixedLinear, size_t bytes)
 {
-	return fixedLinear->_FixedLinear.Allocate(bytes);
+	return fixedLinear->_fixedLinear.Allocate(bytes);
 }
 
 void LDL_FixedLinearDeallocate(LDL_FixedLinear* fixedLinear, void* ptr)
 {
-	fixedLinear->_FixedLinear.Deallocate(ptr);
+	fixedLinear->_fixedLinear.Deallocate(ptr);
 }
 
 void LDL_FixedLinearReset(LDL_FixedLinear* fixedLinear)
 {
-	fixedLinear->_FixedLinear.Reset();
+	fixedLinear->_fixedLinear.Reset();
 }
 
 size_t LDL_FixedLinearUsedBytes(LDL_FixedLinear* fixedLinear)
 {
-	return fixedLinear->_FixedLinear.UsedBytes();
+	return fixedLinear->_fixedLinear.UsedBytes();
 }

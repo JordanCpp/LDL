@@ -6,16 +6,16 @@ Palette::Palette()
 {
 	for (size_t i = 0; i < Count(); i++)
 	{
-		_Colors[i].r = 0;
-		_Colors[i].g = 0;
-		_Colors[i].b = 0;
-		_Colors[i].a = 0;
+		_colors[i].r = 0;
+		_colors[i].g = 0;
+		_colors[i].b = 0;
+		_colors[i].a = 0;
 	}
 }
 
 Color* Palette::Colors()
 {
-	return _Colors;
+	return _colors;
 }
 
 size_t Palette::Count()

@@ -45,7 +45,8 @@
 #undef	PI
 #define PI	      3.14159265358979323846
 
-struct GLUquadric {
+struct GLUquadric 
+{
     GLint	normals;
     GLboolean	textureCoords;
     GLint	orientation;

@@ -1,7 +1,6 @@
 #ifndef LDL_Graphics_BaseWindow_hpp
 #define LDL_Graphics_BaseWindow_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Math/Vec2.hpp>
 #include <string>
 

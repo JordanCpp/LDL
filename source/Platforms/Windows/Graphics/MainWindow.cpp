@@ -1,6 +1,6 @@
-#include "MainWindow.hpp"
-#include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Core/Assert.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
+#include "MainWindow.hpp"
 
 using namespace LDL::Core;
 using namespace LDL::Enums;
@@ -137,7 +137,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         event.Type       = Events::IsMouseMove;
         event.Mouse.PosX = LOWORD(LParam);
         event.Mouse.PosY = HIWORD(LParam);
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
 
     case WM_LBUTTONDOWN:
@@ -146,7 +146,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         event.Mouse.Button = MouseButton::Left;
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
 
     case WM_LBUTTONUP:
@@ -155,7 +155,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         event.Mouse.Button = MouseButton::Left;
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
 
     case WM_RBUTTONDOWN:
@@ -164,7 +164,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         event.Mouse.Button = MouseButton::Right;
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
 
     case WM_RBUTTONUP:
@@ -173,7 +173,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         event.Mouse.Button = MouseButton::Right;
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
 
     case WM_MBUTTONDOWN:
@@ -182,7 +182,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         event.Mouse.Button = MouseButton::Middle;
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
 
     case WM_MBUTTONUP:
@@ -191,19 +191,19 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         event.Mouse.Button = MouseButton::Middle;
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
 
     case WM_SIZE:
         event.Type          = Events::IsResize;
         event.Resize.Width  = LOWORD(LParam);
         event.Resize.Height = HIWORD(LParam);
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
 
     case WM_CLOSE:
         event.Type = Events::IsQuit;
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
 
     case WM_KEYDOWN:
@@ -211,7 +211,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         event.Type           = IsKeyboard;
         event.Keyboard.State = ButtonState::Pressed;
         event.Keyboard.Key   = ConvertKey(WParam);
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
 
     case WM_KEYUP:
@@ -219,17 +219,17 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         event.Type           = IsKeyboard;
         event.Keyboard.State = ButtonState::Released;
         event.Keyboard.Key   = ConvertKey(WParam);
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
 
     case WM_SETFOCUS:
         event.Type = IsGainedFocus;
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
 
     case WM_KILLFOCUS:
         event.Type = IsLostFocus;
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
 
     case WM_MOUSEWHEEL:
@@ -238,7 +238,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         event.Mouse.Delta  = HIWORD(WParam);
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
 
     case WM_MOUSEHWHEEL:
@@ -247,7 +247,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         event.Mouse.Delta  = HIWORD(WParam);
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
-        _Eventer.Push(event);
+        _eventer.Push(event);
         break;
     }
 
@@ -273,34 +273,30 @@ LRESULT CALLBACK MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPA
 }
 
 MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
-    _BaseWindow(pos, size, title)
+    _baseWindow(pos, size, title)
 {
     timeBeginPeriod(timePeriod);
 
-    ZeroMemory(&_WNDCLASS, sizeof(WNDCLASS));
-    ZeroMemory(&_HINSTANCE, sizeof(HINSTANCE));
-    ZeroMemory(&_MSG, sizeof(MSG));
-    ZeroMemory(&_ATOM, sizeof(ATOM));
+    ZeroMemory(&_windowClass, sizeof(WNDCLASS));
+    ZeroMemory(&_instance, sizeof(HINSTANCE));
+    ZeroMemory(&_msg, sizeof(MSG));
+    ZeroMemory(&_atom, sizeof(ATOM));
     ZeroMemory(&_HWND, sizeof(HWND));
     ZeroMemory(&_HDC, sizeof(HDC));
 
-    _HINSTANCE = GetModuleHandle(NULL);
-    
-    if (_HINSTANCE == NULL)
-        throw RuntimeError("GetModuleHandle failed");
+    _instance = GetModuleHandle(NULL);
+    LDL_ASSERT_DETAIL(_instance != NULL, "GetModuleHandle failed");
 
-    _WNDCLASS.hInstance = _HINSTANCE;
-    _WNDCLASS.lpszClassName = AppName;
-    _WNDCLASS.lpfnWndProc = WndProc;
-    _WNDCLASS.style = CS_HREDRAW | CS_VREDRAW;
-    _WNDCLASS.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-    _WNDCLASS.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-    _WNDCLASS.hCursor = LoadCursor(NULL, IDC_ARROW);
+    _windowClass.hInstance = _instance;
+    _windowClass.lpszClassName = AppName;
+    _windowClass.lpfnWndProc = WndProc;
+    _windowClass.style = CS_HREDRAW | CS_VREDRAW;
+    _windowClass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+    _windowClass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+    _windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
 
-    _ATOM = RegisterClass(&_WNDCLASS);
-
-    if (_ATOM == INVALID_ATOM)
-        throw RuntimeError("RegisterClass failed");
+    _atom = RegisterClass(&_windowClass);
+    LDL_ASSERT_DETAIL(_atom != INVALID_ATOM, "RegisterClass failed");
     
     DWORD style = 0;
     
@@ -308,23 +304,21 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
         style = WS_OVERLAPPED | WS_SYSMENU;
     else if (mode == WindowMode::Resized)
         style = WS_OVERLAPPEDWINDOW;
-    else
-        throw RuntimeError("WindowMode failed");
+    //else
+        //throw RuntimeError("WindowMode failed");
 
     RECT rect;
 
-    rect.left   = (LONG)_BaseWindow.Pos().x;
-    rect.top    = (LONG)_BaseWindow.Pos().y;
-    rect.right  = (LONG)_BaseWindow.Size().x;
-    rect.bottom = (LONG)_BaseWindow.Size().y;
+    rect.left   = (LONG)_baseWindow.Pos().x;
+    rect.top    = (LONG)_baseWindow.Pos().y;
+    rect.right  = (LONG)_baseWindow.Size().x;
+    rect.bottom = (LONG)_baseWindow.Size().y;
 
-    if (!AdjustWindowRect(&rect, style, FALSE))
-        throw RuntimeError("AdjustWindowRect failed");
+    BOOL Adjust = AdjustWindowRect(&rect, style, FALSE);
+    LDL_ASSERT_DETAIL(Adjust, "AdjustWindowRect failed");
 
-    _HWND = CreateWindow(AppName, "", style, (int)_BaseWindow.Pos().x, (int)_BaseWindow.Pos().y, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _HINSTANCE, 0);
-
-    if (_HWND == INVALID_HANDLE_VALUE)
-        throw RuntimeError("CreateWindow failed");
+    _HWND = CreateWindow(AppName, "", style, (int)_baseWindow.Pos().x, (int)_baseWindow.Pos().y, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _instance, 0);
+    LDL_ASSERT_DETAIL(_HWND != INVALID_HANDLE_VALUE, "CreateWindow failed");
 
 #ifdef _WIN64
     SetWindowLongPtr(_HWND, GWLP_WNDPROC, (LONG_PTR)WndProc);
@@ -335,9 +329,7 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
 #endif  
 
     _HDC = GetDC(_HWND);
-
-    if (_HDC == INVALID_HANDLE_VALUE)
-        throw RuntimeError("GetDC failed");
+    LDL_ASSERT_DETAIL(_HDC != INVALID_HANDLE_VALUE, "GetDC failed");
 
     Title(title);
     ShowWindow(_HWND, SW_SHOW);
@@ -347,30 +339,30 @@ MainWindow::~MainWindow()
 {
     timeEndPeriod(timePeriod);
 
-    UnregisterClass(AppName, _HINSTANCE);
+    UnregisterClass(AppName, _instance);
     ReleaseDC(_HWND, _HDC);
     PostQuitMessage(0);
 }
 
 bool MainWindow::Running()
 {
-    return _Eventer.Running();
+    return _eventer.Running();
 }
 
 void MainWindow::PollEvents()
 {
-    while (PeekMessage(&_MSG, _HWND, 0, 0, PM_REMOVE))
+    while (PeekMessage(&_msg, _HWND, 0, 0, PM_REMOVE))
     {
-        TranslateMessage(&_MSG);
-        DispatchMessage(&_MSG);
+        TranslateMessage(&_msg);
+        DispatchMessage(&_msg);
     }
 }
 
 bool MainWindow::GetEvent(Event& event)
 {
-    if (!_Eventer.Empty())
+    if (!_eventer.Empty())
     {
-        _Eventer.Pop(event);
+        _eventer.Pop(event);
 
         return true;
     }
@@ -380,39 +372,39 @@ bool MainWindow::GetEvent(Event& event)
 
 bool MainWindow::WaitEvent(Event& event)
 {
-    if (_Eventer.Running())
+    if (_eventer.Running())
     {
-        if (GetMessage(&_MSG, _HWND, 0, 0) == -1)
+        if (GetMessage(&_msg, _HWND, 0, 0) == -1)
         {
-            throw RuntimeError("GetMessage failed");
+            //throw RuntimeError("GetMessage failed");
         }
         else
         {
-            _Eventer.Pop(event);
+            _eventer.Pop(event);
 
-            TranslateMessage(&_MSG);
-            DispatchMessage(&_MSG);
+            TranslateMessage(&_msg);
+            DispatchMessage(&_msg);
         }
     }
 
-    return _Eventer.Running();
+    return _eventer.Running();
 }
 
 void MainWindow::StopEvent()
 {
-    _Eventer.Stop();
+    _eventer.Stop();
 }
 
 void MainWindow::Title(const std::string& title)
 {
-    _BaseWindow.Title(title);
+    _baseWindow.Title(title);
 
-    SetWindowText(_HWND, _BaseWindow.Title().c_str());
+    SetWindowText(_HWND, _baseWindow.Title().c_str());
 }
 
 const std::string& MainWindow::Title()
 {
-    return _BaseWindow.Title();
+    return _baseWindow.Title();
 }
 
 const Vec2u& MainWindow::Size()
@@ -421,13 +413,13 @@ const Vec2u& MainWindow::Size()
 
     if (GetClientRect(_HWND, &rect))
     {
-        _BaseWindow.Size(Vec2u(rect.right + Pos().x, rect.bottom + Pos().y));
+        _baseWindow.Size(Vec2u(rect.right + Pos().x, rect.bottom + Pos().y));
     }
 
-    return _BaseWindow.Size();
+    return _baseWindow.Size();
 }
 
 const Vec2u& MainWindow::Pos()
 {
-    return _BaseWindow.Pos();
+    return _baseWindow.Pos();
 }

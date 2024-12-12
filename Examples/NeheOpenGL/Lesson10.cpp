@@ -1,4 +1,3 @@
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/NumberToString.hpp>
@@ -7,7 +6,6 @@
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/APIs/OpenGL/OpenGLUtility.hpp>
 
-#include <iostream>
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -216,8 +214,6 @@ int DrawGLScene()									// Here's Where We Do All The Drawing
 
 int main()
 {
-	try
-	{
 		RenderContext renderContext(RenderMode::OpenGL1);
 
 		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
@@ -361,11 +357,6 @@ int main()
 
 			window.PollEvents();
 		}
-	}
-	catch (const RuntimeError& error)
-	{
-		std::cout << error.what() << '\n';
-	}
 
 	return 0;
 }

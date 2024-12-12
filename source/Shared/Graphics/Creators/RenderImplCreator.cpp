@@ -5,7 +5,7 @@
 #include "../Renders/OpenGL3/RenderImplOpenGL3.hpp"
 #include "../Renders/Glide/RenderImplGlide.hpp"
 
-#include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Core/Assert.hpp>
 #include <LDL/Enums/RenderMode.hpp>
 
 using namespace LDL::Core;
@@ -16,11 +16,12 @@ using namespace LDL::Graphics::Creators;
 
 RenderImpl* RenderImplCreator::Create(RenderContext* renderContext, Window* window)
 {
-	size_t renderMode = renderContext->Mode();
+	size_t mode = renderContext->Mode();
+	LDL_ASSERT_DETAIL(mode < RenderMode::Max, "Unknown graphics mode");
 
 	RenderImpl* result = NULL;
 
-	switch (renderMode)
+	switch (mode)
 	{
 	case RenderMode::Software:
 		result = new RenderImplSoftware(renderContext->GetRenderContextImpl(), window);
@@ -33,9 +34,6 @@ RenderImpl* RenderImplCreator::Create(RenderContext* renderContext, Window* wind
 		break;
 	case RenderMode::Glide:
 		result = new RenderImplGlide(renderContext->GetRenderContextImpl(), window);
-		break;
-	default:
-		throw RuntimeError("Unknown graphics mode");
 		break;
 	}
 

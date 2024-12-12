@@ -1,6 +1,6 @@
 #include "RenderImplGlide.hpp"
 #include "TextureImplGlide.hpp"
-#include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Core/Assert.hpp>
 
 #if defined(_WIN32)
 #include "../source/Platforms/Windows/Graphics/WindowImplGlide.hpp"
@@ -32,17 +32,17 @@ struct Vertex
 };
 
 RenderImplGlide::RenderImplGlide(RenderContextImpl* renderContextImpl, Window* window) :
-	_Window(window),
-	_RenderContextImpl(renderContextImpl)
+	_window(window),
+	_renderContextImpl(renderContextImpl)
 {
-	FxU32 windowHandle = (FxU32)_Window->GetWindowImpl()->NativeHandle();
+	FxU32 windowHandle = (FxU32)_window->GetWindowImpl()->NativeHandle();
 
 	grGlideInit();
 	grSstSelect(0);
 
 	FxBool result = grSstWinOpen(windowHandle, GR_RESOLUTION_800x600, GR_REFRESH_60Hz, GR_COLORFORMAT_RGBA, GR_ORIGIN_UPPER_LEFT, 2, 1);
-	if (!result)
-		throw RuntimeError("grSstWinOpen failed");
+	
+	LDL_ASSERT_DETAIL(result, "grSstWinOpen failed");
 
 	grVertexLayout(GR_PARAM_XY, 0, GR_PARAM_ENABLE);
 	grColorCombine(GR_COMBINE_FUNCTION_LOCAL, GR_COMBINE_FACTOR_NONE, GR_COMBINE_LOCAL_CONSTANT, GR_COMBINE_OTHER_NONE, FXFALSE);
@@ -68,22 +68,22 @@ void RenderImplGlide::End()
 
 const Vec2u& RenderImplGlide::Size()
 {
-	return _Window->Size();
+	return _window->Size();
 }
 
 const Color& RenderImplGlide::Color()
 {
-	return _Color;
+	return _color;
 }
 
 void RenderImplGlide::Clear()
 {
-	grBufferClear(_Color.toInt(), _Color.a, 0);
+	grBufferClear(_color.toInt(), _color.a, 0);
 }
 
 void RenderImplGlide::Color(const LDL::Graphics::Color& color)
 {
-	_Color = color;
+	_color = color;
 }
 
 void RenderImplGlide::Pixel(const Vec2u& pos)
@@ -92,7 +92,7 @@ void RenderImplGlide::Pixel(const Vec2u& pos)
 
 void RenderImplGlide::Line(const Vec2u& pos1, const Vec2u& pos2)
 {
-	grConstantColorValue(_Color.toInt());
+	grConstantColorValue(_color.toInt());
 
 	Vertex start(pos1);
 	Vertex finish(pos2);

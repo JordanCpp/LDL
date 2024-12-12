@@ -10,11 +10,11 @@ using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 RenderImplSoftware::RenderImplSoftware(RenderContextImpl* renderContextImpl, Window* window) :
-	_Window(window),
-	_Canvas(_Window->Size(), 3),
-	_ImageResizer(_Window->Size())
+	_window(window),
+	_canvas(_window->Size(), 3),
+	_imageResizer(_window->Size())
 {
-	_PixelPainter.Bind(&_Canvas);
+	_pixelPainter.Bind(&_canvas);
 }
 
 void RenderImplSoftware::Buffer(uint8_t* dst)
@@ -27,44 +27,44 @@ void RenderImplSoftware::Begin()
 
 void RenderImplSoftware::End()
 {
-	WindowImplSoftware* windowImpl = (WindowImplSoftware*)_Window->GetWindowImpl();
+	WindowImplSoftware* windowImpl = (WindowImplSoftware*)_window->GetWindowImpl();
 
-	windowImpl->Present(_Canvas.Pixels(), _Canvas.BytesPerPixel());
+	windowImpl->Present(_canvas.Pixels(), _canvas.BytesPerPixel());
 }
 
 const Vec2u& RenderImplSoftware::Size()
 {
-	return _Window->Size();
+	return _window->Size();
 }
 
 const Color& RenderImplSoftware::Color()
 {
-	return _PixelPainter.Color();
+	return _pixelPainter.Color();
 }
 
 void RenderImplSoftware::Clear()
 {
-	_PixelPainter.Clear();
+	_pixelPainter.Clear();
 }
 
 void RenderImplSoftware::Color(const LDL::Graphics::Color& color)
 {
-	_PixelPainter.Color(color);
+	_pixelPainter.Color(color);
 }
 
 void RenderImplSoftware::Pixel(const Vec2u& pos)
 {
-	_PixelPainter.Pixel(pos);
+	_pixelPainter.Pixel(pos);
 }
 
 void RenderImplSoftware::Line(const Vec2u& pos1, const Vec2u& pos2)
 {
-	_PixelPainter.Line(pos1, pos2);
+	_pixelPainter.Line(pos1, pos2);
 }
 
 void RenderImplSoftware::Fill(const Vec2u& pos, const Vec2u& size)
 {
-	_PixelPainter.Fill(pos, size);
+	_pixelPainter.Fill(pos, size);
 }
 
 void RenderImplSoftware::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
@@ -83,12 +83,12 @@ void RenderImplSoftware::Draw(Surface* image, const Vec2u& pos, const Vec2u& siz
 {
 	if (size.x != image->Size().x || size.y != image->Size().y)
 	{
-		Surface* result = _ImageResizer.Resize(size, image);
-		_PixelCopier.Copy(result, &_Canvas, pos);
+		Surface* result = _imageResizer.Resize(size, image);
+		_pixelCopier.Copy(result, &_canvas, pos);
 	}
 	else
 	{
-		_PixelCopier.Copy(image, &_Canvas, pos);
+		_pixelCopier.Copy(image, &_canvas, pos);
 	}
 }
 

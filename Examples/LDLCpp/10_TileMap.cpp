@@ -1,5 +1,3 @@
-#include <iostream>
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/NumberToString.hpp>
@@ -21,103 +19,96 @@ using namespace LDL::Math;
 
 int main()
 {
-	try
+	RenderContext renderContext;
+
+	Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "10_TileMap");
+	Render render(&renderContext, &window);
+
+	Event report;
+
+	FixedLinear allocator(Allocator::Mb * 8);
+	ImageLoader loader(&allocator);
+
+	loader.Load(Color(0, 0, 255), "Data/bg1bg23d_0_0_0.bmp");
+	Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
+
+	FpsCounter fpsCounter;
+	NumberToString convert;
+	FpsLimiter fpsLimiter;
+
+	Isometric isometric;
+
+	Vec2u start = Vec2u(350, 150);
+	Vec2u mapSize = Vec2u(9, 9);
+	Vec2u tileSize = Vec2u(80, 40);
+
+	size_t dx = 0;
+	size_t dy = 0;
+	size_t step = tileSize.x / 2;
+
+	while (window.Running())
 	{
-		RenderContext renderContext;
+		fpsLimiter.Mark();
 
-		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "10_TileMap");
-		Render render(&renderContext, &window);
+		fpsCounter.Start();
 
-		Event report;
-
-		FixedLinear allocator(Allocator::Mb * 8);
-		ImageLoader loader(&allocator);
-
-		loader.Load(Color(0, 0, 255), "Data/bg1bg23d_0_0_0.bmp");
-		Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
-
-		FpsCounter fpsCounter;
-		NumberToString convert;
-		FpsLimiter fpsLimiter;
-
-		Isometric isometric;
-
-		Vec2u start = Vec2u(350, 150);
-		Vec2u mapSize = Vec2u(9, 9);
-		Vec2u tileSize = Vec2u(80, 40);
-
-		size_t dx = 0;
-		size_t dy = 0;
-		size_t step = tileSize.x / 2;
-
-		while (window.Running())
+		while (window.GetEvent(report))
 		{
-			fpsLimiter.Mark();
-
-			fpsCounter.Start();
-
-			while (window.GetEvent(report))
+			if (report.IsKeyPressed(KeyboardKey::W))
 			{
-				if (report.IsKeyPressed(KeyboardKey::W))
-				{
-					dy -= step;
-				}
-
-				if (report.IsKeyPressed(KeyboardKey::S))
-				{
-					dy += step;;
-				}
-
-				if (report.IsKeyPressed(KeyboardKey::A))
-				{
-					dx -= step;;
-				}
-
-				if (report.IsKeyPressed(KeyboardKey::D))
-				{
-					dx += step;;
-				}
-
-				if (report.Type == IsQuit)
-				{
-					window.StopEvent();
-				}
+				dy -= step;
 			}
 
-			render.Begin();
-
-			render.Color(Color(0, 162, 232));
-			render.Clear();
-
-			for (size_t rows = 0; rows < mapSize.x; rows++)
+			if (report.IsKeyPressed(KeyboardKey::S))
 			{
-				for (size_t cols = 0; cols < mapSize.y; cols++)
-				{
-					size_t x = cols * tileSize.x / 2;
-					size_t y = rows * tileSize.y;
-
-					Vec2u pt = isometric.CartesianToIsometric(Vec2u(x, y));
-
-					render.Draw(&image, Vec2u(start.x + pt.x + dx, start.y + pt.y + dy));
-				}
+				dy += step;;
 			}
 
-			render.End();
-
-			fpsLimiter.Throttle();
-
-			if (fpsCounter.Calc())
+			if (report.IsKeyPressed(KeyboardKey::A))
 			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
-				fpsCounter.Clear();
+				dx -= step;;
 			}
 
-			window.PollEvents();
+			if (report.IsKeyPressed(KeyboardKey::D))
+			{
+				dx += step;;
+			}
+
+			if (report.Type == IsQuit)
+			{
+				window.StopEvent();
+			}
 		}
-	}
-	catch (const RuntimeError& error)
-	{
-		std::cout << error.what() << '\n';
+
+		render.Begin();
+
+		render.Color(Color(0, 162, 232));
+		render.Clear();
+
+		for (size_t rows = 0; rows < mapSize.x; rows++)
+		{
+			for (size_t cols = 0; cols < mapSize.y; cols++)
+			{
+				size_t x = cols * tileSize.x / 2;
+				size_t y = rows * tileSize.y;
+
+				Vec2u pt = isometric.CartesianToIsometric(Vec2u(x, y));
+
+				render.Draw(&image, Vec2u(start.x + pt.x + dx, start.y + pt.y + dy));
+			}
+		}
+
+		render.End();
+
+		fpsLimiter.Throttle();
+
+		if (fpsCounter.Calc())
+		{
+			window.Title(convert.Convert(fpsCounter.Fps()));
+			fpsCounter.Clear();
+		}
+
+		window.PollEvents();
 	}
 
 	return 0;

@@ -7,12 +7,12 @@
 extern "C" {
 #endif
 
-typedef void (LDL_API_CALL PFNGLUNIFORMMATRIX2X3FVPROC)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
-typedef void (LDL_API_CALL PFNGLUNIFORMMATRIX3X2FVPROC)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
-typedef void (LDL_API_CALL PFNGLUNIFORMMATRIX2X4FVPROC)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
-typedef void (LDL_API_CALL PFNGLUNIFORMMATRIX4X2FVPROC)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
-typedef void (LDL_API_CALL PFNGLUNIFORMMATRIX3X4FVPROC)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
-typedef void (LDL_API_CALL PFNGLUNIFORMMATRIX4X3FVPROC)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
+typedef void (LDL_API_CALL* PFNGLUNIFORMMATRIX2X3FVPROC)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
+typedef void (LDL_API_CALL* PFNGLUNIFORMMATRIX3X2FVPROC)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
+typedef void (LDL_API_CALL* PFNGLUNIFORMMATRIX2X4FVPROC)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
+typedef void (LDL_API_CALL* PFNGLUNIFORMMATRIX4X2FVPROC)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
+typedef void (LDL_API_CALL* PFNGLUNIFORMMATRIX3X4FVPROC)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
+typedef void (LDL_API_CALL* PFNGLUNIFORMMATRIX4X3FVPROC)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
 
 LDL_API_ENTRY PFNGLUNIFORMMATRIX2X3FVPROC glUniformMatrix2x3fv;
 LDL_API_ENTRY PFNGLUNIFORMMATRIX3X2FVPROC glUniformMatrix3x2fv;

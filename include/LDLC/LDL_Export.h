@@ -1,6 +1,6 @@
 #ifndef LDL_Export_h
 #define LDL_Export_h
 
-#include <LDL/Config.hpp>
+#include <LDL/Core/Types.hpp>
 
 #endif

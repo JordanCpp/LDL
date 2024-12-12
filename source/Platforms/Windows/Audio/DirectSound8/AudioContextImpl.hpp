@@ -17,12 +17,12 @@ namespace LDL
 			size_t Bits();
 			size_t Channels();
 		private:
-			size_t _Rate;
-			size_t _Bits; 
-			size_t _Channels;
+			size_t _rate;
+			size_t _bits; 
+			size_t _channels;
 		public:
-			IDirectSound8* _DirectSound;
-			IDirectSoundBuffer* _PrimaryBuffer;
+			IDirectSound8*      _directSound;
+			IDirectSoundBuffer* _primaryBuffer;
 		};
 	}
 }

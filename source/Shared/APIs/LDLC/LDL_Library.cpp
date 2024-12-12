@@ -5,12 +5,12 @@ using namespace LDL::Core;
 
 struct LDL_Library
 {
-	Library _Library;
+	Library _library;
 	LDL_Library(const std::string& path);
 };
 
 LDL_Library::LDL_Library(const std::string& path) :
-	_Library(path)
+	_library(path)
 {
 }
 
@@ -28,5 +28,5 @@ void LDL_LibraryFree(LDL_Library* library)
 
 LDL_VoidFuncPtr LDL_LibraryFunction(LDL_Library* library, const char* path)
 {
-	return library->_Library.Function(path);
+	return library->_library.Function(path);
 }

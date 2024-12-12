@@ -16,7 +16,7 @@ void Resize()
 	ImageLoader imageLoader(&allocator);
 	ImageResizer imageResizer(Vec2u(1000, 1000));
 
-	LDL_TEST_EXCEPTION(imageLoader.Load("TestFiles/Gorgosaurus_BW_transparent.png"));
+	//LDL_TEST_EXCEPTION(imageLoader.Load("TestFiles/Gorgosaurus_BW_transparent.png"));
 
 	Surface surface(imageLoader.Size(), imageLoader.Pixels(), imageLoader.BytesPerPixel());
 

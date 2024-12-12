@@ -1,4 +1,3 @@
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/NumberToString.hpp>
@@ -7,7 +6,6 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/APIs/DirectX/DirectXLoader.hpp>
-#include <iostream>
 
 using namespace LDL::Graphics;
 using namespace LDL::Enums;
@@ -22,8 +20,6 @@ using namespace LDL::DirectX9;
 
 int main()
 {
-	try
-	{
 		DirectXLoader directXLoader;
 		IDirect3D9* direct3D9 = directXLoader.GetDirect3D();
 
@@ -68,11 +64,6 @@ int main()
 
 			window.PollEvents();
 		}
-	}
-	catch (const RuntimeError& error)
-	{
-		std::cout << error.what() << '\n';
-	}
 
 	return 0;
 }

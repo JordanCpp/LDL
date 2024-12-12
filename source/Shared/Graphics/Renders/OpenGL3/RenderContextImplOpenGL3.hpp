@@ -13,7 +13,7 @@ namespace LDL
 			RenderContextImplOpenGL3(size_t mode);
 			size_t Mode();
 		private:
-			size_t _Mode;
+			size_t _mode;
 		};
 	}
 }

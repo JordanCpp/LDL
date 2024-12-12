@@ -31,7 +31,7 @@ namespace LDL
 			WindowImpl* GetWindowImpl();
 			void* NativeHandle();
 		private:
-			WindowImpl* _WindowImpl;
+			WindowImpl* _impl;
 		};
 	}
 }

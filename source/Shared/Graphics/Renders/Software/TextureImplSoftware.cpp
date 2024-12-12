@@ -4,12 +4,12 @@ using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 TextureImplSoftware::TextureImplSoftware(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
-	_Surface(size, pixels, bytesPerPixel)
+	_surface(size, pixels, bytesPerPixel)
 {
 }
 
 TextureImplSoftware::TextureImplSoftware(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel) :
-	_Surface(size, size, bytesPerPixel)
+	_surface(size, size, bytesPerPixel)
 {
 }
 
@@ -29,15 +29,15 @@ void TextureImplSoftware::Copy(const Vec2u& dstPos, Surface* surface, const Vec2
 
 const Vec2u& TextureImplSoftware::Size()
 {
-	return _Surface.Size();
+	return _surface.Size();
 }
 
 const Vec2u& TextureImplSoftware::Quad()
 {
-	return _Surface.Size();
+	return _surface.Size();
 }
 
 Surface* TextureImplSoftware::GetSurface()
 {
-	return &_Surface;
+	return &_surface;
 }

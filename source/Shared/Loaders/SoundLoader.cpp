@@ -20,11 +20,11 @@ using namespace LDL::Loaders;
 using namespace LDL::Allocators;
 
 SoundLoader::SoundLoader(LDL::Allocators::Allocator* allocator) :
-    _Allocator(allocator),
-    _Channels(0),
-    _Rate(0),
-    _Samples(0),
-    _Bytes(NULL)
+    _allocator(allocator),
+    _channels(0),
+    _rate(0),
+    _samples(0),
+    _bytes(NULL)
 {
 }
 
@@ -34,12 +34,12 @@ SoundLoader::~SoundLoader()
 
 void SoundLoader::Clear()
 {
-    _Allocator->Reset();
+    _allocator->Reset();
 
-    _Channels = 0;
-    _Rate     = 0;
-    _Samples  = 0;
-    _Bytes    = NULL;
+    _channels = 0;
+    _rate     = 0;
+    _samples  = 0;
+    _bytes    = NULL;
 }
 
 bool SoundLoader::LoadOgg(const std::string& path)
@@ -55,12 +55,12 @@ bool SoundLoader::LoadOgg(const std::string& path)
 
     stb_vorbis_info info = stb_vorbis_get_info(file);
 
-    _Channels = info.channels;
-    _Rate     = info.sample_rate;
-    _Samples  = stb_vorbis_stream_length_in_samples(file) * info.channels;
-    _Bytes    = (uint8_t*)_Allocator->Allocate(_Samples);
+    _channels = info.channels;
+    _rate     = info.sample_rate;
+    _samples  = stb_vorbis_stream_length_in_samples(file) * info.channels;
+    _bytes    = (uint8_t*)_allocator->Allocate(_samples);
 
-    stb_vorbis_get_samples_short_interleaved(file, (int)info.channels, (short*)_Bytes, (int)_Samples);
+    stb_vorbis_get_samples_short_interleaved(file, (int)info.channels, (short*)_bytes, (int)_samples);
 
     stb_vorbis_close(file);
 
@@ -77,10 +77,10 @@ bool SoundLoader::LoadWav(const std::string& path)
 
     if (data != NULL)
     {
-        _Channels = channels;
-        _Rate     = sampleRate;
-        _Samples  = (size_t)totalFrameCount;
-        _Bytes    = (uint8_t*)data;
+        _channels = channels;
+        _rate     = sampleRate;
+        _samples  = (size_t)totalFrameCount;
+        _bytes    = (uint8_t*)data;
 
         return true;
     }
@@ -95,10 +95,10 @@ bool SoundLoader::LoadMp3(const std::string& path)
 
     float* data = drmp3_open_file_and_read_pcm_frames_f32(path.c_str(), &config, &totalFrameCount, NULL);
 
-    _Channels = config.channels;
-    _Rate     = config.sampleRate;
-    _Samples  = (size_t)totalFrameCount;
-    _Bytes    = (uint8_t*)data;
+    _channels = config.channels;
+    _rate     = config.sampleRate;
+    _samples  = (size_t)totalFrameCount;
+    _bytes    = (uint8_t*)data;
 
     return true;
 }
@@ -115,25 +115,25 @@ bool SoundLoader::Load(const std::string& path)
 
 Allocator* SoundLoader::Allocator()
 {
-    return _Allocator;
+    return _allocator;
 }
 
 size_t SoundLoader::Channels()
 {
-    return _Channels;
+    return _channels;
 }
 
 size_t SoundLoader::Rate()
 {
-    return _Rate;
+    return _rate;
 }
 
 size_t SoundLoader::Samples()
 {
-    return _Samples;
+    return _samples;
 }
 
 uint8_t* SoundLoader::Bytes()
 {
-    return _Bytes;
+    return _bytes;
 }

@@ -6,15 +6,15 @@ using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 PixelPainter::PixelPainter() :
-	_Red(0),
-	_Green(0),
-	_Blue(0),
-	_Alpha(0),
-	_Target(NULL),
-	_Width(0),
-	_Heigth(0),
-	_BytesPerPixel(0),
-	_Pixels(NULL)
+	_red(0),
+	_green(0),
+	_blue(0),
+	_alpha(0),
+	_target(NULL),
+	_width(0),
+	_heigth(0),
+	_bytesPerPixel(0),
+	_pixels(NULL)
 {
 }
 
@@ -24,87 +24,87 @@ PixelPainter::~PixelPainter()
 
 Surface* PixelPainter::Target()
 {
-	return _Target;
+	return _target;
 }
 
 const Vec2u& PixelPainter::Size()
 {
-	_Size = Vec2u(_Width, _Heigth);
+	_size = Vec2u(_width, _heigth);
 
-	return _Size;
+	return _size;
 }
 
 uint8_t PixelPainter::BytesPerPixel()
 {
-	return _BytesPerPixel;
+	return _bytesPerPixel;
 }
 
 uint8_t* PixelPainter::Pixels()
 {
-	return _Pixels;
+	return _pixels;
 }
 
 const LDL::Graphics::Color& LDL::Graphics::PixelPainter::Color()
 {
-	return _Color;
+	return _color;
 }
 
 void LDL::Graphics::PixelPainter::Color(const LDL::Graphics::Color& color)
 {
-	_Color = color;
+	_color = color;
 
-	_Red   = _Color.r;
-	_Green = _Color.g;
-	_Blue  = _Color.b;
-	_Alpha = _Color.a;
+	_red   = _color.r;
+	_green = _color.g;
+	_blue  = _color.b;
+	_alpha = _color.a;
 }
 
 void PixelPainter::Clear()
 {
-	size_t size = _Width * _Heigth * _BytesPerPixel;
+	size_t size = _width * _heigth * _bytesPerPixel;
 
 	size_t i = 0;
 
-	switch(_BytesPerPixel)
+	switch(_bytesPerPixel)
 	{
   case 4:
 	  for (i = 0; i < size; i += 4)
 	  {
 #if defined(LDL_CONFIG_COLOR_BGRA)
-		  _Pixels[i] = _Blue;
-		  _Pixels[i + 2] = _Red;
+		  _pixels[i] = _blue;
+		  _pixels[i + 2] = _red;
 #else
 		  _Pixels[i] = _Red;
 		  _Pixels[i + 2] = _Blue;
 #endif
-		  _Pixels[i + 1] = _Green;
-		  _Pixels[i + 3] = _Alpha;
+		  _pixels[i + 1] = _green;
+		  _pixels[i + 3] = _alpha;
 	  }
 	  break;
   case 3:
 	  for (i = 0; i < size; i += 3)
 	  {
 #if defined(LDL_CONFIG_COLOR_BGRA)
-		  _Pixels[i] = _Blue;
-		  _Pixels[i + 2] = _Red;
+		  _pixels[i] = _blue;
+		  _pixels[i + 2] = _red;
 #else
 		  _Pixels[i] = _Red;
 		  _Pixels[i + 2] = _Blue;
 #endif
-		  _Pixels[i + 1] = _Green;
+		  _pixels[i + 1] = _green;
 	  }
 	  break;
   case 2:
 	  for (i = 0; i < size; i += 2)
 	  {
-		  _Pixels[i] = _Red;
-		  _Pixels[i + 1] = _Green;
+		  _pixels[i] = _red;
+		  _pixels[i + 1] = _green;
 	  }
 	  break;
   default:
 	  for (i = 0; i < size; i++)
 	  {
-		  _Pixels[i] = _Red;
+		  _pixels[i] = _red;
 	  }
 	}
 }
@@ -113,83 +113,83 @@ void PixelPainter::Bind(Surface* source)
 {
 	assert(source != NULL);
 
-	_Target = source;
+	_target = source;
 
-	_Width = _Target->Size().x;
-	_Heigth = _Target->Size().y;
-	_BytesPerPixel = _Target->BytesPerPixel();
-	_Pixels = _Target->Pixels();
+	_width = _target->Size().x;
+	_heigth = _target->Size().y;
+	_bytesPerPixel = _target->BytesPerPixel();
+	_pixels = _target->Pixels();
 }
 
 void PixelPainter::Pixel(const Vec2u& pos)
 {
-	size_t i = (_Width * pos.y + pos.x) * _BytesPerPixel;
+	size_t i = (_width * pos.y + pos.x) * _bytesPerPixel;
 
-	if (i < _Width * _Heigth * _BytesPerPixel)
+	if (i < _width * _heigth * _bytesPerPixel)
 	{
-		switch (_BytesPerPixel)
+		switch (_bytesPerPixel)
 		{
 		case 4:
 #if defined(LDL_CONFIG_COLOR_BGRA)
-			_Pixels[i] = _Blue;
-			_Pixels[i + 2] = _Red;
+			_pixels[i] = _blue;
+			_pixels[i + 2] = _red;
 #else
 			_Pixels[i] = _Red;
 			_Pixels[i + 2] = _Blue;
 #endif
-			_Pixels[i + 1] = _Green;
-			_Pixels[i + 3] = _Alpha;
+			_pixels[i + 1] = _green;
+			_pixels[i + 3] = _alpha;
 			break;
 		case 3:
 #if defined(LDL_CONFIG_COLOR_BGRA)
-			_Pixels[i] = _Blue;
-			_Pixels[i + 2] = _Red;
+			_pixels[i] = _blue;
+			_pixels[i + 2] = _red;
 #else
 			_Pixels[i] = _Red;
 			_Pixels[i + 2] = _Blue;
 #endif
-			_Pixels[i + 1] = _Green;
+			_pixels[i + 1] = _green;
 			break;
 		case 2:
-			_Pixels[i] = _Red;
-			_Pixels[i + 1] = _Green;
+			_pixels[i] = _red;
+			_pixels[i + 1] = _green;
 			break;
 		default:
-			_Pixels[i] = _Red;
+			_pixels[i] = _red;
 		}
 	}
 }
 
 const LDL::Graphics::Color& PixelPainter::GetPixel(const Vec2u& pos)
 {
-	size_t i = (_Width * pos.y + pos.x) * _BytesPerPixel;
+	size_t i = (_width * pos.y + pos.x) * _bytesPerPixel;
 
-	assert(i < _Width * _Heigth * _BytesPerPixel);
+	assert(i < _width * _heigth * _bytesPerPixel);
 
-	switch (_BytesPerPixel)
+	switch (_bytesPerPixel)
 	{
 	case 4:
 #if defined(LDL_CONFIG_COLOR_BGRA)
-		_ColorGetPixel = LDL::Graphics::Color(_Pixels[i + 2], _Pixels[i + 1], _Pixels[i], _Pixels[i + 3]);
+		_colorGetPixel = LDL::Graphics::Color(_pixels[i + 2], _pixels[i + 1], _pixels[i], _pixels[i + 3]);
 #else
 		_ColorGetPixel = LDL::Graphics::Color(_Pixels[i], _Pixels[i + 1], _Pixels[i + 2], _Pixels[i + 3]);
 #endif
 		break;
 	case 3:
 #if defined(LDL_CONFIG_COLOR_BGRA)
-		_ColorGetPixel = LDL::Graphics::Color(_Pixels[i + 2], _Pixels[i + 1], _Pixels[i], 0);
+		_colorGetPixel = LDL::Graphics::Color(_pixels[i + 2], _pixels[i + 1], _pixels[i], 0);
 #else
 		_ColorGetPixel = LDL::Graphics::Color(_Pixels[i], _Pixels[i + 1], _Pixels[i + 2], 0);
 #endif
 		break;
 	case 2:
-		_ColorGetPixel = LDL::Graphics::Color(_Pixels[i], _Pixels[i + 1], 0, 0);
+		_colorGetPixel = LDL::Graphics::Color(_pixels[i], _pixels[i + 1], 0, 0);
 		break;
 	default:
-		_ColorGetPixel = LDL::Graphics::Color(_Pixels[i], 0, 0, 0);
+		_colorGetPixel = LDL::Graphics::Color(_pixels[i], 0, 0, 0);
 	}
 
-	return _ColorGetPixel;
+	return _colorGetPixel;
 }
 
 void PixelPainter::Fill(const Vec2u& pos, const Vec2u& size)

@@ -1,7 +1,7 @@
 #ifndef Arcanum_Game_Engine_hpp
 #define Arcanum_Game_Engine_hpp
 
-#include <LDL/Core/RuntimeError.hpp>
+#include <Arcanum/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/NumberToString.hpp>

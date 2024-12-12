@@ -1,7 +1,7 @@
 #ifndef LDL_Core_FileInfo_hpp
 #define LDL_Core_FileInfo_hpp
 
-#include <LDL/Config.hpp>
+#include <LDL/Core/Types.hpp>
 #include <string>
 
 namespace LDL
@@ -14,7 +14,7 @@ namespace LDL
 			const std::string& Name();
 			void Name(const std::string& source);
 		private:
-			std::string _Name;
+			std::string _name;
 		};
 	}
 }

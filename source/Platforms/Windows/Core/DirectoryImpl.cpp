@@ -4,12 +4,12 @@ using namespace LDL::Core;
 
 const char* DirectoryImpl::AllFiles()
 {
-    _AllFiles[0] = '*';
-    _AllFiles[1] = '.';
-    _AllFiles[2] = '*';
-    _AllFiles[3] = '\0';
+    _allFiles[0] = '*';
+    _allFiles[1] = '.';
+    _allFiles[2] = '*';
+    _allFiles[3] = '\0';
 
-    return _AllFiles;
+    return _allFiles;
 }
 
 bool DirectoryImpl::Create(const std::string& path)
@@ -38,22 +38,22 @@ bool DirectoryImpl::Delete(const std::string& path)
 
 bool DirectoryImpl::Open(const std::string& path)
 {
-    _File = FindFirstFile(path.c_str(), &_Data);
+    _file = FindFirstFile(path.c_str(), &_data);
 
-    return _File != INVALID_HANDLE_VALUE;
+    return _file != INVALID_HANDLE_VALUE;
 }
 
 void DirectoryImpl::Close()
 {
-    FindClose(_File);
+    FindClose(_file);
 }
 
 bool DirectoryImpl::Next(FileInfo& fileInfo)
 {
-    BOOL result = FindNextFile(_File, &_Data);
+    BOOL result = FindNextFile(_file, &_data);
 
     if (result)
-        fileInfo.Name(_Data.cFileName);
+        fileInfo.Name(_data.cFileName);
 
     return result;
 }

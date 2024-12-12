@@ -15,7 +15,7 @@ namespace LDL
 			LDL::VoidFuncPtr Function(const std::string& name);
 		private:
 			bool IsValid(LDL::VoidFuncPtr ptr);
-			LDL::Core::Library _Library;
+			LDL::Core::Library _library;
 		};
 	}
 }

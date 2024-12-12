@@ -1,7 +1,6 @@
 #ifndef LDL_Graphics_ImageWritter_hpp
 #define LDL_Graphics_ImageWritter_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Math/Vec2.hpp>
 #include <string>
 

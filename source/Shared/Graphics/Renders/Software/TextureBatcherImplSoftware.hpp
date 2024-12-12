@@ -1,9 +1,9 @@
 #ifndef LDL_Graphics_Software_TextureBatcherImpl_hpp
 #define LDL_Graphics_Software_TextureBatcherImpl_hpp
 
+#include <vector>
 #include <LDL/Graphics/Texture.hpp>
 #include "../OpenGL/Util.hpp"
-#include <vector>
 #include "../../Impls/TextureBatcherImpl.hpp"
 
 namespace LDL

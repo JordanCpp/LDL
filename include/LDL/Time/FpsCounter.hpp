@@ -1,7 +1,6 @@
 #ifndef LDL_Time_FpsCounter_hpp
 #define LDL_Time_FpsCounter_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Time/Ticks.hpp>
 
 namespace LDL

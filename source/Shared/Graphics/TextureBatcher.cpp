@@ -9,25 +9,25 @@ TextureBatcher::TextureBatcher(RenderContext* renderContext, Texture* texture, s
 {
 	TextureBatcherImplCreator creator;
 
-	_TextureBatcherImpl = creator.Create(renderContext, texture, count);
+	_impl = creator.Create(renderContext, texture, count);
 }
 
 TextureBatcher::~TextureBatcher()
 {
-	delete _TextureBatcherImpl;
+	delete _impl;
 }
 
 TextureBatcherImpl* TextureBatcher::GetTextureBatcherImpl()
 {
-	return _TextureBatcherImpl;
+	return _impl;
 }
 
 void TextureBatcher::Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
-	_TextureBatcherImpl->Draw(dstPos, dstSize, srcPos, srcSize);
+	_impl->Draw(dstPos, dstSize, srcPos, srcSize);
 }
 
 void TextureBatcher::Clear()
 {
-	_TextureBatcherImpl->Clear();
+	_impl->Clear();
 }

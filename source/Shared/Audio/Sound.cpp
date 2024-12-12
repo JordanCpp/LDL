@@ -9,16 +9,16 @@
 using namespace LDL::Audio;
 
 Sound::Sound(AudioContext* audioContext, size_t channels, size_t rate, size_t samples, uint8_t* bytes) :
-	_SoundImpl(new SoundImpl(audioContext, channels, rate, samples, bytes))
+	_impl(new SoundImpl(audioContext, channels, rate, samples, bytes))
 {
 }
 
 Sound::~Sound()
 {
-	delete _SoundImpl;
+	delete _impl;
 }
 
 SoundImpl* Sound::GetSoundImpl()
 {
-	return _SoundImpl;
+	return _impl;
 }

@@ -3,11 +3,11 @@
 using namespace LDL::Graphics;
 
 RenderContextImplSoftware::RenderContextImplSoftware(size_t mode) :
-	_Mode(mode)
+	_mode(mode)
 {
 }
 
 size_t RenderContextImplSoftware::Mode()
 {
-	return _Mode;
+	return _mode;
 }

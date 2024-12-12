@@ -5,12 +5,12 @@ using namespace LDL::Time;
 
 struct LDL_FpsLimiter
 {
-	FpsLimiter _FpsLimiter;
+	FpsLimiter _fpsLimiter;
 	LDL_FpsLimiter(size_t fps);
 };
 
 LDL_FpsLimiter::LDL_FpsLimiter(size_t fps) :
-	_FpsLimiter(fps)
+	_fpsLimiter(fps)
 {
 }
 
@@ -28,10 +28,10 @@ void LDL_FpsLimiterFree(LDL_FpsLimiter* fpsLimiter)
 
 void LDL_FpsLimiterMark(LDL_FpsLimiter* fpsLimiter)
 {
-	fpsLimiter->_FpsLimiter.Mark();
+	fpsLimiter->_fpsLimiter.Mark();
 }
 
 void LDL_FpsLimiterThrottle(LDL_FpsLimiter* fpsLimiter)
 {
-	fpsLimiter->_FpsLimiter.Throttle();
+	fpsLimiter->_fpsLimiter.Throttle();
 }

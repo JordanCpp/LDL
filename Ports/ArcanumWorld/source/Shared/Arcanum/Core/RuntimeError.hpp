@@ -1,19 +1,19 @@
 #ifndef Arcanum_Core_RuntimeError_hpp
 #define Arcanum_Core_RuntimeError_hpp
 
-#include <LDL/Core/RuntimeError.hpp>
+#include <stdexcept>
 
 namespace Arcanum
 {
 	namespace Core
 	{
-		class RuntimeError 
+		class RuntimeError
 		{
 		public:
 			RuntimeError(const std::string& message);
 			const char* what() const;
 		private:
-			LDL::Core::RuntimeError _RuntimeError;
+			std::runtime_error _runtime_error;
 		};
 	}
 }

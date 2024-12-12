@@ -1,7 +1,6 @@
 #ifndef LDL_Loaders_SoundLoader_hpp
 #define LDL_Loaders_SoundLoader_hpp
 
-#include <LDL/Config.hpp>
 #include <string>
 #include <LDL/Allocators/Allocator.hpp>
 
@@ -26,11 +25,11 @@ namespace LDL
 			size_t Samples();
 			uint8_t* Bytes();
 		private:
-			Allocators::Allocator* _Allocator;
-			size_t _Channels;
-			size_t _Rate;
-			size_t _Samples;
-			uint8_t* _Bytes;
+			Allocators::Allocator* _allocator;
+			size_t _channels;
+			size_t _rate;
+			size_t _samples;
+			uint8_t* _bytes;
 		};
 	}
 }

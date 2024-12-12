@@ -1,9 +1,7 @@
 #ifndef LDL_Text_RasterizerContextImpl_hpp
 #define LDL_Text_RasterizerContextImpl_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Core/Types.hpp>
-
 #include "FreeType.hpp"
 
 namespace LDL

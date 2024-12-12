@@ -1,28 +1,28 @@
-#include <LDL/Events/Eventer.hpp>
+#include "Eventer.hpp"
 
 using namespace LDL::Events;
 
 Eventer::Eventer() :
-	_Running(true)
+	_running(true)
 {
 }
 
 bool Eventer::Empty()
 {
-    return _Queue.empty();
+    return _queue.empty();
 }
 
 void Eventer::Push(Event& event)
 {
-	_Queue.push(event);
+	_queue.push(event);
 }
 
 bool Eventer::Pop(Event& event)
 {
-    if (!_Queue.empty())
+    if (!_queue.empty())
     {
-        event = _Queue.front();
-        _Queue.pop();
+        event = _queue.front();
+        _queue.pop();
 
         return true;
     }
@@ -32,10 +32,10 @@ bool Eventer::Pop(Event& event)
 
 bool Eventer::Running()
 {
-	return _Running;
+	return _running;
 }
 
 void Eventer::Stop()
 {
-	_Running = false;
+	_running = false;
 }

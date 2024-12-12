@@ -19,7 +19,7 @@ namespace LDL
 			size_t Mode();
 			void* Context();
 		private:
-			RenderContextImpl* _RenderContextImpl;
+			RenderContextImpl* _impl;
 		};
 	}
 }

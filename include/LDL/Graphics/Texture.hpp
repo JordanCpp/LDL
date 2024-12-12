@@ -23,7 +23,7 @@ namespace LDL
 			const Math::Vec2u& Size();
 			TextureImpl* GetTextureImpl();
 		private:
-			TextureImpl* _TextureImpl;
+			TextureImpl* _impl;
 		};
 	}
 }

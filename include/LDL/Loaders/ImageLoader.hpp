@@ -1,7 +1,6 @@
 #ifndef LDL_Loaders_ImageLoader_hpp
 #define LDL_Loaders_ImageLoader_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Graphics/Color.hpp>
 #include <LDL/Allocators/Allocator.hpp>
@@ -26,10 +25,10 @@ namespace LDL
 			void Load(uint8_t * data, size_t bytes);
 			void Load(const LDL::Graphics::Color& color, uint8_t* data, size_t bytes);
 		private:
-			LDL::Allocators::Allocator* _Allocator;
-			LDL::Math::Vec2u _Size;
-			uint8_t _BytesPerPixel;
-			uint8_t* _Pixels;
+			LDL::Allocators::Allocator* _allocator;
+			LDL::Math::Vec2u _size;
+			uint8_t _bytesPerPixel;
+			uint8_t* _pixels;
 		};
 	}
 }

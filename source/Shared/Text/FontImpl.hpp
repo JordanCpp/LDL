@@ -1,7 +1,6 @@
 #ifndef LDL_Text_FontImpl_hpp
 #define LDL_Text_FontImpl_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Core/Types.hpp>
 #include "RasterizerContextImpl.hpp"
 

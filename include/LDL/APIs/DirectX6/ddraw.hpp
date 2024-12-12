@@ -9,7 +9,7 @@
 #ifndef LDL_DirectX_DirectX6_ddraw_hpp
 #define LDL_DirectX_DirectX6_ddraw_hpp
 
-#include <LDL/Config.hpp>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {
@@ -92,17 +92,17 @@ namespace LDL
         typedef struct _DDSURFACEDESC2* LPDDSURFACEDESC2;
         typedef struct _DDCOLORCONTROL* LPDDCOLORCONTROL;
 
-        typedef HRESULT (LDL_CALL* PFN_DirectDrawCreate)(GUID* lpGUID, LPDIRECTDRAW* lplpDD, IUnknown* pUnkOuter);
+        typedef HRESULT (LDL_API_CALL* PFN_DirectDrawCreate)(GUID* lpGUID, LPDIRECTDRAW* lplpDD, IUnknown* pUnkOuter);
         LDL_API_ENTRY PFN_DirectDrawCreate DirectDrawCreate;
         /*
          * API's
          */
          //#if (defined (WIN32) || defined( _WIN32 ) ) && !defined( _NO_COM )
          //#if defined( _WIN32 ) && !defined( _NO_ENUM )
-             //typedef BOOL ( LDL_CALL * LPDDENUMCALLBACKA(GUID  *, LPSTR, LPSTR, LPVOID);
-           //  typedef BOOL ( LDL_CALL * LPDDENUMCALLBACKW(GUID  *, LPWSTR, LPWSTR, LPVOID);
-           //  extern HRESULT LDL_API_CALL DirectDrawEnumerateW( LPDDENUMCALLBACKW lpCallback, LPVOID lpContext );
-           //  extern HRESULT LDL_API_CALL DirectDrawEnumerateA( LPDDENUMCALLBACKA lpCallback, LPVOID lpContext );
+             //typedef BOOL ( LDL_API_CALL * LPDDENUMCALLBACKA(GUID  *, LPSTR, LPSTR, LPVOID);
+           //  typedef BOOL ( LDL_API_CALL * LPDDENUMCALLBACKW(GUID  *, LPWSTR, LPWSTR, LPVOID);
+           //  extern HRESULT LDL_API_CALL* DirectDrawEnumerateW( LPDDENUMCALLBACKW lpCallback, LPVOID lpContext );
+           //  extern HRESULT LDL_API_CALL* DirectDrawEnumerateA( LPDDENUMCALLBACKA lpCallback, LPVOID lpContext );
              /*
               * Protect against old SDKs
               */
@@ -110,12 +110,12 @@ namespace LDL
               #ifndef SM_CMONITORS
                   #define HMONITOR    HANDLE
               #endif
-              typedef BOOL ( LDL_CALL * LPDDENUMCALLBACKEXA(GUID  *, LPSTR, LPSTR, LPVOID, HMONITOR);
-              typedef BOOL ( LDL_CALL * LPDDENUMCALLBACKEXW(GUID  *, LPWSTR, LPWSTR, LPVOID, HMONITOR);
-              extern HRESULT LDL_API_CALL DirectDrawEnumerateExW( LPDDENUMCALLBACKEXW lpCallback, LPVOID lpContext, DWORD dwFlags);
-              extern HRESULT LDL_API_CALL DirectDrawEnumerateExA( LPDDENUMCALLBACKEXA lpCallback, LPVOID lpContext, DWORD dwFlags);
-              typedef HRESULT (LDL_API_CALL * LPDIRECTDRAWENUMERATEEXA( LPDDENUMCALLBACKEXA lpCallback, LPVOID lpContext, DWORD dwFlags);
-              typedef HRESULT (LDL_API_CALL * LPDIRECTDRAWENUMERATEEXW( LPDDENUMCALLBACKEXW lpCallback, LPVOID lpContext, DWORD dwFlags);
+              typedef BOOL ( LDL_API_CALL * LPDDENUMCALLBACKEXA(GUID  *, LPSTR, LPSTR, LPVOID, HMONITOR);
+              typedef BOOL ( LDL_API_CALL * LPDDENUMCALLBACKEXW(GUID  *, LPWSTR, LPWSTR, LPVOID, HMONITOR);
+              extern HRESULT LDL_API_CALL* DirectDrawEnumerateExW( LPDDENUMCALLBACKEXW lpCallback, LPVOID lpContext, DWORD dwFlags);
+              extern HRESULT LDL_API_CALL* DirectDrawEnumerateExA( LPDDENUMCALLBACKEXA lpCallback, LPVOID lpContext, DWORD dwFlags);
+              typedef HRESULT (LDL_API_CALL* * LPDIRECTDRAWENUMERATEEXA( LPDDENUMCALLBACKEXA lpCallback, LPVOID lpContext, DWORD dwFlags);
+              typedef HRESULT (LDL_API_CALL* * LPDIRECTDRAWENUMERATEEXW( LPDDENUMCALLBACKEXW lpCallback, LPVOID lpContext, DWORD dwFlags);
 
               #ifdef UNICODE
               typedef LPDDENUMCALLBACKW 	    LPDDENUMCALLBACK;
@@ -130,8 +130,8 @@ namespace LDL
                   typedef LPDIRECTDRAWENUMERATEEXA        LPDIRECTDRAWENUMERATEEX;
                   #define DirectDrawEnumerateEx	    DirectDrawEnumerateExA
               #endif
-              extern HRESULT LDL_API_CALL DirectDrawCreate( GUID  *lpGUID, LPDIRECTDRAW  *lplpDD, IUnknown  *pUnkOuter );
-              extern HRESULT LDL_API_CALL DirectDrawCreateClipper( DWORD dwFlags, LPDIRECTDRAWCLIPPER  *lplpDDClipper, IUnknown  *pUnkOuter );
+              extern HRESULT LDL_API_CALL* DirectDrawCreate( GUID  *lpGUID, LPDIRECTDRAW  *lplpDD, IUnknown  *pUnkOuter );
+              extern HRESULT LDL_API_CALL* DirectDrawCreateClipper( DWORD dwFlags, LPDIRECTDRAWCLIPPER  *lplpDDClipper, IUnknown  *pUnkOuter );
           #endif
           */
           /*
@@ -163,10 +163,10 @@ namespace LDL
         const DWORD  DDCREATE_EMULATIONONLY = 0x00000002l;
 
         //#ifndef WINNT
-        typedef HRESULT(LDL_CALL* LPDDENUMMODESCALLBACK)(LPDDSURFACEDESC, LPVOID);
-        typedef HRESULT(LDL_CALL* LPDDENUMMODESCALLBACK2)(LPDDSURFACEDESC2, LPVOID);
-        typedef HRESULT(LDL_CALL* LPDDENUMSURFACESCALLBACK)(LPDIRECTDRAWSURFACE, LPDDSURFACEDESC, LPVOID);
-        typedef HRESULT(LDL_CALL* LPDDENUMSURFACESCALLBACK2)(LPDIRECTDRAWSURFACE4, LPDDSURFACEDESC2, LPVOID);
+        typedef HRESULT(LDL_API_CALL* LPDDENUMMODESCALLBACK)(LPDDSURFACEDESC, LPVOID);
+        typedef HRESULT(LDL_API_CALL* LPDDENUMMODESCALLBACK2)(LPDDSURFACEDESC2, LPVOID);
+        typedef HRESULT(LDL_API_CALL* LPDDENUMSURFACESCALLBACK)(LPDIRECTDRAWSURFACE, LPDDSURFACEDESC, LPVOID);
+        typedef HRESULT(LDL_API_CALL* LPDDENUMSURFACESCALLBACK2)(LPDIRECTDRAWSURFACE4, LPDDSURFACEDESC2, LPVOID);
         //#endif
 
         /*
@@ -672,7 +672,7 @@ namespace LDL
         /*
          * callbacks
          */
-        typedef DWORD(LDL_CALL* LPCLIPPERCALLBACK)(LPDIRECTDRAWCLIPPER lpDDClipper, HWND hWnd, DWORD code, LPVOID lpContext);
+        typedef DWORD(LDL_API_CALL* LPCLIPPERCALLBACK)(LPDIRECTDRAWCLIPPER lpDDClipper, HWND hWnd, DWORD code, LPVOID lpContext);
 
 
         /*
@@ -689,97 +689,97 @@ namespace LDL
         struct  IDirectDraw : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
             /*** IDirectDraw methods ***/
-            virtual HRESULT LDL_CALL Compact() = 0;
-            virtual HRESULT LDL_CALL CreateClipper(DWORD, LPDIRECTDRAWCLIPPER*, IUnknown*) = 0;
-            virtual HRESULT LDL_CALL CreatePalette(DWORD, LPPALETTEENTRY, LPDIRECTDRAWPALETTE*, IUnknown*) = 0;
-            virtual HRESULT LDL_CALL CreateSurface(LPDDSURFACEDESC, LPDIRECTDRAWSURFACE*, IUnknown*) = 0;
-            virtual HRESULT LDL_CALL DuplicateSurface(LPDIRECTDRAWSURFACE, LPDIRECTDRAWSURFACE*) = 0;
-            virtual HRESULT LDL_CALL EnumDisplayModes(DWORD, LPDDSURFACEDESC, LPVOID, LPDDENUMMODESCALLBACK) = 0;
-            virtual HRESULT LDL_CALL EnumSurfaces(DWORD, LPDDSURFACEDESC, LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
-            virtual HRESULT LDL_CALL FlipToGDISurface() = 0;
-            virtual HRESULT LDL_CALL GetCaps(LPDDCAPS, LPDDCAPS) = 0;
-            virtual HRESULT LDL_CALL GetDisplayMode(LPDDSURFACEDESC) = 0;
-            virtual HRESULT LDL_CALL GetFourCCCodes(LPDWORD, LPDWORD) = 0;
-            virtual HRESULT LDL_CALL GetGDISurface(LPDIRECTDRAWSURFACE*) = 0;
-            virtual HRESULT LDL_CALL GetMonitorFrequency(LPDWORD) = 0;
-            virtual HRESULT LDL_CALL GetScanLine(LPDWORD) = 0;
-            virtual HRESULT LDL_CALL GetVerticalBlankStatus(LPBOOL) = 0;
-            virtual HRESULT LDL_CALL Initialize(GUID*) = 0;
-            virtual HRESULT LDL_CALL RestoreDisplayMode() = 0;
-            virtual HRESULT LDL_CALL SetCooperativeLevel(HWND, DWORD) = 0;
-            virtual HRESULT LDL_CALL SetDisplayMode(DWORD, DWORD, DWORD) = 0;
-            virtual HRESULT LDL_CALL WaitForVerticalBlank(DWORD, HANDLE) = 0;
+            virtual HRESULT LDL_API_CALL Compact() = 0;
+            virtual HRESULT LDL_API_CALL CreateClipper(DWORD, LPDIRECTDRAWCLIPPER*, IUnknown*) = 0;
+            virtual HRESULT LDL_API_CALL CreatePalette(DWORD, LPPALETTEENTRY, LPDIRECTDRAWPALETTE*, IUnknown*) = 0;
+            virtual HRESULT LDL_API_CALL CreateSurface(LPDDSURFACEDESC, LPDIRECTDRAWSURFACE*, IUnknown*) = 0;
+            virtual HRESULT LDL_API_CALL DuplicateSurface(LPDIRECTDRAWSURFACE, LPDIRECTDRAWSURFACE*) = 0;
+            virtual HRESULT LDL_API_CALL EnumDisplayModes(DWORD, LPDDSURFACEDESC, LPVOID, LPDDENUMMODESCALLBACK) = 0;
+            virtual HRESULT LDL_API_CALL EnumSurfaces(DWORD, LPDDSURFACEDESC, LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
+            virtual HRESULT LDL_API_CALL FlipToGDISurface() = 0;
+            virtual HRESULT LDL_API_CALL GetCaps(LPDDCAPS, LPDDCAPS) = 0;
+            virtual HRESULT LDL_API_CALL GetDisplayMode(LPDDSURFACEDESC) = 0;
+            virtual HRESULT LDL_API_CALL GetFourCCCodes(LPDWORD, LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetGDISurface(LPDIRECTDRAWSURFACE*) = 0;
+            virtual HRESULT LDL_API_CALL GetMonitorFrequency(LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetScanLine(LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetVerticalBlankStatus(LPBOOL) = 0;
+            virtual HRESULT LDL_API_CALL Initialize(GUID*) = 0;
+            virtual HRESULT LDL_API_CALL RestoreDisplayMode() = 0;
+            virtual HRESULT LDL_API_CALL SetCooperativeLevel(HWND, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL SetDisplayMode(DWORD, DWORD, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL WaitForVerticalBlank(DWORD, HANDLE) = 0;
         };
 
         struct  IDirectDraw2 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
             /*** IDirectDraw methods ***/
-            virtual HRESULT LDL_CALL Compact() = 0;
-            virtual HRESULT LDL_CALL CreateClipper(DWORD, LPDIRECTDRAWCLIPPER*, IUnknown*) = 0;
-            virtual HRESULT LDL_CALL CreatePalette(DWORD, LPPALETTEENTRY, LPDIRECTDRAWPALETTE*, IUnknown*) = 0;
-            virtual HRESULT LDL_CALL CreateSurface(LPDDSURFACEDESC, LPDIRECTDRAWSURFACE*, IUnknown*) = 0;
-            virtual HRESULT LDL_CALL DuplicateSurface(LPDIRECTDRAWSURFACE, LPDIRECTDRAWSURFACE*) = 0;
-            virtual HRESULT LDL_CALL EnumDisplayModes(DWORD, LPDDSURFACEDESC, LPVOID, LPDDENUMMODESCALLBACK) = 0;
-            virtual HRESULT LDL_CALL EnumSurfaces(DWORD, LPDDSURFACEDESC, LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
-            virtual HRESULT LDL_CALL FlipToGDISurface() = 0;
-            virtual HRESULT LDL_CALL GetCaps(LPDDCAPS, LPDDCAPS) = 0;
-            virtual HRESULT LDL_CALL GetDisplayMode(LPDDSURFACEDESC) = 0;
-            virtual HRESULT LDL_CALL GetFourCCCodes(LPDWORD, LPDWORD) = 0;
-            virtual HRESULT LDL_CALL GetGDISurface(LPDIRECTDRAWSURFACE*) = 0;
-            virtual HRESULT LDL_CALL GetMonitorFrequency(LPDWORD) = 0;
-            virtual HRESULT LDL_CALL GetScanLine(LPDWORD) = 0;
-            virtual HRESULT LDL_CALL GetVerticalBlankStatus(LPBOOL) = 0;
-            virtual HRESULT LDL_CALL Initialize(GUID*) = 0;
-            virtual HRESULT LDL_CALL RestoreDisplayMode() = 0;
-            virtual HRESULT LDL_CALL SetCooperativeLevel(HWND, DWORD) = 0;
-            virtual HRESULT LDL_CALL SetDisplayMode(DWORD, DWORD, DWORD, DWORD, DWORD) = 0;
-            virtual HRESULT LDL_CALL WaitForVerticalBlank(DWORD, HANDLE) = 0;
+            virtual HRESULT LDL_API_CALL Compact() = 0;
+            virtual HRESULT LDL_API_CALL CreateClipper(DWORD, LPDIRECTDRAWCLIPPER*, IUnknown*) = 0;
+            virtual HRESULT LDL_API_CALL CreatePalette(DWORD, LPPALETTEENTRY, LPDIRECTDRAWPALETTE*, IUnknown*) = 0;
+            virtual HRESULT LDL_API_CALL CreateSurface(LPDDSURFACEDESC, LPDIRECTDRAWSURFACE*, IUnknown*) = 0;
+            virtual HRESULT LDL_API_CALL DuplicateSurface(LPDIRECTDRAWSURFACE, LPDIRECTDRAWSURFACE*) = 0;
+            virtual HRESULT LDL_API_CALL EnumDisplayModes(DWORD, LPDDSURFACEDESC, LPVOID, LPDDENUMMODESCALLBACK) = 0;
+            virtual HRESULT LDL_API_CALL EnumSurfaces(DWORD, LPDDSURFACEDESC, LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
+            virtual HRESULT LDL_API_CALL FlipToGDISurface() = 0;
+            virtual HRESULT LDL_API_CALL GetCaps(LPDDCAPS, LPDDCAPS) = 0;
+            virtual HRESULT LDL_API_CALL GetDisplayMode(LPDDSURFACEDESC) = 0;
+            virtual HRESULT LDL_API_CALL GetFourCCCodes(LPDWORD, LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetGDISurface(LPDIRECTDRAWSURFACE*) = 0;
+            virtual HRESULT LDL_API_CALL GetMonitorFrequency(LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetScanLine(LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetVerticalBlankStatus(LPBOOL) = 0;
+            virtual HRESULT LDL_API_CALL Initialize(GUID*) = 0;
+            virtual HRESULT LDL_API_CALL RestoreDisplayMode() = 0;
+            virtual HRESULT LDL_API_CALL SetCooperativeLevel(HWND, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL SetDisplayMode(DWORD, DWORD, DWORD, DWORD, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL WaitForVerticalBlank(DWORD, HANDLE) = 0;
             /*** Added in the v2 interface ***/
-            virtual HRESULT LDL_CALL GetAvailableVidMem(LPDDSCAPS, LPDWORD, LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetAvailableVidMem(LPDDSCAPS, LPDWORD, LPDWORD) = 0;
         };
 
         struct  IDirectDraw4 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
             /*** IDirectDraw methods ***/
-            virtual HRESULT LDL_CALL Compact() = 0;
-            virtual HRESULT LDL_CALL CreateClipper(DWORD, LPDIRECTDRAWCLIPPER*, IUnknown*) = 0;
-            virtual HRESULT LDL_CALL CreatePalette(DWORD, LPPALETTEENTRY, LPDIRECTDRAWPALETTE*, IUnknown*) = 0;
-            virtual HRESULT LDL_CALL CreateSurface(LPDDSURFACEDESC2, LPDIRECTDRAWSURFACE4*, IUnknown*) = 0;
-            virtual HRESULT LDL_CALL DuplicateSurface(LPDIRECTDRAWSURFACE4, LPDIRECTDRAWSURFACE4*) = 0;
-            virtual HRESULT LDL_CALL EnumDisplayModes(DWORD, LPDDSURFACEDESC2, LPVOID, LPDDENUMMODESCALLBACK2) = 0;
-            virtual HRESULT LDL_CALL EnumSurfaces(DWORD, LPDDSURFACEDESC2, LPVOID, LPDDENUMSURFACESCALLBACK2) = 0;
-            virtual HRESULT LDL_CALL FlipToGDISurface() = 0;
-            virtual HRESULT LDL_CALL GetCaps(LPDDCAPS, LPDDCAPS) = 0;
-            virtual HRESULT LDL_CALL GetDisplayMode(LPDDSURFACEDESC2) = 0;
-            virtual HRESULT LDL_CALL GetFourCCCodes(LPDWORD, LPDWORD) = 0;
-            virtual HRESULT LDL_CALL GetGDISurface(LPDIRECTDRAWSURFACE4*) = 0;
-            virtual HRESULT LDL_CALL GetMonitorFrequency(LPDWORD) = 0;
-            virtual HRESULT LDL_CALL GetScanLine(LPDWORD) = 0;
-            virtual HRESULT LDL_CALL GetVerticalBlankStatus(LPBOOL) = 0;
-            virtual HRESULT LDL_CALL Initialize(GUID*) = 0;
-            virtual HRESULT LDL_CALL RestoreDisplayMode() = 0;
-            virtual HRESULT LDL_CALL SetCooperativeLevel(HWND, DWORD) = 0;
-            virtual HRESULT LDL_CALL SetDisplayMode(DWORD, DWORD, DWORD, DWORD, DWORD) = 0;
-            virtual HRESULT LDL_CALL WaitForVerticalBlank(DWORD, HANDLE) = 0;
+            virtual HRESULT LDL_API_CALL Compact() = 0;
+            virtual HRESULT LDL_API_CALL CreateClipper(DWORD, LPDIRECTDRAWCLIPPER*, IUnknown*) = 0;
+            virtual HRESULT LDL_API_CALL CreatePalette(DWORD, LPPALETTEENTRY, LPDIRECTDRAWPALETTE*, IUnknown*) = 0;
+            virtual HRESULT LDL_API_CALL CreateSurface(LPDDSURFACEDESC2, LPDIRECTDRAWSURFACE4*, IUnknown*) = 0;
+            virtual HRESULT LDL_API_CALL DuplicateSurface(LPDIRECTDRAWSURFACE4, LPDIRECTDRAWSURFACE4*) = 0;
+            virtual HRESULT LDL_API_CALL EnumDisplayModes(DWORD, LPDDSURFACEDESC2, LPVOID, LPDDENUMMODESCALLBACK2) = 0;
+            virtual HRESULT LDL_API_CALL EnumSurfaces(DWORD, LPDDSURFACEDESC2, LPVOID, LPDDENUMSURFACESCALLBACK2) = 0;
+            virtual HRESULT LDL_API_CALL FlipToGDISurface() = 0;
+            virtual HRESULT LDL_API_CALL GetCaps(LPDDCAPS, LPDDCAPS) = 0;
+            virtual HRESULT LDL_API_CALL GetDisplayMode(LPDDSURFACEDESC2) = 0;
+            virtual HRESULT LDL_API_CALL GetFourCCCodes(LPDWORD, LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetGDISurface(LPDIRECTDRAWSURFACE4*) = 0;
+            virtual HRESULT LDL_API_CALL GetMonitorFrequency(LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetScanLine(LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetVerticalBlankStatus(LPBOOL) = 0;
+            virtual HRESULT LDL_API_CALL Initialize(GUID*) = 0;
+            virtual HRESULT LDL_API_CALL RestoreDisplayMode() = 0;
+            virtual HRESULT LDL_API_CALL SetCooperativeLevel(HWND, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL SetDisplayMode(DWORD, DWORD, DWORD, DWORD, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL WaitForVerticalBlank(DWORD, HANDLE) = 0;
             /*** Added in the v2 interface ***/
-            virtual HRESULT LDL_CALL GetAvailableVidMem(LPDDSCAPS2, LPDWORD, LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetAvailableVidMem(LPDDSCAPS2, LPDWORD, LPDWORD) = 0;
             /*** Added in the V4 Interface ***/
-            virtual HRESULT LDL_CALL GetSurfaceFromDC(HDC, LPDIRECTDRAWSURFACE4*) = 0;
-            virtual HRESULT LDL_CALL RestoreAllSurfaces() = 0;
-            virtual HRESULT LDL_CALL TestCooperativeLevel() = 0;
-            virtual HRESULT LDL_CALL GetDeviceIdentifier(LPDDDEVICEIDENTIFIER, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetSurfaceFromDC(HDC, LPDIRECTDRAWSURFACE4*) = 0;
+            virtual HRESULT LDL_API_CALL RestoreAllSurfaces() = 0;
+            virtual HRESULT LDL_API_CALL TestCooperativeLevel() = 0;
+            virtual HRESULT LDL_API_CALL GetDeviceIdentifier(LPDDDEVICEIDENTIFIER, DWORD) = 0;
         };
 
         /*
@@ -788,14 +788,14 @@ namespace LDL
         struct  IDirectDrawPalette : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
             /*** IDirectDrawPalette methods ***/
-            virtual HRESULT LDL_CALL GetCaps(LPDWORD) = 0;
-            virtual HRESULT LDL_CALL GetEntries(DWORD, DWORD, DWORD, LPPALETTEENTRY) = 0;
-            virtual HRESULT LDL_CALL Initialize(LPDIRECTDRAW, DWORD, LPPALETTEENTRY) = 0;
-            virtual HRESULT LDL_CALL SetEntries(DWORD, DWORD, DWORD, LPPALETTEENTRY) = 0;
+            virtual HRESULT LDL_API_CALL GetCaps(LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetEntries(DWORD, DWORD, DWORD, LPPALETTEENTRY) = 0;
+            virtual HRESULT LDL_API_CALL Initialize(LPDIRECTDRAW, DWORD, LPPALETTEENTRY) = 0;
+            virtual HRESULT LDL_API_CALL SetEntries(DWORD, DWORD, DWORD, LPPALETTEENTRY) = 0;
         };
 
 
@@ -805,16 +805,16 @@ namespace LDL
         struct  IDirectDrawClipper : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
             /*** IDirectDrawClipper methods ***/
-            virtual HRESULT LDL_CALL GetClipList(LPRECT, LPRGNDATA, LPDWORD) = 0;
-            virtual HRESULT LDL_CALL GetHWnd(HWND*) = 0;
-            virtual HRESULT LDL_CALL Initialize(LPDIRECTDRAW, DWORD) = 0;
-            virtual HRESULT LDL_CALL IsClipListChanged(BOOL*) = 0;
-            virtual HRESULT LDL_CALL SetClipList(LPRGNDATA, DWORD) = 0;
-            virtual HRESULT LDL_CALL SetHWnd(DWORD, HWND) = 0;
+            virtual HRESULT LDL_API_CALL GetClipList(LPRECT, LPRGNDATA, LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetHWnd(HWND*) = 0;
+            virtual HRESULT LDL_API_CALL Initialize(LPDIRECTDRAW, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL IsClipListChanged(BOOL*) = 0;
+            virtual HRESULT LDL_API_CALL SetClipList(LPRGNDATA, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL SetHWnd(DWORD, HWND) = 0;
         };
 
         /*
@@ -823,43 +823,43 @@ namespace LDL
         struct  IDirectDrawSurface : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
             /*** IDirectDrawSurface methods ***/
-            virtual HRESULT LDL_CALL AddAttachedSurface(LPDIRECTDRAWSURFACE) = 0;
-            virtual HRESULT LDL_CALL AddOverlayDirtyRect(LPRECT) = 0;
-            virtual HRESULT LDL_CALL Blt(LPRECT, LPDIRECTDRAWSURFACE, LPRECT, DWORD, LPDDBLTFX) = 0;
-            virtual HRESULT LDL_CALL BltBatch(LPDDBLTBATCH, DWORD, DWORD) = 0;
-            virtual HRESULT LDL_CALL BltFast(DWORD, DWORD, LPDIRECTDRAWSURFACE, LPRECT, DWORD) = 0;
-            virtual HRESULT LDL_CALL DeleteAttachedSurface(DWORD, LPDIRECTDRAWSURFACE) = 0;
-            virtual HRESULT LDL_CALL EnumAttachedSurfaces(LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
-            virtual HRESULT LDL_CALL EnumOverlayZOrders(DWORD, LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
-            virtual HRESULT LDL_CALL Flip(LPDIRECTDRAWSURFACE, DWORD) = 0;
-            virtual HRESULT LDL_CALL GetAttachedSurface(LPDDSCAPS, LPDIRECTDRAWSURFACE*) = 0;
-            virtual HRESULT LDL_CALL GetBltStatus(DWORD) = 0;
-            virtual HRESULT LDL_CALL GetCaps(LPDDSCAPS) = 0;
-            virtual HRESULT LDL_CALL GetClipper(LPDIRECTDRAWCLIPPER*) = 0;
-            virtual HRESULT LDL_CALL GetColorKey(DWORD, LPDDCOLORKEY) = 0;
-            virtual HRESULT LDL_CALL GetDC(HDC*) = 0;
-            virtual HRESULT LDL_CALL GetFlipStatus(DWORD) = 0;
-            virtual HRESULT LDL_CALL GetOverlayPosition(LPLONG, LPLONG) = 0;
-            virtual HRESULT LDL_CALL GetPalette(LPDIRECTDRAWPALETTE*) = 0;
-            virtual HRESULT LDL_CALL GetPixelFormat(LPDDPIXELFORMAT) = 0;
-            virtual HRESULT LDL_CALL GetSurfaceDesc(LPDDSURFACEDESC) = 0;
-            virtual HRESULT LDL_CALL Initialize(LPDIRECTDRAW, LPDDSURFACEDESC) = 0;
-            virtual HRESULT LDL_CALL IsLost() = 0;
-            virtual HRESULT LDL_CALL Lock(LPRECT, LPDDSURFACEDESC, DWORD, HANDLE) = 0;
-            virtual HRESULT LDL_CALL ReleaseDC(HDC) = 0;
-            virtual HRESULT LDL_CALL Restore() = 0;
-            virtual HRESULT LDL_CALL SetClipper(LPDIRECTDRAWCLIPPER) = 0;
-            virtual HRESULT LDL_CALL SetColorKey(DWORD, LPDDCOLORKEY) = 0;
-            virtual HRESULT LDL_CALL SetOverlayPosition(LONG, LONG) = 0;
-            virtual HRESULT LDL_CALL SetPalette(LPDIRECTDRAWPALETTE) = 0;
-            virtual HRESULT LDL_CALL Unlock(LPVOID) = 0;
-            virtual HRESULT LDL_CALL UpdateOverlay(LPRECT, LPDIRECTDRAWSURFACE, LPRECT, DWORD, LPDDOVERLAYFX) = 0;
-            virtual HRESULT LDL_CALL UpdateOverlayDisplay(DWORD) = 0;
-            virtual HRESULT LDL_CALL UpdateOverlayZOrder(DWORD, LPDIRECTDRAWSURFACE) = 0;
+            virtual HRESULT LDL_API_CALL AddAttachedSurface(LPDIRECTDRAWSURFACE) = 0;
+            virtual HRESULT LDL_API_CALL AddOverlayDirtyRect(LPRECT) = 0;
+            virtual HRESULT LDL_API_CALL Blt(LPRECT, LPDIRECTDRAWSURFACE, LPRECT, DWORD, LPDDBLTFX) = 0;
+            virtual HRESULT LDL_API_CALL BltBatch(LPDDBLTBATCH, DWORD, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL BltFast(DWORD, DWORD, LPDIRECTDRAWSURFACE, LPRECT, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL DeleteAttachedSurface(DWORD, LPDIRECTDRAWSURFACE) = 0;
+            virtual HRESULT LDL_API_CALL EnumAttachedSurfaces(LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
+            virtual HRESULT LDL_API_CALL EnumOverlayZOrders(DWORD, LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
+            virtual HRESULT LDL_API_CALL Flip(LPDIRECTDRAWSURFACE, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetAttachedSurface(LPDDSCAPS, LPDIRECTDRAWSURFACE*) = 0;
+            virtual HRESULT LDL_API_CALL GetBltStatus(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetCaps(LPDDSCAPS) = 0;
+            virtual HRESULT LDL_API_CALL GetClipper(LPDIRECTDRAWCLIPPER*) = 0;
+            virtual HRESULT LDL_API_CALL GetColorKey(DWORD, LPDDCOLORKEY) = 0;
+            virtual HRESULT LDL_API_CALL GetDC(HDC*) = 0;
+            virtual HRESULT LDL_API_CALL GetFlipStatus(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetOverlayPosition(LPLONG, LPLONG) = 0;
+            virtual HRESULT LDL_API_CALL GetPalette(LPDIRECTDRAWPALETTE*) = 0;
+            virtual HRESULT LDL_API_CALL GetPixelFormat(LPDDPIXELFORMAT) = 0;
+            virtual HRESULT LDL_API_CALL GetSurfaceDesc(LPDDSURFACEDESC) = 0;
+            virtual HRESULT LDL_API_CALL Initialize(LPDIRECTDRAW, LPDDSURFACEDESC) = 0;
+            virtual HRESULT LDL_API_CALL IsLost() = 0;
+            virtual HRESULT LDL_API_CALL Lock(LPRECT, LPDDSURFACEDESC, DWORD, HANDLE) = 0;
+            virtual HRESULT LDL_API_CALL ReleaseDC(HDC) = 0;
+            virtual HRESULT LDL_API_CALL Restore() = 0;
+            virtual HRESULT LDL_API_CALL SetClipper(LPDIRECTDRAWCLIPPER) = 0;
+            virtual HRESULT LDL_API_CALL SetColorKey(DWORD, LPDDCOLORKEY) = 0;
+            virtual HRESULT LDL_API_CALL SetOverlayPosition(LONG, LONG) = 0;
+            virtual HRESULT LDL_API_CALL SetPalette(LPDIRECTDRAWPALETTE) = 0;
+            virtual HRESULT LDL_API_CALL Unlock(LPVOID) = 0;
+            virtual HRESULT LDL_API_CALL UpdateOverlay(LPRECT, LPDIRECTDRAWSURFACE, LPRECT, DWORD, LPDDOVERLAYFX) = 0;
+            virtual HRESULT LDL_API_CALL UpdateOverlayDisplay(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL UpdateOverlayZOrder(DWORD, LPDIRECTDRAWSURFACE) = 0;
         };
 
         /*
@@ -868,47 +868,47 @@ namespace LDL
         struct  IDirectDrawSurface2 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
             /*** IDirectDrawSurface methods ***/
-            virtual HRESULT LDL_CALL AddAttachedSurface(LPDIRECTDRAWSURFACE2) = 0;
-            virtual HRESULT LDL_CALL AddOverlayDirtyRect(LPRECT) = 0;
-            virtual HRESULT LDL_CALL Blt(LPRECT, LPDIRECTDRAWSURFACE2, LPRECT, DWORD, LPDDBLTFX) = 0;
-            virtual HRESULT LDL_CALL BltBatch(LPDDBLTBATCH, DWORD, DWORD) = 0;
-            virtual HRESULT LDL_CALL BltFast(DWORD, DWORD, LPDIRECTDRAWSURFACE2, LPRECT, DWORD) = 0;
-            virtual HRESULT LDL_CALL DeleteAttachedSurface(DWORD, LPDIRECTDRAWSURFACE2) = 0;
-            virtual HRESULT LDL_CALL EnumAttachedSurfaces(LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
-            virtual HRESULT LDL_CALL EnumOverlayZOrders(DWORD, LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
-            virtual HRESULT LDL_CALL Flip(LPDIRECTDRAWSURFACE2, DWORD) = 0;
-            virtual HRESULT LDL_CALL GetAttachedSurface(LPDDSCAPS, LPDIRECTDRAWSURFACE2*) = 0;
-            virtual HRESULT LDL_CALL GetBltStatus(DWORD) = 0;
-            virtual HRESULT LDL_CALL GetCaps(LPDDSCAPS) = 0;
-            virtual HRESULT LDL_CALL GetClipper(LPDIRECTDRAWCLIPPER*) = 0;
-            virtual HRESULT LDL_CALL GetColorKey(DWORD, LPDDCOLORKEY) = 0;
-            virtual HRESULT LDL_CALL GetDC(HDC*) = 0;
-            virtual HRESULT LDL_CALL GetFlipStatus(DWORD) = 0;
-            virtual HRESULT LDL_CALL GetOverlayPosition(LPLONG, LPLONG) = 0;
-            virtual HRESULT LDL_CALL GetPalette(LPDIRECTDRAWPALETTE*) = 0;
-            virtual HRESULT LDL_CALL GetPixelFormat(LPDDPIXELFORMAT) = 0;
-            virtual HRESULT LDL_CALL GetSurfaceDesc(LPDDSURFACEDESC) = 0;
-            virtual HRESULT LDL_CALL Initialize(LPDIRECTDRAW, LPDDSURFACEDESC) = 0;
-            virtual HRESULT LDL_CALL IsLost() = 0;
-            virtual HRESULT LDL_CALL Lock(LPRECT, LPDDSURFACEDESC, DWORD, HANDLE) = 0;
-            virtual HRESULT LDL_CALL ReleaseDC(HDC) = 0;
-            virtual HRESULT LDL_CALL Restore() = 0;
-            virtual HRESULT LDL_CALL SetClipper(LPDIRECTDRAWCLIPPER) = 0;
-            virtual HRESULT LDL_CALL SetColorKey(DWORD, LPDDCOLORKEY) = 0;
-            virtual HRESULT LDL_CALL SetOverlayPosition(LONG, LONG) = 0;
-            virtual HRESULT LDL_CALL SetPalette(LPDIRECTDRAWPALETTE) = 0;
-            virtual HRESULT LDL_CALL Unlock(LPVOID) = 0;
-            virtual HRESULT LDL_CALL UpdateOverlay(LPRECT, LPDIRECTDRAWSURFACE2, LPRECT, DWORD, LPDDOVERLAYFX) = 0;
-            virtual HRESULT LDL_CALL UpdateOverlayDisplay(DWORD) = 0;
-            virtual HRESULT LDL_CALL UpdateOverlayZOrder(DWORD, LPDIRECTDRAWSURFACE2) = 0;
+            virtual HRESULT LDL_API_CALL AddAttachedSurface(LPDIRECTDRAWSURFACE2) = 0;
+            virtual HRESULT LDL_API_CALL AddOverlayDirtyRect(LPRECT) = 0;
+            virtual HRESULT LDL_API_CALL Blt(LPRECT, LPDIRECTDRAWSURFACE2, LPRECT, DWORD, LPDDBLTFX) = 0;
+            virtual HRESULT LDL_API_CALL BltBatch(LPDDBLTBATCH, DWORD, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL BltFast(DWORD, DWORD, LPDIRECTDRAWSURFACE2, LPRECT, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL DeleteAttachedSurface(DWORD, LPDIRECTDRAWSURFACE2) = 0;
+            virtual HRESULT LDL_API_CALL EnumAttachedSurfaces(LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
+            virtual HRESULT LDL_API_CALL EnumOverlayZOrders(DWORD, LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
+            virtual HRESULT LDL_API_CALL Flip(LPDIRECTDRAWSURFACE2, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetAttachedSurface(LPDDSCAPS, LPDIRECTDRAWSURFACE2*) = 0;
+            virtual HRESULT LDL_API_CALL GetBltStatus(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetCaps(LPDDSCAPS) = 0;
+            virtual HRESULT LDL_API_CALL GetClipper(LPDIRECTDRAWCLIPPER*) = 0;
+            virtual HRESULT LDL_API_CALL GetColorKey(DWORD, LPDDCOLORKEY) = 0;
+            virtual HRESULT LDL_API_CALL GetDC(HDC*) = 0;
+            virtual HRESULT LDL_API_CALL GetFlipStatus(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetOverlayPosition(LPLONG, LPLONG) = 0;
+            virtual HRESULT LDL_API_CALL GetPalette(LPDIRECTDRAWPALETTE*) = 0;
+            virtual HRESULT LDL_API_CALL GetPixelFormat(LPDDPIXELFORMAT) = 0;
+            virtual HRESULT LDL_API_CALL GetSurfaceDesc(LPDDSURFACEDESC) = 0;
+            virtual HRESULT LDL_API_CALL Initialize(LPDIRECTDRAW, LPDDSURFACEDESC) = 0;
+            virtual HRESULT LDL_API_CALL IsLost() = 0;
+            virtual HRESULT LDL_API_CALL Lock(LPRECT, LPDDSURFACEDESC, DWORD, HANDLE) = 0;
+            virtual HRESULT LDL_API_CALL ReleaseDC(HDC) = 0;
+            virtual HRESULT LDL_API_CALL Restore() = 0;
+            virtual HRESULT LDL_API_CALL SetClipper(LPDIRECTDRAWCLIPPER) = 0;
+            virtual HRESULT LDL_API_CALL SetColorKey(DWORD, LPDDCOLORKEY) = 0;
+            virtual HRESULT LDL_API_CALL SetOverlayPosition(LONG, LONG) = 0;
+            virtual HRESULT LDL_API_CALL SetPalette(LPDIRECTDRAWPALETTE) = 0;
+            virtual HRESULT LDL_API_CALL Unlock(LPVOID) = 0;
+            virtual HRESULT LDL_API_CALL UpdateOverlay(LPRECT, LPDIRECTDRAWSURFACE2, LPRECT, DWORD, LPDDOVERLAYFX) = 0;
+            virtual HRESULT LDL_API_CALL UpdateOverlayDisplay(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL UpdateOverlayZOrder(DWORD, LPDIRECTDRAWSURFACE2) = 0;
             /*** Added in the v2 interface ***/
-            virtual HRESULT LDL_CALL GetDDInterface(LPVOID*) = 0;
-            virtual HRESULT LDL_CALL PageLock(DWORD) = 0;
-            virtual HRESULT LDL_CALL PageUnlock(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetDDInterface(LPVOID*) = 0;
+            virtual HRESULT LDL_API_CALL PageLock(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL PageUnlock(DWORD) = 0;
         };
 
         /*
@@ -918,49 +918,49 @@ namespace LDL
         struct  IDirectDrawSurface3 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
             /*** IDirectDrawSurface methods ***/
-            virtual HRESULT LDL_CALL AddAttachedSurface(LPDIRECTDRAWSURFACE3) = 0;
-            virtual HRESULT LDL_CALL AddOverlayDirtyRect(LPRECT) = 0;
-            virtual HRESULT LDL_CALL Blt(LPRECT, LPDIRECTDRAWSURFACE3, LPRECT, DWORD, LPDDBLTFX) = 0;
-            virtual HRESULT LDL_CALL BltBatch(LPDDBLTBATCH, DWORD, DWORD) = 0;
-            virtual HRESULT LDL_CALL BltFast(DWORD, DWORD, LPDIRECTDRAWSURFACE3, LPRECT, DWORD) = 0;
-            virtual HRESULT LDL_CALL DeleteAttachedSurface(DWORD, LPDIRECTDRAWSURFACE3) = 0;
-            virtual HRESULT LDL_CALL EnumAttachedSurfaces(LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
-            virtual HRESULT LDL_CALL EnumOverlayZOrders(DWORD, LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
-            virtual HRESULT LDL_CALL Flip(LPDIRECTDRAWSURFACE3, DWORD) = 0;
-            virtual HRESULT LDL_CALL GetAttachedSurface(LPDDSCAPS, LPDIRECTDRAWSURFACE3*) = 0;
-            virtual HRESULT LDL_CALL GetBltStatus(DWORD) = 0;
-            virtual HRESULT LDL_CALL GetCaps(LPDDSCAPS) = 0;
-            virtual HRESULT LDL_CALL GetClipper(LPDIRECTDRAWCLIPPER*) = 0;
-            virtual HRESULT LDL_CALL GetColorKey(DWORD, LPDDCOLORKEY) = 0;
-            virtual HRESULT LDL_CALL GetDC(HDC*) = 0;
-            virtual HRESULT LDL_CALL GetFlipStatus(DWORD) = 0;
-            virtual HRESULT LDL_CALL GetOverlayPosition(LPLONG, LPLONG) = 0;
-            virtual HRESULT LDL_CALL GetPalette(LPDIRECTDRAWPALETTE*) = 0;
-            virtual HRESULT LDL_CALL GetPixelFormat(LPDDPIXELFORMAT) = 0;
-            virtual HRESULT LDL_CALL GetSurfaceDesc(LPDDSURFACEDESC) = 0;
-            virtual HRESULT LDL_CALL Initialize(LPDIRECTDRAW, LPDDSURFACEDESC) = 0;
-            virtual HRESULT LDL_CALL IsLost() = 0;
-            virtual HRESULT LDL_CALL Lock(LPRECT, LPDDSURFACEDESC, DWORD, HANDLE) = 0;
-            virtual HRESULT LDL_CALL ReleaseDC(HDC) = 0;
-            virtual HRESULT LDL_CALL Restore() = 0;
-            virtual HRESULT LDL_CALL SetClipper(LPDIRECTDRAWCLIPPER) = 0;
-            virtual HRESULT LDL_CALL SetColorKey(DWORD, LPDDCOLORKEY) = 0;
-            virtual HRESULT LDL_CALL SetOverlayPosition(LONG, LONG) = 0;
-            virtual HRESULT LDL_CALL SetPalette(LPDIRECTDRAWPALETTE) = 0;
-            virtual HRESULT LDL_CALL Unlock(LPVOID) = 0;
-            virtual HRESULT LDL_CALL UpdateOverlay(LPRECT, LPDIRECTDRAWSURFACE3, LPRECT, DWORD, LPDDOVERLAYFX) = 0;
-            virtual HRESULT LDL_CALL UpdateOverlayDisplay(DWORD) = 0;
-            virtual HRESULT LDL_CALL UpdateOverlayZOrder(DWORD, LPDIRECTDRAWSURFACE3) = 0;
+            virtual HRESULT LDL_API_CALL AddAttachedSurface(LPDIRECTDRAWSURFACE3) = 0;
+            virtual HRESULT LDL_API_CALL AddOverlayDirtyRect(LPRECT) = 0;
+            virtual HRESULT LDL_API_CALL Blt(LPRECT, LPDIRECTDRAWSURFACE3, LPRECT, DWORD, LPDDBLTFX) = 0;
+            virtual HRESULT LDL_API_CALL BltBatch(LPDDBLTBATCH, DWORD, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL BltFast(DWORD, DWORD, LPDIRECTDRAWSURFACE3, LPRECT, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL DeleteAttachedSurface(DWORD, LPDIRECTDRAWSURFACE3) = 0;
+            virtual HRESULT LDL_API_CALL EnumAttachedSurfaces(LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
+            virtual HRESULT LDL_API_CALL EnumOverlayZOrders(DWORD, LPVOID, LPDDENUMSURFACESCALLBACK) = 0;
+            virtual HRESULT LDL_API_CALL Flip(LPDIRECTDRAWSURFACE3, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetAttachedSurface(LPDDSCAPS, LPDIRECTDRAWSURFACE3*) = 0;
+            virtual HRESULT LDL_API_CALL GetBltStatus(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetCaps(LPDDSCAPS) = 0;
+            virtual HRESULT LDL_API_CALL GetClipper(LPDIRECTDRAWCLIPPER*) = 0;
+            virtual HRESULT LDL_API_CALL GetColorKey(DWORD, LPDDCOLORKEY) = 0;
+            virtual HRESULT LDL_API_CALL GetDC(HDC*) = 0;
+            virtual HRESULT LDL_API_CALL GetFlipStatus(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetOverlayPosition(LPLONG, LPLONG) = 0;
+            virtual HRESULT LDL_API_CALL GetPalette(LPDIRECTDRAWPALETTE*) = 0;
+            virtual HRESULT LDL_API_CALL GetPixelFormat(LPDDPIXELFORMAT) = 0;
+            virtual HRESULT LDL_API_CALL GetSurfaceDesc(LPDDSURFACEDESC) = 0;
+            virtual HRESULT LDL_API_CALL Initialize(LPDIRECTDRAW, LPDDSURFACEDESC) = 0;
+            virtual HRESULT LDL_API_CALL IsLost() = 0;
+            virtual HRESULT LDL_API_CALL Lock(LPRECT, LPDDSURFACEDESC, DWORD, HANDLE) = 0;
+            virtual HRESULT LDL_API_CALL ReleaseDC(HDC) = 0;
+            virtual HRESULT LDL_API_CALL Restore() = 0;
+            virtual HRESULT LDL_API_CALL SetClipper(LPDIRECTDRAWCLIPPER) = 0;
+            virtual HRESULT LDL_API_CALL SetColorKey(DWORD, LPDDCOLORKEY) = 0;
+            virtual HRESULT LDL_API_CALL SetOverlayPosition(LONG, LONG) = 0;
+            virtual HRESULT LDL_API_CALL SetPalette(LPDIRECTDRAWPALETTE) = 0;
+            virtual HRESULT LDL_API_CALL Unlock(LPVOID) = 0;
+            virtual HRESULT LDL_API_CALL UpdateOverlay(LPRECT, LPDIRECTDRAWSURFACE3, LPRECT, DWORD, LPDDOVERLAYFX) = 0;
+            virtual HRESULT LDL_API_CALL UpdateOverlayDisplay(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL UpdateOverlayZOrder(DWORD, LPDIRECTDRAWSURFACE3) = 0;
             /*** Added in the v2 interface ***/
-            virtual HRESULT LDL_CALL GetDDInterface(LPVOID*) = 0;
-            virtual HRESULT LDL_CALL PageLock(DWORD) = 0;
-            virtual HRESULT LDL_CALL PageUnlock(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetDDInterface(LPVOID*) = 0;
+            virtual HRESULT LDL_API_CALL PageLock(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL PageUnlock(DWORD) = 0;
             /*** Added in the V3 interface ***/
-            virtual HRESULT LDL_CALL SetSurfaceDesc(LPDDSURFACEDESC, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL SetSurfaceDesc(LPDDSURFACEDESC, DWORD) = 0;
         };
 
         /*
@@ -969,55 +969,55 @@ namespace LDL
         struct  IDirectDrawSurface4 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
             /*** IDirectDrawSurface methods ***/
-            virtual HRESULT LDL_CALL AddAttachedSurface(LPDIRECTDRAWSURFACE4) = 0;
-            virtual HRESULT LDL_CALL AddOverlayDirtyRect(LPRECT) = 0;
-            virtual HRESULT LDL_CALL Blt(LPRECT, LPDIRECTDRAWSURFACE4, LPRECT, DWORD, LPDDBLTFX) = 0;
-            virtual HRESULT LDL_CALL BltBatch(LPDDBLTBATCH, DWORD, DWORD) = 0;
-            virtual HRESULT LDL_CALL BltFast(DWORD, DWORD, LPDIRECTDRAWSURFACE4, LPRECT, DWORD) = 0;
-            virtual HRESULT LDL_CALL DeleteAttachedSurface(DWORD, LPDIRECTDRAWSURFACE4) = 0;
-            virtual HRESULT LDL_CALL EnumAttachedSurfaces(LPVOID, LPDDENUMSURFACESCALLBACK2) = 0;
-            virtual HRESULT LDL_CALL EnumOverlayZOrders(DWORD, LPVOID, LPDDENUMSURFACESCALLBACK2) = 0;
-            virtual HRESULT LDL_CALL Flip(LPDIRECTDRAWSURFACE4, DWORD) = 0;
-            virtual HRESULT LDL_CALL GetAttachedSurface(LPDDSCAPS2, LPDIRECTDRAWSURFACE4*) = 0;
-            virtual HRESULT LDL_CALL GetBltStatus(DWORD) = 0;
-            virtual HRESULT LDL_CALL GetCaps(LPDDSCAPS2) = 0;
-            virtual HRESULT LDL_CALL GetClipper(LPDIRECTDRAWCLIPPER*) = 0;
-            virtual HRESULT LDL_CALL GetColorKey(DWORD, LPDDCOLORKEY) = 0;
-            virtual HRESULT LDL_CALL GetDC(HDC*) = 0;
-            virtual HRESULT LDL_CALL GetFlipStatus(DWORD) = 0;
-            virtual HRESULT LDL_CALL GetOverlayPosition(LPLONG, LPLONG) = 0;
-            virtual HRESULT LDL_CALL GetPalette(LPDIRECTDRAWPALETTE*) = 0;
-            virtual HRESULT LDL_CALL GetPixelFormat(LPDDPIXELFORMAT) = 0;
-            virtual HRESULT LDL_CALL GetSurfaceDesc(LPDDSURFACEDESC2) = 0;
-            virtual HRESULT LDL_CALL Initialize(LPDIRECTDRAW, LPDDSURFACEDESC2) = 0;
-            virtual HRESULT LDL_CALL IsLost() = 0;
-            virtual HRESULT LDL_CALL Lock(LPRECT, LPDDSURFACEDESC2, DWORD, HANDLE) = 0;
-            virtual HRESULT LDL_CALL ReleaseDC(HDC) = 0;
-            virtual HRESULT LDL_CALL Restore() = 0;
-            virtual HRESULT LDL_CALL SetClipper(LPDIRECTDRAWCLIPPER) = 0;
-            virtual HRESULT LDL_CALL SetColorKey(DWORD, LPDDCOLORKEY) = 0;
-            virtual HRESULT LDL_CALL SetOverlayPosition(LONG, LONG) = 0;
-            virtual HRESULT LDL_CALL SetPalette(LPDIRECTDRAWPALETTE) = 0;
-            virtual HRESULT LDL_CALL Unlock(LPRECT) = 0;
-            virtual HRESULT LDL_CALL UpdateOverlay(LPRECT, LPDIRECTDRAWSURFACE4, LPRECT, DWORD, LPDDOVERLAYFX) = 0;
-            virtual HRESULT LDL_CALL UpdateOverlayDisplay(DWORD) = 0;
-            virtual HRESULT LDL_CALL UpdateOverlayZOrder(DWORD, LPDIRECTDRAWSURFACE4) = 0;
+            virtual HRESULT LDL_API_CALL AddAttachedSurface(LPDIRECTDRAWSURFACE4) = 0;
+            virtual HRESULT LDL_API_CALL AddOverlayDirtyRect(LPRECT) = 0;
+            virtual HRESULT LDL_API_CALL Blt(LPRECT, LPDIRECTDRAWSURFACE4, LPRECT, DWORD, LPDDBLTFX) = 0;
+            virtual HRESULT LDL_API_CALL BltBatch(LPDDBLTBATCH, DWORD, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL BltFast(DWORD, DWORD, LPDIRECTDRAWSURFACE4, LPRECT, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL DeleteAttachedSurface(DWORD, LPDIRECTDRAWSURFACE4) = 0;
+            virtual HRESULT LDL_API_CALL EnumAttachedSurfaces(LPVOID, LPDDENUMSURFACESCALLBACK2) = 0;
+            virtual HRESULT LDL_API_CALL EnumOverlayZOrders(DWORD, LPVOID, LPDDENUMSURFACESCALLBACK2) = 0;
+            virtual HRESULT LDL_API_CALL Flip(LPDIRECTDRAWSURFACE4, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetAttachedSurface(LPDDSCAPS2, LPDIRECTDRAWSURFACE4*) = 0;
+            virtual HRESULT LDL_API_CALL GetBltStatus(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetCaps(LPDDSCAPS2) = 0;
+            virtual HRESULT LDL_API_CALL GetClipper(LPDIRECTDRAWCLIPPER*) = 0;
+            virtual HRESULT LDL_API_CALL GetColorKey(DWORD, LPDDCOLORKEY) = 0;
+            virtual HRESULT LDL_API_CALL GetDC(HDC*) = 0;
+            virtual HRESULT LDL_API_CALL GetFlipStatus(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetOverlayPosition(LPLONG, LPLONG) = 0;
+            virtual HRESULT LDL_API_CALL GetPalette(LPDIRECTDRAWPALETTE*) = 0;
+            virtual HRESULT LDL_API_CALL GetPixelFormat(LPDDPIXELFORMAT) = 0;
+            virtual HRESULT LDL_API_CALL GetSurfaceDesc(LPDDSURFACEDESC2) = 0;
+            virtual HRESULT LDL_API_CALL Initialize(LPDIRECTDRAW, LPDDSURFACEDESC2) = 0;
+            virtual HRESULT LDL_API_CALL IsLost() = 0;
+            virtual HRESULT LDL_API_CALL Lock(LPRECT, LPDDSURFACEDESC2, DWORD, HANDLE) = 0;
+            virtual HRESULT LDL_API_CALL ReleaseDC(HDC) = 0;
+            virtual HRESULT LDL_API_CALL Restore() = 0;
+            virtual HRESULT LDL_API_CALL SetClipper(LPDIRECTDRAWCLIPPER) = 0;
+            virtual HRESULT LDL_API_CALL SetColorKey(DWORD, LPDDCOLORKEY) = 0;
+            virtual HRESULT LDL_API_CALL SetOverlayPosition(LONG, LONG) = 0;
+            virtual HRESULT LDL_API_CALL SetPalette(LPDIRECTDRAWPALETTE) = 0;
+            virtual HRESULT LDL_API_CALL Unlock(LPRECT) = 0;
+            virtual HRESULT LDL_API_CALL UpdateOverlay(LPRECT, LPDIRECTDRAWSURFACE4, LPRECT, DWORD, LPDDOVERLAYFX) = 0;
+            virtual HRESULT LDL_API_CALL UpdateOverlayDisplay(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL UpdateOverlayZOrder(DWORD, LPDIRECTDRAWSURFACE4) = 0;
             /*** Added in the v2 interface ***/
-            virtual HRESULT LDL_CALL GetDDInterface(LPVOID*) = 0;
-            virtual HRESULT LDL_CALL PageLock(DWORD) = 0;
-            virtual HRESULT LDL_CALL PageUnlock(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetDDInterface(LPVOID*) = 0;
+            virtual HRESULT LDL_API_CALL PageLock(DWORD) = 0;
+            virtual HRESULT LDL_API_CALL PageUnlock(DWORD) = 0;
             /*** Added in the v3 interface ***/
-            virtual HRESULT LDL_CALL SetSurfaceDesc(LPDDSURFACEDESC2, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL SetSurfaceDesc(LPDDSURFACEDESC2, DWORD) = 0;
             /*** Added in the v4 interface ***/
-            virtual HRESULT LDL_CALL SetPrivateData(const GUID&, LPVOID, DWORD, DWORD) = 0;
-            virtual HRESULT LDL_CALL GetPrivateData(const GUID&, LPVOID, LPDWORD) = 0;
-            virtual HRESULT LDL_CALL FreePrivateData(const GUID&) = 0;
-            virtual HRESULT LDL_CALL GetUniquenessValue(LPDWORD) = 0;
-            virtual HRESULT LDL_CALL ChangeUniquenessValue() = 0;
+            virtual HRESULT LDL_API_CALL SetPrivateData(const GUID&, LPVOID, DWORD, DWORD) = 0;
+            virtual HRESULT LDL_API_CALL GetPrivateData(const GUID&, LPVOID, LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL FreePrivateData(const GUID&) = 0;
+            virtual HRESULT LDL_API_CALL GetUniquenessValue(LPDWORD) = 0;
+            virtual HRESULT LDL_API_CALL ChangeUniquenessValue() = 0;
         };
 
         /*
@@ -1026,12 +1026,12 @@ namespace LDL
         struct  IDirectDrawColorControl : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
             /*** IDirectDrawColorControl methods ***/
-            virtual HRESULT LDL_CALL GetColorControls(LPDDCOLORCONTROL) = 0;
-            virtual HRESULT LDL_CALL SetColorControls(LPDDCOLORCONTROL) = 0;
+            virtual HRESULT LDL_API_CALL GetColorControls(LPDDCOLORCONTROL) = 0;
+            virtual HRESULT LDL_API_CALL SetColorControls(LPDDCOLORCONTROL) = 0;
         };
 
         /*
@@ -1040,12 +1040,12 @@ namespace LDL
         struct  IDirectDrawGammaControl : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, LPVOID* ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
             /*** IDirectDrawColorControl methods ***/
-            virtual HRESULT LDL_CALL GetGammaRamp(DWORD, LPDDGAMMARAMP) = 0;
-            virtual HRESULT LDL_CALL SetGammaRamp(DWORD, LPDDGAMMARAMP) = 0;
+            virtual HRESULT LDL_API_CALL GetGammaRamp(DWORD, LPDDGAMMARAMP) = 0;
+            virtual HRESULT LDL_API_CALL SetGammaRamp(DWORD, LPDDGAMMARAMP) = 0;
         };
 
         /*

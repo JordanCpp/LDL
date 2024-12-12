@@ -1,5 +1,4 @@
 #include "WindowImplGlide.hpp"
-#include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Events;

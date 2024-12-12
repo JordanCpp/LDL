@@ -21,7 +21,7 @@ namespace LDL
 			Graphics::Surface* Result();
 			bool RenderText(const std::string& text, Font* font, const Graphics::Color& color);
 		private:
-			RasterizerImpl* _RasterizerImpl;
+			RasterizerImpl* _impl;
 		};
 	}
 }

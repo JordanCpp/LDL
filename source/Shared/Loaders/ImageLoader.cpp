@@ -1,5 +1,5 @@
 #include <LDL/Loaders/ImageLoader.hpp>
-#include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Core/Assert.hpp>
 #include <string.h>
 
 static LDL::Allocators::Allocator* StbImageAllocator;
@@ -43,13 +43,13 @@ using namespace LDL::Loaders;
 using namespace LDL::Math;
 
 ImageLoader::ImageLoader(LDL::Allocators::Allocator* allocator) :
-	_Allocator(allocator),
-	_BytesPerPixel(0),
-	_Pixels(NULL)
+	_allocator(allocator),
+	_bytesPerPixel(0),
+	_pixels(NULL)
 {
 	assert(allocator != NULL);
 
-	StbImageAllocator = _Allocator;
+	StbImageAllocator = _allocator;
 }
 
 ImageLoader::~ImageLoader()
@@ -59,25 +59,25 @@ ImageLoader::~ImageLoader()
 
 void ImageLoader::Clear()
 {
-	_Allocator->Reset();
-	_Pixels = NULL;
-	_Size = Vec2u(0, 0);
-	_BytesPerPixel = 0;
+	_allocator->Reset();
+	_pixels = NULL;
+	_size = Vec2u(0, 0);
+	_bytesPerPixel = 0;
 }
 
 const Vec2u& ImageLoader::Size()
 {
-	return _Size;
+	return _size;
 }
 
 uint8_t ImageLoader::BytesPerPixel()
 {
-	return _BytesPerPixel;
+	return _bytesPerPixel;
 }
 
 uint8_t* ImageLoader::Pixels()
 {
-	return _Pixels;
+	return _pixels;
 }
 
 void ImageLoader::CopyIf(uint8_t* dstPixels, uint8_t * srcPixels, size_t bytes, const Color& color, uint8_t alpha)
@@ -99,15 +99,14 @@ void ImageLoader::CopyIf(uint8_t* dstPixels, uint8_t * srcPixels, size_t bytes, 
 			dstPixels[4 * i + 3] = alpha;
 		}
 
-		_Pixels = dstPixels;
-		_BytesPerPixel = 4;
+		_pixels = dstPixels;
+		_bytesPerPixel = 4;
 	}
 }
 
 void ImageLoader::Load(const std::string& path)
 {
-	if (path.empty())
-		throw LDL::Core::RuntimeError("Argument path is empty");
+	LDL_ASSERT_DETAIL(!path.empty(), "Argument path is empty");
 
 	Clear();
 
@@ -115,13 +114,12 @@ void ImageLoader::Load(const std::string& path)
 	int height        = 0;
 	int bytesPerPixel = 0;
 
-	_Pixels = stbi_load(path.c_str(), &width, &height, &bytesPerPixel, STBI_default);
+	_pixels = stbi_load(path.c_str(), &width, &height, &bytesPerPixel, STBI_default);
 
-	if (width <= 0 || height <= 0 || bytesPerPixel <= 0 || _Pixels == NULL)
-		throw LDL::Core::RuntimeError("stbi_load " + path + " failed");
+	LDL_ASSERT_DETAIL(_pixels != NULL, "stbi_load " + path + " failed");
 
-	_Size = Vec2u(width, height);
-	_BytesPerPixel = bytesPerPixel;
+	_size = Vec2u(width, height);
+	_bytesPerPixel = bytesPerPixel;
 }
 
 void ImageLoader::Load(const Color& color, const std::string& path)
@@ -132,7 +130,7 @@ void ImageLoader::Load(const Color& color, const std::string& path)
 
 	size_t dstBytes = Size().x * Size().y * 4;
 
-	uint8_t* dstPixels = (uint8_t*)_Allocator->Allocate(dstBytes);
+	uint8_t* dstPixels = (uint8_t*)_allocator->Allocate(dstBytes);
 
 	CopyIf(dstPixels, srcPixels, dstBytes, color, 255);
 }
@@ -148,13 +146,12 @@ void ImageLoader::Load(uint8_t* data, size_t bytes)
 	int height        = 0;
 	int bytesPerPixel = 0;
 
-	_Pixels = stbi_load_from_memory(data, (int)bytes, &width, &height, &bytesPerPixel, 0);
+	_pixels = stbi_load_from_memory(data, (int)bytes, &width, &height, &bytesPerPixel, 0);
 
-	if (width <= 0 || height <= 0 || bytesPerPixel <= 0 || _Pixels == NULL)
-		throw LDL::Core::RuntimeError("stbi_load_from_memory failed");
+	LDL_ASSERT_DETAIL(_pixels != NULL, "stbi_load_from_memory failed");
 
-	_Size = Vec2u(width, height);
-	_BytesPerPixel = bytesPerPixel;
+	_size = Vec2u(width, height);
+	_bytesPerPixel = bytesPerPixel;
 }
 
 void ImageLoader::Load(const Color& color, uint8_t* data, size_t bytes)
@@ -165,7 +162,7 @@ void ImageLoader::Load(const Color& color, uint8_t* data, size_t bytes)
 
 	size_t dstBytes = Size().x * Size().y * 4;
 
-	uint8_t* dstPixels = (uint8_t*)_Allocator->Allocate(dstBytes);
+	uint8_t* dstPixels = (uint8_t*)_allocator->Allocate(dstBytes);
 
 	CopyIf(dstPixels, srcPixels, dstBytes, color, 255);
 }

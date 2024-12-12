@@ -14,8 +14,8 @@ const char* NumberToString::Convert(intmax_t num, uint8_t base)
     /* Handle 0 explicitly, otherwise empty string is printed for 0 */
     if (num == 0)
     {
-        _Buffer[i++] = '0';
-        _Buffer[i] = '\0';
+        _buffer[i++] = '0';
+        _buffer[i] = '\0';
     }
 
     // In standard itoa(), negative numbers are handled only with
@@ -30,20 +30,20 @@ const char* NumberToString::Convert(intmax_t num, uint8_t base)
     while (num != 0)
     {
         int rem = num % base;
-        _Buffer[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
+        _buffer[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
         num = num / base;
     }
 
     // If number is negative, append '-'
     if (isNegative)
-        _Buffer[i++] = '-';
+        _buffer[i++] = '-';
 
-    _Buffer[i] = '\0'; // Append string terminator
+    _buffer[i] = '\0'; // Append string terminator
 
     // Reverse the string
-    Reverse(_Buffer, i);
+    Reverse(_buffer, i);
 
-    return _Buffer;
+    return _buffer;
 }
 
 void NumberToString::Swap(char& t1, char& t2)

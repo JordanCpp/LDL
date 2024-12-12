@@ -1,6 +1,5 @@
 #include <LDL/Graphics/RenderContext.hpp>
 #include <LDL/Enums/RenderMode.hpp>
-#include <LDL/Core/RuntimeError.hpp>
 
 #include "Creators/RenderContextImplCreator.hpp"
 
@@ -12,25 +11,25 @@ RenderContext::RenderContext(size_t mode)
 {
     RenderContextImplCreator creator;
 	
-	_RenderContextImpl = creator.Create(mode);
+	_impl = creator.Create(mode);
 }
 
 RenderContext::~RenderContext()
 {
-	delete _RenderContextImpl;
+	delete _impl;
 }
 
 RenderContextImpl* RenderContext::GetRenderContextImpl()
 {
-	return _RenderContextImpl;
+	return _impl;
 }
 
 size_t RenderContext::Mode()
 {
-    return _RenderContextImpl->Mode();
+    return _impl->Mode();
 }
 
 void* RenderContext::Context()
 {
-	return _RenderContextImpl;
+	return _impl;
 }

@@ -4,10 +4,10 @@ using namespace LDL::Core;
 
 const std::string& FileInfo::Name()
 {
-	return _Name;
+	return _name;
 }
 
 void FileInfo::Name(const std::string& source)
 {
-	_Name = source;
+	_name = source;
 }

@@ -1,7 +1,6 @@
 #ifndef LDL_Graphics_VideoMode_hpp
 #define LDL_Graphics_VideoMode_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Math/Vec2.hpp>
 
 namespace LDL
@@ -20,8 +19,8 @@ namespace LDL
 			const Math::Vec2u& Size();
 			size_t BitsPerPixel();
 		private:
-			LDL::Math::Vec2u _Size;
-			size_t _BitsPerPixel;
+			LDL::Math::Vec2u _size;
+			size_t           _bitsPerPixel;
 		};
 	}
 }

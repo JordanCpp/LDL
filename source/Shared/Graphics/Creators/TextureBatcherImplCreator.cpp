@@ -1,5 +1,4 @@
 #include "TextureImplCreator.hpp"
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Enums/RenderMode.hpp>
 
 #include "../Renders/Software/TextureBatcherImplSoftware.hpp"
@@ -8,6 +7,7 @@
 #include "../Renders/Glide/TextureBatcherImplGlide.hpp"
 
 #include "TextureBatcherImplCreator.hpp"
+#include <LDL/Core/Assert.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Enums;
@@ -17,11 +17,13 @@ using namespace LDL::Graphics::Creators;
 
 TextureBatcherImpl* TextureBatcherImplCreator::Create(RenderContext* renderContext, Texture* texture, size_t count)
 {
-	size_t renderMode = renderContext->Mode();
+	size_t mode = renderContext->Mode();
+
+	LDL_ASSERT_DETAIL(mode < RenderMode::Max, "Unknown graphics mode");
 
 	TextureBatcherImpl* result = NULL;
 
-	switch (renderMode)
+	switch (mode)
 	{
 	case RenderMode::Software:
 		result = new TextureBatcherImplSoftware(texture, count);
@@ -34,9 +36,6 @@ TextureBatcherImpl* TextureBatcherImplCreator::Create(RenderContext* renderConte
 		break;
 	case RenderMode::Glide:
 		result = new TextureBatcherImplGlide(texture, count);
-		break;
-	default:
-		throw RuntimeError("Unknown graphics mode");
 		break;
 	}
 

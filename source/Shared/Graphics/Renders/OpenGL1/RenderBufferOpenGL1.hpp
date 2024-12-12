@@ -14,7 +14,7 @@ namespace LDL
 		class TextureElement
 		{
 		public:
-			uint8_t type;
+			uint8_t   type;
 			uint16_t  textureId;
 			uint16_t  textureQuad;
 			uint16_t  dstPosX;
@@ -30,10 +30,10 @@ namespace LDL
 		class LineElement
 		{
 		public:
-			uint8_t type;
-			uint8_t r;
-			uint8_t g;
-			uint8_t b;
+			uint8_t  type;
+			uint8_t  r;
+			uint8_t  g;
+			uint8_t  b;
 			uint16_t firstX;
 			uint16_t firstY;
 			uint16_t lastX;
@@ -43,10 +43,10 @@ namespace LDL
 		class FillElement
 		{
 		public:
-			uint8_t type;
-			uint8_t r;
-			uint8_t g;
-			uint8_t b;
+			uint8_t  type;
+			uint8_t  r;
+			uint8_t  g;
+			uint8_t  b;
 			uint16_t posX;
 			uint16_t posY;
 			uint16_t sizeX;
@@ -65,9 +65,9 @@ namespace LDL
 		class TextureBatcherElement
 		{
 		public:
-			uint8_t type;
-			size_t texture;
-			size_t count;
+			uint8_t     type;
+			size_t      texture;
+			size_t      count;
 			Util::Quad* quads;
 		};
 
@@ -87,10 +87,10 @@ namespace LDL
 
 			union
 			{
-				TextureElement textureElement;
-				LineElement    lineElement;
-				FillElement    fillElement;
-				ClearElement   clearElement;
+				TextureElement        textureElement;
+				LineElement           lineElement;
+				FillElement           fillElement;
+				ClearElement          clearElement;
 				TextureBatcherElement textureBatcherElement;
 			};
 		};
@@ -112,7 +112,7 @@ namespace LDL
 			void Draw(ClearElement& src);
 			void Draw(TextureBatcherElement& src);
 		private:
-			std::vector<RenderElement> _Elements;
+			std::vector<RenderElement> _elements;
 		};
 	}
 }

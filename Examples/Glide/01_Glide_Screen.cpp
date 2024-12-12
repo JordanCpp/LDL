@@ -1,10 +1,7 @@
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Enums/RenderMode.hpp>
 #include <LDL/APIs/Glide/GlideLoader.hpp>
-
-#include <iostream>
 
 using namespace LDL::Glide;
 using namespace LDL::Graphics;
@@ -15,8 +12,6 @@ using namespace LDL::Math;
 
 int main()
 {
-	try
-	{
 		GlideLoader glideLoader;
 		RenderContext renderContext(RenderMode::Glide);
 		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "01_Glide_Line");
@@ -54,11 +49,6 @@ int main()
 
 			grGlideShutdown();
 		}
-	}
-	catch (const RuntimeError& error)
-	{
-		std::cout << error.what() << '\n';
-	}
 
 	return 0;
 }

@@ -4,16 +4,16 @@
 using namespace LDL::Text;
 
 RasterizerContext::RasterizerContext() :
-	_RasterizerContextImpl(new RasterizerContextImpl)
+	_impl(new RasterizerContextImpl)
 {
 }
 
 RasterizerContext::~RasterizerContext()
 {
-	delete _RasterizerContextImpl;
+	delete _impl;
 }
 
 RasterizerContextImpl* RasterizerContext::GetRasterizerContextImpl()
 {
-	return _RasterizerContextImpl;
+	return _impl;
 }

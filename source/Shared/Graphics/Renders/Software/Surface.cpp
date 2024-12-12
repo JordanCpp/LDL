@@ -6,108 +6,108 @@ using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 Surface::Surface(const Vec2u& size, uint8_t bytesPerPixel) :
-	_Capacity(size),
-	_Size(_Capacity),
-	_BytesPerPixel(bytesPerPixel),
-	_Pixels(NULL)
+	_capacity(size),
+	_size(_capacity),
+	_bytesPerPixel(bytesPerPixel),
+	_pixels(NULL)
 {
-	assert(_Capacity.x > 0);
-	assert(_Capacity.y > 0);
+	assert(_capacity.x > 0);
+	assert(_capacity.y > 0);
 
-	assert(_Size.x > 0);
-	assert(_Size.y > 0);
+	assert(_size.x > 0);
+	assert(_size.y > 0);
 
-	assert(_BytesPerPixel > 0);
+	assert(_bytesPerPixel > 0);
 
-	size_t bytes = _Size.x * _Size.y * _BytesPerPixel;
+	size_t bytes = _size.x * _size.y * _bytesPerPixel;
 
-	_Pixels = new uint8_t[bytes];
+	_pixels = new uint8_t[bytes];
 }
 
 Surface::Surface(const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
-	_Capacity(size),
-	_Size(_Capacity),
-	_BytesPerPixel(bytesPerPixel),
-	_Pixels(NULL)
+	_capacity(size),
+	_size(_capacity),
+	_bytesPerPixel(bytesPerPixel),
+	_pixels(NULL)
 {
-	assert(_Capacity.x > 0);
-	assert(_Capacity.y > 0);
+	assert(_capacity.x > 0);
+	assert(_capacity.y > 0);
 
-	assert(_Size.x > 0);
-	assert(_Size.y > 0);
+	assert(_size.x > 0);
+	assert(_size.y > 0);
 
-	assert(_BytesPerPixel > 0);
+	assert(_bytesPerPixel > 0);
 
 	assert(pixels != NULL);
 
-	size_t bytes = _Size.x * _Size.y * _BytesPerPixel;
+	size_t bytes = _size.x * _size.y * _bytesPerPixel;
 
-	_Pixels = new uint8_t[_Size.x * _Size.y * _BytesPerPixel];
+	_pixels = new uint8_t[_size.x * _size.y * _bytesPerPixel];
 
-	memcpy(_Pixels, pixels, bytes);
+	memcpy(_pixels, pixels, bytes);
 }
 
 Surface::Surface(const Vec2u& size, const Vec2u& capacity, uint8_t bytesPerPixel) :
-	_Capacity(capacity),
-	_Size(size),
-	_BytesPerPixel(bytesPerPixel),
-	_Pixels(NULL)
+	_capacity(capacity),
+	_size(size),
+	_bytesPerPixel(bytesPerPixel),
+	_pixels(NULL)
 {
-	assert(_Capacity.x > 0);
-	assert(_Capacity.y > 0);
+	assert(_capacity.x > 0);
+	assert(_capacity.y > 0);
 
-	assert(_Size.x > 0);
-	assert(_Size.y > 0);
+	assert(_size.x > 0);
+	assert(_size.y > 0);
 
-	assert(_BytesPerPixel > 0);
+	assert(_bytesPerPixel > 0);
 
-	size_t bytes = _Size.x * _Size.y * _BytesPerPixel;
+	size_t bytes = _size.x * _size.y * _bytesPerPixel;
 
-	_Pixels = new uint8_t[bytes];
+	_pixels = new uint8_t[bytes];
 }
 
 Surface::Surface(const Vec2u& size, const Vec2u& capacity, uint8_t* pixels, uint8_t bytesPerPixel) :
-	_Capacity(capacity),
-	_Size(size),
-	_BytesPerPixel(bytesPerPixel),
-	_Pixels(NULL)
+	_capacity(capacity),
+	_size(size),
+	_bytesPerPixel(bytesPerPixel),
+	_pixels(NULL)
 {
-	assert(_Capacity.x > 0);
-	assert(_Capacity.y > 0);
+	assert(_capacity.x > 0);
+	assert(_capacity.y > 0);
 
-	assert(_Size.x > 0);
-	assert(_Size.y > 0);
+	assert(_size.x > 0);
+	assert(_size.y > 0);
 
-	assert(_BytesPerPixel > 0);
+	assert(_bytesPerPixel > 0);
 
 	assert(pixels != NULL);
 
-	size_t bytes = _Size.x * _Size.y * _BytesPerPixel;
+	size_t bytes = _size.x * _size.y * _bytesPerPixel;
 
-	_Pixels = new uint8_t[_Size.x * _Size.y * _BytesPerPixel];
+	_pixels = new uint8_t[_size.x * _size.y * _bytesPerPixel];
 
-	memcpy(_Pixels, pixels, bytes);
+	memcpy(_pixels, pixels, bytes);
 }
 
 Surface::~Surface()
 {
-	delete[] _Pixels;
+	delete[] _pixels;
 }
 
 const Vec2u& Surface::Capacity()
 {
-	return _Capacity;
+	return _capacity;
 }
 
 const Vec2u& Surface::Size()
 {
-	return _Size;
+	return _size;
 }
 
 void Surface::Resize(const Vec2u& size)
 {
 	if (size.x <= Capacity().x && size.y <= Capacity().y)
-		_Size = size;
+		_size = size;
 }
 
 void Surface::Clear()
@@ -117,17 +117,17 @@ void Surface::Clear()
 
 uint8_t Surface::BytesPerPixel()
 {
-	return _BytesPerPixel;
+	return _bytesPerPixel;
 }
 
 uint8_t* Surface::Pixels()
 {
-	return _Pixels;
+	return _pixels;
 }
 
 Color Surface::Pixel(const Vec2u& pos)
 {
-	size_t i = ((Size().x * pos.y) + pos.x) * _BytesPerPixel;
+	size_t i = ((Size().x * pos.y) + pos.x) * _bytesPerPixel;
 
-	return Color(_Pixels[i], _Pixels[i + 1], _Pixels[i + 2]);
+	return Color(_pixels[i], _pixels[i + 1], _pixels[i + 2]);
 }

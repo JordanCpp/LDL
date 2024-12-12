@@ -1,7 +1,6 @@
 #ifndef LDL_Allocators_FixedLinear_hpp
 #define LDL_Allocators_FixedLinear_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Allocators/Allocator.hpp>
 
 namespace LDL
@@ -18,10 +17,10 @@ namespace LDL
 			void Reset();
 			size_t UsedBytes();
 		private:
-			size_t _Capacity;
-			size_t _Position;
-			uint8_t* _Content;
-			Allocator* _Allocator;
+			size_t     _capacity;
+			size_t     _position;
+			uint8_t*   _content;
+			Allocator* _allocator;
 		};
 	}
 }

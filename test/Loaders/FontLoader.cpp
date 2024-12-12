@@ -1,14 +1,16 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Loaders/FontLoader.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
-#include <LDL/Core/RuntimeError.hpp>
 
-const size_t bytes = LDL::Allocators::Allocator::Mb * 1;
+using namespace LDL::Allocators;
+using namespace LDL::Loaders;
+
+const size_t bytes = Allocator::Mb * 1;
 
 void Init()
 {
-	LDL::Allocators::FixedLinear allocator(bytes);
-	LDL::Loaders::FontLoader fontLoader(&allocator);
+	FixedLinear allocator(bytes);
+	FontLoader fontLoader(&allocator);
 
 	LDL_TEST_EQUAL(fontLoader.Font() == NULL);
 	LDL_TEST_EQUAL(fontLoader.Size() == 0);
@@ -16,10 +18,10 @@ void Init()
 
 void Load()
 {
-	LDL::Allocators::FixedLinear allocator(bytes);
-	LDL::Loaders::FontLoader fontLoader(&allocator);
+	FixedLinear allocator(bytes);
+	FontLoader fontLoader(&allocator);
 
-	LDL_TEST_EXCEPTION(fontLoader.Load("TestFiles/cmunrm.ttf"));
+	//LDL_TEST_EXCEPTION(fontLoader.Load("TestFiles/cmunrm.ttf"));
 
 	LDL_TEST_EQUAL(fontLoader.Font() != NULL);
 	LDL_TEST_EQUAL(fontLoader.Size() == 235656);
@@ -27,10 +29,10 @@ void Load()
 
 void Clear()
 {
-	LDL::Allocators::FixedLinear allocator(bytes);
-	LDL::Loaders::FontLoader fontLoader(&allocator);
+	FixedLinear allocator(bytes);
+	FontLoader fontLoader(&allocator);
 
-	LDL_TEST_EXCEPTION(fontLoader.Load("TestFiles/cmunrm.ttf"));
+	//LDL_TEST_EXCEPTION(fontLoader.Load("TestFiles/cmunrm.ttf"));
 
 	fontLoader.Clear();
 

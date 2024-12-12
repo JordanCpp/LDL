@@ -1,7 +1,6 @@
 #ifndef LDL_Core_FastPimpl_hpp
 #define LDL_Core_FastPimpl_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Core/Types.hpp>
 
 namespace LDL

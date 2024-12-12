@@ -16,7 +16,7 @@ namespace LDL
 			~Screenshoter();
 			void Shot();
 		private:
-			ScreenshoterImpl* _ScreenshoterImpl;
+			ScreenshoterImpl* _impl;
 		};
 	}
 }

@@ -17,7 +17,7 @@ namespace LDL
 			~Sound();
 			SoundImpl* GetSoundImpl();
 		private:
-			SoundImpl* _SoundImpl;
+			SoundImpl* _impl;
 		};
 	}
 }

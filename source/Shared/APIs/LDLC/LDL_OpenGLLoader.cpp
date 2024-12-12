@@ -5,12 +5,12 @@ using namespace LDL;
 
 struct LDL_OpenGLLoader
 {
-	OpenGLLoader _OpenGLLoader;
+	OpenGLLoader _openGLLoader;
 	LDL_OpenGLLoader(size_t major, size_t minor);
 };
 
 LDL_OpenGLLoader::LDL_OpenGLLoader(size_t major, size_t minor) :
-	_OpenGLLoader(major, minor)
+	_openGLLoader(major, minor)
 {
 }
 

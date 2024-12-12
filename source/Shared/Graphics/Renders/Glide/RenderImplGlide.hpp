@@ -38,10 +38,10 @@ namespace LDL
 			void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
 			void Draw(TextureBatcher* textureBatcher);
 		private:
-			LDL::Glide::GlideLoader _GlideLoader;
-			Window* _Window;
-			LDL::Graphics::Color _Color;
-			RenderContextImpl* _RenderContextImpl;
+			LDL::Glide::GlideLoader _glideLoader;
+			Window*                 _window;
+			LDL::Graphics::Color    _color;
+			RenderContextImpl*      _renderContextImpl;
 		};
 	}
 }

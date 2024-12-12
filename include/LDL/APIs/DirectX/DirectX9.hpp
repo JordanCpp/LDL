@@ -1,44 +1,47 @@
 #ifndef LDL_DirectX_DirectX9_hpp
 #define LDL_DirectX_DirectX9_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Core/Types.hpp>
 
 namespace LDL
 {
     namespace DirectX9
     {
-        typedef struct _GUID {
+        typedef struct _GUID 
+        {
             unsigned long  Data1;
             unsigned short Data2;
             unsigned short Data3;
             unsigned char  Data4[8];
         } GUID;
 
-        typedef GUID IID;
-        typedef long HRESULT;
-        typedef unsigned long ULONG;
-        typedef unsigned int        UINT;
-        typedef unsigned long       DWORD;
-        typedef  void* HWND;
-        typedef long LONG;
-        typedef unsigned short      WORD;
-        typedef unsigned char       BYTE;
-        typedef int                 BOOL;
-        typedef int                 INT;
-        typedef double LONGLONG;
-        typedef void* HMONITOR;
-        typedef void* HANDLE;
-        typedef  void* HDC;
+        typedef                GUID IID;
+        typedef long           HRESULT;
+        typedef unsigned long  ULONG;
+        typedef unsigned int   UINT;
+        typedef unsigned long  DWORD;
+        typedef void*          HWND;
+        typedef long           LONG;
+        typedef unsigned short WORD;
+        typedef unsigned char  BYTE;
+        typedef int            BOOL;
+        typedef int            INT;
+        typedef double         LONGLONG;
+        typedef void*          HMONITOR;
+        typedef void*          HANDLE;
+        typedef void*          HDC;
 
 #define MAKEFOURCC(ch0, ch1, ch2, ch3) ((DWORD)(BYTE)(ch0) | ((DWORD)(BYTE)(ch1) << 8) | ((DWORD)(BYTE)(ch2) << 16) | ((DWORD)(BYTE)(ch3) << 24 ))
 
-        typedef union _LARGE_INTEGER {
-            struct {
+        typedef union _LARGE_INTEGER 
+        {
+            struct 
+            {
                 DWORD LowPart;
                 LONG HighPart;
             } DUMMYSTRUCTNAME;
-            struct {
+            struct 
+            {
                 DWORD LowPart;
                 LONG HighPart;
             } u;
@@ -53,7 +56,8 @@ namespace LDL
             LONG    bottom;
         } RECT, * PRECT, * NPRECT, * LPRECT;
 
-        typedef struct _RGNDATAHEADER {
+        typedef struct _RGNDATAHEADER 
+        {
             DWORD   dwSize;
             DWORD   iType;
             DWORD   nCount;
@@ -61,7 +65,8 @@ namespace LDL
             RECT    rcBound;
         } RGNDATAHEADER, * PRGNDATAHEADER;
 
-        typedef struct _RGNDATA {
+        typedef struct _RGNDATA 
+        {
             RGNDATAHEADER   rdh;
             char            Buffer[1];
         } RGNDATA, * PRGNDATA, * NPRGNDATA, * LPRGNDATA;
@@ -72,7 +77,8 @@ namespace LDL
             LONG  y;
         } POINT, * PPOINT, * NPPOINT, * LPPOINT;
 
-        typedef struct tagPALETTEENTRY {
+        typedef struct tagPALETTEENTRY 
+        {
             BYTE        peRed;
             BYTE        peGreen;
             BYTE        peBlue;
@@ -97,7 +103,7 @@ namespace LDL
         typedef struct IDirect3DSwapChain9           IDirect3DSwapChain9;
         typedef struct IDirect3DQuery9               IDirect3DQuery9;
 
-        typedef IDirect3D9* (LDL_CALL* PFNDirect3DCreate9)(UINT SDKVersion);
+        typedef IDirect3D9* (LDL_API_CALL* PFNDirect3DCreate9)(UINT SDKVersion);
 
         // D3DCOLOR is equivalent to D3DFMT_A8R8G8B8
 #ifndef D3DCOLOR_DEFINED
@@ -2320,35 +2326,35 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IUnknown
         {
         public:
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObject) = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObject) = 0;
 
-            virtual ULONG LDL_CALL AddRef(void) = 0;
+            virtual ULONG LDL_API_CALL AddRef(void) = 0;
 
-            virtual ULONG LDL_CALL Release(void) = 0;
+            virtual ULONG LDL_API_CALL Release(void) = 0;
         };
 
         struct IDirect3D9 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3D9 methods ***/
-            virtual HRESULT LDL_CALL RegisterSoftwareDevice(void* pInitializeFunction) = 0;
-            virtual UINT LDL_CALL GetAdapterCount() = 0;
-            virtual HRESULT LDL_CALL GetAdapterIdentifier(UINT Adapter, DWORD Flags, D3DADAPTER_IDENTIFIER9* pIdentifier) = 0;
-            virtual UINT LDL_CALL GetAdapterModeCount(UINT Adapter, D3DFORMAT Format) = 0;
-            virtual HRESULT LDL_CALL EnumAdapterModes(UINT Adapter, D3DFORMAT Format, UINT Mode, D3DDISPLAYMODE* pMode) = 0;
-            virtual HRESULT LDL_CALL GetAdapterDisplayMode(UINT Adapter, D3DDISPLAYMODE* pMode) = 0;
-            virtual HRESULT LDL_CALL CheckDeviceType(UINT iAdapter, D3DDEVTYPE DevType, D3DFORMAT DisplayFormat, D3DFORMAT BackBufferFormat, BOOL bWindowed) = 0;
-            virtual HRESULT LDL_CALL CheckDeviceFormat(UINT Adapter, D3DDEVTYPE DeviceType, D3DFORMAT AdapterFormat, DWORD Usage, D3DRESOURCETYPE RType, D3DFORMAT CheckFormat) = 0;
-            virtual HRESULT LDL_CALL CheckDeviceMultiSampleType(UINT Adapter, D3DDEVTYPE DeviceType, D3DFORMAT SurfaceFormat, BOOL Windowed, D3DMULTISAMPLE_TYPE MultiSampleType, DWORD* pQualityLevels) = 0;
-            virtual HRESULT LDL_CALL CheckDepthStencilMatch(UINT Adapter, D3DDEVTYPE DeviceType, D3DFORMAT AdapterFormat, D3DFORMAT RenderTargetFormat, D3DFORMAT DepthStencilFormat) = 0;
-            virtual HRESULT LDL_CALL CheckDeviceFormatConversion(UINT Adapter, D3DDEVTYPE DeviceType, D3DFORMAT SourceFormat, D3DFORMAT TargetFormat) = 0;
-            virtual HRESULT LDL_CALL GetDeviceCaps(UINT Adapter, D3DDEVTYPE DeviceType, D3DCAPS9* pCaps) = 0;
-            virtual HMONITOR LDL_CALL GetAdapterMonitor(UINT Adapter) = 0;
-            virtual HRESULT LDL_CALL CreateDevice(UINT Adapter, D3DDEVTYPE DeviceType, HWND hFocusWindow, DWORD BehaviorFlags, D3DPRESENT_PARAMETERS* pPresentationParameters, IDirect3DDevice9** ppReturnedDeviceInterface) = 0;
+            virtual HRESULT LDL_API_CALL RegisterSoftwareDevice(void* pInitializeFunction) = 0;
+            virtual UINT LDL_API_CALL GetAdapterCount() = 0;
+            virtual HRESULT LDL_API_CALL GetAdapterIdentifier(UINT Adapter, DWORD Flags, D3DADAPTER_IDENTIFIER9* pIdentifier) = 0;
+            virtual UINT LDL_API_CALL GetAdapterModeCount(UINT Adapter, D3DFORMAT Format) = 0;
+            virtual HRESULT LDL_API_CALL EnumAdapterModes(UINT Adapter, D3DFORMAT Format, UINT Mode, D3DDISPLAYMODE* pMode) = 0;
+            virtual HRESULT LDL_API_CALL GetAdapterDisplayMode(UINT Adapter, D3DDISPLAYMODE* pMode) = 0;
+            virtual HRESULT LDL_API_CALL CheckDeviceType(UINT iAdapter, D3DDEVTYPE DevType, D3DFORMAT DisplayFormat, D3DFORMAT BackBufferFormat, BOOL bWindowed) = 0;
+            virtual HRESULT LDL_API_CALL CheckDeviceFormat(UINT Adapter, D3DDEVTYPE DeviceType, D3DFORMAT AdapterFormat, DWORD Usage, D3DRESOURCETYPE RType, D3DFORMAT CheckFormat) = 0;
+            virtual HRESULT LDL_API_CALL CheckDeviceMultiSampleType(UINT Adapter, D3DDEVTYPE DeviceType, D3DFORMAT SurfaceFormat, BOOL Windowed, D3DMULTISAMPLE_TYPE MultiSampleType, DWORD* pQualityLevels) = 0;
+            virtual HRESULT LDL_API_CALL CheckDepthStencilMatch(UINT Adapter, D3DDEVTYPE DeviceType, D3DFORMAT AdapterFormat, D3DFORMAT RenderTargetFormat, D3DFORMAT DepthStencilFormat) = 0;
+            virtual HRESULT LDL_API_CALL CheckDeviceFormatConversion(UINT Adapter, D3DDEVTYPE DeviceType, D3DFORMAT SourceFormat, D3DFORMAT TargetFormat) = 0;
+            virtual HRESULT LDL_API_CALL GetDeviceCaps(UINT Adapter, D3DDEVTYPE DeviceType, D3DCAPS9* pCaps) = 0;
+            virtual HMONITOR LDL_API_CALL GetAdapterMonitor(UINT Adapter) = 0;
+            virtual HRESULT LDL_API_CALL CreateDevice(UINT Adapter, D3DDEVTYPE DeviceType, HWND hFocusWindow, DWORD BehaviorFlags, D3DPRESENT_PARAMETERS* pPresentationParameters, IDirect3DDevice9** ppReturnedDeviceInterface) = 0;
         };
 
         typedef struct IDirect3D9* LPDIRECT3D9, * PDIRECT3D9;
@@ -2360,127 +2366,127 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DDevice9 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DDevice9 methods ***/
-            virtual HRESULT LDL_CALL TestCooperativeLevel() = 0;
-            virtual UINT LDL_CALL GetAvailableTextureMem() = 0;
-            virtual HRESULT LDL_CALL EvictManagedResources() = 0;
-            virtual HRESULT LDL_CALL GetDirect3D(IDirect3D9** ppD3D9) = 0;
-            virtual HRESULT LDL_CALL GetDeviceCaps(D3DCAPS9* pCaps) = 0;
-            virtual HRESULT LDL_CALL GetDisplayMode(UINT iSwapChain, D3DDISPLAYMODE* pMode) = 0;
-            virtual HRESULT LDL_CALL GetCreationParameters(D3DDEVICE_CREATION_PARAMETERS* pParameters) = 0;
-            virtual HRESULT LDL_CALL SetCursorProperties(UINT XHotSpot, UINT YHotSpot, IDirect3DSurface9* pCursorBitmap) = 0;
-            virtual void LDL_CALL SetCursorPosition(int X, int Y, DWORD Flags) = 0;
-            virtual BOOL LDL_CALL ShowCursor(BOOL bShow) = 0;
-            virtual HRESULT LDL_CALL CreateAdditionalSwapChain(D3DPRESENT_PARAMETERS* pPresentationParameters, IDirect3DSwapChain9** pSwapChain) = 0;
-            virtual HRESULT LDL_CALL GetSwapChain(UINT iSwapChain, IDirect3DSwapChain9** pSwapChain) = 0;
-            virtual UINT LDL_CALL GetNumberOfSwapChains() = 0;
-            virtual HRESULT LDL_CALL Reset(D3DPRESENT_PARAMETERS* pPresentationParameters) = 0;
-            virtual HRESULT LDL_CALL Present(const RECT* pSourceRect, const RECT* pDestRect, HWND hDestWindowOverride, const RGNDATA* pDirtyRegion) = 0;
-            virtual HRESULT LDL_CALL GetBackBuffer(UINT iSwapChain, UINT iBackBuffer, D3DBACKBUFFER_TYPE Type, IDirect3DSurface9** ppBackBuffer) = 0;
-            virtual HRESULT LDL_CALL GetRasterStatus(UINT iSwapChain, D3DRASTER_STATUS* pRasterStatus) = 0;
-            virtual HRESULT LDL_CALL SetDialogBoxMode(BOOL bEnableDialogs) = 0;
-            virtual void LDL_CALL SetGammaRamp(UINT iSwapChain, DWORD Flags, const D3DGAMMARAMP* pRamp) = 0;
-            virtual void LDL_CALL GetGammaRamp(UINT iSwapChain, D3DGAMMARAMP* pRamp) = 0;
-            virtual HRESULT LDL_CALL CreateTexture(UINT Width, UINT Height, UINT Levels, DWORD Usage, D3DFORMAT Format, D3DPOOL Pool, IDirect3DTexture9** ppTexture, HANDLE* pSharedHandle) = 0;
-            virtual HRESULT LDL_CALL CreateVolumeTexture(UINT Width, UINT Height, UINT Depth, UINT Levels, DWORD Usage, D3DFORMAT Format, D3DPOOL Pool, IDirect3DVolumeTexture9** ppVolumeTexture, HANDLE* pSharedHandle) = 0;
-            virtual HRESULT LDL_CALL CreateCubeTexture(UINT EdgeLength, UINT Levels, DWORD Usage, D3DFORMAT Format, D3DPOOL Pool, IDirect3DCubeTexture9** ppCubeTexture, HANDLE* pSharedHandle) = 0;
-            virtual HRESULT LDL_CALL CreateVertexBuffer(UINT Length, DWORD Usage, DWORD FVF, D3DPOOL Pool, IDirect3DVertexBuffer9** ppVertexBuffer, HANDLE* pSharedHandle) = 0;
-            virtual HRESULT LDL_CALL CreateIndexBuffer(UINT Length, DWORD Usage, D3DFORMAT Format, D3DPOOL Pool, IDirect3DIndexBuffer9** ppIndexBuffer, HANDLE* pSharedHandle) = 0;
-            virtual HRESULT LDL_CALL CreateRenderTarget(UINT Width, UINT Height, D3DFORMAT Format, D3DMULTISAMPLE_TYPE MultiSample, DWORD MultisampleQuality, BOOL Lockable, IDirect3DSurface9** ppSurface, HANDLE* pSharedHandle) = 0;
-            virtual HRESULT LDL_CALL CreateDepthStencilSurface(UINT Width, UINT Height, D3DFORMAT Format, D3DMULTISAMPLE_TYPE MultiSample, DWORD MultisampleQuality, BOOL Discard, IDirect3DSurface9** ppSurface, HANDLE* pSharedHandle) = 0;
-            virtual HRESULT LDL_CALL UpdateSurface(IDirect3DSurface9* pSourceSurface, const RECT* pSourceRect, IDirect3DSurface9* pDestinationSurface, const POINT* pDestPoint) = 0;
-            virtual HRESULT LDL_CALL UpdateTexture(IDirect3DBaseTexture9* pSourceTexture, IDirect3DBaseTexture9* pDestinationTexture) = 0;
-            virtual HRESULT LDL_CALL GetRenderTargetData(IDirect3DSurface9* pRenderTarget, IDirect3DSurface9* pDestSurface) = 0;
-            virtual HRESULT LDL_CALL GetFrontBufferData(UINT iSwapChain, IDirect3DSurface9* pDestSurface) = 0;
-            virtual HRESULT LDL_CALL StretchRect(IDirect3DSurface9* pSourceSurface, const RECT* pSourceRect, IDirect3DSurface9* pDestSurface, const RECT* pDestRect, D3DTEXTUREFILTERTYPE Filter) = 0;
-            virtual HRESULT LDL_CALL ColorFill(IDirect3DSurface9* pSurface, const RECT* pRect, D3DCOLOR color) = 0;
-            virtual HRESULT LDL_CALL CreateOffscreenPlainSurface(UINT Width, UINT Height, D3DFORMAT Format, D3DPOOL Pool, IDirect3DSurface9** ppSurface, HANDLE* pSharedHandle) = 0;
-            virtual HRESULT LDL_CALL SetRenderTarget(DWORD RenderTargetIndex, IDirect3DSurface9* pRenderTarget) = 0;
-            virtual HRESULT LDL_CALL GetRenderTarget(DWORD RenderTargetIndex, IDirect3DSurface9** ppRenderTarget) = 0;
-            virtual HRESULT LDL_CALL SetDepthStencilSurface(IDirect3DSurface9* pNewZStencil) = 0;
-            virtual HRESULT LDL_CALL GetDepthStencilSurface(IDirect3DSurface9** ppZStencilSurface) = 0;
-            virtual HRESULT LDL_CALL BeginScene() = 0;
-            virtual HRESULT LDL_CALL EndScene() = 0;
-            virtual HRESULT LDL_CALL Clear(DWORD Count, const D3DRECT* pRects, DWORD Flags, D3DCOLOR Color, float Z, DWORD Stencil) = 0;
-            virtual HRESULT LDL_CALL SetTransform(D3DTRANSFORMSTATETYPE State, const D3DMATRIX* pMatrix) = 0;
-            virtual HRESULT LDL_CALL GetTransform(D3DTRANSFORMSTATETYPE State, D3DMATRIX* pMatrix) = 0;
-            virtual HRESULT LDL_CALL MultiplyTransform(D3DTRANSFORMSTATETYPE, const D3DMATRIX*) = 0;
-            virtual HRESULT LDL_CALL SetViewport(const D3DVIEWPORT9* pViewport) = 0;
-            virtual HRESULT LDL_CALL GetViewport(D3DVIEWPORT9* pViewport) = 0;
-            virtual HRESULT LDL_CALL SetMaterial(const D3DMATERIAL9* pMaterial) = 0;
-            virtual HRESULT LDL_CALL GetMaterial(D3DMATERIAL9* pMaterial) = 0;
-            virtual HRESULT LDL_CALL SetLight(DWORD Index, const D3DLIGHT9*) = 0;
-            virtual HRESULT LDL_CALL GetLight(DWORD Index, D3DLIGHT9*) = 0;
-            virtual HRESULT LDL_CALL LightEnable(DWORD Index, BOOL Enable) = 0;
-            virtual HRESULT LDL_CALL GetLightEnable(DWORD Index, BOOL* pEnable) = 0;
-            virtual HRESULT LDL_CALL SetClipPlane(DWORD Index, const float* pPlane) = 0;
-            virtual HRESULT LDL_CALL GetClipPlane(DWORD Index, float* pPlane) = 0;
-            virtual HRESULT LDL_CALL SetRenderState(D3DRENDERSTATETYPE State, DWORD Value) = 0;
-            virtual HRESULT LDL_CALL GetRenderState(D3DRENDERSTATETYPE State, DWORD* pValue) = 0;
-            virtual HRESULT LDL_CALL CreateStateBlock(D3DSTATEBLOCKTYPE Type, IDirect3DStateBlock9** ppSB) = 0;
-            virtual HRESULT LDL_CALL BeginStateBlock() = 0;
-            virtual HRESULT LDL_CALL EndStateBlock(IDirect3DStateBlock9** ppSB) = 0;
-            virtual HRESULT LDL_CALL SetClipStatus(const D3DCLIPSTATUS9* pClipStatus) = 0;
-            virtual HRESULT LDL_CALL GetClipStatus(D3DCLIPSTATUS9* pClipStatus) = 0;
-            virtual HRESULT LDL_CALL GetTexture(DWORD Stage, IDirect3DBaseTexture9** ppTexture) = 0;
-            virtual HRESULT LDL_CALL SetTexture(DWORD Stage, IDirect3DBaseTexture9* pTexture) = 0;
-            virtual HRESULT LDL_CALL GetTextureStageState(DWORD Stage, D3DTEXTURESTAGESTATETYPE Type, DWORD* pValue) = 0;
-            virtual HRESULT LDL_CALL SetTextureStageState(DWORD Stage, D3DTEXTURESTAGESTATETYPE Type, DWORD Value) = 0;
-            virtual HRESULT LDL_CALL GetSamplerState(DWORD Sampler, D3DSAMPLERSTATETYPE Type, DWORD* pValue) = 0;
-            virtual HRESULT LDL_CALL SetSamplerState(DWORD Sampler, D3DSAMPLERSTATETYPE Type, DWORD Value) = 0;
-            virtual HRESULT LDL_CALL ValidateDevice(DWORD* pNumPasses) = 0;
-            virtual HRESULT LDL_CALL SetPaletteEntries(UINT PaletteNumber, const PALETTEENTRY* pEntries) = 0;
-            virtual HRESULT LDL_CALL GetPaletteEntries(UINT PaletteNumber, PALETTEENTRY* pEntries) = 0;
-            virtual HRESULT LDL_CALL SetCurrentTexturePalette(UINT PaletteNumber) = 0;
-            virtual HRESULT LDL_CALL GetCurrentTexturePalette(UINT* PaletteNumber) = 0;
-            virtual HRESULT LDL_CALL SetScissorRect(const RECT* pRect) = 0;
-            virtual HRESULT LDL_CALL GetScissorRect(RECT* pRect) = 0;
-            virtual HRESULT LDL_CALL SetSoftwareVertexProcessing(BOOL bSoftware) = 0;
-            virtual BOOL LDL_CALL GetSoftwareVertexProcessing() = 0;
-            virtual HRESULT LDL_CALL SetNPatchMode(float nSegments) = 0;
-            virtual float LDL_CALL GetNPatchMode() = 0;
-            virtual HRESULT LDL_CALL DrawPrimitive(D3DPRIMITIVETYPE PrimitiveType, UINT StartVertex, UINT PrimitiveCount) = 0;
-            virtual HRESULT LDL_CALL DrawIndexedPrimitive(D3DPRIMITIVETYPE, INT BaseVertexIndex, UINT MinVertexIndex, UINT NumVertices, UINT startIndex, UINT primCount) = 0;
-            virtual HRESULT LDL_CALL DrawPrimitiveUP(D3DPRIMITIVETYPE PrimitiveType, UINT PrimitiveCount, const void* pVertexStreamZeroData, UINT VertexStreamZeroStride) = 0;
-            virtual HRESULT LDL_CALL DrawIndexedPrimitiveUP(D3DPRIMITIVETYPE PrimitiveType, UINT MinVertexIndex, UINT NumVertices, UINT PrimitiveCount, const void* pIndexData, D3DFORMAT IndexDataFormat, const void* pVertexStreamZeroData, UINT VertexStreamZeroStride) = 0;
-            virtual HRESULT LDL_CALL ProcessVertices(UINT SrcStartIndex, UINT DestIndex, UINT VertexCount, IDirect3DVertexBuffer9* pDestBuffer, IDirect3DVertexDeclaration9* pVertexDecl, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL CreateVertexDeclaration(const D3DVERTEXELEMENT9* pVertexElements, IDirect3DVertexDeclaration9** ppDecl) = 0;
-            virtual HRESULT LDL_CALL SetVertexDeclaration(IDirect3DVertexDeclaration9* pDecl) = 0;
-            virtual HRESULT LDL_CALL GetVertexDeclaration(IDirect3DVertexDeclaration9** ppDecl) = 0;
-            virtual HRESULT LDL_CALL SetFVF(DWORD FVF) = 0;
-            virtual HRESULT LDL_CALL GetFVF(DWORD* pFVF) = 0;
-            virtual HRESULT LDL_CALL CreateVertexShader(const DWORD* pFunction, IDirect3DVertexShader9** ppShader) = 0;
-            virtual HRESULT LDL_CALL SetVertexShader(IDirect3DVertexShader9* pShader) = 0;
-            virtual HRESULT LDL_CALL GetVertexShader(IDirect3DVertexShader9** ppShader) = 0;
-            virtual HRESULT LDL_CALL SetVertexShaderConstantF(UINT StartRegister, const float* pConstantData, UINT Vector4fCount) = 0;
-            virtual HRESULT LDL_CALL GetVertexShaderConstantF(UINT StartRegister, float* pConstantData, UINT Vector4fCount) = 0;
-            virtual HRESULT LDL_CALL SetVertexShaderConstantI(UINT StartRegister, const int* pConstantData, UINT Vector4iCount) = 0;
-            virtual HRESULT LDL_CALL GetVertexShaderConstantI(UINT StartRegister, int* pConstantData, UINT Vector4iCount) = 0;
-            virtual HRESULT LDL_CALL SetVertexShaderConstantB(UINT StartRegister, const BOOL* pConstantData, UINT  BoolCount) = 0;
-            virtual HRESULT LDL_CALL GetVertexShaderConstantB(UINT StartRegister, BOOL* pConstantData, UINT BoolCount) = 0;
-            virtual HRESULT LDL_CALL SetStreamSource(UINT StreamNumber, IDirect3DVertexBuffer9* pStreamData, UINT OffsetInBytes, UINT Stride) = 0;
-            virtual HRESULT LDL_CALL GetStreamSource(UINT StreamNumber, IDirect3DVertexBuffer9** ppStreamData, UINT* OffsetInBytes, UINT* pStride) = 0;
-            virtual HRESULT LDL_CALL SetStreamSourceFreq(UINT StreamNumber, UINT Divider) = 0;
-            virtual HRESULT LDL_CALL GetStreamSourceFreq(UINT StreamNumber, UINT* Divider) = 0;
-            virtual HRESULT LDL_CALL SetIndices(IDirect3DIndexBuffer9* pIndexData) = 0;
-            virtual HRESULT LDL_CALL GetIndices(IDirect3DIndexBuffer9** ppIndexData) = 0;
-            virtual HRESULT LDL_CALL CreatePixelShader(const DWORD* pFunction, IDirect3DPixelShader9** ppShader) = 0;
-            virtual HRESULT LDL_CALL SetPixelShader(IDirect3DPixelShader9* pShader) = 0;
-            virtual HRESULT LDL_CALL GetPixelShader(IDirect3DPixelShader9** ppShader) = 0;
-            virtual HRESULT LDL_CALL SetPixelShaderConstantF(UINT StartRegister, const float* pConstantData, UINT Vector4fCount) = 0;
-            virtual HRESULT LDL_CALL GetPixelShaderConstantF(UINT StartRegister, float* pConstantData, UINT Vector4fCount) = 0;
-            virtual HRESULT LDL_CALL SetPixelShaderConstantI(UINT StartRegister, const int* pConstantData, UINT Vector4iCount) = 0;
-            virtual HRESULT LDL_CALL GetPixelShaderConstantI(UINT StartRegister, int* pConstantData, UINT Vector4iCount) = 0;
-            virtual HRESULT LDL_CALL SetPixelShaderConstantB(UINT StartRegister, const BOOL* pConstantData, UINT  BoolCount) = 0;
-            virtual HRESULT LDL_CALL GetPixelShaderConstantB(UINT StartRegister, BOOL* pConstantData, UINT BoolCount) = 0;
-            virtual HRESULT LDL_CALL DrawRectPatch(UINT Handle, const float* pNumSegs, const D3DRECTPATCH_INFO* pRectPatchInfo) = 0;
-            virtual HRESULT LDL_CALL DrawTriPatch(UINT Handle, const float* pNumSegs, const D3DTRIPATCH_INFO* pTriPatchInfo) = 0;
-            virtual HRESULT LDL_CALL DeletePatch(UINT Handle) = 0;
-            virtual HRESULT LDL_CALL CreateQuery(D3DQUERYTYPE Type, IDirect3DQuery9** ppQuery) = 0;
+            virtual HRESULT LDL_API_CALL TestCooperativeLevel() = 0;
+            virtual UINT LDL_API_CALL GetAvailableTextureMem() = 0;
+            virtual HRESULT LDL_API_CALL EvictManagedResources() = 0;
+            virtual HRESULT LDL_API_CALL GetDirect3D(IDirect3D9** ppD3D9) = 0;
+            virtual HRESULT LDL_API_CALL GetDeviceCaps(D3DCAPS9* pCaps) = 0;
+            virtual HRESULT LDL_API_CALL GetDisplayMode(UINT iSwapChain, D3DDISPLAYMODE* pMode) = 0;
+            virtual HRESULT LDL_API_CALL GetCreationParameters(D3DDEVICE_CREATION_PARAMETERS* pParameters) = 0;
+            virtual HRESULT LDL_API_CALL SetCursorProperties(UINT XHotSpot, UINT YHotSpot, IDirect3DSurface9* pCursorBitmap) = 0;
+            virtual void LDL_API_CALL SetCursorPosition(int X, int Y, DWORD Flags) = 0;
+            virtual BOOL LDL_API_CALL ShowCursor(BOOL bShow) = 0;
+            virtual HRESULT LDL_API_CALL CreateAdditionalSwapChain(D3DPRESENT_PARAMETERS* pPresentationParameters, IDirect3DSwapChain9** pSwapChain) = 0;
+            virtual HRESULT LDL_API_CALL GetSwapChain(UINT iSwapChain, IDirect3DSwapChain9** pSwapChain) = 0;
+            virtual UINT LDL_API_CALL GetNumberOfSwapChains() = 0;
+            virtual HRESULT LDL_API_CALL Reset(D3DPRESENT_PARAMETERS* pPresentationParameters) = 0;
+            virtual HRESULT LDL_API_CALL Present(const RECT* pSourceRect, const RECT* pDestRect, HWND hDestWindowOverride, const RGNDATA* pDirtyRegion) = 0;
+            virtual HRESULT LDL_API_CALL GetBackBuffer(UINT iSwapChain, UINT iBackBuffer, D3DBACKBUFFER_TYPE Type, IDirect3DSurface9** ppBackBuffer) = 0;
+            virtual HRESULT LDL_API_CALL GetRasterStatus(UINT iSwapChain, D3DRASTER_STATUS* pRasterStatus) = 0;
+            virtual HRESULT LDL_API_CALL SetDialogBoxMode(BOOL bEnableDialogs) = 0;
+            virtual void LDL_API_CALL SetGammaRamp(UINT iSwapChain, DWORD Flags, const D3DGAMMARAMP* pRamp) = 0;
+            virtual void LDL_API_CALL GetGammaRamp(UINT iSwapChain, D3DGAMMARAMP* pRamp) = 0;
+            virtual HRESULT LDL_API_CALL CreateTexture(UINT Width, UINT Height, UINT Levels, DWORD Usage, D3DFORMAT Format, D3DPOOL Pool, IDirect3DTexture9** ppTexture, HANDLE* pSharedHandle) = 0;
+            virtual HRESULT LDL_API_CALL CreateVolumeTexture(UINT Width, UINT Height, UINT Depth, UINT Levels, DWORD Usage, D3DFORMAT Format, D3DPOOL Pool, IDirect3DVolumeTexture9** ppVolumeTexture, HANDLE* pSharedHandle) = 0;
+            virtual HRESULT LDL_API_CALL CreateCubeTexture(UINT EdgeLength, UINT Levels, DWORD Usage, D3DFORMAT Format, D3DPOOL Pool, IDirect3DCubeTexture9** ppCubeTexture, HANDLE* pSharedHandle) = 0;
+            virtual HRESULT LDL_API_CALL CreateVertexBuffer(UINT Length, DWORD Usage, DWORD FVF, D3DPOOL Pool, IDirect3DVertexBuffer9** ppVertexBuffer, HANDLE* pSharedHandle) = 0;
+            virtual HRESULT LDL_API_CALL CreateIndexBuffer(UINT Length, DWORD Usage, D3DFORMAT Format, D3DPOOL Pool, IDirect3DIndexBuffer9** ppIndexBuffer, HANDLE* pSharedHandle) = 0;
+            virtual HRESULT LDL_API_CALL CreateRenderTarget(UINT Width, UINT Height, D3DFORMAT Format, D3DMULTISAMPLE_TYPE MultiSample, DWORD MultisampleQuality, BOOL Lockable, IDirect3DSurface9** ppSurface, HANDLE* pSharedHandle) = 0;
+            virtual HRESULT LDL_API_CALL CreateDepthStencilSurface(UINT Width, UINT Height, D3DFORMAT Format, D3DMULTISAMPLE_TYPE MultiSample, DWORD MultisampleQuality, BOOL Discard, IDirect3DSurface9** ppSurface, HANDLE* pSharedHandle) = 0;
+            virtual HRESULT LDL_API_CALL UpdateSurface(IDirect3DSurface9* pSourceSurface, const RECT* pSourceRect, IDirect3DSurface9* pDestinationSurface, const POINT* pDestPoint) = 0;
+            virtual HRESULT LDL_API_CALL UpdateTexture(IDirect3DBaseTexture9* pSourceTexture, IDirect3DBaseTexture9* pDestinationTexture) = 0;
+            virtual HRESULT LDL_API_CALL GetRenderTargetData(IDirect3DSurface9* pRenderTarget, IDirect3DSurface9* pDestSurface) = 0;
+            virtual HRESULT LDL_API_CALL GetFrontBufferData(UINT iSwapChain, IDirect3DSurface9* pDestSurface) = 0;
+            virtual HRESULT LDL_API_CALL StretchRect(IDirect3DSurface9* pSourceSurface, const RECT* pSourceRect, IDirect3DSurface9* pDestSurface, const RECT* pDestRect, D3DTEXTUREFILTERTYPE Filter) = 0;
+            virtual HRESULT LDL_API_CALL ColorFill(IDirect3DSurface9* pSurface, const RECT* pRect, D3DCOLOR color) = 0;
+            virtual HRESULT LDL_API_CALL CreateOffscreenPlainSurface(UINT Width, UINT Height, D3DFORMAT Format, D3DPOOL Pool, IDirect3DSurface9** ppSurface, HANDLE* pSharedHandle) = 0;
+            virtual HRESULT LDL_API_CALL SetRenderTarget(DWORD RenderTargetIndex, IDirect3DSurface9* pRenderTarget) = 0;
+            virtual HRESULT LDL_API_CALL GetRenderTarget(DWORD RenderTargetIndex, IDirect3DSurface9** ppRenderTarget) = 0;
+            virtual HRESULT LDL_API_CALL SetDepthStencilSurface(IDirect3DSurface9* pNewZStencil) = 0;
+            virtual HRESULT LDL_API_CALL GetDepthStencilSurface(IDirect3DSurface9** ppZStencilSurface) = 0;
+            virtual HRESULT LDL_API_CALL BeginScene() = 0;
+            virtual HRESULT LDL_API_CALL EndScene() = 0;
+            virtual HRESULT LDL_API_CALL Clear(DWORD Count, const D3DRECT* pRects, DWORD Flags, D3DCOLOR Color, float Z, DWORD Stencil) = 0;
+            virtual HRESULT LDL_API_CALL SetTransform(D3DTRANSFORMSTATETYPE State, const D3DMATRIX* pMatrix) = 0;
+            virtual HRESULT LDL_API_CALL GetTransform(D3DTRANSFORMSTATETYPE State, D3DMATRIX* pMatrix) = 0;
+            virtual HRESULT LDL_API_CALL MultiplyTransform(D3DTRANSFORMSTATETYPE, const D3DMATRIX*) = 0;
+            virtual HRESULT LDL_API_CALL SetViewport(const D3DVIEWPORT9* pViewport) = 0;
+            virtual HRESULT LDL_API_CALL GetViewport(D3DVIEWPORT9* pViewport) = 0;
+            virtual HRESULT LDL_API_CALL SetMaterial(const D3DMATERIAL9* pMaterial) = 0;
+            virtual HRESULT LDL_API_CALL GetMaterial(D3DMATERIAL9* pMaterial) = 0;
+            virtual HRESULT LDL_API_CALL SetLight(DWORD Index, const D3DLIGHT9*) = 0;
+            virtual HRESULT LDL_API_CALL GetLight(DWORD Index, D3DLIGHT9*) = 0;
+            virtual HRESULT LDL_API_CALL LightEnable(DWORD Index, BOOL Enable) = 0;
+            virtual HRESULT LDL_API_CALL GetLightEnable(DWORD Index, BOOL* pEnable) = 0;
+            virtual HRESULT LDL_API_CALL SetClipPlane(DWORD Index, const float* pPlane) = 0;
+            virtual HRESULT LDL_API_CALL GetClipPlane(DWORD Index, float* pPlane) = 0;
+            virtual HRESULT LDL_API_CALL SetRenderState(D3DRENDERSTATETYPE State, DWORD Value) = 0;
+            virtual HRESULT LDL_API_CALL GetRenderState(D3DRENDERSTATETYPE State, DWORD* pValue) = 0;
+            virtual HRESULT LDL_API_CALL CreateStateBlock(D3DSTATEBLOCKTYPE Type, IDirect3DStateBlock9** ppSB) = 0;
+            virtual HRESULT LDL_API_CALL BeginStateBlock() = 0;
+            virtual HRESULT LDL_API_CALL EndStateBlock(IDirect3DStateBlock9** ppSB) = 0;
+            virtual HRESULT LDL_API_CALL SetClipStatus(const D3DCLIPSTATUS9* pClipStatus) = 0;
+            virtual HRESULT LDL_API_CALL GetClipStatus(D3DCLIPSTATUS9* pClipStatus) = 0;
+            virtual HRESULT LDL_API_CALL GetTexture(DWORD Stage, IDirect3DBaseTexture9** ppTexture) = 0;
+            virtual HRESULT LDL_API_CALL SetTexture(DWORD Stage, IDirect3DBaseTexture9* pTexture) = 0;
+            virtual HRESULT LDL_API_CALL GetTextureStageState(DWORD Stage, D3DTEXTURESTAGESTATETYPE Type, DWORD* pValue) = 0;
+            virtual HRESULT LDL_API_CALL SetTextureStageState(DWORD Stage, D3DTEXTURESTAGESTATETYPE Type, DWORD Value) = 0;
+            virtual HRESULT LDL_API_CALL GetSamplerState(DWORD Sampler, D3DSAMPLERSTATETYPE Type, DWORD* pValue) = 0;
+            virtual HRESULT LDL_API_CALL SetSamplerState(DWORD Sampler, D3DSAMPLERSTATETYPE Type, DWORD Value) = 0;
+            virtual HRESULT LDL_API_CALL ValidateDevice(DWORD* pNumPasses) = 0;
+            virtual HRESULT LDL_API_CALL SetPaletteEntries(UINT PaletteNumber, const PALETTEENTRY* pEntries) = 0;
+            virtual HRESULT LDL_API_CALL GetPaletteEntries(UINT PaletteNumber, PALETTEENTRY* pEntries) = 0;
+            virtual HRESULT LDL_API_CALL SetCurrentTexturePalette(UINT PaletteNumber) = 0;
+            virtual HRESULT LDL_API_CALL GetCurrentTexturePalette(UINT* PaletteNumber) = 0;
+            virtual HRESULT LDL_API_CALL SetScissorRect(const RECT* pRect) = 0;
+            virtual HRESULT LDL_API_CALL GetScissorRect(RECT* pRect) = 0;
+            virtual HRESULT LDL_API_CALL SetSoftwareVertexProcessing(BOOL bSoftware) = 0;
+            virtual BOOL LDL_API_CALL GetSoftwareVertexProcessing() = 0;
+            virtual HRESULT LDL_API_CALL SetNPatchMode(float nSegments) = 0;
+            virtual float LDL_API_CALL GetNPatchMode() = 0;
+            virtual HRESULT LDL_API_CALL DrawPrimitive(D3DPRIMITIVETYPE PrimitiveType, UINT StartVertex, UINT PrimitiveCount) = 0;
+            virtual HRESULT LDL_API_CALL DrawIndexedPrimitive(D3DPRIMITIVETYPE, INT BaseVertexIndex, UINT MinVertexIndex, UINT NumVertices, UINT startIndex, UINT primCount) = 0;
+            virtual HRESULT LDL_API_CALL DrawPrimitiveUP(D3DPRIMITIVETYPE PrimitiveType, UINT PrimitiveCount, const void* pVertexStreamZeroData, UINT VertexStreamZeroStride) = 0;
+            virtual HRESULT LDL_API_CALL DrawIndexedPrimitiveUP(D3DPRIMITIVETYPE PrimitiveType, UINT MinVertexIndex, UINT NumVertices, UINT PrimitiveCount, const void* pIndexData, D3DFORMAT IndexDataFormat, const void* pVertexStreamZeroData, UINT VertexStreamZeroStride) = 0;
+            virtual HRESULT LDL_API_CALL ProcessVertices(UINT SrcStartIndex, UINT DestIndex, UINT VertexCount, IDirect3DVertexBuffer9* pDestBuffer, IDirect3DVertexDeclaration9* pVertexDecl, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL CreateVertexDeclaration(const D3DVERTEXELEMENT9* pVertexElements, IDirect3DVertexDeclaration9** ppDecl) = 0;
+            virtual HRESULT LDL_API_CALL SetVertexDeclaration(IDirect3DVertexDeclaration9* pDecl) = 0;
+            virtual HRESULT LDL_API_CALL GetVertexDeclaration(IDirect3DVertexDeclaration9** ppDecl) = 0;
+            virtual HRESULT LDL_API_CALL SetFVF(DWORD FVF) = 0;
+            virtual HRESULT LDL_API_CALL GetFVF(DWORD* pFVF) = 0;
+            virtual HRESULT LDL_API_CALL CreateVertexShader(const DWORD* pFunction, IDirect3DVertexShader9** ppShader) = 0;
+            virtual HRESULT LDL_API_CALL SetVertexShader(IDirect3DVertexShader9* pShader) = 0;
+            virtual HRESULT LDL_API_CALL GetVertexShader(IDirect3DVertexShader9** ppShader) = 0;
+            virtual HRESULT LDL_API_CALL SetVertexShaderConstantF(UINT StartRegister, const float* pConstantData, UINT Vector4fCount) = 0;
+            virtual HRESULT LDL_API_CALL GetVertexShaderConstantF(UINT StartRegister, float* pConstantData, UINT Vector4fCount) = 0;
+            virtual HRESULT LDL_API_CALL SetVertexShaderConstantI(UINT StartRegister, const int* pConstantData, UINT Vector4iCount) = 0;
+            virtual HRESULT LDL_API_CALL GetVertexShaderConstantI(UINT StartRegister, int* pConstantData, UINT Vector4iCount) = 0;
+            virtual HRESULT LDL_API_CALL SetVertexShaderConstantB(UINT StartRegister, const BOOL* pConstantData, UINT  BoolCount) = 0;
+            virtual HRESULT LDL_API_CALL GetVertexShaderConstantB(UINT StartRegister, BOOL* pConstantData, UINT BoolCount) = 0;
+            virtual HRESULT LDL_API_CALL SetStreamSource(UINT StreamNumber, IDirect3DVertexBuffer9* pStreamData, UINT OffsetInBytes, UINT Stride) = 0;
+            virtual HRESULT LDL_API_CALL GetStreamSource(UINT StreamNumber, IDirect3DVertexBuffer9** ppStreamData, UINT* OffsetInBytes, UINT* pStride) = 0;
+            virtual HRESULT LDL_API_CALL SetStreamSourceFreq(UINT StreamNumber, UINT Divider) = 0;
+            virtual HRESULT LDL_API_CALL GetStreamSourceFreq(UINT StreamNumber, UINT* Divider) = 0;
+            virtual HRESULT LDL_API_CALL SetIndices(IDirect3DIndexBuffer9* pIndexData) = 0;
+            virtual HRESULT LDL_API_CALL GetIndices(IDirect3DIndexBuffer9** ppIndexData) = 0;
+            virtual HRESULT LDL_API_CALL CreatePixelShader(const DWORD* pFunction, IDirect3DPixelShader9** ppShader) = 0;
+            virtual HRESULT LDL_API_CALL SetPixelShader(IDirect3DPixelShader9* pShader) = 0;
+            virtual HRESULT LDL_API_CALL GetPixelShader(IDirect3DPixelShader9** ppShader) = 0;
+            virtual HRESULT LDL_API_CALL SetPixelShaderConstantF(UINT StartRegister, const float* pConstantData, UINT Vector4fCount) = 0;
+            virtual HRESULT LDL_API_CALL GetPixelShaderConstantF(UINT StartRegister, float* pConstantData, UINT Vector4fCount) = 0;
+            virtual HRESULT LDL_API_CALL SetPixelShaderConstantI(UINT StartRegister, const int* pConstantData, UINT Vector4iCount) = 0;
+            virtual HRESULT LDL_API_CALL GetPixelShaderConstantI(UINT StartRegister, int* pConstantData, UINT Vector4iCount) = 0;
+            virtual HRESULT LDL_API_CALL SetPixelShaderConstantB(UINT StartRegister, const BOOL* pConstantData, UINT  BoolCount) = 0;
+            virtual HRESULT LDL_API_CALL GetPixelShaderConstantB(UINT StartRegister, BOOL* pConstantData, UINT BoolCount) = 0;
+            virtual HRESULT LDL_API_CALL DrawRectPatch(UINT Handle, const float* pNumSegs, const D3DRECTPATCH_INFO* pRectPatchInfo) = 0;
+            virtual HRESULT LDL_API_CALL DrawTriPatch(UINT Handle, const float* pNumSegs, const D3DTRIPATCH_INFO* pTriPatchInfo) = 0;
+            virtual HRESULT LDL_API_CALL DeletePatch(UINT Handle) = 0;
+            virtual HRESULT LDL_API_CALL CreateQuery(D3DQUERYTYPE Type, IDirect3DQuery9** ppQuery) = 0;
         };
 
         typedef struct IDirect3DDevice9* LPDIRECT3DDEVICE9, * PDIRECT3DDEVICE9;
@@ -2489,14 +2495,14 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DStateBlock9 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DStateBlock9 methods ***/
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
-            virtual HRESULT LDL_CALL Capture() = 0;
-            virtual HRESULT LDL_CALL Apply() = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL Capture() = 0;
+            virtual HRESULT LDL_API_CALL Apply() = 0;
         };
 
         typedef struct IDirect3DStateBlock9* LPDIRECT3DSTATEBLOCK9, * PDIRECT3DSTATEBLOCK9;
@@ -2505,18 +2511,18 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DSwapChain9 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DSwapChain9 methods ***/
-            virtual HRESULT LDL_CALL Present(const RECT* pSourceRect, const RECT* pDestRect, HWND hDestWindowOverride, const RGNDATA* pDirtyRegion, DWORD dwFlags) = 0;
-            virtual HRESULT LDL_CALL GetFrontBufferData(IDirect3DSurface9* pDestSurface) = 0;
-            virtual HRESULT LDL_CALL GetBackBuffer(UINT iBackBuffer, D3DBACKBUFFER_TYPE Type, IDirect3DSurface9** ppBackBuffer) = 0;
-            virtual HRESULT LDL_CALL GetRasterStatus(D3DRASTER_STATUS* pRasterStatus) = 0;
-            virtual HRESULT LDL_CALL GetDisplayMode(D3DDISPLAYMODE* pMode) = 0;
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
-            virtual HRESULT LDL_CALL GetPresentParameters(D3DPRESENT_PARAMETERS* pPresentationParameters) = 0;
+            virtual HRESULT LDL_API_CALL Present(const RECT* pSourceRect, const RECT* pDestRect, HWND hDestWindowOverride, const RGNDATA* pDirtyRegion, DWORD dwFlags) = 0;
+            virtual HRESULT LDL_API_CALL GetFrontBufferData(IDirect3DSurface9* pDestSurface) = 0;
+            virtual HRESULT LDL_API_CALL GetBackBuffer(UINT iBackBuffer, D3DBACKBUFFER_TYPE Type, IDirect3DSurface9** ppBackBuffer) = 0;
+            virtual HRESULT LDL_API_CALL GetRasterStatus(D3DRASTER_STATUS* pRasterStatus) = 0;
+            virtual HRESULT LDL_API_CALL GetDisplayMode(D3DDISPLAYMODE* pMode) = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL GetPresentParameters(D3DPRESENT_PARAMETERS* pPresentationParameters) = 0;
         };
 
         typedef struct IDirect3DSwapChain9* LPDIRECT3DSWAPCHAIN9, * PDIRECT3DSWAPCHAIN9;
@@ -2524,19 +2530,19 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DResource9 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DResource9 methods ***/
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
-            virtual HRESULT LDL_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
-            virtual HRESULT LDL_CALL FreePrivateData(const GUID& refguid) = 0;
-            virtual DWORD LDL_CALL SetPriority(DWORD PriorityNew) = 0;
-            virtual DWORD LDL_CALL GetPriority() = 0;
-            virtual void LDL_CALL PreLoad() = 0;
-            virtual D3DRESOURCETYPE LDL_CALL GetType() = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
+            virtual HRESULT LDL_API_CALL FreePrivateData(const GUID& refguid) = 0;
+            virtual DWORD LDL_API_CALL SetPriority(DWORD PriorityNew) = 0;
+            virtual DWORD LDL_API_CALL GetPriority() = 0;
+            virtual void LDL_API_CALL PreLoad() = 0;
+            virtual D3DRESOURCETYPE LDL_API_CALL GetType() = 0;
         };
 
         typedef struct IDirect3DResource9* LPDIRECT3DRESOURCE9, * PDIRECT3DRESOURCE9;
@@ -2545,13 +2551,13 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DVertexDeclaration9 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DVertexDeclaration9 methods ***/
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
-            virtual HRESULT LDL_CALL GetDeclaration(D3DVERTEXELEMENT9*, UINT* pNumElements) = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL GetDeclaration(D3DVERTEXELEMENT9*, UINT* pNumElements) = 0;
         };
 
         typedef struct IDirect3DVertexDeclaration9* LPDIRECT3DVERTEXDECLARATION9, * PDIRECT3DVERTEXDECLARATION9;
@@ -2560,13 +2566,13 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DVertexShader9 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DVertexShader9 methods ***/
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
-            virtual HRESULT LDL_CALL GetFunction(void*, UINT* pSizeOfData) = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL GetFunction(void*, UINT* pSizeOfData) = 0;
         };
 
         typedef struct IDirect3DVertexShader9* LPDIRECT3DVERTEXSHADER9, * PDIRECT3DVERTEXSHADER9;
@@ -2575,13 +2581,13 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DPixelShader9 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DPixelShader9 methods ***/
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
-            virtual HRESULT LDL_CALL GetFunction(void*, UINT* pSizeOfData) = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL GetFunction(void*, UINT* pSizeOfData) = 0;
         };
 
         typedef struct IDirect3DPixelShader9* LPDIRECT3DPIXELSHADER9, * PDIRECT3DPIXELSHADER9;
@@ -2589,25 +2595,25 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DBaseTexture9 : IDirect3DResource9
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DResource9 methods ***/
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
-            virtual HRESULT LDL_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
-            virtual HRESULT LDL_CALL FreePrivateData(const GUID& refguid) = 0;
-            virtual DWORD LDL_CALL SetPriority(DWORD PriorityNew) = 0;
-            virtual DWORD LDL_CALL GetPriority() = 0;
-            virtual void LDL_CALL PreLoad() = 0;
-            virtual D3DRESOURCETYPE LDL_CALL GetType() = 0;
-            virtual DWORD LDL_CALL SetLOD(DWORD LODNew) = 0;
-            virtual DWORD LDL_CALL GetLOD() = 0;
-            virtual DWORD LDL_CALL GetLevelCount() = 0;
-            virtual HRESULT LDL_CALL SetAutoGenFilterType(D3DTEXTUREFILTERTYPE FilterType) = 0;
-            virtual D3DTEXTUREFILTERTYPE LDL_CALL GetAutoGenFilterType() = 0;
-            virtual void LDL_CALL GenerateMipSubLevels() = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
+            virtual HRESULT LDL_API_CALL FreePrivateData(const GUID& refguid) = 0;
+            virtual DWORD LDL_API_CALL SetPriority(DWORD PriorityNew) = 0;
+            virtual DWORD LDL_API_CALL GetPriority() = 0;
+            virtual void LDL_API_CALL PreLoad() = 0;
+            virtual D3DRESOURCETYPE LDL_API_CALL GetType() = 0;
+            virtual DWORD LDL_API_CALL SetLOD(DWORD LODNew) = 0;
+            virtual DWORD LDL_API_CALL GetLOD() = 0;
+            virtual DWORD LDL_API_CALL GetLevelCount() = 0;
+            virtual HRESULT LDL_API_CALL SetAutoGenFilterType(D3DTEXTUREFILTERTYPE FilterType) = 0;
+            virtual D3DTEXTUREFILTERTYPE LDL_API_CALL GetAutoGenFilterType() = 0;
+            virtual void LDL_API_CALL GenerateMipSubLevels() = 0;
         };
 
         typedef struct IDirect3DBaseTexture9* LPDIRECT3DBASETEXTURE9, * PDIRECT3DBASETEXTURE9;
@@ -2616,30 +2622,30 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DTexture9 : IDirect3DBaseTexture9
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DBaseTexture9 methods ***/
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
-            virtual HRESULT LDL_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
-            virtual HRESULT LDL_CALL FreePrivateData(const GUID& refguid) = 0;
-            virtual DWORD LDL_CALL SetPriority(DWORD PriorityNew) = 0;
-            virtual DWORD LDL_CALL GetPriority() = 0;
-            virtual void LDL_CALL PreLoad() = 0;
-            virtual D3DRESOURCETYPE LDL_CALL GetType() = 0;
-            virtual DWORD LDL_CALL SetLOD(DWORD LODNew) = 0;
-            virtual DWORD LDL_CALL GetLOD() = 0;
-            virtual DWORD LDL_CALL GetLevelCount() = 0;
-            virtual HRESULT LDL_CALL SetAutoGenFilterType(D3DTEXTUREFILTERTYPE FilterType) = 0;
-            virtual D3DTEXTUREFILTERTYPE LDL_CALL GetAutoGenFilterType() = 0;
-            virtual void LDL_CALL GenerateMipSubLevels() = 0;
-            virtual HRESULT LDL_CALL GetLevelDesc(UINT Level, D3DSURFACE_DESC* pDesc) = 0;
-            virtual HRESULT LDL_CALL GetSurfaceLevel(UINT Level, IDirect3DSurface9** ppSurfaceLevel) = 0;
-            virtual HRESULT LDL_CALL LockRect(UINT Level, D3DLOCKED_RECT* pLockedRect, const RECT* pRect, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL UnlockRect(UINT Level) = 0;
-            virtual HRESULT LDL_CALL AddDirtyRect(const RECT* pDirtyRect) = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
+            virtual HRESULT LDL_API_CALL FreePrivateData(const GUID& refguid) = 0;
+            virtual DWORD LDL_API_CALL SetPriority(DWORD PriorityNew) = 0;
+            virtual DWORD LDL_API_CALL GetPriority() = 0;
+            virtual void LDL_API_CALL PreLoad() = 0;
+            virtual D3DRESOURCETYPE LDL_API_CALL GetType() = 0;
+            virtual DWORD LDL_API_CALL SetLOD(DWORD LODNew) = 0;
+            virtual DWORD LDL_API_CALL GetLOD() = 0;
+            virtual DWORD LDL_API_CALL GetLevelCount() = 0;
+            virtual HRESULT LDL_API_CALL SetAutoGenFilterType(D3DTEXTUREFILTERTYPE FilterType) = 0;
+            virtual D3DTEXTUREFILTERTYPE LDL_API_CALL GetAutoGenFilterType() = 0;
+            virtual void LDL_API_CALL GenerateMipSubLevels() = 0;
+            virtual HRESULT LDL_API_CALL GetLevelDesc(UINT Level, D3DSURFACE_DESC* pDesc) = 0;
+            virtual HRESULT LDL_API_CALL GetSurfaceLevel(UINT Level, IDirect3DSurface9** ppSurfaceLevel) = 0;
+            virtual HRESULT LDL_API_CALL LockRect(UINT Level, D3DLOCKED_RECT* pLockedRect, const RECT* pRect, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL UnlockRect(UINT Level) = 0;
+            virtual HRESULT LDL_API_CALL AddDirtyRect(const RECT* pDirtyRect) = 0;
         };
 
         typedef struct IDirect3DTexture9* LPDIRECT3DTEXTURE9, * PDIRECT3DTEXTURE9;
@@ -2648,30 +2654,30 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DVolumeTexture9 : IDirect3DBaseTexture9
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DBaseTexture9 methods ***/
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
-            virtual HRESULT LDL_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
-            virtual HRESULT LDL_CALL FreePrivateData(const GUID& refguid) = 0;
-            virtual DWORD LDL_CALL SetPriority(DWORD PriorityNew) = 0;
-            virtual DWORD LDL_CALL GetPriority() = 0;
-            virtual void LDL_CALL PreLoad() = 0;
-            virtual D3DRESOURCETYPE LDL_CALL GetType() = 0;
-            virtual DWORD LDL_CALL SetLOD(DWORD LODNew) = 0;
-            virtual DWORD LDL_CALL GetLOD() = 0;
-            virtual DWORD LDL_CALL GetLevelCount() = 0;
-            virtual HRESULT LDL_CALL SetAutoGenFilterType(D3DTEXTUREFILTERTYPE FilterType) = 0;
-            virtual D3DTEXTUREFILTERTYPE LDL_CALL GetAutoGenFilterType() = 0;
-            virtual void LDL_CALL GenerateMipSubLevels() = 0;
-            virtual HRESULT LDL_CALL GetLevelDesc(UINT Level, D3DVOLUME_DESC* pDesc) = 0;
-            virtual HRESULT LDL_CALL GetVolumeLevel(UINT Level, IDirect3DVolume9** ppVolumeLevel) = 0;
-            virtual HRESULT LDL_CALL LockBox(UINT Level, D3DLOCKED_BOX* pLockedVolume, const D3DBOX* pBox, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL UnlockBox(UINT Level) = 0;
-            virtual HRESULT LDL_CALL AddDirtyBox(const D3DBOX* pDirtyBox) = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
+            virtual HRESULT LDL_API_CALL FreePrivateData(const GUID& refguid) = 0;
+            virtual DWORD LDL_API_CALL SetPriority(DWORD PriorityNew) = 0;
+            virtual DWORD LDL_API_CALL GetPriority() = 0;
+            virtual void LDL_API_CALL PreLoad() = 0;
+            virtual D3DRESOURCETYPE LDL_API_CALL GetType() = 0;
+            virtual DWORD LDL_API_CALL SetLOD(DWORD LODNew) = 0;
+            virtual DWORD LDL_API_CALL GetLOD() = 0;
+            virtual DWORD LDL_API_CALL GetLevelCount() = 0;
+            virtual HRESULT LDL_API_CALL SetAutoGenFilterType(D3DTEXTUREFILTERTYPE FilterType) = 0;
+            virtual D3DTEXTUREFILTERTYPE LDL_API_CALL GetAutoGenFilterType() = 0;
+            virtual void LDL_API_CALL GenerateMipSubLevels() = 0;
+            virtual HRESULT LDL_API_CALL GetLevelDesc(UINT Level, D3DVOLUME_DESC* pDesc) = 0;
+            virtual HRESULT LDL_API_CALL GetVolumeLevel(UINT Level, IDirect3DVolume9** ppVolumeLevel) = 0;
+            virtual HRESULT LDL_API_CALL LockBox(UINT Level, D3DLOCKED_BOX* pLockedVolume, const D3DBOX* pBox, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL UnlockBox(UINT Level) = 0;
+            virtual HRESULT LDL_API_CALL AddDirtyBox(const D3DBOX* pDirtyBox) = 0;
         };
 
         typedef struct IDirect3DVolumeTexture9* LPDIRECT3DVOLUMETEXTURE9, * PDIRECT3DVOLUMETEXTURE9;
@@ -2679,30 +2685,30 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DCubeTexture9 : IDirect3DBaseTexture9
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DBaseTexture9 methods ***/
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
-            virtual HRESULT LDL_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
-            virtual HRESULT LDL_CALL FreePrivateData(const GUID& refguid) = 0;
-            virtual DWORD LDL_CALL SetPriority(DWORD PriorityNew) = 0;
-            virtual DWORD LDL_CALL GetPriority() = 0;
-            virtual void LDL_CALL PreLoad() = 0;
-            virtual D3DRESOURCETYPE LDL_CALL GetType() = 0;
-            virtual DWORD LDL_CALL SetLOD(DWORD LODNew) = 0;
-            virtual DWORD LDL_CALL GetLOD() = 0;
-            virtual DWORD LDL_CALL GetLevelCount() = 0;
-            virtual HRESULT LDL_CALL SetAutoGenFilterType(D3DTEXTUREFILTERTYPE FilterType) = 0;
-            virtual D3DTEXTUREFILTERTYPE LDL_CALL GetAutoGenFilterType() = 0;
-            virtual void LDL_CALL GenerateMipSubLevels() = 0;
-            virtual HRESULT LDL_CALL GetLevelDesc(UINT Level, D3DSURFACE_DESC* pDesc) = 0;
-            virtual HRESULT LDL_CALL GetCubeMapSurface(D3DCUBEMAP_FACES FaceType, UINT Level, IDirect3DSurface9** ppCubeMapSurface) = 0;
-            virtual HRESULT LDL_CALL LockRect(D3DCUBEMAP_FACES FaceType, UINT Level, D3DLOCKED_RECT* pLockedRect, const RECT* pRect, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL UnlockRect(D3DCUBEMAP_FACES FaceType, UINT Level) = 0;
-            virtual HRESULT LDL_CALL AddDirtyRect(D3DCUBEMAP_FACES FaceType, const RECT* pDirtyRect) = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
+            virtual HRESULT LDL_API_CALL FreePrivateData(const GUID& refguid) = 0;
+            virtual DWORD LDL_API_CALL SetPriority(DWORD PriorityNew) = 0;
+            virtual DWORD LDL_API_CALL GetPriority() = 0;
+            virtual void LDL_API_CALL PreLoad() = 0;
+            virtual D3DRESOURCETYPE LDL_API_CALL GetType() = 0;
+            virtual DWORD LDL_API_CALL SetLOD(DWORD LODNew) = 0;
+            virtual DWORD LDL_API_CALL GetLOD() = 0;
+            virtual DWORD LDL_API_CALL GetLevelCount() = 0;
+            virtual HRESULT LDL_API_CALL SetAutoGenFilterType(D3DTEXTUREFILTERTYPE FilterType) = 0;
+            virtual D3DTEXTUREFILTERTYPE LDL_API_CALL GetAutoGenFilterType() = 0;
+            virtual void LDL_API_CALL GenerateMipSubLevels() = 0;
+            virtual HRESULT LDL_API_CALL GetLevelDesc(UINT Level, D3DSURFACE_DESC* pDesc) = 0;
+            virtual HRESULT LDL_API_CALL GetCubeMapSurface(D3DCUBEMAP_FACES FaceType, UINT Level, IDirect3DSurface9** ppCubeMapSurface) = 0;
+            virtual HRESULT LDL_API_CALL LockRect(D3DCUBEMAP_FACES FaceType, UINT Level, D3DLOCKED_RECT* pLockedRect, const RECT* pRect, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL UnlockRect(D3DCUBEMAP_FACES FaceType, UINT Level) = 0;
+            virtual HRESULT LDL_API_CALL AddDirtyRect(D3DCUBEMAP_FACES FaceType, const RECT* pDirtyRect) = 0;
         };
 
         typedef struct IDirect3DCubeTexture9* LPDIRECT3DCUBETEXTURE9, * PDIRECT3DCUBETEXTURE9;
@@ -2711,22 +2717,22 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DVertexBuffer9 : IDirect3DResource9
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DResource9 methods ***/
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
-            virtual HRESULT LDL_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
-            virtual HRESULT LDL_CALL FreePrivateData(const GUID& refguid) = 0;
-            virtual DWORD LDL_CALL SetPriority(DWORD PriorityNew) = 0;
-            virtual DWORD LDL_CALL GetPriority() = 0;
-            virtual void LDL_CALL PreLoad() = 0;
-            virtual D3DRESOURCETYPE LDL_CALL GetType() = 0;
-            virtual HRESULT LDL_CALL Lock(UINT OffsetToLock, UINT SizeToLock, void** ppbData, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL Unlock() = 0;
-            virtual HRESULT LDL_CALL GetDesc(D3DVERTEXBUFFER_DESC* pDesc) = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
+            virtual HRESULT LDL_API_CALL FreePrivateData(const GUID& refguid) = 0;
+            virtual DWORD LDL_API_CALL SetPriority(DWORD PriorityNew) = 0;
+            virtual DWORD LDL_API_CALL GetPriority() = 0;
+            virtual void LDL_API_CALL PreLoad() = 0;
+            virtual D3DRESOURCETYPE LDL_API_CALL GetType() = 0;
+            virtual HRESULT LDL_API_CALL Lock(UINT OffsetToLock, UINT SizeToLock, void** ppbData, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL Unlock() = 0;
+            virtual HRESULT LDL_API_CALL GetDesc(D3DVERTEXBUFFER_DESC* pDesc) = 0;
         };
 
         typedef struct IDirect3DVertexBuffer9* LPDIRECT3DVERTEXBUFFER9, * PDIRECT3DVERTEXBUFFER9;
@@ -2735,22 +2741,22 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DIndexBuffer9 : IDirect3DResource9
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DResource9 methods ***/
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
-            virtual HRESULT LDL_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
-            virtual HRESULT LDL_CALL FreePrivateData(const GUID& refguid) = 0;
-            virtual DWORD LDL_CALL SetPriority(DWORD PriorityNew) = 0;
-            virtual DWORD LDL_CALL GetPriority() = 0;
-            virtual void LDL_CALL PreLoad() = 0;
-            virtual D3DRESOURCETYPE LDL_CALL GetType() = 0;
-            virtual HRESULT LDL_CALL Lock(UINT OffsetToLock, UINT SizeToLock, void** ppbData, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL Unlock() = 0;
-            virtual HRESULT LDL_CALL GetDesc(D3DINDEXBUFFER_DESC* pDesc) = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
+            virtual HRESULT LDL_API_CALL FreePrivateData(const GUID& refguid) = 0;
+            virtual DWORD LDL_API_CALL SetPriority(DWORD PriorityNew) = 0;
+            virtual DWORD LDL_API_CALL GetPriority() = 0;
+            virtual void LDL_API_CALL PreLoad() = 0;
+            virtual D3DRESOURCETYPE LDL_API_CALL GetType() = 0;
+            virtual HRESULT LDL_API_CALL Lock(UINT OffsetToLock, UINT SizeToLock, void** ppbData, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL Unlock() = 0;
+            virtual HRESULT LDL_API_CALL GetDesc(D3DINDEXBUFFER_DESC* pDesc) = 0;
         };
 
         typedef struct IDirect3DIndexBuffer9* LPDIRECT3DINDEXBUFFER9, * PDIRECT3DINDEXBUFFER9;
@@ -2758,25 +2764,25 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DSurface9 : IDirect3DResource9
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DResource9 methods ***/
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
-            virtual HRESULT LDL_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
-            virtual HRESULT LDL_CALL FreePrivateData(const GUID& refguid) = 0;
-            virtual DWORD LDL_CALL SetPriority(DWORD PriorityNew) = 0;
-            virtual DWORD LDL_CALL GetPriority() = 0;
-            virtual void LDL_CALL PreLoad() = 0;
-            virtual D3DRESOURCETYPE LDL_CALL GetType() = 0;
-            virtual HRESULT LDL_CALL GetContainer(const IID& riid, void** ppContainer) = 0;
-            virtual HRESULT LDL_CALL GetDesc(D3DSURFACE_DESC* pDesc) = 0;
-            virtual HRESULT LDL_CALL LockRect(D3DLOCKED_RECT* pLockedRect, const RECT* pRect, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL UnlockRect() = 0;
-            virtual HRESULT LDL_CALL GetDC(HDC* phdc) = 0;
-            virtual HRESULT LDL_CALL ReleaseDC(HDC hdc) = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
+            virtual HRESULT LDL_API_CALL FreePrivateData(const GUID& refguid) = 0;
+            virtual DWORD LDL_API_CALL SetPriority(DWORD PriorityNew) = 0;
+            virtual DWORD LDL_API_CALL GetPriority() = 0;
+            virtual void LDL_API_CALL PreLoad() = 0;
+            virtual D3DRESOURCETYPE LDL_API_CALL GetType() = 0;
+            virtual HRESULT LDL_API_CALL GetContainer(const IID& riid, void** ppContainer) = 0;
+            virtual HRESULT LDL_API_CALL GetDesc(D3DSURFACE_DESC* pDesc) = 0;
+            virtual HRESULT LDL_API_CALL LockRect(D3DLOCKED_RECT* pLockedRect, const RECT* pRect, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL UnlockRect() = 0;
+            virtual HRESULT LDL_API_CALL GetDC(HDC* phdc) = 0;
+            virtual HRESULT LDL_API_CALL ReleaseDC(HDC hdc) = 0;
         };
 
         typedef struct IDirect3DSurface9* LPDIRECT3DSURFACE9, * PDIRECT3DSURFACE9;
@@ -2784,19 +2790,19 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DVolume9 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DVolume9 methods ***/
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
-            virtual HRESULT LDL_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
-            virtual HRESULT LDL_CALL FreePrivateData(const GUID& refguid) = 0;
-            virtual HRESULT LDL_CALL GetContainer(const IID& riid, void** ppContainer) = 0;
-            virtual HRESULT LDL_CALL GetDesc(D3DVOLUME_DESC* pDesc) = 0;
-            virtual HRESULT LDL_CALL LockBox(D3DLOCKED_BOX* pLockedVolume, const D3DBOX* pBox, DWORD Flags) = 0;
-            virtual HRESULT LDL_CALL UnlockBox() = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL SetPrivateData(const GUID& refguid, const void* pData, DWORD SizeOfData, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL GetPrivateData(const GUID& refguid, void* pData, DWORD* pSizeOfData) = 0;
+            virtual HRESULT LDL_API_CALL FreePrivateData(const GUID& refguid) = 0;
+            virtual HRESULT LDL_API_CALL GetContainer(const IID& riid, void** ppContainer) = 0;
+            virtual HRESULT LDL_API_CALL GetDesc(D3DVOLUME_DESC* pDesc) = 0;
+            virtual HRESULT LDL_API_CALL LockBox(D3DLOCKED_BOX* pLockedVolume, const D3DBOX* pBox, DWORD Flags) = 0;
+            virtual HRESULT LDL_API_CALL UnlockBox() = 0;
         };
 
         typedef struct IDirect3DVolume9* LPDIRECT3DVOLUME9, * PDIRECT3DVOLUME9;
@@ -2805,16 +2811,16 @@ D3DTOP_FORCE_DWORD = 0x7fffffff,
         struct IDirect3DQuery9 : IUnknown
         {
             /*** IUnknown methods ***/
-            virtual HRESULT LDL_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
-            virtual ULONG LDL_CALL AddRef() = 0;
-            virtual ULONG LDL_CALL Release() = 0;
+            virtual HRESULT LDL_API_CALL QueryInterface(const IID& riid, void** ppvObj) = 0;
+            virtual ULONG LDL_API_CALL AddRef() = 0;
+            virtual ULONG LDL_API_CALL Release() = 0;
 
             /*** IDirect3DQuery9 methods ***/
-            virtual HRESULT LDL_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
+            virtual HRESULT LDL_API_CALL GetDevice(IDirect3DDevice9** ppDevice) = 0;
             virtual D3DQUERYTYPE GetType() = 0;
             virtual DWORD GetDataSize() = 0;
-            virtual HRESULT LDL_CALL Issue(DWORD dwIssueFlags) = 0;
-            virtual HRESULT LDL_CALL GetData(void* pData, DWORD dwSize, DWORD dwGetDataFlags) = 0;
+            virtual HRESULT LDL_API_CALL Issue(DWORD dwIssueFlags) = 0;
+            virtual HRESULT LDL_API_CALL GetData(void* pData, DWORD dwSize, DWORD dwGetDataFlags) = 0;
         };
 
         typedef struct IDirect3DQuery9* LPDIRECT3DQUERY9, * PDIRECT3DQUERY9;

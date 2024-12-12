@@ -14,7 +14,7 @@ namespace LDL
 			ImageResizer(const Math::Vec2u& size);
 			Surface* Resize(const Math::Vec2u& size, Surface* surface);
 		private:
-			Surface _Surface;
+			Surface _surface;
 		};
 	}
 }

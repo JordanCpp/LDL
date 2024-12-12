@@ -5,7 +5,7 @@ using namespace LDL::Graphics;
 
 struct LDL_RenderContext
 {
-	RenderContext _RenderContext;
+	RenderContext _renderContext;
 	LDL_RenderContext();
 };
 
@@ -27,5 +27,5 @@ void LDL_RenderContextFree(LDL_RenderContext* renderContext)
 
 void LDL_RenderContextGetContext(LDL_RenderContext* renderContext)
 {
-	renderContext->_RenderContext.Context();
+	renderContext->_renderContext.Context();
 }

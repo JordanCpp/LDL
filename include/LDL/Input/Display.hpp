@@ -15,8 +15,8 @@ namespace LDL
 			const std::vector<LDL::Graphics::VideoMode>& Modes();
 			const LDL::Graphics::VideoMode& Current();
 		private:
-			LDL::Graphics::VideoMode _VideoMode;
-			std::vector<LDL::Graphics::VideoMode> _VideoModes;
+			LDL::Graphics::VideoMode              _videoMode;
+			std::vector<LDL::Graphics::VideoMode> _videoModes;
 		};
 	}
 }

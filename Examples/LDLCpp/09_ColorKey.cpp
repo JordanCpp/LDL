@@ -1,5 +1,3 @@
-#include <iostream>
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/NumberToString.hpp>
@@ -18,62 +16,55 @@ using namespace LDL::Math;
 
 int main()
 {
-	try
+	RenderContext renderContext;
+
+	Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
+	Render render(&renderContext, &window);
+
+	Event report;
+
+	FixedLinear allocator(Allocator::Mb * 8);
+	ImageLoader loader(&allocator);
+
+	loader.Load(Color(163, 73, 164), "Data/Gorgosaurus_BW_transparent.bmp");
+	Surface image(loader.Size(), loader.Pixels(), loader.BytesPerPixel());
+
+	FpsCounter fpsCounter;
+	NumberToString convert;
+	FpsLimiter fpsLimiter;
+
+	while (window.Running())
 	{
-		RenderContext renderContext;
+		fpsLimiter.Mark();
 
-		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
-		Render render(&renderContext, &window);
+		fpsCounter.Start();
 
-		Event report;
-
-		FixedLinear allocator(Allocator::Mb * 8);
-		ImageLoader loader(&allocator);
-
-		loader.Load(Color(163, 73, 164), "Data/Gorgosaurus_BW_transparent.bmp");
-		Surface image(loader.Size(), loader.Pixels(), loader.BytesPerPixel());
-
-		FpsCounter fpsCounter;
-		NumberToString convert;
-		FpsLimiter fpsLimiter;
-
-		while (window.Running())
+		while (window.GetEvent(report))
 		{
-			fpsLimiter.Mark();
-
-			fpsCounter.Start();
-
-			while (window.GetEvent(report))
+			if (report.Type == IsQuit)
 			{
-				if (report.Type == IsQuit)
-				{
-					window.StopEvent();
-				}
+				window.StopEvent();
 			}
-
-			render.Begin();
-
-			render.Color(Color(0, 162, 232));
-			render.Clear();
-
-			render.Draw(&image, window.Pos(), window.Size());
-
-			render.End();
-
-			fpsLimiter.Throttle();
-
-			if (fpsCounter.Calc())
-			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
-				fpsCounter.Clear();
-			}
-
-			window.PollEvents();
 		}
-	}
-	catch (const RuntimeError& error)
-	{
-		std::cout << error.what() << '\n';
+
+		render.Begin();
+
+		render.Color(Color(0, 162, 232));
+		render.Clear();
+
+		render.Draw(&image, window.Pos(), window.Size());
+
+		render.End();
+
+		fpsLimiter.Throttle();
+
+		if (fpsCounter.Calc())
+		{
+			window.Title(convert.Convert(fpsCounter.Fps()));
+			fpsCounter.Clear();
+		}
+
+		window.PollEvents();
 	}
 
 	return 0;

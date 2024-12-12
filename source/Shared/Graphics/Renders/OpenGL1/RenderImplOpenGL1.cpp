@@ -14,9 +14,9 @@ using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 RenderImplOpenGL1::RenderImplOpenGL1(RenderContextImpl* renderContextImpl, Window* window) :
-	_Window(window),
-	_Screen(_Window->Size()),
-	_RenderContextImpl(renderContextImpl)
+	_window(window),
+	_screen(_window->Size()),
+	_renderContextImpl(renderContextImpl)
 {
 	Begin();
 
@@ -26,41 +26,41 @@ RenderImplOpenGL1::RenderImplOpenGL1(RenderContextImpl* renderContextImpl, Windo
 
 void LDL::Graphics::RenderImplOpenGL1::Buffer(uint8_t* dst)
 {
-	GL_CHECK(glReadPixels(0, 0, (GLsizei)_Window->Size().x, (GLsizei)_Window->Size().y, GL_RGBA, GL_UNSIGNED_BYTE, dst));
+	GL_CHECK(glReadPixels(0, 0, (GLsizei)_window->Size().x, (GLsizei)_window->Size().y, GL_RGBA, GL_UNSIGNED_BYTE, dst));
 }
 
 void RenderImplOpenGL1::Begin()
 {
-	Vec2u size = _Window->Size();
+	Vec2u size = _window->Size();
 
 	GL_CHECK(glViewport(0, 0, (GLsizei)size.x, (GLsizei)size.y));
 
-	_Projection = Ortho(0.0f, (float)size.x, (float)size.y, 0.0f, 0.0f, 1.0f);
+	_projection = Ortho(0.0f, (float)size.x, (float)size.y, 0.0f, 0.0f, 1.0f);
 	GL_CHECK(glMatrixMode(GL_PROJECTION));
-	GL_CHECK(glLoadMatrixf(_Projection.Values()));
+	GL_CHECK(glLoadMatrixf(_projection.Values()));
 
 	GL_CHECK(glMatrixMode(GL_MODELVIEW));
-	GL_CHECK(glLoadMatrixf(_ModelView.Values()));
+	GL_CHECK(glLoadMatrixf(_modelView.Values()));
 }
 
 void RenderImplOpenGL1::End()
 {
-	_ModelView.Identity();
-	_RenderBuffer.Draw();
+	_modelView.Identity();
+	_renderBuffer.Draw();
 
-	_Window->GetWindowImpl()->Present();
+	_window->GetWindowImpl()->Present();
 
-	_RenderBuffer.Reset();
+	_renderBuffer.Reset();
 }
 
 const Vec2u& RenderImplOpenGL1::Size()
 {
-	return _Window->Size();
+	return _window->Size();
 }
 
 const Color& RenderImplOpenGL1::Color()
 {
-	return _Color;
+	return _color;
 }
 
 void RenderImplOpenGL1::Clear()
@@ -69,7 +69,7 @@ void RenderImplOpenGL1::Clear()
 	GLclampf g;
 	GLclampf b;
 
-	Util::Normalize(_Color, r, g, b);
+	Util::Normalize(_color, r, g, b);
 
 	GL_CHECK(glClearColor(r, g, b, 1.0f));
 	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
@@ -77,7 +77,7 @@ void RenderImplOpenGL1::Clear()
 
 void RenderImplOpenGL1::Color(const LDL::Graphics::Color& color)
 {
-	_Color = color;
+	_color = color;
 }
 
 void RenderImplOpenGL1::Pixel(const Vec2u& pos)
@@ -86,7 +86,7 @@ void RenderImplOpenGL1::Pixel(const Vec2u& pos)
 	GLclampf g;
 	GLclampf b;
 
-	Util::Normalize(_Color, r, g, b);
+	Util::Normalize(_color, r, g, b);
 
 	glBegin(GL_POINTS);
 	glColor3f(r, g, b);
@@ -96,22 +96,22 @@ void RenderImplOpenGL1::Pixel(const Vec2u& pos)
 
 void RenderImplOpenGL1::Line(const Vec2u& pos1, const Vec2u& pos2)
 {
-	_RenderBuffer.Line(pos1, pos2, _Color);
+	_renderBuffer.Line(pos1, pos2, _color);
 }
 
 void RenderImplOpenGL1::Fill(const Vec2u& pos, const Vec2u& size)
 {
-	_RenderBuffer.Fill(pos, size, _Color);
+	_renderBuffer.Fill(pos, size, _color);
 }
 
 void RenderImplOpenGL1::Draw(Surface* image, const Vec2u& pos)
 {
-	_Screen.Draw(image, pos);
+	_screen.Draw(image, pos);
 }
 
 void RenderImplOpenGL1::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
-	_Screen.Draw(image, pos, size);
+	_screen.Draw(image, pos, size);
 }
 
 void RenderImplOpenGL1::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
@@ -139,12 +139,12 @@ void RenderImplOpenGL1::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& s
 
 void RenderImplOpenGL1::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
-	_RenderBuffer.Texture(dstPos, dstSize, srcPos, srcSize, ((TextureImplOpenGL1*)image->GetTextureImpl())->Id(), image->GetTextureImpl()->Quad().x);
+	_renderBuffer.Texture(dstPos, dstSize, srcPos, srcSize, ((TextureImplOpenGL1*)image->GetTextureImpl())->Id(), image->GetTextureImpl()->Quad().x);
 }
 
 void RenderImplOpenGL1::Draw(TextureBatcher* textureBatcher)
 {
 	TextureBatcherImplOpenGL1* batcher = (TextureBatcherImplOpenGL1*)textureBatcher->GetTextureBatcherImpl();
 
-	_RenderBuffer.TextureBatcher(batcher->TextureId(), batcher->Count(), batcher->Content());
+	_renderBuffer.TextureBatcher(batcher->TextureId(), batcher->Count(), batcher->Content());
 }

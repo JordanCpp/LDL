@@ -23,8 +23,8 @@ namespace LDL
 			const Math::Vec2u& Quad();
 			Surface* GetSurface();
 		private:
-			LDL::Math::Vec2u _Size;
-			Surface _Surface;
+			LDL::Math::Vec2u _size;
+			Surface          _surface;
 		};
 	}
 }

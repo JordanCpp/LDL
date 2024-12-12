@@ -1,7 +1,6 @@
 #ifndef LDL_Graphics_Camera_hpp
 #define LDL_Graphics_Camera_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Graphics/Render.hpp>
 
 namespace LDL
@@ -20,7 +19,7 @@ namespace LDL
             void Pos(const Math::Vec2u& pos);
             void Size(const Math::Vec2u& size);
         private:
-            CameraImpl* _CameraImpl;
+            CameraImpl* _impl;
         };
     }
 }

@@ -1,11 +1,10 @@
 #include "OpenGLFunctionsImpl.hpp"
-#include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL;
 using namespace LDL::Graphics;
 
 OpenGLFunctionsImpl::OpenGLFunctionsImpl(const std::string& path) :
-    _Library(path)
+    _library(path)
 {
 }
 
@@ -15,7 +14,7 @@ VoidFuncPtr OpenGLFunctionsImpl::Function(const std::string& name)
 
     if (IsValid(result))
     {
-        result = _Library.Function(name);
+        result = _library.Function(name);
     }
 
     return result;

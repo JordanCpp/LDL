@@ -1,4 +1,4 @@
-call "C:\Downloads\codeblocks-12.11mingw-setup\MinGW\mingwvars.bat"
+call "c:\Downloads\codeblocks-10.05mingw-setup\MinGW\mingwvars.bat"
 
 g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DFT2_BUILD_LIBRARY -DLDL_SHARED_LIBRARY ^
 ..\source\Shared\Allocators\*.cpp ^
@@ -90,3 +90,6 @@ g++ -Wall -Wextra -pedantic -O2 -std=c++98 -s -shared -o LDL_MinGW.dll -DFT2_BUI
 -lopengl32 ^
 -lwinmm ^
 -Wl,--out-implib,LDL_MinGW.lib
+
+
+pause

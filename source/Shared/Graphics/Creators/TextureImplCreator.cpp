@@ -5,8 +5,8 @@
 #include "../Renders/OpenGL3/TextureImplOpenGL3.hpp"
 #include "../Renders/Glide/TextureImplGlide.hpp"
 
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Enums/RenderMode.hpp>
+#include <LDL/Core/Assert.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Enums;
@@ -16,11 +16,13 @@ using namespace LDL::Graphics::Creators;
 
 TextureImpl* TextureImplCreator::Create(RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel)
 {
-	size_t renderMode = renderContext->Mode();
+	size_t mode = renderContext->Mode();
+
+	LDL_ASSERT_DETAIL(mode < RenderMode::Max, "Unknown graphics mode");
 
 	TextureImpl* result = NULL;
 
-	switch (renderMode)
+	switch (mode)
 	{
 	case RenderMode::Software:
 		result = new TextureImplSoftware(renderContext->GetRenderContextImpl(), size, pixels, bytesPerPixel);
@@ -34,9 +36,6 @@ TextureImpl* TextureImplCreator::Create(RenderContext* renderContext, const Vec2
 	case RenderMode::Glide:
 		result = new TextureImplGlide(renderContext->GetRenderContextImpl(), size, pixels, bytesPerPixel);
 		break;
-	default:
-		throw RuntimeError("Unknown graphics mode");
-		break;
 	}
 
 	return result;
@@ -44,11 +43,13 @@ TextureImpl* TextureImplCreator::Create(RenderContext* renderContext, const Vec2
 
 TextureImpl* TextureImplCreator::Create(RenderContext* renderContext, const Vec2u& size, uint8_t bytesPerPixel)
 {
-	size_t renderMode = renderContext->Mode();
+	size_t mode = renderContext->Mode();
+
+	LDL_ASSERT_DETAIL(mode < RenderMode::Max, "Unknown graphics mode");
 
 	TextureImpl* result = NULL;
 
-	switch (renderMode)
+	switch (mode)
 	{
 	case RenderMode::Software:
 		result = new TextureImplSoftware(renderContext->GetRenderContextImpl(), size, bytesPerPixel);
@@ -58,9 +59,6 @@ TextureImpl* TextureImplCreator::Create(RenderContext* renderContext, const Vec2
 		break;
 	case RenderMode::OpenGL3:
 		result = new TextureImplOpenGL3(renderContext->GetRenderContextImpl(), size, bytesPerPixel);
-		break;
-	default:
-		throw RuntimeError("Unknown graphics mode");
 		break;
 	}
 

@@ -16,13 +16,13 @@ namespace LDL
 			ScreenshoterImplDirect3D6(const std::string& path, const std::string& name, Render* render, Surface* image);
 			void Shot();
 		private:
-			ImageWritter _ImageWritter;
-			BaseScreenshoter _BaseScreenshoter;
-			std::string _ShortPath;
-			std::string _Name;
-			std::string _FullPath;
-			Render* _Render;
-			Surface* _Image;
+			ImageWritter     _imageWritter;
+			BaseScreenshoter _baseScreenshoter;
+			std::string      _shortPath;
+			std::string      _name;
+			std::string      _fullPath;
+			Render*          _render;
+			Surface*         _image;
 		};
 	}
 }

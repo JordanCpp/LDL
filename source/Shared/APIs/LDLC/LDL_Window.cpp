@@ -8,12 +8,12 @@ using namespace LDL::Math;
 
 struct LDL_Window
 {
-	Window _Window;
+	Window _window;
 	LDL_Window(LDL_RenderContext* renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode);
 };
 
 LDL_Window::LDL_Window(LDL_RenderContext* renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
-	_Window((RenderContext*)renderContext, pos, size, title, mode)
+	_window((RenderContext*)renderContext, pos, size, title, mode)
 {
 }
 
@@ -31,19 +31,19 @@ void LDL_WindowFree(LDL_Window* window)
 
 bool LDL_WindowRunning(LDL_Window* window)
 {
-	return window->_Window.Running();
+	return window->_window.Running();
 }
 
 void LDL_WindowPollEvents(LDL_Window* window)
 {
-	window->_Window.PollEvents();
+	window->_window.PollEvents();
 }
 
 bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event)
 {
 	Event src;
 
-	bool result = window->_Window.GetEvent(src);
+	bool result = window->_window.GetEvent(src);
 
 	memcpy(event, &src, sizeof(Event));
 
@@ -54,7 +54,7 @@ bool LDL_WindowWaitEvent(LDL_Window* window, LDL_Event* event)
 {
 	Event src;
 
-	bool result = window->_Window.WaitEvent(src);
+	bool result = window->_window.WaitEvent(src);
 
 	memcpy(event, &src, sizeof(Event));
 
@@ -63,35 +63,35 @@ bool LDL_WindowWaitEvent(LDL_Window* window, LDL_Event* event)
 
 void LDL_WindowStopEvent(LDL_Window* window)
 {
-	window->_Window.StopEvent();
+	window->_window.StopEvent();
 }
 
 void LDL_WindowSetTitle(LDL_Window* window, const char* title)
 {
-	window->_Window.Title(title);
+	window->_window.Title(title);
 }
 
 const char* LDL_WindowGetTitle(LDL_Window* window)
 {
-	return window->_Window.Title().c_str();
+	return window->_window.Title().c_str();
 }
 
 size_t LDL_WindowGetPosX(LDL_Window* window)
 {
-	return  window->_Window.Pos().x;
+	return  window->_window.Pos().x;
 }
 
 size_t LDL_WindowGetPosY(LDL_Window* window)
 {
-	return  window->_Window.Pos().y;
+	return  window->_window.Pos().y;
 }
 
 size_t LDL_WindowGetSizeX(LDL_Window* window)
 {
-	return window->_Window.Size().x;
+	return window->_window.Size().x;
 }
 
 size_t LDL_WindowGetSizeY(LDL_Window* window)
 {
-	return window->_Window.Size().y;
+	return window->_window.Size().y;
 }

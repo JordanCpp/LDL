@@ -1,7 +1,8 @@
 #include <LDL/APIs/OpenGL/OpenGLLoader.hpp>
 #include <LDL/APIs/OpenGL/OpenGL4_6.hpp>
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Core/NumberToString.hpp>
+#include <LDL/Core/Console.hpp>
+#include <LDL/Core/Terminate.hpp>
 
 using namespace LDL;
 using namespace LDL::Core;
@@ -284,7 +285,10 @@ void OpenGLLoader::Init(size_t major, size_t minor)
 		error += conv.Convert(Minor());
 		error += " not support";
 
-		throw RuntimeError(error);
+		Console console;
+		console.Write(error);
+
+		Terminate();
 	}
 }
 

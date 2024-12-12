@@ -1,6 +1,4 @@
-#include <iostream>
 #include <math.h>
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/NumberToString.hpp>
@@ -43,8 +41,6 @@ GLuint indices[] =
 
 int main()
 {
-	try
-	{
 		RenderContext renderContext(RenderMode::OpenGL3);
 
 		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 800), "YoutubeOpenGL");
@@ -145,11 +141,6 @@ int main()
 		EBO1.Delete();
 		popCat.Delete();
 		shaderProgram.Delete();
-	}
-	catch (const RuntimeError& error)
-	{
-		std::cout << error.what() << '\n';
-	}
 
 	return 0;
 }

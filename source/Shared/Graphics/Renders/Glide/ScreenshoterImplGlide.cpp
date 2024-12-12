@@ -3,10 +3,10 @@
 using namespace LDL::Graphics;
 
 ScreenshoterImplGlide::ScreenshoterImplGlide(const std::string& path, const std::string& name, Render* render, Surface* image) :
-	_ShortPath(path),
-	_Name(name),
-	_Render(render),
-	_Image(image)
+	_shortPath(path),
+	_name(name),
+	_render(render),
+	_image(image)
 {
 }
 

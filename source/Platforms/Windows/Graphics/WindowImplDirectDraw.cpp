@@ -1,6 +1,6 @@
-#include "WindowImplDirectDraw.hpp"
-#include <LDL/Core/RuntimeError.hpp>
+#include <LDL/Core/Assert.hpp>
 #include <LDL/Core/Library.hpp>
+#include "WindowImplDirectDraw.hpp"
 
 using namespace LDL::Core;
 using namespace LDL::Math;
@@ -15,19 +15,13 @@ WindowImplDirectDraw::WindowImplDirectDraw(const Vec2u& pos, const Vec2u& size, 
     DirectDrawCreate = (PFNDirectDrawCreate)library.Function("DirectDrawCreate");
 
     HRESULT result = DirectDrawCreate(NULL, &_DirectDraw, NULL);
-
-    if (FAILED(result))
-        throw RuntimeError("DirectDrawCreate failed");
+    LDL_ASSERT_DETAIL(!FAILED(result), "DirectDrawCreate failed");
 
     result = _DirectDraw->SetCooperativeLevel(_Window._HWND, DDSCL_NORMAL);
-
-    if (FAILED(result))
-        throw RuntimeError("SetCooperativeLevel failed");
+    LDL_ASSERT_DETAIL(!FAILED(result), "SetCooperativeLevel failed");
 
     result = _DirectDraw->SetDisplayMode(size.x, size.y, 24);
-
-    if (FAILED(result))
-        throw RuntimeError("SetDisplayMode failed");
+    LDL_ASSERT_DETAIL(!FAILED(result), "SetDisplayMode failed");
 
     DDSURFACEDESC ddsd;
 
@@ -38,31 +32,21 @@ WindowImplDirectDraw::WindowImplDirectDraw(const Vec2u& pos, const Vec2u& size, 
     ddsd.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE;
 
     result = _DirectDraw->CreateSurface(&ddsd, &_Primary, NULL);
-
-    if (FAILED(result))
-        throw RuntimeError("CreateSurface failed");
+    LDL_ASSERT_DETAIL(!FAILED(result), "CreateSurface failed");
 
     ddsd.ddsCaps.dwCaps = DDSCAPS_BACKBUFFER;
 
     result = _DirectDraw->CreateSurface(&ddsd, &_Screen, NULL);
-
-    if (FAILED(result))
-        throw RuntimeError("CreateSurface failed");
+    LDL_ASSERT_DETAIL(!FAILED(result), "CreateSurface failed");
 
     result = _DirectDraw->CreateClipper(0, &_Clipper, NULL);
-
-    if (FAILED(result))
-        throw RuntimeError("CreateClipper failed");
+    LDL_ASSERT_DETAIL(!FAILED(result), "CreateClipper failed");
 
     result = _Clipper->SetHWnd(0, _Window._HWND);
-
-    if (FAILED(result))
-        throw RuntimeError("SetHWnd failed");
+    LDL_ASSERT_DETAIL(!FAILED(result), "SetHWnd failed");
 
     result = _Primary->SetClipper(_Clipper);
-
-    if (FAILED(result))
-        throw RuntimeError("SetClipper failed");
+    LDL_ASSERT_DETAIL(!FAILED(result), "SetClipper failed");
 }
 
 WindowImplDirectDraw::~WindowImplDirectDraw()

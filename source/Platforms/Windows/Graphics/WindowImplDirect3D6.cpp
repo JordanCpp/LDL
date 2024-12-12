@@ -1,5 +1,4 @@
 #include "WindowImplDirect3D6.hpp"
-#include <LDL/Core/RuntimeError.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Events;

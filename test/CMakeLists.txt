@@ -1,5 +1,4 @@
 add_subdirectory("Graphics")
-add_subdirectory("Events")
 add_subdirectory("Allocators")
 add_subdirectory("Loaders")
 add_subdirectory("Core")

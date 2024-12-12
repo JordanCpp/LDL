@@ -10,9 +10,9 @@ namespace LDL
         class DirectDrawContext
         {
         public:
-            LPDIRECTDRAW _DirectDraw;
-            DDSURFACEDESC _SurfaceDesc;
-            DDSCAPS _SurfaceCaps;
+            LPDIRECTDRAW        _DirectDraw;
+            DDSURFACEDESC       _SurfaceDesc;
+            DDSCAPS             _SurfaceCaps;
             LPDIRECTDRAWSURFACE _Primary;
             LPDIRECTDRAWSURFACE _Screen;
             LPDIRECTDRAWCLIPPER _DirectDrawClipper;
