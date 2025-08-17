@@ -1,3 +1,6 @@
+
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Data DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/)
+
 add_executable(LDLC_01_WindowAndRender "LDLC_01_WindowAndRender.c")
 target_link_libraries(LDLC_01_WindowAndRender LDL)
 

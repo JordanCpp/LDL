@@ -1,4 +1,6 @@
 
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Data DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/)
+
 add_executable(Lesson01 "Lesson01.cpp")
 target_link_libraries(Lesson01 LDL)
 
