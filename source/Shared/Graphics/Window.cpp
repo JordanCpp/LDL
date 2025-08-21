@@ -2,7 +2,6 @@
 #include "Creators/WindowImplCreator.hpp"
 #include <LDL/Graphics/RenderContext.hpp>
 
-using namespace LDL::Core;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
 using namespace LDL::Graphics::Creators;

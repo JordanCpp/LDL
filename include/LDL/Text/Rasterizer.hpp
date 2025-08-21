@@ -12,7 +12,7 @@ namespace LDL
 	{
 		class RasterizerImpl;
 
-		class LDL_LIBRARY Rasterizer : public LDL::Core::FastPimpl
+		class LDL_LIBRARY Rasterizer
 		{
 		public:
 			Rasterizer(const Math::Vec2u& bufferSize);

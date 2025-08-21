@@ -1,6 +1,5 @@
 #include "WindowImplDirect3D6.hpp"
 
-using namespace LDL::Core;
 using namespace LDL::Events;
 using namespace LDL::Graphics;
 using namespace LDL::Math;

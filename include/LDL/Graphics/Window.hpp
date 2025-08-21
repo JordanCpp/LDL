@@ -5,7 +5,6 @@
 #include <LDL/Events/Event.hpp>
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Enums/WindowMode.hpp>
-#include <LDL/Core/FastPimpl.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
 
 namespace LDL
@@ -14,7 +13,7 @@ namespace LDL
 	{
 		class WindowImpl;
 
-		class LDL_LIBRARY Window : public LDL::Core::FastPimpl
+		class LDL_LIBRARY Window
 		{
 		public:
 			Window(RenderContext* renderContext, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);

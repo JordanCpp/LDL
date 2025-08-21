@@ -8,7 +8,6 @@
 using namespace LDL::Graphics;
 using namespace LDL::Events;
 using namespace LDL::Time;
-using namespace LDL::Core;
 using namespace LDL::Enums;
 using namespace LDL::Math;
 using namespace LDL::Audio;

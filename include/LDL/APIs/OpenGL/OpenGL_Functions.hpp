@@ -1,7 +1,6 @@
 #ifndef LDL_Graphics_OpenGLFunctions_hpp
 #define LDL_Graphics_OpenGLFunctions_hpp
 
-#include <LDL/Core/FastPimpl.hpp>
 #include <LDL/Core/Library.hpp>
 
 namespace LDL
@@ -10,7 +9,7 @@ namespace LDL
 	{
 		class OpenGLFunctionsImpl;
 
-		class LDL_LIBRARY OpenGLFunctions : LDL::Core::FastPimpl
+		class LDL_LIBRARY OpenGLFunctions
 		{
 		public:
 			OpenGLFunctions();

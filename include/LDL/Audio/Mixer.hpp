@@ -1,7 +1,6 @@
 #ifndef LDL_Audio_Mixer_hpp
 #define LDL_Audio_Mixer_hpp
 
-#include <LDL/Core/FastPimpl.hpp>
 #include <LDL/Audio/Sound.hpp>
 
 namespace LDL
@@ -10,7 +9,7 @@ namespace LDL
 	{
 		class MixerImpl;
 
-		class LDL_LIBRARY Mixer : public Core::FastPimpl
+		class LDL_LIBRARY Mixer
 		{
 		public:
 			Mixer();

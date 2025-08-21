@@ -11,7 +11,6 @@ using namespace LDL::Graphics;
 using namespace LDL::Events;
 using namespace LDL::Time;
 using namespace LDL::Text;
-using namespace LDL::Core;
 using namespace LDL::Enums;
 using namespace LDL::Math;
 

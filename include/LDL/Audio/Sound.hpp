@@ -1,7 +1,6 @@
 #ifndef LDL_Audio_Sound_hpp
 #define LDL_Audio_Sound_hpp
 
-#include <LDL/Core/FastPimpl.hpp>
 #include <LDL/Audio/AudioContext.hpp>
 
 namespace LDL
@@ -10,7 +9,7 @@ namespace LDL
 	{
 		class SoundImpl;
 
-		class LDL_LIBRARY Sound : public Core::FastPimpl
+		class LDL_LIBRARY Sound
 		{
 		public:
 			Sound(AudioContext* audioContext, size_t channels, size_t rate, size_t samples, uint8_t* bytes);

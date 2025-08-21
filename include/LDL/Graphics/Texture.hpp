@@ -1,7 +1,6 @@
 #ifndef LDL_Graphics_Texture_hpp
 #define LDL_Graphics_Texture_hpp
 
-#include <LDL/Core/FastPimpl.hpp>
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
 #include <LDL/Graphics/Surface.hpp>
@@ -12,7 +11,7 @@ namespace LDL
 	{
 		class TextureImpl;
 
-		class LDL_LIBRARY Texture : public LDL::Core::FastPimpl
+		class LDL_LIBRARY Texture
 		{
 		public:
 			Texture(RenderContext* renderContext, const Math::Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);

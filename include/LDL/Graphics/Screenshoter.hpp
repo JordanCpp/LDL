@@ -9,7 +9,7 @@ namespace LDL
 	{
 		class ScreenshoterImpl;
 
-		class Screenshoter : public LDL::Core::FastPimpl
+		class Screenshoter
 		{
 		public:
 			Screenshoter(const std::string& path, const std::string& name, Render* render, Surface* image);

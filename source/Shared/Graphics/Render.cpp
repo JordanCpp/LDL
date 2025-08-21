@@ -1,7 +1,6 @@
 #include <LDL/Graphics/Render.hpp>
 #include "Creators/RenderImplCreator.hpp"
 
-using namespace LDL::Core;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
 using namespace LDL::Graphics::Creators;

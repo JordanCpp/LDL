@@ -3,7 +3,6 @@
 
 #include "Creators/RenderContextImplCreator.hpp"
 
-using namespace LDL::Core;
 using namespace LDL::Graphics;
 using namespace LDL::Graphics::Creators;
 

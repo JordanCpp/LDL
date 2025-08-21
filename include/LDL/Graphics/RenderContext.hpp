@@ -1,8 +1,8 @@
 #ifndef LDL_Graphics_RenderContext_hpp
 #define LDL_Graphics_RenderContext_hpp
 
-#include <LDL/Core/FastPimpl.hpp>
 #include <LDL/Enums/RenderMode.hpp>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {
@@ -10,7 +10,7 @@ namespace LDL
 	{
 		class RenderContextImpl;
 
-		class LDL_LIBRARY RenderContext : public LDL::Core::FastPimpl
+		class LDL_LIBRARY RenderContext
 		{
 		public:
 			RenderContext(size_t mode = Enums::RenderMode::OpenGL1);

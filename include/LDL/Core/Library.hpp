@@ -1,7 +1,7 @@
 #ifndef LDL_Core_Library_hpp
 #define LDL_Core_Library_hpp
 
-#include <LDL/Core/FastPimpl.hpp>
+#include <LDL/Core/Types.hpp>
 #include <string>
 
 namespace LDL
@@ -12,7 +12,7 @@ namespace LDL
 	{
 		class LibraryImpl;
 
-		class LDL_LIBRARY Library : public FastPimpl
+		class LDL_LIBRARY Library
 		{
 		public:
 			Library(const std::string& path);

@@ -1,7 +1,7 @@
 #ifndef LDL_Text_RasterizerContext_hpp
 #define LDL_Text_RasterizerContext_hpp
 
-#include <LDL/Core/FastPimpl.hpp>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {
@@ -9,7 +9,7 @@ namespace LDL
 	{
 		class RasterizerContextImpl;
 
-		class LDL_LIBRARY RasterizerContext : public LDL::Core::FastPimpl
+		class LDL_LIBRARY RasterizerContext
 		{
 		public:
 			RasterizerContext();

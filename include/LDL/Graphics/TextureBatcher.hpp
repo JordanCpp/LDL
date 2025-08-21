@@ -9,7 +9,7 @@ namespace LDL
 	{
 		class TextureBatcherImpl;
 
-		class LDL_LIBRARY TextureBatcher : public LDL::Core::FastPimpl
+		class LDL_LIBRARY TextureBatcher
 		{
 		public:
 			TextureBatcher(RenderContext* renderContext, Texture* texture, size_t count);

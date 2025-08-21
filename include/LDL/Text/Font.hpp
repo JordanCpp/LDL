@@ -9,7 +9,7 @@ namespace LDL
 	{
 		class FontImpl;
 
-		class LDL_LIBRARY Font : public LDL::Core::FastPimpl
+		class LDL_LIBRARY Font
 		{
 		public:
 			Font(RasterizerContext* rasterizerContext,size_t fontSize, uint8_t* font, size_t size);

@@ -1,7 +1,6 @@
 #include <LDL/Graphics/Texture.hpp>
 #include "Creators/TextureImplCreator.hpp"
 
-using namespace LDL::Core;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
 using namespace LDL::Graphics::Creators;

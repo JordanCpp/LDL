@@ -1,6 +1,5 @@
 #include "WindowImplGlide.hpp"
 
-using namespace LDL::Core;
 using namespace LDL::Events;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
