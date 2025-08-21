@@ -6,7 +6,7 @@
 // Modifed for LDL framework by Zoshchuk Evgeniy (Jordan)
 
 #include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/NumberToString.hpp>
+#include <LDL/Core/Convert.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
@@ -47,7 +47,7 @@ int main()
 		Event report;
 
 		FpsCounter fpsCounter;
-		NumberToString convert;
+		Convert convert;
 
 		SetupRC();
 
@@ -71,7 +71,7 @@ int main()
 
 			if (fpsCounter.Calc())
 			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
+				window.Title(convert.ToString(fpsCounter.Fps()));
 				fpsCounter.Clear();
 			}
 

@@ -1,6 +1,6 @@
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/NumberToString.hpp>
+#include <LDL/Core/Convert.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
@@ -29,7 +29,7 @@ int main()
 	Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
 	FpsCounter fpsCounter;
-	NumberToString convert;
+	Convert convert;
 
 	while (window.Running())
 	{
@@ -54,7 +54,7 @@ int main()
 
 		if (fpsCounter.Calc())
 		{
-			window.Title(convert.Convert(fpsCounter.Fps()));
+			window.Title(convert.ToString(fpsCounter.Fps()));
 			fpsCounter.Clear();
 		}
 

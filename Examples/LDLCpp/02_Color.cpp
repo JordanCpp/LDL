@@ -1,5 +1,5 @@
 #include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/NumberToString.hpp>
+#include <LDL/Core/Convert.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 
@@ -21,7 +21,7 @@ int main()
 	render.Color(Color(0, 162, 232));
 
 	FpsCounter fpsCounter;
-	NumberToString convert;
+	Convert convert;
 
 	while (window.Running())
 	{
@@ -43,7 +43,7 @@ int main()
 
 		if (fpsCounter.Calc())
 		{
-			window.Title(convert.Convert(fpsCounter.Fps()));
+			window.Title(convert.ToString(fpsCounter.Fps()));
 			fpsCounter.Clear();
 		}
 

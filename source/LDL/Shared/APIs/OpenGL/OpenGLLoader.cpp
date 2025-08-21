@@ -1,6 +1,6 @@
 #include <LDL/APIs/OpenGL/OpenGLLoader.hpp>
 #include <LDL/APIs/OpenGL/OpenGL4_6.hpp>
-#include <LDL/Core/NumberToString.hpp>
+#include <LDL/Core/Convert.hpp>
 #include <LDL/Core/Console.hpp>
 #include <LDL/Core/Terminate.hpp>
 
@@ -277,12 +277,12 @@ void OpenGLLoader::Init(size_t major, size_t minor)
 	}
 	else
 	{
-		NumberToString conv;
+		Convert conv;
 
 		std::string error = "OpenGL ";
-		error += conv.Convert(Major());
+		error += conv.ToString(Major());
 		error += ".";
-		error += conv.Convert(Minor());
+		error += conv.ToString(Minor());
 		error += " not support";
 
 		Console console;

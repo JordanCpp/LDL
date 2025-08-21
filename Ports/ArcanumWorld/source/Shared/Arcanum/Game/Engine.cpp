@@ -45,7 +45,7 @@ void Engine::ShowFps()
 {
 	if (_FpsCounter.Calc())
 	{
-		_Title = _Settings->Title() + " Fps: " + _Convert.Convert(_FpsCounter.Fps());
+		_Title = _Settings->Title() + " Fps: " + _Convert.ToString(_FpsCounter.Fps());
 		_Window.Title(_Title);
 		_FpsCounter.Clear();
 	}

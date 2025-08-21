@@ -1,6 +1,6 @@
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/NumberToString.hpp>
+#include <LDL/Core/Convert.hpp>
 #include <LDL/Time/FpsLimiter.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
@@ -65,7 +65,7 @@ int main()
 		Event report;
 
 		FpsCounter fpsCounter;
-		NumberToString convert;
+		Convert convert;
 		FpsLimiter fpsLimiter;
 
 		while (window.Running())
@@ -94,7 +94,7 @@ int main()
 
 			if (fpsCounter.Calc())
 			{
-				window.Title(convert.Convert(fpsCounter.Fps()));
+				window.Title(convert.ToString(fpsCounter.Fps()));
 				fpsCounter.Clear();
 			}
 

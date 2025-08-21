@@ -3,7 +3,7 @@
 
 #include <fstream>
 #include <string>
-#include <LDL/Core/NumberToString.hpp>
+#include <LDL/Core/Convert.hpp>
 
 namespace Arcanum
 {
@@ -21,7 +21,7 @@ namespace Arcanum
 			void Node(const std::string& name, intmax_t data);
 		private:
 			std::ofstream _File;
-			LDL::Core::NumberToString _NumberToString;
+			LDL::Core::Convert _NumberToString;
 		};
 	}
 }

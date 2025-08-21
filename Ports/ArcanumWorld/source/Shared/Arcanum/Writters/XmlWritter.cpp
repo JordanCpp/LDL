@@ -38,5 +38,5 @@ void XmlWritter::Node(const std::string& name, const std::string& data)
 
 void XmlWritter::Node(const std::string& name, intmax_t data)
 {
-	Node(name, _NumberToString.Convert(data));
+	Node(name, _NumberToString.ToString(data));
 }

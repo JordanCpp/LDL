@@ -4,7 +4,7 @@
 #include <Arcanum/Core/RuntimeError.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/NumberToString.hpp>
+#include <LDL/Core/Convert.hpp>
 #include <LDL/Time/FpsLimiter.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
@@ -55,7 +55,7 @@ namespace Arcanum
 			LDL::Graphics::Window _Window;
 			LDL::Graphics::Render _Render;
 			LDL::Time::FpsCounter _FpsCounter;
-			LDL::Core::NumberToString _Convert;
+			LDL::Core::Convert _Convert;
 			LDL::Time::FpsLimiter _FpsLimiter;
 			Loaders::ArtLoader _ArtLoader;
 			Managers::SpriteManager _SpriteManager;

@@ -1,12 +1,12 @@
-#include <LDL/Core/NumberToString.hpp>
+#include <LDL/Core/Convert.hpp>
 
 using namespace LDL::Core;
 
-NumberToString::NumberToString()
+Convert::Convert()
 {
 }
 
-const char* NumberToString::Convert(intmax_t num, uint8_t base)
+const char* Convert::ToString(intmax_t num, uint8_t base)
 {
     int i = 0;
     bool isNegative = false;
@@ -46,14 +46,14 @@ const char* NumberToString::Convert(intmax_t num, uint8_t base)
     return _buffer;
 }
 
-void NumberToString::Swap(char& t1, char& t2)
+void Convert::Swap(char& t1, char& t2)
 {
     char tmp = t1;
     t1 = t2;
     t2 = tmp;
 }
 
-void NumberToString::Reverse(char* str, size_t length)
+void Convert::Reverse(char* str, size_t length)
 {
     size_t start = 0;
     size_t end = length - 1;

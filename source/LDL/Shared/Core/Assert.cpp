@@ -1,7 +1,7 @@
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Core/Console.hpp>
 #include <LDL/Core/Terminate.hpp>
-#include <LDL/Core/NumberToString.hpp>
+#include <LDL/Core/Convert.hpp>
 
 using namespace LDL::Core;
 
@@ -9,9 +9,9 @@ void LDL::Core::Assert(bool condition, const std::string& description, const std
 {
 	if (!condition)
 	{
-		NumberToString conv;
+		Convert conv;
 
-		std::string message = '\n' + "Assert: " + description + ", detail " + detail + ", file " + file + ", line " + conv.Convert(line) + '\n';
+		std::string message = '\n' + "Assert: " + description + ", detail " + detail + ", file " + file + ", line " + conv.ToString(line) + '\n';
 
 		Console console;
 		console.Write(message);

@@ -1,6 +1,6 @@
 #include "Util.hpp"
 #include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
-#include <LDL/Core/NumberToString.hpp>
+#include <LDL/Core/Convert.hpp>
 #include <LDL/Core/Assert.hpp>
 
 using namespace LDL::Graphics;
@@ -140,9 +140,9 @@ void Util::Check(const std::string& file, size_t line, const std::string& expres
 			error = "Unknown error";
 		}
 
-		LDL::Core::NumberToString conv;
+		LDL::Core::Convert conv;
 
-		LDL_ASSERT_DETAIL(code == GL_NO_ERROR, "OpenGL error: " + error + " File: " + file + " Line: " + conv.Convert(line) + " Detail: " + expression);
+		LDL_ASSERT_DETAIL(code == GL_NO_ERROR, "OpenGL error: " + error + " File: " + file + " Line: " + conv.ToString(line) + " Detail: " + expression);
     }
 }
 
