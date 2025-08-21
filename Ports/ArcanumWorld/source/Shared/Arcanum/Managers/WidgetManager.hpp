@@ -17,8 +17,8 @@ namespace Arcanum
 			Widgets::Button* GetButton(const LDL::Math::Vec2u& pos, const LDL::Math::Vec2u& size);
 			Widgets::Form* GetForm();
 		private:
-			LDL::Graphics::Render* _Render;
-			std::vector<Widgets::Widget*> _Widgets;
+			LDL::Graphics::Render*        _render;
+			std::vector<Widgets::Widget*> _widgets;
 		};
 	}
 }

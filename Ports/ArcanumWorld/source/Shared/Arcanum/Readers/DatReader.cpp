@@ -6,42 +6,42 @@ using namespace Arcanum::Readers;
 
 bool DatReader::Reset(const std::string& dir, const std::string& file, DatList& archiveList)
 {
-	if (_File.is_open())
-		_File.close();
+	if (_file.is_open())
+		_file.close();
 
-	_FullPath.clear();
-	_FullPath += dir;
-	_FullPath += file;
+	_fullPath.clear();
+	_fullPath += dir;
+	_fullPath += file;
 
-	_File.open(_FullPath.c_str(), std::ios::binary);
+	_file.open(_fullPath.c_str(), std::ios::binary);
 
-	if (_File.is_open())
+	if (_file.is_open())
 	{
 		int treesubs   = 0;	
 		int filestotal = 0;
 
-		_File.seekg(-0x1Cl, std::ios::end);
-		_File.seekg(16, std::ios::cur);
-		_File.seekg(4, std::ios::cur);
-		_File.seekg(4, std::ios::cur);
-		_File.read((char*)&treesubs, 0x04);
-		_File.seekg(-treesubs, std::ios::end);
-		_File.read((char*)&filestotal, 0x04);
+		_file.seekg(-0x1Cl, std::ios::end);
+		_file.seekg(16, std::ios::cur);
+		_file.seekg(4, std::ios::cur);
+		_file.seekg(4, std::ios::cur);
+		_file.read((char*)&treesubs, 0x04);
+		_file.seekg(-treesubs, std::ios::end);
+		_file.read((char*)&filestotal, 0x04);
 
 		for (int i = 1; i <= filestotal; i++)
 		{
 			DatItem item;
 
-			_File.read((char*)&item.NameSize, 0x04);
-			_File.read((char*)&item.Name    , item.NameSize);
+			_file.read((char*)&item.NameSize, 0x04);
+			_file.read((char*)&item.Name    , item.NameSize);
 
-			_PathNormalizer.Normalize(item.Name);
+			_pathNormalizer.Normalize(item.Name);
 
-			_File.read((char*)&item.Unknown1  , 0x04);
-			_File.read((char*)&item.Type      , 0x04);
-			_File.read((char*)&item.RealSize  , 0x04);
-			_File.read((char*)&item.PackedSize, 0x04);
-			_File.read((char*)&item.Offset    , 0x04);
+			_file.read((char*)&item.Unknown1  , 0x04);
+			_file.read((char*)&item.Type      , 0x04);
+			_file.read((char*)&item.RealSize  , 0x04);
+			_file.read((char*)&item.PackedSize, 0x04);
+			_file.read((char*)&item.Offset    , 0x04);
 			strcpy(item.Archive, file.c_str());
 
 			auto j = archiveList._List.find(item.Name);
@@ -52,7 +52,7 @@ bool DatReader::Reset(const std::string& dir, const std::string& file, DatList& 
 				strcpy(j->second.Archive, file.c_str());
 		}
 
-		_File.close();
+		_file.close();
 
 		return true;
 	}

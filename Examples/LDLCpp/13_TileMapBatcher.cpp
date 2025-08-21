@@ -5,7 +5,7 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/Graphics/Isometric.hpp>
+#include <LDL/Math/Isometric.hpp>
 #include <LDL/Graphics/TextureBatcher.hpp>
 #include <stdlib.h>
 #include <vector>

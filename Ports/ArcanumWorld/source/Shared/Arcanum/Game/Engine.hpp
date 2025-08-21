@@ -69,7 +69,7 @@ namespace Arcanum
 			Managers::ObjectManager _ObjectManager;
 			Objects::LocationCreator _LocationCreator;
 			Objects::Location _Location;
-			Writters::XmlWritter _XmlWritter;
+			Writers::XmlWriter _xmlWriter;
 			Savers::LocationSaver _LocationSaver;
 			Loaders::LocationLoader _LocationLoader;
 		};

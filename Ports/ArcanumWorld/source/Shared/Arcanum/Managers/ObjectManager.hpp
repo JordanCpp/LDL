@@ -16,8 +16,8 @@ namespace Arcanum
 			Objects::Scenery* NewScenery(const std::string& name);
 			void NewTile(Objects::Tile& object, const std::string& name);
 		private:
-			Allocators::ObjectAllocator* _ObjectAllocator;
-			SpriteManager* _SpriteManager;
+			Allocators::ObjectAllocator* _objectAllocator;
+			SpriteManager*               _spriteManager;
 		};
 	}
 }

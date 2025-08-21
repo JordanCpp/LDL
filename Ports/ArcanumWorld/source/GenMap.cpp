@@ -1,52 +1,52 @@
 #include <iostream>
-#include <Arcanum/Writters/XmlWritter.hpp>
+#include <Arcanum/Writers/XmlWriter.hpp>
 #include <LDL/Math/Vec2.hpp>
 
 using namespace LDL::Math;
-using namespace Arcanum::Writters;
+using namespace Arcanum::Writers;
 
 
-void NewScenery(XmlWritter& writter, const Vec2u& pos, const std::string& path)
+void NewScenery(XmlWriter& writer, const Vec2u& pos, const std::string& path)
 {
-	writter.TagBegin("Scenery");
-	writter.Node("X", pos.x);
-	writter.Node("Y", pos.y);
-	writter.Node("Body", path);
-	writter.TagEnd("Scenery");
+	writer.TagBegin("Scenery");
+	writer.Node("X", pos.x);
+	writer.Node("Y", pos.y);
+	writer.Node("Body", path);
+	writer.TagEnd("Scenery");
 }
 
 int main()
 {
-	XmlWritter writter;
+	XmlWriter writer;
 
-	writter.Reset("data/maps/Test.xml");
+	writer.Reset("data/maps/Test.xml");
 
 	LDL::Math::Vec2u size(15, 15);
 
-	writter.TagBegin("Info");
-	writter.Node("Width", size.x);
-	writter.Node("Heigth", size.y);
-	writter.Node("Sceneries", 3);
-	writter.TagEnd("Info");
+	writer.TagBegin("Info");
+	writer.Node("Width", size.x);
+	writer.Node("Heigth", size.y);
+	writer.Node("Sceneries", 3);
+	writer.TagEnd("Info");
 
-	writter.TagBegin("Tiles");
+	writer.TagBegin("Tiles");
 
 	for (size_t i = 0; i < size.x * size.y; i++)
 	{
-		writter.TagBegin("Tile");
-		writter.Node("Body", "grsbse0c.ART");
-		writter.TagEnd("Tile");
+		writer.TagBegin("Tile");
+		writer.Node("Body", "grsbse0c.ART");
+		writer.TagEnd("Tile");
 	}
 
-	writter.TagEnd("Tiles");
+	writer.TagEnd("Tiles");
 
-	writter.TagBegin("Sceneries");
+	writer.TagBegin("Sceneries");
 
-	NewScenery(writter, Vec2u(3, 7), "savanna_tree02.ART");
-	NewScenery(writter, Vec2u(6, 5), "engine.ART");
-	NewScenery(writter, Vec2u(0, 0), "ArmorDisplay2.ART");
+	NewScenery(writer, Vec2u(3, 7), "savanna_tree02.ART");
+	NewScenery(writer, Vec2u(6, 5), "engine.ART");
+	NewScenery(writer, Vec2u(0, 0), "ArmorDisplay2.ART");
 
-	writter.TagEnd("Sceneries");
+	writer.TagEnd("Sceneries");
 
 	return 0;
 }

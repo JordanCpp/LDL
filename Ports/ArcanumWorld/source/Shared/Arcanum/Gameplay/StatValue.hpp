@@ -10,57 +10,57 @@ namespace Arcanum
 		{
 		public:
 			StatValue() :
-				_Value(T()),
-				_Number(T()),
-				_Percent(T()),
-				_Current(T())
+				_value(T()),
+				_number(T()),
+				_percent(T()),
+				_current(T())
 			{
 			}
 
 			T Value()
 			{
-				return _Value;
+				return _value;
 			}
 
 			void Value(T value)
 			{
-				_Value = value;
+				_value = value;
 			}
 
 			T Number()
 			{
-				return _Number;
+				return _number;
 			}
 
 			void Number(T value)
 			{
-				_Number = value;
+				_number = value;
 			}
 
 			T Percent()
 			{
-				return _Percent;
+				return _percent;
 			}
 
 			void Percent(T value)
 			{
-				_Percent = value;
+				_percent = value;
 			}
 
 			T Current()
 			{
-				return _Current;
+				return _current;
 			}
 
 			void Current(T value)
 			{
-				_Current = value;
+				_current = value;
 			}
 		private:
-			T _Value;
-			T _Number;
-			T _Percent;
-			T _Current;
+			T _value;
+			T _number;
+			T _percent;
+			T _current;
 		};
 	}
 }

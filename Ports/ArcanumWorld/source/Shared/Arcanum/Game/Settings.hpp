@@ -27,13 +27,13 @@ namespace Arcanum
 			const std::string& DataFiles();
 			void DataFiles(const std::string& value);
 		private:
-			std::string _Path;
-			std::string _Title;
-			std::string _DatFiles;
-			std::string _DataFiles;
-			LDL::Math::Vec2u _Size;
-			size_t _Fps;
-			size_t _Render;
+			size_t           _render;
+			size_t           _fps;
+			LDL::Math::Vec2u _size;
+			std::string      _path;
+			std::string      _title;
+			std::string      _datFiles;
+			std::string      _dataFiles;
 		};
 	}
 }

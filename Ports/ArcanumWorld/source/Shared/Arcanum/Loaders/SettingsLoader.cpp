@@ -8,51 +8,51 @@ using namespace Arcanum::Loaders;
 using namespace Arcanum::Readers;
 
 SettingsLoader::SettingsLoader(XmlReader* xmlReader) :
-	_XmlReader(xmlReader)
+	_xmlReader(xmlReader)
 {
 }
 
 bool SettingsLoader::Reset(const std::string& path, Settings& settings)
 {
-	bool result = _XmlReader->Reset(path);
+	bool result = _xmlReader->Reset(path);
 
 	if (!result)
 		throw RuntimeError("Cannot open the file: " + path);
 
-	_XmlReader->NextOpening("Config");
+	_xmlReader->NextOpening("Config");
 
-	_XmlReader->NextOpening("Video");
+	_xmlReader->NextOpening("Video");
 
-	_XmlReader->NextNode("Render");
-	settings.Render(_XmlReader->ValueInt());
+	_xmlReader->NextNode("Render");
+	settings.Render(_xmlReader->ValueInt());
 
-	_XmlReader->NextNode("Width");
-	size_t width = _XmlReader->ValueInt();
+	_xmlReader->NextNode("Width");
+	size_t width = _xmlReader->ValueInt();
 
-	_XmlReader->NextNode("Heigth");
-	size_t heigth = _XmlReader->ValueInt();
+	_xmlReader->NextNode("Heigth");
+	size_t heigth = _xmlReader->ValueInt();
 
 	settings.Size(Vec2u(width, heigth));
 
-	_XmlReader->NextNode("Fps");
-	settings.Fps(_XmlReader->ValueInt());
+	_xmlReader->NextNode("Fps");
+	settings.Fps(_xmlReader->ValueInt());
 
-	_XmlReader->NextNode("Title");
-	settings.Title(_XmlReader->Value());
+	_xmlReader->NextNode("Title");
+	settings.Title(_xmlReader->Value());
 
-	_XmlReader->NextClosing("Video");
+	_xmlReader->NextClosing("Video");
 
-	_XmlReader->NextOpening("Files");
+	_xmlReader->NextOpening("Files");
 
-	_XmlReader->NextNode("DatFiles");
-	settings.DatFiles(_XmlReader->Value());
+	_xmlReader->NextNode("DatFiles");
+	settings.DatFiles(_xmlReader->Value());
 
-	_XmlReader->NextNode("DataFiles");
-	settings.DataFiles(_XmlReader->Value());
+	_xmlReader->NextNode("DataFiles");
+	settings.DataFiles(_xmlReader->Value());
 
-	_XmlReader->NextClosing("Files");
+	_xmlReader->NextClosing("Files");
 
-	_XmlReader->NextClosing("Config");
+	_xmlReader->NextClosing("Config");
 
 	return result;
 }

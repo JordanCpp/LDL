@@ -1,7 +1,7 @@
 #ifndef Arcanum_Savers_LocationSaver_hpp
 #define Arcanum_Savers_LocationSaver_hpp
 
-#include <Arcanum/Writters/XmlWritter.hpp>
+#include <Arcanum/Writers/XmlWriter.hpp>
 #include <Arcanum/Objects/LocationData.hpp>
 
 namespace Arcanum
@@ -11,10 +11,10 @@ namespace Arcanum
         class LocationSaver
         {
         public:
-            LocationSaver(Writters::XmlWritter* xmlWritter);
+            LocationSaver(Writers::XmlWriter* xmlWriter);
             void Save(Objects::LocationData* locationData, const std::string& path);
         private:
-            Writters::XmlWritter* _XmlWritter;
+            Writers::XmlWriter* _xmlWriter;
         };
     }
 }

@@ -7,9 +7,9 @@ using namespace Arcanum::Readers;
 using namespace Arcanum::Loaders;
 
 FileManager::FileManager(PathManager* pathManager) :
-	_PathManager(pathManager),
-	_DatLoader(&_ArchiveList),
-	_MemoryReader(&_ByteReader)
+	_pathManager(pathManager),
+	_datLoader(&_archiveList),
+	_memoryReader(&_byteReader)
 {
 	Directory directory;
 	FileInfo fileInfo;
@@ -20,7 +20,7 @@ FileManager::FileManager(PathManager* pathManager) :
 		{
 			if (fileInfo.Name().find(".dat") != std::string::npos)
 			{
-				_ArchiveReader.Reset("", fileInfo.Name(), _ArchiveList);
+				_archiveReader.Reset("", fileInfo.Name(), _archiveList);
 			}
 		}
 	}
@@ -30,16 +30,16 @@ MemoryReader& FileManager::GetFile(const std::string& path)
 {
 	Directory directory;
 
-	const char* filePath = _PathManager->NewFullPath("data/", path).c_str();
+	const char* filePath = _pathManager->NewFullPath("data/", path).c_str();
 
 	if (directory.FileExist(filePath))
 	{
-		_MemoryReader.Reset(filePath);
+		_memoryReader.Reset(filePath);
 
-		return _MemoryReader;
+		return _memoryReader;
 	}
 	else
 	{
-		return _DatLoader.GetFile(path);
+		return _datLoader.GetFile(path);
 	}
 }

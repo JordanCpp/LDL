@@ -38,7 +38,7 @@ void ArtFrame::Reset()
 	px = py = 0;
 }
 
-size_t ArtFrame::Index(int x, int y)
+size_t ArtFrame::Index(size_t x, size_t y)
 {
 	return ((header.width * y) + x);
 }
@@ -65,20 +65,21 @@ void ArtFrame::Load(MemoryReader& source)
 	source.Read(&data[0], header.size);
 }
 
-uint8_t ArtFrame::GetValue(int x, int y)
+uint8_t ArtFrame::GetValue(size_t x, size_t y)
 {
 	return pixels[Index(x, y)];
 }
 
-void ArtFrame::SetValue(int x, int y, uint8_t ch)
+void ArtFrame::SetValue(size_t x, size_t y, uint8_t ch)
 {
 	pixels[Index(x, y)] = ch;
 }
 
-void ArtFrame::SetSize(int w, int h)
+void ArtFrame::SetSize(size_t w, size_t h)
 {
-	header.width = w;
-	header.height = h;
+	header.width  = (uint32_t)w;
+	header.height = (uint32_t)h;
+
 	pixels.resize(header.height * header.width);
 }
 

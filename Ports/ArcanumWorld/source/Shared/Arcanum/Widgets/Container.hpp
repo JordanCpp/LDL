@@ -14,7 +14,7 @@ namespace Arcanum
             void Append(Widget* widget);
             void Draw();
         private:
-            std::vector<Widget*> _Widgets;
+            std::vector<Widget*> _widgets;
         };
     }
 }

@@ -4,17 +4,20 @@ using namespace Arcanum::Graphics;
 
 Sprite::~Sprite()
 {
-	for (size_t i = 0; i < _Images.size(); i++)
-		delete _Images[i];
+	for (size_t i = 0; i < _images.size(); i++)
+	{
+		delete _images[i];
+	}
 }
+
 void Sprite::Append(Image* image)
 {
-	_Images.push_back(image);
+	_images.push_back(image);
 }
 
 Image* Sprite::GetImage(size_t index)
 {
-	return _Images[index];
+	return _images[index];
 }
 
 Image* Sprite::Single()

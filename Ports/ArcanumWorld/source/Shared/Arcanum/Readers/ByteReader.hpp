@@ -32,9 +32,9 @@ namespace Arcanum
             void Pos(size_t value);
             void Read(void* buffer, size_t bytes);
         private:
-            size_t _Type;
-            size_t _Bytes;
-            std::fstream _File;
+            size_t       _type;
+            size_t       _bytes;
+            std::fstream _file;
         };
     }
 }

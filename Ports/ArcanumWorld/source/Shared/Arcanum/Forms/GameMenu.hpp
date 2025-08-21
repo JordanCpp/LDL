@@ -13,7 +13,7 @@ namespace Arcanum
 		public:
 			GameMenu(LDL::Graphics::Render* render);
 		private:
-			Widgets::Button _Button;
+			Widgets::Button _button;
 		};
 	}
 }

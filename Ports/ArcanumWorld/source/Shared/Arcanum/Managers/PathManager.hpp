@@ -14,8 +14,8 @@ namespace Arcanum
 			const std::string& NewShortPath(const std::string& dir, const std::string& file);
 			const std::string& NewFullPath(const std::string& dir, const std::string& file);
 		private:
-			std::string _ShortPath;
-			std::string _FullPath;
+			std::string _shortPath;
+			std::string _fullPath;
 		};
 	}
 }

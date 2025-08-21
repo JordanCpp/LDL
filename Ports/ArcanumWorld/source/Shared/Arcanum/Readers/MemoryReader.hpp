@@ -18,9 +18,9 @@ namespace Arcanum
             std::vector<uint8_t>& Content();
             void Read(void* buffer, size_t bytes);
         private:
-            size_t _Offset;
-            ByteReader* _ByteReader;
-            std::vector<uint8_t> _Content;
+            ByteReader*          _byteReader;
+            size_t               _offset;
+            std::vector<uint8_t> _content;
         };
     }
 }

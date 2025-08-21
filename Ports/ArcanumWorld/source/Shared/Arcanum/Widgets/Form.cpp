@@ -11,10 +11,10 @@ Form::Form(Render* render, const Vec2u& pos, const Vec2u& size) :
 
 void Form::Attach(Widget* widget)
 {
-	_Container.Append(widget);
+	_container.Append(widget);
 }
 
 void Form::Draw()
 {
-	_Container.Draw();
+	_container.Draw();
 }

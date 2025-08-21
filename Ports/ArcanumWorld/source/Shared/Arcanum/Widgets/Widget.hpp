@@ -19,8 +19,8 @@ namespace Arcanum
             LDL::Graphics::Render* GetRender();
             virtual void Draw() = 0;
         private:
-            LDL::Graphics::Render* _Render;
-            LDL::Math::Rectu   _Area;
+            LDL::Graphics::Render* _render;
+            LDL::Math::Rectu       _area;
         };
     }
 }

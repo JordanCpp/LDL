@@ -6,24 +6,24 @@ using namespace LDL::Enums;
 using namespace LDL::Math;
 
 Camera::Camera(const Vec2u& pos, const Vec2u& size) :
-	_Area(pos, size),
-	_Step(25)
+	_step(25),
+	_area(pos, size)
 {
 }
 
 const Vec2u& Camera::Pos()
 {
-	return _Area.Pos();
+	return _area.Pos();
 }
 
 const Vec2u& Camera::Size()
 {
-	return _Area.Size();
+	return _area.Size();
 }
 
 void Camera::Move(const Vec2u& pos)
 {
-	_Area.Pos(pos.x, pos.y);
+	_area.Pos(pos.x, pos.y);
 }
 
 void Camera::Handle(Event& event)
@@ -33,22 +33,22 @@ void Camera::Handle(Event& event)
 
 	if (event.IsKeyPressed(KeyboardKey::W))
 	{
-		y += _Step;
+		y += _step;
 	}
 
 	if (event.IsKeyPressed(KeyboardKey::S))
 	{
-		y -= _Step;
+		y -= _step;
 	}
 
 	if (event.IsKeyPressed(KeyboardKey::A))
 	{
-		x += _Step;
+		x += _step;
 	}
 
 	if (event.IsKeyPressed(KeyboardKey::D))
 	{
-		x -= _Step;
+		x -= _step;
 	}
 
 	Move(Vec2u(x, y));

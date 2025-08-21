@@ -8,8 +8,8 @@ using namespace Arcanum::Scripts;
 
 ScriptManager::~ScriptManager()
 {
-	for (size_t i = 0; i < _Scripts.size(); i++)
-		delete _Scripts[i];
+	for (size_t i = 0; i < _scripts.size(); i++)
+		delete _scripts[i];
 }
 
 CritterScript* ScriptManager::GetCritterScript(const std::string& path)
@@ -21,7 +21,7 @@ CritterScript* ScriptManager::GetCritterScript(const std::string& path)
 
 	assert(result != nullptr);
 
-	_Scripts.push_back(result);
+	_scripts.push_back(result);
 
 	return result;
 }

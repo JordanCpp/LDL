@@ -20,11 +20,11 @@ namespace Arcanum
 			size_t Frames();
 			void Frame(size_t index);
 		private:
-			Formats::ArtFile _File;
-			LDL::Math::Vec2u _Size;
-			LDL::Math::Vec2u _Offset;
-			LDL::Math::Vec2u _Delta;
-			std::vector<uint8_t> _Pixels;
+			Formats::ArtFile     _file;
+			LDL::Math::Vec2u     _size;
+			LDL::Math::Vec2u     _offset;
+			LDL::Math::Vec2u     _delta;
+			std::vector<uint8_t> _pixels;
 		};
 	}
 }

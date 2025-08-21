@@ -27,10 +27,10 @@ namespace Arcanum
 			Objects::Critter* NewCritter();
 			void Delete(Objects::Critter* object);
 		private:
-			LDL::Allocators::ObjectPool<Objects::Tile, Objects::LocationLimits::Tiles>        _TilePool;
-			LDL::Allocators::ObjectPool<Objects::Wall, Objects::LocationLimits::Walls>        _WallPool;
-			LDL::Allocators::ObjectPool<Objects::Scenery, Objects::LocationLimits::Sceneries> _SceneryPool;
-			LDL::Allocators::ObjectPool<Objects::Critter, Objects::LocationLimits::Critters>  _CritterPool;
+			LDL::Allocators::ObjectPool<Objects::Tile, Objects::LocationLimits::Tiles>        _tilePool;
+			LDL::Allocators::ObjectPool<Objects::Wall, Objects::LocationLimits::Walls>        _wallPool;
+			LDL::Allocators::ObjectPool<Objects::Scenery, Objects::LocationLimits::Sceneries> _sceneryPool;
+			LDL::Allocators::ObjectPool<Objects::Critter, Objects::LocationLimits::Critters>  _critterPool;
 		};
 	}
 }

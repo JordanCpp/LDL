@@ -17,9 +17,9 @@ namespace Arcanum
 			const LDL::Math::Vec2u& Offset();
 			const LDL::Math::Vec2u& Delta();
 		private:
-			LDL::Graphics::Texture _Texture;
-			LDL::Math::Vec2u _Offset;
-			LDL::Math::Vec2u _Delta;
+			LDL::Graphics::Texture _texture;
+			LDL::Math::Vec2u       _offset;
+			LDL::Math::Vec2u       _delta;
 		};
 	}
 }

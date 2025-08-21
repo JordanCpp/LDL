@@ -1,6 +1,6 @@
-#include <LDL/Graphics/Isometric.hpp>
 
-using namespace LDL::Graphics;
+#include <LDL/Math/Isometric.hpp>
+
 using namespace LDL::Math;
 
 const Vec2u& Isometric::CartesianToIsometric(const Vec2u& pt)

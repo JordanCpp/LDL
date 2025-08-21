@@ -4,7 +4,6 @@
 #include <fstream>
 #include <Arcanum/Readers/DatReader.hpp>
 #include <Arcanum/Readers/MemoryReader.hpp>
-#include <Arcanum/Readers/DatReader.hpp>
 
 namespace Arcanum
 {

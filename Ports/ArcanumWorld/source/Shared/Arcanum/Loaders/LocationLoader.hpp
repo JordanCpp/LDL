@@ -14,9 +14,9 @@ namespace Arcanum
 			LocationLoader(Readers::XmlReader* xmlReader, Objects::LocationCreator* locationCreator);
 			void Reset(const std::string& path);
 		private:
-			Readers::XmlReader* _XmlReader;
-			Objects::LocationCreator* _LocationCreator;
-			size_t _SceneryCount;
+			Readers::XmlReader*       _xmlReader;
+			Objects::LocationCreator* _locationCreator;
+			size_t                    _sceneryCount;
 		};
 	}
 }

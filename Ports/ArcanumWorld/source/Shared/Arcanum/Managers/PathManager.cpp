@@ -3,27 +3,27 @@
 using namespace Arcanum::Managers;
 
 PathManager::PathManager(const std::string& path) :
-	_ShortPath(path)
+	_shortPath(path)
 {
 }
 
 const std::string& PathManager::NewShortPath(const std::string& dir, const std::string& file)
 {
-	_FullPath.clear();
+	_fullPath.clear();
 
-	_FullPath += dir;
-	_FullPath += file;
+	_fullPath += dir;
+	_fullPath += file;
 
-	return _FullPath;
+	return _fullPath;
 }
 
 const std::string& PathManager::NewFullPath(const std::string& dir, const std::string& file)
 {
-	_FullPath.clear();
+	_fullPath.clear();
 
-	_FullPath += _ShortPath;
-	_FullPath += dir;
-	_FullPath += file;
+	_fullPath += _shortPath;
+	_fullPath += dir;
+	_fullPath += file;
 
-	return _FullPath;
+	return _fullPath;
 }

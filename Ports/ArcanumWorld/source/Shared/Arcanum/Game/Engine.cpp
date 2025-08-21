@@ -35,7 +35,7 @@ Engine::Engine(CommandLineParser* commandLineParser, Settings* settings) :
 	_ObjectManager(&_ObjectAllocator, &_SpriteManager),
 	_LocationCreator(&_LocationData, &_ObjectManager),
 	_Location(&_LocationData, &_LocationCreator, &_LocationPainter),
-	_LocationSaver(&_XmlWritter),
+	_LocationSaver(&_xmlWriter),
 	_LocationLoader(&_XmlReader, &_LocationCreator)
 {
 	_LocationLoader.Reset("data/maps/Test.xml");

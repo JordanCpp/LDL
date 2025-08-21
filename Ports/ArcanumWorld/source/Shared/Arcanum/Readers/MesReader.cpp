@@ -8,21 +8,21 @@ void MesReader::Reset(const std::string& path)
 {
 	Close();
 
-	_File.open(path, std::ios::in);
+	_file.open(path, std::ios::in);
 
-	if (!_File.is_open())
+	if (!_file.is_open())
 		throw RuntimeError("Can't open file: " + path);
 }
 
 void MesReader::Close()
 {
-	if (_File.is_open())
-		_File.close();
+	if (_file.is_open())
+		_file.close();
 }
 
 char MesReader::NextChar()
 {
-	char result = _File.get();
+	char result = _file.get();
 
 	return result;
 }
@@ -49,7 +49,7 @@ bool MesReader::Next()
 
 		while (ch != '}')
 		{
-			_Result.push_back(ch);
+			_result.push_back(ch);
 			ch = NextChar();
 		}
 	}
@@ -59,10 +59,10 @@ bool MesReader::Next()
 
 const std::string&MesReader::Result()
 {
-	return _Result;
+	return _result;
 }
 
 bool MesReader::Eof()
 {
-	return _File.eof();
+	return _file.eof();
 }

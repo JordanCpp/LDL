@@ -16,7 +16,7 @@ namespace Arcanum
 			Image* GetImage(size_t index);
 			Image* Single();
 		private:
-			std::vector<Image*> _Images;
+			std::vector<Image*> _images;
 		};
 	}
 }

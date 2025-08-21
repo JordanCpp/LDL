@@ -76,7 +76,7 @@ namespace Arcanum
 			void Reset();
 			bool EOD();
 
-			size_t Index(int x, int y);
+			size_t Index(size_t x, size_t y);
 
 			ArtFrameHeader& GetHeader() { return header; }
 			void LoadHeader(Readers::MemoryReader& source);
@@ -84,9 +84,9 @@ namespace Arcanum
 
 			void Load(Readers::MemoryReader& source);
 
-			uint8_t GetValue(int x, int y);
-			void SetValue(int x, int y, uint8_t ch);
-			void SetSize(int w, int h);
+			uint8_t GetValue(size_t x, size_t y);
+			void SetValue(size_t x, size_t y, uint8_t ch);
+			void SetSize(size_t w, size_t h);
 			void Decode();
 		};
 

@@ -11,10 +11,10 @@ Widgets::Window::Window(Render* render, const Vec2u& pos, const Vec2u& size) :
 
 void Widgets::Window::Attach(Widget* widget)
 {
-	_Container.Append(widget);
+	_container.Append(widget);
 }
 
 void Widgets::Window::Draw()
 {
-	_Container.Draw();
+	_container.Draw();
 }

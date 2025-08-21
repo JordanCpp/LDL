@@ -23,11 +23,12 @@ namespace Arcanum
 			Graphics::Sprite* GetTile(const std::string& fileName);
 			Graphics::Sprite* GetInterface(const std::string& fileName);
 		private:
-			LDL::Graphics::RenderContext* _RenderContext;
-			Managers::FileManager* _FileManager;
-			Loaders::ArtLoader* _ArtLoader;
-			Managers::PathManager* _PathManager;
-			std::unordered_map<std::string, Graphics::Sprite*> _Sprites;
+			typedef std::unordered_map<std::string, Graphics::Sprite*> container;
+			LDL::Graphics::RenderContext* _renderContext;
+			Managers::FileManager*        _fileManager;
+			Loaders::ArtLoader*           _artLoader;
+			Managers::PathManager*        _pathManager;
+			container                     _sprites;
 		};
 	}
 }

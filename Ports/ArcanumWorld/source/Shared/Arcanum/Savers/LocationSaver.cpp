@@ -1,24 +1,24 @@
 #include <Arcanum/Savers/LocationSaver.hpp>
 
 using namespace Arcanum::Savers;
-using namespace Arcanum::Writters;
+using namespace Arcanum::Writers;
 using namespace Arcanum::Objects;
 
-LocationSaver::LocationSaver(XmlWritter* xmlWritter) :
-	_XmlWritter(xmlWritter)
+LocationSaver::LocationSaver(XmlWriter* xmlWriter) :
+	_xmlWriter(xmlWriter)
 {
 }
 
 void LocationSaver::Save(LocationData* locationData, const std::string& path)
 {
-	_XmlWritter->Reset(path);
+	_xmlWriter->Reset(path);
 
-	_XmlWritter->TagBegin("Location");
+	_xmlWriter->TagBegin("Location");
 
-	_XmlWritter->TagBegin("Info");
-	_XmlWritter->Node("Width", locationData->Size().x);
-	_XmlWritter->Node("Height", locationData->Size().y);
-	_XmlWritter->TagEnd("Info");
+	_xmlWriter->TagBegin("Info");
+	_xmlWriter->Node("Width", locationData->Size().x);
+	_xmlWriter->Node("Height", locationData->Size().y);
+	_xmlWriter->TagEnd("Info");
 
-	_XmlWritter->TagEnd("Location");
+	_xmlWriter->TagEnd("Location");
 }

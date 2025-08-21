@@ -15,7 +15,7 @@ namespace Arcanum
 			~ScriptManager();
 			Objects::CritterScript* GetCritterScript(const std::string& path);
 		private:
-			std::vector<Objects::Script*> _Scripts;
+			std::vector<Objects::Script*> _scripts;
 		};
 	}
 }

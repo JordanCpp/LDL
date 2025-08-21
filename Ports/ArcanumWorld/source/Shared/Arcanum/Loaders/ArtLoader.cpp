@@ -7,50 +7,50 @@ using namespace Arcanum::Formats;
 
 void ArtLoader::Load(MemoryReader& memoryReader)
 {
-	_File.LoadArt(memoryReader);
+	_file.LoadArt(memoryReader);
 }
 
 const Vec2u& ArtLoader::Size()
 {
-	return _Size;
+	return _size;
 }
 
 const Vec2u& ArtLoader::Offset()
 {
-	return _Offset;
+	return _offset;
 }
 
 const Vec2u& ArtLoader::Delta()
 {
-	return _Delta;
+	return _delta;
 }
 
 uint8_t* ArtLoader::Pixels()
 {
-	return &_Pixels[0];
+	return &_pixels[0];
 }
 
 size_t ArtLoader::Frames()
 {
-	return _File.frame_data.size();
+	return _file.frame_data.size();
 }
 
 void ArtLoader::Frame(size_t index)
 {
-	size_t w = _File.frame_data[index].header.width;
-	size_t h = _File.frame_data[index].header.height;
-	_Size = Vec2u(w, h);
+	size_t w = _file.frame_data[index].header.width;
+	size_t h = _file.frame_data[index].header.height;
+	_size = Vec2u(w, h);
 
-	size_t ow = _File.frame_data[index].header.c_x;
-	size_t oh = _File.frame_data[index].header.c_y;
-	_Offset = Vec2u(ow, oh);
+	size_t ow = _file.frame_data[index].header.c_x;
+	size_t oh = _file.frame_data[index].header.c_y;
+	_offset = Vec2u(ow, oh);
 
-	size_t dw = _File.frame_data[index].header.d_x;
-	size_t dh = _File.frame_data[index].header.d_y;
-	_Delta = Vec2u(dw, dh);
+	size_t dw = _file.frame_data[index].header.d_x;
+	size_t dh = _file.frame_data[index].header.d_y;
+	_delta = Vec2u(dw, dh);
 
-	_Pixels.clear();
-	_Pixels.resize(w * h * 4);
+	_pixels.clear();
+	_pixels.resize(w * h * 4);
 
 	for (size_t y = 0; y < h; y++)
 	{
@@ -58,9 +58,9 @@ void ArtLoader::Frame(size_t index)
 		{
 			size_t i = ((w * y) + x) * 4;
 
-			ArtTable& table = _File.palette_data[0];
+			ArtTable& table = _file.palette_data[0];
 
-			uint8_t c = _File.frame_data[index].GetValue(x, y);
+			uint8_t c = _file.frame_data[index].GetValue(x, y);
 
 			uint8_t r = table.colors[c].r;
 			uint8_t g = table.colors[c].g;
@@ -68,17 +68,17 @@ void ArtLoader::Frame(size_t index)
 
 			if (c != 0)
 			{
-				_Pixels[i + 0] = r;
-				_Pixels[i + 1] = g;
-				_Pixels[i + 2] = b;
-				_Pixels[i + 3] = 255;
+				_pixels[i + 0] = r;
+				_pixels[i + 1] = g;
+				_pixels[i + 2] = b;
+				_pixels[i + 3] = 255;
 			}
 			else
 			{
-				_Pixels[index + 0] = 0;
-				_Pixels[index + 1] = 0;
-				_Pixels[index + 2] = 0;
-				_Pixels[index + 3] = 0;
+				_pixels[index + 0] = 0;
+				_pixels[index + 1] = 0;
+				_pixels[index + 2] = 0;
+				_pixels[index + 3] = 0;
 			}
 		}
 	}

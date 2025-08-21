@@ -1,5 +1,5 @@
-#ifndef Arcanum_Writters_XmlWritter_hpp
-#define Arcanum_Writters_XmlWritter_hpp
+#ifndef Arcanum_Writters_XmlWriter_hpp
+#define Arcanum_Writters_XmlWriter_hpp
 
 #include <fstream>
 #include <string>
@@ -7,12 +7,12 @@
 
 namespace Arcanum
 {
-	namespace Writters
+	namespace Writers
 	{
-		class XmlWritter
+		class XmlWriter
 		{
 		public:
-			~XmlWritter();
+			~XmlWriter();
 			bool Reset(const std::string& path);
 			void Close();
 			void TagBegin(const std::string& name);
@@ -20,8 +20,8 @@ namespace Arcanum
 			void Node(const std::string& name, const std::string& data);
 			void Node(const std::string& name, intmax_t data);
 		private:
-			std::ofstream _File;
-			LDL::Core::Convert _NumberToString;
+			std::ofstream      _file;
+			LDL::Core::Convert _convert;
 		};
 	}
 }

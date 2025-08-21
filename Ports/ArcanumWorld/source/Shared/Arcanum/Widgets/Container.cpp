@@ -4,13 +4,13 @@ using namespace Arcanum::Widgets;
 
 void Container::Append(Widget* widget)
 {
-	_Widgets.push_back(widget);
+	_widgets.push_back(widget);
 }
 
 void Container::Draw()
 {
-	for (size_t i = 0; i < _Widgets.size(); i++)
+	for (size_t i = 0; i < _widgets.size(); i++)
 	{
-		_Widgets[i]->Draw();
+		_widgets[i]->Draw();
 	}
 }

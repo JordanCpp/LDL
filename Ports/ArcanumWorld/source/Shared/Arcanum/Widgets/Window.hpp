@@ -15,7 +15,7 @@ namespace Arcanum
             void Attach(Widget* widget);
             void Draw();
         private:
-            Container _Container;
+            Container _container;
         };
     }
 }

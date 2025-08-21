@@ -14,12 +14,12 @@ namespace Arcanum
 			FileManager(Managers::PathManager* pathManager);
 			Readers::MemoryReader& GetFile(const std::string& path);
 		private:
-			Managers::PathManager* _PathManager;
-			Readers::DatList       _ArchiveList;
-			Readers::DatReader     _ArchiveReader;
-			Loaders::DatLoader     _DatLoader;
-			Readers::ByteReader    _ByteReader;
-			Readers::MemoryReader  _MemoryReader;
+			Managers::PathManager* _pathManager;
+			Readers::DatList       _archiveList;
+			Readers::DatReader     _archiveReader;
+			Loaders::DatLoader     _datLoader;
+			Readers::ByteReader    _byteReader;
+			Readers::MemoryReader  _memoryReader;
 		};
 	}
 }

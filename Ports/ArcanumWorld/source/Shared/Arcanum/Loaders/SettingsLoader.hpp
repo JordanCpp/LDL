@@ -14,7 +14,7 @@ namespace Arcanum
 			SettingsLoader(Readers::XmlReader* xmlReader);
 			bool Reset(const std::string& path, Game::Settings& settings);
 		private:
-			Readers::XmlReader* _XmlReader;
+			Readers::XmlReader* _xmlReader;
 		};
 	}
 }

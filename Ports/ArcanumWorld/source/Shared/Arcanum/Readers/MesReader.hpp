@@ -18,10 +18,10 @@ namespace Arcanum
 			const std::string& Result();
 			bool Eof();
 		private:
-			std::ifstream _File;
-			std::string   _Result;
-			size_t        _Tabs;
-			size_t        _Line;
+			std::ifstream _file;
+			std::string   _result;
+			size_t        _tabs;
+			size_t        _line;
 		};
 	}
 }

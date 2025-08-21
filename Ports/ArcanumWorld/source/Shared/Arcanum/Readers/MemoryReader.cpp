@@ -4,44 +4,44 @@
 using namespace Arcanum::Readers;
 
 MemoryReader::MemoryReader(ByteReader* byteReader) :
-	_Offset(0),
-	_ByteReader(byteReader)
+	_byteReader(byteReader),
+	_offset(0)
 {
 }
 
 void MemoryReader::Close()
 {
-	_ByteReader->Close();
+	_byteReader->Close();
 }
 
 bool MemoryReader::Reset(const std::string& path)
 {
-	_Offset = 0;
-	bool result = _ByteReader->Reset(path, ByteReader::BigEndian);
+	_offset = 0;
+	bool result = _byteReader->Reset(path, ByteReader::BigEndian);
 
-	_Content.resize(_ByteReader->Bytes());
+	_content.resize(_byteReader->Bytes());
 
-	_ByteReader->Read(&_Content.front(), _ByteReader->Bytes());
+	_byteReader->Read(&_content.front(), _byteReader->Bytes());
 
 	return result;
 }
 
 bool MemoryReader::Reset(const std::vector<uint8_t>& data)
 {
-	_Offset  = 0;
-	_Content = data;
+	_offset  = 0;
+	_content = data;
 
 	return true;
 }
 
 std::vector<uint8_t>& MemoryReader::Content()
 {
-	return _Content;
+	return _content;
 }
 
 void MemoryReader::Read(void* buffer, size_t bytes)
 {
-	memcpy(buffer, &_Content[_Offset], bytes);
+	memcpy(buffer, &_content[_offset], bytes);
 
-	_Offset += bytes;
+	_offset += bytes;
 }

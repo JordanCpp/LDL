@@ -6,48 +6,48 @@ using namespace Arcanum::Objects;
 
 Tile* ObjectAllocator::NewTile()
 {
-	Tile* result = _TilePool.New();
+	Tile* result = _tilePool.New();
 
 	return new(result) Tile;
 }
 
 void ObjectAllocator::Delete(Tile* object)
 {
-	_TilePool.Delete(object);
+	_tilePool.Delete(object);
 }
 
 Wall* ObjectAllocator::NewWall()
 {
-	Wall* result = _WallPool.New();
+	Wall* result = _wallPool.New();
 
 	return new(result) Wall;
 }
 
 void ObjectAllocator::Delete(Wall* object)
 {
-	_WallPool.Delete(object);
+	_wallPool.Delete(object);
 }
 
 Scenery* ObjectAllocator::NewScenery()
 {
-	Scenery* result = _SceneryPool.New();
+	Scenery* result = _sceneryPool.New();
 
 	return new(result) Scenery;
 }
 
 void ObjectAllocator::Delete(Scenery* object)
 {
-	_SceneryPool.Delete(object);
+	_sceneryPool.Delete(object);
 }
 
 Critter* ObjectAllocator::NewCritter()
 {
-	Critter* result = _CritterPool.New();
+	Critter* result = _critterPool.New();
 
 	return new(result) Critter;
 }
 
 void ObjectAllocator::Delete(Critter* object)
 {
-	_CritterPool.Delete(object);
+	_critterPool.Delete(object);
 }

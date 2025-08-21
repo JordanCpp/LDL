@@ -1,7 +1,6 @@
 #include <LDL/Core/TestEqual.hpp>
-#include <LDL/Graphics/Isometric.hpp>
+#include <LDL/Math/Isometric.hpp>
 
-using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 void CartesianToIsometric()

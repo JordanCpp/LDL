@@ -6,16 +6,16 @@ using namespace Arcanum::Graphics;
 using namespace Arcanum::Loaders;
 
 SpriteManager::SpriteManager(RenderContext* renderContext, FileManager* fileManager, ArtLoader* artLoader, PathManager* pathManager) :
-    _RenderContext(renderContext),
-    _FileManager(fileManager),
-    _ArtLoader(artLoader),
-    _PathManager(pathManager)
+    _renderContext(renderContext),
+    _fileManager(fileManager),
+    _artLoader(artLoader),
+    _pathManager(pathManager)
 {
 }
 
 SpriteManager::~SpriteManager()
 {
-    for (auto i = _Sprites.begin(); i != _Sprites.end(); i++)
+    for (auto i = _sprites.begin(); i != _sprites.end(); i++)
     {
         delete i->second;
     }
@@ -23,28 +23,28 @@ SpriteManager::~SpriteManager()
 
 Sprite* SpriteManager::GetSprite(const std::string& dir, const std::string& file)
 {
-    const char* path = _PathManager->NewShortPath(dir, file).c_str();
+    const char* path = _pathManager->NewShortPath(dir, file).c_str();
 
-    auto i = _Sprites.find(path);
+    auto i = _sprites.find(path);
 
     Sprite* result = nullptr;
 
-    if (i == _Sprites.end())
+    if (i == _sprites.end())
     {
-        _ArtLoader->Load(_FileManager->GetFile(path));
+        _artLoader->Load(_fileManager->GetFile(path));
 
         result = new Sprite;
 
-        for (size_t i = 0; i < _ArtLoader->Frames(); i++)
+        for (size_t i = 0; i < _artLoader->Frames(); i++)
         {
-            _ArtLoader->Frame(i);
+            _artLoader->Frame(i);
 
-            Image* image = new Image(_RenderContext, _ArtLoader->Size(), _ArtLoader->Pixels(), _ArtLoader->Offset(), _ArtLoader->Delta());
+            Image* image = new Image(_renderContext, _artLoader->Size(), _artLoader->Pixels(), _artLoader->Offset(), _artLoader->Delta());
 
             result->Append(image);
         }
 
-        _Sprites.emplace(path, result);
+        _sprites.emplace(path, result);
     }
     else
     {
