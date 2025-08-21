@@ -1,5 +1,5 @@
 #include "WindowImplOpenGL1.hpp"
-#include <LDL/Core/RuntimeError.hpp>
+#include <stdexcept>
 #include <assert.h>
 
 using namespace LDL::Core;
@@ -29,7 +29,7 @@ WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u &pos, const Vec2u &size, const 
     _Visual = glXChooseVisual(_Window._Display, _Window._Screen, ga);
 
     if (_Visual == NULL)
-        throw RuntimeError("glXChooseVisual failed");
+        throw std::runtime_error("glXChooseVisual failed");
 
     XSetWindowAttributes wa;
 

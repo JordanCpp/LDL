@@ -1,6 +1,6 @@
 #include "FunctionsImpl.hpp"
-#include <LDL/Core/RuntimeError.hpp>
 #include "../GLX.hpp"
+#include <stdexcept>
 
 using namespace LDL::Core;
 using namespace LDL::Graphics;
@@ -15,7 +15,7 @@ LDL::VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
     LDL::VoidFuncPtr result = glXGetProcAddress((const GLubyte*)name);
 
     if (result == NULL)
-        throw RuntimeError("glXGetProcAddress failes: " + std::string(name));
+        throw std::runtime_error("glXGetProcAddress failes: " + std::string(name));
 
     return result;
 }

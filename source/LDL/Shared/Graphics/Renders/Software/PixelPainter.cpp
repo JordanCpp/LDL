@@ -71,11 +71,11 @@ void PixelPainter::Clear()
 	  for (i = 0; i < size; i += 4)
 	  {
 #if defined(LDL_CONFIG_COLOR_BGRA)
-		  _pixels[i] = _blue;
+		  _pixels[i]     = _blue;
 		  _pixels[i + 2] = _red;
 #else
-		  _Pixels[i] = _Red;
-		  _Pixels[i + 2] = _Blue;
+		  _pixels[i]     = _red;
+		  _pixels[i + 2] = _blue;
 #endif
 		  _pixels[i + 1] = _green;
 		  _pixels[i + 3] = _alpha;
@@ -88,8 +88,8 @@ void PixelPainter::Clear()
 		  _pixels[i] = _blue;
 		  _pixels[i + 2] = _red;
 #else
-		  _Pixels[i] = _Red;
-		  _Pixels[i + 2] = _Blue;
+		  _pixels[i]     = _red;
+		  _pixels[i + 2] = _blue;
 #endif
 		  _pixels[i + 1] = _green;
 	  }
@@ -97,7 +97,7 @@ void PixelPainter::Clear()
   case 2:
 	  for (i = 0; i < size; i += 2)
 	  {
-		  _pixels[i] = _red;
+		  _pixels[i]     = _red;
 		  _pixels[i + 1] = _green;
 	  }
 	  break;
@@ -131,31 +131,31 @@ void PixelPainter::Pixel(const Vec2u& pos)
 		{
 		case 4:
 #if defined(LDL_CONFIG_COLOR_BGRA)
-			_pixels[i] = _blue;
+			_pixels[i]     = _blue;
 			_pixels[i + 2] = _red;
 #else
-			_Pixels[i] = _Red;
-			_Pixels[i + 2] = _Blue;
+			_pixels[i]     = _red;
+			_pixels[i + 2] = _blue;
 #endif
 			_pixels[i + 1] = _green;
 			_pixels[i + 3] = _alpha;
 			break;
 		case 3:
 #if defined(LDL_CONFIG_COLOR_BGRA)
-			_pixels[i] = _blue;
+			_pixels[i]     = _blue;
 			_pixels[i + 2] = _red;
 #else
-			_Pixels[i] = _Red;
-			_Pixels[i + 2] = _Blue;
+			_pixels[i]     = _red;
+			_pixels[i + 2] = _blue;
 #endif
 			_pixels[i + 1] = _green;
 			break;
 		case 2:
-			_pixels[i] = _red;
+			_pixels[i]     = _red;
 			_pixels[i + 1] = _green;
 			break;
 		default:
-			_pixels[i] = _red;
+			_pixels[i]     = _red;
 		}
 	}
 }
@@ -172,14 +172,14 @@ const LDL::Graphics::Color& PixelPainter::GetPixel(const Vec2u& pos)
 #if defined(LDL_CONFIG_COLOR_BGRA)
 		_colorGetPixel = LDL::Graphics::Color(_pixels[i + 2], _pixels[i + 1], _pixels[i], _pixels[i + 3]);
 #else
-		_ColorGetPixel = LDL::Graphics::Color(_Pixels[i], _Pixels[i + 1], _Pixels[i + 2], _Pixels[i + 3]);
+		_colorGetPixel = LDL::Graphics::Color(_pixels[i], _pixels[i + 1], _pixels[i + 2], _pixels[i + 3]);
 #endif
 		break;
 	case 3:
 #if defined(LDL_CONFIG_COLOR_BGRA)
 		_colorGetPixel = LDL::Graphics::Color(_pixels[i + 2], _pixels[i + 1], _pixels[i], 0);
 #else
-		_ColorGetPixel = LDL::Graphics::Color(_Pixels[i], _Pixels[i + 1], _Pixels[i + 2], 0);
+		_colorGetPixel = LDL::Graphics::Color(_pixels[i], _pixels[i + 1], _pixels[i + 2], 0);
 #endif
 		break;
 	case 2:

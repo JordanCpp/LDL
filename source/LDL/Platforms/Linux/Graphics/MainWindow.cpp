@@ -1,8 +1,6 @@
 #include "MainWindow.hpp"
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
 
-using namespace LDL::Core;
 using namespace LDL::Math;
 using namespace LDL::Enums;
 using namespace LDL::Graphics;
@@ -252,8 +250,8 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
 {
     _Display = XOpenDisplay(NULL);
     
-    if (_Display == NULL)
-        throw RuntimeError("XOpenDisplay failed");
+    //if (_Display == NULL)
+    //    throw RuntimeError("XOpenDisplay failed");
 
     _Screen = DefaultScreen(_Display);
     _Root   = RootWindow(_Display, _Screen);

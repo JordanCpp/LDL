@@ -1,4 +1,3 @@
-#include <iostream>
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>

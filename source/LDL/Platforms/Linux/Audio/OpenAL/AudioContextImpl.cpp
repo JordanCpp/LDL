@@ -1,5 +1,4 @@
 #include "AudioContextImpl.hpp"
-#include <LDL/Core/RuntimeError.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Core/Library.hpp>
 

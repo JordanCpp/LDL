@@ -1,6 +1,6 @@
 #include "WindowImplGlide.hpp"
-#include <LDL/Core/RuntimeError.hpp>
 #include <assert.h>
+#include <stdexcept>
 
 using namespace LDL::Core;
 using namespace LDL::Math;
@@ -29,7 +29,7 @@ WindowImplGlide::WindowImplGlide(const Vec2u &pos, const Vec2u &size, const std:
     _Visual = glXChooseVisual(_Window._Display, _Window._Screen, ga);
 
     if (_Visual == NULL)
-        throw RuntimeError("glXChooseVisual failed");
+        throw std::runtime_error("glXChooseVisual failed");
 
     XSetWindowAttributes wa;
 

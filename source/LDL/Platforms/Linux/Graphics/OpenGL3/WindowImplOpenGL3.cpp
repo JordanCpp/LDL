@@ -1,5 +1,4 @@
 #include "WindowImplOpenGL3.hpp"
-#include <LDL/Core/RuntimeError.hpp>
 #include <assert.h>
 
 using namespace LDL::Graphics;

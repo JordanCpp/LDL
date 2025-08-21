@@ -1,8 +1,8 @@
 #ifndef LDL_Platforms_Linux_Graphics_MainWindow_hpp
 #define LDL_Platforms_Linux_Graphics_MainWindow_hpp
 
-#include <LDL/Graphics/Base/BaseWindow.hpp>
-#include <LDL/Events/Eventer.hpp>
+#include <LDL/Shared/Graphics/Base/BaseWindow.hpp>
+#include <LDL/Shared/Events/Eventer.hpp>
 #include <LDL/Enums/WindowMode.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_1.hpp>
 

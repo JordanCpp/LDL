@@ -1,6 +1,5 @@
 #include "LibraryImpl.hpp"
 #include <assert.h>
-#include <LDL/Core/RuntimeError.hpp>
 #include <dlfcn.h>
 
 using namespace LDL::Core;
