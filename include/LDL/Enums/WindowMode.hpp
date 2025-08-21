@@ -10,7 +10,7 @@ namespace LDL
 		public:
 			enum
 			{
-				Resized = 1,
+				Resized,
 				Fixed,
 				FullScreen
 			};

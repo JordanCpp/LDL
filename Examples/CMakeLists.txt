@@ -1,3 +1,4 @@
+
 add_subdirectory("BeginEnd")
 add_subdirectory("DirectX")
 add_subdirectory("Glide")
@@ -6,4 +7,5 @@ add_subdirectory("LDLCpp")
 add_subdirectory("NeheOpenGL")
 add_subdirectory("OpenGL_SuperBible")
 add_subdirectory("OpenGL1")
+add_subdirectory("SDL3")
 add_subdirectory("VictorGordan")
