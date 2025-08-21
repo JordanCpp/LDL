@@ -2,7 +2,7 @@
 #define Arcanum_Graphics_Camera_hpp
 
 #include <LDL/Math/Vec2.hpp>
-#include <LDL/Graphics/Rect.hpp>
+#include <LDL/Math/Rect.hpp>
 #include <LDL/Events/Event.hpp>
 
 namespace Arcanum
@@ -18,7 +18,7 @@ namespace Arcanum
 			void Move(const LDL::Math::Vec2u& pos);
 			void Handle(LDL::Events::Event& event);
 		private:
-			LDL::Graphics::Rectu _Area;
+			LDL::Math::Rectu _Area;
 			size_t _Step;
 		};
 	}

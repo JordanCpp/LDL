@@ -1,11 +1,11 @@
-#ifndef LDL_Graphics_Rect_hpp
-#define LDL_Graphics_Rect_hpp
+#ifndef LDL_Math_Rect_hpp
+#define LDL_Math_Rect_hpp
 
 #include <LDL/Math/Vec2.hpp>
 
 namespace LDL
 {
-	namespace Graphics
+	namespace Math
 	{
 		template<typename TYPE>
 		class Rect
@@ -23,18 +23,18 @@ namespace LDL
 			{
 			}
 
-			Rect(const LDL::Math::Vec2<TYPE>& pos, const LDL::Math::Vec2<TYPE>& size) :
+			Rect(const Vec2<TYPE>& pos, const Vec2<TYPE>& size) :
 				_pos(pos),
 				_size(size)
 			{
 			}
 
-			const LDL::Math::Vec2<TYPE>& Pos() const
+			const Vec2<TYPE>& Pos() const
 			{
 				return _pos;
 			}
 
-			const LDL::Math::Vec2<TYPE>& Size() const
+			const Vec2<TYPE>& Size() const
 			{
 				return _size;
 			}
@@ -51,17 +51,18 @@ namespace LDL
 				_size.y = y;
 			}
 
-			bool Contains(const LDL::Math::Vec2<TYPE>& Pt)
+			bool Contains(const Vec2<TYPE>& Pt)
 			{
 				return Pt.x >= _pos.x && Pt.y >= _pos.y && Pt.x <= _pos.x + _size.x && Pt.y <= _pos.y + _size.y;
 			}
 		private:
-			LDL::Math::Vec2<TYPE> _pos;
-			LDL::Math::Vec2<TYPE> _size;
+			Vec2<TYPE> _pos;
+			Vec2<TYPE> _size;
 		};
 
-		typedef Rect<size_t>   Rectu;
+		typedef Rect<float>    Rectf;
 		typedef Rect<intmax_t> Recti;
+		typedef Rect<size_t>   Rectu;
 	}
 }
 

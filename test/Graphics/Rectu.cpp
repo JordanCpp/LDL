@@ -1,8 +1,7 @@
 #include <LDL/Core/TestEqual.hpp>
-#include <LDL/Graphics/Rect.hpp>
+#include <LDL/Math/Rect.hpp>
 #include <LDL/Math/Vec2.hpp>
 
-using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 void DefaultInit()

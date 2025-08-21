@@ -1,7 +1,6 @@
 #include <Arcanum/Graphics/Camera.hpp>
 
 using namespace Arcanum::Graphics;
-using namespace LDL::Graphics;
 using namespace LDL::Events;
 using namespace LDL::Enums;
 using namespace LDL::Math;

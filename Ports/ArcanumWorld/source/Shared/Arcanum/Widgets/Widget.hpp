@@ -2,7 +2,7 @@
 #define Arcanum_Widgets_Widget_hpp
 
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/Graphics/Rect.hpp>
+#include <LDL/Math/Rect.hpp>
 #include <LDL/Math/Vec2.hpp>
 
 namespace Arcanum
@@ -20,7 +20,7 @@ namespace Arcanum
             virtual void Draw() = 0;
         private:
             LDL::Graphics::Render* _Render;
-            LDL::Graphics::Rectu   _Area;
+            LDL::Math::Rectu   _Area;
         };
     }
 }
