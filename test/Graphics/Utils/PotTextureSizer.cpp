@@ -1,5 +1,5 @@
 #include <LDL/Core/TestEqual.hpp>
-#include "../source/Shared/Graphics/Utils/PotTextureSizer.hpp"
+#include <LDL/Shared/Graphics/Utils/PotTextureSizer.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;

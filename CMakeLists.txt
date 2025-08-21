@@ -15,13 +15,14 @@ set(LDL_STATIC_LIBRARY true)
 add_definitions(-DLDL_STATIC_LIBRARY)
 
 include_directories("include")
+include_directories("source")
 
-file(GLOB_RECURSE SHARED_FILES "source/Shared/*.cpp")
+file(GLOB_RECURSE SHARED_FILES "source/LDL/Shared/*.cpp")
 
 if (WIN32)
-    file(GLOB_RECURSE SOURCE_PLATFORM "source/Platforms/Windows/*.cpp")
+    file(GLOB_RECURSE SOURCE_PLATFORM "source/LDL/Platforms/Windows/*.cpp")
 elseif(UNIX AND NOT APPLE)
-    file(GLOB_RECURSE SOURCE_PLATFORM "source/Platforms/Linux/*.cpp")
+    file(GLOB_RECURSE SOURCE_PLATFORM "source/LDL/Platforms/Linux/*.cpp")
 endif()
 
 file(GLOB_RECURSE SOURCE_FREETYPE 
