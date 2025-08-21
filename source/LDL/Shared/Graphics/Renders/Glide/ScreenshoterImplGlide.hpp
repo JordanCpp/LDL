@@ -10,14 +10,14 @@ namespace LDL
 {
 	namespace Graphics
 	{
-		class ScreenshoterImplGlide : public ScreenshoterImpl
+		class ScreenShotterImplGlide : public ScreenShotterImpl
 		{
 		public:
-			ScreenshoterImplGlide(const std::string& path, const std::string& name, Render* render, Surface* image);
+			ScreenShotterImplGlide(const std::string& path, const std::string& name, Render* render, Surface* image);
 			void Shot();
 		private:
-			ImageWritter     _imageWritter;
-			BaseScreenshoter _baseScreenshoter;
+			ImageWriter      _imageWriter;
+			BaseScreenshoter _baseScreenShotter;
 			std::string      _shortPath;
 			std::string      _name;
 			std::string      _fullPath;

@@ -14,7 +14,7 @@ void Save()
 {
 	Surface image(Vec2u(640, 480), 4);
 
-	ImageWritter writter;
+	ImageWriter writter;
 
 	writter.Save(path, size, 4, image.Pixels());
 

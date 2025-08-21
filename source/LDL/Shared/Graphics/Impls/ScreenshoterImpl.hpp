@@ -1,14 +1,14 @@
-#ifndef LDL_Graphics_ScreenshoterImpl_hpp
-#define LDL_Graphics_ScreenshoterImpl_hpp
+#ifndef LDL_Graphics_ScreenShotterImpl_hpp
+#define LDL_Graphics_ScreenShotterImpl_hpp
 
 namespace LDL
 {
 	namespace Graphics
 	{
-		class ScreenshoterImpl
+		class ScreenShotterImpl
 		{
 		public:
-			virtual ~ScreenshoterImpl() {};
+			virtual ~ScreenShotterImpl() {};
 			virtual void Shot() = 0;
 		private:
 		};

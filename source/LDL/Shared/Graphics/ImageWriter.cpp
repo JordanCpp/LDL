@@ -7,7 +7,7 @@
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-void ImageWritter::Save(const std::string& path, const Vec2u& size, size_t bytesPerPixel, uint8_t* pixels)
+void ImageWriter::Save(const std::string& path, const Vec2u& size, size_t bytesPerPixel, uint8_t* pixels)
 {
 	stbi_flip_vertically_on_write(true);
 
