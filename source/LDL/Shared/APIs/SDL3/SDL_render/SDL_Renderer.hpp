@@ -2,7 +2,7 @@
 #ifndef LDL_Shared_SDL3_SDL_Renderer_hpp
 #define LDL_Shared_SDL3_SDL_Renderer_hpp
 
-#include "SDL_Window.hpp"
+#include <LDL/Shared/APIs/SDL3/SDL_video/SDL_Window.hpp>
 #include <SDL3/SDL_render.h>
 #include <LDL/Graphics/Render.hpp>
 

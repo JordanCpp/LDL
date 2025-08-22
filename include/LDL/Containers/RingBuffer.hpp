@@ -50,12 +50,12 @@ namespace LDL
 			return _length == 0;
 		}
 
-		bool IsFull()
+		bool full()
 		{
 			return _length == _capacity;
 		}
 
-		int NextPosition(int position)
+		int next(int position)
 		{
 			return (position + 1) % _capacity;
 		}
@@ -65,7 +65,7 @@ namespace LDL
 			if (!empty())
 			{
 				element = _content[_tail];
-				_tail = NextPosition(_tail);
+				_tail = next(_tail);
 				_length--;
 
 				return true;
@@ -76,13 +76,13 @@ namespace LDL
 
 		void enqueue(const T& element)
 		{
-			_head = NextPosition(_head);
+			_head = next(_head);
 
 			_content[_head] = element;
 
-			if (IsFull())
+			if (full())
 			{
-				_tail = NextPosition(_tail);
+				_tail = next(_tail);
 			}
 			else
 			{
