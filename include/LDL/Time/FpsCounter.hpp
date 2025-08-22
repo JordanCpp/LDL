@@ -16,10 +16,10 @@ namespace LDL
 			size_t Fps();
 			void Clear();
 		private:
-			size_t _Current;
-			size_t	_Delta;
-			size_t	_Old;
-			size_t _Fps;
+			size_t _current;
+			size_t _delta;
+			size_t _old;
+			size_t _fps;
 		};
 	}
 }

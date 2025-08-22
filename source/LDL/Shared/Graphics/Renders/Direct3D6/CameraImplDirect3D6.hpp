@@ -17,9 +17,9 @@ namespace LDL
 			void Pos(const Math::Vec2u& pos);
 			void Size(const Math::Vec2u& size);
 		private:
-			RenderImpl*      _impl;
-			LDL::Math::Vec2u _pos;
-			LDL::Math::Vec2u _size;
+			RenderImpl* _impl;
+			Math::Vec2u _pos;
+			Math::Vec2u _size;
 		};
 	}
 }

@@ -16,25 +16,25 @@ namespace LDL
 
 			ObjectPool()
 			{
-				_Objects.resize(limit);
-				_Pointers.resize(limit);
+				_objects.resize(limit);
+				_pointers.resize(limit);
 			}
 
 			T* New()
 			{
 				size_t i = 0;
 
-				for (i = 0; i < _Pointers.size(); i++)
+				for (i = 0; i < _pointers.size(); i++)
 				{
-					if (_Pointers[i] == NULL)
+					if (_pointers[i] == NULL)
 					{
-						_Pointers[i] = &_Objects[i];
+						_pointers[i] = &_objects[i];
 
-						return &_Objects[i];
+						return &_objects[i];
 					}
 				}
 
-				assert(i == _Pointers.size());
+				assert(i == _pointers.size());
 
 				return NULL;
 			}
@@ -43,18 +43,18 @@ namespace LDL
 			{
 				size_t i = 0;
 
-				while (i < _Pointers.size() && _Pointers[i] != ptr)
+				while (i < _pointers.size() && _pointers[i] != ptr)
 				{
 					i++;
 				}
 
-				assert(i < _Pointers.size());
+				assert(i < _pointers.size());
 
-				_Pointers[i] = NULL;
+				_pointers[i] = NULL;
 			}
 		private:
-			std::vector<T> _Objects;
-			std::vector<T*> _Pointers;
+			std::vector<T>  _objects;
+			std::vector<T*> _pointers;
 		};
 	}
 }

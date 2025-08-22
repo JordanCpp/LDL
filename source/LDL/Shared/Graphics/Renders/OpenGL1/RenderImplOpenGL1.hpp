@@ -23,9 +23,9 @@ namespace LDL
 			void Begin();
 			void End();
 			const Math::Vec2u& Size();
-			const LDL::Graphics::Color& Color();
+			const Graphics::Color& Color();
 			void Clear();
-			void Color(const LDL::Graphics::Color& color);
+			void Color(const Graphics::Color& color);
 			void Pixel(const Math::Vec2u& pos);
 			void Fill(const Math::Vec2u& pos, const Math::Vec2u& size);
 			void Line(const Math::Vec2u& pos1, const Math::Vec2u& pos2);
@@ -39,14 +39,14 @@ namespace LDL
 			void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
 			void Draw(TextureBatcher* textureBatcher);
 		private:
-			Window*              _window;
-			ScreenOpenGL1        _screen;
-			LDL::Graphics::Color _color;
-			RenderContextImpl*   _renderContextImpl;
-			RenderBuffer         _renderBuffer;
+			Window*            _window;
+			ScreenOpenGL1      _screen;
+			Graphics::Color    _color;
+			RenderContextImpl* _renderContextImpl;
+			RenderBuffer       _renderBuffer;
 		public:
-			LDL::Math::Mat4f     _projection;
-			LDL::Math::Mat4f     _modelView;
+			Math::Mat4f        _projection;
+			Math::Mat4f        _modelView;
 		};
 	}
 }

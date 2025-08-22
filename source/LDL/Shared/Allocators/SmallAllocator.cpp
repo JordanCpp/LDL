@@ -51,7 +51,7 @@ void* SmallAllocator::Allocate(size_t bytes)
 	else
 	{
 		result = (Node*)_Allocator->Allocate(sizeof(Node));
-		result->Size = CalckSize(bucket);
+		result->Size = CalkSize(bucket);
 		result->Data = _Allocator->Allocate(result->Size);
 	}
 
@@ -81,7 +81,7 @@ SmallAllocator::Node* LDL::Allocators::SmallAllocator::ToNode(void* ptr)
 	return (Node*)(size_t)ptr - sizeof(Node) + sizeof(void*);
 }
 
-size_t SmallAllocator::CalckSize(size_t bucket)
+size_t SmallAllocator::CalkSize(size_t bucket)
 {
 	assert(bucket <= Buckets);
 

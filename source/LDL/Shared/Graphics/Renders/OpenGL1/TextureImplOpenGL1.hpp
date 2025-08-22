@@ -15,7 +15,7 @@ namespace LDL
 		class TextureImplOpenGL1: public TextureImpl
 		{
 		public:
-			TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const LDL::Math::Vec2u & size, uint8_t* pixels, uint8_t bytesPerPixel);
+			TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Math::Vec2u & size, uint8_t* pixels, uint8_t bytesPerPixel);
 			TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Math::Vec2u& size, uint8_t bytesPerPixel);
 			~TextureImplOpenGL1();
 			void Copy(const Math::Vec2u& dstPos, const Math::Vec2u& srcSize, uint8_t * pixels, uint8_t bytesPerPixel);
@@ -26,8 +26,8 @@ namespace LDL
 		private:
 			RenderContextImpl* _renderContextImpl;
 			size_t             _id;
-			LDL::Math::Vec2u   _size;
-			LDL::Math::Vec2u   _quad;
+			Math::Vec2u        _size;
+			Math::Vec2u        _quad;
 		};
 	}
 }

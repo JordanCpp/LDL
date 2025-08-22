@@ -20,9 +20,9 @@ namespace LDL
 			size_t Count();
 			Util::Quad* Content();
 		private:
-			size_t _Texture;
-			size_t _TextureSize;
-			std::vector<Util::Quad> _Quads;
+			size_t                  _texture;
+			size_t                  _textureSize;
+			std::vector<Util::Quad> _quads;
 		};
 	}
 }

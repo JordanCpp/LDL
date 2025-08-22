@@ -14,13 +14,13 @@ namespace LDL
 		{
 		public:
 			TexturePainter(ShaderLoader* shaderLoader);
-			void Draw(LDL::Math::Mat4f proj, Texture * texture);
+			void Draw(Math::Mat4f proj, Texture * texture);
 		private:
-			ShaderLoader* _ShaderLoader;
-			GLuint        _ShaderProgram;
-			GLuint        _VertexBufferObject;
-			GLuint        _VertexArraysObject;
-			GLuint        _ElementBufferObject;
+			ShaderLoader* _shaderLoader;
+			GLuint        _shaderProgram;
+			GLuint        _vertexBufferObject;
+			GLuint        _vertexArraysObject;
+			GLuint        _elementBufferObject;
 		};
 	}
 }

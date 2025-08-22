@@ -16,12 +16,12 @@ namespace LDL
 			const Math::Vec2u& Size();
 			uint8_t BytesPerPixel();
 			uint8_t* Pixels();
-			const LDL::Graphics::Color& Color();
-			void Color(const LDL::Graphics::Color & color);
+			const Graphics::Color& Color();
+			void Color(const Graphics::Color & color);
 			void Clear();
 			void Bind(Surface* source);
 			void Pixel(const Math::Vec2u& pos);
-			const LDL::Graphics::Color& GetPixel(const Math::Vec2u& pos);
+			const Graphics::Color& GetPixel(const Math::Vec2u& pos);
 			void Fill(const Math::Vec2u& pos, const Math::Vec2u& size);
 			void Line(const Math::Vec2u& pos1, const Math::Vec2u& pos2);
 		private:
@@ -31,7 +31,7 @@ namespace LDL
 			uint8_t         _alpha;
 			Surface*        _target;
 			size_t          _width;
-			size_t          _heigth;
+			size_t          _height;
 			uint8_t         _bytesPerPixel;
 			uint8_t*        _pixels;
 			Math::Vec2u     _size;

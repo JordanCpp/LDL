@@ -13,16 +13,16 @@ namespace LDL
 		class ScreenShotterImplSoftware : public ScreenShotterImpl
 		{
 		public:
-			ScreenShotterImplSoftware(const std::string& path, const std::string& name, LDL::Graphics::Render* render, LDL::Graphics::Surface* image);
+			ScreenShotterImplSoftware(const std::string& path, const std::string& name, Graphics::Render* render, Graphics::Surface* image);
 			void Shot();
 		private:
-			LDL::Graphics::ImageWriter      _imageWriter;
-			LDL::Graphics::BaseScreenShotter _baseScreenShotter;
-			std::string                     _shortPath;
-			std::string                     _name;
-			std::string                     _fullPath;
-			LDL::Graphics::Render*          _render;
-			LDL::Graphics::Surface*         _image;
+			Graphics::ImageWriter       _imageWriter;
+			Graphics::BaseScreenShotter _baseScreenShotter;
+			std::string                 _shortPath;
+			std::string                 _name;
+			std::string                 _fullPath;
+			Graphics::Render*           _render;
+			Graphics::Surface*          _image;
 		};
 	}
 }

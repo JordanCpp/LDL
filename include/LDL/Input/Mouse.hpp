@@ -15,7 +15,7 @@ namespace LDL
 			void Hide();
 			void Show();
 		private:
-			LDL::Math::Vec2u _pos;
+			Math::Vec2u _pos;
 		};
 	}
 }

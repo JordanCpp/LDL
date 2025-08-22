@@ -16,9 +16,9 @@ namespace LDL
 			bool Load(const std::string& path);
 			const std::string& Result();
 		private:
-			std::fstream _File;
-			std::string  _Result;
-			std::string  _Line;
+			std::fstream _file;
+			std::string  _result;
+			std::string  _line;
 		};
 	}
 }

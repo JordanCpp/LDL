@@ -16,12 +16,12 @@ namespace LDL
 		class LDL_LIBRARY Window
 		{
 		public:
-			Window(RenderContext* renderContext, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
+			Window(RenderContext* renderContext, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = Enums::WindowMode::Resized);
 			~Window();
 			bool Running();
 			void PollEvents();
-			bool GetEvent(LDL::Events::Event& event);
-			bool WaitEvent(LDL::Events::Event& event);
+			bool GetEvent(Events::Event& event);
+			bool WaitEvent(Events::Event& event);
 			void StopEvent();
 			void Title(const std::string& title);
 			const std::string& Title();

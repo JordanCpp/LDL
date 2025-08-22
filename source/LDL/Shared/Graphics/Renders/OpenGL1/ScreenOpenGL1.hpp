@@ -18,7 +18,7 @@ namespace LDL
 		private:
 			void DrawTexture(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size);
 			void DrawPixels(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size);
-			LDL::Math::Vec2u       _size;
+			Math::Vec2u            _size;
 			size_t                 _screen;
 			size_t                 _maxTextureSize;
 			size_t                 _curTextureSize;

@@ -12,19 +12,19 @@ ShaderLoader::~ShaderLoader()
 
 bool ShaderLoader::Load(const std::string& path)
 {
-	_File.open(path.c_str());
+	_file.open(path.c_str());
 
-	if (_File.is_open())
+	if (_file.is_open())
 	{
-		_Result = "";;
+		_result = "";;
 
-		while (std::getline(_File, _Line))
+		while (std::getline(_file, _line))
 		{
-			_Result += _Line;
-			_Result += '\n';
+			_result += _line;
+			_result += '\n';
 		}
 
-		_File.close();
+		_file.close();
 
 		return true;
 	}
@@ -34,5 +34,5 @@ bool ShaderLoader::Load(const std::string& path)
 
 const std::string& ShaderLoader::Result()
 {
-	return _Result;
+	return _result;
 }

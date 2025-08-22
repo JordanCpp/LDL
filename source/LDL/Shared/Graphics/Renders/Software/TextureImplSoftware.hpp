@@ -14,7 +14,7 @@ namespace LDL
 		class TextureImplSoftware : public TextureImpl
 		{
 		public:
-			TextureImplSoftware(RenderContextImpl* renderContextImpl, const LDL::Math::Vec2u & size, uint8_t* pixels, uint8_t bytesPerPixel);
+			TextureImplSoftware(RenderContextImpl* renderContextImpl, const Math::Vec2u & size, uint8_t* pixels, uint8_t bytesPerPixel);
 			TextureImplSoftware(RenderContextImpl* renderContextImpl, const Math::Vec2u& size, uint8_t bytesPerPixel);
 			~TextureImplSoftware();
 			void Copy(const Math::Vec2u& dstPos, const Math::Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
@@ -23,8 +23,8 @@ namespace LDL
 			const Math::Vec2u& Quad();
 			Surface* GetSurface();
 		private:
-			LDL::Math::Vec2u _size;
-			Surface          _surface;
+			Math::Vec2u _size;
+			Surface     _surface;
 		};
 	}
 }

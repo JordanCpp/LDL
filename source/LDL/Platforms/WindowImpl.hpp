@@ -16,8 +16,8 @@ namespace LDL
 			virtual bool Running() = 0;
 			virtual void Present() = 0;
 			virtual void PollEvents() = 0;
-			virtual bool GetEvent(LDL::Events::Event& event) = 0;
-			virtual bool WaitEvent(LDL::Events::Event& event) = 0;
+			virtual bool GetEvent(Events::Event& event) = 0;
+			virtual bool WaitEvent(Events::Event& event) = 0;
 			virtual void StopEvent() = 0;
 			virtual void Title(const std::string& title) = 0;
 			virtual const std::string& Title() = 0;

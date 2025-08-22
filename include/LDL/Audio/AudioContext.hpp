@@ -12,7 +12,7 @@ namespace LDL
 		class LDL_LIBRARY AudioContext
 		{
 		public:
-			AudioContext(LDL::Graphics::Window* window, size_t rate, size_t bits, size_t channels);
+			AudioContext(Graphics::Window* window, size_t rate, size_t bits, size_t channels);
 			~AudioContext();
 			AudioContextImpl* GetAudioContextImpl();
 			void* Context();

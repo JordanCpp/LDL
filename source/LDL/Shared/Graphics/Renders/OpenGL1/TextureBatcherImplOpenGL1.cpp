@@ -6,37 +6,37 @@ using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 TextureBatcherImplOpenGL1::TextureBatcherImplOpenGL1(Texture* texture, size_t count) :
-	_Texture(((TextureImplOpenGL1*)texture->GetTextureImpl())->Id()),
-	_TextureSize(texture->GetTextureImpl()->Quad().x)
+	_texture(((TextureImplOpenGL1*)texture->GetTextureImpl())->Id()),
+	_textureSize(texture->GetTextureImpl()->Quad().x)
 {
-	_Quads.reserve(count);
+	_quads.reserve(count);
 }
 
 void TextureBatcherImplOpenGL1::Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	Util::Quad quad;
 
-	Util::CalcQuad(quad, (uint16_t)dstPos.x, (uint16_t)dstPos.y, (uint16_t)dstSize.x, (uint16_t)dstSize.y, (uint16_t)srcPos.x, (uint16_t)srcPos.y, (uint16_t)srcSize.x, (uint16_t)srcSize.y, _TextureSize);
+	Util::CalcQuad(quad, (uint16_t)dstPos.x, (uint16_t)dstPos.y, (uint16_t)dstSize.x, (uint16_t)dstSize.y, (uint16_t)srcPos.x, (uint16_t)srcPos.y, (uint16_t)srcSize.x, (uint16_t)srcSize.y, _textureSize);
 
-	_Quads.push_back(quad);
+	_quads.push_back(quad);
 }
 
 void TextureBatcherImplOpenGL1::Clear()
 {
-	_Quads.clear();
+	_quads.clear();
 }
 
 size_t TextureBatcherImplOpenGL1::TextureId()
 {
-	return _Texture;
+	return _texture;
 }
 
 size_t TextureBatcherImplOpenGL1::Count()
 {
-	return _Quads.size();
+	return _quads.size();
 }
 
 Util::Quad* TextureBatcherImplOpenGL1::Content()
 {
-	return &_Quads[0];
+	return &_quads[0];
 }

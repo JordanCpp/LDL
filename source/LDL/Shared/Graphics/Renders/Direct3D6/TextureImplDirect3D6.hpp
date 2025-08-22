@@ -15,7 +15,7 @@ namespace LDL
 		class TextureImplDirect3D6: public TextureImpl
 		{
 		public:
-			TextureImplDirect3D6(RenderContextImpl* renderContextImpl, const LDL::Math::Vec2u & size, uint8_t* pixels, uint8_t bytesPerPixel);
+			TextureImplDirect3D6(RenderContextImpl* renderContextImpl, const Math::Vec2u & size, uint8_t* pixels, uint8_t bytesPerPixel);
 			TextureImplDirect3D6(RenderContextImpl* renderContextImpl, const Math::Vec2u& size, uint8_t bytesPerPixel);
 			~TextureImplDirect3D6();
 			void Copy(const Math::Vec2u& dstPos, const Math::Vec2u& srcSize, uint8_t * pixels, uint8_t bytesPerPixel);
@@ -24,8 +24,8 @@ namespace LDL
 			const Math::Vec2u& Quad();
 		private:
 			RenderContextImpl* _renderContextImpl;
-			LDL::Math::Vec2u   _size;
-			LDL::Math::Vec2u   _quad;
+			Math::Vec2u        _size;
+			Math::Vec2u        _quad;
 		};
 	}
 }

@@ -3,27 +3,27 @@
 using namespace LDL::Time;
 
 FpsCounter::FpsCounter() :
-	_Current(0),
-	_Delta(0),
-	_Old(0),
-	_Fps(0)
+	_current(0),
+	_delta(0),
+	_old(0),
+	_fps(0)
 {
 }
 
 void FpsCounter::Start()
 {
-	_Current = Ticks();
+	_current = Ticks();
 }
 
 bool FpsCounter::Calc()
 {
-	_Fps++;
+	_fps++;
 
-	_Delta = Ticks() - _Current;
+	_delta = Ticks() - _current;
 
-	_Old += _Delta;
+	_old += _delta;
 
-	if (_Old >= 1000)
+	if (_old >= 1000)
 	{
 		return  true;
 	}
@@ -33,11 +33,11 @@ bool FpsCounter::Calc()
 
 size_t FpsCounter::Fps()
 {
-	return _Fps;
+	return _fps;
 }
 
 void FpsCounter::Clear()
 {
-	_Fps = 0;
-	_Old = 0;
+	_fps = 0;
+	_old = 0;
 }

@@ -19,8 +19,8 @@ namespace LDL
 			const Math::Vec2u& Size();
 			size_t BitsPerPixel();
 		private:
-			LDL::Math::Vec2u _size;
-			size_t           _bitsPerPixel;
+			Math::Vec2u _size;
+			size_t      _bitsPerPixel;
 		};
 	}
 }

@@ -7,7 +7,7 @@ namespace LDL
 {
 	namespace Math
 	{
-		template<typename TYPE>
+		template<typename T>
 		class Rect
 		{
 		public:
@@ -17,47 +17,47 @@ namespace LDL
 			{
 			}
 
-			Rect(const TYPE& x, const TYPE& y, const TYPE& w, const TYPE& h) :
+			Rect(const T& x, const T& y, const T& w, const T& h) :
 				_pos(x, y),
 				_size(w, h)
 			{
 			}
 
-			Rect(const Vec2<TYPE>& pos, const Vec2<TYPE>& size) :
+			Rect(const Vec2<T>& pos, const Vec2<T>& size) :
 				_pos(pos),
 				_size(size)
 			{
 			}
 
-			const Vec2<TYPE>& Pos() const
+			const Vec2<T>& Pos() const
 			{
 				return _pos;
 			}
 
-			const Vec2<TYPE>& Size() const
+			const Vec2<T>& Size() const
 			{
 				return _size;
 			}
 
-			void Pos(const TYPE& x, const TYPE& y)
+			void Pos(const T& x, const T& y)
 			{
 				_pos.x = x;
 				_pos.y = y;
 			}
 
-			void Size(const TYPE& x, const TYPE& y)
+			void Size(const T& x, const T& y)
 			{
 				_size.x = x;
 				_size.y = y;
 			}
 
-			bool Contains(const Vec2<TYPE>& Pt)
+			bool Contains(const Vec2<T>& Pt)
 			{
 				return Pt.x >= _pos.x && Pt.y >= _pos.y && Pt.x <= _pos.x + _size.x && Pt.y <= _pos.y + _size.y;
 			}
 		private:
-			Vec2<TYPE> _pos;
-			Vec2<TYPE> _size;
+			Vec2<T> _pos;
+			Vec2<T> _size;
 		};
 
 		typedef Rect<float>    Rectf;

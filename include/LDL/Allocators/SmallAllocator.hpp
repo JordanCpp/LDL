@@ -32,17 +32,17 @@ namespace LDL
 				Node* Tail;
 			};
 
-			SmallAllocator(LDL::Allocators::Allocator* allocator);
+			SmallAllocator(Allocators::Allocator* allocator);
 			size_t CalcBucket(size_t bytes);
 			void* Allocate(size_t bytes);
 			void Deallocate(void* ptr);
 			Node* ToNode(void* ptr);
-			size_t CalckSize(size_t bytes);
+			size_t CalkSize(size_t bytes);
 		private:
 			void Append(List* list, Node* node);
 			void Remove(List* list, Node* node);
-			LDL::Allocators::Allocator* _Allocator;
-			List _Table[Buckets];
+			Allocators::Allocator* _Allocator;
+			List                   _Table[Buckets];
 		};
 	}
 }

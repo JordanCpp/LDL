@@ -12,7 +12,7 @@ PixelPainter::PixelPainter() :
 	_alpha(0),
 	_target(NULL),
 	_width(0),
-	_heigth(0),
+	_height(0),
 	_bytesPerPixel(0),
 	_pixels(NULL)
 {
@@ -29,7 +29,7 @@ Surface* PixelPainter::Target()
 
 const Vec2u& PixelPainter::Size()
 {
-	_size = Vec2u(_width, _heigth);
+	_size = Vec2u(_width, _height);
 
 	return _size;
 }
@@ -61,7 +61,7 @@ void LDL::Graphics::PixelPainter::Color(const LDL::Graphics::Color& color)
 
 void PixelPainter::Clear()
 {
-	size_t size = _width * _heigth * _bytesPerPixel;
+	size_t size = _width * _height * _bytesPerPixel;
 
 	size_t i = 0;
 
@@ -116,7 +116,7 @@ void PixelPainter::Bind(Surface* source)
 	_target = source;
 
 	_width = _target->Size().x;
-	_heigth = _target->Size().y;
+	_height = _target->Size().y;
 	_bytesPerPixel = _target->BytesPerPixel();
 	_pixels = _target->Pixels();
 }
@@ -125,7 +125,7 @@ void PixelPainter::Pixel(const Vec2u& pos)
 {
 	size_t i = (_width * pos.y + pos.x) * _bytesPerPixel;
 
-	if (i < _width * _heigth * _bytesPerPixel)
+	if (i < _width * _height * _bytesPerPixel)
 	{
 		switch (_bytesPerPixel)
 		{
@@ -164,7 +164,7 @@ const LDL::Graphics::Color& PixelPainter::GetPixel(const Vec2u& pos)
 {
 	size_t i = (_width * pos.y + pos.x) * _bytesPerPixel;
 
-	assert(i < _width * _heigth * _bytesPerPixel);
+	assert(i < _width * _height * _bytesPerPixel);
 
 	switch (_bytesPerPixel)
 	{

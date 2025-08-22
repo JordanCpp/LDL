@@ -13,22 +13,22 @@ namespace LDL
 		class LDL_LIBRARY ImageLoader
 		{
 		public:
-			ImageLoader(LDL::Allocators::Allocator* allocator);
+			ImageLoader(Allocators::Allocator* allocator);
 			~ImageLoader();
 			void Clear();
 			const Math::Vec2u& Size();
 			uint8_t BytesPerPixel();
 			uint8_t* Pixels();
-			void CopyIf(uint8_t* dstPixels, uint8_t* srcPixels, size_t bytes, const LDL::Graphics::Color& color, uint8_t alpha);
+			void CopyIf(uint8_t* dstPixels, uint8_t* srcPixels, size_t bytes, const Graphics::Color& color, uint8_t alpha);
 			void Load(const std::string& path);
-			void Load(const LDL::Graphics::Color& color, const std::string& path);
+			void Load(const Graphics::Color& color, const std::string& path);
 			void Load(uint8_t * data, size_t bytes);
-			void Load(const LDL::Graphics::Color& color, uint8_t* data, size_t bytes);
+			void Load(const Graphics::Color& color, uint8_t* data, size_t bytes);
 		private:
-			LDL::Allocators::Allocator* _allocator;
-			LDL::Math::Vec2u _size;
-			uint8_t _bytesPerPixel;
-			uint8_t* _pixels;
+			Allocators::Allocator* _allocator;
+			Math::Vec2u            _size;
+			uint8_t                _bytesPerPixel;
+			uint8_t*               _pixels;
 		};
 	}
 }

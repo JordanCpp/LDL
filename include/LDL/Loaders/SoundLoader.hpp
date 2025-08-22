@@ -26,10 +26,10 @@ namespace LDL
 			uint8_t* Bytes();
 		private:
 			Allocators::Allocator* _allocator;
-			size_t _channels;
-			size_t _rate;
-			size_t _samples;
-			uint8_t* _bytes;
+			size_t                 _channels;
+			size_t                 _rate;
+			size_t                 _samples;
+			uint8_t*               _bytes;
 		};
 	}
 }

@@ -2,10 +2,10 @@
 #include <LDL/Core/Assert.hpp>
 #include <string.h>
 
-static LDL::Allocators::Allocator* StbImageAllocator;
+static LDL::Allocators::Allocator* stbImageAllocator;
 
-#define STBI_MALLOC(sz)                    StbImageAllocator->Allocate(sz);
-#define STBI_FREE(p)                       StbImageAllocator->Deallocate(p) 
+#define STBI_MALLOC(sz)                    stbImageAllocator->Allocate(sz);
+#define STBI_FREE(p)                       stbImageAllocator->Deallocate(p) 
 
 void* ReallocateSized(void* ptr, size_t Oldbytes, size_t Newbytes)
 {
@@ -13,13 +13,13 @@ void* ReallocateSized(void* ptr, size_t Oldbytes, size_t Newbytes)
 
 	if (!ptr)
 	{
-		result = StbImageAllocator->Allocate(Newbytes);
+		result = stbImageAllocator->Allocate(Newbytes);
 	}
 	else
 	{
 		if (Oldbytes < Newbytes)
 		{
-			result = StbImageAllocator->Allocate(Newbytes);
+			result = stbImageAllocator->Allocate(Newbytes);
 			memcpy(result, ptr, Oldbytes);
 		}
 		else
@@ -49,7 +49,7 @@ ImageLoader::ImageLoader(LDL::Allocators::Allocator* allocator) :
 {
 	assert(allocator != NULL);
 
-	StbImageAllocator = _allocator;
+	stbImageAllocator = _allocator;
 }
 
 ImageLoader::~ImageLoader()

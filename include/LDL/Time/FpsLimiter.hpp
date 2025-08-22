@@ -14,8 +14,8 @@ namespace LDL
 			void Mark();
 			void Throttle() const;
 		private:
-			size_t _Fps;
-			size_t _Ticks;
+			size_t _fps;
+			size_t _ticks;
 		};
 	}
 }
