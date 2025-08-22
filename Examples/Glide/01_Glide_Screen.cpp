@@ -1,6 +1,4 @@
-#include <LDL/Graphics/Window.hpp>
-#include <LDL/Graphics/Render.hpp>
-#include <LDL/Enums/RenderMode.hpp>
+#include <LDL/LDL.hpp>
 #include <LDL/APIs/Glide/GlideLoader.hpp>
 
 using namespace LDL::Glide;

@@ -1,7 +1,4 @@
-#include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/Convert.hpp>
-#include <LDL/Graphics/Window.hpp>
-#include <LDL/Graphics/Render.hpp>
+#include <LDL/LDL.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Events;

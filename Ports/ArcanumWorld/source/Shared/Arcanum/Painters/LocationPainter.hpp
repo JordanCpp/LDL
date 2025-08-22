@@ -17,9 +17,9 @@ namespace Arcanum
             void DrawSceneries(const LDL::Math::Vec2u& start);
             void Draw(const LDL::Math::Vec2u& start);
         private:
-            LDL::Graphics::Render*   _render;
-            Objects::LocationData*   _location;
-            LDL::Math::Isometric _isometric;
+            LDL::Graphics::Render* _render;
+            Objects::LocationData* _location;
+            LDL::Math::Isometric   _isometric;
         };
     }
 }

@@ -1,12 +1,4 @@
-#include <LDL/Loaders/ImageLoader.hpp>
-#include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/Convert.hpp>
-#include <LDL/Time/FpsLimiter.hpp>
-#include <LDL/Allocators/FixedLinear.hpp>
-#include <LDL/Graphics/Window.hpp>
-#include <LDL/Graphics/Render.hpp>
-#include <LDL/Math/Isometric.hpp>
-#include <LDL/Graphics/TextureBatcher.hpp>
+#include <LDL/LDL.hpp>
 #include <stdlib.h>
 #include <vector>
 #include <time.h>

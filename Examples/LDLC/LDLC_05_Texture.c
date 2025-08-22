@@ -1,6 +1,6 @@
 #include <LDLC/LDL_Render.h>
 #include <LDLC/LDL_FpsCounter.h>
-#include <LDLC/LDL_NumberToString.h>
+#include <LDLC/LDL_Convert.h>
 #include <LDLC/LDL_FixedLinear.h>
 #include <LDLC/LDL_ImageLoader.h>
 #include <LDLC/LDL_Texture.h>
@@ -12,7 +12,7 @@ int main()
 	LDL_Window* window = LDL_WindowNew(renderContext, 0, 0, 800, 600, "05_Texture", LDL_WindowModeResized);
 	LDL_Render* render = LDL_RenderNew(renderContext, window);
 
-	LDL_NumberToString* convert = LDL_NumberToStringNew();
+	LDL_Convert* convert = LDL_ConvertNew();
 	LDL_FpsCounter* counter = LDL_FpsCounterNew();
 
 	LDL_FixedLinear* allocator = LDL_FixedLinearNew(LDL_Allocator_Mb * 4, NULL);
@@ -59,7 +59,7 @@ int main()
 
 		if (LDL_FpsCounterCalc(counter))
 		{
-			LDL_WindowSetTitle(window, LDL_NumberToStringConvertInt(convert, LDL_FpsCounterGetFps(counter)));
+			LDL_WindowSetTitle(window, LDL_ConvertToString(convert, LDL_FpsCounterGetFps(counter)));
 			LDL_FpsCounterClear(counter);
 		}
 
@@ -69,7 +69,7 @@ int main()
 	LDL_FixedLinearFree(allocator);
 	LDL_ImageLoaderFree(loader);
 	LDL_FpsCounterFree(counter);
-	LDL_NumberToStringFree(convert);
+	LDL_ConvertFree(convert);
 	LDL_RenderFree(render);
 	LDL_WindowFree(window);
 	LDL_RenderContextFree(renderContext);

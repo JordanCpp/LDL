@@ -1,9 +1,4 @@
-#include <LDL/Loaders/ImageLoader.hpp>
-#include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/Convert.hpp>
-#include <LDL/Allocators/FixedLinear.hpp>
-#include <LDL/Graphics/Window.hpp>
-#include <LDL/Graphics/Render.hpp>
+#include <LDL/LDL.hpp>
 #include <LDL/APIs/OpenGL/OpenGLUtility.hpp>
 #include <stdlib.h>
 

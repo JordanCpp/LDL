@@ -1,7 +1,4 @@
-#include <LDL/Loaders/ImageLoader.hpp>
-#include <LDL/Graphics/Window.hpp>
-#include <LDL/Graphics/Render.hpp>
-#include <LDL/Core/Assert.hpp>
+#include <LDL/LDL.hpp>
 #include <LDL/APIs/DirectX6/DirectX6Loader.hpp>
 #include <string.h>
 #include <time.h>

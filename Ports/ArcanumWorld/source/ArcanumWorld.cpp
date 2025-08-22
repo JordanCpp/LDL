@@ -1,7 +1,7 @@
 #include <iostream>
 #include <Arcanum/Game/Engine.hpp>
 #include <Arcanum/Loaders/SettingsLoader.hpp>
-#include <LDL/Core/CommandLineParser.hpp>
+#include <LDL/LDL.hpp>
 
 using namespace LDL::Math;
 using namespace LDL::Core;

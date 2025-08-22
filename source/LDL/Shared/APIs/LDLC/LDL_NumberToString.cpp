@@ -1,26 +1,26 @@
-#include <LDLC/LDL_NumberToString.h>
+#include <LDLC/LDL_Convert.h>
 #include <LDL/Core/Convert.hpp>
 
 using namespace LDL::Core;
 
-struct LDL_NumberToString
+struct LDL_Convert
 {
 	Convert _numberToString;
 };
 
-LDL_NumberToString* LDL_NumberToStringNew()
+LDL_Convert* LDL_ConvertNew()
 {
-	LDL_NumberToString* p = new LDL_NumberToString();
+	LDL_Convert* p = new LDL_Convert();
 
 	return p;
 }
 
-void LDL_NumberToStringFree(LDL_NumberToString* numberToString)
+void LDL_ConvertFree(LDL_Convert* numberToString)
 {
 	delete numberToString;
 }
 
-const char* LDL_NumberToStringConvertInt(LDL_NumberToString* numberToString, intmax_t num)
+const char* LDL_ConvertToString(LDL_Convert* numberToString, intmax_t num)
 {
 	return numberToString->_numberToString.ToString(num);
 }

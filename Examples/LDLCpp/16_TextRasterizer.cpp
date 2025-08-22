@@ -1,9 +1,4 @@
-#include <LDL/Time/FpsLimiter.hpp>
-#include <LDL/Graphics/Window.hpp>
-#include <LDL/Graphics/Render.hpp>
-#include <LDL/Allocators/FixedLinear.hpp>
-#include <LDL/Loaders/FontLoader.hpp>
-#include <LDL/Text/Rasterizer.hpp>
+#include <LDL/LDL.hpp>
 
 using namespace LDL::Allocators;
 using namespace LDL::Loaders;

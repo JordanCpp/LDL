@@ -3,7 +3,12 @@
 
 using namespace Arcanum::Readers;
 
-XmlReader::XmlReader()
+XmlReader::XmlReader() :
+    token(0),
+    tabs(0),
+    line(0),
+    length(0),
+    mode(0)
 {
 }
 

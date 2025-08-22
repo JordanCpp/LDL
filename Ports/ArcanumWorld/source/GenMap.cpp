@@ -1,6 +1,6 @@
 #include <iostream>
 #include <Arcanum/Writers/XmlWriter.hpp>
-#include <LDL/Math/Vec2.hpp>
+#include <LDL/LDL.hpp>
 
 using namespace LDL::Math;
 using namespace Arcanum::Writers;

@@ -5,12 +5,7 @@
 // rwright@starstonesoftware.com  
 // Modifed for LDL framework by Zoshchuk Evgeniy (Jordan)
 
-#include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/Convert.hpp>
-#include <LDL/Graphics/Window.hpp>
-#include <LDL/Graphics/Render.hpp>
-#include <LDL/Enums/ButtonState.hpp>
-#include <LDL/Enums/KeyboardKey.hpp>
+#include <LDL/LDL.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
 #include <math.h>
 
