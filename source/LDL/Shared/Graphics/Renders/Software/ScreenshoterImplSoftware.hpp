@@ -17,7 +17,7 @@ namespace LDL
 			void Shot();
 		private:
 			LDL::Graphics::ImageWriter      _imageWriter;
-			LDL::Graphics::BaseScreenshoter _baseScreenShotter;
+			LDL::Graphics::BaseScreenShotter _baseScreenShotter;
 			std::string                     _shortPath;
 			std::string                     _name;
 			std::string                     _fullPath;

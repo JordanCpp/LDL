@@ -1,34 +1,34 @@
-#include "BaseScreenshoter.hpp"
+#include <LDL/Shared/Graphics/Base/BaseScreenshoter.hpp>
 #include <time.h>
 
 using namespace LDL::Graphics;
 
-const std::string BaseScreenshoter::Prefix()
+const std::string BaseScreenShotter::Prefix()
 {
-    time_t rawtime;
-    struct tm* timeinfo;
+    time_t     rawTime;
+    struct tm* timeInfo;
 
-    time(&rawtime);
-    timeinfo = localtime(&rawtime);
+    time(&rawTime);
+    timeInfo = localtime(&rawTime);
 
-    _Prefix = "";
+    _prefix = "";
 
-    _Prefix += _Converter.ToString(timeinfo->tm_mday);
+    _prefix += _converter.ToString(timeInfo->tm_mday);
 
-    _Prefix += '.';
-    _Prefix += _Converter.ToString(timeinfo->tm_mon + 1);
+    _prefix += '.';
+    _prefix += _converter.ToString(timeInfo->tm_mon + 1);
 
-    _Prefix += '.';
-    _Prefix += _Converter.ToString(timeinfo->tm_year + 1900);
+    _prefix += '.';
+    _prefix += _converter.ToString(timeInfo->tm_year + 1900);
 
-    _Prefix += '-';
-    _Prefix += _Converter.ToString(timeinfo->tm_hour);
+    _prefix += '-';
+    _prefix += _converter.ToString(timeInfo->tm_hour);
 
-    _Prefix += '.';
-    _Prefix += _Converter.ToString(timeinfo->tm_min);
+    _prefix += '.';
+    _prefix += _converter.ToString(timeInfo->tm_min);
 
-    _Prefix += '.';
-    _Prefix += _Converter.ToString(timeinfo->tm_sec);
+    _prefix += '.';
+    _prefix += _converter.ToString(timeInfo->tm_sec);
 
-    return _Prefix;
+    return _prefix;
 }

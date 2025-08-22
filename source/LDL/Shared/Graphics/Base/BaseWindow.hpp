@@ -18,10 +18,10 @@ namespace LDL
 			const std::string& Title();
 			void Title(const std::string& source);
 		private:
-			LDL::Math::Vec2u _Pos;
-			LDL::Math::Vec2u _Size;
-			LDL::Math::Vec2u _View;
-			std::string _Title;
+			Math::Vec2u _pos;
+			Math::Vec2u _size;
+			Math::Vec2u _view;
+			std::string _title;
 		};
 	}
 }

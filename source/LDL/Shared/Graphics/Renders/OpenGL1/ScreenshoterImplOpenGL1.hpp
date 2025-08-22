@@ -17,7 +17,7 @@ namespace LDL
 			void Shot();
 		private:
 			ImageWriter      _imageWriter;
-			BaseScreenshoter _baseScreenShotter;
+			BaseScreenShotter _baseScreenShotter;
 			std::string      _ShortPath;
 			std::string      _Name;
 			std::string      _FullPath;

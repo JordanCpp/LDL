@@ -13,11 +13,11 @@ namespace LDL
 		public:
 			BaseRender(const Math::Vec2u& size);
 			const Math::Vec2u& Size();
-			const LDL::Graphics::Color& Color();
-			void Color(const LDL::Graphics::Color& color);
+			const Graphics::Color& Color();
+			void Color(const Graphics::Color& color);
 		public:
-			LDL::Math::Vec2u _Size;
-			LDL::Graphics::Color _Current;
+			Graphics::Color _current;
+			Math::Vec2u     _size;
 		};
 	}
 }
