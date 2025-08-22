@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
 #include "MainWindow.hpp"
@@ -251,7 +256,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
     }
 
-    return DefWindowProc(_HWND, Message, WParam, LParam);
+    return DefWindowProc(_hwnd, Message, WParam, LParam);
 }
 
 LRESULT CALLBACK MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam)
@@ -281,8 +286,8 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
     ZeroMemory(&_instance, sizeof(HINSTANCE));
     ZeroMemory(&_msg, sizeof(MSG));
     ZeroMemory(&_atom, sizeof(ATOM));
-    ZeroMemory(&_HWND, sizeof(HWND));
-    ZeroMemory(&_HDC, sizeof(HDC));
+    ZeroMemory(&_hwnd, sizeof(HWND));
+    ZeroMemory(&_hdc, sizeof(HDC));
 
     _instance = GetModuleHandle(NULL);
     LDL_ASSERT_DETAIL(_instance != NULL, "GetModuleHandle failed");
@@ -317,22 +322,22 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
     BOOL Adjust = AdjustWindowRect(&rect, style, FALSE);
     LDL_ASSERT_DETAIL(Adjust, "AdjustWindowRect failed");
 
-    _HWND = CreateWindow(AppName, "", style, (int)_baseWindow.Pos().x, (int)_baseWindow.Pos().y, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _instance, 0);
-    LDL_ASSERT_DETAIL(_HWND != INVALID_HANDLE_VALUE, "CreateWindow failed");
+    _hwnd = CreateWindow(AppName, "", style, (int)_baseWindow.Pos().x, (int)_baseWindow.Pos().y, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _instance, 0);
+    LDL_ASSERT_DETAIL(_hwnd != INVALID_HANDLE_VALUE, "CreateWindow failed");
 
 #ifdef _WIN64
-    SetWindowLongPtr(_HWND, GWLP_WNDPROC, (LONG_PTR)WndProc);
-    SetWindowLongPtr(_HWND, GWLP_USERDATA, (LONG_PTR)this);
+    SetWindowLongPtr(_hwnd, GWLP_WNDPROC, (LONG_PTR)WndProc);
+    SetWindowLongPtr(_hwnd, GWLP_USERDATA, (LONG_PTR)this);
 #elif _WIN32
-    SetWindowLong(_HWND, GWL_WNDPROC, (LONG)WndProc);
-    SetWindowLong(_HWND, GWL_USERDATA, (LONG)this);
+    SetWindowLong(_hwnd, GWL_WNDPROC, (LONG)WndProc);
+    SetWindowLong(_hwnd, GWL_USERDATA, (LONG)this);
 #endif  
 
-    _HDC = GetDC(_HWND);
-    LDL_ASSERT_DETAIL(_HDC != INVALID_HANDLE_VALUE, "GetDC failed");
+    _hdc = GetDC(_hwnd);
+    LDL_ASSERT_DETAIL(_hdc != INVALID_HANDLE_VALUE, "GetDC failed");
 
     Title(title);
-    ShowWindow(_HWND, SW_SHOW);
+    ShowWindow(_hwnd, SW_SHOW);
 }
 
 MainWindow::~MainWindow()
@@ -340,7 +345,7 @@ MainWindow::~MainWindow()
     timeEndPeriod(timePeriod);
 
     UnregisterClass(AppName, _instance);
-    ReleaseDC(_HWND, _HDC);
+    ReleaseDC(_hwnd, _hdc);
     PostQuitMessage(0);
 }
 
@@ -351,7 +356,7 @@ bool MainWindow::Running()
 
 void MainWindow::PollEvents()
 {
-    while (PeekMessage(&_msg, _HWND, 0, 0, PM_REMOVE))
+    while (PeekMessage(&_msg, _hwnd, 0, 0, PM_REMOVE))
     {
         TranslateMessage(&_msg);
         DispatchMessage(&_msg);
@@ -374,7 +379,7 @@ bool MainWindow::WaitEvent(Event& event)
 {
     if (_eventer.Running())
     {
-        if (GetMessage(&_msg, _HWND, 0, 0) == -1)
+        if (GetMessage(&_msg, _hwnd, 0, 0) == -1)
         {
             //throw RuntimeError("GetMessage failed");
         }
@@ -399,7 +404,7 @@ void MainWindow::Title(const std::string& title)
 {
     _baseWindow.Title(title);
 
-    SetWindowText(_HWND, _baseWindow.Title().c_str());
+    SetWindowText(_hwnd, _baseWindow.Title().c_str());
 }
 
 const std::string& MainWindow::Title()
@@ -411,7 +416,7 @@ const Vec2u& MainWindow::Size()
 {
     RECT rect;
 
-    if (GetClientRect(_HWND, &rect))
+    if (GetClientRect(_hwnd, &rect))
     {
         _baseWindow.Size(Vec2u(rect.right + Pos().x, rect.bottom + Pos().y));
     }

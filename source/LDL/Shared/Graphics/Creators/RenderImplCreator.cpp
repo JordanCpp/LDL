@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include "RenderImplCreator.hpp"
 
 #include "../Renders/Software/RenderImplSoftware.hpp"
@@ -14,9 +19,9 @@ using namespace LDL::Math;
 using namespace LDL::Graphics;
 using namespace LDL::Graphics::Creators;
 
-RenderImpl* RenderImplCreator::Create(RenderContext* renderContext, Window* window)
+RenderImpl* RenderImplCreator::Create(RenderContext& renderContext, Window* window)
 {
-	size_t mode = renderContext->Mode();
+	size_t mode = renderContext.Mode();
 	LDL_ASSERT_DETAIL(mode < RenderMode::Max, "Unknown graphics mode");
 
 	RenderImpl* result = NULL;
@@ -24,16 +29,16 @@ RenderImpl* RenderImplCreator::Create(RenderContext* renderContext, Window* wind
 	switch (mode)
 	{
 	case RenderMode::Software:
-		result = new RenderImplSoftware(renderContext->GetRenderContextImpl(), window);
+		result = new RenderImplSoftware(renderContext.GetRenderContextImpl(), window);
 		break;
 	case RenderMode::OpenGL1:
-		result = new RenderImplOpenGL1(renderContext->GetRenderContextImpl(), window);
+		result = new RenderImplOpenGL1(renderContext.GetRenderContextImpl(), window);
 		break;
 	case RenderMode::OpenGL3:
-		result = new RenderImplOpenGL3(renderContext->GetRenderContextImpl(), window);
+		result = new RenderImplOpenGL3(renderContext.GetRenderContextImpl(), window);
 		break;
 	case RenderMode::Glide:
-		result = new RenderImplGlide(renderContext->GetRenderContextImpl(), window);
+		result = new RenderImplGlide(renderContext.GetRenderContextImpl(), window);
 		break;
 	}
 

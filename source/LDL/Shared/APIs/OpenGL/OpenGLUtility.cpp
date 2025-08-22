@@ -1,4 +1,4 @@
-#include <LDL/APIs/OpenGL/OpenGLUtility.hpp>
+#include <LDL/APIs/OpenGL/GLU.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
 #include <math.h>
 

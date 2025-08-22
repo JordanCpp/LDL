@@ -69,46 +69,46 @@ void ChangeSize(int w, int h)
 // Main program entry point  
 int main()
 {
-		RenderContext renderContext;
+	RenderContext renderContext;
 
-		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "GLRect");
-		Render render(&renderContext, &window);
+	Window window(renderContext, Vec2u(0, 0), Vec2u(800, 600), "GLRect");
+	Render render(renderContext, &window);
 
-		Event report;
+	Event report;
 
-		FpsCounter fpsCounter;
-		Convert convert;
+	FpsCounter fpsCounter;
+	Convert convert;
 
-		SetupRC();
+	SetupRC();
 
-		while (window.Running())
+	while (window.Running())
+	{
+		fpsCounter.Start();
+
+		while (window.GetEvent(report))
 		{
-			fpsCounter.Start();
-
-			while (window.GetEvent(report))
+			if (report.Type == IsQuit)
 			{
-				if (report.Type == IsQuit)
-				{
-					window.StopEvent();
-				}
+				window.StopEvent();
 			}
-
-			render.Begin();
-
-			ChangeSize((int)window.Size().x, (int)window.Size().y);
-
-			RenderScene();
-
-			render.End();
-
-			if (fpsCounter.Calc())
-			{
-				window.Title(convert.ToString(fpsCounter.Fps()));
-				fpsCounter.Clear();
-			}
-
-			window.PollEvents();
 		}
+
+		render.Begin();
+
+		ChangeSize((int)window.Size().x, (int)window.Size().y);
+
+		RenderScene();
+
+		render.End();
+
+		if (fpsCounter.Calc())
+		{
+			window.Title(convert.ToString(fpsCounter.Fps()));
+			fpsCounter.Clear();
+		}
+
+		window.PollEvents();
+	}
 
 	return 0;
 }

@@ -1,11 +1,16 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <LDL/Graphics/Render.hpp>
-#include "Creators/RenderImplCreator.hpp"
+#include <LDL/Shared/Graphics/Creators/RenderImplCreator.hpp>
 
 using namespace LDL::Math;
 using namespace LDL::Graphics;
 using namespace LDL::Graphics::Creators;
 
-Render::Render(RenderContext* renderContext, Window* window)
+Render::Render(RenderContext& renderContext, Window* window)
 {
 	RenderImplCreator creator;
 

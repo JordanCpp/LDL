@@ -48,7 +48,7 @@ namespace Arcanum
         private:
             Core::PathNormalizer _pathNormalizer;
             std::string          _fullPath;
-            std::ifstream        _file;
+            std::fstream         _file;
         };
     }
 }

@@ -18,7 +18,7 @@ WidgetManager::~WidgetManager()
 
 Button* WidgetManager::GetButton(const Vec2u& pos, const Vec2u& size)
 {
-	auto result = new Button(_render, pos, size);
+	Button* result = new Button(_render, pos, size);
 
 	_widgets.push_back(result);
 
@@ -27,7 +27,7 @@ Button* WidgetManager::GetButton(const Vec2u& pos, const Vec2u& size)
 
 Form* WidgetManager::GetForm()
 {
-	auto result = new Form(_render, Vec2u(0,0), _render->Size());
+	Form* result = new Form(_render, Vec2u(0,0), _render->Size());
 
 	_widgets.push_back(result);
 

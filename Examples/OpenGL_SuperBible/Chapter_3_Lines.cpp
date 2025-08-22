@@ -5,9 +5,9 @@
 // rwright@starstonesoftware.com  
 // Modifed for LDL framework by Zoshchuk Evgeniy (Jordan)
 
+#include <math.h>
 #include <LDL/LDL.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
-#include <math.h>
 
 using namespace LDL::Graphics;
 using namespace LDL::Events;
@@ -44,13 +44,13 @@ void RenderScene(void)
 	for (angle = 0.0f; angle <= GL_PI; angle += (GL_PI / 20.0f))
 	{
 		// Top half of the circle
-		x = 50.0f * sin(angle);
-		y = 50.0f * cos(angle);
+		x = 50.0f * sinf(angle);
+		y = 50.0f * cosf(angle);
 		glVertex3f(x, y, z);
 
 		// Bottom half of the circle
-		x = 50.0f * sin(angle + GL_PI);
-		y = 50.0f * cos(angle + GL_PI);
+		x = 50.0f * sinf(angle + GL_PI);
+		y = 50.0f * cosf(angle + GL_PI);
 		glVertex3f(x, y, z);
 	}
 
@@ -133,51 +133,51 @@ void ChangeSize(int w, int h)
 // Main Program Entry Point
 int main()
 {
-		RenderContext renderContext;
+	RenderContext renderContext;
 
-		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Lines Example");
-		Render render(&renderContext, &window);
+	Window window(renderContext, Vec2u(0, 0), Vec2u(800, 600), "Lines Example");
+	Render render(renderContext, &window);
 
-		Event report;
+	Event report;
 
-		FpsCounter fpsCounter;
-		Convert convert;
+	FpsCounter fpsCounter;
+	Convert convert;
 
-		SetupRC();
+	SetupRC();
 
-		while (window.Running())
+	while (window.Running())
+	{
+		fpsCounter.Start();
+
+		while (window.GetEvent(report))
 		{
-			fpsCounter.Start();
-
-			while (window.GetEvent(report))
+			if (report.Type == IsQuit)
 			{
-				if (report.Type == IsQuit)
-				{
-					window.StopEvent();
-				}
-
-				if (report.Type == IsKeyboard && report.Keyboard.State == ButtonState::Pressed)
-				{
-					SpecialKeys(report.Keyboard.Key);
-				}
+				window.StopEvent();
 			}
 
-			render.Begin();
-
-			ChangeSize((int)window.Size().x, (int)window.Size().y);
-
-			RenderScene();
-
-			render.End();
-
-			if (fpsCounter.Calc())
+			if (report.Type == IsKeyboard && report.Keyboard.State == ButtonState::Pressed)
 			{
-				window.Title(convert.ToString(fpsCounter.Fps()));
-				fpsCounter.Clear();
+				SpecialKeys(report.Keyboard.Key);
 			}
-
-			window.PollEvents();
 		}
+
+		render.Begin();
+
+		ChangeSize((int)window.Size().x, (int)window.Size().y);
+
+		RenderScene();
+
+		render.End();
+
+		if (fpsCounter.Calc())
+		{
+			window.Title(convert.ToString(fpsCounter.Fps()));
+			fpsCounter.Clear();
+		}
+
+		window.PollEvents();
+	}
 
 	return 0;
 }

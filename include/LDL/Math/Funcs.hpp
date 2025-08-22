@@ -1,9 +1,14 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #ifndef LDL_Math_Funcs_hpp
 #define LDL_Math_Funcs_hpp
 
+#include <math.h>
 #include <LDL/Math/Mat4.hpp>
 #include <LDL/Math/Vec3.hpp>
-#include <math.h>
 
 namespace LDL
 {
@@ -14,9 +19,9 @@ namespace LDL
 		{
 			Mat4<T> result;
 
-			result._Values[12] = s.x;
-			result._Values[13] = s.y;
-			result._Values[14] = s.z;
+			result._values[12] = s.x;
+			result._values[13] = s.y;
+			result._values[14] = s.z;
 
 			return result * m;
 		}
@@ -51,9 +56,9 @@ namespace LDL
 			c = (T)cos(angle);
 			t = 1 - c;
 
-			a00 = m._Values[0]; a01 = m._Values[1]; a02 = m._Values[2];  a03 = m._Values[3];
-			a10 = m._Values[4]; a11 = m._Values[5]; a12 = m._Values[6];  a13 = m._Values[7];
-			a20 = m._Values[8]; a21 = m._Values[9]; a22 = m._Values[10]; a23 = m._Values[11];
+			a00 = m._values[0]; a01 = m._values[1]; a02 = m._values[2];  a03 = m._values[3];
+			a10 = m._values[4]; a11 = m._values[5]; a12 = m._values[6];  a13 = m._values[7];
+			a20 = m._values[8]; a21 = m._values[9]; a22 = m._values[10]; a23 = m._values[11];
 
 			// Construct the elements of the rotation matrix
 			b00 = x * x * t + c;     b01 = y * x * t + z * s; b02 = z * x * t - y * s;
@@ -62,26 +67,26 @@ namespace LDL
 
 			Mat4<T> result;
 
-			result._Values[12] = m._Values[12];
-			result._Values[13] = m._Values[13];
-			result._Values[14] = m._Values[14];
-			result._Values[15] = m._Values[15];
+			result._values[12] = m._values[12];
+			result._values[13] = m._values[13];
+			result._values[14] = m._values[14];
+			result._values[15] = m._values[15];
 
 			// Perform rotation-specific matrix multiplication
-			result._Values[0] = a00 * b00 + a10 * b01 + a20 * b02;
-			result._Values[1] = a01 * b00 + a11 * b01 + a21 * b02;
-			result._Values[2] = a02 * b00 + a12 * b01 + a22 * b02;
-			result._Values[3] = a03 * b00 + a13 * b01 + a23 * b02;
+			result._values[0] = a00 * b00 + a10 * b01 + a20 * b02;
+			result._values[1] = a01 * b00 + a11 * b01 + a21 * b02;
+			result._values[2] = a02 * b00 + a12 * b01 + a22 * b02;
+			result._values[3] = a03 * b00 + a13 * b01 + a23 * b02;
 
-			result._Values[4] = a00 * b10 + a10 * b11 + a20 * b12;
-			result._Values[5] = a01 * b10 + a11 * b11 + a21 * b12;
-			result._Values[6] = a02 * b10 + a12 * b11 + a22 * b12;
-			result._Values[7] = a03 * b10 + a13 * b11 + a23 * b12;
+			result._values[4] = a00 * b10 + a10 * b11 + a20 * b12;
+			result._values[5] = a01 * b10 + a11 * b11 + a21 * b12;
+			result._values[6] = a02 * b10 + a12 * b11 + a22 * b12;
+			result._values[7] = a03 * b10 + a13 * b11 + a23 * b12;
 
-			result._Values[8] = a00 * b20 + a10 * b21 + a20 * b22;
-			result._Values[9] = a01 * b20 + a11 * b21 + a21 * b22;
-			result._Values[10] = a02 * b20 + a12 * b21 + a22 * b22;
-			result._Values[11] = a03 * b20 + a13 * b21 + a23 * b22;
+			result._values[8] = a00 * b20 + a10 * b21 + a20 * b22;
+			result._values[9] = a01 * b20 + a11 * b21 + a21 * b22;
+			result._values[10] = a02 * b20 + a12 * b21 + a22 * b22;
+			result._values[11] = a03 * b20 + a13 * b21 + a23 * b22;
 
 			return result;
 		}
@@ -99,9 +104,9 @@ namespace LDL
 
 			Mat4<T> result;
 
-			result._Values[0]  = s.x;
-			result._Values[5]  = s.y;
-			result._Values[10] = s.z;
+			result._values[0]  = s.x;
+			result._values[5]  = s.y;
+			result._values[10] = s.z;
 
 			return result * m;
 		}
@@ -113,25 +118,25 @@ namespace LDL
 
 			Mat4<T> result;
 
-			result._Values[0] = f / aspect;
-			result._Values[1] = 0;
-			result._Values[2] = 0;
-			result._Values[3] = 0;
+			result._values[0] = f / aspect;
+			result._values[1] = 0;
+			result._values[2] = 0;
+			result._values[3] = 0;
 
-			result._Values[4] = 0;
-			result._Values[5] = f;
-			result._Values[6] = 0;
-			result._Values[7] = 0;
+			result._values[4] = 0;
+			result._values[5] = f;
+			result._values[6] = 0;
+			result._values[7] = 0;
 
-			result._Values[8] = 0;
-			result._Values[9] = 0;
-			result._Values[10] = (zFar + zNear) / (zNear - zFar);
-			result._Values[11] = -1;
+			result._values[8] = 0;
+			result._values[9] = 0;
+			result._values[10] = (zFar + zNear) / (zNear - zFar);
+			result._values[11] = -1;
 
-			result._Values[12] = 0;
-			result._Values[13] = 0;
-			result._Values[14] = 2 * zFar * zNear / (zNear - zFar);
-			result._Values[15] = 0;
+			result._values[12] = 0;
+			result._values[13] = 0;
+			result._values[14] = 2 * zFar * zNear / (zNear - zFar);
+			result._values[15] = 0;
 
 			return result;
 		}
@@ -141,12 +146,12 @@ namespace LDL
 		{
 			Mat4<T> result;
 
-			result._Values[0] = (2.0f / (right - left));
-			result._Values[5] = (2.0f / (top - bottom));
-			result._Values[10] = (-1.0);
-			result._Values[12] = (-(right + left) / (right - left));
-			result._Values[13] = (-(top + bottom) / (top - bottom));
-			result._Values[14] = (-(farv + nearv) / (farv - nearv));
+			result._values[0] = (2.0f / (right - left));
+			result._values[5] = (2.0f / (top - bottom));
+			result._values[10] = (-1.0);
+			result._values[12] = (-(right + left) / (right - left));
+			result._values[13] = (-(top + bottom) / (top - bottom));
+			result._values[14] = (-(farv + nearv) / (farv - nearv));
 
 			return result;
 		}
@@ -217,22 +222,22 @@ namespace LDL
 
 			Mat4<T> result;
 
-			result._Values[0] = x0;
-			result._Values[1] = y0;
-			result._Values[2] = z0;
-			result._Values[3] = 0;
-			result._Values[4] = x1;
-			result._Values[5] = y1;
-			result._Values[6] = z1;
-			result._Values[7] = 0;
-			result._Values[8] = x2;
-			result._Values[9] = y2;
-			result._Values[10] = z2;
-			result._Values[11] = 0;
-			result._Values[12] = -(x0 * eyex + x1 * eyey + x2 * eyez);
-			result._Values[13] = -(y0 * eyex + y1 * eyey + y2 * eyez);
-			result._Values[14] = -(z0 * eyex + z1 * eyey + z2 * eyez);
-			result._Values[15] = 1;
+			result._values[0] = x0;
+			result._values[1] = y0;
+			result._values[2] = z0;
+			result._values[3] = 0;
+			result._values[4] = x1;
+			result._values[5] = y1;
+			result._values[6] = z1;
+			result._values[7] = 0;
+			result._values[8] = x2;
+			result._values[9] = y2;
+			result._values[10] = z2;
+			result._values[11] = 0;
+			result._values[12] = -(x0 * eyex + x1 * eyey + x2 * eyez);
+			result._values[13] = -(y0 * eyex + y1 * eyey + y2 * eyez);
+			result._values[14] = -(z0 * eyex + z1 * eyey + z2 * eyez);
+			result._values[15] = 1;
 
 			return result;
 		}
@@ -246,22 +251,22 @@ namespace LDL
 
 			Mat4<T> result;
 
-			result._Values[0] = (zNear * 2) / rl;
-			result._Values[1] = 0;
-			result._Values[2] = 0;
-			result._Values[3] = 0;
-			result._Values[4] = 0;
-			result._Values[5] = (zNear * 2) / tb;
-			result._Values[6] = 0;
-			result._Values[7] = 0;
-			result._Values[8] = (right + left) / rl;
-			result._Values[9] = (top + bottom) / tb;
-			result._Values[10] = -(zFar + zNear) / fn;
-			result._Values[11] = -1;
-			result._Values[12] = 0;
-			result._Values[13] = 0;
-			result._Values[14] = -(zFar * zNear * 2) / fn;
-			result._Values[15] = 0;
+			result._values[0] = (zNear * 2) / rl;
+			result._values[1] = 0;
+			result._values[2] = 0;
+			result._values[3] = 0;
+			result._values[4] = 0;
+			result._values[5] = (zNear * 2) / tb;
+			result._values[6] = 0;
+			result._values[7] = 0;
+			result._values[8] = (right + left) / rl;
+			result._values[9] = (top + bottom) / tb;
+			result._values[10] = -(zFar + zNear) / fn;
+			result._values[11] = -1;
+			result._values[12] = 0;
+			result._values[13] = 0;
+			result._values[14] = -(zFar * zNear * 2) / fn;
+			result._values[15] = 0;
 
 			return result;
 		}
@@ -294,4 +299,4 @@ namespace LDL
 	}
 }
 
-#endif  
+#endif

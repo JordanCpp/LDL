@@ -1,4 +1,9 @@
-#include "WindowImplDirect3D6.hpp"
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
+#include <LDL/Platforms/Windows/Graphics/WindowImplDirect3D6.hpp>
 
 using namespace LDL::Events;
 using namespace LDL::Graphics;
@@ -12,7 +17,7 @@ WindowImplDirect3D6::WindowImplDirect3D6(const Vec2u& pos, const Vec2u& size, co
 WindowImplDirect3D6::~WindowImplDirect3D6()
 {
     wglMakeCurrent(NULL, NULL);
-    ReleaseDC(_Window._HWND, _Window._HDC);
+    ReleaseDC(_Window._hwnd, _Window._hdc);
 }
 
 bool WindowImplDirect3D6::Running()
@@ -66,5 +71,5 @@ void WindowImplDirect3D6::Title(const std::string& title)
 
 void* WindowImplDirect3D6::NativeHandle()
 {
-    return _Window._HWND;
+    return _Window._hwnd;
 }

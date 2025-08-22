@@ -28,8 +28,8 @@
  * Silicon Graphics, Inc.
  */
 
-#ifndef LDL_OpenGL_OpenGLUtility_hpp
-#define LDL_OpenGL_OpenGLUtility_hpp
+#ifndef LDL_OpenGL_GLU_hpp
+#define LDL_OpenGL_GLU_hpp
 
 #include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
 

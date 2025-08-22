@@ -1,5 +1,10 @@
-#include "LibraryImpl.hpp"
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <LDL/Core/Assert.hpp>
+#include <LDL/Platforms/Windows/Core/LibraryImpl.hpp>
 
 using namespace LDL;
 using namespace LDL::Core;

@@ -2,11 +2,11 @@
 #define SHADER_CLASS_H
 
 #include <LDL/APIs/OpenGL/OpenGL3_3.hpp>
-#include<string>
-#include<fstream>
-#include<sstream>
-#include<iostream>
-#include<cerrno>
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <cerrno>
 
 std::string get_file_contents(const char* filename);
 

@@ -1,5 +1,10 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <LDL/LDL.hpp>
-#include <LDL/APIs/OpenGL/OpenGLUtility.hpp>
+#include <LDL/APIs/OpenGL/GLU.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Enums;
@@ -157,8 +162,8 @@ int main()
 {
 		RenderContext renderContext(RenderMode::OpenGL1);
 
-		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
-		Render render(&renderContext, &window);
+		Window window(renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
+		Render render(renderContext, &window);
 
 	    FixedLinear allocator(Allocator::Mb * 2);
 		ImageLoader loader(&allocator);

@@ -28,7 +28,7 @@
  * Silicon Graphics, Inc.
  */
 
-#include <LDL/APIs/OpenGL/OpenGLUtility.hpp>
+#include <LDL/APIs/OpenGL/GLU.hpp>
 #include <math.h>
 
 #define GLAPIENTRY 

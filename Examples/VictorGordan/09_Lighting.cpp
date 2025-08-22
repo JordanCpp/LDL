@@ -6,7 +6,7 @@
 #include "GordanLib/VAO.h"
 #include "GordanLib/VBO.h"
 #include "GordanLib/EBO.h"  
-#include "GordanLib/Camera.h" 
+#include "GordanLib/Camera.hpp" 
 
 using namespace LDL::Graphics;
 using namespace LDL::Enums;
@@ -88,8 +88,8 @@ int main()
 {
 		RenderContext renderContext(RenderMode::OpenGL3);
 
-		Window window(&renderContext, Vec2u(0, 0), Vec2u(width, height), "YoutubeOpenGL");
-		Render render(&renderContext, &window);
+		Window window(renderContext, Vec2u(0, 0), Vec2u(width, height), "YoutubeOpenGL");
+		Render render(renderContext, &window);
 
 		Event report;
 

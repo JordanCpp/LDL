@@ -2,7 +2,6 @@
 #define Arcanum_Readers_XmlReader_hpp
 
 #include <string>
-#include <iostream>
 #include <fstream>
 
 namespace Arcanum
@@ -54,10 +53,10 @@ namespace Arcanum
             bool Eof();
             void Error(const std::string& desc);
         private:
-            std::ifstream input;
-            std::string xml_name;
-            std::string xml_data;
-            std::string xml_source;
+            std::fstream input;
+            std::string  xml_name;
+            std::string  xml_data;
+            std::string  xml_source;
             size_t token;
             size_t tabs;
             size_t line;

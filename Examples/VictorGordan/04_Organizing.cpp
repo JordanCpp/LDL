@@ -42,7 +42,7 @@ int main()
 	{
 		RenderContext renderContext(RenderMode::OpenGL3);
 
-		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 800), "YoutubeOpenGL");
+		Window window(renderContext, Vec2u(0, 0), Vec2u(800, 800), "YoutubeOpenGL");
 		Render render(&renderContext, &window);
 
 		Event report;

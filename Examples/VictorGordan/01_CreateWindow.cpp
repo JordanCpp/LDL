@@ -12,51 +12,51 @@ using namespace LDL::Math;
 
 int main()
 {
-		RenderContext renderContext(RenderMode::OpenGL3);
+	RenderContext renderContext(RenderMode::OpenGL3);
 
-		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 800), "YoutubeOpenGL");
-		Render render(&renderContext, &window);
+	Window window(renderContext, Vec2u(0, 0), Vec2u(800, 800), "YoutubeOpenGL");
+	Render render(renderContext, &window);
 
-		Event report;
+	Event report;
 
-		FpsCounter fpsCounter;
-		Convert convert;
-		FpsLimiter fpsLimiter;
+	FpsCounter fpsCounter;
+	Convert convert;
+	FpsLimiter fpsLimiter;
 
-		while (window.Running())
+	while (window.Running())
+	{
+		fpsLimiter.Mark();
+		fpsCounter.Start();
+
+		while (window.GetEvent(report))
 		{
-			fpsLimiter.Mark();
-			fpsCounter.Start();
-
-			while (window.GetEvent(report))
+			if (report.Type == IsQuit)
 			{
-				if (report.Type == IsQuit)
-				{
-					window.StopEvent();
-				}
-
-				if (report.IsKeyPressed(KeyboardKey::Escape))
-					window.StopEvent();
+				window.StopEvent();
 			}
 
-			render.Begin();
-
-			glViewport(0, 0, (GLsizei)window.Size().x, (GLsizei)window.Size().y);
-			glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
-
-			render.End();
-
-			fpsLimiter.Throttle();
-
-			if (fpsCounter.Calc())
-			{
-				window.Title(convert.ToString(fpsCounter.Fps()));
-				fpsCounter.Clear();
-			}
-
-			window.PollEvents();
+			if (report.IsKeyPressed(KeyboardKey::Escape))
+				window.StopEvent();
 		}
+
+		render.Begin();
+
+		glViewport(0, 0, (GLsizei)window.Size().x, (GLsizei)window.Size().y);
+		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		render.End();
+
+		fpsLimiter.Throttle();
+
+		if (fpsCounter.Calc())
+		{
+			window.Title(convert.ToString(fpsCounter.Fps()));
+			fpsCounter.Clear();
+		}
+
+		window.PollEvents();
+	}
 
 	return 0;
 }

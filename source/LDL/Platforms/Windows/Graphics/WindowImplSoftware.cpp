@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include "WindowImplSoftware.hpp"
 #include <LDL/Core/Assert.hpp>
 
@@ -28,7 +33,7 @@ void WindowImplSoftware::Present(uint8_t* pixels, uint8_t bytesPerPixel)
     _BITMAPINFO.bmiHeader.biBitCount    = bytesPerPixel * 8;
     _BITMAPINFO.bmiHeader.biCompression = BI_RGB;
 
-    int result = SetDIBitsToDevice(_Window._HDC, 0, 0, (DWORD)_Window.Size().x, (DWORD)_Window.Size().y, 0, 0, 0, (UINT)_Window.Size().y, pixels, &_BITMAPINFO, DIB_RGB_COLORS);
+    int result = SetDIBitsToDevice(_Window._hdc, 0, 0, (DWORD)_Window.Size().x, (DWORD)_Window.Size().y, 0, 0, 0, (UINT)_Window.Size().y, pixels, &_BITMAPINFO, DIB_RGB_COLORS);
     LDL_ASSERT_DETAIL(result != 0, "SetDIBitsToDevice failed");
 }
 
@@ -83,5 +88,5 @@ void WindowImplSoftware::Title(const std::string& title)
 
 void* WindowImplSoftware::NativeHandle()
 {
-    return _Window._HWND;
+    return _Window._hwnd;
 }

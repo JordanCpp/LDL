@@ -1,13 +1,6 @@
-#include <LDLC/LDL_RenderContext.h>
-#include <LDL/Graphics/RenderContext.hpp>
+#include <LDL/Shared/APIs/LDLC/LDL_RenderContext.hpp>
 
 using namespace LDL::Graphics;
-
-struct LDL_RenderContext
-{
-	RenderContext _renderContext;
-	LDL_RenderContext();
-};
 
 LDL_RenderContext::LDL_RenderContext()
 {

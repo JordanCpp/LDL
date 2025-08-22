@@ -1,4 +1,4 @@
-#include "Camera.h"
+#include "Camera.hpp"
 #include <stdlib.h>
 
 using namespace LDL::Math;

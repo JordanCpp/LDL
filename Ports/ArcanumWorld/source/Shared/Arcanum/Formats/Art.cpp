@@ -137,9 +137,9 @@ void ArtFile::LoadArt(Readers::MemoryReader& source)
 	animated = ((header.h0[0] & 0x1) == 0);
 
 	palettes = 0;
-	for (auto col : header.stupid_color)
+	for (int i = 0; i < 4; i++)
 	{
-		if (in_palette(col)) palettes++;
+		if (in_palette(header.stupid_color[i])) palettes++;
 	}
 
 	frames = header.frame_num;
@@ -161,10 +161,10 @@ void ArtFile::LoadArt(Readers::MemoryReader& source)
 		frame_data.back().LoadHeader(source);
 	}
 
-	for (auto &af : frame_data)
+	for (int i = 0; i < frame_data.size(); i++)
 	{
-		af.Load(source);
-		af.Decode();
+		frame_data[i].Load(source);
+		frame_data[i].Decode();
 	}
 
 	source.Close();

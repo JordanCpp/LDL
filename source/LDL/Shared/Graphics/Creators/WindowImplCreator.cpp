@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include "WindowImplCreator.hpp"
 
 #if defined(_WIN32)
@@ -22,9 +27,9 @@ using namespace LDL::Math;
 using namespace LDL::Graphics;
 using namespace LDL::Graphics::Creators;
 
-WindowImpl* WindowImplCreator::Create(RenderContext* renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode)
+WindowImpl* WindowImplCreator::Create(RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode)
 {
-	size_t renderMode = renderContext->Mode();
+	size_t renderMode = renderContext.Mode();
 	LDL_ASSERT_DETAIL(renderMode < RenderMode::Max, "Unknown graphics mode");
 
 	WindowImpl* result = NULL;

@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <LDL/Core/Assert.hpp>
 #include "WindowImplOpenGL1.hpp"
 
@@ -14,8 +19,8 @@ WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u& pos, const Vec2u& size, const 
 
     ZeroMemory(&pfd, sizeof(PIXELFORMATDESCRIPTOR));
 
-    _Window._HDC = GetDC(_Window._HWND);
-    LDL_ASSERT_DETAIL(_Window._HDC != NULL, "GetDC failed");
+    _Window._hdc = GetDC(_Window._hwnd);
+    LDL_ASSERT_DETAIL(_Window._hdc != NULL, "GetDC failed");
 
 
     pfd.nSize = sizeof(pfd);
@@ -26,16 +31,16 @@ WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u& pos, const Vec2u& size, const 
     pfd.cDepthBits = 16;
     pfd.iLayerType = PFD_MAIN_PLANE;
 
-    int format = ChoosePixelFormat(_Window._HDC, &pfd);
+    int format = ChoosePixelFormat(_Window._hdc, &pfd);
     LDL_ASSERT_DETAIL(format != 0, "ChoosePixelFormat failed");
 
-    BOOL result = SetPixelFormat(_Window._HDC, format, &pfd);
+    BOOL result = SetPixelFormat(_Window._hdc, format, &pfd);
     LDL_ASSERT_DETAIL(result, "SetPixelFormat failed");
 
-    _HGLRC = wglCreateContext(_Window._HDC);
+    _HGLRC = wglCreateContext(_Window._hdc);
     LDL_ASSERT_DETAIL(_HGLRC != NULL, "wglCreateContext failed");
 
-    result = wglMakeCurrent(_Window._HDC, _HGLRC);
+    result = wglMakeCurrent(_Window._hdc, _HGLRC);
     LDL_ASSERT_DETAIL(result, "wglMakeCurrent failed");
 
     _OpenGLLoader.Init(1, 1);
@@ -46,7 +51,7 @@ WindowImplOpenGL1::~WindowImplOpenGL1()
     wglMakeCurrent(NULL, NULL);
     wglDeleteContext(_HGLRC);
 
-    ReleaseDC(_Window._HWND, _Window._HDC);
+    ReleaseDC(_Window._hwnd, _Window._hdc);
 }
 
 bool WindowImplOpenGL1::Running()
@@ -56,7 +61,7 @@ bool WindowImplOpenGL1::Running()
 
 void WindowImplOpenGL1::Present()
 {
-    SwapBuffers(_Window._HDC);
+    SwapBuffers(_Window._hdc);
 }
 
 void WindowImplOpenGL1::PollEvents()
@@ -101,5 +106,5 @@ void WindowImplOpenGL1::Title(const std::string& title)
 
 void* WindowImplOpenGL1::NativeHandle()
 {
-    return _Window._HWND;
+    return _Window._hwnd;
 }

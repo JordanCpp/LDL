@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include "WindowImplGlide.hpp"
 
 using namespace LDL::Events;
@@ -12,7 +17,7 @@ WindowImplGlide::WindowImplGlide(const Vec2u& pos, const Vec2u& size, const std:
 WindowImplGlide::~WindowImplGlide()
 {
     wglMakeCurrent(NULL, NULL);
-    ReleaseDC(_Window._HWND, _Window._HDC);
+    ReleaseDC(_Window._hwnd, _Window._hdc);
 }
 
 bool WindowImplGlide::Running()
@@ -66,5 +71,5 @@ void WindowImplGlide::Title(const std::string& title)
 
 void* WindowImplGlide::NativeHandle()
 {
-    return _Window._HWND;
+    return _Window._hwnd;
 }

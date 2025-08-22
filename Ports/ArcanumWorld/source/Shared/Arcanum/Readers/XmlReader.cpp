@@ -1,5 +1,6 @@
 #include <Arcanum/Readers/XmlReader.hpp>
 #include <cstdlib>
+#include <iostream>
 
 using namespace Arcanum::Readers;
 

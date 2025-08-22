@@ -1,6 +1,11 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <LDL/LDL.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
-#include <LDL/APIs/OpenGL/OpenGLUtility.hpp>
+#include <LDL/APIs/OpenGL/GLU.hpp>
 #include <stdlib.h>
 
 using namespace LDL::Graphics;
@@ -32,7 +37,7 @@ void Identity()
 
 // Performs application-specific initialization. Sets colors and sets up a
 // simple orthographic projection.
-void Init() 
+void Init()
 {
 	// Set a deep purple background and draw in a greenish yellow.
 	glClearColor(0.25f, 0.0f, 0.2f, 1.0f);
@@ -47,7 +52,7 @@ void Init()
 // Draws a Sierpinski triangle with a fixed number of points. (Note that the
 // number of points is kept fairly small because a display callback should
 // NEVER run for too long.
-void Display() 
+void Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -60,7 +65,7 @@ void Display()
 
 	glBegin(GL_POINTS);
 
-	for (int k = 0; k < 100000; k++) 
+	for (int k = 0; k < 100000; k++)
 	{
 		p = p.midpoint(vertices[rand() % 3]);
 		glVertex2f(p.x, p.y);
@@ -71,50 +76,50 @@ void Display()
 
 int main()
 {
-		RenderContext renderContext(RenderMode::OpenGL1);
+	RenderContext renderContext(RenderMode::OpenGL1);
 
-		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
-		Render render(&renderContext, &window);
+	Window window(renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
+	Render render(renderContext, &window);
 
-		Event report;
+	Event report;
 
-		FpsCounter fpsCounter;
-		Convert convert;
-		FpsLimiter fpsLimiter;
+	FpsCounter fpsCounter;
+	Convert convert;
+	FpsLimiter fpsLimiter;
 
-		while (window.Running())
+	while (window.Running())
+	{
+		fpsLimiter.Mark();
+		fpsCounter.Start();
+
+		while (window.GetEvent(report))
 		{
-			fpsLimiter.Mark();
-			fpsCounter.Start();
-
-			while (window.GetEvent(report))
+			if (report.Type == IsQuit)
 			{
-				if (report.Type == IsQuit)
-				{
-					window.StopEvent();
-				}
-
-				if (report.IsKeyPressed(KeyboardKey::Escape))
-					window.StopEvent();
+				window.StopEvent();
 			}
 
-			render.Begin();
-
-			Init();
-			Display();
-	
-			render.End();
-
-			fpsLimiter.Throttle();
-
-			if (fpsCounter.Calc())
-			{
-				window.Title(convert.ToString(fpsCounter.Fps()));
-				fpsCounter.Clear();
-			}
-
-			window.PollEvents();
+			if (report.IsKeyPressed(KeyboardKey::Escape))
+				window.StopEvent();
 		}
+
+		render.Begin();
+
+		Init();
+		Display();
+
+		render.End();
+
+		fpsLimiter.Throttle();
+
+		if (fpsCounter.Calc())
+		{
+			window.Title(convert.ToString(fpsCounter.Fps()));
+			fpsCounter.Clear();
+		}
+
+		window.PollEvents();
+	}
 
 	return 0;
 }

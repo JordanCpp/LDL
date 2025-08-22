@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #ifndef LDL_Platforms_Windows_Graphics_OpenGL_OpenGLFunctionsImpl_hpp
 #define LDL_Platforms_Windows_Graphics_OpenGL_OpenGLFunctionsImpl_hpp
 
@@ -12,10 +17,10 @@ namespace LDL
 		{
 		public:
 			OpenGLFunctionsImpl(const std::string& path);
-			LDL::VoidFuncPtr Function(const std::string& name);
+			VoidFuncPtr Function(const std::string& name);
 		private:
 			bool IsValid(LDL::VoidFuncPtr ptr);
-			LDL::Core::Library _library;
+			Core::Library _library;
 		};
 	}
 }

@@ -44,7 +44,7 @@ bool DatReader::Reset(const std::string& dir, const std::string& file, DatList& 
 			_file.read((char*)&item.Offset    , 0x04);
 			strcpy(item.Archive, file.c_str());
 
-			auto j = archiveList._List.find(item.Name);
+			std::unordered_map<std::string, DatItem>::iterator j = archiveList._List.find(item.Name);
 
 			if (j == archiveList._List.end())
 				archiveList._List.emplace(item.Name, item);
@@ -62,10 +62,12 @@ bool DatReader::Reset(const std::string& dir, const std::string& file, DatList& 
 
 DatItem* DatList::GetItem(const std::string& file)
 {
-	auto i = _List.find(file);
+	std::unordered_map<std::string, DatItem>::iterator i = _List.find(file);
 
 	if (i != _List.end())
+	{
 		return &i->second;
+	}
 
 	return nullptr;
 }

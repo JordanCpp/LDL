@@ -1,6 +1,7 @@
 #include <LDLC/LDL_Render.h>
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Graphics/Texture.hpp>
+#include <LDL/Shared/APIs/LDLC/LDL_RenderContext.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;
@@ -12,7 +13,7 @@ struct LDL_Render
 };
 
 LDL_Render::LDL_Render(LDL_RenderContext* renderContext, LDL_Window* window) :
-	_render((RenderContext*)renderContext, (Window*)window)
+	_render(renderContext->_renderContext, (Window*)window)
 {
 }
 

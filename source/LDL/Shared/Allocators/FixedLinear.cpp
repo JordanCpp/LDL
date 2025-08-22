@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <assert.h>
 
@@ -36,6 +41,11 @@ void* FixedLinear::Allocate(size_t bytes)
 	return result;
 }
 
+void* FixedLinear::AllocateAligned(size_t bytes, size_t alignment)
+{
+	return NULL;
+}
+
 void FixedLinear::Deallocate(void* ptr)
 {
 }
@@ -43,6 +53,11 @@ void FixedLinear::Deallocate(void* ptr)
 size_t FixedLinear::UsedBytes()
 {
 	return _position;
+}
+
+size_t FixedLinear::Capacity() const
+{
+	return _capacity;
 }
 
 void FixedLinear::Reset()

@@ -1,7 +1,12 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #ifndef LDL_Platforms_Windows_Graphics_MainWindow_hpp
 #define LDL_Platforms_Windows_Graphics_MainWindow_hpp
 
-#include "../Windows.hpp"
+#include <LDL/Platforms/Windows/Windows.hpp>
 #include <LDL/Shared/Graphics/Base/BaseWindow.hpp>
 #include <LDL/Shared/Events/Eventer.hpp>
 #include <LDL/Enums/WindowMode.hpp>
@@ -17,8 +22,8 @@ namespace LDL
 			~MainWindow();
 			bool Running();
 			void PollEvents();
-			bool GetEvent(LDL::Events::Event& event);
-			bool WaitEvent(LDL::Events::Event& event);
+			bool GetEvent(Events::Event& event);
+			bool WaitEvent(Events::Event& event);
 			void StopEvent();
 			void Title(const std::string& title);
 			const std::string& Title();
@@ -28,15 +33,15 @@ namespace LDL
 			uint8_t ConvertKey(size_t key);
 			static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 			LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
-			BaseWindow           _baseWindow;
-			LDL::Events::Eventer _eventer;
-			WNDCLASS             _windowClass;
-			HINSTANCE            _instance;
-			MSG                  _msg;
-			ATOM                 _atom;
+			BaseWindow      _baseWindow;
+			Events::Eventer _eventer;
+			WNDCLASS        _windowClass;
+			HINSTANCE       _instance;
+			MSG             _msg;
+			ATOM            _atom;
 		public:
-			HWND _HWND;
-			HDC  _HDC;
+			HWND            _hwnd;
+			HDC             _hdc;
 		};
 	}
 }

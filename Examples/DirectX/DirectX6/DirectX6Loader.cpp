@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <LDL/LDL.hpp>
 #include <LDL/APIs/DirectX6/DirectX6Loader.hpp>
 #include <string.h>
@@ -281,7 +286,7 @@ HRESULT Initialize3DEnvironment(Window& window)
 
 	// Set the dimensions of the backbuffer. Note that if our window changes
 	// size, we need to destroy this surface and create a new one.
-	ddsd.dwWidth  = window.Size().x;
+	ddsd.dwWidth = window.Size().x;
 	ddsd.dwHeight = window.Size().y;
 
 	// Create the backbuffer. The most likely reason for failure is running
@@ -483,46 +488,46 @@ HRESULT Render3DEnvironment()
 
 int main()
 {
-		DirectX6Loader directXLoader;
-		RenderContext renderContext(RenderMode::Direct3D6);
+	DirectX6Loader directXLoader;
+	RenderContext renderContext(RenderMode::Direct3D6);
 
-		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "DirectX6Loader.cpp");
+	Window window(renderContext, Vec2u(0, 0), Vec2u(800, 600), "DirectX6Loader.cpp");
 
-		Event report;
+	Event report;
 
-		g_rcScreenRect.left   = (LONG)window.Pos().x;
-		g_rcScreenRect.top    = (LONG)window.Pos().y;
-		g_rcScreenRect.right  = (LONG)window.Size().x;
-		g_rcScreenRect.bottom = (LONG)window.Size().y;
-		  
-		g_rcViewportRect.left   = (LONG)window.Pos().x;
-		g_rcViewportRect.top    = (LONG)window.Pos().y;
-		g_rcViewportRect.right  = (LONG)window.Size().x;
-		g_rcViewportRect.bottom = (LONG)window.Size().y;
+	g_rcScreenRect.left = (LONG)window.Pos().x;
+	g_rcScreenRect.top = (LONG)window.Pos().y;
+	g_rcScreenRect.right = (LONG)window.Size().x;
+	g_rcScreenRect.bottom = (LONG)window.Size().y;
 
-		HRESULT result = Initialize3DEnvironment(window);
-		LDL_ASSERT_DETAIL(!FAILED(result), "Initialize3DEnvironment failed");
+	g_rcViewportRect.left = (LONG)window.Pos().x;
+	g_rcViewportRect.top = (LONG)window.Pos().y;
+	g_rcViewportRect.right = (LONG)window.Size().x;
+	g_rcViewportRect.bottom = (LONG)window.Size().y;
 
-		while (window.Running())
+	HRESULT result = Initialize3DEnvironment(window);
+	LDL_ASSERT_DETAIL(!FAILED(result), "Initialize3DEnvironment failed");
+
+	while (window.Running())
+	{
+		while (window.GetEvent(report))
 		{
-			while (window.GetEvent(report))
+			if (report.Type == IsQuit)
 			{
-				if (report.Type == IsQuit)
-				{
-					window.StopEvent();
-				}
-
-				if (report.IsKeyPressed(KeyboardKey::Escape))
-					window.StopEvent();
+				window.StopEvent();
 			}
 
-			result = Render3DEnvironment();
-			LDL_ASSERT_DETAIL(!FAILED(result), "Initialize3DEnvironment failed");
-
-			window.PollEvents();
+			if (report.IsKeyPressed(KeyboardKey::Escape))
+				window.StopEvent();
 		}
 
-		Cleanup3DEnvironment();
+		result = Render3DEnvironment();
+		LDL_ASSERT_DETAIL(!FAILED(result), "Initialize3DEnvironment failed");
+
+		window.PollEvents();
+	}
+
+	Cleanup3DEnvironment();
 
 	return 0;
 }

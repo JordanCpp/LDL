@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include "WindowImplOpenGL3.hpp"
 #include <LDL/Core/Assert.hpp>
 
@@ -39,8 +44,8 @@ WindowImplOpenGL3::WindowImplOpenGL3(const Vec2u& pos, const Vec2u& size, const 
 
     ZeroMemory(&pfd, sizeof(PIXELFORMATDESCRIPTOR));
 
-    _Window._HDC = GetDC(_Window._HWND);
-    LDL_ASSERT_DETAIL(_Window._HDC != NULL, "GetDC failed");
+    _Window._hdc = GetDC(_Window._hwnd);
+    LDL_ASSERT_DETAIL(_Window._hdc != NULL, "GetDC failed");
 
 
     pfd.nSize      = sizeof(pfd);
@@ -50,16 +55,16 @@ WindowImplOpenGL3::WindowImplOpenGL3(const Vec2u& pos, const Vec2u& size, const 
     pfd.cColorBits = 32;
     pfd.cDepthBits = 24;
 
-    int format = ChoosePixelFormat(_Window._HDC, &pfd);
+    int format = ChoosePixelFormat(_Window._hdc, &pfd);
     LDL_ASSERT_DETAIL(format != 0, "ChoosePixelFormat failed");
 
-    bool result = SetPixelFormat(_Window._HDC, format, &pfd);
+    bool result = SetPixelFormat(_Window._hdc, format, &pfd);
     LDL_ASSERT_DETAIL(result, "SetPixelFormat failed");
 
-    _HGLRC = wglCreateContext(_Window._HDC);
+    _HGLRC = wglCreateContext(_Window._hdc);
     LDL_ASSERT_DETAIL(_HGLRC != NULL, "wglCreateContext failed");
 
-    result = wglMakeCurrent(_Window._HDC, _HGLRC);
+    result = wglMakeCurrent(_Window._hdc, _HGLRC);
     LDL_ASSERT_DETAIL(result, "wglMakeCurrent failed");
 
     wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
@@ -71,10 +76,10 @@ WindowImplOpenGL3::WindowImplOpenGL3(const Vec2u& pos, const Vec2u& size, const 
     result = wglDeleteContext(_HGLRC);
     LDL_ASSERT_DETAIL(result, "wglDeleteContext failed");
 
-    _HGLRC = wglCreateContextAttribsARB(_Window._HDC, 0, attribs);
+    _HGLRC = wglCreateContextAttribsARB(_Window._hdc, 0, attribs);
     LDL_ASSERT_DETAIL(_HGLRC != NULL, "wglCreateContextAttribsARB failed");
 
-    result = wglMakeCurrent(_Window._HDC, _HGLRC);
+    result = wglMakeCurrent(_Window._hdc, _HGLRC);
     LDL_ASSERT_DETAIL(result, "wglMakeCurrent failed");
 
     _OpenGLLoader.Init(3, 3);
@@ -85,7 +90,7 @@ WindowImplOpenGL3::~WindowImplOpenGL3()
     wglMakeCurrent(NULL, NULL);
     wglDeleteContext(_HGLRC);
 
-    ReleaseDC(_Window._HWND, _Window._HDC);
+    ReleaseDC(_Window._hwnd, _Window._hdc);
 }
 
 bool WindowImplOpenGL3::Running()
@@ -100,7 +105,7 @@ void WindowImplOpenGL3::PollEvents()
 
 void WindowImplOpenGL3::Present()
 {
-    BOOL result = SwapBuffers(_Window._HDC);
+    BOOL result = SwapBuffers(_Window._hdc);
     LDL_ASSERT_DETAIL(result, "SwapBuffers failed");
 }
 
@@ -141,5 +146,5 @@ void WindowImplOpenGL3::Title(const std::string& title)
 
 void* WindowImplOpenGL3::NativeHandle()
 {
-    return _Window._HWND;
+    return _Window._hwnd;
 }

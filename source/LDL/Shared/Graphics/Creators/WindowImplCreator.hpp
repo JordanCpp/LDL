@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #ifndef LDL_Graphics_Creators_WindowImplCreator_hpp
 #define LDL_Graphics_Creators_WindowImplCreator_hpp
 
@@ -16,7 +21,7 @@ namespace LDL
 			class WindowImplCreator
 			{
 			public:
-				WindowImpl* Create(RenderContext* renderContext, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode);
+				WindowImpl* Create(RenderContext& renderContext, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode);
 			private:
 			};
 		}

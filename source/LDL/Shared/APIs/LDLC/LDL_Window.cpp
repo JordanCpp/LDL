@@ -1,5 +1,6 @@
 #include <LDLC/LDL_Window.h>
 #include <LDL/Graphics/Window.hpp>
+#include <LDL/Shared/APIs/LDLC/LDL_RenderContext.hpp>
 #include <string.h>
 
 using namespace LDL::Graphics;
@@ -13,7 +14,7 @@ struct LDL_Window
 };
 
 LDL_Window::LDL_Window(LDL_RenderContext* renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
-	_window((RenderContext*)renderContext, pos, size, title, mode)
+	_window(renderContext->_renderContext, pos, size, title, mode)
 {
 }
 

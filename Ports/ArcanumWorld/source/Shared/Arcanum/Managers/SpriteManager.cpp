@@ -15,7 +15,7 @@ SpriteManager::SpriteManager(RenderContext* renderContext, FileManager* fileMana
 
 SpriteManager::~SpriteManager()
 {
-    for (auto i = _sprites.begin(); i != _sprites.end(); i++)
+    for (container::iterator i = _sprites.begin(); i != _sprites.end(); i++)
     {
         delete i->second;
     }
@@ -25,7 +25,7 @@ Sprite* SpriteManager::GetSprite(const std::string& dir, const std::string& file
 {
     const char* path = _pathManager->NewShortPath(dir, file).c_str();
 
-    auto i = _sprites.find(path);
+    container::iterator i = _sprites.find(path);
 
     Sprite* result = nullptr;
 

@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <LDL/LDL.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
 
@@ -19,7 +24,7 @@ void Identity()
 	glLoadIdentity();
 }
 
-void Init() 
+void Init()
 {
 	// Set the current clear color to sky blue and the current drawing color to
 	// white.
@@ -63,7 +68,7 @@ void Display()
 	glColor3f(1.0, 1.0, 1.0);
 	glBegin(GL_LINES);
 
-	for (GLfloat i = -2.5; i <= 2.5; i += 0.25) 
+	for (GLfloat i = -2.5; i <= 2.5; i += 0.25)
 	{
 		glVertex3f(i, 0, 2.5); glVertex3f(i, 0, -2.5);
 		glVertex3f(2.5, 0, i); glVertex3f(-2.5, 0, i);
@@ -85,50 +90,50 @@ void Display()
 
 int main()
 {
-		RenderContext renderContext(RenderMode::OpenGL1);
+	RenderContext renderContext(RenderMode::OpenGL1);
 
-		Window window(&renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
-		Render render(&renderContext, &window);
+	Window window(renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
+	Render render(renderContext, &window);
 
-		Event report;
+	Event report;
 
-		FpsCounter fpsCounter;
-		Convert convert;
-		FpsLimiter fpsLimiter;
+	FpsCounter fpsCounter;
+	Convert convert;
+	FpsLimiter fpsLimiter;
 
-		while (window.Running())
+	while (window.Running())
+	{
+		fpsLimiter.Mark();
+		fpsCounter.Start();
+
+		while (window.GetEvent(report))
 		{
-			fpsLimiter.Mark();
-			fpsCounter.Start();
-
-			while (window.GetEvent(report))
+			if (report.Type == IsQuit)
 			{
-				if (report.Type == IsQuit)
-				{
-					window.StopEvent();
-				}
-
-				if (report.IsKeyPressed(KeyboardKey::Escape))
-					window.StopEvent();
+				window.StopEvent();
 			}
 
-			render.Begin();
-
-			Init();
-			Display();
-	
-			render.End();
-
-			fpsLimiter.Throttle();
-
-			if (fpsCounter.Calc())
-			{
-				window.Title(convert.ToString(fpsCounter.Fps()));
-				fpsCounter.Clear();
-			}
-
-			window.PollEvents();
+			if (report.IsKeyPressed(KeyboardKey::Escape))
+				window.StopEvent();
 		}
+
+		render.Begin();
+
+		Init();
+		Display();
+
+		render.End();
+
+		fpsLimiter.Throttle();
+
+		if (fpsCounter.Calc())
+		{
+			window.Title(convert.ToString(fpsCounter.Fps()));
+			fpsCounter.Clear();
+		}
+
+		window.PollEvents();
+	}
 
 	return 0;
 }
