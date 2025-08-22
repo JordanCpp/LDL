@@ -1,8 +1,8 @@
 #ifndef LDL_Events_Eventer_hpp
 #define LDL_Events_Eventer_hpp
 
+#include <LDL/Containers/RingBuffer.hpp>
 #include <LDL/Events/Event.hpp>
-#include <queue>
 
 namespace LDL
 {
@@ -11,6 +11,10 @@ namespace LDL
 		class LDL_LIBRARY Eventer
 		{
 		public:
+			enum
+			{
+				Max = 1024
+			};
 			Eventer();
 			bool Empty();
 			void Push(Event& event);
@@ -18,8 +22,8 @@ namespace LDL
 			bool Running();
 			void Stop();
 		private:
-			bool _running;
-			std::queue<Event> _queue;
+			bool                   _running;
+			RingBuffer<Event, Max> _queue;
 		};
 	}
 }

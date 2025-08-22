@@ -1,6 +1,8 @@
-#include "Eventer.hpp"
 
-using namespace LDL::Events;
+#include <LDL/Shared/Events/Eventer.hpp>
+
+using namespace LDL;
+using namespace Events;
 
 Eventer::Eventer() :
 	_running(true)
@@ -14,15 +16,14 @@ bool Eventer::Empty()
 
 void Eventer::Push(Event& event)
 {
-	_queue.push(event);
+	_queue.enqueue(event);
 }
 
 bool Eventer::Pop(Event& event)
 {
     if (!_queue.empty())
     {
-        event = _queue.front();
-        _queue.pop();
+        _queue.dequeue(event);
 
         return true;
     }
