@@ -8,59 +8,49 @@
 
 #include <LDL/Core/Types.hpp>
 #include <assert.h>
-#include <vector>
 
 namespace LDL
 {
 	namespace Allocators
 	{
-		template <typename T, size_t limit>
-		class ObjectPool
-		{
-		public:
+        template <typename T, size_t limit>
+        class ObjectPool
+        {
+        private:
+            T       _objects[limit];
+            T*      _freeList[limit];
+            size_t  _freeCount;
 
-			ObjectPool()
-			{
-				_objects.resize(limit);
-				_pointers.resize(limit);
-			}
+        public:
+            ObjectPool() : _freeCount(0)
+            {
+                for (size_t i = 0; i < limit; i++)
+                {
+                    _freeList[i] = &_objects[i];
+                    _freeCount++;
+                }
+            }
 
-			T* New()
-			{
-				size_t i = 0;
+            T* New()
+            {
+                assert(_freeCount > 0);
+                
+                if (_freeCount == 0)
+                {
+                    return NULL;
+                }
 
-				for (i = 0; i < _pointers.size(); i++)
-				{
-					if (_pointers[i] == NULL)
-					{
-						_pointers[i] = &_objects[i];
+                return _freeList[--_freeCount];
+            }
 
-						return &_objects[i];
-					}
-				}
+            void Delete(T* ptr)
+            {
+                assert(ptr != NULL);
+                assert(_freeCount < limit);
 
-				assert(i == _pointers.size());
-
-				return NULL;
-			}
-
-			void Delete(T* ptr)
-			{
-				size_t i = 0;
-
-				while (i < _pointers.size() && _pointers[i] != ptr)
-				{
-					i++;
-				}
-
-				assert(i < _pointers.size());
-
-				_pointers[i] = NULL;
-			}
-		private:
-			std::vector<T>  _objects;
-			std::vector<T*> _pointers;
-		};
+                _freeList[_freeCount++] = ptr;
+            }
+        };
 	}
 }
 
