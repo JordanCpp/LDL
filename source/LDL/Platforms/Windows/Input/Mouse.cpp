@@ -10,7 +10,7 @@
 using namespace LDL::Input;
 using namespace LDL::Math;
 
-const Vec2u& Mouse::Pos()
+Vec2u Mouse::Pos()
 {
     POINT point;
 
