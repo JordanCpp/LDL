@@ -14,10 +14,12 @@
 #include <LDL/Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
 #endif
 
+using namespace LDL::Core;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-RenderImplOpenGL3::RenderImplOpenGL3(RenderContextImpl* renderContextImpl, Window* window) :
+RenderImplOpenGL3::RenderImplOpenGL3(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
+	_result(result),
 	_window(window),
 	_linePainter(&_shaderLoader),
 	_texturePainter(&_shaderLoader)

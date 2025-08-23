@@ -36,7 +36,8 @@ struct Vertex
 	FxFloat y;
 };
 
-RenderImplGlide::RenderImplGlide(RenderContextImpl* renderContextImpl, Window* window) :
+RenderImplGlide::RenderImplGlide(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
+	_result(result),
 	_window(window),
 	_renderContextImpl(renderContextImpl)
 {
@@ -45,9 +46,13 @@ RenderImplGlide::RenderImplGlide(RenderContextImpl* renderContextImpl, Window* w
 	grGlideInit();
 	grSstSelect(0);
 
-	FxBool result = grSstWinOpen(windowHandle, GR_RESOLUTION_800x600, GR_REFRESH_60Hz, GR_COLORFORMAT_RGBA, GR_ORIGIN_UPPER_LEFT, 2, 1);
+	FxBool res = grSstWinOpen(windowHandle, GR_RESOLUTION_800x600, GR_REFRESH_60Hz, GR_COLORFORMAT_RGBA, GR_ORIGIN_UPPER_LEFT, 2, 1);
 	
-	LDL_ASSERT_DETAIL(result, "grSstWinOpen failed");
+	if (!res)
+	{
+		_result.Message("grSstWinOpen failed");
+		return;
+	}
 
 	grVertexLayout(GR_PARAM_XY, 0, GR_PARAM_ENABLE);
 	grColorCombine(GR_COMBINE_FUNCTION_LOCAL, GR_COMBINE_FACTOR_NONE, GR_COMBINE_LOCAL_CONSTANT, GR_COMBINE_OTHER_NONE, FXFALSE);

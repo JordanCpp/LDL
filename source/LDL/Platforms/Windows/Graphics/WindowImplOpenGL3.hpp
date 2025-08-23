@@ -18,7 +18,7 @@ namespace LDL
 		class WindowImplOpenGL3 : public WindowImpl
 		{
 		public:
-			WindowImplOpenGL3(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
+			WindowImplOpenGL3(Core::Result& result, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
 			~WindowImplOpenGL3();
 			bool Running();
 			void PollEvents();
@@ -32,9 +32,10 @@ namespace LDL
 			const Math::Vec2u& Pos();
 			void* NativeHandle();
 		private:
-			MainWindow _Window;
-			HGLRC _HGLRC;
-			OpenGLLoader _OpenGLLoader;
+			Core::Result& _result;
+			MainWindow    _Window;
+			HGLRC         _HGLRC;
+			OpenGLLoader  _OpenGLLoader;
 		};
 	}
 }

@@ -5,12 +5,14 @@
 
 #include <LDL/Platforms/Windows/Graphics/WindowImplDirect3D6.hpp>
 
+using namespace LDL::Core;
 using namespace LDL::Events;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-WindowImplDirect3D6::WindowImplDirect3D6(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
-    _Window(pos, size, title, mode)
+WindowImplDirect3D6::WindowImplDirect3D6(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+    _result(result),
+    _Window(_result, pos, size, title, mode)
 {
 }
 

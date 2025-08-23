@@ -3,17 +3,19 @@
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Shared/APIs/LDLC/LDL_RenderContext.hpp>
 
+using namespace LDL::Core;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 struct LDL_Render
 {
+	Result _result;
 	Render _render;
 	LDL_Render(LDL_RenderContext* renderContext, LDL_Window* window);
 };
 
 LDL_Render::LDL_Render(LDL_RenderContext* renderContext, LDL_Window* window) :
-	_render(renderContext->_renderContext, (Window*)window)
+	_render(_result, renderContext->_renderContext, (Window*)window)
 {
 }
 

@@ -22,10 +22,11 @@ int main()
 	DirectXLoader directXLoader;
 	IDirect3D9* direct3D9 = directXLoader.GetDirect3D();
 
+	Result result;
 	RenderContext renderContext(RenderMode::OpenGL1);
 
-	Window window(renderContext, Vec2u(0, 0), Vec2u(800, 600), "DirectXLoader.cpp");
-	Render render(renderContext, &window);
+	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "DirectXLoader.cpp");
+	Render render(result, renderContext, &window);
 
 	Event report;
 

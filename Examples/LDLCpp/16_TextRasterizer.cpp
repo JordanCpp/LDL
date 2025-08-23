@@ -5,6 +5,7 @@
 
 #include <LDL/LDL.hpp>
 
+using namespace LDL::Core;
 using namespace LDL::Allocators;
 using namespace LDL::Loaders;
 using namespace LDL::Graphics;
@@ -16,10 +17,11 @@ using namespace LDL::Math;
 
 int main()
 {
+	Result result;
 	RenderContext renderContext;
 
-	Window window(renderContext, Vec2u(0, 0), Vec2u(800, 600), "16_TextRasterizer");
-	Render render(renderContext, &window);
+	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "16_TextRasterizer");
+	Render render(result, renderContext, &window);
 
 	Event report;
 

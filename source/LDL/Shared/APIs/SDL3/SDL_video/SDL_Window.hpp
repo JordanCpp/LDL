@@ -8,12 +8,13 @@
 
 #include <SDL3/SDL_video.h>
 #include <LDL/Graphics/Window.hpp>
-
+#include <LDL/Core/Result.hpp>
 struct SDL_Window
 {
+	LDL::Core::Result&           _result;
 	LDL::Graphics::RenderContext _context;
 	LDL::Graphics::Window        _window;
-	SDL_Window(const char* title, int w, int h, SDL_WindowFlags flags);
+	SDL_Window(LDL::Core::Result& result, const char* title, int w, int h, SDL_WindowFlags flags);
 	LDL::Graphics::Window& GetWindow();
 	LDL::Graphics::RenderContext& GetRenderContext();
 };

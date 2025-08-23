@@ -25,8 +25,9 @@ typedef HGLRC(WINAPI* PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareC
 #define WGL_CONTEXT_CORE_PROFILE_BIT_ARB          0x00000001
 #define WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB 0x00000002
 
-WindowImplOpenGL3::WindowImplOpenGL3(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
-    _Window(pos, size, title, mode),
+WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+    _result(result),
+    _Window(_result,pos, size, title, mode),
     _HGLRC(NULL)
 {
     PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
@@ -45,8 +46,11 @@ WindowImplOpenGL3::WindowImplOpenGL3(const Vec2u& pos, const Vec2u& size, const 
     ZeroMemory(&pfd, sizeof(PIXELFORMATDESCRIPTOR));
 
     _Window._hdc = GetDC(_Window._hwnd);
-    LDL_ASSERT_DETAIL(_Window._hdc != NULL, "GetDC failed");
 
+    if (_Window._hdc == NULL)
+    {
+        _result.Message("GetDC failed");
+    }
 
     pfd.nSize      = sizeof(pfd);
     pfd.nVersion   = 1;
@@ -56,31 +60,50 @@ WindowImplOpenGL3::WindowImplOpenGL3(const Vec2u& pos, const Vec2u& size, const 
     pfd.cDepthBits = 24;
 
     int format = ChoosePixelFormat(_Window._hdc, &pfd);
-    LDL_ASSERT_DETAIL(format != 0, "ChoosePixelFormat failed");
+    if (format == 0)
+    {
+        _result.Message("ChoosePixelFormat failed");
+    }
 
-    bool result = SetPixelFormat(_Window._hdc, format, &pfd);
-    LDL_ASSERT_DETAIL(result, "SetPixelFormat failed");
+    if (!SetPixelFormat(_Window._hdc, format, &pfd))
+    {
+        _result.Message("SetPixelFormat failed");
+    }
 
     _HGLRC = wglCreateContext(_Window._hdc);
-    LDL_ASSERT_DETAIL(_HGLRC != NULL, "wglCreateContext failed");
+    if (_HGLRC == NULL) _result.Message("wglCreateContext failed");
 
-    result = wglMakeCurrent(_Window._hdc, _HGLRC);
-    LDL_ASSERT_DETAIL(result, "wglMakeCurrent failed");
+    if (!wglMakeCurrent(_Window._hdc, _HGLRC))
+    {
+        _result.Message("wglMakeCurrent failed");
+    }
 
     wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
-    LDL_ASSERT_DETAIL(wglCreateContextAttribsARB != NULL, "wglGetProcAddress failed");
+    if (wglCreateContextAttribsARB == NULL)
+    {
+        _result.Message("wglGetProcAddress failed");
+    }
 
-    result = wglMakeCurrent(NULL, NULL);
-    LDL_ASSERT_DETAIL(result, "wglMakeCurrent failed");
+    if (!wglMakeCurrent(NULL, NULL))
+    {
+        _result.Message("wglMakeCurrent failed");
+    }
 
-    result = wglDeleteContext(_HGLRC);
-    LDL_ASSERT_DETAIL(result, "wglDeleteContext failed");
+    if (!wglDeleteContext(_HGLRC))
+    {
+        _result.Message("wglDeleteContext failed");
+    }
 
     _HGLRC = wglCreateContextAttribsARB(_Window._hdc, 0, attribs);
-    LDL_ASSERT_DETAIL(_HGLRC != NULL, "wglCreateContextAttribsARB failed");
+    if (_HGLRC == NULL)
+    {
+        _result.Message("wglCreateContextAttribsARB failed");
+    }
 
-    result = wglMakeCurrent(_Window._hdc, _HGLRC);
-    LDL_ASSERT_DETAIL(result, "wglMakeCurrent failed");
+    if (!wglMakeCurrent(_Window._hdc, _HGLRC))
+    {
+        _result.Message("wglMakeCurrent failed");
+    }
 
     _OpenGLLoader.Init(3, 3);
 }

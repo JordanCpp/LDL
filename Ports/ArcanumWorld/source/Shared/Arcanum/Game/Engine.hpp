@@ -41,6 +41,7 @@ namespace Arcanum
 			void Update();
 			void Run();
 		private:
+			LDL::Core::Result _result;
 			LDL::Core::CommandLineParser* _CommandLineParser;
 			Readers::XmlReader _XmlReader;
 			Settings* _Settings;

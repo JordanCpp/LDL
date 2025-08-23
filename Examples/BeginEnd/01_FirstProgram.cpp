@@ -51,10 +51,11 @@ void Display()
 
 int main()
 {
+	Result result;
 	RenderContext renderContext(RenderMode::OpenGL1);
 
-	Window window(renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
-	Render render(renderContext, &window);
+	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
+	Render render(result, renderContext, &window);
 
 	Event report;
 

@@ -9,15 +9,17 @@
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Graphics/PixelPainter.hpp>
 
+using namespace LDL::Core;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 int main()
 {
+	    Result result;
 		RenderContext renderContext;
 
-		Window window(renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
-		Render render(renderContext, &window);
+		Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
+		Render render(result, renderContext, &window);
 
 		Surface screen(Vec2u(800, 600), 4);
 		PixelPainter painter;

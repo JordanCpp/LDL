@@ -18,7 +18,7 @@ namespace LDL
 		class WindowImplDirectDraw: public WindowImpl
 		{
 		public:
-			WindowImplDirectDraw(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = Enums::WindowMode::Resized);
+			WindowImplDirectDraw(Core::Result& result, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = Enums::WindowMode::Resized);
 			~WindowImplDirectDraw();
 			bool Running();
 			void Present();
@@ -36,6 +36,7 @@ namespace LDL
 			IDirectDrawSurface* _primary;
 			IDirectDrawSurface* _screen;
 			IDirectDrawClipper* _clipper;
+			Core::Result&       _result;
 			MainWindow          _window;
 		};
 	}

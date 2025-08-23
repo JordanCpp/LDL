@@ -27,37 +27,37 @@ using namespace LDL::Math;
 using namespace LDL::Graphics;
 using namespace LDL::Graphics::Creators;
 
-WindowImpl* WindowImplCreator::Create(RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode)
+WindowImpl* WindowImplCreator::Create(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode)
 {
 	size_t renderMode = renderContext.Mode();
 	LDL_ASSERT_DETAIL(renderMode < RenderMode::Max, "Unknown graphics mode");
 
-	WindowImpl* result = NULL;
+	WindowImpl* impl = NULL;
 
 	switch (renderMode)
 	{
 #if defined(_WIN32)
 	case RenderMode::DirectDraw:
-		result = new WindowImplDirectDraw(pos, size, title, mode);
+		impl = new WindowImplDirectDraw(result, pos, size, title, mode);
 		break;
 
 	case RenderMode::Direct3D6:
-		result = new WindowImplDirect3D6(pos, size, title, mode);
+		impl = new WindowImplDirect3D6(result, pos, size, title, mode);
 		break;
 #endif
 	case RenderMode::Software:
-		result = new WindowImplSoftware(pos, size, title, mode);
+		impl = new WindowImplSoftware(result, pos, size, title, mode);
 		break;
 	case RenderMode::OpenGL1:
-		result = new WindowImplOpenGL1(pos, size, title, mode);
+		impl = new WindowImplOpenGL1(result, pos, size, title, mode);
 		break;
 	case RenderMode::OpenGL3:
-		result = new WindowImplOpenGL3(pos, size, title, mode);
+		impl = new WindowImplOpenGL3(result, pos, size, title, mode);
 		break;
 	case RenderMode::Glide:
-		result = new WindowImplGlide(pos, size, title, mode);
+		impl = new WindowImplGlide(result, pos, size, title, mode);
 		break;
 	}
 
-	return result;
+	return impl;
 }

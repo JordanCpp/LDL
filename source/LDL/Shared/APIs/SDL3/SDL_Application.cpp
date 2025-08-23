@@ -28,6 +28,11 @@ SDL_Application& App()
 	return mainApplication;
 }
 
+LDL::Core::Result& SDL_Application::GetResult()
+{
+	return _result;
+}
+
 void SDL_Application::Append(SDL_Window* window)
 {
 	if (window)

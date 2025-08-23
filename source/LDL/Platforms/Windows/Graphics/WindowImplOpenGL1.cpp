@@ -11,9 +11,10 @@ using namespace LDL::Events;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+    _result(result),
     _HGLRC(NULL),
-    _Window(pos, size, title, mode)
+    _Window(_result, pos, size, title, mode)
 {
     PIXELFORMATDESCRIPTOR pfd;
 
@@ -23,25 +24,35 @@ WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u& pos, const Vec2u& size, const 
     LDL_ASSERT_DETAIL(_Window._hdc != NULL, "GetDC failed");
 
 
-    pfd.nSize = sizeof(pfd);
-    pfd.nVersion = 1;
-    pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+    pfd.nSize      = sizeof(pfd);
+    pfd.nVersion   = 1;
+    pfd.dwFlags    = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
     pfd.iPixelType = PFD_TYPE_RGBA;
     pfd.cColorBits = 24;
     pfd.cDepthBits = 16;
     pfd.iLayerType = PFD_MAIN_PLANE;
 
     int format = ChoosePixelFormat(_Window._hdc, &pfd);
-    LDL_ASSERT_DETAIL(format != 0, "ChoosePixelFormat failed");
+    if (format != 0)
+    {
+        _result.Message("ChoosePixelFormat failed");
+    }
 
-    BOOL result = SetPixelFormat(_Window._hdc, format, &pfd);
-    LDL_ASSERT_DETAIL(result, "SetPixelFormat failed");
+    if (!SetPixelFormat(_Window._hdc, format, &pfd))
+    {
+        _result.Message("SetPixelFormat failed");
+    }
 
     _HGLRC = wglCreateContext(_Window._hdc);
-    LDL_ASSERT_DETAIL(_HGLRC != NULL, "wglCreateContext failed");
+    if (_HGLRC != NULL)
+    {
+        _result.Message("wglCreateContext failed");
+    }
 
-    result = wglMakeCurrent(_Window._hdc, _HGLRC);
-    LDL_ASSERT_DETAIL(result, "wglMakeCurrent failed");
+    if (!wglMakeCurrent(_Window._hdc, _HGLRC))
+    {
+        _result.Message("wglMakeCurrent failed");
+    }
 
     _OpenGLLoader.Init(1, 1);
 }

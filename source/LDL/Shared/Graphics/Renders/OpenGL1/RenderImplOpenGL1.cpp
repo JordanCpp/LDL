@@ -15,10 +15,12 @@
 #include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
 #endif
 
+using namespace LDL::Core;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-RenderImplOpenGL1::RenderImplOpenGL1(RenderContextImpl* renderContextImpl, Window* window) :
+RenderImplOpenGL1::RenderImplOpenGL1(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
+	_result(result),
 	_window(window),
 	_screen(_window->Size()),
 	_renderContextImpl(renderContextImpl)

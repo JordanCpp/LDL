@@ -11,8 +11,9 @@ using namespace LDL::Events;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-WindowImplSoftware::WindowImplSoftware(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
-    _Window(pos, size, title, mode)
+WindowImplSoftware::WindowImplSoftware(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+    _result(result),
+    _Window(_result, pos, size, title, mode)
 {
     ZeroMemory(&_BITMAPINFO, sizeof(_BITMAPINFO));
 }

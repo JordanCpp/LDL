@@ -19,28 +19,28 @@ using namespace LDL::Math;
 using namespace LDL::Graphics;
 using namespace LDL::Graphics::Creators;
 
-RenderImpl* RenderImplCreator::Create(RenderContext& renderContext, Window* window)
+RenderImpl* RenderImplCreator::Create(Result& result, RenderContext& renderContext, Window* window)
 {
 	size_t mode = renderContext.Mode();
 	LDL_ASSERT_DETAIL(mode < RenderMode::Max, "Unknown graphics mode");
 
-	RenderImpl* result = NULL;
+	RenderImpl* impl = NULL;
 
 	switch (mode)
 	{
 	case RenderMode::Software:
-		result = new RenderImplSoftware(renderContext.GetRenderContextImpl(), window);
+		impl = new RenderImplSoftware(result, renderContext.GetRenderContextImpl(), window);
 		break;
 	case RenderMode::OpenGL1:
-		result = new RenderImplOpenGL1(renderContext.GetRenderContextImpl(), window);
+		impl = new RenderImplOpenGL1(result, renderContext.GetRenderContextImpl(), window);
 		break;
 	case RenderMode::OpenGL3:
-		result = new RenderImplOpenGL3(renderContext.GetRenderContextImpl(), window);
+		impl = new RenderImplOpenGL3(result, renderContext.GetRenderContextImpl(), window);
 		break;
 	case RenderMode::Glide:
-		result = new RenderImplGlide(renderContext.GetRenderContextImpl(), window);
+		impl = new RenderImplGlide(result, renderContext.GetRenderContextImpl(), window);
 		break;
 	}
 
-	return result;
+	return impl;
 }

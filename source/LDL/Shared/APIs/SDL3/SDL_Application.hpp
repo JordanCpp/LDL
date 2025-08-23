@@ -10,15 +10,18 @@
 #include <LDL/Shared/APIs/SDL3/SDL_video/SDL_Window.hpp>
 #include <SDL3/SDL_events.h>
 #include <LDL/Containers/RingBuffer.hpp>
+#include <LDL/Core/Result.hpp>
 
 class SDL_Application
 {
 public:
+	LDL::Core::Result& GetResult();
 	void Append(SDL_Window* window);
 	std::vector<SDL_Window*>& GetWindows();
 	void PollEvents();
 	bool PollEvent(SDL_Event& dest);
 private:
+	LDL::Core::Result _result;
 	std::vector<SDL_Window*>         _windows;
 	LDL::RingBuffer<SDL_Event, 1024> _events;
 };

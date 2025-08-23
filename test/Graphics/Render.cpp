@@ -8,17 +8,19 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
 
+using namespace LDL::Core;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 int main()
 {
 	const std::string title = "LDL Window title!";
-
+	
+	Result result;
 	RenderContext renderContext;
 
-	Window window(renderContext, Vec2u(1, 2), Vec2u(640, 480), title);
-	Render render(renderContext, &window);
+	Window window(result, renderContext, Vec2u(1, 2), Vec2u(640, 480), title);
+	Render render(result, renderContext, &window);
 
 	LDL_TEST_EQUAL(render.Size().x > 0);
 	LDL_TEST_EQUAL(render.Size().x <= 640);

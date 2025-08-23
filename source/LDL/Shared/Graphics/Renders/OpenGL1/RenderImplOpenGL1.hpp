@@ -23,7 +23,7 @@ namespace LDL
 		class RenderImplOpenGL1: public RenderImpl
 		{
 		public:
-			RenderImplOpenGL1(RenderContextImpl* renderContextImpl, Window* window);
+			RenderImplOpenGL1(Core::Result& result, RenderContextImpl* renderContextImpl, Window* window);
 			void Buffer(uint8_t * dst);
 			void Begin();
 			void End();
@@ -44,6 +44,7 @@ namespace LDL
 			void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
 			void Draw(TextureBatcher* textureBatcher);
 		private:
+			Core::Result& _result;
 			Window*            _window;
 			ScreenOpenGL1      _screen;
 			Graphics::Color    _color;

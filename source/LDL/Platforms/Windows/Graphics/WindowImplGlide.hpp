@@ -17,7 +17,7 @@ namespace LDL
 		class WindowImplGlide : public WindowImpl
 		{
 		public:
-			WindowImplGlide(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
+			WindowImplGlide(Core::Result& result, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
 			~WindowImplGlide();
 			bool Running();
 			void Present();
@@ -31,7 +31,8 @@ namespace LDL
 			const Math::Vec2u& Pos();
 			void* NativeHandle();
 		private:
-			MainWindow _Window;
+			Core::Result& _result;
+			MainWindow    _Window;
 		};
 	}
 }

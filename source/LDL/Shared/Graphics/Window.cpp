@@ -7,15 +7,16 @@
 #include <LDL/Graphics/RenderContext.hpp>
 #include <LDL/Shared/Graphics/Creators/WindowImplCreator.hpp>
 
+using namespace LDL::Core;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
 using namespace LDL::Graphics::Creators;
 
-Window::Window(RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode)
+Window::Window(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode)
 {
 	WindowImplCreator creator;
 
-	_impl = creator.Create(renderContext, pos, size, title, mode);
+	_impl = creator.Create(result, renderContext, pos, size, title, mode);
 }
 
 Window::~Window()

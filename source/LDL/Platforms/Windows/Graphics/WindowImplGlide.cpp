@@ -5,12 +5,14 @@
 
 #include "WindowImplGlide.hpp"
 
+using namespace LDL::Core;
 using namespace LDL::Events;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-WindowImplGlide::WindowImplGlide(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
-    _Window(pos, size, title, mode)
+WindowImplGlide::WindowImplGlide(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+    _result(result),
+    _Window(_result, pos, size, title, mode)
 {
 }
 

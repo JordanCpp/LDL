@@ -26,10 +26,11 @@ int main()
 {
 	srand((uint32_t)time(NULL));
 
+	Result result;
 	RenderContext renderContext;
 
-	Window window(renderContext, Vec2u(0, 0), Vec2u(800, 600), "12_TileMap2");
-	Render render(renderContext, &window);
+	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "12_TileMap2");
+	Render render(result, renderContext, &window);
 
 	Event report;
 

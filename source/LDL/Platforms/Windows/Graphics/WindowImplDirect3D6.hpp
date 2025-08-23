@@ -17,7 +17,7 @@ namespace LDL
 		class WindowImplDirect3D6 : public WindowImpl
 		{
 		public:
-			WindowImplDirect3D6(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = Enums::WindowMode::Resized);
+			WindowImplDirect3D6(Core::Result& result, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = Enums::WindowMode::Resized);
 			~WindowImplDirect3D6();
 			bool Running();
 			void Present();
@@ -31,7 +31,8 @@ namespace LDL
 			const Math::Vec2u& Pos();
 			void* NativeHandle();
 		private:
-			MainWindow _Window;
+			Core::Result& _result;
+			MainWindow    _Window;
 		};
 	}
 }

@@ -277,8 +277,9 @@ LRESULT CALLBACK MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPA
     return result;
 }
 
-MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
-    _baseWindow(pos, size, title)
+MainWindow::MainWindow(Core::Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+    _baseWindow(pos, size, title),
+    _result(result)
 {
     timeBeginPeriod(timePeriod);
 
@@ -290,7 +291,10 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
     ZeroMemory(&_hdc, sizeof(HDC));
 
     _instance = GetModuleHandle(NULL);
-    LDL_ASSERT_DETAIL(_instance != NULL, "GetModuleHandle failed");
+    if (_instance == NULL)
+    {
+        _result.Message("GetModuleHandle failed");
+    }
 
     _windowClass.hInstance = _instance;
     _windowClass.lpszClassName = AppName;
@@ -301,8 +305,11 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
     _windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
 
     _atom = RegisterClass(&_windowClass);
-    LDL_ASSERT_DETAIL(_atom != INVALID_ATOM, "RegisterClass failed");
-    
+    if (_atom == INVALID_ATOM)
+    {
+        _result.Message("RegisterClass failed");
+    }
+
     DWORD style = 0;
     
     if (mode == WindowMode::Fixed)
@@ -319,11 +326,17 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
     rect.right  = (LONG)_baseWindow.Size().x;
     rect.bottom = (LONG)_baseWindow.Size().y;
 
-    BOOL Adjust = AdjustWindowRect(&rect, style, FALSE);
-    LDL_ASSERT_DETAIL(Adjust, "AdjustWindowRect failed");
+    BOOL adjust = AdjustWindowRect(&rect, style, FALSE);
+    if (!adjust)
+    {
+        _result.Message("AdjustWindowRect failed");
+    }
 
     _hwnd = CreateWindow(AppName, "", style, (int)_baseWindow.Pos().x, (int)_baseWindow.Pos().y, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _instance, 0);
-    LDL_ASSERT_DETAIL(_hwnd != INVALID_HANDLE_VALUE, "CreateWindow failed");
+    if (_hwnd == INVALID_HANDLE_VALUE)
+    {
+        _result.Message("CreateWindow failed");
+    }
 
 #ifdef _WIN64
     SetWindowLongPtr(_hwnd, GWLP_WNDPROC, (LONG_PTR)WndProc);
@@ -334,7 +347,10 @@ MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& t
 #endif  
 
     _hdc = GetDC(_hwnd);
-    LDL_ASSERT_DETAIL(_hdc != INVALID_HANDLE_VALUE, "GetDC failed");
+    if (_hdc == INVALID_HANDLE_VALUE)
+    {
+        _result.Message("GetDC failed");
+    }
 
     Title(title);
     ShowWindow(_hwnd, SW_SHOW);

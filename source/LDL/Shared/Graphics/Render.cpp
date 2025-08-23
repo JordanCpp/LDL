@@ -6,15 +6,16 @@
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Shared/Graphics/Creators/RenderImplCreator.hpp>
 
+using namespace LDL::Core;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
 using namespace LDL::Graphics::Creators;
 
-Render::Render(RenderContext& renderContext, Window* window)
+Render::Render(Result& result, RenderContext& renderContext, Window* window)
 {
 	RenderImplCreator creator;
 
-	_impl = creator.Create(renderContext, window);
+	_impl = creator.Create(result, renderContext, window);
 }
 
 Render::~Render()

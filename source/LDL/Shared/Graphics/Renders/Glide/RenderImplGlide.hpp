@@ -21,7 +21,7 @@ namespace LDL
 		class RenderImplGlide : public RenderImpl
 		{
 		public:
-			RenderImplGlide(RenderContextImpl* renderContextImpl, Window* window);
+			RenderImplGlide(Core::Result& result, RenderContextImpl* renderContextImpl, Window* window);
 			~RenderImplGlide();
 			void Buffer(uint8_t * dst);
 			void Begin();
@@ -43,6 +43,7 @@ namespace LDL
 			void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
 			void Draw(TextureBatcher* textureBatcher);
 		private:
+			Core::Result& _result;
 			Glide::GlideLoader _glideLoader;
 			Window*            _window;
 			Graphics::Color    _color;

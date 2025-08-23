@@ -11,10 +11,12 @@
 #include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
 #endif
 
+using namespace LDL::Core;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-RenderImplSoftware::RenderImplSoftware(RenderContextImpl* renderContextImpl, Window* window) :
+RenderImplSoftware::RenderImplSoftware(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
+	_result(result),
 	_window(window),
 	_canvas(_window->Size(), 3),
 	_imageResizer(_window->Size())

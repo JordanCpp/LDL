@@ -16,7 +16,7 @@ namespace LDL
 		class WindowImplSoftware : public WindowImpl
 		{
 		public:
-			WindowImplSoftware(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
+			WindowImplSoftware(Core::Result& result, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
 			~WindowImplSoftware();
 			void Present(uint8_t* pixels, uint8_t bytesPerPixel);
 			void Present();
@@ -31,8 +31,9 @@ namespace LDL
 			const Math::Vec2u& Pos();
 			void* NativeHandle();
 		private:
-			MainWindow _Window;
-			BITMAPINFO _BITMAPINFO;
+			Core::Result& _result;
+			MainWindow    _Window;
+			BITMAPINFO    _BITMAPINFO;
 		};
 	}
 }

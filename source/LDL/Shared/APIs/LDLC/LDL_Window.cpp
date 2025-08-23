@@ -3,18 +3,20 @@
 #include <LDL/Shared/APIs/LDLC/LDL_RenderContext.hpp>
 #include <string.h>
 
+using namespace LDL::Core;
 using namespace LDL::Graphics;
 using namespace LDL::Events;
 using namespace LDL::Math;
 
 struct LDL_Window
 {
+	Result _result;
 	Window _window;
 	LDL_Window(LDL_RenderContext* renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode);
 };
 
 LDL_Window::LDL_Window(LDL_RenderContext* renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
-	_window(renderContext->_renderContext, pos, size, title, mode)
+	_window(_result, renderContext->_renderContext, pos, size, title, mode)
 {
 }
 

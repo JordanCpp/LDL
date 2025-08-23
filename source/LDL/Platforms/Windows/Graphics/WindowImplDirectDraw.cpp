@@ -11,22 +11,18 @@ using namespace LDL::Core;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
 
-WindowImplDirectDraw::WindowImplDirectDraw(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+WindowImplDirectDraw::WindowImplDirectDraw(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _directDraw(NULL),
-    _window(pos, size, title, mode)
+    _result(result),
+    _window(_result, pos, size, title, mode)
 {
     Library library("ddraw.dll");
 
     DirectDrawCreate = (PFNDirectDrawCreate)library.Function("DirectDrawCreate");
 
-    HRESULT result = DirectDrawCreate(NULL, &_directDraw, NULL);
-    LDL_ASSERT_DETAIL(!FAILED(result), "DirectDrawCreate failed");
-
-    result = _directDraw->SetCooperativeLevel(_window._hwnd, DDSCL_NORMAL);
-    LDL_ASSERT_DETAIL(!FAILED(result), "SetCooperativeLevel failed");
-
-    result = _directDraw->SetDisplayMode(size.x, size.y, 24);
-    LDL_ASSERT_DETAIL(!FAILED(result), "SetDisplayMode failed");
+    if (FAILED(DirectDrawCreate(NULL, &_directDraw, NULL))) _result.Message("DirectDrawCreate failed");
+    if (FAILED(_directDraw->SetCooperativeLevel(_window._hwnd, DDSCL_NORMAL))) _result.Message("SetCooperativeLevel failed");
+    if (FAILED(_directDraw->SetDisplayMode(size.x, size.y, 24))) _result.Message("SetDisplayMode failed");
 
     DDSURFACEDESC ddsd;
 
@@ -36,22 +32,22 @@ WindowImplDirectDraw::WindowImplDirectDraw(const Vec2u& pos, const Vec2u& size, 
     ddsd.dwFlags = DDSD_CAPS;
     ddsd.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE;
 
-    result = _directDraw->CreateSurface(&ddsd, &_primary, NULL);
-    LDL_ASSERT_DETAIL(!FAILED(result), "CreateSurface failed");
+    if (FAILED(_directDraw->CreateSurface(&ddsd, &_primary, NULL))) 
+        _result.Message("CreateSurface failed");
 
     ddsd.ddsCaps.dwCaps = DDSCAPS_BACKBUFFER;
 
-    result = _directDraw->CreateSurface(&ddsd, &_screen, NULL);
-    LDL_ASSERT_DETAIL(!FAILED(result), "CreateSurface failed");
+    if (FAILED(_directDraw->CreateSurface(&ddsd, &_screen, NULL))) 
+        _result.Message("CreateSurface failed");
 
-    result = _directDraw->CreateClipper(0, &_clipper, NULL);
-    LDL_ASSERT_DETAIL(!FAILED(result), "CreateClipper failed");
+    if (FAILED(_directDraw->CreateClipper(0, &_clipper, NULL))) 
+        _result.Message("CreateClipper failed");
 
-    result = _clipper->SetHWnd(0, _window._hwnd);
-    LDL_ASSERT_DETAIL(!FAILED(result), "SetHWnd failed");
+    if (FAILED(_clipper->SetHWnd(0, _window._hwnd)))
+        _result.Message("SetHWnd failed");
 
-    result = _primary->SetClipper(_clipper);
-    LDL_ASSERT_DETAIL(!FAILED(result), "SetClipper failed");
+    if (FAILED(_primary->SetClipper(_clipper)))
+        _result.Message("SetClipper failed");
 }
 
 WindowImplDirectDraw::~WindowImplDirectDraw()

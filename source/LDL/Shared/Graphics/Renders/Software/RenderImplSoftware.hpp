@@ -24,7 +24,7 @@ namespace LDL
 		class RenderImplSoftware : public RenderImpl
 		{
 		public:
-			RenderImplSoftware(RenderContextImpl* renderContextImpl, Window* window);
+			RenderImplSoftware(Core::Result& result, RenderContextImpl* renderContextImpl, Window* window);
 			void Buffer(uint8_t * dst);
 			void Begin();
 			void End();
@@ -45,11 +45,12 @@ namespace LDL
 			void Draw(Surface* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
 			void Draw(TextureBatcher* textureBatcher);
 		private:
-			Window*      _window;
-			Surface      _canvas;
-			PixelPainter _pixelPainter;
-			PixelCopier  _pixelCopier;
-			ImageResizer _imageResizer;
+			Core::Result& _result;
+			Window*       _window;
+			Surface       _canvas;
+			PixelPainter  _pixelPainter;
+			PixelCopier   _pixelCopier;
+			ImageResizer  _imageResizer;
 		};
 	}
 }

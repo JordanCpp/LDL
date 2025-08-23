@@ -489,9 +489,10 @@ HRESULT Render3DEnvironment()
 int main()
 {
 	DirectX6Loader directXLoader;
+	Result result;
 	RenderContext renderContext(RenderMode::Direct3D6);
 
-	Window window(renderContext, Vec2u(0, 0), Vec2u(800, 600), "DirectX6Loader.cpp");
+	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "DirectX6Loader.cpp");
 
 	Event report;
 
@@ -505,8 +506,8 @@ int main()
 	g_rcViewportRect.right = (LONG)window.Size().x;
 	g_rcViewportRect.bottom = (LONG)window.Size().y;
 
-	HRESULT result = Initialize3DEnvironment(window);
-	LDL_ASSERT_DETAIL(!FAILED(result), "Initialize3DEnvironment failed");
+	HRESULT res = Initialize3DEnvironment(window);
+	LDL_ASSERT_DETAIL(!FAILED(res), "Initialize3DEnvironment failed");
 
 	while (window.Running())
 	{
@@ -521,8 +522,8 @@ int main()
 				window.StopEvent();
 		}
 
-		result = Render3DEnvironment();
-		LDL_ASSERT_DETAIL(!FAILED(result), "Initialize3DEnvironment failed");
+		res = Render3DEnvironment();
+		LDL_ASSERT_DETAIL(!FAILED(res), "Initialize3DEnvironment failed");
 
 		window.PollEvents();
 	}

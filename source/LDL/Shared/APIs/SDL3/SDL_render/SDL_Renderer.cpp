@@ -4,13 +4,14 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include "SDL_Renderer.hpp"
+#include <LDL/Shared/APIs/SDL3/SDL_Application.hpp>
 
 using namespace LDL::Math;
 using namespace LDL::Events;
 using namespace LDL::Graphics;
 
 SDL_Renderer::SDL_Renderer(SDL_Window* window, const char* name) :
-	_render(window->GetRenderContext(), &window->GetWindow())
+	_render(App().GetResult(), window->GetRenderContext(), &window->GetWindow())
 {
 }
 

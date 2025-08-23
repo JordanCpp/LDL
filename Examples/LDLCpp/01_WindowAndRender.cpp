@@ -14,10 +14,11 @@ using namespace LDL::Math;
 
 int main()
 {
+	Result result;
 	RenderContext renderContext;
 
-	Window window(renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
-	Render render(renderContext, &window);
+	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
+	Render render(result, renderContext, &window);
 
 	Event report;
 

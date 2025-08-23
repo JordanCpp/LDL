@@ -11,6 +11,7 @@
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Enums/WindowMode.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
+#include <LDL/Core/Result.hpp>
 
 namespace LDL
 {
@@ -21,7 +22,7 @@ namespace LDL
 		class LDL_LIBRARY Window
 		{
 		public:
-			Window(RenderContext& renderContext, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = Enums::WindowMode::Resized);
+			Window(Core::Result& result, RenderContext& renderContext, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = Enums::WindowMode::Resized);
 			~Window();
 			bool Running();
 			void PollEvents();

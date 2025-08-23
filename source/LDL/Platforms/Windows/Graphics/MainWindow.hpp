@@ -10,6 +10,7 @@
 #include <LDL/Shared/Graphics/Base/BaseWindow.hpp>
 #include <LDL/Shared/Events/Eventer.hpp>
 #include <LDL/Enums/WindowMode.hpp>
+#include <LDL/Core/Result.hpp>
 
 namespace LDL
 {
@@ -18,7 +19,7 @@ namespace LDL
 		class MainWindow
 		{
 		public:
-			MainWindow(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode);
+			MainWindow(Core::Result& result, const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode);
 			~MainWindow();
 			bool Running();
 			void PollEvents();
@@ -34,6 +35,7 @@ namespace LDL
 			static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 			LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
 			BaseWindow      _baseWindow;
+			Core::Result&   _result;
 			Events::Eventer _eventer;
 			WNDCLASS        _windowClass;
 			HINSTANCE       _instance;

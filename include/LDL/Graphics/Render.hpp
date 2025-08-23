@@ -22,7 +22,7 @@ namespace LDL
 		class LDL_LIBRARY Render
 		{
 		public:
-			Render(RenderContext& renderContext, Window* window);
+			Render(Core::Result& result, RenderContext& renderContext, Window* window);
 			~Render();
 			RenderImpl* GetRenderImpl();
 			void Buffer(uint8_t* dst);

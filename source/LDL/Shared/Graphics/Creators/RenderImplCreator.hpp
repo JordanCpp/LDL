@@ -21,7 +21,7 @@ namespace LDL
 			class RenderImplCreator
 			{
 			public:
-				RenderImpl* Create(RenderContext& renderContext, Window* window);
+				RenderImpl* Create(Core::Result& result, RenderContext& renderContext, Window* window);
 			private:
 			};
 		}

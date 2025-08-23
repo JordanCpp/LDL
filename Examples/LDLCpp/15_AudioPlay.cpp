@@ -5,6 +5,7 @@
 
 #include <LDL/LDL.hpp>
 
+using namespace LDL::Core;
 using namespace LDL::Graphics;
 using namespace LDL::Events;
 using namespace LDL::Time;
@@ -16,10 +17,11 @@ using namespace LDL::Loaders;
 
 int main()
 {
+	Result result;
 	RenderContext renderContext;
 
-	Window window(renderContext, Vec2u(0, 0), Vec2u(800, 600), "15_AudioPlay");
-	Render render(renderContext, &window);
+	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "15_AudioPlay");
+	Render render(result, renderContext, &window);
 
 	AudioContext audioContext(&window, 44100, 16, 2);
 
