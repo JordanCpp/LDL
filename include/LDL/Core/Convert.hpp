@@ -20,8 +20,7 @@ namespace LDL
 		private:
 			void Swap(char& t1, char& t2);
 			void Reverse(char * str, size_t length);
-			char _buffer[32];
-			int  _result;
+			char _buffer[66]; // 64 bits + '-' + '\0'
 		};
 	}
 }

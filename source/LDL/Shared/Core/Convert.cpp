@@ -4,48 +4,70 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Core/Convert.hpp>
+#include <string.h>
 
 using namespace LDL::Core;
 
 Convert::Convert()
 {
+    memset(&_buffer, 0, sizeof(_buffer));
 }
 
 const char* Convert::ToString(intmax_t num, uint8_t base)
 {
-    int i = 0;
-    bool isNegative = false;
-
-    /* Handle 0 explicitly, otherwise empty string is printed for 0 */
-    if (num == 0)
+    if (base < 2 || base > 36)
     {
-        _buffer[i++] = '0';
-        _buffer[i] = '\0';
+        _buffer[0] = '\0';
+
+        return _buffer;
     }
 
-    // In standard itoa(), negative numbers are handled only with
-    // base 10. Otherwise numbers are considered unsigned.
+    if (num == INTMAX_MIN && base == 10)
+    {
+        const char* min_str = "-9223372036854775808";
+        
+        size_t len = strlen(min_str);
+        
+        memcpy(_buffer, min_str, len + 1);
+
+        return _buffer;
+    }
+
+    int i           = 0;
+    bool isNegative = false;
+    uintmax_t unum;
+
     if (num < 0 && base == 10)
     {
         isNegative = true;
-        num = -num;
+        unum = (uintmax_t)(-num);
     }
-
-    // Process individual digits
-    while (num != 0)
+    else
     {
-        int rem = num % base;
-        _buffer[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
-        num = num / base;
+        unum = (uintmax_t)num;
     }
 
-    // If number is negative, append '-'
+    if (unum == 0)
+    {
+        _buffer[i++] = '0';
+    }
+    else
+    {
+        while (unum != 0)
+        {
+            uintmax_t rem = unum % base;
+            _buffer[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
+            unum = unum / base;
+        }
+    }
+
     if (isNegative)
+    {
         _buffer[i++] = '-';
+    }
 
-    _buffer[i] = '\0'; // Append string terminator
+    _buffer[i] = '\0';
 
-    // Reverse the string
     Reverse(_buffer, i);
 
     return _buffer;
