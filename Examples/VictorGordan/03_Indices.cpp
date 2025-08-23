@@ -161,10 +161,10 @@ int main()
 		if (fpsCounter.Calc())
 		{
 			window.Title(convert.ToString(fpsCounter.Fps()));
-			fpsCounter.Clear();
+			
 		}
 
-		window.PollEvents();
+		
 	}
 
 	// Delete all the objects we've created

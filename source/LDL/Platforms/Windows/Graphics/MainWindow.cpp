@@ -388,6 +388,8 @@ bool MainWindow::GetEvent(Event& event)
         return true;
     }
 
+    PollEvents();
+
     return false;
 }
 

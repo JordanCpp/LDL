@@ -49,7 +49,7 @@ int main()
 
 			grBufferSwap(1);
 
-			window.PollEvents();
+			
 		}
 
 		grGlideShutdown();

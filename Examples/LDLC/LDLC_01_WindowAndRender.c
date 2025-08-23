@@ -37,10 +37,7 @@ int main()
 		if (LDL_FpsCounterCalc(counter))
 		{
 			LDL_WindowSetTitle(window, LDL_ConvertToString(convert, LDL_FpsCounterGetFps(counter)));
-			LDL_FpsCounterClear(counter);
 		}
-
-		LDL_WindowPollEvents(window);
 	}
 
 	LDL_FpsCounterFree(counter);

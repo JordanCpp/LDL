@@ -68,7 +68,7 @@ int main()
 
 		fpsLimiter.Throttle();
 
-		window.PollEvents();
+		
 	}
 
 	return 0;

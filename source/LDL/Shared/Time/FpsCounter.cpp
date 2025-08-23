@@ -8,41 +8,39 @@
 using namespace LDL::Time;
 
 FpsCounter::FpsCounter() :
-	_current(0),
-	_delta(0),
-	_old(0),
-	_fps(0)
+    _startTime(0),
+    _accumulator(0),
+    _frameCount(0),
+    _lastFps(0)
 {
 }
 
 void FpsCounter::Start()
 {
-	_current = Ticks();
+    _startTime = Ticks();
 }
 
 bool FpsCounter::Calc()
 {
-	_fps++;
+    uint32_t currentTime = Ticks();
+    uint32_t delta       = currentTime - _startTime;
 
-	_delta = Ticks() - _current;
+    _accumulator += delta;
+    _frameCount++;
 
-	_old += _delta;
+    if (_accumulator >= 1000)
+    {
+        _accumulator -= 1000;
+        _lastFps      = _frameCount;
+        _frameCount   = 0;
 
-	if (_old >= 1000)
-	{
-		return  true;
-	}
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
-size_t FpsCounter::Fps()
+size_t FpsCounter::Fps() const
 {
-	return _fps;
-}
-
-void FpsCounter::Clear()
-{
-	_fps = 0;
-	_old = 0;
+    return _lastFps;
 }

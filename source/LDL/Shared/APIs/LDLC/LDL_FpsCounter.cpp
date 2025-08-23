@@ -34,8 +34,3 @@ size_t LDL_FpsCounterGetFps(LDL_FpsCounter* fpsCounter)
 {
 	return fpsCounter->_fpsCounter.Fps();
 }
-
-void LDL_FpsCounterClear(LDL_FpsCounter* fpsCounter)
-{
-	fpsCounter->_fpsCounter.Clear();
-}

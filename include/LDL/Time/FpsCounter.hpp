@@ -18,13 +18,12 @@ namespace LDL
 			FpsCounter();
 			void Start();
 			bool Calc();
-			size_t Fps();
-			void Clear();
+			size_t Fps() const;
 		private:
-			size_t _current;
-			size_t _delta;
-			size_t _old;
-			size_t _fps;
+			uint32_t _startTime;
+			uint32_t _accumulator;
+			size_t   _frameCount;
+			size_t   _lastFps;
 		};
 	}
 }

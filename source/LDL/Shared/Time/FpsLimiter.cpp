@@ -10,19 +10,24 @@ using namespace LDL::Time;
 
 FpsLimiter::FpsLimiter(size_t fps) :
 	_fps(fps), 
-	_ticks(0)
+	_startTime(0)
 {
 }
 
 void FpsLimiter::Mark()
 {
-	_ticks = Ticks();
+	_startTime = Ticks();
 }
 
 void FpsLimiter::Throttle() const
 {
-	if (1000 / _fps > Ticks() - _ticks)
+	uint32_t frameTimeMs = 1000 / _fps;
+	uint32_t elapsed     = Ticks() - _startTime;
+
+	if (elapsed < frameTimeMs)
 	{
-		Delay(1000 / _fps - (Ticks() - _ticks));
+		uint32_t sleepMs = frameTimeMs - elapsed;
+
+		Delay(sleepMs);
 	}
 }

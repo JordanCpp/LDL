@@ -37,11 +37,6 @@ bool LDL_WindowRunning(LDL_Window* window)
 	return window->_window.Running();
 }
 
-void LDL_WindowPollEvents(LDL_Window* window)
-{
-	window->_window.PollEvents();
-}
-
 bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event)
 {
 	Event src;

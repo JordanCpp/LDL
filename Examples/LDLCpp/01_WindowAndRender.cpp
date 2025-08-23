@@ -4,6 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 
+#include <iostream>
 #include <LDL/LDL.hpp>
 
 using namespace LDL::Graphics;
@@ -12,13 +13,29 @@ using namespace LDL::Time;
 using namespace LDL::Core;
 using namespace LDL::Math;
 
+void ErrorShow(Result& result)
+{
+	std::cerr << "LDL error: " << result.Message() << std::endl;
+}
+
 int main()
 {
 	Result result;
 	RenderContext renderContext;
 
 	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
+	if (!result.Ok())
+	{
+		ErrorShow(result);
+		return -1;
+	}
+
 	Render render(result, renderContext, &window);
+	if (!result.Ok())
+	{
+		ErrorShow(result);
+		return -1;
+	}
 
 	Event report;
 
@@ -43,10 +60,8 @@ int main()
 		if (fpsCounter.Calc())
 		{
 			window.Title(convert.ToString(fpsCounter.Fps()));
-			fpsCounter.Clear();
+			
 		}
-
-		window.PollEvents();
 	}
 
 	return 0;

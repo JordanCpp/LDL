@@ -20,7 +20,7 @@ namespace LDL
 			void Throttle() const;
 		private:
 			size_t _fps;
-			size_t _ticks;
+			size_t _startTime;
 		};
 	}
 }

@@ -14,7 +14,7 @@ int main()
 	LDL_Window* window = LDL_WindowNew(renderContext, 0, 0, 800, 600, "02_Color", LDL_WindowModeResized);
 	LDL_Render* render = LDL_RenderNew(renderContext, window);
 
-	LDL_Convert* convert = LDL_ConvertNew();
+	LDL_Convert* convert    = LDL_ConvertNew();
 	LDL_FpsCounter* counter = LDL_FpsCounterNew();
 
 	LDL_Event report;
@@ -42,10 +42,7 @@ int main()
 		if (LDL_FpsCounterCalc(counter))
 		{
 			LDL_WindowSetTitle(window, LDL_ConvertToString(convert, LDL_FpsCounterGetFps(counter)));
-			LDL_FpsCounterClear(counter);
 		}
-
-		LDL_WindowPollEvents(window);
 	}
 
 	LDL_FpsCounterFree(counter);

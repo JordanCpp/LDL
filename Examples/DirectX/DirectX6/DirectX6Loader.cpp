@@ -525,7 +525,7 @@ int main()
 		res = Render3DEnvironment();
 		LDL_ASSERT_DETAIL(!FAILED(res), "Initialize3DEnvironment failed");
 
-		window.PollEvents();
+		
 	}
 
 	Cleanup3DEnvironment();
