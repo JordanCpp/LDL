@@ -20,5 +20,6 @@
 #include <LDL/Math/Isometric.hpp>
 #include <LDL/Audio/Mixer.hpp>
 #include <LDL/Core/Assert.hpp>
+#include <LDL/Math/Random.hpp>
 
 #endif

@@ -3,10 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/LDL.hpp>
 #include <vector>
-#include <stdlib.h>
-#include <time.h>
+#include <LDL/LDL.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Events;
@@ -17,15 +15,8 @@ using namespace LDL::Loaders;
 using namespace LDL::Enums;
 using namespace LDL::Math;
 
-size_t Random(size_t min, size_t max)
-{
-	return min + (rand() % (max - min + 1));
-}
-
 int main()
 {
-	srand((uint32_t)time(NULL));
-
 	Result result;
 	RenderContext renderContext;
 
@@ -60,10 +51,12 @@ int main()
 	tilesX.resize(mapSize.x * mapSize.y);
 	tilesY.resize(mapSize.x * mapSize.y);
 
+	Random random;
+
 	for (size_t i = 0; i < mapSize.x * mapSize.y; i++)
 	{
-		tilesX[i] = Random(0, 7);
-		tilesY[i] = Random(0, 5);
+		tilesX[i] = random.Range(0, 7);
+		tilesY[i] = random.Range(0, 5);
 	}
 
 	while (window.Running())
@@ -131,10 +124,7 @@ int main()
 		if (fpsCounter.Calc())
 		{
 			window.Title(convert.ToString(fpsCounter.Fps()));
-			
 		}
-
-		
 	}
 
 	return 0;

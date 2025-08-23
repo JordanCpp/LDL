@@ -3,10 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/LDL.hpp>
-#include <stdlib.h>
 #include <vector>
-#include <time.h>
+#include <LDL/LDL.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Events;
@@ -17,15 +15,8 @@ using namespace LDL::Loaders;
 using namespace LDL::Enums;
 using namespace LDL::Math;
 
-size_t Random(size_t min, size_t max)
-{
-	return min + (rand() % (max - min + 1));
-}
-
 int main()
 {
-	srand((uint32_t)time(NULL));
-
 	Result result;
 	RenderContext renderContext;
 
@@ -41,19 +32,18 @@ int main()
 	Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.BytesPerPixel());
 
 	FpsCounter fpsCounter;
-	Convert convert;
-	FpsLimiter fpsLimiter;
+	Convert    convert;
 
 	Isometric isometric;
 
-	Vec2u start = Vec2u(550, 0);
-	Vec2u mapSize = Vec2u(100, 100);
+	Vec2u start    = Vec2u(550, 0);
+	Vec2u mapSize  = Vec2u(100, 100);
 	Vec2u tileSize = Vec2u(128, 64);
 
 	TextureBatcher textureBatcher(&renderContext, &image, mapSize.x * mapSize.y);
 
-	size_t dx = 0;
-	size_t dy = 0;
+	size_t dx   = 0;
+	size_t dy   = 0;
 	size_t step = tileSize.x / 2;
 
 	std::vector<size_t> tilesX;
@@ -62,10 +52,12 @@ int main()
 	tilesX.resize(mapSize.x * mapSize.y);
 	tilesY.resize(mapSize.x * mapSize.y);
 
+	Random random;
+
 	for (size_t i = 0; i < mapSize.x * mapSize.y; i++)
 	{
-		tilesX[i] = Random(0, 7);
-		tilesY[i] = Random(0, 5);
+		tilesX[i] = random.Range(0, 7);
+		tilesY[i] = random.Range(0, 5);
 	}
 
 	bool batch = false;
@@ -73,7 +65,6 @@ int main()
 	while (window.Running())
 	{
 		fpsCounter.Start();
-		//fpsLimiter.Mark();
 
 		while (window.GetEvent(report))
 		{
@@ -118,7 +109,9 @@ int main()
 		size_t j = 0;
 
 		if (batch)
+		{
 			textureBatcher.Clear();
+		}
 
 		for (size_t rows = 0; rows < mapSize.x; rows++)
 		{
@@ -141,19 +134,16 @@ int main()
 		}
 
 		if (batch)
+		{
 			render.Draw(&textureBatcher);
+		}
 
 		render.End();
-
-		//fpsLimiter.Throttle();
 
 		if (fpsCounter.Calc())
 		{
 			window.Title(convert.ToString(fpsCounter.Fps()));
-			
 		}
-
-		
 	}
 
 	return 0;

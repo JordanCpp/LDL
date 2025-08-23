@@ -34,11 +34,11 @@ target_link_libraries(10_TileMap LDL)
 add_executable(11_Resize "11_Resize.cpp")
 target_link_libraries(11_Resize LDL)
 
-add_executable(12_TileMap2 "12_TileMap2.cpp")
-target_link_libraries(12_TileMap2 LDL)
+add_executable(12_TileMapRandom "12_TileMapRandom.cpp")
+target_link_libraries(12_TileMapRandom LDL)
 
-add_executable(13_TileMapBatcher "13_TileMapBatcher.cpp")
-target_link_libraries(13_TileMapBatcher LDL)
+add_executable(13_TileMapRandomBatcher "13_TileMapRandomBatcher.cpp")
+target_link_libraries(13_TileMapRandomBatcher LDL)
 
 add_executable(14_TextureCopy "14_TextureCopy.cpp")
 target_link_libraries(14_TextureCopy LDL)
