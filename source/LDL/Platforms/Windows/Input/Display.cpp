@@ -40,8 +40,8 @@ const VideoMode& Display::Current()
 	HDC hdc = GetDC(NULL);
 	LDL_ASSERT_DETAIL(hdc != NULL, "GetDC failed");
 
-	int width  = GetDeviceCaps(hdc, HORZSIZE);
-	int height = GetDeviceCaps(hdc, VERTSIZE);
+	int width  = GetDeviceCaps(hdc, HORZRES);
+	int height = GetDeviceCaps(hdc, VERTRES);
 	int bpp    = GetDeviceCaps(hdc, BITSPIXEL);
 
 	_videoMode = VideoMode(Vec2u(width, height), bpp);
