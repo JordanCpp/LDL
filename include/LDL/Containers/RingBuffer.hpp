@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef SDL3Lite_RingBuffer_hpp
-#define SDL3Lite_RingBuffer_hpp
+#ifndef LDL_Containers_RingBuffer_hpp
+#define LDL_Containers_RingBuffer_hpp
 
 #include <string.h>
 #include <LDL/Core/Types.hpp>
@@ -16,7 +16,7 @@ namespace LDL
 	{
 	public:
 		RingBuffer() :
-			_head(-1),
+			_head(COUNT - 1),
 			_tail(0),
 			_length(0),
 			_capacity(COUNT)
@@ -34,9 +34,9 @@ namespace LDL
 			return _length == _capacity;
 		}
 
-		int next(int position)
+		size_t next(size_t pos)
 		{
-			return (position + 1) % _capacity;
+			return (pos + 1) % _capacity;
 		}
 
 		bool dequeue(T& element)
@@ -56,7 +56,6 @@ namespace LDL
 		void enqueue(const T& element)
 		{
 			_head = next(_head);
-
 			_content[_head] = element;
 
 			if (full())
@@ -68,12 +67,18 @@ namespace LDL
 				_length++;
 			}
 		}
+
+		T* front()
+		{
+			return empty() ? NULL : &_content[_tail];
+		}
+
 	private:
-		T   _content[COUNT];
-		int _head;
-		int _tail;
-		int _length;
-		int _capacity;
+		T       _content[COUNT];
+		size_t  _head;
+		size_t  _tail;
+		size_t  _length;
+		size_t  _capacity;
 	};
 }
 
