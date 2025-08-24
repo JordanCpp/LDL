@@ -33,8 +33,8 @@ namespace LDL
 		};
 
 		typedef Vec2<float>    Vec2f;
-		typedef Vec2<intmax_t> Vec2i;
-		typedef Vec2<size_t>   Vec2u;
+		typedef Vec2<int32_t>  Vec2i;
+		typedef Vec2<uint32_t> Vec2u;
 	}
 }
 

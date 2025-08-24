@@ -66,8 +66,8 @@ namespace LDL
 		};
 
 		typedef Rect<float>    Rectf;
-		typedef Rect<intmax_t> Recti;
-		typedef Rect<size_t>   Rectu;
+		typedef Rect<int32_t>  Recti;
+		typedef Rect<uint32_t> Rectu;
 	}
 }
 
