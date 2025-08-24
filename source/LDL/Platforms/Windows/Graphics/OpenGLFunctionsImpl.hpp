@@ -16,8 +16,8 @@ namespace LDL
 		class OpenGLFunctionsImpl
 		{
 		public:
-			OpenGLFunctionsImpl(const std::string& path);
-			VoidFuncPtr Function(const std::string& name);
+			OpenGLFunctionsImpl(const char* path);
+			VoidFuncPtr Function(const char* name);
 		private:
 			bool IsValid(LDL::VoidFuncPtr ptr);
 			Core::Library _library;

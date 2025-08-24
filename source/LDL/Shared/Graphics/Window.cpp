@@ -12,7 +12,7 @@ using namespace LDL::Math;
 using namespace LDL::Graphics;
 using namespace LDL::Graphics::Creators;
 
-Window::Window(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode)
+Window::Window(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode)
 {
 	WindowImplCreator creator;
 
@@ -49,12 +49,12 @@ void Window::StopEvent()
 	_impl->StopEvent();
 }
 
-void Window::Title(const std::string& title)
+void Window::Title(const char* title)
 {
 	_impl->Title(title);
 }
 
-const std::string& Window::Title()
+const char* Window::Title()
 {
 	return _impl->Title();
 }

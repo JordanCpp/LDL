@@ -23,7 +23,7 @@ Engine::Engine(CommandLineParser* commandLineParser, Settings* settings) :
 	_OriginalAllocator(Allocator::Mb * 4),
 	_ImageAllocator(Allocator::Mb * 2, &_OriginalAllocator),
 	_ImageLoader(&_ImageAllocator),
-	_Window(_result, _RenderContext, Vec2u(0,0), _Settings->Size(), _Settings->Title(), WindowMode::Fixed),
+	_Window(_result, _RenderContext, Vec2u(0,0), _Settings->Size(), _Settings->Title().c_str(), WindowMode::Fixed),
 	_Render(_result, _RenderContext, &_Window),
 	_FpsLimiter(_Settings->Fps()),
 	_SpriteManager(&_RenderContext, &_FileManager, &_ArtLoader, &_PathManager),
@@ -46,7 +46,7 @@ void Engine::ShowFps()
 	if (_FpsCounter.Calc())
 	{
 		_Title = _Settings->Title() + " Fps: " + _Convert.ToString(_FpsCounter.Fps());
-		_Window.Title(_Title);
+		_Window.Title(_Title.c_str());
 	}
 }
 

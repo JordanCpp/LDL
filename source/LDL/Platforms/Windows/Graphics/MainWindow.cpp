@@ -278,7 +278,7 @@ LRESULT CALLBACK MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPA
     return result;
 }
 
-MainWindow::MainWindow(Core::Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+MainWindow::MainWindow(Core::Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _baseWindow(pos, size, title),
     _result(result)
 {
@@ -429,14 +429,14 @@ void MainWindow::StopEvent()
     _eventer.Stop();
 }
 
-void MainWindow::Title(const std::string& title)
+void MainWindow::Title(const char* title)
 {
     _baseWindow.Title(title);
 
-    SetWindowText(_hwnd, _baseWindow.Title().c_str());
+    SetWindowText(_hwnd, _baseWindow.Title());
 }
 
-const std::string& MainWindow::Title()
+const char* MainWindow::Title()
 {
     return _baseWindow.Title();
 }

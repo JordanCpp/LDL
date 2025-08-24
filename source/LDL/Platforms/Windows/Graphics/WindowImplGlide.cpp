@@ -10,7 +10,7 @@ using namespace LDL::Events;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-WindowImplGlide::WindowImplGlide(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+WindowImplGlide::WindowImplGlide(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _result(result),
     _Window(_result, pos, size, title, mode)
 {
@@ -61,12 +61,12 @@ void WindowImplGlide::StopEvent()
     _Window.StopEvent();
 }
 
-const std::string& WindowImplGlide::Title()
+const char* WindowImplGlide::Title()
 {
     return _Window.Title();
 }
 
-void WindowImplGlide::Title(const std::string& title)
+void WindowImplGlide::Title(const char* title)
 {
     _Window.Title(title);
 }

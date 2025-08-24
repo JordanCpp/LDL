@@ -7,6 +7,7 @@
 #include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
 #include <LDL/Core/Convert.hpp>
 #include <LDL/Core/Assert.hpp>
+#include <LDL/Containers/inplace_strings.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;
@@ -113,11 +114,11 @@ void Util::Normalize(const Color& color, GLclampf& r, GLclampf& g, GLclampf& b)
 	 b = color.b / 255.0f;
 }
 
-void Util::Check(const std::string& file, size_t line, const std::string& expression)
+void Util::Check(const char* file, size_t line, const char* expression)
 {
     GLenum code = glGetError();
 
-	std::string error;
+	AssertString error;
 
     if (code != GL_NO_ERROR)
     { 
@@ -147,7 +148,16 @@ void Util::Check(const std::string& file, size_t line, const std::string& expres
 
 		LDL::Core::Convert conv;
 
-		LDL_ASSERT_DETAIL(code == GL_NO_ERROR, "OpenGL error: " + error + " File: " + file + " Line: " + conv.ToString(line) + " Detail: " + expression);
+		AssertString assert = "OpenGL error: ";
+		assert += error.c_str();
+		assert += " File: ";
+		assert += file;
+		assert += " Line: ";
+		assert += conv.ToString(line);
+		assert += " Detail: ";
+		assert += expression;
+
+		LDL_ASSERT_DETAIL(code == GL_NO_ERROR, assert.c_str());
     }
 }
 

@@ -109,9 +109,9 @@ void ImageLoader::CopyIf(uint8_t* dstPixels, uint8_t * srcPixels, size_t bytes, 
 	}
 }
 
-void ImageLoader::Load(const std::string& path)
+void ImageLoader::Load(const char* path)
 {
-	LDL_ASSERT_DETAIL(!path.empty(), "Argument path is empty");
+	LDL_ASSERT_DETAIL(path != NULL, "Argument path is empty");
 
 	Clear();
 
@@ -119,15 +119,19 @@ void ImageLoader::Load(const std::string& path)
 	int height        = 0;
 	int bytesPerPixel = 0;
 
-	_pixels = stbi_load(path.c_str(), &width, &height, &bytesPerPixel, STBI_default);
+	_pixels = stbi_load(path, &width, &height, &bytesPerPixel, STBI_default);
 
-	LDL_ASSERT_DETAIL(_pixels != NULL, "stbi_load " + path + " failed");
+	_assert = "stbi_load ";
+	_assert += path;
+	_assert += " failed";
+
+	LDL_ASSERT_DETAIL(_pixels != NULL, _assert.c_str());
 
 	_size = Vec2u(width, height);
 	_bytesPerPixel = bytesPerPixel;
 }
 
-void ImageLoader::Load(const Color& color, const std::string& path)
+void ImageLoader::Load(const Color& color, const char* path)
 {
 	Load(path);
 

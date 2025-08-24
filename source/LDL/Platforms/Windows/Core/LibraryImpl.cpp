@@ -9,11 +9,15 @@
 using namespace LDL;
 using namespace LDL::Core;
 
-LibraryImpl::LibraryImpl(const std::string& path) :
+LibraryImpl::LibraryImpl(const char* path) :
     _module(NULL)
 {
-    _module = LoadLibrary(path.c_str());
-    LDL_ASSERT_DETAIL(_module != NULL, "LoadLibrary failed: " + path);
+    _module = LoadLibrary(path);
+
+    _assert = "LoadLibrary failed: ";
+    _assert += path;
+
+    LDL_ASSERT_DETAIL(_module != NULL, _assert.c_str());
 }
 
 LibraryImpl::~LibraryImpl()
@@ -23,10 +27,14 @@ LibraryImpl::~LibraryImpl()
     FreeLibrary(_module);
 }
 
-VoidFuncPtr LibraryImpl::Function(const std::string& name)
+VoidFuncPtr LibraryImpl::Function(const char* name)
 {
-    VoidFuncPtr result = (VoidFuncPtr)GetProcAddress(_module, name.c_str());
-    LDL_ASSERT_DETAIL(result != NULL, "GetProcAddress failed: " + name);
+    VoidFuncPtr result = (VoidFuncPtr)GetProcAddress(_module, name);
+
+    _assert = "GetProcAddress failed: ";
+    _assert += name;
+
+    LDL_ASSERT_DETAIL(result != NULL, _assert.c_str());
 
     return result;
 }

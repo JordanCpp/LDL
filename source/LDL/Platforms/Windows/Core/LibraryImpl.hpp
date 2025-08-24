@@ -9,6 +9,7 @@
 #include <LDL/Core/Types.hpp>
 #include <LDL/Core/Library.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
+#include <LDL/Containers/inplace_strings.hpp>
 
 namespace LDL
 {
@@ -17,10 +18,11 @@ namespace LDL
 		class LibraryImpl
 		{
 		public:
-			LibraryImpl(const std::string& path);
+			LibraryImpl(const char* path);
 			~LibraryImpl();
-			LDL::VoidFuncPtr Function(const std::string& name);
+			LDL::VoidFuncPtr Function(const char* name);
 		private:
+			AssertString _assert;
 			HMODULE _module;
 		};
 	}

@@ -13,7 +13,7 @@
 
 using namespace LDL::Core;
 
-Library::Library(const std::string& path) :
+Library::Library(const char* path) :
     _impl(new LDL::Core::LibraryImpl(path))
 {
 }
@@ -23,7 +23,7 @@ Library::~Library()
     _impl->~LibraryImpl();
 }
 
-LDL::VoidFuncPtr Library::Function(const std::string& name)
+LDL::VoidFuncPtr Library::Function(const char* name)
 {
     return (LDL::VoidFuncPtr)_impl->Function(name);
 }

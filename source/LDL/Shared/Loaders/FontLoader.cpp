@@ -25,13 +25,16 @@ void FontLoader::Clear()
     _allocator->Reset();
 }
 
-void FontLoader::Load(const std::string& path)
+void FontLoader::Load(const char* path)
 {
-    LDL_ASSERT_DETAIL(!path.empty(), "Argument path is empty");
+    LDL_ASSERT_DETAIL(path != NULL, "Argument path is empty");
 
-    FILE* file = fopen(path.c_str(), "rb");
+    FILE* file = fopen(path, "rb");
 
-    LDL_ASSERT_DETAIL(file != NULL, "Not load " + path);
+    _assert = "Not load ";
+    _assert += path;
+
+    LDL_ASSERT_DETAIL(file != NULL, _assert.c_str());
 
     fseek(file, 0, SEEK_END);
     size_t bytes = ftell(file);

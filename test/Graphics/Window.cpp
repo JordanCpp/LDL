@@ -21,7 +21,7 @@ int main()
 		Result result;
 		RenderContext renderContext;
 
-		Window window(result, renderContext, Vec2u(1, 2), Vec2u(640, 480), title);
+		Window window(result, renderContext, Vec2u(1, 2), Vec2u(640, 480), title.c_str());
 
 		LDL_TEST_EQUAL(window.Pos().x == 1);
 		LDL_TEST_EQUAL(window.Pos().y == 2);

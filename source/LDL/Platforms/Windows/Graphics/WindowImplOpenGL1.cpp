@@ -11,7 +11,7 @@ using namespace LDL::Events;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _result(result),
     _HGLRC(NULL),
     _Window(_result, pos, size, title, mode)
@@ -105,12 +105,12 @@ void WindowImplOpenGL1::StopEvent()
     _Window.StopEvent();
 }
 
-const std::string& WindowImplOpenGL1::Title()
+const char* WindowImplOpenGL1::Title()
 {
     return _Window.Title();
 }
 
-void WindowImplOpenGL1::Title(const std::string& title)
+void WindowImplOpenGL1::Title(const char* title)
 {
     _Window.Title(title);
 }

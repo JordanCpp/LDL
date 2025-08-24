@@ -8,7 +8,7 @@
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-BaseWindow::BaseWindow(const Vec2u& pos, const Vec2u& size, const std::string& title):
+BaseWindow::BaseWindow(const Vec2u& pos, const Vec2u& size, const char* title):
     _pos(pos),
     _size(size),
     _title(title)
@@ -30,12 +30,12 @@ void BaseWindow::Size(const Vec2u& size)
     _size = size;
 }
 
-const std::string& BaseWindow::Title()
+const char* BaseWindow::Title()
 {
-    return _title;
+    return _title.c_str();
 }
 
-void BaseWindow::Title(const std::string& source)
+void BaseWindow::Title(const char* source)
 {
     _title = source;
 }

@@ -8,14 +8,14 @@
 using namespace LDL;
 using namespace LDL::Graphics;
 
-OpenGLFunctionsImpl::OpenGLFunctionsImpl(const std::string& path) :
+OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path) :
     _library(path)
 {
 }
 
-VoidFuncPtr OpenGLFunctionsImpl::Function(const std::string& name)
+VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
 {
-    VoidFuncPtr result = (VoidFuncPtr)wglGetProcAddress(name.c_str());
+    VoidFuncPtr result = (VoidFuncPtr)wglGetProcAddress(name);
 
     if (IsValid(result))
     {

@@ -12,10 +12,10 @@ struct LDL_Window
 {
 	Result _result;
 	Window _window;
-	LDL_Window(LDL_RenderContext* renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode);
+	LDL_Window(LDL_RenderContext* renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode);
 };
 
-LDL_Window::LDL_Window(LDL_RenderContext* renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+LDL_Window::LDL_Window(LDL_RenderContext* renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
 	_window(_result, renderContext->_renderContext, pos, size, title, mode)
 {
 }
@@ -71,7 +71,7 @@ void LDL_WindowSetTitle(LDL_Window* window, const char* title)
 
 const char* LDL_WindowGetTitle(LDL_Window* window)
 {
-	return window->_window.Title().c_str();
+	return window->_window.Title();
 }
 
 size_t LDL_WindowGetPosX(LDL_Window* window)

@@ -7,7 +7,7 @@
 #define LDL_Loaders_FontLoader_hpp
 
 #include <LDL/Allocators/Allocator.hpp>
-#include <string>
+#include <LDL/Containers/inplace_strings.hpp>
 
 namespace LDL
 {
@@ -19,10 +19,11 @@ namespace LDL
 			FontLoader(Allocators::Allocator* allocator);
 			~FontLoader();
 			void Clear();
-			void Load(const std::string& path);
+			void Load(const char* path);
 			uint8_t* Font();
 			size_t Size();
 		private:
+			AssertString _assert;
 			Allocators::Allocator* _allocator;
 			uint8_t*               _buffer;
 		};

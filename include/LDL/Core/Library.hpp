@@ -7,7 +7,6 @@
 #define LDL_Core_Library_hpp
 
 #include <LDL/Core/Types.hpp>
-#include <string>
 
 namespace LDL
 {
@@ -20,9 +19,9 @@ namespace LDL
 		class LDL_LIBRARY Library
 		{
 		public:
-			Library(const std::string& path);
+			Library(const char* path);
 			~Library();
-			VoidFuncPtr Function(const std::string& name);
+			VoidFuncPtr Function(const char* name);
 		private:
 			LibraryImpl* _impl;
 		};

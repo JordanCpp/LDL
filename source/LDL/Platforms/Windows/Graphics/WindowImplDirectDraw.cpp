@@ -11,7 +11,7 @@ using namespace LDL::Core;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
 
-WindowImplDirectDraw::WindowImplDirectDraw(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+WindowImplDirectDraw::WindowImplDirectDraw(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _directDraw(NULL),
     _result(result),
     _window(_result, pos, size, title, mode)
@@ -112,12 +112,12 @@ void WindowImplDirectDraw::StopEvent()
     _window.StopEvent();
 }
 
-const std::string& WindowImplDirectDraw::Title()
+const char* WindowImplDirectDraw::Title()
 {
     return _window.Title();
 }
 
-void WindowImplDirectDraw::Title(const std::string& title)
+void WindowImplDirectDraw::Title(const char* title)
 {
     _window.Title(title);
 }

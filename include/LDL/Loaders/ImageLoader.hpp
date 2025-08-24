@@ -9,7 +9,7 @@
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Graphics/Color.hpp>
 #include <LDL/Allocators/Allocator.hpp>
-#include <string>
+#include <LDL/Containers/inplace_strings.hpp>
 
 namespace LDL
 {
@@ -25,11 +25,12 @@ namespace LDL
 			uint8_t BytesPerPixel();
 			uint8_t* Pixels();
 			void CopyIf(uint8_t* dstPixels, uint8_t* srcPixels, size_t bytes, const Graphics::Color& color, uint8_t alpha);
-			void Load(const std::string& path);
-			void Load(const Graphics::Color& color, const std::string& path);
+			void Load(const char* path);
+			void Load(const Graphics::Color& color, const char* path);
 			void Load(uint8_t * data, size_t bytes);
 			void Load(const Graphics::Color& color, uint8_t* data, size_t bytes);
 		private:
+			AssertString _assert;
 			Allocators::Allocator* _allocator;
 			Math::Vec2u            _size;
 			uint8_t                _bytesPerPixel;

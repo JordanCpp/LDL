@@ -6,10 +6,10 @@ using namespace LDL::Core;
 struct LDL_Library
 {
 	Library _library;
-	LDL_Library(const std::string& path);
+	LDL_Library(const char* path);
 };
 
-LDL_Library::LDL_Library(const std::string& path) :
+LDL_Library::LDL_Library(const char* path) :
 	_library(path)
 {
 }

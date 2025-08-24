@@ -10,7 +10,7 @@ using namespace LDL::Events;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-WindowImplDirect3D6::WindowImplDirect3D6(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+WindowImplDirect3D6::WindowImplDirect3D6(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _result(result),
     _Window(_result, pos, size, title, mode)
 {
@@ -61,12 +61,12 @@ void WindowImplDirect3D6::StopEvent()
     _Window.StopEvent();
 }
 
-const std::string& WindowImplDirect3D6::Title()
+const char* WindowImplDirect3D6::Title()
 {
     return _Window.Title();
 }
 
-void WindowImplDirect3D6::Title(const std::string& title)
+void WindowImplDirect3D6::Title(const char* title)
 {
     _Window.Title(title);
 }

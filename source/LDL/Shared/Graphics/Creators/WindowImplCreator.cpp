@@ -27,7 +27,7 @@ using namespace LDL::Math;
 using namespace LDL::Graphics;
 using namespace LDL::Graphics::Creators;
 
-WindowImpl* WindowImplCreator::Create(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode)
+WindowImpl* WindowImplCreator::Create(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode)
 {
 	size_t renderMode = renderContext.Mode();
 	LDL_ASSERT_DETAIL(renderMode < RenderMode::Max, "Unknown graphics mode");

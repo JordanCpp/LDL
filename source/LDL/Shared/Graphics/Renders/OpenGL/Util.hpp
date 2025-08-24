@@ -27,7 +27,7 @@ namespace LDL
 			void DeleteTexture(GLint id);
 			void DrawQuad(const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize, size_t textureSize);
 			void Normalize(const Color& color, GLclampf& r, GLclampf& g, GLclampf& b);
-			void Check(const std::string& file, size_t line, const std::string& expression);
+			void Check(const char* file, size_t line, const char* expression);
 			size_t MaxTextureSize();
 			bool IsMaxTextureSize(const Math::Vec2u& resolutionSize, size_t textureSize);
 			size_t SelectTextureSize(const Math::Vec2u& size);

@@ -7,7 +7,7 @@
 #define LDL_Graphics_BaseWindow_hpp
 
 #include <LDL/Math/Vec2.hpp>
-#include <string>
+#include <LDL/Containers/inplace_string.hpp>
 
 namespace LDL
 {
@@ -16,17 +16,17 @@ namespace LDL
 		class LDL_LIBRARY BaseWindow
 		{
 		public:
-			BaseWindow(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title);
+			BaseWindow(const Math::Vec2u& pos, const Math::Vec2u& size, const char* title);
 			const Math::Vec2u& Pos();
 			const Math::Vec2u& Size();
 			void Size(const Math::Vec2u& size);
-			const std::string& Title();
-			void Title(const std::string& source);
+			const char* Title();
+			void Title(const char* source);
 		private:
-			Math::Vec2u _pos;
-			Math::Vec2u _size;
-			Math::Vec2u _view;
-			std::string _title;
+			Math::Vec2u        _pos;
+			Math::Vec2u        _size;
+			Math::Vec2u        _view;
+			inplace_string<64> _title;
 		};
 	}
 }
