@@ -26,7 +26,7 @@ WindowImplDirectDraw::WindowImplDirectDraw(Result& result, const Vec2u& pos, con
 
     DDSURFACEDESC ddsd;
 
-    ZeroMemory(&ddsd, sizeof(DDSURFACEDESC));
+    LDL::memset(&ddsd, 0, sizeof(DDSURFACEDESC));
 
     ddsd.dwSize = sizeof(ddsd);
     ddsd.dwFlags = DDSD_CAPS;

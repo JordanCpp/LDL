@@ -6,8 +6,7 @@
 #ifndef LDL_STL_inplace_string_hpp
 #define LDL_STL_inplace_string_hpp
 
-#include <string.h>
-#include <LDL/Core/Types.hpp>
+#include <LDL/std/string.hpp>
 
 namespace LDL
 {
@@ -29,12 +28,13 @@ namespace LDL
 
         inplace_string(const inplace_string& other)
         {
-            strcpy_s(_buffer, Max, other._buffer);
+            LDL::strlcpy(_buffer, Max, other._buffer);
         }
 
         inplace_string& operator=(const char* str)
         {
             assign(str);
+
             return *this;
         }
 
@@ -42,20 +42,23 @@ namespace LDL
         {
             if (this != &other)
             {
-                strcpy_s(_buffer, Max, other._buffer);
+                LDL::strlcpy(_buffer, Max, other._buffer);
             }
+
             return *this;
         }
 
         inplace_string& operator+=(const char* str)
         {
             append(str);
+
             return *this;
         }
 
         inplace_string& operator+=(char c)
         {
             append(c);
+
             return *this;
         }
 
@@ -71,7 +74,7 @@ namespace LDL
 
         size_t size() const
         {
-            return strlen(_buffer);
+            return LDL::strlen(_buffer);
         }
 
         size_t length() const
@@ -154,30 +157,38 @@ namespace LDL
         friend inplace_string operator+(const inplace_string& lhs, const char* rhs)
         {
             inplace_string result = lhs;
+
             result.append(rhs);
+
             return result;
         }
 
         friend inplace_string operator+(const char* lhs, const inplace_string& rhs)
         {
             inplace_string result;
+
             result.append(lhs);
             result.append(rhs._buffer);
+
             return result;
         }
 
         friend inplace_string operator+(const inplace_string& lhs, char rhs)
         {
             inplace_string result = lhs;
+
             result.append(rhs);
+
             return result;
         }
 
         friend inplace_string operator+(char lhs, const inplace_string& rhs)
         {
             inplace_string result;
+
             result.append(&lhs, 1);
             result.append(rhs._buffer);
+
             return result;
         }
 

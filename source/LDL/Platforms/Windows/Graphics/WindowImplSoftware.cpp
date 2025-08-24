@@ -15,7 +15,7 @@ WindowImplSoftware::WindowImplSoftware(Result& result, const Vec2u& pos, const V
     _result(result),
     _Window(_result, pos, size, title, mode)
 {
-    ZeroMemory(&_BITMAPINFO, sizeof(_BITMAPINFO));
+    LDL::memset(&_BITMAPINFO, 0, sizeof(_BITMAPINFO));
 }
 
 WindowImplSoftware::~WindowImplSoftware()

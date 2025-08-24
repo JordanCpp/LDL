@@ -6,6 +6,7 @@
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
 #include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
+#include <LDL/std/string.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Enums;
@@ -284,12 +285,12 @@ MainWindow::MainWindow(Core::Result& result, const Vec2u& pos, const Vec2u& size
 {
     timeBeginPeriod(timePeriod);
 
-    ZeroMemory(&_windowClass, sizeof(WNDCLASS));
-    ZeroMemory(&_instance, sizeof(HINSTANCE));
-    ZeroMemory(&_msg, sizeof(MSG));
-    ZeroMemory(&_atom, sizeof(ATOM));
-    ZeroMemory(&_hwnd, sizeof(HWND));
-    ZeroMemory(&_hdc, sizeof(HDC));
+    LDL::memset(&_windowClass, 0, sizeof(WNDCLASS));
+    LDL::memset(&_instance, 0, sizeof(HINSTANCE));
+    LDL::memset(&_msg, 0, sizeof(MSG));
+    LDL::memset(&_atom, 0, sizeof(ATOM));
+    LDL::memset(&_hwnd, 0, sizeof(HWND));
+    LDL::memset(&_hdc, 0, sizeof(HDC));
 
     _instance = GetModuleHandle(NULL);
     if (_instance == NULL)

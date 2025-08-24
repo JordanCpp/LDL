@@ -6,8 +6,7 @@
 #ifndef LDL_STL_ring_buffer_hpp
 #define LDL_STL_ring_buffer_hpp
 
-#include <string.h>
-#include <LDL/Core/Types.hpp>
+#include <LDL/std/string.hpp>
 
 namespace LDL
 {
@@ -21,7 +20,7 @@ namespace LDL
 			_length(0),
 			_capacity(COUNT)
 		{
-			memset(&_content, 0, sizeof(T) * COUNT);
+			LDL::memset(&_content, 0, sizeof(T) * COUNT);
 		}
 
 		bool empty()
