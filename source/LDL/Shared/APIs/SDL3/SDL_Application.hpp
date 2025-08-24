@@ -9,7 +9,7 @@
 #include <vector>
 #include <LDL/Shared/APIs/SDL3/SDL_video/SDL_Window.hpp>
 #include <SDL3/SDL_events.h>
-#include <LDL/Containers/RingBuffer.hpp>
+#include <LDL/STL/ring_buffer.hpp>
 #include <LDL/Core/Result.hpp>
 
 class SDL_Application
@@ -23,7 +23,7 @@ public:
 private:
 	LDL::Core::Result _result;
 	std::vector<SDL_Window*>         _windows;
-	LDL::RingBuffer<SDL_Event, 1024> _events;
+	LDL::ring_buffer<SDL_Event, 1024> _events;
 };
 
 SDL_Application& App();

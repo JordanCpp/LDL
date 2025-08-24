@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Containers_RingBuffer_hpp
-#define LDL_Containers_RingBuffer_hpp
+#ifndef LDL_STL_ring_buffer_hpp
+#define LDL_STL_ring_buffer_hpp
 
 #include <string.h>
 #include <LDL/Core/Types.hpp>
@@ -12,10 +12,10 @@
 namespace LDL
 {
 	template<class T, size_t COUNT>
-	class RingBuffer
+	class ring_buffer
 	{
 	public:
-		RingBuffer() :
+		ring_buffer() :
 			_head(COUNT - 1),
 			_tail(0),
 			_length(0),

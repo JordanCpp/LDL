@@ -7,7 +7,7 @@
 #include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
 #include <LDL/Core/Convert.hpp>
 #include <LDL/Core/Assert.hpp>
-#include <LDL/Containers/inplace_strings.hpp>
+#include <LDL/STL/inplace_strings.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;

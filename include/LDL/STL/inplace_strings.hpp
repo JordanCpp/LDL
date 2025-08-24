@@ -3,14 +3,16 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Containers_inplace_strings_hpp
-#define LDL_Containers_inplace_strings_hpp
+#ifndef LDL_STL_inplace_strings_hpp
+#define LDL_STL_inplace_strings_hpp
 
-#include <LDL/Containers/inplace_string.hpp>
+#include <LDL/STL/inplace_string.hpp>
 
 namespace LDL
 {
 	typedef inplace_string<256> AssertString;
+	typedef inplace_string<256> TitleString;
+	typedef inplace_string<512> ErrorString;
 }
 
 #endif

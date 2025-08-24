@@ -7,7 +7,7 @@
 #define LDL_Graphics_BaseWindow_hpp
 
 #include <LDL/Math/Vec2.hpp>
-#include <LDL/Containers/inplace_string.hpp>
+#include <LDL/STL/inplace_strings.hpp>
 
 namespace LDL
 {
@@ -23,10 +23,10 @@ namespace LDL
 			const char* Title();
 			void Title(const char* source);
 		private:
-			Math::Vec2u        _pos;
-			Math::Vec2u        _size;
-			Math::Vec2u        _view;
-			inplace_string<64> _title;
+			Math::Vec2u _pos;
+			Math::Vec2u _size;
+			Math::Vec2u _view;
+			TitleString _title;
 		};
 	}
 }

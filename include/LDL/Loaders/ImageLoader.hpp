@@ -9,7 +9,7 @@
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Graphics/Color.hpp>
 #include <LDL/Allocators/Allocator.hpp>
-#include <LDL/Containers/inplace_strings.hpp>
+#include <LDL/STL/inplace_strings.hpp>
 
 namespace LDL
 {
@@ -30,7 +30,7 @@ namespace LDL
 			void Load(uint8_t * data, size_t bytes);
 			void Load(const Graphics::Color& color, uint8_t* data, size_t bytes);
 		private:
-			AssertString _assert;
+			AssertString           _assert;
 			Allocators::Allocator* _allocator;
 			Math::Vec2u            _size;
 			uint8_t                _bytesPerPixel;

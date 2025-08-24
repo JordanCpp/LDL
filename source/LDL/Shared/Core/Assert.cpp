@@ -7,7 +7,7 @@
 #include <LDL/Core/Console.hpp>
 #include <LDL/Core/Terminate.hpp>
 #include <LDL/Core/Convert.hpp>
-#include <LDL/Containers/inplace_string.hpp>
+#include <LDL/STL/inplace_strings.hpp>
 
 using namespace LDL::Core;
 
@@ -17,7 +17,7 @@ void LDL::Core::Assert(bool condition, const char* description, const char* deta
 	{
 		Convert conv;
 
-		inplace_string<256> message;
+		AssertString message;
 
 		message += description;
 		message += ", detail ";

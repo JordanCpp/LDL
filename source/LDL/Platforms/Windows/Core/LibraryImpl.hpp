@@ -9,7 +9,7 @@
 #include <LDL/Core/Types.hpp>
 #include <LDL/Core/Library.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
-#include <LDL/Containers/inplace_strings.hpp>
+#include <LDL/STL/inplace_strings.hpp>
 
 namespace LDL
 {
@@ -23,7 +23,7 @@ namespace LDL
 			LDL::VoidFuncPtr Function(const char* name);
 		private:
 			AssertString _assert;
-			HMODULE _module;
+			HMODULE      _module;
 		};
 	}
 }

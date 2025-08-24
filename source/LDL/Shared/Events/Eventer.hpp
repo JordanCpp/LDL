@@ -6,7 +6,7 @@
 #ifndef LDL_Events_Eventer_hpp
 #define LDL_Events_Eventer_hpp
 
-#include <LDL/Containers/RingBuffer.hpp>
+#include <LDL/STL/ring_buffer.hpp>
 #include <LDL/Events/Event.hpp>
 
 namespace LDL
@@ -27,8 +27,8 @@ namespace LDL
 			bool Running();
 			void Stop();
 		private:
-			bool                   _running;
-			RingBuffer<Event, Max> _queue;
+			bool                    _running;
+			ring_buffer<Event, Max> _queue;
 		};
 	}
 }
