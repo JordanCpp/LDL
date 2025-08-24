@@ -4,13 +4,13 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Core/Convert.hpp>
-#include <string.h>
+#include <LDL/std/string.hpp>
 
 using namespace LDL::Core;
 
 Convert::Convert()
 {
-    memset(&_buffer, 0, sizeof(_buffer));
+    LDL::memset(&_buffer, 0, sizeof(_buffer));
 }
 
 const char* Convert::ToString(intmax_t num, uint8_t base)
@@ -28,7 +28,7 @@ const char* Convert::ToString(intmax_t num, uint8_t base)
         
         size_t len = strlen(min_str);
         
-        memcpy(_buffer, min_str, len + 1);
+        LDL::memcpy(_buffer, min_str, len + 1);
 
         return _buffer;
     }

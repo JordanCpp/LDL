@@ -13,6 +13,7 @@ namespace LDL
 	size_t strlcpy(char* dst, const char* src, size_t size);
 	size_t strlen(const char* src);
 
+	void* memcpy(void* dst, const void* src, size_t size);
 	void* memset(void* ptr, int value, size_t num);
 }
 

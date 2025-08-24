@@ -6,11 +6,11 @@
 #ifndef LDL_Graphics_Render_DirectX_hpp
 #define LDL_Graphics_Render_DirectX_hpp
 
-#include <string.h>
+#include <LDL/std/string.hpp>
 
 inline void ZeroMemory(void* dst, size_t size)
 {
-	memset(dst, 0, size);
+	LDL::memset(dst, 0, size);
 }
 
 #endif
