@@ -18,7 +18,7 @@ namespace Arcanum
 			void Move(const LDL::Math::Vec2u& pos);
 			void Handle(LDL::Events::Event& event);
 		private:
-			size_t           _step;
+			uint32_t         _step;
 			LDL::Math::Rectu _area;
 		};
 	}

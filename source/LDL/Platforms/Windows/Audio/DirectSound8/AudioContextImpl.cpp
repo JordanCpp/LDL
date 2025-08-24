@@ -33,7 +33,7 @@ AudioContextImpl::AudioContextImpl(LDL::Graphics::Window* window, size_t rate, s
 	LDL_ASSERT_DETAIL(!FAILED(result), "SetCooperativeLevel failed");
 
 	DSBUFFERDESC bufferDesc;
-	ZeroMemory(&bufferDesc, sizeof(DSBUFFERDESC));
+	LDL::memset(&bufferDesc, 0, sizeof(DSBUFFERDESC));
 
 	bufferDesc.dwSize          = sizeof(DSBUFFERDESC);
 	bufferDesc.dwFlags         = DSBCAPS_PRIMARYBUFFER | DSBCAPS_CTRLVOLUME;
@@ -46,7 +46,7 @@ AudioContextImpl::AudioContextImpl(LDL::Graphics::Window* window, size_t rate, s
 	LDL_ASSERT_DETAIL(!FAILED(result), "CreateSoundBuffer failed");
 
 	WAVEFORMATEX waveFormat;
-	ZeroMemory(&waveFormat, sizeof(WAVEFORMATEX));
+	LDL::memset(&waveFormat, 0, sizeof(WAVEFORMATEX));
 
 	waveFormat.cbSize          = 0;
 	waveFormat.wFormatTag      = WAVE_FORMAT_PCM;

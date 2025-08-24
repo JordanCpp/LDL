@@ -17,12 +17,12 @@ bool Result::Ok()
 	return _ok;
 }
 
-void Result::Message(const std::string& message)
+void Result::Message(const char* message)
 {
 	_message = message;
 }
 
-const std::string& Result::Message()
+const char* Result::Message()
 {
-	return _message;
+	return _message.c_str();
 }

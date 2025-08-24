@@ -15,7 +15,7 @@ SoundImpl::SoundImpl(AudioContext* audioContext, size_t channels, size_t rate, s
 	AudioContextImpl* impl = audioContext->GetAudioContextImpl();
 
 	WAVEFORMATEX waveFormat;
-	ZeroMemory(&waveFormat, sizeof(WAVEFORMATEX));
+	LDL::memset(&waveFormat, 0, sizeof(WAVEFORMATEX));
 
 	waveFormat.wFormatTag      = WAVE_FORMAT_PCM;
 	waveFormat.nSamplesPerSec  = (DWORD)impl->Rate();
@@ -26,7 +26,7 @@ SoundImpl::SoundImpl(AudioContext* audioContext, size_t channels, size_t rate, s
 	waveFormat.cbSize          = 0;
 
 	DSBUFFERDESC bufferDesc;
-	ZeroMemory(&bufferDesc, sizeof(DSBUFFERDESC));
+	LDL::memset(&bufferDesc, 0, sizeof(DSBUFFERDESC));
 
 	bufferDesc.dwSize          = sizeof(DSBUFFERDESC);
 	bufferDesc.dwFlags         = DSBCAPS_CTRLVOLUME;
