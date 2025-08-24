@@ -5,7 +5,7 @@
 
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
-#include "MainWindow.hpp"
+#include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Enums;
@@ -209,6 +209,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
     case WM_CLOSE:
         event.Type = Events::IsQuit;
         _eventer.Push(event);
+        PostQuitMessage(0);
         break;
 
     case WM_KEYDOWN:
@@ -248,7 +249,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 
     case WM_MOUSEHWHEEL:
         event.Type         = IsMouseScroll;
-        event.Mouse.Scroll = MouseScroll::Vertical;
+        event.Mouse.Scroll = MouseScroll::Horizontal;
         event.Mouse.Delta  = HIWORD(WParam);
         event.Mouse.PosX   = LOWORD(LParam);
         event.Mouse.PosY   = HIWORD(LParam);
@@ -293,7 +294,8 @@ MainWindow::MainWindow(Core::Result& result, const Vec2u& pos, const Vec2u& size
     _instance = GetModuleHandle(NULL);
     if (_instance == NULL)
     {
-        _result.Message("GetModuleHandle failed");
+        _result.Message(_windowError.GetErrorMessage());
+        return;
     }
 
     _windowClass.hInstance = _instance;
@@ -307,7 +309,8 @@ MainWindow::MainWindow(Core::Result& result, const Vec2u& pos, const Vec2u& size
     _atom = RegisterClass(&_windowClass);
     if (_atom == INVALID_ATOM)
     {
-        _result.Message("RegisterClass failed");
+        _result.Message(_windowError.GetErrorMessage());
+        return;
     }
 
     DWORD style = 0;
@@ -329,27 +332,36 @@ MainWindow::MainWindow(Core::Result& result, const Vec2u& pos, const Vec2u& size
     BOOL adjust = AdjustWindowRect(&rect, style, FALSE);
     if (!adjust)
     {
-        _result.Message("AdjustWindowRect failed");
+        _result.Message(_windowError.GetErrorMessage());
+        return;
     }
 
     _hwnd = CreateWindow(AppName, "", style, (int)_baseWindow.Pos().x, (int)_baseWindow.Pos().y, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _instance, 0);
-    if (_hwnd == INVALID_HANDLE_VALUE)
+    if (_hwnd == NULL)
     {
-        _result.Message("CreateWindow failed");
+        _result.Message(_windowError.GetErrorMessage());
+        return;
     }
 
+    LONG setWindow = 0;
+
 #ifdef _WIN64
-    SetWindowLongPtr(_hwnd, GWLP_WNDPROC, (LONG_PTR)WndProc);
-    SetWindowLongPtr(_hwnd, GWLP_USERDATA, (LONG_PTR)this);
+    setWindow = SetWindowLongPtr(_hwnd, GWLP_USERDATA, (LONG_PTR)this);
 #elif _WIN32
-    SetWindowLong(_hwnd, GWL_WNDPROC, (LONG)WndProc);
-    SetWindowLong(_hwnd, GWL_USERDATA, (LONG)this);
+    setWindow = SetWindowLong(_hwnd, GWL_USERDATA, (LONG)this);
 #endif  
 
-    _hdc = GetDC(_hwnd);
-    if (_hdc == INVALID_HANDLE_VALUE)
+    if (setWindow == 0 && GetLastError() != 0)
     {
-        _result.Message("GetDC failed");
+        _result.Message(_windowError.GetErrorMessage());
+        return;
+    }
+
+    _hdc = GetDC(_hwnd);
+    if (_hdc == NULL)
+    {
+        _result.Message(_windowError.GetErrorMessage());
+        return;
     }
 
     Title(title);
@@ -362,7 +374,6 @@ MainWindow::~MainWindow()
 
     UnregisterClass(AppName, _instance);
     ReleaseDC(_hwnd, _hdc);
-    PostQuitMessage(0);
 }
 
 bool MainWindow::Running()
@@ -436,7 +447,7 @@ const Vec2u& MainWindow::Size()
 
     if (GetClientRect(_hwnd, &rect))
     {
-        _baseWindow.Size(Vec2u(rect.right + Pos().x, rect.bottom + Pos().y));
+        _baseWindow.Size(Vec2u(rect.right - rect.left, rect.bottom - rect.top));
     }
 
     return _baseWindow.Size();

@@ -11,6 +11,7 @@
 #include <LDL/Shared/Events/Eventer.hpp>
 #include <LDL/Enums/WindowMode.hpp>
 #include <LDL/Core/Result.hpp>
+#include <LDL/Platforms/Windows/WinError.hpp>
 
 namespace LDL
 {
@@ -34,6 +35,7 @@ namespace LDL
 			uint8_t ConvertKey(size_t key);
 			static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 			LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
+			WindowError     _windowError;
 			BaseWindow      _baseWindow;
 			Core::Result&   _result;
 			Events::Eventer _eventer;
