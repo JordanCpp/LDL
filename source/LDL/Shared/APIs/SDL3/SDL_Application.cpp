@@ -5,6 +5,7 @@
 
 #include "SDL_Application.hpp"
 
+using namespace LDL;
 using namespace LDL::Events;
 
 void EventConvertor(Event& src, SDL_Event& dst)
@@ -41,7 +42,7 @@ void SDL_Application::Append(SDL_Window* window)
 	}
 }
 
-std::vector<SDL_Window*>& SDL_Application::GetWindows()
+vector<SDL_Window*>& SDL_Application::GetWindows()
 {
 	return _windows;
 }

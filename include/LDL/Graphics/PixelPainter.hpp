@@ -35,8 +35,8 @@ namespace LDL
 			uint8_t         _blue;
 			uint8_t         _alpha;
 			Surface*        _target;
-			size_t          _width;
-			size_t          _height;
+			uint32_t        _width;
+			uint32_t        _height;
 			uint8_t         _bytesPerPixel;
 			uint8_t*        _pixels;
 			Math::Vec2u     _size;

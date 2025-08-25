@@ -7,7 +7,7 @@
 #define LDL_Graphics_BaseScreenShotter_hpp
 
 #include <LDL/Core/Convert.hpp>
-#include <string>
+#include <LDL/STL/inplace_strings.hpp>
 
 namespace LDL
 {
@@ -16,9 +16,9 @@ namespace LDL
 		class LDL_LIBRARY BaseScreenShotter
 		{
 		public:
-			const std::string Prefix();
+			const char* Prefix();
 		private:
-			std::string   _prefix;
+			TitleString   _prefix;
 			Core::Convert _converter;
 		};
 	}

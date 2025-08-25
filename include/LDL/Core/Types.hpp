@@ -6,13 +6,7 @@
 #ifndef LDL_Core_Types_hpp
 #define LDL_Core_Types_hpp
 
-#if (_MSC_VER <= 1600 && !__MINGW32__ && !__BORLANDC__)
-    #include <LDL/Core/pstdint.h>
-#else
-    #include <stdint.h>
-    #include <stddef.h>
-    #include <limits.h>
-#endif
+#include <LDL/std/stdint.hpp>
 
 #if defined(_WIN32) || defined(WIN32)
     #define LDL_CONFIG_COLOR_BGRA

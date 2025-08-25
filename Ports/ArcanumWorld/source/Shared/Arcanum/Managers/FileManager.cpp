@@ -11,14 +11,15 @@ FileManager::FileManager(PathManager* pathManager) :
 	_datLoader(&_archiveList),
 	_memoryReader(&_byteReader)
 {
-	Directory directory;
+	Result result;
+	Directory directory(result);
 	FileInfo fileInfo;
 
 	if (directory.Open(directory.AllFiles()))
 	{
 		while (directory.Next(fileInfo))
 		{
-			if (fileInfo.Name().find(".dat") != std::string::npos)
+			if (strstr(fileInfo.Name(), ".dat") != NULL)
 			{
 				_archiveReader.Reset("", fileInfo.Name(), _archiveList);
 			}
@@ -28,7 +29,8 @@ FileManager::FileManager(PathManager* pathManager) :
 
 MemoryReader& FileManager::GetFile(const std::string& path)
 {
-	Directory directory;
+	Result result;
+	Directory directory(result);
 
 	const char* filePath = _pathManager->NewFullPath("data/", path).c_str();
 

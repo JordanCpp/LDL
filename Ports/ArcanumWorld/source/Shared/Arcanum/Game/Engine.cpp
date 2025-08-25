@@ -7,12 +7,12 @@ using namespace LDL::Graphics;
 using namespace LDL::Math;
 using namespace LDL::Allocators;
 using namespace LDL::Enums;
-using namespace LDL::Loaders;
 using namespace LDL::Events;
 using namespace LDL::Time;
 
 using namespace Arcanum::Game;
 using namespace Arcanum::Objects;
+using namespace Arcanum::Core;
 
 Engine::Engine(CommandLineParser* commandLineParser, Settings* settings) :
 	_CommandLineParser(commandLineParser),
@@ -22,7 +22,6 @@ Engine::Engine(CommandLineParser* commandLineParser, Settings* settings) :
 	_FileManager(&_PathManager),
 	_OriginalAllocator(Allocator::Mb * 4),
 	_ImageAllocator(Allocator::Mb * 2, &_OriginalAllocator),
-	_ImageLoader(&_ImageAllocator),
 	_Window(_result, _RenderContext, Vec2u(0,0), _Settings->Size(), _Settings->Title().c_str(), WindowMode::Fixed),
 	_Render(_result, _RenderContext, &_Window),
 	_FpsLimiter(_Settings->Fps()),

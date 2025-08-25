@@ -18,14 +18,14 @@ namespace LDL
 		class ScreenShotterImplOpenGL3 : public ScreenShotterImpl
 		{
 		public:
-			ScreenShotterImplOpenGL3(const std::string& path, const std::string& name, Render* render, Surface* image);
+			ScreenShotterImplOpenGL3(const char* path, const char* name, Render* render, Surface* image);
 			void Shot();
 		private:
 			ImageWriter       _imageWriter;
 			BaseScreenShotter _baseScreenShotter;
-			std::string       _shortPath;
-			std::string       _name;
-			std::string       _fullPath;
+			FileString        _shortPath;
+			FileString        _name;
+			FileString        _fullPath;
 			Render*           _render;
 			Surface*          _image;
 		};

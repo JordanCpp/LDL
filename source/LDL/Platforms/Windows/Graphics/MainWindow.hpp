@@ -12,6 +12,7 @@
 #include <LDL/Enums/WindowMode.hpp>
 #include <LDL/Core/Result.hpp>
 #include <LDL/Platforms/Windows/WinError.hpp>
+#include <LDL/Platforms/Utils/KeyMapping.hpp>
 
 namespace LDL
 {
@@ -22,6 +23,7 @@ namespace LDL
 		public:
 			MainWindow(Core::Result& result, const Math::Vec2u& pos, const Math::Vec2u& size, const char* title, size_t mode);
 			~MainWindow();
+			void InitKeyMapping();
 			bool Running();
 			void PollEvents();
 			bool GetEvent(Events::Event& event);
@@ -35,6 +37,7 @@ namespace LDL
 			uint8_t ConvertKey(size_t key);
 			static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 			LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
+			LDL::Utils::KeyMapping _keyMapping;
 			WindowError     _windowError;
 			BaseWindow      _baseWindow;
 			Core::Result&   _result;

@@ -6,16 +6,26 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Core/Convert.hpp>
 #include <LDL/Core/Console.hpp>
+#include <LDL/STL/inplace_strings.hpp>
 
-void LDL::Core::TestEqual(bool condition, const std::string& description, const std::string& function, const std::string& file, size_t line)
+void LDL::Core::TestEqual(bool condition, const char* description, const char* function, const char* file, size_t line)
 {
 	if (!condition)
 	{
 		Convert conv;
 
-		std::string message = '\n' + "Test failed: " + description + ", function " + function + ", file " + file + ", line " + conv.ToString(line) + '\n';
+		ErrorString message;
+
+		message += "\nTest failed: ";
+		message += description;
+		message += ", function ";
+		message += function;
+		message += ", file ";
+		message += file;
+		message += ", line ";
+		message += conv.ToString(line) + '\n';
 
 		Console console;
-		console.Write(message);
+		console.Write(message.c_str());
 	}
 }

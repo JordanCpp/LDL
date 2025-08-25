@@ -7,6 +7,7 @@
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
 
+using namespace LDL;
 using namespace LDL::Core;
 using namespace LDL::Input;
 using namespace LDL::Graphics;
@@ -30,7 +31,7 @@ Display::Display()
 	}
 }
 
-const std::vector<VideoMode>& Display::Modes()
+const vector<VideoMode>& Display::Modes()
 {
 	return _videoModes;
 }

@@ -7,7 +7,7 @@
 
 using namespace LDL::Graphics;
 
-ScreenShotterImplSoftware::ScreenShotterImplSoftware(const std::string& path, const std::string& name, Render* render, Surface* image) :
+ScreenShotterImplSoftware::ScreenShotterImplSoftware(const char* path, const char* name, Render* render, Surface* image) :
 	_shortPath(path),
 	_name(name),
 	_render(render),
@@ -19,10 +19,10 @@ void ScreenShotterImplSoftware::Shot()
 {
 	_fullPath = "";
 
-	_fullPath += _shortPath;
-	_fullPath += _name;
+	_fullPath += _shortPath.c_str();
+	_fullPath += _name.c_str();
 	_fullPath += _baseScreenShotter.Prefix();
 	_fullPath += ".png";
 
-	_imageWriter.Save(_fullPath, _render->Size(), 4, _image->Pixels());
+	_imageWriter.Save(_fullPath.c_str(), _render->Size(), 4, _image->Pixels());
 }

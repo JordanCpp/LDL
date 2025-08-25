@@ -29,10 +29,10 @@ namespace LDL
 			uint8_t* Pixels();
 			Color Pixel(const Math::Vec2u& pos);
 		private:
-			Math::Vec2u _capacity;
-			Math::Vec2u _size;
 			uint8_t     _bytesPerPixel;
 			uint8_t*    _pixels;
+			Math::Vec2u _capacity;
+			Math::Vec2u _size;
 		};
 	}
 }

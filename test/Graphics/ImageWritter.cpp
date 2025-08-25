@@ -13,7 +13,7 @@ using namespace LDL::Core;
 using namespace LDL::Math;
 
 const Vec2u size = Vec2u(640, 480);
-const std::string path = "TestFiles/ImageWritterTest.png";
+const char path[] = "TestFiles/ImageWritterTest.png";
 
 void Save()
 {
@@ -23,7 +23,8 @@ void Save()
 
 	writter.Save(path, size, 4, image.Pixels());
 
-	Directory directory;
+	Result result;
+	Directory directory(result);
 
 	LDL_TEST_EQUAL(directory.FileExist(path) == true);
 

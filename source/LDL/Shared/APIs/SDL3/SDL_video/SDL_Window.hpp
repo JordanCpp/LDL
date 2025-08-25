@@ -9,6 +9,7 @@
 #include <SDL3/SDL_video.h>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Core/Result.hpp>
+
 struct SDL_Window
 {
 	LDL::Core::Result&           _result;

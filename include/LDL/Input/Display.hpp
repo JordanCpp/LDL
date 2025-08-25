@@ -7,7 +7,7 @@
 #define LDL_Input_Display_hpp
 
 #include <LDL/Graphics/VideoMode.hpp>
-#include <vector>
+#include <LDL/STL/vector.hpp>
 
 namespace LDL
 {
@@ -17,11 +17,11 @@ namespace LDL
 		{
 		public:
 			Display();
-			const std::vector<Graphics::VideoMode>& Modes();
+			const vector<Graphics::VideoMode>& Modes();
 			const Graphics::VideoMode& Current();
 		private:
-			Graphics::VideoMode              _videoMode;
-			std::vector<Graphics::VideoMode> _videoModes;
+			Graphics::VideoMode         _videoMode;
+			vector<Graphics::VideoMode> _videoModes;
 		};
 	}
 }

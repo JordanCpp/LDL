@@ -3,6 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+#include <LDL/std/string.hpp>
 #include <LDL/Platforms/Windows/Core/ConsoleImpl.hpp>
 
 using namespace LDL::Core;
@@ -12,9 +13,9 @@ ConsoleImpl::ConsoleImpl()
 	_output = GetStdHandle(STD_OUTPUT_HANDLE);
 }
 
-void ConsoleImpl::Write(const std::string& text)
+void ConsoleImpl::Write(const char* text)
 {
 	DWORD count = 0;
 
-	WriteConsole(_output, text.c_str(), text.size(), &count, NULL);
+	WriteConsole(_output, text, LDL::strlen(text), &count, NULL);
 }

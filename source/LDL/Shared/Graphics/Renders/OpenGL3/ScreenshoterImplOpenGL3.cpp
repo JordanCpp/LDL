@@ -9,7 +9,7 @@
 
 using namespace LDL::Graphics;
 
-ScreenShotterImplOpenGL3::ScreenShotterImplOpenGL3(const std::string& path, const std::string& name, Render* render, Surface* image) :
+ScreenShotterImplOpenGL3::ScreenShotterImplOpenGL3(const char* path, const char* name, Render* render, Surface* image) :
 	_shortPath(path),
 	_name(name),
 	_render(render),
@@ -24,10 +24,10 @@ void ScreenShotterImplOpenGL3::Shot()
 
 	_fullPath = "";
 
-	_fullPath += _shortPath;
-	_fullPath += _name;
+	_fullPath += _shortPath.c_str();
+	_fullPath += _name.c_str();
 	_fullPath += _baseScreenShotter.Prefix();
 	_fullPath += ".png";
 
-	_imageWriter.Save(_fullPath, _render->Size(), 4, _image->Pixels());
+	_imageWriter.Save(_fullPath.c_str(), _render->Size(), 4, _image->Pixels());
 }

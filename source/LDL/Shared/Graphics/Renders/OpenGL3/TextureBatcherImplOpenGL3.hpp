@@ -7,7 +7,7 @@
 #define LDL_Graphics_OpenGL3_TextureBatcherImpl_hpp
 
 #include <LDL/Graphics/Texture.hpp>
-#include <vector>
+#include <LDL/STL/vector.hpp>
 #include "../../Impls/TextureBatcherImpl.hpp"
 
 namespace LDL
@@ -29,9 +29,9 @@ namespace LDL
 			size_t Count();
 			Quad* Content();
 		private:
-			size_t _Texture;
-			size_t _TextureSize;
-			std::vector<Quad> _Quads;
+			size_t       _Texture;
+			size_t       _TextureSize;
+			vector<Quad> _Quads;
 		};
 	}
 }

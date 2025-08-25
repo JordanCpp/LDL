@@ -4,8 +4,15 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Platforms/Windows/Core/DirectoryImpl.hpp>
+#include <LDL/Platforms/Windows/WinError.hpp>
 
 using namespace LDL::Core;
+
+DirectoryImpl::DirectoryImpl(Result& result) :
+    _result(result),
+    _file(INVALID_HANDLE_VALUE)
+{
+}
 
 const char* DirectoryImpl::AllFiles()
 {
@@ -17,40 +24,82 @@ const char* DirectoryImpl::AllFiles()
     return _allFiles;
 }
 
-bool DirectoryImpl::Create(const std::string& path)
+bool DirectoryImpl::Create(const char* path)
 {
-    return CreateDirectory(path.c_str(), NULL);
+    bool create = CreateDirectory(path, NULL);
+
+    if (!create)
+    {
+        WindowError windowError;
+        _result.Message(windowError.GetErrorMessage());
+        return false;
+    }
+
+    return true;
 }
 
-bool DirectoryImpl::DirExist(const std::string& path)
+bool DirectoryImpl::DirExist(const char* path)
 {
-    DWORD attr = GetFileAttributes(path.c_str());
+    DWORD attr = GetFileAttributes(path);
 
-    return (attr != INVALID_FILE_ATTRIBUTES && (attr & FILE_ATTRIBUTE_DIRECTORY));
+    if ((attr == INVALID_FILE_ATTRIBUTES && (attr & FILE_ATTRIBUTE_DIRECTORY)))
+    {
+        WindowError windowError;
+        _result.Message(windowError.GetErrorMessage());
+        return false;
+    }
+
+    return true;
 }
 
-bool DirectoryImpl::FileExist(const std::string& path)
+bool DirectoryImpl::FileExist(const char* path)
 {
-    DWORD attr = GetFileAttributes(path.c_str());
+    DWORD attr = GetFileAttributes(path);
 
-    return (attr != INVALID_FILE_ATTRIBUTES && !(attr & FILE_ATTRIBUTE_DIRECTORY));
+    if ((attr == INVALID_FILE_ATTRIBUTES && (attr & FILE_ATTRIBUTE_DIRECTORY)))
+    {
+        WindowError windowError;
+        _result.Message(windowError.GetErrorMessage());
+        return false;
+    }
+
+    return true;
 }
 
-bool DirectoryImpl::Delete(const std::string& path)
+bool DirectoryImpl::Delete(const char* path)
 {
-    return RemoveDirectory(path.c_str());
+    bool remove = RemoveDirectory(path);
+
+    if (!remove)
+    {
+        WindowError windowError;
+        _result.Message(windowError.GetErrorMessage());
+        return false;
+    }
+
+    return true;
 }
 
-bool DirectoryImpl::Open(const std::string& path)
+bool DirectoryImpl::Open(const char* path)
 {
-    _file = FindFirstFile(path.c_str(), &_data);
+    _file = FindFirstFile(path, &_data);
 
-    return _file != INVALID_HANDLE_VALUE;
+    if (_file == INVALID_HANDLE_VALUE)
+    {
+        WindowError windowError;
+        _result.Message(windowError.GetErrorMessage());
+        return false;
+    }
+
+    return true;
 }
 
 void DirectoryImpl::Close()
 {
-    FindClose(_file);
+    if (_file != INVALID_HANDLE_VALUE)
+    {
+        FindClose(_file);
+    }
 }
 
 bool DirectoryImpl::Next(FileInfo& fileInfo)
@@ -58,12 +107,14 @@ bool DirectoryImpl::Next(FileInfo& fileInfo)
     BOOL result = FindNextFile(_file, &_data);
 
     if (result)
+    {
         fileInfo.Name(_data.cFileName);
+    }
 
     return result;
 }
 
-bool DirectoryImpl::Remove(const std::string& path)
+bool DirectoryImpl::Remove(const char* path)
 {
-    return DeleteFile(path.c_str());
+    return DeleteFile(path);
 }

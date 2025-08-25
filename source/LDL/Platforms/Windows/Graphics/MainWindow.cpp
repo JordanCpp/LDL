@@ -13,116 +13,14 @@ using namespace LDL::Enums;
 using namespace LDL::Events;
 using namespace LDL::Graphics;
 using namespace LDL::Math;
+using namespace LDL::Utils;
 
 static const UINT timePeriod = 1;
 static const char AppName[]  = "MainWindow";
 
 uint8_t MainWindow::ConvertKey(size_t key)
 {
-    switch (key)
-    {
-    case VK_LWIN:       return KeyboardKey::LSystem;
-    case VK_RWIN:       return KeyboardKey::RSystem;
-    case VK_APPS:       return KeyboardKey::Menu;
-    case VK_OEM_1:      return KeyboardKey::Semicolon;
-    case VK_OEM_2:      return KeyboardKey::Slash;
-    case VK_OEM_PLUS:   return KeyboardKey::Equal;
-    case VK_OEM_MINUS:  return KeyboardKey::Hyphen;
-    case VK_OEM_4:      return KeyboardKey::LBracket;
-    case VK_OEM_6:      return KeyboardKey::RBracket;
-    case VK_OEM_COMMA:  return KeyboardKey::Comma;
-    case VK_OEM_PERIOD: return KeyboardKey::Period;
-    case VK_OEM_7:      return KeyboardKey::Quote;
-    case VK_OEM_5:      return KeyboardKey::Backslash;
-    case VK_OEM_3:      return KeyboardKey::Tilde;
-    case VK_ESCAPE:     return KeyboardKey::Escape;
-    case VK_SPACE:      return KeyboardKey::Space;
-    case VK_RETURN:     return KeyboardKey::Enter;
-    case VK_BACK:       return KeyboardKey::Backspace;
-    case VK_TAB:        return KeyboardKey::Tab;
-    case VK_PRIOR:      return KeyboardKey::PageUp;
-    case VK_NEXT:       return KeyboardKey::PageDown;
-    case VK_END:        return KeyboardKey::End;
-    case VK_HOME:       return KeyboardKey::Home;
-    case VK_INSERT:     return KeyboardKey::Insert;
-    case VK_DELETE:     return KeyboardKey::Delete;
-    case VK_ADD:        return KeyboardKey::Add;
-    case VK_SUBTRACT:   return KeyboardKey::Subtract;
-    case VK_MULTIPLY:   return KeyboardKey::Multiply;
-    case VK_DIVIDE:     return KeyboardKey::Divide;
-    case VK_PAUSE:      return KeyboardKey::Pause;
-    case VK_F1:         return KeyboardKey::F1;
-    case VK_F2:         return KeyboardKey::F2;
-    case VK_F3:         return KeyboardKey::F3;
-    case VK_F4:         return KeyboardKey::F4;
-    case VK_F5:         return KeyboardKey::F5;
-    case VK_F6:         return KeyboardKey::F6;
-    case VK_F7:         return KeyboardKey::F7;
-    case VK_F8:         return KeyboardKey::F8;
-    case VK_F9:         return KeyboardKey::F9;
-    case VK_F10:        return KeyboardKey::F10;
-    case VK_F11:        return KeyboardKey::F11;
-    case VK_F12:        return KeyboardKey::F12;
-    case VK_F13:        return KeyboardKey::F13;
-    case VK_F14:        return KeyboardKey::F14;
-    case VK_F15:        return KeyboardKey::F15;
-    case VK_LEFT:       return KeyboardKey::Left;
-    case VK_RIGHT:      return KeyboardKey::Right;
-    case VK_UP:         return KeyboardKey::Up;
-    case VK_DOWN:       return KeyboardKey::Down;
-    case VK_NUMPAD0:    return KeyboardKey::Numpad0;
-    case VK_NUMPAD1:    return KeyboardKey::Numpad1;
-    case VK_NUMPAD2:    return KeyboardKey::Numpad2;
-    case VK_NUMPAD3:    return KeyboardKey::Numpad3;
-    case VK_NUMPAD4:    return KeyboardKey::Numpad4;
-    case VK_NUMPAD5:    return KeyboardKey::Numpad5;
-    case VK_NUMPAD6:    return KeyboardKey::Numpad6;
-    case VK_NUMPAD7:    return KeyboardKey::Numpad7;
-    case VK_NUMPAD8:    return KeyboardKey::Numpad8;
-    case VK_NUMPAD9:    return KeyboardKey::Numpad9;
-    case 'A':           return KeyboardKey::A;
-    case 'Z':           return KeyboardKey::Z;
-    case 'E':           return KeyboardKey::E;
-    case 'R':           return KeyboardKey::R;
-    case 'T':           return KeyboardKey::T;
-    case 'Y':           return KeyboardKey::Y;
-    case 'U':           return KeyboardKey::U;
-    case 'I':           return KeyboardKey::I;
-    case 'O':           return KeyboardKey::O;
-    case 'P':           return KeyboardKey::P;
-    case 'Q':           return KeyboardKey::Q;
-    case 'S':           return KeyboardKey::S;
-    case 'D':           return KeyboardKey::D;
-    case 'F':           return KeyboardKey::F;
-    case 'G':           return KeyboardKey::G;
-    case 'H':           return KeyboardKey::H;
-    case 'J':           return KeyboardKey::J;
-    case 'K':           return KeyboardKey::K;
-    case 'L':           return KeyboardKey::L;
-    case 'M':           return KeyboardKey::M;
-    case 'W':           return KeyboardKey::W;
-    case 'X':           return KeyboardKey::X;
-    case 'C':           return KeyboardKey::C;
-    case 'V':           return KeyboardKey::V;
-    case 'B':           return KeyboardKey::B;
-    case 'N':           return KeyboardKey::N;
-    case '0':           return KeyboardKey::Num0;
-    case '1':           return KeyboardKey::Num1;
-    case '2':           return KeyboardKey::Num2;
-    case '3':           return KeyboardKey::Num3;
-    case '4':           return KeyboardKey::Num4;
-    case '5':           return KeyboardKey::Num5;
-    case '6':           return KeyboardKey::Num6;
-    case '7':           return KeyboardKey::Num7;
-    case '8':           return KeyboardKey::Num8;
-    case '9':           return KeyboardKey::Num9;
-    case VK_LSHIFT:     return KeyboardKey::Leftshift;
-    case VK_RSHIFT:     return KeyboardKey::RightShift;
-    case VK_LCONTROL:   return KeyboardKey::LeftControl;
-    case VK_RCONTROL:   return KeyboardKey::RightControl;
-    }
-
-    return KeyboardKey::Unknown;
+    return _keyMapping.FindKey(key);
 }
 
 LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
@@ -283,6 +181,8 @@ MainWindow::MainWindow(Core::Result& result, const Vec2u& pos, const Vec2u& size
     _baseWindow(pos, size, title),
     _result(result)
 {
+    InitKeyMapping();
+
     timeBeginPeriod(timePeriod);
 
     LDL::memset(&_windowClass, 0, sizeof(WNDCLASS));
@@ -317,11 +217,13 @@ MainWindow::MainWindow(Core::Result& result, const Vec2u& pos, const Vec2u& size
     DWORD style = 0;
     
     if (mode == WindowMode::Fixed)
+    {
         style = WS_OVERLAPPED | WS_SYSMENU;
+    }
     else if (mode == WindowMode::Resized)
+    {
         style = WS_OVERLAPPEDWINDOW;
-    //else
-        //throw RuntimeError("WindowMode failed");
+    }
 
     RECT rect;
 
@@ -344,12 +246,10 @@ MainWindow::MainWindow(Core::Result& result, const Vec2u& pos, const Vec2u& size
         return;
     }
 
-    LONG setWindow = 0;
-
 #ifdef _WIN64
-    setWindow = SetWindowLongPtr(_hwnd, GWLP_USERDATA, (LONG_PTR)this);
+    LONG_PTR setWindow = SetWindowLongPtr(_hwnd, GWLP_USERDATA, (LONG_PTR)this);
 #elif _WIN32
-    setWindow = SetWindowLong(_hwnd, GWL_USERDATA, (LONG)this);
+    LONG     setWindow = SetWindowLong(_hwnd, GWL_USERDATA, (LONG)this);
 #endif  
 
     if (setWindow == 0 && GetLastError() != 0)
@@ -375,6 +275,97 @@ MainWindow::~MainWindow()
 
     UnregisterClass(AppName, _instance);
     ReleaseDC(_hwnd, _hdc);
+}
+
+void MainWindow::InitKeyMapping()
+{
+    _keyMapping.Add(KeyMap(VK_LWIN,       KeyboardKey::LSystem));
+    _keyMapping.Add(KeyMap(VK_RWIN,       KeyboardKey::RSystem));
+    _keyMapping.Add(KeyMap(VK_APPS,       KeyboardKey::Menu));
+
+    _keyMapping.Add(KeyMap(VK_OEM_1,      KeyboardKey::Semicolon));
+    _keyMapping.Add(KeyMap(VK_OEM_2,      KeyboardKey::Slash));
+    _keyMapping.Add(KeyMap(VK_OEM_PLUS,   KeyboardKey::Equal));
+    _keyMapping.Add(KeyMap(VK_OEM_MINUS,  KeyboardKey::Hyphen));
+    _keyMapping.Add(KeyMap(VK_OEM_4,      KeyboardKey::LBracket));
+    _keyMapping.Add(KeyMap(VK_OEM_6,      KeyboardKey::RBracket));
+    _keyMapping.Add(KeyMap(VK_OEM_COMMA,  KeyboardKey::Comma));
+    _keyMapping.Add(KeyMap(VK_OEM_PERIOD, KeyboardKey::Period));
+    _keyMapping.Add(KeyMap(VK_OEM_7,      KeyboardKey::Quote));
+    _keyMapping.Add(KeyMap(VK_OEM_5,      KeyboardKey::Backslash));
+    _keyMapping.Add(KeyMap(VK_OEM_3,      KeyboardKey::Tilde));
+
+    _keyMapping.Add(KeyMap(VK_ESCAPE,     KeyboardKey::Escape));
+    _keyMapping.Add(KeyMap(VK_SPACE,      KeyboardKey::Space));
+    _keyMapping.Add(KeyMap(VK_RETURN,     KeyboardKey::Enter));
+    _keyMapping.Add(KeyMap(VK_BACK,       KeyboardKey::Backspace));
+    _keyMapping.Add(KeyMap(VK_TAB,        KeyboardKey::Tab));
+
+    _keyMapping.Add(KeyMap(VK_PRIOR,      KeyboardKey::PageUp));
+    _keyMapping.Add(KeyMap(VK_NEXT,       KeyboardKey::PageDown));
+    _keyMapping.Add(KeyMap(VK_END,        KeyboardKey::End));
+    _keyMapping.Add(KeyMap(VK_HOME,       KeyboardKey::Home));
+    _keyMapping.Add(KeyMap(VK_INSERT,     KeyboardKey::Insert));
+    _keyMapping.Add(KeyMap(VK_DELETE,     KeyboardKey::Delete));
+
+    _keyMapping.Add(KeyMap(VK_LEFT,       KeyboardKey::Left));
+    _keyMapping.Add(KeyMap(VK_RIGHT,      KeyboardKey::Right));
+    _keyMapping.Add(KeyMap(VK_UP,         KeyboardKey::Up));
+    _keyMapping.Add(KeyMap(VK_DOWN,       KeyboardKey::Down));
+
+    _keyMapping.Add(KeyMap(VK_F1,         KeyboardKey::F1));
+    _keyMapping.Add(KeyMap(VK_F2,         KeyboardKey::F2));
+    _keyMapping.Add(KeyMap(VK_F3,         KeyboardKey::F3));
+    _keyMapping.Add(KeyMap(VK_F4,         KeyboardKey::F4));
+    _keyMapping.Add(KeyMap(VK_F5,         KeyboardKey::F5));
+    _keyMapping.Add(KeyMap(VK_F6,         KeyboardKey::F6));
+    _keyMapping.Add(KeyMap(VK_F7,         KeyboardKey::F7));
+    _keyMapping.Add(KeyMap(VK_F8,         KeyboardKey::F8));
+    _keyMapping.Add(KeyMap(VK_F9,         KeyboardKey::F9));
+    _keyMapping.Add(KeyMap(VK_F10,        KeyboardKey::F10));
+    _keyMapping.Add(KeyMap(VK_F11,        KeyboardKey::F11));
+    _keyMapping.Add(KeyMap(VK_F12,        KeyboardKey::F12));
+    _keyMapping.Add(KeyMap(VK_F13,        KeyboardKey::F13));
+    _keyMapping.Add(KeyMap(VK_F14,        KeyboardKey::F14));
+    _keyMapping.Add(KeyMap(VK_F15,        KeyboardKey::F15));
+
+    _keyMapping.Add(KeyMap(VK_NUMPAD0,    KeyboardKey::Numpad0));
+    _keyMapping.Add(KeyMap(VK_NUMPAD1,    KeyboardKey::Numpad1));
+    _keyMapping.Add(KeyMap(VK_NUMPAD2,    KeyboardKey::Numpad2));
+    _keyMapping.Add(KeyMap(VK_NUMPAD3,    KeyboardKey::Numpad3));
+    _keyMapping.Add(KeyMap(VK_NUMPAD4,    KeyboardKey::Numpad4));
+    _keyMapping.Add(KeyMap(VK_NUMPAD5,    KeyboardKey::Numpad5));
+    _keyMapping.Add(KeyMap(VK_NUMPAD6,    KeyboardKey::Numpad6));
+    _keyMapping.Add(KeyMap(VK_NUMPAD7,    KeyboardKey::Numpad7));
+    _keyMapping.Add(KeyMap(VK_NUMPAD8,    KeyboardKey::Numpad8));
+    _keyMapping.Add(KeyMap(VK_NUMPAD9,    KeyboardKey::Numpad9));
+
+    _keyMapping.Add(KeyMap(VK_ADD,        KeyboardKey::Add));
+    _keyMapping.Add(KeyMap(VK_SUBTRACT,   KeyboardKey::Subtract));
+    _keyMapping.Add(KeyMap(VK_MULTIPLY,   KeyboardKey::Multiply));
+    _keyMapping.Add(KeyMap(VK_DIVIDE,     KeyboardKey::Divide));
+
+    _keyMapping.Add(KeyMap(VK_PAUSE,      KeyboardKey::Pause));
+
+    _keyMapping.Add(KeyMap('A',           KeyboardKey::A));
+    _keyMapping.Add(KeyMap('Z',           KeyboardKey::Z));
+    _keyMapping.Add(KeyMap('E',           KeyboardKey::E));
+    _keyMapping.Add(KeyMap('R',           KeyboardKey::R));
+    _keyMapping.Add(KeyMap('T',           KeyboardKey::T));
+    _keyMapping.Add(KeyMap('Y',           KeyboardKey::Y));
+    _keyMapping.Add(KeyMap('U',           KeyboardKey::U));
+    _keyMapping.Add(KeyMap('I',           KeyboardKey::I));
+    _keyMapping.Add(KeyMap('O',           KeyboardKey::O));
+    _keyMapping.Add(KeyMap('P',           KeyboardKey::P));
+    _keyMapping.Add(KeyMap('Q',           KeyboardKey::Q));
+    _keyMapping.Add(KeyMap('S',           KeyboardKey::S));
+    _keyMapping.Add(KeyMap('D',           KeyboardKey::D));
+    _keyMapping.Add(KeyMap('F',           KeyboardKey::F));
+    _keyMapping.Add(KeyMap('G',           KeyboardKey::G));
+    _keyMapping.Add(KeyMap('H',           KeyboardKey::H));
+    _keyMapping.Add(KeyMap('J',           KeyboardKey::J));
+    _keyMapping.Add(KeyMap('K',           KeyboardKey::K));
+    _keyMapping.Add(KeyMap('W',           KeyboardKey::W));
 }
 
 bool MainWindow::Running()
@@ -411,7 +402,6 @@ bool MainWindow::WaitEvent(Event& event)
     {
         if (GetMessage(&_msg, _hwnd, 0, 0) == -1)
         {
-            //throw RuntimeError("GetMessage failed");
         }
         else
         {

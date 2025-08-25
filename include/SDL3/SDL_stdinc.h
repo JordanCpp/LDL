@@ -6,7 +6,7 @@
 #ifndef SDL3_SDL_stdinc_h
 #define SDL3_SDL_stdinc_h
 
-#include <SDL3/pstdint.h>
+#include <LDL/std/stdint.hpp>
 
 typedef int8_t  Sint8;
 typedef uint8_t Uint8;

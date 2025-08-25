@@ -11,15 +11,12 @@
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Allocators/ObjectPool.hpp>
-#include <LDL/Loaders/FontLoader.hpp>
-#include <LDL/Text/Rasterizer.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/Convert.hpp>
-#include <LDL/Loaders/ImageLoader.hpp>
-#include <LDL/Loaders/SoundLoader.hpp>
 #include <LDL/Math/Isometric.hpp>
-#include <LDL/Audio/Mixer.hpp>
 #include <LDL/Core/Assert.hpp>
+#include <LDL/Core/MemoryManager.hpp>
 #include <LDL/Math/Random.hpp>
+#include <LDL/Loaders/BmpLoader.hpp>
 
 #endif

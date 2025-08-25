@@ -7,7 +7,6 @@
 #define LDL_Core_Console_hpp
 
 #include <LDL/Core/Types.hpp>
-#include <string>
 
 namespace LDL
 {
@@ -20,7 +19,7 @@ namespace LDL
 		public:
 			Console();
 			~Console();
-			void Write(const std::string& text);
+			void Write(const char* text);
 		private:
 			ConsoleImpl* _impl;
 		};

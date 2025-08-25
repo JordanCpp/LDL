@@ -8,7 +8,7 @@
 
 using namespace LDL::Graphics;
 
-ScreenShotter::ScreenShotter(const std::string& path, const std::string& name, Render* render, Surface* image)
+ScreenShotter::ScreenShotter(const char* path, const char* name, Render* render, Surface* image)
 {
 	_impl = new ScreenShotterImplOpenGL1(path, name, render, image);
 }

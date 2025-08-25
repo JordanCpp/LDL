@@ -2,14 +2,13 @@
 #define Arcanum_Game_Engine_hpp
 
 #include <Arcanum/Core/RuntimeError.hpp>
-#include <LDL/Loaders/ImageLoader.hpp>
 #include <LDL/Time/FpsCounter.hpp>
 #include <LDL/Core/Convert.hpp>
 #include <LDL/Time/FpsLimiter.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/Core/CommandLineParser.hpp>
+#include <Arcanum/Core/CommandLineParser.hpp>
 #include <Arcanum/Managers/PathManager.hpp>
 #include <Arcanum/Game/Settings.hpp>
 #include <Arcanum/Loaders/ArtLoader.hpp>
@@ -35,14 +34,14 @@ namespace Arcanum
 		class Engine
 		{
 		public:
-			Engine(LDL::Core::CommandLineParser * commandLineParser, Settings* settings);
+			Engine(Core::CommandLineParser * commandLineParser, Settings* settings);
 			void ShowFps();
 			void Draw();
 			void Update();
 			void Run();
 		private:
 			LDL::Core::Result _result;
-			LDL::Core::CommandLineParser* _CommandLineParser;
+			Core::CommandLineParser* _CommandLineParser;
 			Readers::XmlReader _XmlReader;
 			Settings* _Settings;
 			LDL::Graphics::RenderContext _RenderContext;
@@ -52,7 +51,6 @@ namespace Arcanum
 			Managers::PathManager _PathManager;
 			std::string _Title;
 			LDL::Allocators::FixedLinear _ImageAllocator;
-			LDL::Loaders::ImageLoader _ImageLoader;
 			LDL::Graphics::Window _Window;
 			LDL::Graphics::Render _Render;
 			LDL::Time::FpsCounter _FpsCounter;

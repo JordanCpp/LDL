@@ -7,7 +7,6 @@
 #define LDL_Graphics_ImageWriter_hpp
 
 #include <LDL/Math/Vec2.hpp>
-#include <string>
 
 namespace LDL
 {
@@ -16,7 +15,7 @@ namespace LDL
 		class LDL_LIBRARY ImageWriter
 		{
 		public:
-			void Save(const std::string& path, const Math::Vec2u& size, size_t bytesPerPixel, uint8_t* pixels);
+			void Save(const char* path, const Math::Vec2u& size, size_t bytesPerPixel, uint8_t* pixels);
 		private:
 		};
 	}

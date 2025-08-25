@@ -7,8 +7,8 @@
 #define LDL_Graphics_Texture_hpp
 
 #include <LDL/Math/Vec2.hpp>
-#include <LDL/Graphics/RenderContext.hpp>
 #include <LDL/Graphics/Surface.hpp>
+#include <LDL/Graphics/RenderContext.hpp>
 
 namespace LDL
 {

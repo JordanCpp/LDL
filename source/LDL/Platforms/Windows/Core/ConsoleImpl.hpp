@@ -7,7 +7,6 @@
 #define LDL_Platforms_Windows_Core_ConsoleImpl_hpp
 
 #include <LDL/Platforms/Windows/Windows.hpp>
-#include <string>
 
 namespace LDL
 {
@@ -17,7 +16,7 @@ namespace LDL
 		{
 		public:
 			ConsoleImpl();
-			void Write(const std::string& text);
+			void Write(const char* text);
 		private:
 			HANDLE _output;
 		};

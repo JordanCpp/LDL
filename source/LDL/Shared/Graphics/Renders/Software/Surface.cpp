@@ -4,25 +4,25 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Graphics/Surface.hpp>
-#include <assert.h>
-#include <string.h>
+#include <LDL/Core/Assert.hpp>
+#include <LDL/std/string.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
 Surface::Surface(const Vec2u& size, uint8_t bytesPerPixel) :
-	_capacity(size),
-	_size(_capacity),
 	_bytesPerPixel(bytesPerPixel),
-	_pixels(NULL)
+	_pixels(NULL),
+	_capacity(size),
+	_size(_capacity)
 {
-	assert(_capacity.x > 0);
-	assert(_capacity.y > 0);
+	LDL_ASSERT(_capacity.x > 0);
+	LDL_ASSERT(_capacity.y > 0);
 
-	assert(_size.x > 0);
-	assert(_size.y > 0);
+	LDL_ASSERT(_size.x > 0);
+	LDL_ASSERT(_size.y > 0);
 
-	assert(_bytesPerPixel > 0);
+	LDL_ASSERT(_bytesPerPixel > 0);
 
 	size_t bytes = _size.x * _size.y * _bytesPerPixel;
 
@@ -30,41 +30,41 @@ Surface::Surface(const Vec2u& size, uint8_t bytesPerPixel) :
 }
 
 Surface::Surface(const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
-	_capacity(size),
-	_size(_capacity),
 	_bytesPerPixel(bytesPerPixel),
-	_pixels(NULL)
+	_pixels(NULL),
+	_capacity(size),
+	_size(_capacity)
 {
-	assert(_capacity.x > 0);
-	assert(_capacity.y > 0);
+	LDL_ASSERT(_capacity.x > 0);
+	LDL_ASSERT(_capacity.y > 0);
 
-	assert(_size.x > 0);
-	assert(_size.y > 0);
+	LDL_ASSERT(_size.x > 0);
+	LDL_ASSERT(_size.y > 0);
 
-	assert(_bytesPerPixel > 0);
+	LDL_ASSERT(_bytesPerPixel > 0);
 
-	assert(pixels != NULL);
+	LDL_ASSERT(pixels != NULL);
 
 	size_t bytes = _size.x * _size.y * _bytesPerPixel;
 
 	_pixels = new uint8_t[_size.x * _size.y * _bytesPerPixel];
 
-	memcpy(_pixels, pixels, bytes);
+	LDL::memcpy(_pixels, pixels, bytes);
 }
 
 Surface::Surface(const Vec2u& size, const Vec2u& capacity, uint8_t bytesPerPixel) :
-	_capacity(capacity),
-	_size(size),
 	_bytesPerPixel(bytesPerPixel),
-	_pixels(NULL)
+	_pixels(NULL),
+	_capacity(capacity),
+	_size(size)
 {
-	assert(_capacity.x > 0);
-	assert(_capacity.y > 0);
+	LDL_ASSERT(_capacity.x > 0);
+	LDL_ASSERT(_capacity.y > 0);
 
-	assert(_size.x > 0);
-	assert(_size.y > 0);
+	LDL_ASSERT(_size.x > 0);
+	LDL_ASSERT(_size.y > 0);
 
-	assert(_bytesPerPixel > 0);
+	LDL_ASSERT(_bytesPerPixel > 0);
 
 	size_t bytes = _size.x * _size.y * _bytesPerPixel;
 
@@ -72,26 +72,26 @@ Surface::Surface(const Vec2u& size, const Vec2u& capacity, uint8_t bytesPerPixel
 }
 
 Surface::Surface(const Vec2u& size, const Vec2u& capacity, uint8_t* pixels, uint8_t bytesPerPixel) :
-	_capacity(capacity),
-	_size(size),
 	_bytesPerPixel(bytesPerPixel),
-	_pixels(NULL)
+	_pixels(NULL),
+	_capacity(capacity),
+	_size(size)
 {
-	assert(_capacity.x > 0);
-	assert(_capacity.y > 0);
+	LDL_ASSERT(_capacity.x > 0);
+	LDL_ASSERT(_capacity.y > 0);
 
-	assert(_size.x > 0);
-	assert(_size.y > 0);
+	LDL_ASSERT(_size.x > 0);
+	LDL_ASSERT(_size.y > 0);
 
-	assert(_bytesPerPixel > 0);
+	LDL_ASSERT(_bytesPerPixel > 0);
 
-	assert(pixels != NULL);
+	LDL_ASSERT(pixels != NULL);
 
 	size_t bytes = _size.x * _size.y * _bytesPerPixel;
 
 	_pixels = new uint8_t[_size.x * _size.y * _bytesPerPixel];
 
-	memcpy(_pixels, pixels, bytes);
+	LDL::memcpy(_pixels, pixels, bytes);
 }
 
 Surface::~Surface()
@@ -112,7 +112,9 @@ const Vec2u& Surface::Size()
 void Surface::Resize(const Vec2u& size)
 {
 	if (size.x <= Capacity().x && size.y <= Capacity().y)
+	{
 		_size = size;
+	}
 }
 
 void Surface::Clear()

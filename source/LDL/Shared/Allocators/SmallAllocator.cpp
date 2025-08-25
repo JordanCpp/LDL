@@ -4,8 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Allocators/SmallAllocator.hpp>
-#include <assert.h>
-#include <math.h>
+#include <LDL/Core/Assert.hpp>
 
 using namespace LDL::Allocators;
 
@@ -21,7 +20,7 @@ SmallAllocator::SmallAllocator(Allocator* allocator) :
 
 size_t SmallAllocator::CalcBucket(size_t bytes)
 {
-	assert(bytes <= 1024);
+	LDL_ASSERT(bytes <= 1024);
 
 	if (bytes > 0 && bytes <= 16)
 		return 0;
@@ -45,7 +44,7 @@ void* SmallAllocator::Allocate(size_t bytes)
 {
 	size_t bucket = CalcBucket(bytes);
 
-	assert(bucket < Buckets);
+	LDL_ASSERT(bucket < Buckets);
 
 	Node* result = _Table[bucket].Tail;
 
@@ -67,13 +66,13 @@ void* SmallAllocator::Allocate(size_t bytes)
 
 void SmallAllocator::Deallocate(void* ptr)
 {
-	assert(ptr != NULL);
+	LDL_ASSERT(ptr != NULL);
 
 	Node* node = (Node*)(size_t)ptr - sizeof(Node) + sizeof(void*);
 
 	size_t bucket = CalcBucket(node->Size);
 
-	assert(bucket < Buckets);
+	LDL_ASSERT(bucket < Buckets);
 
 	Remove(&_Table[bucket], node);
 	Append(&_Table[bucket], node);
@@ -81,14 +80,14 @@ void SmallAllocator::Deallocate(void* ptr)
 
 SmallAllocator::Node* LDL::Allocators::SmallAllocator::ToNode(void* ptr)
 {
-	assert(ptr != NULL);
+	LDL_ASSERT(ptr != NULL);
 
 	return (Node*)(size_t)ptr - sizeof(Node) + sizeof(void*);
 }
 
 size_t SmallAllocator::CalkSize(size_t bucket)
 {
-	assert(bucket <= Buckets);
+	LDL_ASSERT(bucket <= Buckets);
 
 	if (bucket == 0)
 		return 16;

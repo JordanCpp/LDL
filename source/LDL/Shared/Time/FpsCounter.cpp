@@ -22,8 +22,8 @@ void FpsCounter::Start()
 
 bool FpsCounter::Calc()
 {
-    uint32_t currentTime = Ticks();
-    uint32_t delta       = currentTime - _startTime;
+    size_t currentTime = Ticks();
+    size_t delta       = currentTime - _startTime;
 
     _accumulator += delta;
     _frameCount++;

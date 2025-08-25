@@ -17,7 +17,7 @@ namespace LDL
 		class ScreenShotter
 		{
 		public:
-			ScreenShotter(const std::string& path, const std::string& name, Render* render, Surface* image);
+			ScreenShotter(const char* path, const char* name, Render* render, Surface* image);
 			~ScreenShotter();
 			void Shot();
 		private:

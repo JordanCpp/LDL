@@ -10,7 +10,7 @@
 #include <LDL/Graphics/Color.hpp>
 #include <LDL/Graphics/Texture.hpp>
 #include "TextureBatcherImplOpenGL1.hpp"
-#include <vector>
+#include <LDL/STL/vector.hpp>
 
 namespace LDL
 {
@@ -117,7 +117,7 @@ namespace LDL
 			void Draw(ClearElement& src);
 			void Draw(TextureBatcherElement& src);
 		private:
-			std::vector<RenderElement> _elements;
+			vector<RenderElement> _elements;
 		};
 	}
 }

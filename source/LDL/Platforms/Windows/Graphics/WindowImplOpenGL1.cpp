@@ -21,8 +21,11 @@ WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec
     LDL::memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
 
     _Window._hdc = GetDC(_Window._hwnd);
-    LDL_ASSERT_DETAIL(_Window._hdc != NULL, "GetDC failed");
-
+    if (_Window._hdc == NULL)
+    {
+        _result.Message("GetDC failed");
+        return;
+    }
 
     pfd.nSize      = sizeof(pfd);
     pfd.nVersion   = 1;
@@ -33,25 +36,29 @@ WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec
     pfd.iLayerType = PFD_MAIN_PLANE;
 
     int format = ChoosePixelFormat(_Window._hdc, &pfd);
-    if (format != 0)
+    if (format == 0)
     {
         _result.Message("ChoosePixelFormat failed");
+        return;
     }
 
     if (!SetPixelFormat(_Window._hdc, format, &pfd))
     {
         _result.Message("SetPixelFormat failed");
+        return;
     }
 
     _HGLRC = wglCreateContext(_Window._hdc);
-    if (_HGLRC != NULL)
+    if (_HGLRC == NULL)
     {
         _result.Message("wglCreateContext failed");
+        return;
     }
 
     if (!wglMakeCurrent(_Window._hdc, _HGLRC))
     {
         _result.Message("wglMakeCurrent failed");
+        return;
     }
 
     _OpenGLLoader.Init(1, 1);
@@ -61,8 +68,6 @@ WindowImplOpenGL1::~WindowImplOpenGL1()
 {
     wglMakeCurrent(NULL, NULL);
     wglDeleteContext(_HGLRC);
-
-    ReleaseDC(_Window._hwnd, _Window._hdc);
 }
 
 bool WindowImplOpenGL1::Running()

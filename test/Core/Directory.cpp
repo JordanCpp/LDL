@@ -10,7 +10,8 @@ using namespace LDL::Core;
 
 void Open()
 {
-	Directory directory;
+	Result result;
+	Directory directory(result);
 
 	LDL_TEST_EQUAL(directory.Open("*") == true);
 	LDL_TEST_EQUAL(directory.Open("blabla") == false);
@@ -18,7 +19,8 @@ void Open()
 
 void Next()
 {
-	Directory directory;
+	Result result;
+	Directory directory(result);
 
 	if (directory.Open("*"))
 	{
@@ -26,14 +28,15 @@ void Next()
 
 		while (directory.Next(fileInfo))
 		{
-			LDL_TEST_EQUAL(fileInfo.Name().length() > 0);
+			LDL_TEST_EQUAL(strlen(fileInfo.Name()) > 0);
 		}
 	}
 }
 
 void Create()
 {
-	Directory directory;
+	Result result;
+	Directory directory(result);
 
 	LDL_TEST_EQUAL(directory.Create("TestFiles/Test") == true);
 	LDL_TEST_EQUAL(directory.Create("TestFiles/Test") == false);
@@ -41,14 +44,16 @@ void Create()
 
 void Exist()
 {
-	Directory directory;
+	Result result;
+	Directory directory(result);
 
 	LDL_TEST_EQUAL(directory.DirExist("TestFiles/Test") == true);
 }
 
 void Delete()
 {
-	Directory directory;
+	Result result;
+	Directory directory(result);
 
 	LDL_TEST_EQUAL(directory.Delete("TestFiles/Test") == true);
 	LDL_TEST_EQUAL(directory.Delete("TestFiles/Test") == false);

@@ -22,6 +22,12 @@ void Result::Message(const char* message)
 	_message = message;
 }
 
+void Result::Message(const char* message, const char* detail)
+{
+	_message = message;
+	_message += detail;
+}
+
 const char* Result::Message()
 {
 	return _message.c_str();

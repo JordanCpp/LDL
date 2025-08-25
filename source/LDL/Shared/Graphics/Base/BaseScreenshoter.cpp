@@ -8,7 +8,7 @@
 
 using namespace LDL::Graphics;
 
-const std::string BaseScreenShotter::Prefix()
+const char* BaseScreenShotter::Prefix()
 {
     time_t     rawTime;
     struct tm* timeInfo;
@@ -35,5 +35,5 @@ const std::string BaseScreenShotter::Prefix()
     _prefix += '.';
     _prefix += _converter.ToString(timeInfo->tm_sec);
 
-    return _prefix;
+    return _prefix.c_str();
 }

@@ -7,12 +7,12 @@
 
 using namespace LDL::Core;
 
-const std::string& FileInfo::Name()
+const char* FileInfo::Name()
 {
-	return _name;
+	return _name.c_str();
 }
 
-void FileInfo::Name(const std::string& source)
+void FileInfo::Name(const char* source)
 {
 	_name = source;
 }

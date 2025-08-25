@@ -4,8 +4,8 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Graphics/PixelPainter.hpp>
-#include <assert.h>
-#include <stdlib.h>
+#include <LDL/Core/Assert.hpp>
+#include <LDL/std/math.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;
@@ -116,7 +116,7 @@ void PixelPainter::Clear()
 
 void PixelPainter::Bind(Surface* source)
 {
-	assert(source != NULL);
+	LDL_ASSERT(source != NULL);
 
 	_target = source;
 
@@ -169,7 +169,7 @@ const LDL::Graphics::Color& PixelPainter::GetPixel(const Vec2u& pos)
 {
 	size_t i = (_width * pos.y + pos.x) * _bytesPerPixel;
 
-	assert(i < _width * _height * _bytesPerPixel);
+	LDL_ASSERT(i < _width * _height * _bytesPerPixel);
 
 	switch (_bytesPerPixel)
 	{
@@ -199,8 +199,8 @@ const LDL::Graphics::Color& PixelPainter::GetPixel(const Vec2u& pos)
 
 void PixelPainter::Fill(const Vec2u& pos, const Vec2u& size)
 {
-	assert(size.x > 0);
-	assert(size.y > 0);
+	LDL_ASSERT(size.x > 0);
+	LDL_ASSERT(size.y > 0);
 
 	size_t x = pos.x;
 	size_t y = pos.y;
@@ -229,8 +229,8 @@ void PixelPainter::Line(const Vec2u& pos1, const Vec2u& pos2)
 	int error;
 	int error2;
 
-	deltaX = abs(x2 - x1);
-	deltaY = abs(y2 - y1);
+	deltaX = LDL::abs(x2 - x1);
+	deltaY = LDL::abs(y2 - y1);
 	signX = x1 < x2 ? 1 : -1;
 	signY = y1 < y2 ? 1 : -1;
 

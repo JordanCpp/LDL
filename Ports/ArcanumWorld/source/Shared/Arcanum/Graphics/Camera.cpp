@@ -28,8 +28,8 @@ void Camera::Move(const Vec2u& pos)
 
 void Camera::Handle(Event& event)
 {
-	size_t x = Pos().x;
-	size_t y = Pos().y;
+	uint32_t x = Pos().x;
+	uint32_t y = Pos().y;
 
 	if (event.IsKeyPressed(KeyboardKey::W))
 	{

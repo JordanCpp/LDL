@@ -20,10 +20,10 @@ namespace LDL
 			bool Calc();
 			size_t Fps() const;
 		private:
-			uint32_t _startTime;
-			uint32_t _accumulator;
-			size_t   _frameCount;
-			size_t   _lastFps;
+			size_t _startTime;
+			size_t _accumulator;
+			size_t _frameCount;
+			size_t _lastFps;
 		};
 	}
 }

@@ -23,7 +23,7 @@ Console::~Console()
 	delete _impl;
 }
 
-void Console::Write(const std::string& text)
+void Console::Write(const char* text)
 {
 	_impl->Write(text);
 }

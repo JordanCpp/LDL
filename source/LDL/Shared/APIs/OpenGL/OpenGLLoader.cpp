@@ -3,6 +3,7 @@
 #include <LDL/Core/Convert.hpp>
 #include <LDL/Core/Console.hpp>
 #include <LDL/Core/Terminate.hpp>
+#include <LDL/STL/inplace_strings.hpp>
 
 using namespace LDL;
 using namespace LDL::Core;
@@ -279,14 +280,14 @@ void OpenGLLoader::Init(size_t major, size_t minor)
 	{
 		Convert conv;
 
-		std::string error = "OpenGL ";
+		ErrorString error = "OpenGL ";
 		error += conv.ToString(Major());
 		error += ".";
 		error += conv.ToString(Minor());
 		error += " not support";
 
 		Console console;
-		console.Write(error);
+		console.Write(error.c_str());
 
 		Terminate();
 	}

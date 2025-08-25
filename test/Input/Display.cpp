@@ -6,6 +6,7 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Input/Display.hpp>
 
+using namespace LDL;
 using namespace LDL::Input;
 using namespace LDL::Graphics;
 
@@ -13,7 +14,7 @@ void Modes()
 {
 	Display display;
 	
-	std::vector<VideoMode> modes = display.Modes();
+	vector<VideoMode> modes = display.Modes();
 
 	LDL_TEST_EQUAL(modes.size() > 0);
 

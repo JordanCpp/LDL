@@ -21,12 +21,12 @@ void FpsLimiter::Mark()
 
 void FpsLimiter::Throttle() const
 {
-	uint32_t frameTimeMs = 1000 / _fps;
-	uint32_t elapsed     = Ticks() - _startTime;
+	size_t frameTimeMs = 1000 / _fps;
+	size_t elapsed     = Ticks() - _startTime;
 
 	if (elapsed < frameTimeMs)
 	{
-		uint32_t sleepMs = frameTimeMs - elapsed;
+		size_t sleepMs = frameTimeMs - elapsed;
 
 		Delay(sleepMs);
 	}

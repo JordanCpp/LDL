@@ -4,7 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 
-#include <iostream>
+#include <stdio.h>
 #include <LDL/LDL.hpp>
 
 using namespace LDL::Graphics;
@@ -15,15 +15,17 @@ using namespace LDL::Math;
 
 void ErrorShow(Result& result)
 {
-	std::cerr << "LDL error: " << result.Message() << std::endl;
+	printf("LDL error: %s", result.Message());
 }
 
 int main()
 {
+	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+
 	Result result;
 	RenderContext renderContext;
 
-	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
+	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__);
 	if (!result.Ok())
 	{
 		ErrorShow(result);

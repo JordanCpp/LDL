@@ -28,7 +28,7 @@ namespace LDL
 
         inplace_string(const inplace_string& other)
         {
-            LDL::strlcpy(_buffer, Max, other._buffer);
+            LDL::strlcpy(_buffer, other._buffer, Max);
         }
 
         inplace_string& operator=(const char* str)
@@ -42,7 +42,7 @@ namespace LDL
         {
             if (this != &other)
             {
-                LDL::strlcpy(_buffer, Max, other._buffer);
+                LDL::strlcpy(_buffer, other._buffer, Max);
             }
 
             return *this;

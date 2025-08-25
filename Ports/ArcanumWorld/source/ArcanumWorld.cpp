@@ -14,6 +14,8 @@ int main(int argc, char* argv[])
 {
 	try
 	{
+		MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+
 		CommandLineParser parser(argc, argv);
 		Settings settings;
 		XmlReader xmlReader;

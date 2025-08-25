@@ -18,6 +18,7 @@ namespace LDL
 			Result();
 			bool Ok();
 			void Message(const char* message);
+			void Message(const char* message, const char* detail);
 			const char* Message();
 		private:
 			bool        _ok;

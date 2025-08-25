@@ -1,5 +1,5 @@
+
 #include <LDL/APIs/DirectX6/d3d.hpp>
-#include <stdlib.h>
 
 namespace LDL
 {

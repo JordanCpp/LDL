@@ -7,7 +7,7 @@
 #define LDL_Core_FileInfo_hpp
 
 #include <LDL/Core/Types.hpp>
-#include <string>
+#include <LDL/STL/inplace_strings.hpp>
 
 namespace LDL
 {
@@ -16,10 +16,10 @@ namespace LDL
 		class LDL_LIBRARY FileInfo
 		{
 		public:
-			const std::string& Name();
-			void Name(const std::string& source);
+			const char* Name();
+			void Name(const char* source);
 		private:
-			std::string _name;
+			FileString _name;
 		};
 	}
 }
