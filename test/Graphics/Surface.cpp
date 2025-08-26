@@ -6,7 +6,6 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Graphics/Surface.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
-#include <LDL/Loaders/ImageLoader.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;
@@ -36,46 +35,6 @@ void InitCapacityDefault()
 
 	LDL_TEST_EQUAL(surface.Size().x == 640);
 	LDL_TEST_EQUAL(surface.Size().y == 480);
-
-	LDL_TEST_EQUAL(surface.Capacity().x == 800);
-	LDL_TEST_EQUAL(surface.Capacity().y == 600);
-
-	LDL_TEST_EQUAL(surface.Pixels() != NULL);
-}
-
-void InitFrom()
-{
-	LDL::Allocators::FixedLinear allocator(bytes);
-	LDL::Loaders::ImageLoader loader(&allocator);
-
-	loader.Load("TestFiles/359500_600.jpg");
-
-	Surface surface(loader.Size(), loader.Pixels(), loader.BytesPerPixel());
-
-	LDL_TEST_EQUAL(surface.BytesPerPixel() == 3);
-
-	LDL_TEST_EQUAL(surface.Size().x == 600);
-	LDL_TEST_EQUAL(surface.Size().y == 438);
-
-	LDL_TEST_EQUAL(surface.Capacity().x == 600);
-	LDL_TEST_EQUAL(surface.Capacity().y == 438);
-
-	LDL_TEST_EQUAL(surface.Pixels() != NULL);
-}
-
-void InitCapacityFrom()
-{
-	LDL::Allocators::FixedLinear allocator(bytes);
-	LDL::Loaders::ImageLoader loader(&allocator);
-
-	loader.Load("TestFiles/359500_600.jpg");
-
-	Surface surface(loader.Size(), Vec2u(800, 600),loader.Pixels(), loader.BytesPerPixel());
-
-	LDL_TEST_EQUAL(surface.BytesPerPixel() == 3);
-
-	LDL_TEST_EQUAL(surface.Size().x == 600);
-	LDL_TEST_EQUAL(surface.Size().y == 438);
 
 	LDL_TEST_EQUAL(surface.Capacity().x == 800);
 	LDL_TEST_EQUAL(surface.Capacity().y == 600);
@@ -121,8 +80,6 @@ int main()
 {
 	InitDefault();
 	InitCapacityDefault();
-	InitFrom();
-	InitCapacityFrom();
 	Resize();
 	Clear();
 

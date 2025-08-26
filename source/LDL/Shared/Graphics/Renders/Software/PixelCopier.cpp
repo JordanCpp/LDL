@@ -37,10 +37,16 @@ void PixelCopier::Copy(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
 
 void PixelCopier::Copy8(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
 {
+	LDL_UNUSED(srcSurf);
+	LDL_UNUSED(dstSurf);
+	LDL_UNUSED(pos);
 }
 
 void PixelCopier::Copy16(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
 {
+	LDL_UNUSED(srcSurf);
+	LDL_UNUSED(dstSurf);
+	LDL_UNUSED(pos);
 }
 
 void PixelCopier::Copy24(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)

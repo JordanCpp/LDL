@@ -12,7 +12,7 @@ using namespace LDL::Math;
 
 Surface::Surface(const Vec2u& size, uint8_t bytesPerPixel) :
 	_bytesPerPixel(bytesPerPixel),
-	_pixels(NULL),
+	_enabled(false),
 	_capacity(size),
 	_size(_capacity)
 {
@@ -24,14 +24,12 @@ Surface::Surface(const Vec2u& size, uint8_t bytesPerPixel) :
 
 	LDL_ASSERT(_bytesPerPixel > 0);
 
-	size_t bytes = _size.x * _size.y * _bytesPerPixel;
-
-	_pixels = new uint8_t[bytes];
+	_pixels.resize(_size.x * _size.y * _bytesPerPixel);
 }
 
 Surface::Surface(const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
 	_bytesPerPixel(bytesPerPixel),
-	_pixels(NULL),
+	_enabled(false),
 	_capacity(size),
 	_size(_capacity)
 {
@@ -45,16 +43,13 @@ Surface::Surface(const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
 
 	LDL_ASSERT(pixels != NULL);
 
-	size_t bytes = _size.x * _size.y * _bytesPerPixel;
-
-	_pixels = new uint8_t[_size.x * _size.y * _bytesPerPixel];
-
-	LDL::memcpy(_pixels, pixels, bytes);
+	_pixels.resize(_size.x * _size.y * _bytesPerPixel);
+	LDL::memcpy(_pixels.data(), pixels, _pixels.size());
 }
 
 Surface::Surface(const Vec2u& size, const Vec2u& capacity, uint8_t bytesPerPixel) :
 	_bytesPerPixel(bytesPerPixel),
-	_pixels(NULL),
+	_enabled(false),
 	_capacity(capacity),
 	_size(size)
 {
@@ -66,14 +61,12 @@ Surface::Surface(const Vec2u& size, const Vec2u& capacity, uint8_t bytesPerPixel
 
 	LDL_ASSERT(_bytesPerPixel > 0);
 
-	size_t bytes = _size.x * _size.y * _bytesPerPixel;
-
-	_pixels = new uint8_t[bytes];
+	_pixels.resize(_size.x * _size.y * _bytesPerPixel);
 }
 
 Surface::Surface(const Vec2u& size, const Vec2u& capacity, uint8_t* pixels, uint8_t bytesPerPixel) :
 	_bytesPerPixel(bytesPerPixel),
-	_pixels(NULL),
+	_enabled(false),
 	_capacity(capacity),
 	_size(size)
 {
@@ -87,16 +80,28 @@ Surface::Surface(const Vec2u& size, const Vec2u& capacity, uint8_t* pixels, uint
 
 	LDL_ASSERT(pixels != NULL);
 
-	size_t bytes = _size.x * _size.y * _bytesPerPixel;
-
-	_pixels = new uint8_t[_size.x * _size.y * _bytesPerPixel];
-
-	LDL::memcpy(_pixels, pixels, bytes);
+	_pixels.resize(_size.x * _size.y * _bytesPerPixel);
+	LDL::memcpy(_pixels.data(), pixels, _pixels.size());
 }
 
 Surface::~Surface()
 {
-	delete[] _pixels;
+}
+
+void Surface::ColorKey(const Graphics::Color& key)
+{
+	_enabled = true;
+	_key     = key;
+}
+
+const LDL::Graphics::Color& Surface::ColorKey()
+{
+	return _key;
+}
+
+bool Surface::Enabled()
+{
+	return _enabled;
 }
 
 const Vec2u& Surface::Capacity()
@@ -129,7 +134,7 @@ uint8_t Surface::BytesPerPixel()
 
 uint8_t* Surface::Pixels()
 {
-	return _pixels;
+	return _pixels.data();
 }
 
 Color Surface::Pixel(const Vec2u& pos)

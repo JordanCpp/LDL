@@ -29,9 +29,11 @@ const Vec2u& CameraImplOpenGL3::Size()
 
 void CameraImplOpenGL3::Pos(const Vec2u& pos)
 {
+	LDL_UNUSED(pos);
 	//_RenderImpl->_ModelView = Translate(_RenderImpl->_ModelView, Vec3f((float)pos.x, (float)pos.y, 0.0f));
 }
 
 void CameraImplOpenGL3::Size(const Vec2u& size)
 {
+	LDL_UNUSED(size);
 }

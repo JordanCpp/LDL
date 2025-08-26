@@ -4,6 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <LDL/LDL.hpp>
 
 using namespace LDL::Graphics;

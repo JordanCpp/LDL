@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Shared/Graphics/Base/BaseScreenshoter.hpp>
 #include <time.h>
+#include <LDL/Shared/Graphics/Base/BaseScreenshoter.hpp>
 
 using namespace LDL::Graphics;
 

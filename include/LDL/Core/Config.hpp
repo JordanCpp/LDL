@@ -6,7 +6,7 @@
 #ifndef LDL_Core_Types_hpp
 #define LDL_Core_Types_hpp
 
-#include <LDL/std/stdint.hpp>
+#define LDL_UNUSED(x) (void)x
 
 #if defined(_WIN32) || defined(WIN32)
     #define LDL_CONFIG_COLOR_BGRA

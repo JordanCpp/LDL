@@ -27,7 +27,7 @@ DEALINGS IN THE SOFTWARE.
 #ifndef LDL_Core_MemoryManager_hpp
 #define LDL_Core_MemoryManager_hpp
 
-#include <LDL/Core/Types.hpp>
+#include <LDL/std/stddef.hpp>
 
 namespace LDL
 {

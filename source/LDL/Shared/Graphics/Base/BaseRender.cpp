@@ -23,7 +23,7 @@ const LDL::Graphics::Color& BaseRender::Color()
 	return _current;
 }
 
-void BaseRender::Color(const LDL::Graphics::Color& color)
+void BaseRender::Color(const Graphics::Color& color)
 {
 	_current = color;
 }

@@ -76,6 +76,8 @@ void ScreenOpenGL1::DrawTexture(Surface* image, const Vec2u& pos, const Vec2u& s
 
 void ScreenOpenGL1::DrawPixels(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
+	LDL_UNUSED(size);
+
 	GL_CHECK(glPixelZoom(1.0, -1.0));
 
 	GL_CHECK(glRasterPos2i((GLint)pos.x, (GLint)pos.y));

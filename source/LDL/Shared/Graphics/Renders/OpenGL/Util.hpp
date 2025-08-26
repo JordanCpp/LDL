@@ -9,7 +9,6 @@
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Graphics/Color.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_1.hpp>
-#include <string>
 
 namespace LDL
 {
@@ -30,7 +29,7 @@ namespace LDL
 			void Check(const char* file, size_t line, const char* expression);
 			size_t MaxTextureSize();
 			bool IsMaxTextureSize(const Math::Vec2u& resolutionSize, size_t textureSize);
-			size_t SelectTextureSize(const Math::Vec2u& size);
+			uint32_t SelectTextureSize(const Math::Vec2u& size);
 		}
 	}
 }

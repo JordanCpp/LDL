@@ -24,10 +24,12 @@ RenderImplOpenGL3::RenderImplOpenGL3(Result& result, RenderContextImpl* renderCo
 	_linePainter(&_shaderLoader),
 	_texturePainter(&_shaderLoader)
 {
+	LDL_UNUSED(renderContextImpl);
 }
 
-void LDL::Graphics::RenderImplOpenGL3::Buffer(uint8_t* dst)
+void RenderImplOpenGL3::Buffer(uint8_t* dst)
 {
+	LDL_UNUSED(dst);
 }
 
 void RenderImplOpenGL3::Begin()
@@ -71,6 +73,7 @@ void RenderImplOpenGL3::Color(const LDL::Graphics::Color& color)
 
 void RenderImplOpenGL3::Pixel(const Vec2u& pos)
 {
+	LDL_UNUSED(pos);
 }
 
 void RenderImplOpenGL3::Line(const Vec2u& pos1, const Vec2u& pos2)
@@ -86,6 +89,8 @@ void RenderImplOpenGL3::Line(const Vec2u& pos1, const Vec2u& pos2)
 
 void RenderImplOpenGL3::Fill(const Vec2u& pos, const Vec2u& size)
 {
+	LDL_UNUSED(pos);
+	LDL_UNUSED(size);
 }
 
 void RenderImplOpenGL3::Draw(Surface* image, const Vec2u& pos)
@@ -105,6 +110,11 @@ void RenderImplOpenGL3::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& s
 
 void RenderImplOpenGL3::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
+	LDL_UNUSED(image);
+	LDL_UNUSED(dstPos);
+	LDL_UNUSED(dstSize);
+	LDL_UNUSED(srcPos);
+	LDL_UNUSED(srcSize);
 }
 
 void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& pos)
@@ -124,9 +134,15 @@ void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& s
 
 void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
+	LDL_UNUSED(dstPos);
+	LDL_UNUSED(dstSize);
+	LDL_UNUSED(srcPos);
+	LDL_UNUSED(srcSize);
+
 	_texturePainter.Draw(_projection, image);
 }
 
 void RenderImplOpenGL3::Draw(TextureBatcher* textureBatcher)
 {
+	LDL_UNUSED(textureBatcher);
 }

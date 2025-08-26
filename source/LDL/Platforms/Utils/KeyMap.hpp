@@ -6,7 +6,8 @@
 #ifndef LDL_Platforms_Utils_KeyMap_hpp
 #define LDL_Platforms_Utils_KeyMap_hpp
 
-#include <LDL/Core/Types.hpp>
+#include <LDL/std/stddef.hpp>
+#include <LDL/std/stdint.hpp>
 
 namespace LDL
 {

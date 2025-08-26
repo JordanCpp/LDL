@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <Arcanum/Painters/LocationPainter.hpp>
 
 using namespace LDL::Math;
@@ -38,8 +43,8 @@ void LocationPainter::DrawSceneries(const Vec2u& start)
 
 		if (sprite != nullptr)
 		{
-			size_t x = sprite->Single()->Offset().x;
-			size_t y = sprite->Single()->Offset().y;
+			uint32_t x = sprite->Single()->Offset().x;
+			uint32_t y = sprite->Single()->Offset().y;
 
 			Vec2u center = Vec2u(tile.x + Tile::Width / 2, tile.y + Tile::Height / 2);
 

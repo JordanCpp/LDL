@@ -6,9 +6,8 @@
 #ifndef LDL_STL_vector_hpp
 #define LDL_STL_vector_hpp
 
-#include <new>
+#include <LDL/STL/new.hpp>
 #include <LDL/std/stdlib.hpp>
-#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {

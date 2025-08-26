@@ -12,10 +12,16 @@ using namespace LDL::Math;
 
 TextureBatcherImplSoftware::TextureBatcherImplSoftware(Texture* texture, size_t count)
 {
+	LDL_UNUSED(texture);
+	LDL_UNUSED(count);
 }
 
 void TextureBatcherImplSoftware::Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
+	LDL_UNUSED(dstPos);
+	LDL_UNUSED(dstSize);
+	LDL_UNUSED(srcPos);
+	LDL_UNUSED(srcSize);
 }
 
 void TextureBatcherImplSoftware::Clear()

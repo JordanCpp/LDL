@@ -8,7 +8,6 @@
 #include "../Renders/Software/RenderImplSoftware.hpp"
 #include "../Renders/OpenGL1/RenderImplOpenGL1.hpp"
 #include "../Renders/OpenGL3/RenderImplOpenGL3.hpp"
-#include "../Renders/Glide/RenderImplGlide.hpp"
 
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Enums/RenderMode.hpp>
@@ -17,28 +16,29 @@ using namespace LDL::Core;
 using namespace LDL::Enums;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
 
-RenderImpl* RenderImplCreator::Create(Result& result, RenderContext& renderContext, Window* window)
+RenderImpl* RenderImplCreator::Create(uint8_t* memory, Result& result, RenderContext& renderContext, Window* window)
 {
 	size_t mode = renderContext.Mode();
-	LDL_ASSERT_DETAIL(mode < RenderMode::Max, "Unknown graphics mode");
+
+	if (mode >= RenderMode::Max)
+	{
+		result.Message("Unknown graphics mode");
+		return NULL;
+	}
 
 	RenderImpl* impl = NULL;
 
 	switch (mode)
 	{
 	case RenderMode::Software:
-		impl = new RenderImplSoftware(result, renderContext.GetRenderContextImpl(), window);
+		impl = new(memory) RenderImplSoftware(result, renderContext.GetRenderContextImpl(), window);
 		break;
 	case RenderMode::OpenGL1:
-		impl = new RenderImplOpenGL1(result, renderContext.GetRenderContextImpl(), window);
+		impl = new(memory) RenderImplOpenGL1(result, renderContext.GetRenderContextImpl(), window);
 		break;
 	case RenderMode::OpenGL3:
-		impl = new RenderImplOpenGL3(result, renderContext.GetRenderContextImpl(), window);
-		break;
-	case RenderMode::Glide:
-		impl = new RenderImplGlide(result, renderContext.GetRenderContextImpl(), window);
+		impl = new(memory) RenderImplOpenGL3(result, renderContext.GetRenderContextImpl(), window);
 		break;
 	}
 

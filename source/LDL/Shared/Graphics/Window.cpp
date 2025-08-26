@@ -3,6 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
 #include <LDL/Shared/Graphics/Creators/WindowImplCreator.hpp>
@@ -10,7 +11,6 @@
 using namespace LDL::Core;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
 
 Window::Window(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode)
 {

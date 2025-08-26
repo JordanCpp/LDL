@@ -24,7 +24,7 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#include <new>
+#include <LDL/STL/new.hpp>
 #include <LDL/Core/MemoryManager.hpp>
 
 using namespace LDL::Core;

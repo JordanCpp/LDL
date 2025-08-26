@@ -22,6 +22,10 @@ namespace LDL
 		class LDL_LIBRARY Render
 		{
 		public:
+			enum
+			{
+				SizeOf = 1024
+			};
 			Render(Core::Result& result, RenderContext& renderContext, Window* window);
 			~Render();
 			RenderImpl* GetRenderImpl();
@@ -46,6 +50,7 @@ namespace LDL
 			void Draw(TextureBatcher* textureBatcher);
 		private:
 			RenderImpl* _impl;
+			uint8_t     _memory[SizeOf];
 		};
 	}
 }

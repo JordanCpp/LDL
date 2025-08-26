@@ -19,8 +19,13 @@ namespace LDL
 		class LDL_LIBRARY Texture
 		{
 		public:
+			enum
+			{
+				SizeOf = 64
+			};
 			Texture(RenderContext* renderContext, const Math::Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);
 			Texture(RenderContext* renderContext, const Math::Vec2u& size, uint8_t bytesPerPixel);
+			Texture(RenderContext* renderContext, Surface* surface);
 			~Texture();
 			void Copy(const Math::Vec2u& dstPos, const Math::Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
 			void Copy(const Math::Vec2u& dstPos, Surface * surface, const Math::Vec2u& srcSize);
@@ -28,6 +33,7 @@ namespace LDL
 			TextureImpl* GetTextureImpl();
 		private:
 			TextureImpl* _impl;
+			uint8_t      _memory[SizeOf];
 		};
 	}
 }

@@ -1,6 +1,7 @@
 #ifndef LDL_OpenGL_OpenGLLoader_hpp
 #define LDL_OpenGL_OpenGLLoader_hpp
 
+#include <LDL/std/stddef.hpp>
 #include <LDL/APIs/OpenGL/OpenGL_Functions.hpp>
 
 namespace LDL

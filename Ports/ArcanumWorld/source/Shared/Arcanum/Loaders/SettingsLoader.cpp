@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <Arcanum/Loaders/SettingsLoader.hpp>
 #include <Arcanum/Core/RuntimeError.hpp>
 
@@ -27,12 +32,12 @@ bool SettingsLoader::Reset(const std::string& path, Settings& settings)
 	settings.Render(_xmlReader->ValueInt());
 
 	_xmlReader->NextNode("Width");
-	size_t width = _xmlReader->ValueInt();
+	uint32_t width = _xmlReader->ValueInt();
 
 	_xmlReader->NextNode("Heigth");
-	size_t heigth = _xmlReader->ValueInt();
+	uint32_t height = _xmlReader->ValueInt();
 
-	settings.Size(Vec2u(width, heigth));
+	settings.Size(Vec2u(width, height));
 
 	_xmlReader->NextNode("Fps");
 	settings.Fps(_xmlReader->ValueInt());

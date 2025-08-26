@@ -11,11 +11,13 @@ using namespace LDL::Math;
 TextureImplSoftware::TextureImplSoftware(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
 	_surface(size, pixels, bytesPerPixel)
 {
+	LDL_UNUSED(renderContextImpl);
 }
 
 TextureImplSoftware::TextureImplSoftware(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel) :
 	_surface(size, size, bytesPerPixel)
 {
+	LDL_UNUSED(renderContextImpl);
 }
 
 TextureImplSoftware::~TextureImplSoftware()
@@ -24,12 +26,17 @@ TextureImplSoftware::~TextureImplSoftware()
 
 void TextureImplSoftware::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel)
 {
-
+	LDL_UNUSED(dstPos);
+	LDL_UNUSED(srcSize);
+	LDL_UNUSED(pixels);
+	LDL_UNUSED(bytesPerPixel);
 }
 
 void TextureImplSoftware::Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& srcSize)
 {
-
+	LDL_UNUSED(dstPos);
+	LDL_UNUSED(surface);
+	LDL_UNUSED(srcSize);
 }
 
 const Vec2u& TextureImplSoftware::Size()

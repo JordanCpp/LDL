@@ -11,9 +11,13 @@ using namespace LDL::Math;
 ImageResizer::ImageResizer(const Vec2u& size) :
 	_surface(size, 4)
 {
+	LDL_UNUSED(size);
 }
 
 Surface* ImageResizer::Resize(const Vec2u& size, Surface* surface)
 {
+	LDL_UNUSED(size);
+	LDL_UNUSED(surface);
+
 	return &_surface;
 }

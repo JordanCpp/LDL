@@ -6,7 +6,9 @@
 #ifndef LDL_Core_Convert_hpp
 #define LDL_Core_Convert_hpp
 
-#include <LDL/Core/Types.hpp>
+#include <LDL/Core/Config.hpp>
+#include <LDL/std/stddef.hpp>
+#include <LDL/std/stdint.hpp>
 
 namespace LDL
 {

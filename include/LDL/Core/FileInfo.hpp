@@ -6,7 +6,6 @@
 #ifndef LDL_Core_FileInfo_hpp
 #define LDL_Core_FileInfo_hpp
 
-#include <LDL/Core/Types.hpp>
 #include <LDL/STL/inplace_strings.hpp>
 
 namespace LDL

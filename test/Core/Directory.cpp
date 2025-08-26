@@ -28,7 +28,7 @@ void Next()
 
 		while (directory.Next(fileInfo))
 		{
-			LDL_TEST_EQUAL(strlen(fileInfo.Name()) > 0);
+			LDL_TEST_EQUAL(LDL::strlen(fileInfo.Name()) > 0);
 		}
 	}
 }

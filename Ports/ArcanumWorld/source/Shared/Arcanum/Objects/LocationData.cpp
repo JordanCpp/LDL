@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <Arcanum/Objects/LocationData.hpp>
 #include <Arcanum/Objects/LocationLimits.hpp>
 
@@ -35,12 +40,12 @@ void LocationData::Reset(const Vec2u& size)
 
 void LocationData::CalculateTiles()
 {
-	for (size_t x = 0; x < Size().x; x++)
+	for (uint32_t x = 0; x < Size().x; x++)
 	{
-		for (size_t y = 0; y < Size().y; y++)
+		for (uint32_t y = 0; y < Size().y; y++)
 		{
-			size_t dx = y * Tile::Width / 2;
-			size_t dy = x * Tile::Height;
+			uint32_t dx = y * Tile::Width / 2;
+			uint32_t dy = x * Tile::Height;
 
 			Vec2u pt = _Isometric.CartesianToIsometric(Vec2u(dx, dy));
 

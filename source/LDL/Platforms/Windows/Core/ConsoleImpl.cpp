@@ -17,5 +17,5 @@ void ConsoleImpl::Write(const char* text)
 {
 	DWORD count = 0;
 
-	WriteConsole(_output, text, LDL::strlen(text), &count, NULL);
+	WriteConsole(_output, text, (DWORD)LDL::strlen(text), &count, NULL);
 }

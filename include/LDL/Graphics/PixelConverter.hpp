@@ -6,6 +6,8 @@
 #ifndef LDL_Graphics_PixelConverter_hpp
 #define LDL_Graphics_PixelConverter_hpp
 
+#include <LDL/Core/Config.hpp>
+#include <LDL/std/stdint.hpp>
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Graphics/Color.hpp>
 

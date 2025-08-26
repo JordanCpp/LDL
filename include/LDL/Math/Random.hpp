@@ -6,7 +6,8 @@
 #ifndef LDL_Math_Random_hpp
 #define LDL_Math_Random_hpp
 
-#include <LDL/Core/Types.hpp>
+#include <LDL/Core/Config.hpp>
+#include <LDL/std/stddef.hpp>
 
 namespace LDL
 {

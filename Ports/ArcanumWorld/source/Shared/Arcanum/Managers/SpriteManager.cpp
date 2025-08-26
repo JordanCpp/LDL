@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <Arcanum/Managers/SpriteManager.hpp>
 
 using namespace LDL::Graphics;
@@ -35,9 +40,9 @@ Sprite* SpriteManager::GetSprite(const std::string& dir, const std::string& file
 
         result = new Sprite;
 
-        for (size_t i = 0; i < _artLoader->Frames(); i++)
+        for (size_t j = 0; j < _artLoader->Frames(); j++)
         {
-            _artLoader->Frame(i);
+            _artLoader->Frame(j);
 
             Image* image = new Image(_renderContext, _artLoader->Size(), _artLoader->Pixels(), _artLoader->Offset(), _artLoader->Delta());
 

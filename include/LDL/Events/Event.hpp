@@ -6,7 +6,6 @@
 #ifndef LDL_Events_Event_hpp
 #define LDL_Events_Event_hpp
 
-#include <LDL/Core/Types.hpp>
 #include <LDL/Events/Mouse.hpp>
 #include <LDL/Events/Quit.hpp>
 #include <LDL/Events/Resize.hpp>

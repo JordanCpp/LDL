@@ -43,6 +43,8 @@ TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, con
 	_RenderContextImpl(renderContextImpl),
 	_Id(0)
 {
+	LDL_UNUSED(size);
+	LDL_UNUSED(bytesPerPixel);
 }
 
 TextureImplOpenGL3::~TextureImplOpenGL3()

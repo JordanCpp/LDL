@@ -74,6 +74,7 @@ void* FixedLinear::AllocateAligned(size_t bytes, size_t alignment)
 
 void FixedLinear::Deallocate(void* ptr)
 {
+	LDL_UNUSED(ptr);
 }
 
 size_t FixedLinear::UsedBytes()

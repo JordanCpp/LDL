@@ -6,6 +6,8 @@
 #ifndef LDL_Allocators_FixedLinear_hpp
 #define LDL_Allocators_FixedLinear_hpp
 
+#include <LDL/Core/Config.hpp>
+#include <LDL/std/stdint.hpp>
 #include <LDL/Allocators/Allocator.hpp>
 
 namespace LDL

@@ -6,7 +6,7 @@
 #ifndef LDL_Allocators_ObjectPool_hpp
 #define LDL_Allocators_ObjectPool_hpp
 
-#include <LDL/Core/Types.hpp>
+#include <LDL/std/stddef.hpp>
 #include <assert.h>
 
 namespace LDL

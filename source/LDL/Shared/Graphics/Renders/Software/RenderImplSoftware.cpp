@@ -6,9 +6,9 @@
 #include "RenderImplSoftware.hpp"
 
 #if defined(_WIN32)
-#include <LDL/Platforms/Windows/Graphics/WindowImplSoftware.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplSoftware.hpp>
 #elif defined(__unix__)
-#include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
+    #include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
 #endif
 
 using namespace LDL::Core;
@@ -21,11 +21,14 @@ RenderImplSoftware::RenderImplSoftware(Result& result, RenderContextImpl* render
 	_canvas(_window->Size(), 3),
 	_imageResizer(_window->Size())
 {
+	LDL_UNUSED(renderContextImpl);
+
 	_pixelPainter.Bind(&_canvas);
 }
 
 void RenderImplSoftware::Buffer(uint8_t* dst)
 {
+	LDL_UNUSED(dst);
 }
 
 void RenderImplSoftware::Begin()
@@ -101,10 +104,19 @@ void RenderImplSoftware::Draw(Surface* image, const Vec2u& pos, const Vec2u& siz
 
 void RenderImplSoftware::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
+	LDL_UNUSED(image);
+	LDL_UNUSED(dstPos);
+	LDL_UNUSED(srcPos);
+	LDL_UNUSED(srcSize);
 }
 
 void RenderImplSoftware::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
+	LDL_UNUSED(image);
+	LDL_UNUSED(dstPos);
+	LDL_UNUSED(dstSize);
+	LDL_UNUSED(srcPos);
+	LDL_UNUSED(srcSize);
 }
 
 void RenderImplSoftware::Draw(Surface* image, const Vec2u& pos)
@@ -114,12 +126,22 @@ void RenderImplSoftware::Draw(Surface* image, const Vec2u& pos)
 
 void RenderImplSoftware::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
+	LDL_UNUSED(image);
+	LDL_UNUSED(dstPos);
+	LDL_UNUSED(srcPos);
+	LDL_UNUSED(srcSize);
 }
 
 void RenderImplSoftware::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
+	LDL_UNUSED(image);
+	LDL_UNUSED(dstPos);
+	LDL_UNUSED(dstSize);
+	LDL_UNUSED(srcPos);
+	LDL_UNUSED(srcSize);
 }
 
 void RenderImplSoftware::Draw(TextureBatcher* textureBatcher)
 {
+	LDL_UNUSED(textureBatcher);
 }

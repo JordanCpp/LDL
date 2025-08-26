@@ -6,7 +6,7 @@
 #ifndef LDL_Allocators_Allocator_hpp
 #define LDL_Allocators_Allocator_hpp
 
-#include <LDL/Core/Types.hpp>
+#include <LDL/std/stddef.hpp>
 
 namespace LDL
 {

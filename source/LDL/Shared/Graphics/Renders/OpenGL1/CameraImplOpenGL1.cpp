@@ -29,9 +29,11 @@ const Vec2u& CameraImplOpenGL1::Size()
 
 void CameraImplOpenGL1::Pos(const Vec2u& pos)
 {
+	LDL_UNUSED(pos);
 	//_RenderImpl->_ModelView = Translate(_RenderImpl->_ModelView, Vec3f((float)pos.x, (float)pos.y, 0.0f));
 }
 
 void CameraImplOpenGL1::Size(const Vec2u& size)
 {
+	LDL_UNUSED(size);
 }

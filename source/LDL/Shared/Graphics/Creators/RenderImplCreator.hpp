@@ -10,21 +10,17 @@
 #include "../Impls/RenderImpl.hpp"
 #include <LDL/Graphics/RenderContext.hpp>
 #include <LDL/Math/Vec2.hpp>
-#include <string>
 
 namespace LDL
 {
 	namespace Graphics
 	{
-		namespace Creators
+		class RenderImplCreator
 		{
-			class RenderImplCreator
-			{
-			public:
-				RenderImpl* Create(Core::Result& result, RenderContext& renderContext, Window* window);
-			private:
-			};
-		}
+		public:
+			RenderImpl* Create(uint8_t* memory, Core::Result& result, RenderContext& renderContext, Window* window);
+		private:
+		};
 	}
 }
 

@@ -6,8 +6,8 @@
 #ifndef LDL_Core_TestEqual_hpp
 #define LDL_Core_TestEqual_hpp
 
-#include <string>
-#include <LDL/Core/Types.hpp>
+#include <LDL/Core/Config.hpp>
+#include <LDL/std/stddef.hpp>
 
 namespace LDL
 {

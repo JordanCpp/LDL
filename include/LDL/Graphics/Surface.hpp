@@ -7,7 +7,9 @@
 #define LDL_Graphics_Surface_hpp
 
 #include <LDL/Math/Vec2.hpp>
+#include <LDL/STL/vector.hpp>
 #include <LDL/Graphics/Color.hpp>
+#include <LDL/Graphics/PixelFormat.hpp>
 
 namespace LDL
 {
@@ -21,6 +23,9 @@ namespace LDL
 			Surface(const Math::Vec2u& size, const Math::Vec2u& capacity, uint8_t bytesPerPixel);
 			Surface(const Math::Vec2u& size, const Math::Vec2u& capacity, uint8_t* pixels, uint8_t bytesPerPixel);
 			~Surface();
+			void ColorKey(const Graphics::Color& key);
+			const Graphics::Color& ColorKey();
+			bool Enabled();
 			const Math::Vec2u& Capacity();
 			const Math::Vec2u& Size();
 			void Resize(const Math::Vec2u& size);
@@ -29,10 +34,12 @@ namespace LDL
 			uint8_t* Pixels();
 			Color Pixel(const Math::Vec2u& pos);
 		private:
-			uint8_t     _bytesPerPixel;
-			uint8_t*    _pixels;
-			Math::Vec2u _capacity;
-			Math::Vec2u _size;
+			uint8_t         _bytesPerPixel;
+			bool            _enabled;
+			Graphics::Color _key;
+			Math::Vec2u     _capacity;
+			Math::Vec2u     _size;
+			vector<uint8_t> _pixels;
 		};
 	}
 }

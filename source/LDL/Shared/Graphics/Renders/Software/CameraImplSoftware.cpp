@@ -29,8 +29,10 @@ const Vec2u& CameraImplSoftware::Size()
 
 void CameraImplSoftware::Pos(const Vec2u& pos)
 {
+	_pos = pos;
 }
 
 void CameraImplSoftware::Size(const Vec2u& size)
 {
+	_size = size;
 }

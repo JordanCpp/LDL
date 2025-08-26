@@ -8,18 +8,17 @@
 
 using namespace LDL::Math;
 using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
 
 TextureBatcher::TextureBatcher(RenderContext* renderContext, Texture* texture, size_t count)
 {
 	TextureBatcherImplCreator creator;
 
-	_impl = creator.Create(renderContext, texture, count);
+	_impl = creator.Create(_memory, renderContext, texture, count);
 }
 
 TextureBatcher::~TextureBatcher()
 {
-	delete _impl;
+	 _impl->~TextureBatcherImpl();
 }
 
 TextureBatcherImpl* TextureBatcher::GetTextureBatcherImpl()

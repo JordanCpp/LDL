@@ -6,7 +6,7 @@
 #ifndef LDL_Core_Console_hpp
 #define LDL_Core_Console_hpp
 
-#include <LDL/Core/Types.hpp>
+#include <LDL/Core/Config.hpp>
 
 namespace LDL
 {

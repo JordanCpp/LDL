@@ -10,4 +10,8 @@ using namespace LDL::Math;
 
 void ImageWriter::Save(const char* path, const Vec2u& size, size_t bytesPerPixel, uint8_t* pixels)
 {
+	LDL_UNUSED(path);
+	LDL_UNUSED(size);
+	LDL_UNUSED(bytesPerPixel);
+	LDL_UNUSED(pixels);
 }

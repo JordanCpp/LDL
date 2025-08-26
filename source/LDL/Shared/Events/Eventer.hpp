@@ -18,7 +18,7 @@ namespace LDL
 		public:
 			enum
 			{
-				Max = 1024
+				Max = 128
 			};
 			Eventer();
 			bool Empty();

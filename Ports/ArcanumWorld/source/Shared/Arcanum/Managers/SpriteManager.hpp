@@ -1,13 +1,17 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #ifndef Arcanum_Managers_SpriteManager_hpp
 #define Arcanum_Managers_SpriteManager_hpp
 
+#include <map>
+#include <string>
 #include <Arcanum/Graphics/Sprite.hpp>
 #include <Arcanum/Managers/FileManager.hpp>
 #include <Arcanum/Loaders/ArtLoader.hpp>
 #include <Arcanum/Managers/PathManager.hpp>
-
-#include <unordered_map>
-#include <string>
 
 namespace Arcanum
 {
@@ -23,7 +27,7 @@ namespace Arcanum
 			Graphics::Sprite* GetTile(const std::string& fileName);
 			Graphics::Sprite* GetInterface(const std::string& fileName);
 		private:
-			typedef std::unordered_map<std::string, Graphics::Sprite*> container;
+			typedef std::map<std::string, Graphics::Sprite*> container;
 			LDL::Graphics::RenderContext* _renderContext;
 			Managers::FileManager*        _fileManager;
 			Loaders::ArtLoader*           _artLoader;

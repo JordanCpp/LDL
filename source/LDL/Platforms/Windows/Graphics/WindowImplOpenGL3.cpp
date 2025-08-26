@@ -50,6 +50,7 @@ WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec
     if (_Window._hdc == NULL)
     {
         _result.Message("GetDC failed");
+        return;
     }
 
     pfd.nSize      = sizeof(pfd);
@@ -63,46 +64,58 @@ WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec
     if (format == 0)
     {
         _result.Message("ChoosePixelFormat failed");
+        return;
     }
 
     if (!SetPixelFormat(_Window._hdc, format, &pfd))
     {
         _result.Message("SetPixelFormat failed");
+        return;
     }
 
     _HGLRC = wglCreateContext(_Window._hdc);
-    if (_HGLRC == NULL) _result.Message("wglCreateContext failed");
+    if (_HGLRC == NULL)
+    {
+        _result.Message("wglCreateContext failed");
+        return;
+    }
 
     if (!wglMakeCurrent(_Window._hdc, _HGLRC))
     {
         _result.Message("wglMakeCurrent failed");
+        return;
     }
 
     wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
     if (wglCreateContextAttribsARB == NULL)
     {
         _result.Message("wglGetProcAddress failed");
+        return;
     }
 
     if (!wglMakeCurrent(NULL, NULL))
     {
         _result.Message("wglMakeCurrent failed");
+        return;
     }
 
     if (!wglDeleteContext(_HGLRC))
     {
         _result.Message("wglDeleteContext failed");
+        return;
     }
 
     _HGLRC = wglCreateContextAttribsARB(_Window._hdc, 0, attribs);
     if (_HGLRC == NULL)
     {
         _result.Message("wglCreateContextAttribsARB failed");
+        return;
     }
 
     if (!wglMakeCurrent(_Window._hdc, _HGLRC))
     {
         _result.Message("wglMakeCurrent failed");
+        return;
     }
 
     _OpenGLLoader.Init(3, 3);

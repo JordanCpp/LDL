@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <Arcanum/Loaders/LocationLoader.hpp>
 
 using namespace LDL::Math;
@@ -19,12 +24,12 @@ void LocationLoader::Reset(const std::string& path)
 	_xmlReader->NextOpening("Info");
 
 	_xmlReader->NextNode("Width");
-	size_t width = _xmlReader->ValueInt();
+	uint32_t width = _xmlReader->ValueInt();
 
 	_xmlReader->NextNode("Heigth");
-	size_t heigth = _xmlReader->ValueInt();
+	uint32_t height = _xmlReader->ValueInt();
 
-	_locationCreator->Reset(Vec2u(width, heigth));
+	_locationCreator->Reset(Vec2u(width, height));
 
 	_xmlReader->NextNode("Sceneries");
 	_sceneryCount = _xmlReader->ValueInt();
@@ -33,7 +38,7 @@ void LocationLoader::Reset(const std::string& path)
 
 	_xmlReader->NextOpening("Tiles");
 
-	for (size_t i = 0; i < width * heigth; i++)
+	for (size_t i = 0; i < width * height; i++)
 	{
 		_xmlReader->NextOpening("Tile");
 		_xmlReader->NextNode("Body");
@@ -50,10 +55,10 @@ void LocationLoader::Reset(const std::string& path)
 		_xmlReader->NextOpening("Scenery");
 
 		_xmlReader->NextNode("X");
-		size_t x = _xmlReader->ValueInt();
+		uint32_t x = _xmlReader->ValueInt();
 
 		_xmlReader->NextNode("Y");
-		size_t y = _xmlReader->ValueInt();
+		uint32_t y = _xmlReader->ValueInt();
 
 		_xmlReader->NextNode("Body");
 		_locationCreator->NewScenery(Vec2u(x, y), _xmlReader->Value());

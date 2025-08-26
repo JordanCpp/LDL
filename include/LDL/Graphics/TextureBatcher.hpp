@@ -17,6 +17,10 @@ namespace LDL
 		class LDL_LIBRARY TextureBatcher
 		{
 		public:
+			enum
+			{
+				SizeOf = 64
+			};
 			TextureBatcher(RenderContext* renderContext, Texture* texture, size_t count);
 			~TextureBatcher();
 			TextureBatcherImpl* GetTextureBatcherImpl();
@@ -24,6 +28,7 @@ namespace LDL
 			void Clear();
 		private:
 			TextureBatcherImpl* _impl;
+			uint8_t             _memory[SizeOf];
 		};
 	}
 }

@@ -3,8 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "DirectSound8.hpp"
+#ifndef LDL_std_stddef_hpp
+#define LDL_std_stddef_hpp
 
-PFNDirectSoundCreate8 DirectSoundCreate8 = NULL;
+#include <stddef.h>
 
-const GUID GUID_NULL = { 0, 0, 0, { 0, 0, 0, 0, 0, 0, 0, 0 } };
+#endif

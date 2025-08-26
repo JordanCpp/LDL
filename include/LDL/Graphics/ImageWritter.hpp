@@ -6,6 +6,8 @@
 #ifndef LDL_Graphics_ImageWriter_hpp
 #define LDL_Graphics_ImageWriter_hpp
 
+#include <LDL/Core/Config.hpp>
+#include <LDL/std/stddef.hpp>
 #include <LDL/Math/Vec2.hpp>
 
 namespace LDL

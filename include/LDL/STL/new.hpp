@@ -3,6 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "DirectDraw.hpp"
+#ifndef LDL_STL_new_hpp
+#define LDL_STL_new_hpp
 
-PFNDirectDrawCreate DirectDrawCreate = NULL;
+#include <new>
+
+#endif

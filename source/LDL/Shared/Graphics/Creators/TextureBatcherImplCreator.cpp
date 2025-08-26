@@ -9,7 +9,6 @@
 #include "../Renders/Software/TextureBatcherImplSoftware.hpp"
 #include "../Renders/OpenGL1/TextureBatcherImplOpenGL1.hpp"
 #include "../Renders/OpenGL3/TextureBatcherImplOpenGL3.hpp"
-#include "../Renders/Glide/TextureBatcherImplGlide.hpp"
 
 #include "TextureBatcherImplCreator.hpp"
 #include <LDL/Core/Assert.hpp>
@@ -18,9 +17,8 @@ using namespace LDL::Core;
 using namespace LDL::Enums;
 using namespace LDL::Math;
 using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
 
-TextureBatcherImpl* TextureBatcherImplCreator::Create(RenderContext* renderContext, Texture* texture, size_t count)
+TextureBatcherImpl* TextureBatcherImplCreator::Create(uint8_t* memory, RenderContext* renderContext, Texture* texture, size_t count)
 {
 	size_t mode = renderContext->Mode();
 
@@ -31,16 +29,13 @@ TextureBatcherImpl* TextureBatcherImplCreator::Create(RenderContext* renderConte
 	switch (mode)
 	{
 	case RenderMode::Software:
-		result = new TextureBatcherImplSoftware(texture, count);
+		result = new(memory) TextureBatcherImplSoftware(texture, count);
 		break;
 	case RenderMode::OpenGL1:
-		result = new TextureBatcherImplOpenGL1(texture, count);
+		result = new(memory) TextureBatcherImplOpenGL1(texture, count);
 		break;
 	case RenderMode::OpenGL3:
-		result = new TextureBatcherImplOpenGL3(texture, count);
-		break;
-	case RenderMode::Glide:
-		result = new TextureBatcherImplGlide(texture, count);
+		result = new(memory) TextureBatcherImplOpenGL3(texture, count);
 		break;
 	}
 

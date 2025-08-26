@@ -6,6 +6,7 @@
 #ifndef LDL_Input_Mouse_hpp
 #define LDL_Input_Mouse_hpp
 
+#include <LDL/Core/Config.hpp>
 #include <LDL/Math/Vec2.hpp>
 
 namespace LDL

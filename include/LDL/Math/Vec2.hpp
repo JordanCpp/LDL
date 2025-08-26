@@ -6,7 +6,7 @@
 #ifndef LDL_Math_Vec2_hpp
 #define LDL_Math_Vec2_hpp
 
-#include <LDL/Core/Types.hpp>
+#include <LDL/std/stdint.hpp>
 
 namespace LDL
 {

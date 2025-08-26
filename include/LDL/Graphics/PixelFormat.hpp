@@ -6,8 +6,6 @@
 #ifndef LDL_Graphics_PixelFormat_hpp
 #define LDL_Graphics_PixelFormat_hpp
 
-#include <LDL/Graphics/Render.hpp>
-
 namespace LDL
 {
     namespace Graphics

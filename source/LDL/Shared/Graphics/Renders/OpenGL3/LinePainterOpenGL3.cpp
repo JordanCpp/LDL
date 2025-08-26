@@ -12,7 +12,7 @@ LinePainter::LinePainter(ShaderLoader* shaderLoader) :
     _shaderLoader(shaderLoader)
 {
     _shaderLoader->Load("LDL_Shaders/OpenGL3/LinePainter.vs");
-    const char* vertexSource = _shaderLoader->Result().c_str();
+    const char* vertexSource = _shaderLoader->Result();
 
     GLint success = 0;
 
@@ -22,7 +22,7 @@ LinePainter::LinePainter(ShaderLoader* shaderLoader) :
     glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
 
     _shaderLoader->Load("LDL_Shaders/OpenGL3/LinePainter.fs");
-    const char* fragmentSource = _shaderLoader->Result().c_str();
+    const char* fragmentSource = _shaderLoader->Result();
 
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragmentShader, 1, &fragmentSource, NULL);

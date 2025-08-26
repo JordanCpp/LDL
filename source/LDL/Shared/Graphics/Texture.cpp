@@ -8,26 +8,31 @@
 
 using namespace LDL::Math;
 using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
 
 Texture::Texture(RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel)
 {
 	TextureImplCreator creator;
 
-	_impl = creator.Create(renderContext, size, pixels, bytesPerPixel);
-
+	_impl = creator.Create(_memory, renderContext, size, pixels, bytesPerPixel);
 }
 
 Texture::Texture(RenderContext* renderContext, const Vec2u& size, uint8_t bytesPerPixel)
 {
 	TextureImplCreator creator;
 
-	_impl = creator.Create(renderContext, size, bytesPerPixel);
+	_impl = creator.Create(_memory, renderContext, size, bytesPerPixel);
+}
+
+Texture::Texture(RenderContext* renderContext, Surface* surface)
+{
+	TextureImplCreator creator;
+
+	_impl = creator.Create(_memory, renderContext, surface);
 }
 
 Texture::~Texture()
 {
-	delete _impl;
+	_impl->~TextureImpl();
 }
 
 void Texture::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel)

@@ -6,7 +6,7 @@
 #ifndef LDL_Graphics_RenderContextImpl_hpp
 #define LDL_Graphics_RenderContextImpl_hpp
 
-#include <LDL/Core/Types.hpp>
+#include <LDL/std/stddef.hpp>
 
 namespace LDL
 {

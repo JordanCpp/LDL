@@ -6,7 +6,8 @@
 #ifndef LDL_Time_FpsLimiter_hpp
 #define LDL_Time_FpsLimiter_hpp
 
-#include <LDL/Core/Types.hpp>
+#include <LDL/Core/Config.hpp>
+#include <LDL/std/stddef.hpp>
 
 namespace LDL
 {

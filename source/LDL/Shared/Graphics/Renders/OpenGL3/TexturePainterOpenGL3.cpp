@@ -17,7 +17,7 @@ TexturePainter::TexturePainter(ShaderLoader* shaderLoader) :
     _elementBufferObject(0)
 {
     _shaderLoader->Load("LDL_Shaders/OpenGL3/TexturePainter.vs");
-    const char* vertexSource = _shaderLoader->Result().c_str();
+    const char* vertexSource = _shaderLoader->Result();
 
     GLint success = 0;
 
@@ -27,7 +27,7 @@ TexturePainter::TexturePainter(ShaderLoader* shaderLoader) :
     glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
 
     _shaderLoader->Load("LDL_Shaders/OpenGL3/TexturePainter.fs");
-    const char* fragmentSource = _shaderLoader->Result().c_str();
+    const char* fragmentSource = _shaderLoader->Result();
 
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragmentShader, 1, &fragmentSource, NULL);
@@ -74,6 +74,8 @@ TexturePainter::TexturePainter(ShaderLoader* shaderLoader) :
 
 void TexturePainter::Draw(Mat4f proj, Texture* texture)
 {
+    LDL_UNUSED(proj);
+
     GLuint id = (GLuint)((TextureImplOpenGL3*)texture->GetTextureImpl())->Id();
 
     glBindTexture(GL_TEXTURE_2D, id);

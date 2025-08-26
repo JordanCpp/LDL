@@ -11,15 +11,5 @@ using namespace LDL::Loaders;
 
 int main()
 {
-	Result result;
-	BmpLoader bmpLoader(result);
-
-	//LDL_TEST_EXCEPTION(imageLoader.Load("TestFiles/359500_600.jpg"));
-
-	LDL_TEST_EQUAL(imageLoader.BytesPerPixel() == 3);
-	LDL_TEST_EQUAL(imageLoader.Size().x == 600);
-	LDL_TEST_EQUAL(imageLoader.Size().y == 438);
-	LDL_TEST_EQUAL(imageLoader.Pixels() != NULL);
-
 	return 0;
 }

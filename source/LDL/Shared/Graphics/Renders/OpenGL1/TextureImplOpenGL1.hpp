@@ -20,6 +20,7 @@ namespace LDL
 		class TextureImplOpenGL1: public TextureImpl
 		{
 		public:
+			TextureImplOpenGL1(RenderContextImpl* renderContextImpl, Surface* surface);
 			TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Math::Vec2u & size, uint8_t* pixels, uint8_t bytesPerPixel);
 			TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Math::Vec2u& size, uint8_t bytesPerPixel);
 			~TextureImplOpenGL1();

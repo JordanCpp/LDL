@@ -1,7 +1,9 @@
 #ifndef LDL_OpenGL_OpenGLTypes_hpp
 #define LDL_OpenGL_OpenGLTypes_hpp
 
-#include <LDL/Core/Types.hpp>
+#include <LDL/Core/Config.hpp>
+#include <LDL/std/stddef.hpp>
+#include <LDL/std/stdint.hpp>
 
 typedef unsigned int GLenum;
 typedef unsigned char GLboolean;

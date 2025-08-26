@@ -3,17 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "RenderContextImplGlide.hpp"
+#ifndef LDL_std_limits_hpp
+#define LDL_std_limits_hpp
 
-using namespace LDL::Graphics;
+#include <limits.h>
 
-RenderContextImplGlide::RenderContextImplGlide(size_t mode) :
-	_mode(mode)
-{
-}
-
-size_t RenderContextImplGlide::Mode()
-{
-	return _mode;
-}
-
+#endif

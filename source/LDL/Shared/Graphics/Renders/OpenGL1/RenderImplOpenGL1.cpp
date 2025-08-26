@@ -123,10 +123,19 @@ void RenderImplOpenGL1::Draw(Surface* image, const Vec2u& pos, const Vec2u& size
 
 void RenderImplOpenGL1::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
+	LDL_UNUSED(image);
+	LDL_UNUSED(dstPos);
+	LDL_UNUSED(srcPos);
+	LDL_UNUSED(srcSize);
 }
 
 void RenderImplOpenGL1::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
+	LDL_UNUSED(image);
+	LDL_UNUSED(dstPos);
+	LDL_UNUSED(dstSize);
+	LDL_UNUSED(srcPos);
+	LDL_UNUSED(srcSize);
 }
 
 void RenderImplOpenGL1::Draw(Texture* image, const Vec2u& pos)

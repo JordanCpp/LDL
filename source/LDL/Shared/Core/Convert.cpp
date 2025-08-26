@@ -5,6 +5,7 @@
 
 #include <LDL/Core/Convert.hpp>
 #include <LDL/std/string.hpp>
+#include <LDL/std/limits.hpp>
 
 using namespace LDL::Core;
 
@@ -22,7 +23,7 @@ const char* Convert::ToString(intmax_t num, uint8_t base)
         return _buffer;
     }
 
-    if (num == INTMAX_MIN && base == 10)
+    if (num == INT_MIN && base == 10)
     {
         const char* min_str = "-9223372036854775808";
         

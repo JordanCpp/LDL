@@ -10,21 +10,17 @@
 #include <LDL/Core/Result.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
 #include <LDL/Math/Vec2.hpp>
-#include <string>
 
 namespace LDL
 {
 	namespace Graphics
 	{
-		namespace Creators
+		class WindowImplCreator
 		{
-			class WindowImplCreator
-			{
-			public:
-				WindowImpl* Create(Core::Result& result, RenderContext& renderContext, const Math::Vec2u& pos, const Math::Vec2u& size, const char* title, size_t mode);
-			private:
-			};
-		}
+		public:
+			WindowImpl* Create(Core::Result& result, RenderContext& renderContext, const Math::Vec2u& pos, const Math::Vec2u& size, const char* title, size_t mode);
+		private:
+		};
 	}
 }
 

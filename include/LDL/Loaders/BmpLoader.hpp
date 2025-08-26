@@ -6,7 +6,6 @@
 #ifndef LDL_Loaders_BmpLoader_hpp
 #define LDL_Loaders_BmpLoader_hpp
 
-#include <stdio.h> 
 #include <LDL/STL/vector.hpp>
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Core/Result.hpp>

@@ -3,6 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <LDL/LDL.hpp>
 
 using namespace LDL::Graphics;
@@ -29,7 +31,12 @@ int main()
 	BmpLoader loader(result);
 
 	loader.Load("Data/SeasonsTiles.bmp");
-	Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.Bpp());
+
+	Surface surface(loader.Size(), loader.Pixels(), loader.Bpp());
+
+	surface.ColorKey(Color(255, 255, 255));
+
+	Texture image(&renderContext,  &surface);
 
 	FpsCounter fpsCounter;
 	Convert convert;
@@ -41,8 +48,8 @@ int main()
 	Vec2u mapSize  = Vec2u(9, 9);
 	Vec2u tileSize = Vec2u(128, 64);
 
-	uint32_t dx = 0;
-	uint32_t dy = 0;
+	uint32_t dx   = 0;
+	uint32_t dy   = 0;
 	uint32_t step = tileSize.x / 2;
 
 	LDL::vector<uint32_t> tilesX;
@@ -67,6 +74,15 @@ int main()
 
 		while (window.GetEvent(report))
 		{
+			if (report.IsKeyPressed(KeyboardKey::Q))
+			{
+				for (uint32_t i = 0; i < mapSize.x * mapSize.y; i++)
+				{
+					tilesX[i] = random.Range(0, 7);
+					tilesY[i] = random.Range(0, 5);
+				}
+			}
+
 			if (report.IsKeyPressed(KeyboardKey::W))
 			{
 				dy -= step;

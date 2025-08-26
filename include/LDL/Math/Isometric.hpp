@@ -6,6 +6,7 @@
 #ifndef LDL_Math_Isometric_hpp
 #define LDL_Math_Isometric_hpp
 
+#include <LDL/Core/Config.hpp>
 #include <LDL/Math/Vec2.hpp>
 
 namespace LDL

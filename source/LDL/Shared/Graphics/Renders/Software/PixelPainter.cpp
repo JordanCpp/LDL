@@ -202,12 +202,12 @@ void PixelPainter::Fill(const Vec2u& pos, const Vec2u& size)
 	LDL_ASSERT(size.x > 0);
 	LDL_ASSERT(size.y > 0);
 
-	size_t x = pos.x;
-	size_t y = pos.y;
+	uint32_t x = pos.x;
+	uint32_t y = pos.y;
 
-	for (size_t i = 0; i < size.x; i++)
+	for (uint32_t i = 0; i < size.x; i++)
 	{
-		for (size_t j = 0; j < size.y; j++)
+		for (uint32_t j = 0; j < size.y; j++)
 		{
 			Pixel(Vec2u(x + i, y + j));
 		}

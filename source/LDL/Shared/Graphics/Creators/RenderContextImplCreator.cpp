@@ -3,23 +3,21 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+#include <LDL/STL/new.hpp>
 #include <LDL/Enums/RenderMode.hpp>
 #include "RenderContextImplCreator.hpp"
 
 #include "../Renders/Software/RenderContextImplSoftware.hpp"
 #include "../Renders/OpenGL1/RenderContextImplOpenGL1.hpp"
 #include "../Renders/OpenGL3/RenderContextImplOpenGL3.hpp"
-#include "../Renders/Glide/RenderContextImplGlide.hpp"
-#include "../Renders/Direct3D6/RenderContextImplDirect3D6.hpp"
 
 #include <LDL/Core/Assert.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Enums;
 using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
 
-RenderContextImpl* RenderContextImplCreator::Create(size_t mode)
+RenderContextImpl* RenderContextImplCreator::Create(uint8_t* memory, size_t mode)
 {
 	RenderContextImpl* result = NULL;
 
@@ -28,19 +26,13 @@ RenderContextImpl* RenderContextImplCreator::Create(size_t mode)
 	switch (mode)
 	{
 	case RenderMode::Software:
-		result = new RenderContextImplSoftware(mode);
+		result = new(memory) RenderContextImplSoftware(mode);
 		break;
 	case RenderMode::OpenGL1:
-		result = new RenderContextImplOpenGL1(mode);
+		result = new(memory) RenderContextImplOpenGL1(mode);
 		break;
 	case RenderMode::OpenGL3:
-		result = new RenderContextImplOpenGL3(mode);
-		break;
-	case RenderMode::Glide:
-		result = new RenderContextImplGlide(mode);
-		break;
-	case RenderMode::Direct3D6:
-		result = new RenderContextImplDirect3D6(mode);
+		result = new(memory) RenderContextImplOpenGL3(mode);
 		break;
 	}
 

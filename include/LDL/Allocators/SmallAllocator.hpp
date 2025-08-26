@@ -6,6 +6,9 @@
 #ifndef LDL_Allocators_SmallAllocator_hpp
 #define LDL_Allocators_SmallAllocator_hpp
 
+#include <LDL/Core/Config.hpp>
+#include <LDL/std/stdint.hpp>
+#include <LDL/std/limits.hpp>
 #include <LDL/Allocators/Allocator.hpp>
 
 namespace LDL

@@ -4,6 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/std/string.hpp>
+#include <LDL/std/stdint.hpp>
 
 size_t LDL::strlcpy(char* dst, const char* src, size_t size)
 {

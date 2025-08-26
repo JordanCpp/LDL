@@ -7,18 +7,17 @@
 #include <LDL/Shared/Graphics/Creators/RenderContextImplCreator.hpp>
 
 using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
 
 RenderContext::RenderContext(size_t mode)
 {
     RenderContextImplCreator creator;
 	
-	_impl = creator.Create(mode);
+	_impl = creator.Create(_memory, mode);
 }
 
 RenderContext::~RenderContext()
 {
-	delete _impl;
+	_impl->~RenderContextImpl();
 }
 
 RenderContextImpl* RenderContext::GetRenderContextImpl()

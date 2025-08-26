@@ -70,9 +70,9 @@ void Clear()
 	painter.Color(LDL::Graphics::Color(1, 2, 3, 4));
 	painter.Clear();
 
-	for (size_t i = 0; i < painter.Size().x; i++)
+	for (uint32_t i = 0; i < painter.Size().x; i++)
 	{
-		for (size_t j = 0; j < painter.Size().y; j++)
+		for (uint32_t j = 0; j < painter.Size().y; j++)
 		{
 			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).r == 1);
 			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).g == 2);
@@ -96,9 +96,9 @@ void Fill()
 	painter.Color(LDL::Graphics::Color(1, 2, 3, 4));
 	painter.Fill(Vec2u(50, 50), Vec2u(320, 240));
 
-	for (size_t i = 50; i < 320; i++)
+	for (uint32_t i = 50; i < 320; i++)
 	{
-		for (size_t j = 50; j < 240; j++)
+		for (uint32_t j = 50; j < 240; j++)
 		{
 			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).r == 1);
 			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).g == 2);
@@ -122,7 +122,7 @@ void Line()
 	painter.Color(LDL::Graphics::Color(1, 2, 3, 4));
 	painter.Line(Vec2u(0, 0), Vec2u(320, 0));
 
-	for (size_t i = 0; i < 320; i++)
+	for (uint32_t i = 0; i < 320; i++)
 	{
 		LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, 0)).r == 1);
 		LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, 0)).g == 2);

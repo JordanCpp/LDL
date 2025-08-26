@@ -3,23 +3,82 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "TextureImplOpenGL1.hpp"
+#include <LDL/Core/Assert.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
-#include <assert.h>
-#include "../OpenGL/Util.hpp"
-#include <iostream>
+#include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/TextureImplOpenGL1.hpp>
 
 using namespace LDL::Graphics;
 using namespace LDL::Math;
+
+TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, Surface* surface) :
+	_renderContextImpl(renderContextImpl),
+	_id(0)
+{
+	GLint format = 0;
+
+	LDL::vector<uint8_t> pixels;
+
+	if (surface->Enabled())
+	{
+		pixels.resize(surface->Size().x * surface->Size().y * 4);
+
+		const uint8_t*        src = surface->Pixels();
+		const Graphics::Color key = surface->ColorKey();
+
+		if (surface->BytesPerPixel() == 3)
+		{
+			for (size_t i = 0; i < surface->Size().x * surface->Size().y; i++)
+			{
+				uint8_t r = src[i * 3 + 0];
+				uint8_t g = src[i * 3 + 1];
+				uint8_t b = src[i * 3 + 2];
+
+				bool isKeyColor = (r == key.r && g == key.g && b == key.b);
+
+				pixels[i * 4 + 0] = r;
+				pixels[i * 4 + 1] = g;
+				pixels[i * 4 + 2] = b;
+				pixels[i * 4 + 3] = isKeyColor ? 0 : 255;
+			}
+		}
+
+		format = GL_RGBA;
+	}
+	else
+	{
+		if (surface->BytesPerPixel() == 3)
+			format = GL_RGB;
+		else
+			format = GL_RGBA;
+	}
+
+	_size = surface->Size();
+
+	uint32_t sz = Util::SelectTextureSize(_size);
+
+	_quad = Vec2u(sz, sz);
+
+	_id = Util::CreateTexture((GLsizei)_quad.x, (GLsizei)_quad.y, format);
+
+	if (surface->Enabled())
+	{
+		Copy(Vec2u(0, 0), _size, pixels.data(), 4);
+	}
+	else
+	{
+		Copy(Vec2u(0, 0), _size, surface->Pixels(), surface->BytesPerPixel());
+	}
+}
 
 TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
 	_renderContextImpl(renderContextImpl),
 	_id(0)
 {
-	assert(size.x > 0);
-	assert(size.y > 0);
-	assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
-	assert(pixels != NULL);
+	LDL_ASSERT(size.x > 0);
+	LDL_ASSERT(size.y > 0);
+	LDL_ASSERT(bytesPerPixel >= 1 && bytesPerPixel <= 4);
+	LDL_ASSERT(pixels != NULL);
 
 	_size = size;
 
@@ -30,7 +89,7 @@ TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, con
 	else
 		format = GL_RGBA;
 
-	size_t sz = Util::SelectTextureSize(_size);
+	uint32_t sz = Util::SelectTextureSize(_size);
 
 	_quad = Vec2u(sz, sz);
 
@@ -52,7 +111,7 @@ TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, con
 	else
 		format = GL_RGBA;
 
-	size_t sz = Util::SelectTextureSize(_size);
+	uint32_t sz = Util::SelectTextureSize(_size);
 
 	_quad = Vec2u(sz, sz);
 
@@ -69,9 +128,13 @@ void TextureImplOpenGL1::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t
 	GLint format = 0;
 
 	if (bytesPerPixel == 3)
+	{
 		format = GL_RGB;
+	}
 	else
+	{
 		format = GL_RGBA;
+	}
 
 	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)dstPos.x, (GLint)dstPos.y, (GLsizei)srcSize.x, (GLsizei)srcSize.y, format, GL_UNSIGNED_BYTE, pixels));
 }

@@ -6,7 +6,6 @@
 #ifndef LDL_Graphics_Window_hpp
 #define LDL_Graphics_Window_hpp
 
-#include <string>
 #include <LDL/Events/Event.hpp>
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Enums/WindowMode.hpp>

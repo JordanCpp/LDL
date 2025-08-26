@@ -6,8 +6,11 @@
 #ifndef LDL_Graphics_OpenGL3_ShaderLoader_hpp
 #define LDL_Graphics_OpenGL3_ShaderLoader_hpp
 
-#include <fstream>
-#include <string>
+//#include <fstream>
+//#include <string>
+#include <LDL/Core/Config.hpp>
+#include <LDL/std/stddef.hpp>
+#include <LDL/std/stdint.hpp>
 
 namespace LDL
 {
@@ -18,12 +21,12 @@ namespace LDL
 		public:
 			ShaderLoader();
 			~ShaderLoader();
-			bool Load(const std::string& path);
-			const std::string& Result();
+			bool Load(const char* path);
+			const char* Result();
 		private:
-			std::fstream _file;
-			std::string  _result;
-			std::string  _line;
+			//std::fstream _file;
+			//std::string  _result;
+			//std::string  _line;
 		};
 	}
 }

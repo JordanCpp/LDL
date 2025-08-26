@@ -1,7 +1,7 @@
 #ifndef LDL_std_math_hpp
 #define LDL_std_math_hpp
 
-#include <LDL/Core/Types.hpp>
+#include <LDL/Core/Config.hpp>
 
 namespace LDL
 {

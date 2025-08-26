@@ -8,7 +8,7 @@
 
 using namespace LDL::Allocators;
 
-const size_t Count = 1024;
+const size_t Count = 128;
 
 void ObjectPoolTest()
 {

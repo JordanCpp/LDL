@@ -1,3 +1,8 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <Arcanum/Loaders/ArtLoader.hpp>
 
 using namespace LDL::Math;
@@ -37,16 +42,16 @@ size_t ArtLoader::Frames()
 
 void ArtLoader::Frame(size_t index)
 {
-	size_t w = _file.frame_data[index].header.width;
-	size_t h = _file.frame_data[index].header.height;
+	uint32_t w = _file.frame_data[index].header.width;
+	uint32_t h = _file.frame_data[index].header.height;
 	_size = Vec2u(w, h);
 
-	size_t ow = _file.frame_data[index].header.c_x;
-	size_t oh = _file.frame_data[index].header.c_y;
+	uint32_t ow = _file.frame_data[index].header.c_x;
+	uint32_t oh = _file.frame_data[index].header.c_y;
 	_offset = Vec2u(ow, oh);
 
-	size_t dw = _file.frame_data[index].header.d_x;
-	size_t dh = _file.frame_data[index].header.d_y;
+	uint32_t dw = _file.frame_data[index].header.d_x;
+	uint32_t dh = _file.frame_data[index].header.d_y;
 	_delta = Vec2u(dw, dh);
 
 	_pixels.clear();

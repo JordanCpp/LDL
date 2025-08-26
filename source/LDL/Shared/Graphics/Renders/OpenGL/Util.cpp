@@ -12,8 +12,8 @@
 using namespace LDL::Graphics;
 using namespace LDL::Math;
 
-const size_t TextureCount = 12;
-const size_t TextureSizes[TextureCount] = { 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
+const uint32_t TextureCount = 12;
+const uint32_t TextureSizes[TextureCount] = { 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
 
 void Util::CalcQuad(Util::Quad& quad, uint16_t dstPosX, uint16_t dstPosY, uint16_t dstSizeX, uint16_t dstSizeY, uint16_t srcPosX, uint16_t srcPosY, uint16_t srcSizeX, uint16_t srcSizeY, size_t textureSize)
 {
@@ -56,7 +56,7 @@ void Util::CalcQuad(Util::Quad& quad, uint16_t dstPosX, uint16_t dstPosY, uint16
 	quad.data[29] = ps * srcPosY;
 }
 
-GLuint Util::CreateTexture(GLsizei width, GLsizei heigth, GLint format)
+GLuint Util::CreateTexture(GLsizei width, GLsizei height, GLint format)
 {
 	GLuint result = 0;
 	
@@ -69,7 +69,7 @@ GLuint Util::CreateTexture(GLsizei width, GLsizei heigth, GLint format)
 	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
 	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
 
-	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, width, heigth, 0, format, GL_UNSIGNED_BYTE, NULL));
+	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, NULL));
 
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 
@@ -180,7 +180,7 @@ bool Util::IsMaxTextureSize(const Vec2u& resolutionSize, size_t textureSize)
 	return false;
 }
 
-size_t Util::SelectTextureSize(const Vec2u& size)
+uint32_t Util::SelectTextureSize(const Vec2u& size)
 {
 	size_t w = size.x;
 	size_t h = size.y;

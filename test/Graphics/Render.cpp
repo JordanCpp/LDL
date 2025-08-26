@@ -14,12 +14,12 @@ using namespace LDL::Math;
 
 int main()
 {
-	const std::string title = "LDL Window title!";
+	const char title[] = "LDL Window title!";
 	
 	Result result;
 	RenderContext renderContext;
 
-	Window window(result, renderContext, Vec2u(1, 2), Vec2u(640, 480), title.c_str());
+	Window window(result, renderContext, Vec2u(1, 2), Vec2u(640, 480), title);
 	Render render(result, renderContext, &window);
 
 	LDL_TEST_EQUAL(render.Size().x > 0);

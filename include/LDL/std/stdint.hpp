@@ -6,15 +6,6 @@
 #ifndef LDL_std_stdint_hpp
 #define LDL_std_stdint_hpp
 
-#if (_MSC_VER <= 1600 && !__MINGW32__ && !__BORLANDC__)
-    typedef signed char   uint32_t;
-    typedef unsigned char uint8_t;
-    typedef signed int    int32_t;
-    typedef unsigned int  uint32_t;
-#else
-    #include <stdint.h>
-    #include <stddef.h>
-    #include <limits.h>
-#endif
+#include <stdint.h>
 
 #endif

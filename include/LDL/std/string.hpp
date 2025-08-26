@@ -6,7 +6,8 @@
 #ifndef LDL_std_string_hpp
 #define LDL_std_string_hpp
 
-#include <LDL/Core/Types.hpp>
+#include <LDL/Core/Config.hpp>
+#include <LDL/std/stddef.hpp>
 
 namespace LDL
 {
