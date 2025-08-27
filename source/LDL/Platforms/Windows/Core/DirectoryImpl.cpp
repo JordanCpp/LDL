@@ -6,7 +6,7 @@
 #include <LDL/Platforms/Windows/Core/DirectoryImpl.hpp>
 #include <LDL/Platforms/Windows/WinError.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 
 DirectoryImpl::DirectoryImpl(Result& result) :
     _result(result),

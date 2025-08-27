@@ -7,7 +7,7 @@
 #include <LDL/Math/Random.hpp>
 #include <time.h>
 
-using namespace LDL::Math;
+using namespace LDL;
 
 // LCG Parameters (from Numerical Recipes / glibc)
 static const size_t LCG_MULTIPLIER = 1664525UL;

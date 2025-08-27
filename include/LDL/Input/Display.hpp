@@ -11,19 +11,16 @@
 
 namespace LDL
 {
-	namespace Input
+	class LDL_LIBRARY Display
 	{
-		class LDL_LIBRARY Display
-		{
-		public:
-			Display();
-			const vector<Graphics::VideoMode>& Modes();
-			const Graphics::VideoMode& Current();
-		private:
-			Graphics::VideoMode         _videoMode;
-			vector<Graphics::VideoMode> _videoModes;
-		};
-	}
+	public:
+		Display();
+		const vector<VideoMode>& Modes();
+		const VideoMode& Current();
+	private:
+		VideoMode         _videoMode;
+		vector<VideoMode> _videoModes;
+	};
 }
 
 #endif     

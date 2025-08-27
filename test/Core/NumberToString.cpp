@@ -7,7 +7,7 @@
 #include <LDL/Core/Convert.hpp>
 #include <string.h>
 
-using namespace LDL::Core;
+using namespace LDL;
 
 int main()
 {

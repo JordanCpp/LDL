@@ -5,8 +5,7 @@
 
 #include "TextureImplSoftware.hpp"
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 TextureImplSoftware::TextureImplSoftware(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
 	_surface(size, pixels, bytesPerPixel)

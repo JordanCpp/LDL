@@ -5,7 +5,7 @@
 
 #include <LDL/Platforms/Utils/KeyMap.hpp>
 
-using namespace LDL::Utils;
+using namespace LDL;
 
 KeyMap::KeyMap(size_t code, uint8_t key) :
 	_key(key),

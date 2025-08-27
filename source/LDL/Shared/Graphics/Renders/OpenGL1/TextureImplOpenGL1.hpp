@@ -13,29 +13,26 @@
 
 namespace LDL
 {
-	namespace Graphics
-	{
-		class RenderImpl;
+	class RenderImpl;
 
-		class TextureImplOpenGL1: public TextureImpl
-		{
-		public:
-			TextureImplOpenGL1(RenderContextImpl* renderContextImpl, Surface* surface);
-			TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Math::Vec2u & size, uint8_t* pixels, uint8_t bytesPerPixel);
-			TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Math::Vec2u& size, uint8_t bytesPerPixel);
-			~TextureImplOpenGL1();
-			void Copy(const Math::Vec2u& dstPos, const Math::Vec2u& srcSize, uint8_t * pixels, uint8_t bytesPerPixel);
-			void Copy(const Math::Vec2u& dstPos, Surface* surface, const Math::Vec2u& srcSize);
-			const Math::Vec2u& Size();
-			const Math::Vec2u& Quad();
-			size_t Id();
-		private:
-			RenderContextImpl* _renderContextImpl;
-			size_t             _id;
-			Math::Vec2u        _size;
-			Math::Vec2u        _quad;
-		};
-	}
+	class TextureImplOpenGL1 : public TextureImpl
+	{
+	public:
+		TextureImplOpenGL1(RenderContextImpl* renderContextImpl, Surface* surface);
+		TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);
+		TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel);
+		~TextureImplOpenGL1();
+		void Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
+		void Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& srcSize);
+		const Vec2u& Size();
+		const Vec2u& Quad();
+		size_t Id();
+	private:
+		RenderContextImpl* _renderContextImpl;
+		size_t             _id;
+		Vec2u              _size;
+		Vec2u              _quad;
+	};
 }
 
 #endif    

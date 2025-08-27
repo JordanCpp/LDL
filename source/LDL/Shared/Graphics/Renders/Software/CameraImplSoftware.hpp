@@ -17,15 +17,15 @@ namespace LDL
 		class CameraImplSoftware : public CameraImpl
 		{
 		public:
-			CameraImplSoftware(RenderImpl* renderImpl, const Math::Vec2u& pos, const Math::Vec2u& size);
-			const Math::Vec2u& Pos();
-			const Math::Vec2u& Size();
-			void Pos(const Math::Vec2u& pos);
-			void Size(const Math::Vec2u& size);
+			CameraImplSoftware(RenderImpl* renderImpl, const Vec2u& pos, const Vec2u& size);
+			const Vec2u& Pos();
+			const Vec2u& Size();
+			void Pos(const Vec2u& pos);
+			void Size(const Vec2u& size);
 		private:
 			RenderImpl* _impl;
-			Math::Vec2u _pos;
-			Math::Vec2u _size;
+			Vec2u _pos;
+			Vec2u _size;
 		};
 	}
 }

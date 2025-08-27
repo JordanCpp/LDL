@@ -7,8 +7,6 @@
 #include <LDL/Input/Display.hpp>
 
 using namespace LDL;
-using namespace LDL::Input;
-using namespace LDL::Graphics;
 
 void Modes()
 {

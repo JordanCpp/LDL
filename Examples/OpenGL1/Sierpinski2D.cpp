@@ -8,14 +8,6 @@
 #include <LDL/APIs/OpenGL/GLU.hpp>
 #include <stdlib.h>
 
-using namespace LDL::Graphics;
-using namespace LDL::Enums;
-using namespace LDL::Events;
-using namespace LDL::Time;
-using namespace LDL::Core;
-using namespace LDL::Allocators;
-using namespace LDL::Math;
-
 // A simple two-dimensional point class to make life easy.  It allows you to
 // reference points with x and y coordinates instead of array indices) and
 // encapsulates a midpoint function.
@@ -75,19 +67,19 @@ void Display()
 
 int main()
 {
-	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	LDL::MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
-	Result result;
-	RenderContext renderContext(RenderMode::OpenGL1);
+	LDL::Result result;
+	LDL::RenderContext renderContext(LDL::RenderMode::OpenGL1);
 
-	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
-	Render render(result, renderContext, &window);
+	LDL::Window window(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), "Window!");
+	LDL::Render render(result, renderContext, &window);
 
-	Event report;
+	LDL::Event report;
 
-	FpsCounter fpsCounter;
-	Convert convert;
-	FpsLimiter fpsLimiter;
+	LDL::FpsCounter fpsCounter;
+	LDL::Convert convert;
+	LDL::FpsLimiter fpsLimiter;
 
 	while (window.Running())
 	{
@@ -96,12 +88,12 @@ int main()
 
 		while (window.GetEvent(report))
 		{
-			if (report.Type == IsQuit)
+			if (report.Type == LDL::IsQuit)
 			{
 				window.StopEvent();
 			}
 
-			if (report.IsKeyPressed(KeyboardKey::Escape))
+			if (report.IsKeyPressed(LDL::KeyboardKey::Escape))
 				window.StopEvent();
 		}
 
@@ -119,8 +111,6 @@ int main()
 			window.Title(convert.ToString(fpsCounter.Fps()));
 			
 		}
-
-		
 	}
 
 	return 0;

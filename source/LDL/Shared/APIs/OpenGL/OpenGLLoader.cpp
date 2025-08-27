@@ -6,7 +6,6 @@
 #include <LDL/STL/inplace_strings.hpp>
 
 using namespace LDL;
-using namespace LDL::Core;
 
 OpenGLLoader::OpenGLLoader() :
 	_Major(0),

@@ -6,16 +6,15 @@
 #include "WindowImplSoftware.hpp"
 #include <LDL/Core/Assert.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 using namespace LDL::Events;
 using namespace LDL::Graphics;
-using namespace LDL::Math;
 
 WindowImplSoftware::WindowImplSoftware(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _result(result),
-    _Window(_result, pos, size, title, mode)
+    _mainWindow(_result, pos, size, title, mode)
 {
-    LDL::memset(&_BITMAPINFO, 0, sizeof(_BITMAPINFO));
+    LDL::memset(&_bimapInfo, 0, sizeof(_bimapInfo));
 }
 
 WindowImplSoftware::~WindowImplSoftware()
@@ -27,14 +26,14 @@ void WindowImplSoftware::Present(uint8_t* pixels, uint8_t bytesPerPixel)
     LDL_ASSERT(pixels != NULL);
     LDL_ASSERT(bytesPerPixel >= 1 && bytesPerPixel <= 4);
 
-    _BITMAPINFO.bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
-    _BITMAPINFO.bmiHeader.biWidth       = (LONG)_Window.Size().x;
-    _BITMAPINFO.bmiHeader.biHeight      = -(LONG)_Window.Size().y;
-    _BITMAPINFO.bmiHeader.biPlanes      = 1;
-    _BITMAPINFO.bmiHeader.biBitCount    = bytesPerPixel * 8;
-    _BITMAPINFO.bmiHeader.biCompression = BI_RGB;
+    _bimapInfo.bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
+    _bimapInfo.bmiHeader.biWidth       = (LONG)_mainWindow.Size().x;
+    _bimapInfo.bmiHeader.biHeight      = -(LONG)_mainWindow.Size().y;
+    _bimapInfo.bmiHeader.biPlanes      = 1;
+    _bimapInfo.bmiHeader.biBitCount    = bytesPerPixel * 8;
+    _bimapInfo.bmiHeader.biCompression = BI_RGB;
 
-    int result = SetDIBitsToDevice(_Window._hdc, 0, 0, (DWORD)_Window.Size().x, (DWORD)_Window.Size().y, 0, 0, 0, (UINT)_Window.Size().y, pixels, &_BITMAPINFO, DIB_RGB_COLORS);
+    int result = SetDIBitsToDevice(_mainWindow._hdc, 0, 0, (DWORD)_mainWindow.Size().x, (DWORD)_mainWindow.Size().y, 0, 0, 0, (UINT)_mainWindow.Size().y, pixels, &_bimapInfo, DIB_RGB_COLORS);
     LDL_ASSERT_DETAIL(result != 0, "SetDIBitsToDevice failed");
 }
 
@@ -44,50 +43,50 @@ void WindowImplSoftware::Present()
 
 const Vec2u& WindowImplSoftware::Size()
 {
-    return _Window.Size();
+    return _mainWindow.Size();
 }
 
 const Vec2u& WindowImplSoftware::Pos()
 {
-    return _Window.Pos();
+    return _mainWindow.Pos();
 }
 
 bool WindowImplSoftware::Running()
 {
-    return _Window.Running();
+    return _mainWindow.Running();
 }
 
 void WindowImplSoftware::PollEvents()
 {
-    _Window.PollEvents();
+    _mainWindow.PollEvents();
 }
 
 bool WindowImplSoftware::GetEvent(Event& event)
 {
-    return _Window.GetEvent(event);
+    return _mainWindow.GetEvent(event);
 }
 
 bool WindowImplSoftware::WaitEvent(Event& event)
 {
-    return _Window.WaitEvent(event);
+    return _mainWindow.WaitEvent(event);
 }
 
 void WindowImplSoftware::StopEvent()
 {
-    _Window.StopEvent();
+    _mainWindow.StopEvent();
 }
 
 const char* WindowImplSoftware::Title()
 {
-    return _Window.Title();
+    return _mainWindow.Title();
 }
 
 void WindowImplSoftware::Title(const char* title)
 {
-    _Window.Title(title);
+    _mainWindow.Title(title);
 }
 
 void* WindowImplSoftware::NativeHandle()
 {
-    return _Window._hwnd;
+    return _mainWindow._hwnd;
 }

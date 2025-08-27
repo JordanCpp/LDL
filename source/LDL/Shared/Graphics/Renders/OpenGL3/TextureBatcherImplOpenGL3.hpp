@@ -9,31 +9,24 @@
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/STL/vector.hpp>
 #include "../../Impls/TextureBatcherImpl.hpp"
+#include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
 
 namespace LDL
 {
-	namespace Graphics
+	class SpriteBatcherImplOpenGL3 :public SpriteBatcherImpl
 	{
-		struct Quad
-		{
-			float data[5 * 6];
-		};
-
-		class TextureBatcherImplOpenGL3 :public TextureBatcherImpl
-		{
-		public:
-			TextureBatcherImplOpenGL3(Texture* texture, size_t count);
-			void Draw(const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Clear();
-			size_t TextureId();
-			size_t Count();
-			Quad* Content();
-		private:
-			size_t       _Texture;
-			size_t       _TextureSize;
-			vector<Quad> _Quads;
-		};
-	}
+	public:
+		SpriteBatcherImplOpenGL3(Texture* texture, size_t count);
+		void Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Clear();
+		size_t TextureId();
+		size_t Count();
+		Quad* Content();
+	private:
+		size_t       _Texture;
+		size_t       _TextureSize;
+		vector<Quad> _Quads;
+	};
 }
 
 #endif    

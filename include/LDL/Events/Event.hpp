@@ -15,55 +15,52 @@
 
 namespace LDL
 {
-	namespace Events
+	enum
 	{
-		enum
+		IsQuit = 1,
+		IsMouseMove,
+		IsMouseClick,
+		IsResize,
+		IsKeyboard,
+		IsGainedFocus,
+		IsLostFocus,
+		IsMouseScroll
+	};
+
+	class Event
+	{
+	public:
+		union
 		{
-			IsQuit = 1,
-			IsMouseMove,
-			IsMouseClick,
-			IsResize,
-			IsKeyboard,
-			IsGainedFocus,
-			IsLostFocus,
-			IsMouseScroll
+			uint8_t Type;
+			LDL::Quit        Quit;
+			LDL::Mouse       Mouse;
+			LDL::Resize      Resize;
+			LDL::Keyboard    Keyboard;
+			LDL::GainedFocus GainedFocus;
+			LDL::LostFocus   LostFocus;
 		};
 
-		class Event
+		bool IsKeyPressed(uint8_t key)
 		{
-		public:
-			union
-			{
-				uint8_t Type;
-				LDL::Events::Quit        Quit;
-				LDL::Events::Mouse       Mouse;
-				LDL::Events::Resize      Resize;
-				LDL::Events::Keyboard    Keyboard;
-				LDL::Events::GainedFocus GainedFocus;
-				LDL::Events::LostFocus   LostFocus;
-			};
+			return (Type == IsKeyboard && Keyboard.Key == key && Keyboard.State == ButtonState::Pressed);
+		}
 
-			bool IsKeyPressed(uint8_t key)
-			{
-				return (Type == IsKeyboard && Keyboard.Key == key && Keyboard.State == Enums::ButtonState::Pressed);
-			}
+		bool IsKeyReleased(uint8_t key)
+		{
+			return (Type == IsKeyboard && Keyboard.Key == key && Keyboard.State == ButtonState::Released);
+		}
 
-			bool IsKeyReleased(uint8_t key)
-			{
-				return (Type == IsKeyboard && Keyboard.Key == key && Keyboard.State == Enums::ButtonState::Released);
-			}
+		bool IsMousePressed(uint8_t key)
+		{
+			return (Type == IsMouseClick && Mouse.Button == key && Mouse.State == ButtonState::Pressed);
+		}
 
-			bool IsMousePressed(uint8_t key)
-			{
-				return (Type == IsMouseClick && Mouse.Button == key && Mouse.State == Enums::ButtonState::Pressed);
-			}
-
-			bool IsMouseReleased(uint8_t key)
-			{
-				return (Type == IsMouseClick && Mouse.Button == key && Mouse.State == Enums::ButtonState::Released);
-			}
-		};
-	}
+		bool IsMouseReleased(uint8_t key)
+		{
+			return (Type == IsMouseClick && Mouse.Button == key && Mouse.State == ButtonState::Released);
+		}
+	};
 }
 
 #endif

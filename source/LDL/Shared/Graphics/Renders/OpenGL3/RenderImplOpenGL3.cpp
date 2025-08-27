@@ -14,9 +14,7 @@
 #include <LDL/Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
 #endif
 
-using namespace LDL::Core;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 RenderImplOpenGL3::RenderImplOpenGL3(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
 	_result(result),
@@ -60,13 +58,13 @@ void RenderImplOpenGL3::Clear()
 	GLclampf g;
 	GLclampf b;
 
-	Util::Normalize(_color, r, g, b);
+	Normalize(_color, r, g, b);
 
 	GL_CHECK(glClearColor(r, g, b, 1.0f));
 	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
-void RenderImplOpenGL3::Color(const LDL::Graphics::Color& color)
+void RenderImplOpenGL3::Color(const LDL::Color& color)
 {
 	_color = color;
 }
@@ -82,7 +80,7 @@ void RenderImplOpenGL3::Line(const Vec2u& pos1, const Vec2u& pos2)
 	GLclampf g;
 	GLclampf b;
 
-	Util::Normalize(_color, r, g, b);
+	Normalize(_color, r, g, b);
 
 	_linePainter.Draw(_projection, Vec3f((float)pos1.x, (float)pos1.y, 0), Vec3f((float)pos2.x, (float)pos2.y, 0), Vec3f((float)r, (float)g, (float)b));
 }
@@ -142,7 +140,7 @@ void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& d
 	_texturePainter.Draw(_projection, image);
 }
 
-void RenderImplOpenGL3::Draw(TextureBatcher* textureBatcher)
+void RenderImplOpenGL3::Draw(SpriteBatcher* textureBatcher)
 {
 	LDL_UNUSED(textureBatcher);
 }

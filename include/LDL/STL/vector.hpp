@@ -31,12 +31,12 @@ namespace LDL
 
         void* Alloc(size_t bytes)
         {
-            return LDL::malloc(bytes);
+            return LDL::Malloc(bytes);
         }
 
         void Dealloc(void* ptr)
         {
-            LDL::free(ptr);
+            LDL::Free(ptr);
         }
 
     public:
@@ -102,9 +102,9 @@ namespace LDL
 
             _size = 0;
 
-            for (size_t i = 0; i < other._size; ++i)
+            for (size_t j = 0; j < other._size; ++j)
             {
-                new (&data_ptr()[i]) T(other.data_ptr()[i]);
+                new (&data_ptr()[j]) T(other.data_ptr()[j]);
                 ++_size;
             }
 

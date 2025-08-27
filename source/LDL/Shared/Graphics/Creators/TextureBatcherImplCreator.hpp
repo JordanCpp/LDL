@@ -11,15 +11,12 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class TextureBatcherImplCreator
 	{
-		class TextureBatcherImplCreator
-		{
-		public:
-			TextureBatcherImpl* Create(uint8_t* memory, RenderContext* renderContext, Texture* texture, size_t count);
-		private:
-		};
-	}
+	public:
+		SpriteBatcherImpl* Create(uint8_t* memory, RenderContext* renderContext, Texture* texture, size_t count);
+	private:
+	};
 }
 
 #endif    

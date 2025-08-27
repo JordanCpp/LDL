@@ -6,26 +6,23 @@
 #ifndef LDL_Core_Library_hpp
 #define LDL_Core_Library_hpp
 
-#include <LDL/Core/Config.hpp>
+#include <LDL/Config.hpp>
 
 namespace LDL
 {
 	typedef void(*VoidFuncPtr)(void);
 
-	namespace Core
-	{
-		class LibraryImpl;
+	class LibraryImpl;
 
-		class LDL_LIBRARY Library
-		{
-		public:
-			Library(const char* path);
-			~Library();
-			VoidFuncPtr Function(const char* name);
-		private:
-			LibraryImpl* _impl;
-		};
-	}
+	class LDL_LIBRARY Library
+	{
+	public:
+		Library(const char* path);
+		~Library();
+		VoidFuncPtr Function(const char* name);
+	private:
+		LibraryImpl* _impl;
+	};
 }
 
 #endif    

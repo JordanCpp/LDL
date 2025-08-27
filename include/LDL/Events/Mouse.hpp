@@ -14,20 +14,17 @@
 
 namespace LDL
 {
-	namespace Events
+	class Mouse
 	{
-		class Mouse
-		{
-		public:
-			uint8_t Type;
-			size_t  PosX;
-			size_t  PosY;
-			uint8_t State;
-			uint8_t Button;
-			size_t  Scroll;
-			size_t  Delta;
-		};
-	}
+	public:
+		uint8_t Type;
+		size_t  PosX;
+		size_t  PosY;
+		uint8_t State;
+		uint8_t Button;
+		size_t  Scroll;
+		size_t  Delta;
+	};
 }
 
 #endif

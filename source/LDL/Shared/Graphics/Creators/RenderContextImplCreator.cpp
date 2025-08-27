@@ -13,9 +13,7 @@
 
 #include <LDL/Core/Assert.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Enums;
-using namespace LDL::Graphics;
+using namespace LDL;
 
 RenderContextImpl* RenderContextImplCreator::Create(uint8_t* memory, size_t mode)
 {

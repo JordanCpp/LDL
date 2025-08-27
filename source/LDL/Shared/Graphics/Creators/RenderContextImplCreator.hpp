@@ -11,15 +11,12 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class RenderContextImplCreator
 	{
-		class RenderContextImplCreator
-		{
-		public:
-			RenderContextImpl* Create(uint8_t* memory, size_t mode);
-		private:
-		};
-	}
+	public:
+		RenderContextImpl* Create(uint8_t* memory, size_t mode);
+	private:
+	};
 }
 
 #endif  

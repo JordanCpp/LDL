@@ -7,16 +7,15 @@
 #include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
 #include "../OpenGL/Util.hpp"
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 ScreenOpenGL1::ScreenOpenGL1(const Vec2u& size) :
 	_size(size),
 	_screen(0),
-	_maxTextureSize(Util::MaxTextureSize()),
+	_maxTextureSize(MaxTextureSize()),
 	_curTextureSize(0)
 {
-	if (Util::IsMaxTextureSize(_size, Util::MaxTextureSize()))
+	if (IsMaxTextureSize(_size, MaxTextureSize()))
 	{
 		_curTextureSize = _potTextureSizer.Calc(_size);
 
@@ -37,13 +36,13 @@ ScreenOpenGL1::ScreenOpenGL1(const Vec2u& size) :
 
 ScreenOpenGL1::~ScreenOpenGL1()
 {
-	if (Util::IsMaxTextureSize(_size, _maxTextureSize))
+	if (IsMaxTextureSize(_size, _maxTextureSize))
 		GL_CHECK(glDeleteTextures(0, (GLuint*)&_screen));
 }
 
 void ScreenOpenGL1::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
-	if (Util::IsMaxTextureSize(_size, _maxTextureSize))
+	if (IsMaxTextureSize(_size, _maxTextureSize))
 		DrawTexture(image, pos, size);
 	else
 		DrawPixels(image, pos, size);
@@ -60,7 +59,7 @@ void ScreenOpenGL1::DrawTexture(Surface* image, const Vec2u& pos, const Vec2u& s
 
 	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_screen));
 
-	Util::DrawQuad(pos, size, Vec2u(0, 0), image->Size(), _curTextureSize);
+	DrawQuad(pos, size, Vec2u(0, 0), image->Size(), _curTextureSize);
 
 	GLenum format = 0;
 

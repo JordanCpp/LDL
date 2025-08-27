@@ -1,0 +1,25 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
+#ifndef Arcanum_Widgets_Window_hpp
+#define Arcanum_Widgets_Window_hpp
+
+#include <Arcanum/Widgets/Widget.hpp>
+#include <Arcanum/Widgets/Container.hpp>
+
+namespace Arcanum
+{
+    class Window : public Widget
+    {
+    public:
+        Window(LDL::Render& render, const LDL::Vec2u& pos, const LDL::Vec2u& size);
+        void Attach(Widget* widget);
+        void Draw();
+    private:
+        Container _container;
+    };
+}
+
+#endif

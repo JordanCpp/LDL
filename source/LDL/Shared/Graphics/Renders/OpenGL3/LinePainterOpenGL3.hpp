@@ -13,23 +13,20 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class LinePainter
 	{
-		class LinePainter
-		{
-		public:
-			LinePainter(ShaderLoader* shaderLoader);
-			~LinePainter();
-			void Draw(Math::Mat4f proj, Math::Vec3f start, Math::Vec3f end, Math::Vec3f color);
-		private:
-			Math::Vec3f   _lines[2];
-			Math::Vec3f   _color;
-			GLuint        _shaderProgram;
-			GLuint        _vertexBufferObject;
-			GLuint        _vertexArraysObject;
-			ShaderLoader* _shaderLoader;
-		};
-	}
+	public:
+		LinePainter(ShaderLoader* shaderLoader);
+		~LinePainter();
+		void Draw(Mat4f proj, Vec3f start, Vec3f end, Vec3f color);
+	private:
+		Vec3f   _lines[2];
+		Vec3f   _color;
+		GLuint        _shaderProgram;
+		GLuint        _vertexBufferObject;
+		GLuint        _vertexArraysObject;
+		ShaderLoader* _shaderLoader;
+	};
 }
 
 #endif    

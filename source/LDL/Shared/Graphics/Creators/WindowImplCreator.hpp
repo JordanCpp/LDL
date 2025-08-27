@@ -18,7 +18,7 @@ namespace LDL
 		class WindowImplCreator
 		{
 		public:
-			WindowImpl* Create(Core::Result& result, RenderContext& renderContext, const Math::Vec2u& pos, const Math::Vec2u& size, const char* title, size_t mode);
+			WindowImpl* Create(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode);
 		private:
 		};
 	}

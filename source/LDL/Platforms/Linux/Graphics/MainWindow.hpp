@@ -20,7 +20,7 @@ namespace LDL
 		class MainWindow
 		{
 		public:
-			MainWindow(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode);
+			MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode);
 			~MainWindow();
 			bool Running();
 			void PollEvents();
@@ -29,8 +29,8 @@ namespace LDL
 			void StopEvent();
 			void Title(const std::string& title);
 			const std::string& Title();
-			const Math::Vec2u& Size();
-			const Math::Vec2u& Pos();
+			const Vec2u& Size();
+			const Vec2u& Pos();
 			void Show();
 		private:
 			BaseWindow _BaseWindow;

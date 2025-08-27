@@ -7,7 +7,7 @@
 #include <LDL/Enums/KeyboardKey.hpp>
 
 using namespace LDL::Utils;
-using namespace LDL::Enums;
+using namespace LDL;
 
 KeyMapping::KeyMapping()
 {

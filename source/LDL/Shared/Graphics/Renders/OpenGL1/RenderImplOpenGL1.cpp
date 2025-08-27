@@ -15,9 +15,7 @@
 #include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
 #endif
 
-using namespace LDL::Core;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 RenderImplOpenGL1::RenderImplOpenGL1(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
 	_result(result),
@@ -31,7 +29,7 @@ RenderImplOpenGL1::RenderImplOpenGL1(Result& result, RenderContextImpl* renderCo
 	GL_CHECK(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 }
 
-void LDL::Graphics::RenderImplOpenGL1::Buffer(uint8_t* dst)
+void RenderImplOpenGL1::Buffer(uint8_t* dst)
 {
 	GL_CHECK(glReadPixels(0, 0, (GLsizei)_window->Size().x, (GLsizei)_window->Size().y, GL_RGBA, GL_UNSIGNED_BYTE, dst));
 }
@@ -76,13 +74,13 @@ void RenderImplOpenGL1::Clear()
 	GLclampf g;
 	GLclampf b;
 
-	Util::Normalize(_color, r, g, b);
+	Normalize(_color, r, g, b);
 
 	GL_CHECK(glClearColor(r, g, b, 1.0f));
 	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
-void RenderImplOpenGL1::Color(const LDL::Graphics::Color& color)
+void RenderImplOpenGL1::Color(const LDL::Color& color)
 {
 	_color = color;
 }
@@ -93,7 +91,7 @@ void RenderImplOpenGL1::Pixel(const Vec2u& pos)
 	GLclampf g;
 	GLclampf b;
 
-	Util::Normalize(_color, r, g, b);
+	Normalize(_color, r, g, b);
 
 	glBegin(GL_POINTS);
 	glColor3f(r, g, b);
@@ -158,9 +156,9 @@ void RenderImplOpenGL1::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& d
 	_renderBuffer.Texture(dstPos, dstSize, srcPos, srcSize, ((TextureImplOpenGL1*)image->GetTextureImpl())->Id(), image->GetTextureImpl()->Quad().x);
 }
 
-void RenderImplOpenGL1::Draw(TextureBatcher* textureBatcher)
+void RenderImplOpenGL1::Draw(SpriteBatcher* textureBatcher)
 {
-	TextureBatcherImplOpenGL1* batcher = (TextureBatcherImplOpenGL1*)textureBatcher->GetTextureBatcherImpl();
+	SpriteBatcherImplOpenGL1* batcher = (SpriteBatcherImplOpenGL1*)textureBatcher->GetTextureBatcherImpl();
 
 	_renderBuffer.TextureBatcher(batcher->TextureId(), batcher->Count(), batcher->Content());
 }

@@ -6,9 +6,7 @@
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Shared/Graphics/Creators/RenderImplCreator.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Math;
-using namespace LDL::Graphics;
+using namespace LDL;
 
 Render::Render(Result& result, RenderContext& renderContext, Window* window)
 {
@@ -58,7 +56,7 @@ void Render::Clear()
 	_impl->Clear();
 }
 
-void Render::Color(const LDL::Graphics::Color& color)
+void Render::Color(const LDL::Color& color)
 {
 	_impl->Color(color);
 }
@@ -118,7 +116,7 @@ void Render::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, con
 	_impl->Draw(image, dstPos, dstSize, srcPos, srcSize);
 }
 
-void Render::Draw(TextureBatcher* textureBatcher)
+void Render::Draw(SpriteBatcher* textureBatcher)
 {
 	_impl->Draw(textureBatcher);
 }

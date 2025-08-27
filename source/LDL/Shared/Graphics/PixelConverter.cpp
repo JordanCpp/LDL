@@ -6,8 +6,7 @@
 #include <LDL/std/stddef.hpp>
 #include <LDL/Graphics/PixelConverter.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 void PixelConverter::Fill(uint8_t* pixels, const Vec2u& size, uint8_t bytesPerPixel, const Color& color)
 {

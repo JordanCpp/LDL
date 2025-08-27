@@ -18,7 +18,7 @@ namespace LDL
 		class WindowImplGlide : public WindowImpl
 		{
 		public:
-			WindowImplGlide(const Math::Vec2u& pos, const Math::Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
+			WindowImplGlide(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
 			~WindowImplGlide();
 			void Present(uint8_t* pixels, uint8_t bytesPerPixel);
 			void Present();
@@ -29,8 +29,8 @@ namespace LDL
 			void StopEvent();
 			void Title(const std::string& title);
 			const std::string& Title();
-			const Math::Vec2u& Size();
-			const Math::Vec2u& Pos();
+			const Vec2u& Size();
+			const Vec2u& Pos();
 			void* NativeHandle();
 		private:
 		    MainWindow   _Window;

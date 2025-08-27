@@ -51,7 +51,7 @@ size_t LDL::strlen(const char* src)
 	return i;
 }
 
-void* LDL::memcpy(void* dst, const void* src, size_t size)
+void* LDL::Memcpy(void* dst, const void* src, size_t size)
 {
 	char* d = (char*)dst;
 	const char* s = (const char*)src;

@@ -6,7 +6,6 @@
 #include "SDL_Application.hpp"
 
 using namespace LDL;
-using namespace LDL::Events;
 
 void EventConvertor(Event& src, SDL_Event& dst)
 {
@@ -29,7 +28,7 @@ SDL_Application& App()
 	return mainApplication;
 }
 
-LDL::Core::Result& SDL_Application::GetResult()
+LDL::Result& SDL_Application::GetResult()
 {
 	return _result;
 }

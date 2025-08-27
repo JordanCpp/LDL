@@ -8,7 +8,7 @@
 #include <LDL/Shared/Graphics/Renders/Software/CameraImplSoftware.hpp>
 
 using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 CameraImplSoftware::CameraImplSoftware(RenderImpl* renderImpl, const Vec2u& pos, const Vec2u& size) :
 	_impl(renderImpl),

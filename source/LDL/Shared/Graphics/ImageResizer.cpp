@@ -5,8 +5,7 @@
 
 #include <LDL/Graphics/ImageResizer.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 ImageResizer::ImageResizer(const Vec2u& size) :
 	_surface(size, 4)

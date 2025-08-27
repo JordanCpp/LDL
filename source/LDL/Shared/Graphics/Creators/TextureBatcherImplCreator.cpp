@@ -13,29 +13,26 @@
 #include "TextureBatcherImplCreator.hpp"
 #include <LDL/Core/Assert.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Enums;
-using namespace LDL::Math;
-using namespace LDL::Graphics;
+using namespace LDL;
 
-TextureBatcherImpl* TextureBatcherImplCreator::Create(uint8_t* memory, RenderContext* renderContext, Texture* texture, size_t count)
+SpriteBatcherImpl* TextureBatcherImplCreator::Create(uint8_t* memory, RenderContext* renderContext, Texture* texture, size_t count)
 {
 	size_t mode = renderContext->Mode();
 
 	LDL_ASSERT_DETAIL(mode < RenderMode::Max, "Unknown graphics mode");
 
-	TextureBatcherImpl* result = NULL;
+	SpriteBatcherImpl* result = NULL;
 
 	switch (mode)
 	{
 	case RenderMode::Software:
-		result = new(memory) TextureBatcherImplSoftware(texture, count);
+		result = new(memory) SpriteBatcherImplSoftware(texture, count);
 		break;
 	case RenderMode::OpenGL1:
-		result = new(memory) TextureBatcherImplOpenGL1(texture, count);
+		result = new(memory) SpriteBatcherImplOpenGL1(texture, count);
 		break;
 	case RenderMode::OpenGL3:
-		result = new(memory) TextureBatcherImplOpenGL3(texture, count);
+		result = new(memory) SpriteBatcherImplOpenGL3(texture, count);
 		break;
 	}
 

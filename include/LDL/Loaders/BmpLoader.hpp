@@ -12,23 +12,20 @@
 
 namespace LDL
 {
-	namespace Loaders
+	class LDL_LIBRARY BmpLoader
 	{
-		class LDL_LIBRARY BmpLoader
-		{
-		public:
-			BmpLoader(Core::Result& result);
-			bool Load(const char* path);
-			const Math::Vec2u& Size();
-			uint8_t Bpp();
-			uint8_t* Pixels();
-		private:
-			uint8_t         _bpp;
-			Core::Result&   _result;
-			Math::Vec2u     _size;
-			vector<uint8_t> _pixels;
-		};
-	}
+	public:
+		BmpLoader(Result& result);
+		bool Load(const char* path);
+		const Vec2u& Size();
+		uint8_t Bpp();
+		uint8_t* Pixels();
+	private:
+		uint8_t         _bpp;
+		Result&         _result;
+		Vec2u     _size;
+		vector<uint8_t> _pixels;
+	};
 }
 
 #endif

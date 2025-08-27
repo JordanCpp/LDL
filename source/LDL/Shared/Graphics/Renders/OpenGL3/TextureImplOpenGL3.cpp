@@ -5,21 +5,19 @@
 
 #include "TextureImplOpenGL3.hpp"
 #include <LDL/APIs/OpenGL/OpenGL1_1.hpp>
-#include <assert.h>
+#include <LDL/Core/Assert.hpp>
 #include "../OpenGL/Util.hpp"
-#include <iostream>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
 	_RenderContextImpl(renderContextImpl),
 	_Id(0)
 {
-	assert(size.x > 0);
-	assert(size.y > 0);
-	assert(bytesPerPixel >= 1 && bytesPerPixel <= 4);
-	assert(pixels != NULL);
+	LDL_ASSERT(size.x > 0);
+	LDL_ASSERT(size.y > 0);
+	LDL_ASSERT(bytesPerPixel >= 1 && bytesPerPixel <= 4);
+	LDL_ASSERT(pixels != NULL);
 
 	_Size = size;
 

@@ -7,8 +7,7 @@
 #include <LDL/Core/Assert.hpp>
 #include <LDL/std/string.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 Surface::Surface(const Vec2u& size, uint8_t bytesPerPixel) :
 	_bytesPerPixel(bytesPerPixel),
@@ -44,7 +43,7 @@ Surface::Surface(const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
 	LDL_ASSERT(pixels != NULL);
 
 	_pixels.resize(_size.x * _size.y * _bytesPerPixel);
-	LDL::memcpy(_pixels.data(), pixels, _pixels.size());
+	LDL::Memcpy(_pixels.data(), pixels, _pixels.size());
 }
 
 Surface::Surface(const Vec2u& size, const Vec2u& capacity, uint8_t bytesPerPixel) :
@@ -81,20 +80,20 @@ Surface::Surface(const Vec2u& size, const Vec2u& capacity, uint8_t* pixels, uint
 	LDL_ASSERT(pixels != NULL);
 
 	_pixels.resize(_size.x * _size.y * _bytesPerPixel);
-	LDL::memcpy(_pixels.data(), pixels, _pixels.size());
+	LDL::Memcpy(_pixels.data(), pixels, _pixels.size());
 }
 
 Surface::~Surface()
 {
 }
 
-void Surface::ColorKey(const Graphics::Color& key)
+void Surface::ColorKey(const LDL::Color& key)
 {
 	_enabled = true;
 	_key     = key;
 }
 
-const LDL::Graphics::Color& Surface::ColorKey()
+const LDL::Color& Surface::ColorKey()
 {
 	return _key;
 }

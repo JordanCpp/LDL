@@ -1,6 +1,5 @@
 
 add_subdirectory("Graphics")
-add_subdirectory("Allocators")
 add_subdirectory("Loaders")
 add_subdirectory("Core")
 add_subdirectory("Input")

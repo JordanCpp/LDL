@@ -12,10 +12,7 @@
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Enums/RenderMode.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Enums;
-using namespace LDL::Math;
-using namespace LDL::Graphics;
+using namespace LDL;
 
 RenderImpl* RenderImplCreator::Create(uint8_t* memory, Result& result, RenderContext& renderContext, Window* window)
 {

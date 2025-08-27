@@ -5,7 +5,7 @@
 
 #include <LDL/Graphics/Palette.hpp>
 
-using namespace LDL::Graphics;
+using namespace LDL;
 
 Palette::Palette()
 {

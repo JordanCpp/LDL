@@ -7,7 +7,7 @@
 #include <LDL/std/string.hpp>
 #include <LDL/std/limits.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 
 Convert::Convert()
 {
@@ -29,7 +29,7 @@ const char* Convert::ToString(intmax_t num, uint8_t base)
         
         size_t len = strlen(min_str);
         
-        LDL::memcpy(_buffer, min_str, len + 1);
+        LDL::Memcpy(_buffer, min_str, len + 1);
 
         return _buffer;
     }

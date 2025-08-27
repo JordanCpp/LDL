@@ -10,22 +10,19 @@
 
 namespace LDL
 {
-	namespace Time
+	class LDL_LIBRARY FpsCounter
 	{
-		class LDL_LIBRARY FpsCounter
-		{
-		public:
-			FpsCounter();
-			void Start();
-			bool Calc();
-			size_t Fps() const;
-		private:
-			size_t _startTime;
-			size_t _accumulator;
-			size_t _frameCount;
-			size_t _lastFps;
-		};
-	}
+	public:
+		FpsCounter();
+		void Start();
+		bool Calc();
+		size_t Fps() const;
+	private:
+		size_t _startTime;
+		size_t _accumulator;
+		size_t _frameCount;
+		size_t _lastFps;
+	};
 }
 
 #endif     

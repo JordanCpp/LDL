@@ -6,7 +6,7 @@
 #include <LDL/Time/FpsLimiter.hpp>
 #include <LDL/Time/Ticks.hpp>
 
-using namespace LDL::Time;
+using namespace LDL;
 
 FpsLimiter::FpsLimiter(size_t fps) :
 	_fps(fps), 

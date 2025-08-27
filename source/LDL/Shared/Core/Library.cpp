@@ -11,10 +11,10 @@
     #include <LDL/Platforms/Linux/Core/LibraryImpl.hpp>
 #endif
 
-using namespace LDL::Core;
+using namespace LDL;
 
 Library::Library(const char* path) :
-    _impl(new LDL::Core::LibraryImpl(path))
+    _impl(new LibraryImpl(path))
 {
 }
 

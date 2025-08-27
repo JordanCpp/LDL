@@ -7,7 +7,7 @@
 #include <LDL/Math/Rect.hpp>
 #include <LDL/Math/Vec2.hpp>
 
-using namespace LDL::Math;
+using namespace LDL;
 
 void DefaultInit()
 {

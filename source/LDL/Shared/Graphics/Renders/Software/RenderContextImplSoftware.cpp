@@ -5,7 +5,7 @@
 
 #include <LDL/Shared/Graphics/Renders/Software/RenderContextImplSoftware.hpp>
 
-using namespace LDL::Graphics;
+using namespace LDL;
 
 RenderContextImplSoftware::RenderContextImplSoftware(size_t mode) :
 	_mode(mode)

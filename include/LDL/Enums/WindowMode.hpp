@@ -8,19 +8,16 @@
 
 namespace LDL
 {
-	namespace Enums
+	class WindowMode
 	{
-		class WindowMode
+	public:
+		enum
 		{
-		public:
-			enum
-			{
-				Resized,
-				Fixed,
-				FullScreen
-			};
+			Resized,
+			Fixed,
+			FullScreen
 		};
-	}
+	};
 }
 
 #endif

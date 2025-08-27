@@ -12,12 +12,12 @@
 
 struct SDL_Window
 {
-	LDL::Core::Result&           _result;
-	LDL::Graphics::RenderContext _context;
-	LDL::Graphics::Window        _window;
-	SDL_Window(LDL::Core::Result& result, const char* title, int w, int h, SDL_WindowFlags flags);
-	LDL::Graphics::Window& GetWindow();
-	LDL::Graphics::RenderContext& GetRenderContext();
+	LDL::Result&       _result;
+	LDL::RenderContext _context;
+	LDL::Window        _window;
+	SDL_Window(LDL::Result& result, const char* title, int w, int h, SDL_WindowFlags flags);
+	LDL::Window& GetWindow();
+	LDL::RenderContext& GetRenderContext();
 };
 
 #endif

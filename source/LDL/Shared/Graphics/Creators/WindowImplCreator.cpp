@@ -18,9 +18,7 @@
 
 #include <LDL/Core/Assert.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Enums;
-using namespace LDL::Math;
+using namespace LDL;
 using namespace LDL::Graphics;
 
 WindowImpl* WindowImplCreator::Create(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode)

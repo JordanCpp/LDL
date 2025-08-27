@@ -4,18 +4,17 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Graphics/PixelCopier.hpp>
-#include <assert.h>
+#include <LDL/Core/Assert.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 void PixelCopier::Copy(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
 {
-	assert(srcSurf != NULL);
-	assert(dstSurf != NULL);
+	LDL_ASSERT(srcSurf != NULL);
+	LDL_ASSERT(dstSurf != NULL);
 
-	assert(srcSurf->Size().x <= dstSurf->Size().x);
-	assert(srcSurf->Size().y <= dstSurf->Size().y);
+	LDL_ASSERT(srcSurf->Size().x <= dstSurf->Size().x);
+	LDL_ASSERT(srcSurf->Size().y <= dstSurf->Size().y);
 
 	uint8_t bpp = srcSurf->BytesPerPixel();
 

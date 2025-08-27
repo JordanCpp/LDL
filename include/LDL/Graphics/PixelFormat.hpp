@@ -8,20 +8,17 @@
 
 namespace LDL
 {
-    namespace Graphics
+    class PixelFormat
     {
-        class PixelFormat
+    public:
+        enum
         {
-        public:
-            enum
-            {
-                RGBA32,
-                BGRA32,
-                RGB24,
-                BGR24
-            };
+            RGBA32,
+            BGRA32,
+            RGB24,
+            BGR24
         };
-    }
+    };
 }
 
 #endif

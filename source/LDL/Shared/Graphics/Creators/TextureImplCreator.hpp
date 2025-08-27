@@ -12,17 +12,14 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class TextureImplCreator
 	{
-		class TextureImplCreator
-		{
-		public:
-			TextureImpl* Create(uint8_t* memory, RenderContext* renderContext, const Math::Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);
-			TextureImpl* Create(uint8_t* memory, RenderContext* renderContext, const Math::Vec2u& size, uint8_t bytesPerPixel);
-			TextureImpl* Create(uint8_t* memory, RenderContext* renderContext, Surface* surface);
-		private:
-		};
-	}
+	public:
+		TextureImpl* Create(uint8_t* memory, RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);
+		TextureImpl* Create(uint8_t* memory, RenderContext* renderContext, const Vec2u& size, uint8_t bytesPerPixel);
+		TextureImpl* Create(uint8_t* memory, RenderContext* renderContext, Surface* surface);
+	private:
+	};
 }
 
 #endif   

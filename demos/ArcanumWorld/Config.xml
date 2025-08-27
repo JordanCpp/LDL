@@ -1,0 +1,13 @@
+<Config>
+	<Video>
+		<Render>2</Render>
+		<Width>1024</Width>
+		<Heigth>768</Heigth>
+		<Fps>60</Fps>
+		<Title>Arcanum World Project</Title>
+	</Video>
+	<Files>
+		<DatFiles>""</DatFiles>
+		<DataFiles>""</DataFiles>
+	</Files>
+</Config>

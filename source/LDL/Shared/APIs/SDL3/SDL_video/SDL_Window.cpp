@@ -5,11 +5,9 @@
 
 #include "SDL_Window.hpp"
 
-using namespace LDL::Math;
-using namespace LDL::Events;
-using namespace LDL::Graphics;
+using namespace LDL;
 
-SDL_Window::SDL_Window(LDL::Core::Result& result, const char* title, int w, int h, SDL_WindowFlags flags) :
+SDL_Window::SDL_Window(LDL::Result& result, const char* title, int w, int h, SDL_WindowFlags flags) :
 	_result(result),
 	_window(_result, _context, Vec2u(0, 0), Vec2u(w, h), title, (size_t)flags)
 {

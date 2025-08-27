@@ -5,7 +5,7 @@
 
 #include "RenderContextImplOpenGL3.hpp"
 
-using namespace LDL::Graphics;
+using namespace LDL;
 
 RenderContextImplOpenGL3::RenderContextImplOpenGL3(size_t mode) :
 	_mode(mode)

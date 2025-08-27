@@ -11,18 +11,12 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class PotTextureSizer
 	{
-		namespace Utils
-		{
-			class PotTextureSizer
-			{
-			public:
-				size_t Calc(const Math::Vec2u& size);
-			private:
-			};
-		}
-	}
-}                                       
+	public:
+		size_t Calc(const Vec2u& size);
+	private:
+	};
+}
 
 #endif

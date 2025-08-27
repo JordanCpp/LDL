@@ -9,9 +9,9 @@
 #include <LDL/Core/Convert.hpp>
 #include <LDL/STL/inplace_strings.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 
-void LDL::Core::Assert(bool condition, const char* description, const char* detail, const char* file, size_t line)
+void LDL::Assert(bool condition, const char* description, const char* detail, const char* file, size_t line)
 {
 	if (!condition)
 	{

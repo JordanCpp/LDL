@@ -6,34 +6,31 @@
 #ifndef LDL_Graphics_RenderContext_hpp
 #define LDL_Graphics_RenderContext_hpp
 
-#include <LDL/Core/Config.hpp>
+#include <LDL/Config.hpp>
 #include <LDL/std/stddef.hpp>
 #include <LDL/std/stdint.hpp>
 #include <LDL/Enums/RenderMode.hpp>
 
 namespace LDL
 {
-	namespace Graphics
-	{
-		class RenderContextImpl;
+	class RenderContextImpl;
 
-		class LDL_LIBRARY RenderContext
+	class LDL_LIBRARY RenderContext
+	{
+	public:
+		enum
 		{
-		public:
-			enum
-			{
-				SizeOf = 32
-			};
-			RenderContext(size_t mode = Enums::RenderMode::OpenGL1);
-			~RenderContext();
-			RenderContextImpl* GetRenderContextImpl();
-			size_t Mode();
-			void* Context();
-		private:
-			RenderContextImpl* _impl;
-			uint8_t            _memory[SizeOf];
+			SizeOf = 32
 		};
-	}
+		RenderContext(size_t mode = RenderMode::OpenGL1);
+		~RenderContext();
+		RenderContextImpl* GetRenderContextImpl();
+		size_t Mode();
+		void* Context();
+	private:
+		RenderContextImpl* _impl;
+		uint8_t            _memory[SizeOf];
+	};
 }
 
 #endif  

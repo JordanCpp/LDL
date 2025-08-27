@@ -3,24 +3,21 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_TextureBatcherImpl_hpp
-#define LDL_Graphics_TextureBatcherImpl_hpp
+#ifndef LDL_Graphics_SpriteBatcherImpl_hpp
+#define LDL_Graphics_SpriteBatcherImpl_hpp
 
 #include <LDL/Math/Vec2.hpp>
 
 namespace LDL
 {
-	namespace Graphics
+	class SpriteBatcherImpl
 	{
-		class TextureBatcherImpl
-		{
-		public:
-			virtual ~TextureBatcherImpl() {};
-			virtual void Draw(const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize) = 0;
-			virtual void Clear() = 0;
-		private:
-		};
-	}
+	public:
+		virtual ~SpriteBatcherImpl() {};
+		virtual void Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize) = 0;
+		virtual void Clear() = 0;
+	private:
+	};
 }
 
 #endif    

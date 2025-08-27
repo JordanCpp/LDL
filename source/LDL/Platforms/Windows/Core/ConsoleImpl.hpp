@@ -10,17 +10,14 @@
 
 namespace LDL
 {
-	namespace Core
+	class ConsoleImpl
 	{
-		class ConsoleImpl
-		{
-		public:
-			ConsoleImpl();
-			void Write(const char* text);
-		private:
-			HANDLE _output;
-		};
-	}
+	public:
+		ConsoleImpl();
+		void Write(const char* text);
+	private:
+		HANDLE _output;
+	};
 }
 
 #endif    

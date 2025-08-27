@@ -13,23 +13,20 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class SpriteBatcherImplOpenGL1 : public SpriteBatcherImpl
 	{
-		class TextureBatcherImplOpenGL1: public TextureBatcherImpl
-		{
-		public:
-			TextureBatcherImplOpenGL1(Texture* texture, size_t count);
-			void Draw(const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Clear();
-			size_t TextureId();
-			size_t Count();
-			Util::Quad* Content();
-		private:
-			size_t             _texture;
-			size_t             _textureSize;
-			vector<Util::Quad> _quads;
-		};
-	}
+	public:
+		SpriteBatcherImplOpenGL1(Texture* texture, size_t count);
+		void Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Clear();
+		size_t TextureId();
+		size_t Count();
+		Quad* Content();
+	private:
+		size_t       _texture;
+		size_t       _textureSize;
+		vector<Quad> _quads;
+	};
 }
 
 #endif    

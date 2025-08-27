@@ -7,8 +7,7 @@
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
 
-using namespace LDL::Input;
-using namespace LDL::Math;
+using namespace LDL;
 
 Vec2u Mouse::Pos()
 {

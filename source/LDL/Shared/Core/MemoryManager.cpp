@@ -27,7 +27,7 @@ DEALINGS IN THE SOFTWARE.
 #include <LDL/STL/new.hpp>
 #include <LDL/Core/MemoryManager.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 
 MemoryManager* MemoryManager::_instance = NULL;
 char MemoryManager::_bytes[SizeOf];

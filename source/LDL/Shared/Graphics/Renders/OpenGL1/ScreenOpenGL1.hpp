@@ -11,25 +11,22 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class ScreenOpenGL1
 	{
-		class ScreenOpenGL1
-		{
-		public:
-			ScreenOpenGL1(const Math::Vec2u& size);
-			~ScreenOpenGL1();
-			void Draw(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size);
-			void Draw(Surface* image, const Math::Vec2u& pos);
-		private:
-			void DrawTexture(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size);
-			void DrawPixels(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size);
-			Math::Vec2u            _size;
-			size_t                 _screen;
-			size_t                 _maxTextureSize;
-			size_t                 _curTextureSize;
-			Utils::PotTextureSizer _potTextureSizer;
-		};
-	}
+	public:
+		ScreenOpenGL1(const Vec2u& size);
+		~ScreenOpenGL1();
+		void Draw(Surface* image, const Vec2u& pos, const Vec2u& size);
+		void Draw(Surface* image, const Vec2u& pos);
+	private:
+		void DrawTexture(Surface* image, const Vec2u& pos, const Vec2u& size);
+		void DrawPixels(Surface* image, const Vec2u& pos, const Vec2u& size);
+		Vec2u           _size;
+		size_t          _screen;
+		size_t          _maxTextureSize;
+		size_t          _curTextureSize;
+		PotTextureSizer _potTextureSizer;
+	};
 }
 
 #endif    

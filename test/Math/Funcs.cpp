@@ -8,7 +8,7 @@
 #include <LDL/Math/Vec3.hpp>
 #include <LDL/Math/Mat4.hpp>
 
-using namespace LDL::Math;
+using namespace LDL;
 
 int main()
 {

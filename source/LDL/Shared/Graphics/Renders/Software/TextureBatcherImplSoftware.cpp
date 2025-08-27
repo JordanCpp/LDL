@@ -7,16 +7,15 @@
 #include "TextureImplSoftware.hpp"
 #include "../OpenGL/Util.hpp"
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
-TextureBatcherImplSoftware::TextureBatcherImplSoftware(Texture* texture, size_t count)
+SpriteBatcherImplSoftware::SpriteBatcherImplSoftware(Texture* texture, size_t count)
 {
 	LDL_UNUSED(texture);
 	LDL_UNUSED(count);
 }
 
-void TextureBatcherImplSoftware::Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
+void SpriteBatcherImplSoftware::Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	LDL_UNUSED(dstPos);
 	LDL_UNUSED(dstSize);
@@ -24,6 +23,6 @@ void TextureBatcherImplSoftware::Draw(const Vec2u& dstPos, const Vec2u& dstSize,
 	LDL_UNUSED(srcSize);
 }
 
-void TextureBatcherImplSoftware::Clear()
+void SpriteBatcherImplSoftware::Clear()
 {
 }

@@ -6,9 +6,6 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Loaders/BmpLoader.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Loaders;
-
 int main()
 {
 	return 0;

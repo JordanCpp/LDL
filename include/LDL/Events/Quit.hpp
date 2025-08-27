@@ -10,14 +10,11 @@
 
 namespace LDL
 {
-	namespace Events
+	class Quit
 	{
-		class Quit
-		{
-		public:
-			uint8_t Type;
-		};
-	}
+	public:
+		uint8_t Type;
+	};
 }
 
 #endif

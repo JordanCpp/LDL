@@ -5,7 +5,7 @@
 
 #include <LDL/Core/Result.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 
 Result::Result() :
 	_ok(true)

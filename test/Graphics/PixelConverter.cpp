@@ -6,8 +6,7 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Graphics/PixelConverter.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 void Fill()
 {

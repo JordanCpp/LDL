@@ -6,7 +6,7 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Input/Mouse.hpp>
 
-using namespace LDL::Input;
+using namespace LDL;
 
 void GetPos()
 {

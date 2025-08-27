@@ -11,29 +11,26 @@
 
 namespace LDL
 {
-	namespace Core
-	{
-		class DirectoryImpl;
+	class DirectoryImpl;
 
-		class LDL_LIBRARY Directory
-		{
-		public:
-			Directory(Result& result);
-			~Directory();
-			const char* AllFiles();
-			bool Create(const char* path);
-			bool DirExist(const char* path);
-			bool FileExist(const char* path);
-			bool Delete(const char* path);
-			bool Open(const char* path);
-			void Close();
-			bool Next(FileInfo& fileInfo);
-			bool Remove(const char* path);
-		private:
-			Result&        _result;
-			DirectoryImpl* _impl;
-		};
-	}
+	class LDL_LIBRARY Directory
+	{
+	public:
+		Directory(Result& result);
+		~Directory();
+		const char* AllFiles();
+		bool Create(const char* path);
+		bool DirExist(const char* path);
+		bool FileExist(const char* path);
+		bool Delete(const char* path);
+		bool Open(const char* path);
+		void Close();
+		bool Next(FileInfo& fileInfo);
+		bool Remove(const char* path);
+	private:
+		Result& _result;
+		DirectoryImpl* _impl;
+	};
 }
 
 #endif    

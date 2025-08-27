@@ -11,11 +11,11 @@
     #include <LDL/Platforms/Linux/Core/DirectoryImpl.hpp>
 #endif
 
-using namespace LDL::Core;
+using namespace LDL;
 
 Directory::Directory(Result& result) :
     _result(result),
-    _impl(new LDL::Core::DirectoryImpl(result))
+    _impl(new DirectoryImpl(result))
 {
 }
 
@@ -59,7 +59,7 @@ void Directory::Close()
     _impl->Close();
 }
 
-bool Directory::Next(LDL::Core::FileInfo& fileInfo)
+bool Directory::Next(FileInfo& fileInfo)
 {
     return _impl->Next(fileInfo);
 }

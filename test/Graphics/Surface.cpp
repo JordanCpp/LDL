@@ -5,12 +5,8 @@
 
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Graphics/Surface.hpp>
-#include <LDL/Allocators/FixedLinear.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
-
-const size_t bytes = LDL::Allocators::Allocator::Mb * 4;
+using namespace LDL;
 
 void InitDefault()
 {

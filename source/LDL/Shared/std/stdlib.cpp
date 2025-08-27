@@ -2,12 +2,12 @@
 #include <LDL/std/stdlib.hpp>
 #include <LDL/Core/MemoryManager.hpp>
 
-void* LDL::malloc(size_t bytes)
+void* LDL::Malloc(size_t bytes)
 {
-	return LDL::Core::MemoryManager::Instance().GetMalloc()(bytes);
+	return LDL::MemoryManager::Instance().GetMalloc()(bytes);
 }
 
-void LDL::free(void* ptr)
+void LDL::Free(void* ptr)
 {
-	LDL::Core::MemoryManager::Instance().GetFree()(ptr);
+	LDL::MemoryManager::Instance().GetFree()(ptr);
 }

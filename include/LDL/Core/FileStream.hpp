@@ -10,35 +10,32 @@
 
 namespace LDL
 {
-    namespace Core
-    {
-		class FileStream
+	class FileStream
+	{
+	public:
+		enum
 		{
-		public:
-			enum
-			{
-				OpenModeRead   = 1,
-				OpenModeWrite  = 2,
-				OpenModeAppend = 4,
-				OpenModeCreate = 8
-			};
-
-			FileStream();
-			~FileStream();
-			bool Open(const char* path, size_t mode);
-			void Close();
-			bool IsOpen() const;
-			size_t Read(void* buffer, size_t size);
-			size_t Write(const void* buffer, size_t size);
-			bool Flush();
-			bool Seek(size_t pos);
-			size_t Tell() const;
-			size_t Size() const;
-		private:
-			bool   _isOpen;
-			void*  _handle;
+			OpenModeRead = 1,
+			OpenModeWrite = 2,
+			OpenModeAppend = 4,
+			OpenModeCreate = 8
 		};
-    }
+
+		FileStream();
+		~FileStream();
+		bool Open(const char* path, size_t mode);
+		void Close();
+		bool IsOpen() const;
+		size_t Read(void* buffer, size_t size);
+		size_t Write(const void* buffer, size_t size);
+		bool Flush();
+		bool Seek(size_t pos);
+		size_t Tell() const;
+		size_t Size() const;
+	private:
+		bool   _isOpen;
+		void* _handle;
+	};
 }
 
 #endif

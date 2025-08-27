@@ -11,19 +11,16 @@
 
 namespace LDL
 {
-	namespace Utils
+	class KeyMap
 	{
-		class KeyMap
-		{
-		public:
-			KeyMap(size_t code, uint8_t key);
-			size_t GetCode();
-			uint8_t GetKey();
-		private:
-			uint8_t _key;
-			size_t  _code;
-		};
-	}
+	public:
+		KeyMap(size_t code, uint8_t key);
+		size_t GetCode();
+		uint8_t GetKey();
+	private:
+		uint8_t _key;
+		size_t  _code;
+	};
 }
 
 #endif   

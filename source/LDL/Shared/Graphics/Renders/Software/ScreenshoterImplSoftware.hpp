@@ -13,23 +13,20 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class ScreenShotterImplSoftware : public ScreenShotterImpl
 	{
-		class ScreenShotterImplSoftware : public ScreenShotterImpl
-		{
-		public:
-			ScreenShotterImplSoftware(const char* path, const char* name, Graphics::Render* render, Graphics::Surface* image);
-			void Shot();
-		private:
-			Graphics::ImageWriter       _imageWriter;
-			Graphics::BaseScreenShotter _baseScreenShotter;
-			FileString                  _shortPath;
-			FileString                  _name;
-			FileString                  _fullPath;
-			Graphics::Render*           _render;
-			Graphics::Surface*          _image;
-		};
-	}
+	public:
+		ScreenShotterImplSoftware(const char* path, const char* name, Render* render, Surface* image);
+		void Shot();
+	private:
+		ImageWriter       _imageWriter;
+		BaseScreenShotter _baseScreenShotter;
+		FileString        _shortPath;
+		FileString        _name;
+		FileString        _fullPath;
+		Render* _render;
+		Surface* _image;
+	};
 }
 
 #endif  

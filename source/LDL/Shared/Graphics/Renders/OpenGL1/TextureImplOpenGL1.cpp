@@ -8,8 +8,7 @@
 #include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL1/TextureImplOpenGL1.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, Surface* surface) :
 	_renderContextImpl(renderContextImpl),
@@ -24,7 +23,7 @@ TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, Sur
 		pixels.resize(surface->Size().x * surface->Size().y * 4);
 
 		const uint8_t*        src = surface->Pixels();
-		const Graphics::Color key = surface->ColorKey();
+		const LDL::Color      key = surface->ColorKey();
 
 		if (surface->BytesPerPixel() == 3)
 		{
@@ -55,11 +54,11 @@ TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, Sur
 
 	_size = surface->Size();
 
-	uint32_t sz = Util::SelectTextureSize(_size);
+	uint32_t sz = SelectTextureSize(_size);
 
 	_quad = Vec2u(sz, sz);
 
-	_id = Util::CreateTexture((GLsizei)_quad.x, (GLsizei)_quad.y, format);
+	_id = CreateTexture((GLsizei)_quad.x, (GLsizei)_quad.y, format);
 
 	if (surface->Enabled())
 	{
@@ -89,11 +88,11 @@ TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, con
 	else
 		format = GL_RGBA;
 
-	uint32_t sz = Util::SelectTextureSize(_size);
+	uint32_t sz = SelectTextureSize(_size);
 
 	_quad = Vec2u(sz, sz);
 
-	_id = Util::CreateTexture((GLsizei)_quad.x, (GLsizei)_quad.y, format);
+	_id = CreateTexture((GLsizei)_quad.x, (GLsizei)_quad.y, format);
 
 	Copy(Vec2u(0, 0), _size, pixels, bytesPerPixel);
 }
@@ -111,16 +110,16 @@ TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, con
 	else
 		format = GL_RGBA;
 
-	uint32_t sz = Util::SelectTextureSize(_size);
+	uint32_t sz = SelectTextureSize(_size);
 
 	_quad = Vec2u(sz, sz);
 
-	_id = Util::CreateTexture((GLsizei)_quad.x, (GLsizei)_quad.y, format);
+	_id = CreateTexture((GLsizei)_quad.x, (GLsizei)_quad.y, format);
 }
 
 TextureImplOpenGL1::~TextureImplOpenGL1()
 {
-	Util::DeleteTexture((GLint)_id);
+	DeleteTexture((GLint)_id);
 }
 
 void TextureImplOpenGL1::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel)

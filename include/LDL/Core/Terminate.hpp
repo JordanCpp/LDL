@@ -6,14 +6,11 @@
 #ifndef LDL_Core_Terminate_hpp
 #define LDL_Core_Terminate_hpp
 
-#include <LDL/Core/Config.hpp>
+#include <LDL/Config.hpp>
 
 namespace LDL
 {
-    namespace Core
-    {
-        LDL_LIBRARY void Terminate();
-    }
+	LDL_LIBRARY void Terminate();
 }
 
 #endif    

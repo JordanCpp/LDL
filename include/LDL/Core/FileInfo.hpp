@@ -10,17 +10,14 @@
 
 namespace LDL
 {
-	namespace Core
+	class LDL_LIBRARY FileInfo
 	{
-		class LDL_LIBRARY FileInfo
-		{
-		public:
-			const char* Name();
-			void Name(const char* source);
-		private:
-			FileString _name;
-		};
-	}
+	public:
+		const char* Name();
+		void Name(const char* source);
+	private:
+		FileString _name;
+	};
 }
 
 #endif

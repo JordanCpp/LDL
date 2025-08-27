@@ -16,41 +16,38 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class MainWindow
 	{
-		class MainWindow
-		{
-		public:
-			MainWindow(Core::Result& result, const Math::Vec2u& pos, const Math::Vec2u& size, const char* title, size_t mode);
-			~MainWindow();
-			void InitKeyMapping();
-			bool Running();
-			void PollEvents();
-			bool GetEvent(Events::Event& event);
-			bool WaitEvent(Events::Event& event);
-			void StopEvent();
-			void Title(const char* title);
-			const char* Title();
-			const Math::Vec2u& Size();
-			const Math::Vec2u& Pos();
-		private:
-			uint8_t ConvertKey(size_t key);
-			static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
-			LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
-			LDL::Utils::KeyMapping _keyMapping;
-			WindowError     _windowError;
-			BaseWindow      _baseWindow;
-			Core::Result&   _result;
-			Events::Eventer _eventer;
-			WNDCLASS        _windowClass;
-			HINSTANCE       _instance;
-			MSG             _msg;
-			ATOM            _atom;
-		public:
-			HWND            _hwnd;
-			HDC             _hdc;
-		};
-	}
+	public:
+		MainWindow(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode);
+		~MainWindow();
+		void InitKeyMapping();
+		bool Running();
+		void PollEvents();
+		bool GetEvent(Event& event);
+		bool WaitEvent(Event& event);
+		void StopEvent();
+		void Title(const char* title);
+		const char* Title();
+		const Vec2u& Size();
+		const Vec2u& Pos();
+	private:
+		uint8_t ConvertKey(size_t key);
+		static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
+		LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
+		LDL::Utils::KeyMapping _keyMapping;
+		WindowError     _windowError;
+		BaseWindow      _baseWindow;
+		Result& _result;
+		Events::Eventer _eventer;
+		WNDCLASS        _windowClass;
+		HINSTANCE       _instance;
+		MSG             _msg;
+		ATOM            _atom;
+	public:
+		HWND            _hwnd;
+		HDC             _hdc;
+	};
 }
 
 #endif   

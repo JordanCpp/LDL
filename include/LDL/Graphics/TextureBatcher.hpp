@@ -3,34 +3,31 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_TextureBatcher_hpp
-#define LDL_Graphics_TextureBatcher_hpp
+#ifndef LDL_Graphics_SpriteBatcher_hpp
+#define LDL_Graphics_SpriteBatcher_hpp
 
 #include <LDL/Graphics/Texture.hpp>
 
 namespace LDL
 {
-	namespace Graphics
-	{
-		class TextureBatcherImpl;
+	class SpriteBatcherImpl;
 
-		class LDL_LIBRARY TextureBatcher
+	class LDL_LIBRARY SpriteBatcher
+	{
+	public:
+		enum
 		{
-		public:
-			enum
-			{
-				SizeOf = 64
-			};
-			TextureBatcher(RenderContext* renderContext, Texture* texture, size_t count);
-			~TextureBatcher();
-			TextureBatcherImpl* GetTextureBatcherImpl();
-			void Draw(const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Clear();
-		private:
-			TextureBatcherImpl* _impl;
-			uint8_t             _memory[SizeOf];
+			SizeOf = 64
 		};
-	}
+		SpriteBatcher(RenderContext* renderContext, Texture* texture, size_t count);
+		~SpriteBatcher();
+		SpriteBatcherImpl* GetTextureBatcherImpl();
+		void Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Clear();
+	private:
+		SpriteBatcherImpl* _impl;
+		uint8_t            _memory[SizeOf];
+	};
 }
 
 #endif    

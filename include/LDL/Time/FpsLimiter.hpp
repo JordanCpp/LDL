@@ -6,24 +6,21 @@
 #ifndef LDL_Time_FpsLimiter_hpp
 #define LDL_Time_FpsLimiter_hpp
 
-#include <LDL/Core/Config.hpp>
+#include <LDL/Config.hpp>
 #include <LDL/std/stddef.hpp>
 
 namespace LDL
 {
-	namespace Time
+	class LDL_LIBRARY FpsLimiter
 	{
-		class LDL_LIBRARY FpsLimiter
-		{
-		public:
-			FpsLimiter(size_t fps = 60);
-			void Mark();
-			void Throttle() const;
-		private:
-			size_t _fps;
-			size_t _startTime;
-		};
-	}
+	public:
+		FpsLimiter(size_t fps = 60);
+		void Mark();
+		void Throttle() const;
+	private:
+		size_t _fps;
+		size_t _startTime;
+	};
 }
 
 #endif    

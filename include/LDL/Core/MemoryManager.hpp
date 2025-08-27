@@ -27,47 +27,45 @@ DEALINGS IN THE SOFTWARE.
 #ifndef LDL_Core_MemoryManager_hpp
 #define LDL_Core_MemoryManager_hpp
 
+#include <LDL/Config.hpp>
 #include <LDL/std/stddef.hpp>
 
 namespace LDL
 {
-	namespace Core
+	typedef void* (*mallocFunc) (size_t size);
+	typedef void* (*callocFunc) (size_t nmemb, size_t size);
+	typedef void* (*reallocFunc)(void* mem, size_t size);
+	typedef void  (*freeFunc)   (void* mem);
+
+	class LDL_LIBRARY MemoryManager
 	{
-		typedef void* (*mallocFunc) (size_t size);
-		typedef void* (*callocFunc) (size_t nmemb, size_t size);
-		typedef void* (*reallocFunc)(void* mem, size_t size);
-		typedef void  (*freeFunc)   (void* mem);
-
-		class MemoryManager
+	public:
+		static MemoryManager& Instance();
+		bool Functions(mallocFunc malloc_func, callocFunc calloc_func, reallocFunc realloc_func, freeFunc free_func);
+		mallocFunc  GetMalloc();
+		callocFunc  GetCalloc();
+		reallocFunc GetRealloc();
+		freeFunc    GetFree();
+	private:
+		enum
 		{
-		public:
-			static MemoryManager& Instance();
-			bool Functions(mallocFunc malloc_func, callocFunc calloc_func, reallocFunc realloc_func, freeFunc free_func);
-			mallocFunc  GetMalloc();
-			callocFunc  GetCalloc();
-			reallocFunc GetRealloc();
-			freeFunc    GetFree();
-		private:
-			enum
-			{
-				SizeOf = 64
-			};
-
-			MemoryManager();
-			~MemoryManager();
-
-			MemoryManager(const MemoryManager&);
-			MemoryManager& operator=(const MemoryManager&);
-
-			mallocFunc  _mallocFunc;
-			callocFunc  _callocFunc;
-			reallocFunc _reallocFunc;
-			freeFunc    _freeFunc;
-
-			static MemoryManager* _instance;
-			static char _bytes[SizeOf];
+			SizeOf = 64
 		};
-	}
+
+		MemoryManager();
+		~MemoryManager();
+
+		MemoryManager(const MemoryManager&);
+		MemoryManager& operator=(const MemoryManager&);
+
+		mallocFunc  _mallocFunc;
+		callocFunc  _callocFunc;
+		reallocFunc _reallocFunc;
+		freeFunc    _freeFunc;
+
+		static MemoryManager* _instance;
+		static char _bytes[SizeOf];
+	};
 }
 
 #endif

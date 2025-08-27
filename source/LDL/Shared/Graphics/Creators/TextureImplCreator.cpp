@@ -12,10 +12,7 @@
 #include <LDL/Enums/RenderMode.hpp>
 #include <LDL/Core/Assert.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Enums;
-using namespace LDL::Math;
-using namespace LDL::Graphics;
+using namespace LDL;
 
 TextureImpl* TextureImplCreator::Create(uint8_t* memory, RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel)
 {

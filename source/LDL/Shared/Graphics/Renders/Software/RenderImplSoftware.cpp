@@ -11,9 +11,8 @@
     #include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
 #endif
 
-using namespace LDL::Core;
+using namespace LDL;
 using namespace LDL::Graphics;
-using namespace LDL::Math;
 
 RenderImplSoftware::RenderImplSoftware(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
 	_result(result),
@@ -57,7 +56,7 @@ void RenderImplSoftware::Clear()
 	_pixelPainter.Clear();
 }
 
-void RenderImplSoftware::Color(const LDL::Graphics::Color& color)
+void RenderImplSoftware::Color(const LDL::Color& color)
 {
 	_pixelPainter.Color(color);
 }
@@ -141,7 +140,7 @@ void RenderImplSoftware::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& 
 	LDL_UNUSED(srcSize);
 }
 
-void RenderImplSoftware::Draw(TextureBatcher* textureBatcher)
+void RenderImplSoftware::Draw(SpriteBatcher* textureBatcher)
 {
 	LDL_UNUSED(textureBatcher);
 }

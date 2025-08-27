@@ -8,8 +8,7 @@
 #include <LDL/Graphics/RenderContext.hpp>
 #include <LDL/Shared/Graphics/Creators/WindowImplCreator.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Math;
+using namespace LDL;
 using namespace LDL::Graphics;
 
 Window::Window(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode)
@@ -34,12 +33,12 @@ void Window::PollEvents()
 	_impl->PollEvents();
 }
 
-bool Window::GetEvent(LDL::Events::Event& event)
+bool Window::GetEvent(Event& event)
 {
 	return _impl->GetEvent(event);
 }
 
-bool Window::WaitEvent(LDL::Events::Event& event)
+bool Window::WaitEvent(Event& event)
 {
 	return _impl->WaitEvent(event);
 }

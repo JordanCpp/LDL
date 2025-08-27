@@ -6,28 +6,25 @@
 #ifndef LDL_Graphics_Palette_hpp
 #define LDL_Graphics_Palette_hpp
 
-#include <LDL/Core/Config.hpp>
+#include <LDL/Config.hpp>
 #include <LDL/std/stddef.hpp>
 #include <LDL/Graphics/Color.hpp>
 
 namespace LDL
 {
-	namespace Graphics
+	class LDL_LIBRARY Palette
 	{
-		class LDL_LIBRARY Palette
+	public:
+		enum
 		{
-		public:
-			enum
-			{
-				Max = 256
-			};
-			Palette();
-			Color* Colors();
-			size_t Count();
-		private:
-			Color _colors[Max];
+			Max = 256
 		};
-	}
+		Palette();
+		Color* Colors();
+		size_t Count();
+	private:
+		Color _colors[Max];
+	};
 }
 
-#endif    
+#endif

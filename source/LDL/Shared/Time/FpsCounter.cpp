@@ -5,7 +5,7 @@
 
 #include <LDL/Time/FpsCounter.hpp>
 
-using namespace LDL::Time;
+using namespace LDL;
 
 FpsCounter::FpsCounter() :
     _startTime(0),

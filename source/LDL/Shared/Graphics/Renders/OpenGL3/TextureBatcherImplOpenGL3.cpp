@@ -7,17 +7,16 @@
 #include "TextureImplOpenGL3.hpp"
 #include "../OpenGL/Util.hpp"
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
-TextureBatcherImplOpenGL3::TextureBatcherImplOpenGL3(Texture* texture, size_t count) :
+SpriteBatcherImplOpenGL3::SpriteBatcherImplOpenGL3(Texture* texture, size_t count) :
 	_Texture(((TextureImplOpenGL3*)texture->GetTextureImpl())->Id()),
 	_TextureSize(texture->GetTextureImpl()->Quad().x)
 {
 	_Quads.reserve(count);
 }
 
-void TextureBatcherImplOpenGL3::Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
+void SpriteBatcherImplOpenGL3::Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	Quad quad;
 
@@ -62,22 +61,22 @@ void TextureBatcherImplOpenGL3::Draw(const Vec2u& dstPos, const Vec2u& dstSize, 
 	_Quads.push_back(quad);
 }
 
-void TextureBatcherImplOpenGL3::Clear()
+void SpriteBatcherImplOpenGL3::Clear()
 {
 	_Quads.clear();
 }
 
-size_t TextureBatcherImplOpenGL3::TextureId()
+size_t SpriteBatcherImplOpenGL3::TextureId()
 {
 	return _Texture;
 }
 
-size_t TextureBatcherImplOpenGL3::Count()
+size_t SpriteBatcherImplOpenGL3::Count()
 {
 	return _Quads.size();
 }
 
-Quad* TextureBatcherImplOpenGL3::Content()
+Quad* SpriteBatcherImplOpenGL3::Content()
 {
 	return &_Quads[0];
 }

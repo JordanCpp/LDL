@@ -6,9 +6,9 @@
 #include <stdlib.h>
 #include <SDL3/SDL_init.h>
 #include <LDL/Core/MemoryManager.hpp>
-#include <LDL/Core/Config.hpp>
+#include <LDL/Config.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 
 bool SDL_Init(SDL_InitFlags flags)
 {

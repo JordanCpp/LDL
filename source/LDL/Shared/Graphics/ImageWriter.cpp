@@ -5,8 +5,7 @@
 
 #include <LDL/Graphics/ImageWritter.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 void ImageWriter::Save(const char* path, const Vec2u& size, size_t bytesPerPixel, uint8_t* pixels)
 {

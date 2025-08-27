@@ -6,9 +6,7 @@
 #include <LDL/Loaders/BmpLoader.hpp>
 #include <LDL/Core/FileStream.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Math;
-using namespace LDL::Loaders;
+using namespace LDL;
 
 #pragma pack(push, 1)
 typedef struct
@@ -36,7 +34,7 @@ typedef struct
 } BMPInfoHeader;
 #pragma pack(pop) 
 
-BmpLoader::BmpLoader(Core::Result& result) :
+BmpLoader::BmpLoader(Result& result) :
     _bpp(0),
 	_result(result)
 {

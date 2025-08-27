@@ -9,13 +9,12 @@
 #include <LDL/Core/Assert.hpp>
 #include <LDL/STL/inplace_strings.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 const uint32_t TextureCount = 12;
 const uint32_t TextureSizes[TextureCount] = { 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
 
-void Util::CalcQuad(Util::Quad& quad, uint16_t dstPosX, uint16_t dstPosY, uint16_t dstSizeX, uint16_t dstSizeY, uint16_t srcPosX, uint16_t srcPosY, uint16_t srcSizeX, uint16_t srcSizeY, size_t textureSize)
+void LDL::CalcQuad(Quad& quad, uint16_t dstPosX, uint16_t dstPosY, uint16_t dstSizeX, uint16_t dstSizeY, uint16_t srcPosX, uint16_t srcPosY, uint16_t srcSizeX, uint16_t srcSizeY, size_t textureSize)
 {
 	float ps = 1.0f / (float)textureSize;
 
@@ -56,7 +55,7 @@ void Util::CalcQuad(Util::Quad& quad, uint16_t dstPosX, uint16_t dstPosY, uint16
 	quad.data[29] = ps * srcPosY;
 }
 
-GLuint Util::CreateTexture(GLsizei width, GLsizei height, GLint format)
+GLuint LDL::CreateTexture(GLsizei width, GLsizei height, GLint format)
 {
 	GLuint result = 0;
 	
@@ -76,12 +75,12 @@ GLuint Util::CreateTexture(GLsizei width, GLsizei height, GLint format)
 	return result;
 }
 
-void Util::DeleteTexture(GLint id)
+void LDL::DeleteTexture(GLint id)
 {
 	GL_CHECK(glDeleteTextures(0, (GLuint*)&id));
 }
 
-void Util::DrawQuad(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize, size_t textureSize)
+void LDL::DrawQuad(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize, size_t textureSize)
 {
 	GLfloat x = (GLfloat)dstPos.x;
 	GLfloat y = (GLfloat)dstPos.y;
@@ -107,14 +106,14 @@ void Util::DrawQuad(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcP
 	glEnd();
 }
 
-void Util::Normalize(const Color& color, GLclampf& r, GLclampf& g, GLclampf& b)
+void LDL::Normalize(const Color& color, GLclampf& r, GLclampf& g, GLclampf& b)
 {
 	 r = color.r / 255.0f;
 	 g = color.g / 255.0f;
 	 b = color.b / 255.0f;
 }
 
-void Util::Check(const char* file, size_t line, const char* expression)
+void LDL::Check(const char* file, size_t line, const char* expression)
 {
     GLenum code = glGetError();
 
@@ -146,7 +145,7 @@ void Util::Check(const char* file, size_t line, const char* expression)
 			error = "Unknown error";
 		}
 
-		LDL::Core::Convert conv;
+		LDL::Convert conv;
 
 		AssertString assert = "OpenGL error: ";
 		assert += error.c_str();
@@ -161,7 +160,7 @@ void Util::Check(const char* file, size_t line, const char* expression)
     }
 }
 
-size_t Util::MaxTextureSize()
+size_t LDL::MaxTextureSize()
 {
 	GLint result = 0;
 
@@ -170,7 +169,7 @@ size_t Util::MaxTextureSize()
 	return result;
 }
 
-bool Util::IsMaxTextureSize(const Vec2u& resolutionSize, size_t textureSize)
+bool LDL::IsMaxTextureSize(const Vec2u& resolutionSize, size_t textureSize)
 {
 	if (textureSize >= resolutionSize.x && textureSize >= resolutionSize.y)
 	{
@@ -180,7 +179,7 @@ bool Util::IsMaxTextureSize(const Vec2u& resolutionSize, size_t textureSize)
 	return false;
 }
 
-uint32_t Util::SelectTextureSize(const Vec2u& size)
+uint32_t LDL::SelectTextureSize(const Vec2u& size)
 {
 	size_t w = size.x;
 	size_t h = size.y;

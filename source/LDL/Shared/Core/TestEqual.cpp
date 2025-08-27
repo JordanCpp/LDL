@@ -8,7 +8,7 @@
 #include <LDL/Core/Console.hpp>
 #include <LDL/STL/inplace_strings.hpp>
 
-void LDL::Core::TestEqual(bool condition, const char* description, const char* function, const char* file, size_t line)
+void LDL::TestEqual(bool condition, const char* description, const char* function, const char* file, size_t line)
 {
 	if (!condition)
 	{

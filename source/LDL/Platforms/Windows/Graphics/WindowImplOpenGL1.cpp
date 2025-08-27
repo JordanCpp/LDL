@@ -6,10 +6,9 @@
 #include <LDL/Core/Assert.hpp>
 #include "WindowImplOpenGL1.hpp"
 
-using namespace LDL::Core;
+using namespace LDL;
 using namespace LDL::Events;
 using namespace LDL::Graphics;
-using namespace LDL::Math;
 
 WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _result(result),

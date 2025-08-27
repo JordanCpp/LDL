@@ -8,12 +8,7 @@
 #include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 #include <LDL/std/string.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Enums;
-using namespace LDL::Events;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
-using namespace LDL::Utils;
+using namespace LDL;
 
 static const UINT timePeriod = 1;
 static const char AppName[]  = "MainWindow";
@@ -38,14 +33,14 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_MOUSEMOVE:
-        event.Type       = Events::IsMouseMove;
+        event.Type       = IsMouseMove;
         event.Mouse.PosX = LOWORD(LParam);
         event.Mouse.PosY = HIWORD(LParam);
         _eventer.Push(event);
         break;
 
     case WM_LBUTTONDOWN:
-        event.Type         = Events::IsMouseClick;
+        event.Type         = IsMouseClick;
         event.Mouse.State  = ButtonState::Pressed;
         event.Mouse.Button = MouseButton::Left;
         event.Mouse.PosX   = LOWORD(LParam);
@@ -54,7 +49,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_LBUTTONUP:
-        event.Type         = Events::IsMouseClick;
+        event.Type         = IsMouseClick;
         event.Mouse.State  = ButtonState::Released;
         event.Mouse.Button = MouseButton::Left;
         event.Mouse.PosX   = LOWORD(LParam);
@@ -63,7 +58,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_RBUTTONDOWN:
-        event.Type         = Events::IsMouseClick;
+        event.Type         = IsMouseClick;
         event.Mouse.State  = ButtonState::Pressed;
         event.Mouse.Button = MouseButton::Right;
         event.Mouse.PosX   = LOWORD(LParam);
@@ -72,7 +67,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_RBUTTONUP:
-        event.Type         = Events::IsMouseClick;
+        event.Type         = IsMouseClick;
         event.Mouse.State  = ButtonState::Released;
         event.Mouse.Button = MouseButton::Right;
         event.Mouse.PosX   = LOWORD(LParam);
@@ -81,7 +76,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_MBUTTONDOWN:
-        event.Type         = Events::IsMouseClick;
+        event.Type         = IsMouseClick;
         event.Mouse.State  = ButtonState::Pressed;
         event.Mouse.Button = MouseButton::Middle;
         event.Mouse.PosX   = LOWORD(LParam);
@@ -90,7 +85,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_MBUTTONUP:
-        event.Type         = Events::IsMouseClick;
+        event.Type         = IsMouseClick;
         event.Mouse.State  = ButtonState::Released;
         event.Mouse.Button = MouseButton::Middle;
         event.Mouse.PosX   = LOWORD(LParam);
@@ -99,14 +94,14 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_SIZE:
-        event.Type          = Events::IsResize;
+        event.Type          = IsResize;
         event.Resize.Width  = LOWORD(LParam);
         event.Resize.Height = HIWORD(LParam);
         _eventer.Push(event);
         break;
 
     case WM_CLOSE:
-        event.Type = Events::IsQuit;
+        event.Type = IsQuit;
         _eventer.Push(event);
         PostQuitMessage(0);
         break;
@@ -177,7 +172,7 @@ LRESULT CALLBACK MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPA
     return result;
 }
 
-MainWindow::MainWindow(Core::Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
+MainWindow::MainWindow(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _baseWindow(pos, size, title),
     _result(result)
 {

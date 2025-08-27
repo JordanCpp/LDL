@@ -10,17 +10,14 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class RenderContextImplOpenGL1 : public RenderContextImpl
 	{
-		class RenderContextImplOpenGL1: public RenderContextImpl
-		{
-		public:
-			RenderContextImplOpenGL1(size_t mode);
-			size_t Mode();
-		private:
-			size_t _mode;
-		};
-	}
+	public:
+		RenderContextImplOpenGL1(size_t mode);
+		size_t Mode();
+	private:
+		size_t _mode;
+	};
 }
 
 #endif    

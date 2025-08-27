@@ -8,18 +8,15 @@
 
 namespace LDL
 {
-	namespace Enums
+	class ButtonState
 	{
-		class ButtonState
+	public:
+		enum
 		{
-		public:
-			enum
-			{
-				Pressed = 1,
-				Released
-			};
+			Pressed = 1,
+			Released
 		};
-	}
+	};
 }
 
 #endif

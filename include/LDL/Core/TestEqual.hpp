@@ -6,17 +6,14 @@
 #ifndef LDL_Core_TestEqual_hpp
 #define LDL_Core_TestEqual_hpp
 
-#include <LDL/Core/Config.hpp>
+#include <LDL/Config.hpp>
 #include <LDL/std/stddef.hpp>
 
 namespace LDL
 {
-	namespace Core
-	{
-		void LDL_LIBRARY TestEqual(bool condition, const char* description, const char* function, const char* file, size_t line);
-	}
+	void LDL_LIBRARY TestEqual(bool condition, const char* description, const char* function, const char* file, size_t line);
 }
 
-#define LDL_TEST_EQUAL(x) LDL::Core::TestEqual(x, #x, "__FUNCTION__", __FILE__, __LINE__)
+#define LDL_TEST_EQUAL(x) LDL::TestEqual(x, #x, "__FUNCTION__", __FILE__, __LINE__)
 
 #endif    

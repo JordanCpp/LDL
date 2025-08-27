@@ -11,7 +11,7 @@
 #include <LDL/Platforms/Linux/Core/ConsoleImpl.hpp>
 #endif
 
-using namespace LDL::Core;
+using namespace LDL;
 
 Console::Console() :
 	_impl(new ConsoleImpl())

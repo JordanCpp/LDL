@@ -8,18 +8,15 @@
 
 namespace LDL
 {
-	namespace Enums
+	class MouseScroll
 	{
-		class MouseScroll
+	public:
+		enum
 		{
-		public:
-			enum 
-			{
-				Vertical = 1,
-				Horizontal
-			};
+			Vertical = 1,
+			Horizontal
 		};
-	}
+	};
 }
 
 #endif

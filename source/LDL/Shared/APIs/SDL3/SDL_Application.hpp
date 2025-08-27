@@ -15,14 +15,14 @@
 class SDL_Application
 {
 public:
-	LDL::Core::Result& GetResult();
+	LDL::Result& GetResult();
 	void Append(SDL_Window* window);
 	LDL::vector<SDL_Window*>& GetWindows();
 	void PollEvents();
 	bool PollEvent(SDL_Event& dest);
 private:
-	LDL::Core::Result _result;
-	LDL::vector<SDL_Window*>         _windows;
+	LDL::Result                       _result;
+	LDL::vector<SDL_Window*>          _windows;
 	LDL::ring_buffer<SDL_Event, 1024> _events;
 };
 

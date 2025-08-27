@@ -6,30 +6,27 @@
 #ifndef LDL_Graphics_VideoMode_hpp
 #define LDL_Graphics_VideoMode_hpp
 
-#include <LDL/Core/Config.hpp>
+#include <LDL/Config.hpp>
 #include <LDL/std/stddef.hpp>
 #include <LDL/Math/Vec2.hpp>
 
 namespace LDL
 {
-	namespace Graphics
+	class LDL_LIBRARY VideoMode
 	{
-		class LDL_LIBRARY VideoMode
+	public:
+		enum
 		{
-		public:
-			enum
-			{
-				Limit = 32
-			};
-			VideoMode();
-			VideoMode(const Math::Vec2u& size, size_t bytesPerPixel);
-			const Math::Vec2u& Size();
-			size_t BitsPerPixel();
-		private:
-			Math::Vec2u _size;
-			size_t      _bitsPerPixel;
+			Limit = 32
 		};
-	}
+		VideoMode();
+		VideoMode(const Vec2u& size, size_t bytesPerPixel);
+		const Vec2u& Size();
+		size_t BitsPerPixel();
+	private:
+		Vec2u  _size;
+		size_t _bitsPerPixel;
+	};
 }
 
 #endif    

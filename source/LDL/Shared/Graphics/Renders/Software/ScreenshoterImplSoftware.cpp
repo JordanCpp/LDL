@@ -5,7 +5,7 @@
 
 #include "ScreenshoterImplSoftware.hpp"
 
-using namespace LDL::Graphics;
+using namespace LDL;
 
 ScreenShotterImplSoftware::ScreenShotterImplSoftware(const char* path, const char* name, Render* render, Surface* image) :
 	_shortPath(path),

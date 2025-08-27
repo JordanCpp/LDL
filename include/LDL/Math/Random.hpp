@@ -6,28 +6,25 @@
 #ifndef LDL_Math_Random_hpp
 #define LDL_Math_Random_hpp
 
-#include <LDL/Core/Config.hpp>
+#include <LDL/Config.hpp>
 #include <LDL/std/stddef.hpp>
 
 namespace LDL
 {
-    namespace Math
+    class LDL_LIBRARY Random
     {
-        class LDL_LIBRARY Random
-        {
-        public:
-            Random();
-            Random(size_t seed);
-            void Seed(size_t seed);
-            size_t GetSeed() const;
-            int Range(int min, int max);
-            size_t Range(size_t min, size_t max);
-            float Float();
-            float Range(float min, float max);
-        private:
-            size_t _seed;
-        };
-    }
+    public:
+        Random();
+        Random(size_t seed);
+        void Seed(size_t seed);
+        size_t GetSeed() const;
+        int Range(int min, int max);
+        size_t Range(size_t min, size_t max);
+        float Float();
+        float Range(float min, float max);
+    private:
+        size_t _seed;
+    };
 }
 
 #endif

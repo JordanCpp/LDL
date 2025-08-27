@@ -14,6 +14,10 @@
 #undef NOMINMAX
 #endif
 
+#if !defined INVALID_SET_FILE_POINTER
+#define INVALID_SET_FILE_POINTER ((DWORD)-1)
+#endif
+
 #if !defined INVALID_ATOM
 #define INVALID_ATOM ((ATOM)0)
 #endif

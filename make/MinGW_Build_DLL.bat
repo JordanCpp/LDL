@@ -1,8 +1,7 @@
 
 call "c:\Downloads\codeblocks-25.03mingw-32bit-setup\MinGW\mingwvars.bat"
 
-g++ -fanalyzer -std=c++11 -Wall -Wextra -pedantic -O2 -s -static -shared -o LDL_MinGW.dll -DLDL_SHARED_LIBRARY ^
-..\source\LDL\Shared\Allocators\*.cpp ^
+g++ -fno-rtti -fno-exceptions -Wall -Wextra -pedantic -O2 -s -static -shared -o LDL_MinGW.dll -DLDL_SHARED_LIBRARY ^
 ..\source\LDL\Shared\APIs\OpenGL\*.cpp ^
 ..\source\LDL\Shared\APIs\SDL3\*.cpp ^
 ..\source\LDL\Shared\Core\*.cpp ^

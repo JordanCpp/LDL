@@ -5,7 +5,7 @@
 
 #include <LDL/Math/Isometric.hpp>
 
-using namespace LDL::Math;
+using namespace LDL;
 
 const Vec2u& Isometric::CartesianToIsometric(const Vec2u& pt)
 {

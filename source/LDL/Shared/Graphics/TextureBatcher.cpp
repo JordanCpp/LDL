@@ -6,32 +6,31 @@
 #include <LDL/Graphics/TextureBatcher.hpp>
 #include <LDL/Shared/Graphics/Creators/TextureBatcherImplCreator.hpp>
 
-using namespace LDL::Math;
-using namespace LDL::Graphics;
+using namespace LDL;
 
-TextureBatcher::TextureBatcher(RenderContext* renderContext, Texture* texture, size_t count)
+SpriteBatcher::SpriteBatcher(RenderContext* renderContext, Texture* texture, size_t count)
 {
 	TextureBatcherImplCreator creator;
 
 	_impl = creator.Create(_memory, renderContext, texture, count);
 }
 
-TextureBatcher::~TextureBatcher()
+SpriteBatcher::~SpriteBatcher()
 {
-	 _impl->~TextureBatcherImpl();
+	 _impl->~SpriteBatcherImpl();
 }
 
-TextureBatcherImpl* TextureBatcher::GetTextureBatcherImpl()
+SpriteBatcherImpl* SpriteBatcher::GetTextureBatcherImpl()
 {
 	return _impl;
 }
 
-void TextureBatcher::Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
+void SpriteBatcher::Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	_impl->Draw(dstPos, dstSize, srcPos, srcSize);
 }
 
-void TextureBatcher::Clear()
+void SpriteBatcher::Clear()
 {
 	_impl->Clear();
 }

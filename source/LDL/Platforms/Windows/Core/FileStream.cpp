@@ -3,10 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <Windows.h>
+#include <LDL/Platforms/Windows/Windows.hpp>
 #include <LDL/Core/FileStream.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 
 FileStream::FileStream() :
 	_isOpen(false),
@@ -134,13 +134,27 @@ size_t FileStream::Tell() const
     return SetFilePointer(_handle, 0, 0, FILE_CURRENT);
 }
 
-size_t FileStream::Size() const 
+size_t FileStream::Size() const
 {
-    if (!_isOpen) return 0;
+    if (!_isOpen)
+    {
+        return 0;
+    }
 
-    LARGE_INTEGER sz;
+    DWORD highPart = 0;
+    DWORD lowPart  = 0;
 
-    if (!GetFileSizeEx(_handle, &sz)) return 0;
+    if (GetFileSize(_handle, &lowPart) == INVALID_FILE_SIZE)
+    {
+        if (GetLastError() != 0)
+        {
+            return 0;
+        }
+    }
 
-    return (size_t)(sz.QuadPart);
+    ULARGE_INTEGER fileSize;
+    fileSize.HighPart = highPart;
+    fileSize.LowPart  = lowPart;
+
+    return (size_t)(fileSize.QuadPart);
 }

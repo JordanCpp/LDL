@@ -6,9 +6,7 @@
 #include <LDL/Shared/APIs/SDL3/SDL_Application.hpp>
 #include <LDL/Shared/APIs/SDL3/SDL_render/SDL_Renderer.hpp>
 
-using namespace LDL::Math;
-using namespace LDL::Events;
-using namespace LDL::Graphics;
+using namespace LDL;
 
 SDL_Renderer::SDL_Renderer(SDL_Window* window, const char* name) :
 	_render(App().GetResult(), window->GetRenderContext(), &window->GetWindow())

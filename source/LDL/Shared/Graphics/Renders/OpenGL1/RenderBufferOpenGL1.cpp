@@ -6,8 +6,7 @@
 #include "RenderBufferOpenGL1.hpp"
 #include "../OpenGL/Util.hpp"
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 RenderBuffer::RenderBuffer()
 {
@@ -70,7 +69,7 @@ void RenderBuffer::Fill(const Vec2u& pos, const Vec2u& size, const Color& color)
 	_elements.push_back(element);
 }
 
-void RenderBuffer::TextureBatcher(size_t textureId, size_t count, Util::Quad* quads)
+void RenderBuffer::TextureBatcher(size_t textureId, size_t count, Quad* quads)
 {
 	RenderElement element;
 
@@ -119,9 +118,9 @@ void RenderBuffer::Draw(TextureElement& src)
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	Util::Quad quad;
+	Quad quad;
 
-	Util::CalcQuad(quad, src.dstPosX, src.dstPosY, src.dstSizeX, src.dstSizeY, src.srcPosX, src.srcPosY, src.srcSizeX, src.srcSizeY, src.textureQuad);
+	CalcQuad(quad, src.dstPosX, src.dstPosY, src.dstSizeX, src.dstSizeY, src.srcPosX, src.srcPosY, src.srcSizeX, src.srcSizeY, src.textureQuad);
 
 	glVertexPointer(3, GL_FLOAT, sizeof(float) * 5, &quad.data[0]);
 	glTexCoordPointer(2, GL_FLOAT, sizeof(float) * 5, &quad.data[3]);
@@ -140,7 +139,7 @@ void RenderBuffer::Draw(LineElement& src)
 	GLclampf g;
 	GLclampf b;
 
-	Util::Normalize(Color(src.r, src.g, src.b), r, g, b);
+	Normalize(Color(src.r, src.g, src.b), r, g, b);
 
 	glBegin(GL_LINES);
 	glColor3f(r, g, b);
@@ -155,7 +154,7 @@ void RenderBuffer::Draw(FillElement& src)
 	GLclampf g;
 	GLclampf b;
 
-	Util::Normalize(Color(src.r, src.g, src.b), r, g, b);
+	Normalize(Color(src.r, src.g, src.b), r, g, b);
 
 	GLint x = (GLint)src.posX;
 	GLint y = (GLint)src.posY;
@@ -177,7 +176,7 @@ void RenderBuffer::Draw(ClearElement& src)
 	GLclampf g;
 	GLclampf b;
 
-	Util::Normalize(Color(src.r, src.g, src.b), r, g, b);
+	Normalize(Color(src.r, src.g, src.b), r, g, b);
 
 	GL_CHECK(glClearColor(r, g, b, 1.0f));
 	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
