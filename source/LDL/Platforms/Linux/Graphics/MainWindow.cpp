@@ -6,9 +6,7 @@
 #include "MainWindow.hpp"
 #include <LDL/Enums/KeyboardKey.hpp>
 
-using namespace LDL::Math;
-using namespace LDL::Enums;
-using namespace LDL::Graphics;
+using namespace LDL;
 
 const size_t eventMask =
       PointerMotionMask 
@@ -249,7 +247,7 @@ size_t MainWindow::ConvertKey(size_t key)
     return KeyboardKey::Unknown;
 }
 
-MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+MainWindow::MainWindow(const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _BaseWindow(pos, size, title),
     _EventMask(eventMask)
 {
@@ -275,7 +273,7 @@ bool MainWindow::Running()
 void MainWindow::PollEvents()
 {
     XEvent event;
-    Events::Event report;
+    Event report;
     size_t key  = 0;
 
     while (XPending(_Display))
@@ -285,7 +283,7 @@ void MainWindow::PollEvents()
         switch (event.type)
         {
         case KeyPress:
-            report.Type = LDL::Events::IsKeyboard;
+            report.Type = IsKeyboard;
             report.Keyboard.State = ButtonState::Pressed;
             key = ConvertKey(XKeycodeToKeysym(_Display, event.xkey.keycode, 0));
             report.Keyboard.Key = key;
@@ -293,7 +291,7 @@ void MainWindow::PollEvents()
             break;
 
         case KeyRelease:
-            report.Type = LDL::Events::IsKeyboard;
+            report.Type = IsKeyboard;
             report.Keyboard.State = ButtonState::Released;
             key = ConvertKey(XKeycodeToKeysym(_Display, event.xkey.keycode, 0));
             report.Keyboard.Key = key;
@@ -301,28 +299,28 @@ void MainWindow::PollEvents()
             break;
 
         case MotionNotify:
-            report.Type = Events::IsMouseMove;
+            report.Type = IsMouseMove;
             report.Mouse.PosX = event.xmotion.x;
             report.Mouse.PosY = event.xmotion.y;
             _Eventer.Push(report);
             break;
 
         case ButtonPress:
-            report.Type = Events::IsMouseClick;
-            report.Mouse.State = LDL::Enums::ButtonState::Pressed;
+            report.Type = IsMouseClick;
+            report.Mouse.State = ButtonState::Pressed;
 
             size_t button = 0;
 
             switch (event.xbutton.button)
             {
             case 1:
-                button = LDL::Enums::MouseButton::Left;
+                button = MouseButton::Left;
                 break;
             case 2:
-                button = LDL::Enums::MouseButton::Right;
+                button = MouseButton::Right;
                 break;
             case 3:
-                button = LDL::Enums::MouseButton::Middle;
+                button = MouseButton::Middle;
                 break;
             }
 
@@ -335,7 +333,7 @@ void MainWindow::PollEvents()
     }
 }
 
-bool MainWindow::GetEvent(LDL::Events::Event& event)
+bool MainWindow::GetEvent(Event& event)
 {
     if (!_Eventer.Empty())
     {
@@ -347,7 +345,7 @@ bool MainWindow::GetEvent(LDL::Events::Event& event)
     return false;
 }
 
-bool MainWindow::WaitEvent(LDL::Events::Event& event)
+bool MainWindow::WaitEvent(Event& event)
 {
     return _Eventer.Running();
 }
@@ -357,14 +355,14 @@ void MainWindow::StopEvent()
     _Eventer.Stop();
 }
 
-void MainWindow::Title(const std::string& title)
+void MainWindow::Title(const char* title)
 {
     _BaseWindow.Title(title);
 
-    XStoreName(_Display, _Window, _BaseWindow.Title().c_str());
+    XStoreName(_Display, _Window, _BaseWindow.Title());
 }
 
-const std::string& MainWindow::Title()
+const char* MainWindow::Title()
 {
     return _BaseWindow.Title();
 }

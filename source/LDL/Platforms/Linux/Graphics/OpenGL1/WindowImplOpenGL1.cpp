@@ -7,11 +7,9 @@
 #include <stdexcept>
 #include <assert.h>
 
-using namespace LDL::Core;
-using namespace LDL::Math;
-using namespace LDL::Graphics;
+using namespace LDL;
 
-WindowImplOpenGL1::WindowImplOpenGL1(const Vec2u &pos, const Vec2u &size, const std::string &title, size_t mode) : 
+WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u &pos, const Vec2u &size, const char* title, size_t mode) : 
     _Window(pos, size, title, mode)
 {
     GLint major = 0;
@@ -100,12 +98,12 @@ void WindowImplOpenGL1::PollEvents()
     _Window.PollEvents();
 }
 
-bool WindowImplOpenGL1::GetEvent(LDL::Events::Event& event)
+bool WindowImplOpenGL1::GetEvent(Event& event)
 {
     return _Window.GetEvent(event);
 }
 
-bool WindowImplOpenGL1::WaitEvent(LDL::Events::Event& event)
+bool WindowImplOpenGL1::WaitEvent(Event& event)
 {
     return _Window.WaitEvent(event);
 }
@@ -115,12 +113,12 @@ void WindowImplOpenGL1::StopEvent()
     _Window.StopEvent();
 }
 
-const std::string& WindowImplOpenGL1::Title()
+const char* WindowImplOpenGL1::Title()
 {
     return _Window.Title();
 }
 
-void WindowImplOpenGL1::Title(const std::string& title)
+void WindowImplOpenGL1::Title(const char* title)
 {
     _Window.Title(title);
 }

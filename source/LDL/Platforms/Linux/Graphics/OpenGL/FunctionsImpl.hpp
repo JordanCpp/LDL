@@ -10,17 +10,15 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class OpenGLFunctionsImpl
 	{
-		class OpenGLFunctionsImpl
-		{
-		public:
-			OpenGLFunctionsImpl(const char* path);
-			LDL::VoidFuncPtr Function(const char* name);
-		private:
-			LDL::Core::Library _Library;
-		};
-	}
+	public:
+		OpenGLFunctionsImpl(const char *path);
+		LDL::VoidFuncPtr Function(const char *name);
+
+	private:
+		LDL::Library _Library;
+	};
 }
 
-#endif  
+#endif

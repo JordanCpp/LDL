@@ -6,10 +6,9 @@
 #include "WindowImplOpenGL3.hpp"
 #include <assert.h>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
-WindowImplOpenGL3::WindowImplOpenGL3(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _Window(pos, size, title, mode)
 {
 }
@@ -48,12 +47,12 @@ void WindowImplOpenGL3::PollEvents()
     _Window.PollEvents();
 }
 
-bool WindowImplOpenGL3::GetEvent(LDL::Events::Event& event)
+bool WindowImplOpenGL3::GetEvent(Event& event)
 {
     return _Window.GetEvent(event);
 }
 
-bool WindowImplOpenGL3::WaitEvent(LDL::Events::Event& event)
+bool WindowImplOpenGL3::WaitEvent(Event& event)
 {
     return _Window.WaitEvent(event);
 }
@@ -63,12 +62,12 @@ void WindowImplOpenGL3::StopEvent()
     _Window.StopEvent();
 }
 
-const std::string& WindowImplOpenGL3::Title()
+const char* WindowImplOpenGL3::Title()
 {
     return _Window.Title();
 }
 
-void WindowImplOpenGL3::Title(const std::string& title)
+void WindowImplOpenGL3::Title(const char* title)
 {
     _Window.Title(title);
 }

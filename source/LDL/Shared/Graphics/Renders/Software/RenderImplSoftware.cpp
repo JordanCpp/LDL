@@ -12,7 +12,6 @@
 #endif
 
 using namespace LDL;
-using namespace LDL::Graphics;
 
 RenderImplSoftware::RenderImplSoftware(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
 	_result(result),

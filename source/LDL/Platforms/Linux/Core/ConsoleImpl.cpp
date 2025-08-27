@@ -5,12 +5,12 @@
 
 #include "ConsoleImpl.hpp"
 
-using namespace LDL::Core;
+using namespace LDL;
 
 ConsoleImpl::ConsoleImpl()
 {
 }
 
-void ConsoleImpl::Write(const std::string& text)
+void ConsoleImpl::Write(const char* text)
 {
 }

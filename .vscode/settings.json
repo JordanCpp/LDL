@@ -50,6 +50,7 @@
         "ctime": "cpp",
         "optional": "cpp",
         "iomanip": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "map": "cpp"
     }
 }

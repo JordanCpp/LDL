@@ -8,29 +8,30 @@
 
 #include <LDL/Core/Directory.hpp>
 #include <LDL/Core/FileInfo.hpp>
+#include <LDL/Core/Result.hpp>
 #include <dirent.h>
 
 namespace LDL
 {
-	namespace Core
+	class DirectoryImpl
 	{
-		class DirectoryImpl
-		{
-		public:
-			const char* AllFiles();
-			bool Create(const std::string& path);
-			bool DirExist(const std::string& path);
-			bool FileExist(const std::string& path);
-			bool Delete(const std::string& path);
-			bool Open(const std::string& path);
-			void Close();
-			bool Next(FileInfo& fileInfo);
-			bool Remove(const std::string& path);
-		private:
-			char _AllFiles[3];
-		    DIR * _Directory;
-		};
-	}
+	public:
+	    DirectoryImpl(Result& result);
+		const char *AllFiles();
+		bool Create(const char *path);
+		bool DirExist(const char *path);
+		bool FileExist(const char *path);
+		bool Delete(const char *path);
+		bool Open(const char *path);
+		void Close();
+		bool Next(FileInfo &fileInfo);
+		bool Remove(const char *path);
+
+	private:
+		char _AllFiles[3];
+		DIR *_Directory;
+		Result& _result;
+	};
 }
 
-#endif    
+#endif

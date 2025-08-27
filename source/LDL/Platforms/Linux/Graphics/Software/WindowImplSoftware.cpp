@@ -6,10 +6,9 @@
 #include "WindowImplSoftware.hpp"
 #include <assert.h>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
-WindowImplSoftware::WindowImplSoftware(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
+WindowImplSoftware::WindowImplSoftware(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _Window(pos, size, title, mode)
 {
 }
@@ -48,12 +47,12 @@ void WindowImplSoftware::PollEvents()
     _Window.PollEvents();
 }
 
-bool WindowImplSoftware::GetEvent(LDL::Events::Event& event)
+bool WindowImplSoftware::GetEvent(Event& event)
 {
     return _Window.GetEvent(event);
 }
 
-bool WindowImplSoftware::WaitEvent(LDL::Events::Event& event)
+bool WindowImplSoftware::WaitEvent(Event& event)
 {
     return _Window.WaitEvent(event);
 }
@@ -63,12 +62,12 @@ void WindowImplSoftware::StopEvent()
     _Window.StopEvent();
 }
 
-const std::string& WindowImplSoftware::Title()
+const char* WindowImplSoftware::Title()
 {
     return _Window.Title();
 }
 
-void WindowImplSoftware::Title(const std::string& title)
+void WindowImplSoftware::Title(const char* title)
 {
     _Window.Title(title);
 }

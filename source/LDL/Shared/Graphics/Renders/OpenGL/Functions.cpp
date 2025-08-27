@@ -12,7 +12,7 @@
 #endif
 
 
-using namespace LDL::Graphics;
+using namespace LDL;
 
 OpenGLFunctions::OpenGLFunctions() :
     _FunctionsImpl(new OpenGLFunctionsImpl("opengl32"))

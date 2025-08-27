@@ -7,40 +7,38 @@
 #define LDL_Platforms_Linux_Graphics_OpenGL1_WindowImpl_hpp
 
 #include <LDL/APIs/OpenGL/OpenGLLoader.hpp>
-
 #include "../MainWindow.hpp"
 #include "../../../WindowImpl.hpp"
-
 #include "../GLX.hpp"
+#include <LDL/Core/Result.hpp>
 
 namespace LDL
 {
-	namespace Graphics
+
+	class WindowImplOpenGL1 : public WindowImpl
 	{
-		class WindowImplOpenGL1 : public WindowImpl
-		{
-		public:
-			WindowImplOpenGL1(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode = LDL::Enums::WindowMode::Resized);
-			~WindowImplOpenGL1();
-			void Present(uint8_t* pixels, uint8_t bytesPerPixel);
-			void Present();
-			bool Running();
-			void PollEvents();
-			bool GetEvent(LDL::Events::Event& event);
-			bool WaitEvent(LDL::Events::Event& event);
-			void StopEvent();
-			void Title(const std::string& title);
-			const std::string& Title();
-			const Vec2u& Size();
-			const Vec2u& Pos();
-			void* NativeHandle();
-		private:
-		    MainWindow   _Window;
-			XVisualInfo* _Visual;
-			GLXContext   _Context;
-			OpenGLLoader _OpenGLLoader;
-		};
-	}
+	public:
+		WindowImplOpenGL1(Result& result, const Vec2u &pos, const Vec2u &size, const char *title, size_t mode = WindowMode::Resized);
+		~WindowImplOpenGL1();
+		void Present(uint8_t *pixels, uint8_t bytesPerPixel);
+		void Present();
+		bool Running();
+		void PollEvents();
+		bool GetEvent(Event &event);
+		bool WaitEvent(Event &event);
+		void StopEvent();
+		void Title(const char* title);
+		const char* Title();
+		const Vec2u &Size();
+		const Vec2u &Pos();
+		void *NativeHandle();
+
+	private:
+		MainWindow _Window;
+		XVisualInfo *_Visual;
+		GLXContext _Context;
+		OpenGLLoader _OpenGLLoader;
+	};
 }
 
-#endif    
+#endif

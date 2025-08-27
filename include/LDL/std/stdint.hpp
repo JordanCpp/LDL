@@ -6,7 +6,7 @@
 #ifndef LDL_std_stdint_hpp
 #define LDL_std_stdint_hpp
 
-#if (_MSC_VER <= 1600)
+#if (_MSC_VER <= 1600 && !__GNUC__)
     typedef unsigned char  uint8_t;
     typedef signed char    int8_t;
 

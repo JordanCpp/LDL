@@ -6,9 +6,14 @@
 #include "DirectoryImpl.hpp"
 #include <sys/stat.h>
 
-using namespace LDL::Core;
+using namespace LDL;
 
-const char* DirectoryImpl::AllFiles()
+DirectoryImpl::DirectoryImpl(Result &result) : 
+    _result(result)
+{
+}
+
+const char *DirectoryImpl::AllFiles()
 {
     _AllFiles[0] = '.';
     _AllFiles[1] = '/';
@@ -17,33 +22,33 @@ const char* DirectoryImpl::AllFiles()
     return _AllFiles;
 }
 
-bool DirectoryImpl::Create(const std::string& path)
+bool DirectoryImpl::Create(const char *path)
 {
     return false;
 }
 
-bool DirectoryImpl::DirExist(const std::string& path)
+bool DirectoryImpl::DirExist(const char *path)
 {
     return false;
 }
 
-bool DirectoryImpl::FileExist(const std::string& path)
+bool DirectoryImpl::FileExist(const char *path)
 {
-    struct stat st;   
+    struct stat st;
 
-    return (stat (path.c_str(), &st) == 0);
+    return (stat(path, &st) == 0);
 }
 
-bool DirectoryImpl::Delete(const std::string& path)
+bool DirectoryImpl::Delete(const char *path)
 {
     return false;
 }
 
-bool DirectoryImpl::Open(const std::string& path)
+bool DirectoryImpl::Open(const char *path)
 {
     Close();
-    
-    _Directory = opendir(path.c_str());
+
+    _Directory = opendir(path);
 
     return _Directory != NULL;
 }
@@ -65,14 +70,14 @@ bool DirectoryImpl::Next(FileInfo &fileInfo)
         return false;
     }
     else
-    {    
+    {
         fileInfo.Name(entry->d_name);
 
         return true;
     }
 }
 
-bool DirectoryImpl::Remove(const std::string& path)
+bool DirectoryImpl::Remove(const char *path)
 {
     return false;
 }

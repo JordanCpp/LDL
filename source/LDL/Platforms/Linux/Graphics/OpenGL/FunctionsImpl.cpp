@@ -7,8 +7,7 @@
 #include "../GLX.hpp"
 #include <stdexcept>
 
-using namespace LDL::Core;
-using namespace LDL::Graphics;
+using namespace LDL;
 
 OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path) :
     _Library(path)

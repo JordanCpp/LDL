@@ -15,35 +15,34 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class MainWindow
 	{
-		class MainWindow
-		{
-		public:
-			MainWindow(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode);
-			~MainWindow();
-			bool Running();
-			void PollEvents();
-			bool GetEvent(LDL::Events::Event& event);
-			bool WaitEvent(LDL::Events::Event& event);
-			void StopEvent();
-			void Title(const std::string& title);
-			const std::string& Title();
-			const Vec2u& Size();
-			const Vec2u& Pos();
-			void Show();
-		private:
-			BaseWindow _BaseWindow;
-			size_t ConvertKey(size_t key);
-			LDL::Events::Eventer _Eventer;
-		public:
-			Display* _Display;
-			int      _Screen;
-			Window   _Root;
-			Window   _Window;
-			size_t   _EventMask;
-		};
-	}
+	public:
+		MainWindow(const Vec2u &pos, const Vec2u &size, const char* title, size_t mode);
+		~MainWindow();
+		bool Running();
+		void PollEvents();
+		bool GetEvent(Event &event);
+		bool WaitEvent(Event &event);
+		void StopEvent();
+		void Title(const char* title);
+		const char* Title();
+		const Vec2u &Size();
+		const Vec2u &Pos();
+		void Show();
+
+	private:
+		BaseWindow _BaseWindow;
+		size_t ConvertKey(size_t key);
+		LDL::Events::Eventer _Eventer;
+
+	public:
+		Display *_Display;
+		int     _Screen;
+		Window _Root;
+		Window _Window;
+		size_t _EventMask;
+	};
 }
 
-#endif   
+#endif

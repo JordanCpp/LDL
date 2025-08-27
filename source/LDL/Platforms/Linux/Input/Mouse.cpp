@@ -5,10 +5,9 @@
 
 #include <LDL/Input/Mouse.hpp>
 
-using namespace LDL::Input;
-using namespace LDL::Math;
+using namespace LDL;
 
-const Vec2u& Mouse::Pos()
+Vec2u Mouse::Pos()
 {
     return _pos;
 }

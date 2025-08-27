@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <sys/time.h>
 
-size_t LDL::Time::Ticks()
+size_t LDL::Ticks()
 {
 	struct timeval tv;
 
@@ -16,7 +16,7 @@ size_t LDL::Time::Ticks()
 	return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 }
 
-void LDL::Time::Delay(size_t count)
+void LDL::Delay(size_t count)
 {
 	if (count >= 1000)
 		sleep(count / 1000);

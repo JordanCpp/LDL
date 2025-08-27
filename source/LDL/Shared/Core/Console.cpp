@@ -6,9 +6,9 @@
 #include <LDL/Core/Console.hpp>
 
 #if defined(_WIN32)
-#include <LDL/Platforms/Windows/Core/ConsoleImpl.hpp>
+    #include <LDL/Platforms/Windows/Core/ConsoleImpl.hpp>
 #elif defined(__unix__)
-#include <LDL/Platforms/Linux/Core/ConsoleImpl.hpp>
+    #include <LDL/Platforms/Linux/Core/ConsoleImpl.hpp>
 #endif
 
 using namespace LDL;

@@ -13,7 +13,6 @@
 #include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
 #include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
 #include <LDL/Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
-#include <LDL/Platforms/Linux/Graphics/Glide/WindowImplGlide.hpp>
 #endif
 
 #include <LDL/Core/Assert.hpp>

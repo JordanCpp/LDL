@@ -8,32 +8,31 @@
 
 #include "../MainWindow.hpp"
 #include "../../../WindowImpl.hpp"
+#include <LDL/Core/Result.hpp>
 
 namespace LDL
 {
-	namespace Graphics
+	class WindowImplSoftware : public WindowImpl
 	{
-		class WindowImplSoftware : public WindowImpl
-		{
-		public:
-			WindowImplSoftware(const Vec2u& pos, const Vec2u& size, const char* title, size_t mode = LDL::Enums::WindowMode::Resized);
-			~WindowImplSoftware();
-			void Present(uint8_t* pixels, uint8_t bytesPerPixel);
-			void Present();
-			bool Running();
-			void PollEvents();
-			bool GetEvent(LDL::Events::Event& event);
-			bool WaitEvent(LDL::Events::Event& event);
-			void StopEvent();
-			void Title(const char* title);
-			const char* Title();
-			const Vec2u& Size();
-			const Vec2u& Pos();
-			void* NativeHandle();
-		private:
-		    MainWindow _Window;
-		};
-	}
+	public:
+		WindowImplSoftware(Result& result, const Vec2u &pos, const Vec2u &size, const char *title, size_t mode = WindowMode::Resized);
+		~WindowImplSoftware();
+		void Present(uint8_t *pixels, uint8_t bytesPerPixel);
+		void Present();
+		bool Running();
+		void PollEvents();
+		bool GetEvent(Event &event);
+		bool WaitEvent(Event &event);
+		void StopEvent();
+		void Title(const char *title);
+		const char *Title();
+		const Vec2u &Size();
+		const Vec2u &Pos();
+		void *NativeHandle();
+
+	private:
+		MainWindow _Window;
+	};
 }
 
-#endif 
+#endif
