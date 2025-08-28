@@ -5,21 +5,22 @@
 
 #include <LDL/Platforms/Windows/Windows.hpp>
 #include <LDL/Core/FileStream.hpp>
+#include <LDL/Platforms/Windows/Core/FileStreamImpl.hpp>
 
 using namespace LDL;
 
-FileStream::FileStream() :
+FileStreamImpl::FileStreamImpl() :
 	_isOpen(false),
 	_handle(INVALID_HANDLE_VALUE)
 {
 }
 
-FileStream::~FileStream()
+FileStreamImpl::~FileStreamImpl()
 {
 	Close();
 }
 
-bool FileStream::Open(const char* path, size_t mode)
+bool FileStreamImpl::Open(const char* path, size_t mode)
 {
     Close();
 
@@ -66,11 +67,10 @@ bool FileStream::Open(const char* path, size_t mode)
     return _isOpen;
 }
 
-void FileStream::Close()
+void FileStreamImpl::Close()
 {
     if (_isOpen)
     {
-
         if (_handle != INVALID_HANDLE_VALUE)
         {
             CloseHandle(_handle);
@@ -81,12 +81,12 @@ void FileStream::Close()
     }
 }
 
-bool FileStream::IsOpen() const
+bool FileStreamImpl::IsOpen() const
 {
     return _isOpen;
 }
 
-size_t FileStream::Read(void* buffer, size_t size)
+size_t FileStreamImpl::Read(void* buffer, size_t size)
 {
     if (!_isOpen || !buffer || size == 0) 
     {
@@ -99,42 +99,41 @@ size_t FileStream::Read(void* buffer, size_t size)
     return result ? (size_t)(bytesRead) : 0;
 }
 
-size_t FileStream::Write(const void* buffer, size_t size)
+size_t FileStreamImpl::Write(const void* buffer, size_t size)
 {
     if (!_isOpen || !buffer || size == 0) 
     {
         return 0;
     }
 
-
     DWORD bytesWritten = 0;
-    BOOL result        = WriteFile(_handle, buffer, static_cast<DWORD>(size), &bytesWritten, NULL);
+    BOOL result        = WriteFile(_handle, buffer, (DWORD)(size), &bytesWritten, NULL);
 
     return result ? (size_t)(bytesWritten) : 0;
 }
 
-bool FileStream::Flush()
+bool FileStreamImpl::Flush()
 {
     if (!_isOpen) return false;
 
     return FlushFileBuffers(_handle) != 0;
 }
 
-bool FileStream::Seek(size_t pos)
+bool FileStreamImpl::Seek(size_t pos)
 {
     if (!_isOpen) return false;
 
     return SetFilePointer(_handle, (LONG)(pos), 0, FILE_BEGIN) != INVALID_SET_FILE_POINTER;
 }
 
-size_t FileStream::Tell() const
+size_t FileStreamImpl::Tell() const
 {
     if (!_isOpen) return 0;
 
     return SetFilePointer(_handle, 0, 0, FILE_CURRENT);
 }
 
-size_t FileStream::Size() const
+size_t FileStreamImpl::Size() const
 {
     if (!_isOpen)
     {

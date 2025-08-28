@@ -3,31 +3,27 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Core_FileStream_hpp
-#define LDL_Core_FileStream_hpp
+#ifndef LDL_Platforms_Linux_Core_FileStreamImpl_hpp
+#define LDL_Platforms_Linux_Core_FileStreamImpl_hpp
 
-#include <LDL/std/stddef.hpp>
-#include <LDL/std/stdint.hpp>
-#include <LDL/Core/Result.hpp>
+#include <LDL/Platforms/Windows/WinError.hpp>
+#include <LDL/Platforms/Windows/Windows.hpp>
 
 namespace LDL
 {
-	class FileStreamImpl;
-
-	class FileStream
+	class FileStreamImpl
 	{
 	public:
 		enum
 		{
-			SizeOf = 32,
-			OpenModeRead   = 1,
-			OpenModeWrite  = 2,
+			OpenModeRead = 1,
+			OpenModeWrite = 2,
 			OpenModeAppend = 4,
 			OpenModeCreate = 8
 		};
 
-		FileStream(Result& result);
-		~FileStream();
+		FileStreamImpl();
+		~FileStreamImpl();
 		bool Open(const char* path, size_t mode);
 		void Close();
 		bool IsOpen() const;
@@ -38,8 +34,8 @@ namespace LDL
 		size_t Tell() const;
 		size_t Size() const;
 	private:
-		FileStreamImpl* _impl;
-		uint8_t         _memory[SizeOf];
+		bool   _isOpen;
+		HANDLE _handle;
 	};
 }
 

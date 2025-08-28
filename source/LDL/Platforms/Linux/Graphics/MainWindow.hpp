@@ -10,7 +10,6 @@
 #include <LDL/Shared/Events/Eventer.hpp>
 #include <LDL/Enums/WindowMode.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_1.hpp>
-
 #include "GLX.hpp"
 
 namespace LDL

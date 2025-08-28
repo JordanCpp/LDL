@@ -19,7 +19,9 @@ size_t LDL::Ticks()
 void LDL::Delay(size_t count)
 {
 	if (count >= 1000)
+	{
 		sleep(count / 1000);
+	}
 
 	usleep((count % 1000) * 1000);
 }

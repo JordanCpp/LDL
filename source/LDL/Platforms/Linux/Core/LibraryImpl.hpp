@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Platforms_Windows_Core_LibraryImpl_hpp
-#define LDL_Platforms_Windows_Core_LibraryImpl_hpp
+#ifndef LDL_Platforms_Linux_Core_LibraryImpl_hpp
+#define LDL_Platforms_Linux_Core_LibraryImpl_hpp
 
 #include <LDL/Core/Library.hpp>
 
@@ -16,7 +16,6 @@ namespace LDL
 		LibraryImpl(const char *path);
 		~LibraryImpl();
 		LDL::VoidFuncPtr Function(const char *name);
-
 	private:
 		void *_Library;
 	};

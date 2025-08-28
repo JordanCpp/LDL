@@ -42,7 +42,7 @@ BmpLoader::BmpLoader(Result& result) :
 
 bool BmpLoader::Load(const char* path)
 {
-    FileStream file;
+    FileStream file(_result);
 
     file.Open(path, FileStream::OpenModeRead);
 

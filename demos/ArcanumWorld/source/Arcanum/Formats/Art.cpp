@@ -8,28 +8,35 @@
 
 #include <Arcanum/Formats/Art.hpp>
 
-#include <iostream>
-#include <sstream>
-#include <string.h>
-
 using namespace Arcanum;
 
 bool ArtFrame::Inc()
 {
 	px++;
-	if (px >= static_cast<int>(header.width))
+
+	if (px >= (int)header.width)
 	{
 		px = 0;
 		py++;
 	}
-	if (py >= static_cast<int>(header.height)) return false;
-	if (py < 0) return false;
+
+	if (py >= (int)header.height)
+	{
+		return false;
+	}
+		
+	if (py < 0)
+	{
+		return false;
+	}
+
 	return true;
 }
 
 void ArtFrame::Dec()
 {
 	px--;
+
 	if (px < 0)
 	{
 		px = header.width - 1;
@@ -39,7 +46,8 @@ void ArtFrame::Dec()
 
 void ArtFrame::Reset()
 {
-	px = py = 0;
+	px = 0;
+	py = 0;
 }
 
 size_t ArtFrame::Index(size_t x, size_t y)
@@ -49,18 +57,22 @@ size_t ArtFrame::Index(size_t x, size_t y)
 
 bool ArtFrame::EOD()
 {
-	if (py < static_cast<int>(header.height)) return false;
+	if (py < (int)(header.height))
+	{
+		return false;
+	}
+	
 	return true;
 }
 
 void ArtFrame::LoadHeader(MemoryReader& source)
 {
-	source.Read(reinterpret_cast<char*>(&header), sizeof(header));
+	source.Read((char*)(&header), sizeof(header));
 }
 
 void ArtFrame::SaveHeader(std::ofstream& dest)
 {
-	dest.write(reinterpret_cast<char*>(&header), sizeof(header));
+	dest.write((char*)(&header), sizeof(header));
 }
 
 void ArtFrame::Load(MemoryReader& source)
@@ -94,13 +106,13 @@ void ArtFrame::Decode()
 	Reset();
 	if (header.size < (header.height*header.width))
 	{
-		for (int p = 0; p < static_cast<int>(header.size); p++)
+		for (size_t p = 0; p < header.size; p++)
 		{
-			uint8_t ch = static_cast<uint8_t>(data[p]);
+			uint8_t ch = data[p];
 
 			if (ch & 0x80)
 			{
-				int to_copy = ch & (0x7F);
+				uint8_t to_copy = ch & (0x7F);
 				while (to_copy--)
 				{
 					p++;
@@ -110,9 +122,9 @@ void ArtFrame::Decode()
 			}
 			else
 			{
-				int to_clone = ch & (0x7F);
+				uint8_t to_clone = ch & (0x7F);
 				p++;
-				uint8_t src = static_cast<uint8_t>(data[p]);
+				uint8_t src = data[p];
 
 				while (to_clone--)
 				{
@@ -124,7 +136,7 @@ void ArtFrame::Decode()
 	}
 	else
 	{
-		for (int p = 0; p < static_cast<int>(header.size); p++)
+		for (size_t p = 0; p < header.size; p++)
 		{
 			pixels[Index(px, py)] = data[p];
 			Inc();
@@ -136,27 +148,31 @@ void ArtFile::LoadArt(MemoryReader& source)
 {
 	frame_data.clear();
 
-	source.Read(reinterpret_cast<char*>(&header), sizeof(header));
+	source.Read((char*)(&header), sizeof(header));
 
 	animated = ((header.h0[0] & 0x1) == 0);
 
 	palettes = 0;
-	for (int i = 0; i < 4; i++)
+
+	for (size_t i = 0; i < 4; i++)
 	{
 		if (in_palette(header.stupid_color[i])) palettes++;
 	}
 
-	frames = header.frame_num;
+	frames    = header.frame_num;
 	key_frame = header.frame_num_low;
 
-	if (animated) frames *= 8;
+	if (animated)
+	{
+		frames *= 8;
+	}
 
 	palette_data.clear();
 
 	for (int j = 0; j < palettes; j++)
 	{
 		palette_data.push_back(ArtTable());
-		source.Read(reinterpret_cast<char*>(&palette_data.back()), sizeof(ArtTable));
+		source.Read((char*)(&palette_data.back()), sizeof(ArtTable));
 	}
 
 	for (int k = 0; k < frames; k++)

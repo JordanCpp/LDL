@@ -8,6 +8,7 @@
 
 #include <LDL/STL/new.hpp>
 #include <LDL/std/stdlib.hpp>
+#include <LDL/Core/Assert.hpp>
 
 namespace LDL
 {
@@ -15,7 +16,7 @@ namespace LDL
     class vector
     {
     private:
-        char* _storage;
+        char*  _storage;
         size_t _size;
         size_t _capacity;
 
@@ -29,12 +30,12 @@ namespace LDL
             return (const T*)(_storage);
         }
 
-        void* Alloc(size_t bytes)
+        void* alloc(size_t bytes)
         {
             return LDL::Malloc(bytes);
         }
 
-        void Dealloc(void* ptr)
+        void dealloc(void* ptr)
         {
             LDL::Free(ptr);
         }
@@ -52,7 +53,7 @@ namespace LDL
                 data_ptr()[i].~T();
             }
 
-            Dealloc(_storage);
+            dealloc(_storage);
         }
 
         vector(const vector& other) : 
@@ -88,14 +89,14 @@ namespace LDL
 
             if (_capacity < other._size)
             {
-                Dealloc(_storage);
+                dealloc(_storage);
 
                 _storage  = 0;
                 _capacity = 0;
 
                 if (other._size > 0)
                 {
-                    _storage  = (char*)Alloc(other._size * sizeof(T));
+                    _storage  = (char*)alloc(other._size * sizeof(T));
                     _capacity = other._size;
                 }
             }
@@ -129,7 +130,7 @@ namespace LDL
                 return;
             }
 
-            char* new_storage = (char*)Alloc(count * sizeof(T));
+            char* new_storage = (char*)alloc(count * sizeof(T));
 
             for (size_t i = 0; i < _size; ++i)
             {
@@ -137,7 +138,7 @@ namespace LDL
                 data_ptr()[i].~T();
             }
 
-            Dealloc(_storage);
+            dealloc(_storage);
             _storage  = new_storage;
             _capacity = count;
         }
@@ -173,21 +174,29 @@ namespace LDL
 
         T& operator[](size_t index)
         {
+            LDL_ASSERT_DETAIL(index < _size, "Index of bounds");
+
             return data_ptr()[index];
         }
 
         const T& operator[](size_t index) const
         {
+            LDL_ASSERT_DETAIL(index < _size, "Index of bounds");
+
             return data_ptr()[index];
         }
 
         T& at(size_t index)
         {
+            LDL_ASSERT_DETAIL(index < _size, "Index of bounds");
+
             return data_ptr()[index];
         }
 
         const T& at(size_t index) const
         {
+            LDL_ASSERT_DETAIL(index < _size, "Index of bounds");
+
             return data_ptr()[index];
         }
 

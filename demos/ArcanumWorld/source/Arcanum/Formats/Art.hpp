@@ -12,7 +12,6 @@
 #include <string>
 #include <vector>
 #include <fstream>
-
 #include <Arcanum/Readers/MemoryReader.hpp>
 
 namespace Arcanum
@@ -45,10 +44,8 @@ namespace Arcanum
 	{
 		uint32_t h0[3];
 		ArtColor stupid_color[4];
-
 		uint32_t frame_num_low;
 		uint32_t frame_num;
-
 		ArtColor palette_data1[8];
 		ArtColor palette_data2[8];
 		ArtColor palette_data3[8];
@@ -60,19 +57,19 @@ namespace Arcanum
 		uint32_t width;
 		uint32_t height;
 		uint32_t size;
-		int c_x;
-		int c_y;
-		int d_x;
-		int d_y;
+		int      c_x;
+		int      c_y;
+		int      d_x;
+		int      d_y;
 	};
 
 	struct ArtFrame
 	{
-		ArtFrameHeader header;
-		std::vector<char> data;
+		ArtFrameHeader       header;
+		std::vector<uint8_t> data;
 		std::vector<uint8_t> pixels;
-		int px;
-		int py;
+		int                  px;
+		int                  py;
 
 		bool Inc();
 		void Dec();
@@ -95,14 +92,13 @@ namespace Arcanum
 
 	struct ArtFile
 	{
-		ArtHeader header;
+		ArtHeader             header;
 		std::vector<ArtFrame> frame_data;
 		std::vector<ArtTable> palette_data;
-
-		int palettes;
-		int frames;
-		int key_frame;
-		bool animated;
+		int                   palettes;
+		int                   frames;
+		int                   key_frame;
+		bool                  animated;
 
 		void Reset();
 		void LoadArt(MemoryReader& source);
