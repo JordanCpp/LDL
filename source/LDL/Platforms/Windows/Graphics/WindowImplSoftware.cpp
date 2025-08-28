@@ -7,14 +7,12 @@
 #include <LDL/Core/Assert.hpp>
 
 using namespace LDL;
-using namespace LDL::Events;
-using namespace LDL::Graphics;
 
 WindowImplSoftware::WindowImplSoftware(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _result(result),
     _mainWindow(_result, pos, size, title, mode)
 {
-    LDL::memset(&_bimapInfo, 0, sizeof(_bimapInfo));
+    LDL::memset(&_bitmapInfo, 0, sizeof(_bitmapInfo));
 }
 
 WindowImplSoftware::~WindowImplSoftware()
@@ -26,14 +24,14 @@ void WindowImplSoftware::Present(uint8_t* pixels, uint8_t bytesPerPixel)
     LDL_ASSERT(pixels != NULL);
     LDL_ASSERT(bytesPerPixel >= 1 && bytesPerPixel <= 4);
 
-    _bimapInfo.bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
-    _bimapInfo.bmiHeader.biWidth       = (LONG)_mainWindow.Size().x;
-    _bimapInfo.bmiHeader.biHeight      = -(LONG)_mainWindow.Size().y;
-    _bimapInfo.bmiHeader.biPlanes      = 1;
-    _bimapInfo.bmiHeader.biBitCount    = bytesPerPixel * 8;
-    _bimapInfo.bmiHeader.biCompression = BI_RGB;
+    _bitmapInfo.bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
+    _bitmapInfo.bmiHeader.biWidth       = (LONG)_mainWindow.Size().x;
+    _bitmapInfo.bmiHeader.biHeight      = -(LONG)_mainWindow.Size().y;
+    _bitmapInfo.bmiHeader.biPlanes      = 1;
+    _bitmapInfo.bmiHeader.biBitCount    = bytesPerPixel * 8;
+    _bitmapInfo.bmiHeader.biCompression = BI_RGB;
 
-    int result = SetDIBitsToDevice(_mainWindow._hdc, 0, 0, (DWORD)_mainWindow.Size().x, (DWORD)_mainWindow.Size().y, 0, 0, 0, (UINT)_mainWindow.Size().y, pixels, &_bimapInfo, DIB_RGB_COLORS);
+    int result = SetDIBitsToDevice(_mainWindow._hdc, 0, 0, (DWORD)_mainWindow.Size().x, (DWORD)_mainWindow.Size().y, 0, 0, 0, (UINT)_mainWindow.Size().y, pixels, &_bitmapInfo, DIB_RGB_COLORS);
     LDL_ASSERT_DETAIL(result != 0, "SetDIBitsToDevice failed");
 }
 

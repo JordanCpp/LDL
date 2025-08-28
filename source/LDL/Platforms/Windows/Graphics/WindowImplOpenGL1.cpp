@@ -8,7 +8,6 @@
 
 using namespace LDL;
 using namespace LDL::Events;
-using namespace LDL::Graphics;
 
 WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _result(result),

@@ -6,7 +6,6 @@
 #include <LDL/Platforms/Windows/Graphics/OpenGLFunctionsImpl.hpp>
 
 using namespace LDL;
-using namespace LDL::Graphics;
 
 OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path) :
     _library(path)
