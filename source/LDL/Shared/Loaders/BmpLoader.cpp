@@ -36,6 +36,7 @@ typedef struct
 
 BmpLoader::BmpLoader(Result& result) :
     _bpp(0),
+    _pixelFormat(PixelFormat::UNKNOWN),
 	_result(result)
 {
 }
@@ -84,7 +85,7 @@ bool BmpLoader::Load(const char* path)
         _bpp = 1;
     }
 
-    const uint32_t row_stride = (_size.x * info_header.bit_count + 31) / 32 * 4;
+    const uint32_t row_stride      = (_size.x * info_header.bit_count + 31) / 32 * 4;
     const uint32_t pixel_data_size = row_stride * _size.y;
 
     _pixels.resize(pixel_data_size);
@@ -118,6 +119,15 @@ bool BmpLoader::Load(const char* path)
         }
     }
 
+    if (info_header.bit_count == 24)
+    {
+        _pixelFormat = PixelFormat::RGB24;
+    }
+    else
+    {
+        _pixelFormat = PixelFormat::RGBA32;
+    }
+
     return _result.Ok();
 }
 
@@ -134,4 +144,9 @@ uint8_t BmpLoader::Bpp()
 uint8_t* BmpLoader::Pixels()
 {
     return _pixels.data();
+}
+
+size_t BmpLoader::GetPixelFormat()
+{
+    return _pixelFormat;
 }

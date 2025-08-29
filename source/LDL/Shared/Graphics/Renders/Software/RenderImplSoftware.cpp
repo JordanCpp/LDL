@@ -16,7 +16,7 @@ using namespace LDL;
 RenderImplSoftware::RenderImplSoftware(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
 	_result(result),
 	_window(window),
-	_canvas(_window->Size(), 3),
+	_canvas(PixelFormat::RGB24, _window->Size()),
 	_imageResizer(_window->Size())
 {
 	LDL_UNUSED(renderContextImpl);

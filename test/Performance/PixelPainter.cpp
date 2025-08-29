@@ -19,7 +19,7 @@ int main()
 		Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
 		Render render(result, renderContext, &window);
 
-		Surface screen(Vec2u(800, 600), 4);
+		Surface screen(PixelFormat::RGBA32, Vec2u(800, 600));
 		PixelPainter painter;
 
 		painter.Bind(&screen);

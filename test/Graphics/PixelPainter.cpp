@@ -10,7 +10,7 @@ using namespace LDL;
 
 void InitDefault()
 {
-	Surface surface(Vec2u(640, 480), 4);
+	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
 
 	PixelPainter painter;
 
@@ -26,7 +26,7 @@ void InitDefault()
 
 void InitValue()
 {
-	Surface surface(Vec2u(640, 480), 4);
+	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
 
 	PixelPainter painter;
 
@@ -44,7 +44,7 @@ void InitValue()
 
 void InitColor()
 {
-	Surface surface(Vec2u(640, 480), 4);
+	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
 
 	PixelPainter painter;
 
@@ -60,7 +60,7 @@ void InitColor()
 
 void Clear()
 {
-	Surface surface(Vec2u(640, 480), 4);
+	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
 
 	PixelPainter painter;
 
@@ -83,7 +83,7 @@ void Clear()
 
 void Fill()
 {
-	Surface surface(Vec2u(640, 480), 4);
+	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
 
 	PixelPainter painter;
 
@@ -109,7 +109,7 @@ void Fill()
 
 void Line()
 {
-	Surface surface(Vec2u(640, 480), 4);
+	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
 
 	PixelPainter painter;
 
@@ -132,7 +132,7 @@ void Line()
 
 void Pixel()
 {
-	Surface surface(Vec2u(640, 480), 4);
+	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
 
 	PixelPainter painter;
 

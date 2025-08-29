@@ -9,6 +9,7 @@
 #include <LDL/STL/vector.hpp>
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Core/Result.hpp>
+#include <LDL/Graphics/PixelFormat.hpp>
 
 namespace LDL
 {
@@ -20,10 +21,12 @@ namespace LDL
 		const Vec2u& Size();
 		uint8_t Bpp();
 		uint8_t* Pixels();
+		size_t GetPixelFormat();
 	private:
 		uint8_t         _bpp;
+		size_t          _pixelFormat;
 		Result&         _result;
-		Vec2u     _size;
+		Vec2u           _size;
 		vector<uint8_t> _pixels;
 	};
 }

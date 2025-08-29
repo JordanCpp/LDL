@@ -7,6 +7,11 @@
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
 
+void ErrorShow(LDL::Result& result)
+{
+	printf("LDL error: %s", result.Message());
+}
+
 int main()
 {
 	LDL::MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
@@ -15,25 +20,35 @@ int main()
 	LDL::RenderContext renderContext;
 
 	LDL::Window window(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), __FILE__);
+	if (!result.Ok())
+	{
+		ErrorShow(result);
+		return -1;
+	}
+
 	LDL::Render render(result, renderContext, &window);
+	if (!result.Ok())
+	{
+		ErrorShow(result);
+		return -1;
+	}
 
 	LDL::Event report;
 
-	LDL::BmpLoader loader(result);
+	LDL::BmpLoader bmpLoader(result);
 
-	loader.Load("Data/SeasonsTiles.bmp");
+	bmpLoader.Load("Data/SeasonsTiles.bmp");
 
-	LDL::Surface surface(loader.Size(), loader.Pixels(), loader.Bpp());
+	LDL::Surface surface(bmpLoader.GetPixelFormat(), bmpLoader.Size(), bmpLoader.Pixels());
 
 	surface.ColorKey(LDL::Color(255, 255, 255));
 
 	LDL::Texture image(&renderContext,  &surface);
 
 	LDL::FpsCounter fpsCounter;
-	LDL::Convert convert;
+	LDL::Convert    convert;
 	LDL::FpsLimiter fpsLimiter;
-
-	LDL::Isometric isometric;
+	LDL::Isometric  isometric;
 
 	LDL::Vec2u start    = LDL::Vec2u(550, 0);
 	LDL::Vec2u mapSize  = LDL::Vec2u(9, 9);

@@ -16,10 +16,10 @@ namespace LDL
 	class LDL_LIBRARY Surface
 	{
 	public:
-		Surface(const Vec2u& size, uint8_t bytesPerPixel);
-		Surface(const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);
-		Surface(const Vec2u& size, const Vec2u& capacity, uint8_t bytesPerPixel);
-		Surface(const Vec2u& size, const Vec2u& capacity, uint8_t* pixels, uint8_t bytesPerPixel);
+		Surface(size_t pixelFormat, const Vec2u& size);
+		Surface(size_t pixelFormat, const Vec2u& size, uint8_t* pixels);
+		Surface(size_t pixelFormat, const Vec2u& size, const Vec2u& capacity);
+		Surface(size_t pixelFormat, const Vec2u& size, const Vec2u& capacity, uint8_t* pixels);
 		~Surface();
 		void ColorKey(const LDL::Color& key);
 		const LDL::Color& ColorKey();
@@ -32,9 +32,9 @@ namespace LDL
 		uint8_t* Pixels();
 		Color Pixel(const Vec2u& pos);
 	private:
-		uint8_t         _bytesPerPixel;
 		bool            _enabled;
 		LDL::Color      _key;
+		size_t          _pixelFormat;
 		Vec2u           _capacity;
 		Vec2u           _size;
 		vector<uint8_t> _pixels;

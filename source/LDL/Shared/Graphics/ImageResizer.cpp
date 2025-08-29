@@ -8,7 +8,7 @@
 using namespace LDL;
 
 ImageResizer::ImageResizer(const Vec2u& size) :
-	_surface(size, 4)
+	_surface(PixelFormat::RGBA32, size)
 {
 	LDL_UNUSED(size);
 }

@@ -6,6 +6,9 @@
 #ifndef LDL_Graphics_PixelFormat_hpp
 #define LDL_Graphics_PixelFormat_hpp
 
+#include <LDL/Config.hpp>
+#include <LDL/std/stdint.hpp>
+
 namespace LDL
 {
     class PixelFormat
@@ -13,12 +16,15 @@ namespace LDL
     public:
         enum
         {
+            UNKNOWN,
             RGBA32,
             BGRA32,
             RGB24,
             BGR24
         };
     };
+
+    LDL_LIBRARY uint8_t BytesPerPixelFromPixelFormat(size_t pixelFormat);
 }
 
 #endif

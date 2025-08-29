@@ -19,15 +19,26 @@ int main()
 	LDL::Result result;
 	LDL::RenderContext renderContext;
 
-	LDL::Window window(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), "Window!");
+	LDL::Window window(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), __FILE__);
+	if (!result.Ok())
+	{
+		ErrorShow(result);
+		return -1;
+	}
+
 	LDL::Render render(result, renderContext, &window);
+	if (!result.Ok())
+	{
+		ErrorShow(result);
+		return -1;
+	}
 
 	LDL::Event report;
 
-	LDL::BmpLoader loader(result);
+	LDL::BmpLoader bmpLoader(result);
 
-	loader.Load("Data/trehmachtovyiy-korabl-kartina-maslom-60x50_512x.bmp");
-	LDL::Texture image(&renderContext, loader.Size(), loader.Pixels(), loader.Bpp());
+	bmpLoader.Load("Data/trehmachtovyiy-korabl-kartina-maslom-60x50_512x.bmp");
+	LDL::Texture image(&renderContext, bmpLoader.Size(), bmpLoader.Pixels(), bmpLoader.Bpp());
 
 	LDL::FpsCounter fpsCounter;
 	LDL::Convert convert;
@@ -56,7 +67,6 @@ int main()
 		if (fpsCounter.Calc())
 		{
 			window.Title(convert.ToString(fpsCounter.Fps()));
-
 		}
 	}
 

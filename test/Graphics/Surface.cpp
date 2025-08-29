@@ -10,7 +10,7 @@ using namespace LDL;
 
 void InitDefault()
 {
-	Surface surface(Vec2u(640, 480), 4);
+	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
 
 	LDL_TEST_EQUAL(surface.BytesPerPixel() == 4);
 	
@@ -25,7 +25,7 @@ void InitDefault()
 
 void InitCapacityDefault()
 {
-	Surface surface(Vec2u(640, 480), Vec2u(800, 600), 4);
+	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480), Vec2u(800, 600));
 
 	LDL_TEST_EQUAL(surface.BytesPerPixel() == 4);
 
@@ -40,7 +40,7 @@ void InitCapacityDefault()
 
 void Resize()
 {
-	Surface surface(Vec2u(640, 480), 4);
+	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
 
 	surface.Resize(Vec2u(320, 240));
 
@@ -61,7 +61,7 @@ void Resize()
 
 void Clear()
 {
-	Surface surface(Vec2u(640, 480), 4);
+	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
 
 	surface.Clear();
 
