@@ -23,6 +23,3 @@ target_link_libraries(VideoMode LDL)
 
 add_executable(PixelPainter "PixelPainter.cpp")
 target_link_libraries(PixelPainter LDL)
-
-add_executable(Isometric "Isometric.cpp")
-target_link_libraries(Isometric LDL)

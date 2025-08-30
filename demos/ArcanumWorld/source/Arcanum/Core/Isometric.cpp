@@ -3,9 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Math/Isometric.hpp>
+#include <Arcanum/Core/Isometric.hpp>
 
 using namespace LDL;
+using namespace Arcanum;
 
 const Vec2u& Isometric::CartesianToIsometric(const Vec2u& pt)
 {

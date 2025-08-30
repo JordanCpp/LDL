@@ -12,6 +12,16 @@ void ErrorShow(LDL::Result& result)
 	printf("LDL error: %s", result.Message());
 }
 
+uint32_t CartToIsoX(const LDL::Vec2u& pt)
+{
+	return pt.x - pt.y;
+}
+
+uint32_t CartToIsoY(const LDL::Vec2u& pt)
+{
+	return (pt.x + pt.y) / 2;
+}
+
 int main()
 {
 	LDL::MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
@@ -48,7 +58,6 @@ int main()
 	LDL::FpsCounter fpsCounter;
 	LDL::Convert    convert;
 	LDL::FpsLimiter fpsLimiter;
-	LDL::Isometric  isometric;
 
 	LDL::Vec2u start    = LDL::Vec2u(550, 0);
 	LDL::Vec2u mapSize  = LDL::Vec2u(9, 9);
@@ -129,7 +138,10 @@ int main()
 				uint32_t x = cols * tileSize.x / 2;
 				uint32_t y = rows * tileSize.y;
 
-				LDL::Vec2u pt = isometric.CartesianToIsometric(LDL::Vec2u(x, y));
+				uint32_t isoX = CartToIsoX(LDL::Vec2u(x, y));
+				uint32_t isoY = CartToIsoY(LDL::Vec2u(x, y));
+
+				LDL::Vec2u pt = LDL::Vec2u(isoX, isoY);
 
 				uint32_t tx = tileSize.x * tilesX[j];
 				uint32_t ty = tileSize.y * tilesY[j];

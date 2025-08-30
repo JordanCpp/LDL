@@ -6,7 +6,7 @@
 #ifndef Arcanum_Objects_LocationData_hpp
 #define Arcanum_Objects_LocationData_hpp
 
-#include <LDL/Math/Isometric.hpp>
+#include <Arcanum/Core/Isometric.hpp>
 #include <Arcanum/Objects/Tile.hpp>
 #include <Arcanum/Objects/Critter.hpp>
 #include <Arcanum/Objects/Scenery.hpp>
@@ -42,7 +42,7 @@ namespace Arcanum
 
 		void Append(Scenery* object);
 	private:
-		LDL::Isometric              _isometric;
+		Isometric                   _isometric;
 		LDL::Vec2u                  _size;
 		std::vector<Tile>           _tileObjects;
 		std::vector<Scenery*>       _sceneryObjects;

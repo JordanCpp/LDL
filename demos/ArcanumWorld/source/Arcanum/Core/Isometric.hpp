@@ -3,21 +3,20 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Math_Isometric_hpp
-#define LDL_Math_Isometric_hpp
+#ifndef Arcanum_Core_Isometric_hpp
+#define Arcanum_Core_Isometric_hpp
 
-#include <LDL/Config.hpp>
 #include <LDL/Math/Vec2.hpp>
 
-namespace LDL
+namespace Arcanum
 {
-    class LDL_LIBRARY Isometric
+    class Isometric
     {
     public:
-        const Vec2u& CartesianToIsometric(const Vec2u& pt);
-        const Vec2u& IsometricToCartesian(const Vec2u& pt);
+        const LDL::Vec2u& CartesianToIsometric(const LDL::Vec2u& pt);
+        const LDL::Vec2u& IsometricToCartesian(const LDL::Vec2u& pt);
     private:
-        Vec2u _result;
+        LDL::Vec2u _result;
     };
 }
 

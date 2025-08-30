@@ -7,7 +7,7 @@
 #define Arcanum_Painters_LocationPainter_hpp
 
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/Math/Isometric.hpp>
+#include <Arcanum/Core/Isometric.hpp>
 #include <Arcanum/Objects/LocationData.hpp>
 
 namespace Arcanum
@@ -22,7 +22,7 @@ namespace Arcanum
     private:
         LDL::Render*   _render;
         LocationData*  _location;
-        LDL::Isometric _isometric;
+        Isometric      _isometric;
     };
 }
 
