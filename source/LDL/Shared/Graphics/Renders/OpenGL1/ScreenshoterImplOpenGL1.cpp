@@ -3,9 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "ScreenshoterImplOpenGL1.hpp"
 #include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
-#include "../OpenGL/Util.hpp"
+#include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/ScreenshoterImplOpenGL1.hpp>
 
 using namespace LDL;
 

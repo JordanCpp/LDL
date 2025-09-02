@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_RenderImpl_hpp
-#define LDL_Graphics_RenderImpl_hpp
+#ifndef LDL_Graphics_Impls_RenderImpl_hpp
+#define LDL_Graphics_Impls_RenderImpl_hpp
 
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Graphics/Surface.hpp>
@@ -35,7 +35,6 @@ namespace LDL
 		virtual void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize) = 0;
 		virtual void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize) = 0;
 		virtual void Draw(SpriteBatcher* textureBatcher) = 0;
-	private:
 	};
 }
 

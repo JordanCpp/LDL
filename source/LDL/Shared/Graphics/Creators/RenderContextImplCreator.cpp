@@ -4,14 +4,12 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/STL/new.hpp>
-#include <LDL/Enums/RenderMode.hpp>
-#include "RenderContextImplCreator.hpp"
-
-#include "../Renders/Software/RenderContextImplSoftware.hpp"
-#include "../Renders/OpenGL1/RenderContextImplOpenGL1.hpp"
-#include "../Renders/OpenGL3/RenderContextImplOpenGL3.hpp"
-
 #include <LDL/Core/Assert.hpp>
+#include <LDL/Enums/RenderMode.hpp>
+#include <LDL/Shared/Graphics/Creators/RenderContextImplCreator.hpp>
+#include <LDL/Shared/Graphics/Renders/Software/RenderContextImplSoftware.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/RenderContextImplOpenGL1.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL3/RenderContextImplOpenGL3.hpp>
 
 using namespace LDL;
 

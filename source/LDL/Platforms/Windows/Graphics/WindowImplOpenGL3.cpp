@@ -7,7 +7,6 @@
 #include <LDL/Core/Assert.hpp>
 
 using namespace LDL;
-using namespace LDL::Events;
 
 typedef HGLRC(WINAPI* PFNWGLCREATECONTEXT)(HDC);
 typedef BOOL (WINAPI* PFNWGLMAKECURRENT  )(HDC, HGLRC);

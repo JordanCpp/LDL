@@ -3,9 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "CameraImplOpenGL1.hpp"
 #include <LDL/Math/Vec3.hpp>
 #include <LDL/Math/Funcs.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/CameraImplOpenGL1.hpp>
 
 using namespace LDL;
 

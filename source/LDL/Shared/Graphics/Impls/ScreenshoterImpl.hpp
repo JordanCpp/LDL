@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_ScreenShotterImpl_hpp
-#define LDL_Graphics_ScreenShotterImpl_hpp
+#ifndef LDL_Graphics_Impls_ScreenShotterImpl_hpp
+#define LDL_Graphics_Impls_ScreenShotterImpl_hpp
 
 namespace LDL
 {
@@ -13,7 +13,6 @@ namespace LDL
 	public:
 		virtual ~ScreenShotterImpl() {};
 		virtual void Shot() = 0;
-	private:
 	};
 }
 

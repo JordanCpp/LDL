@@ -7,7 +7,7 @@
 #define LDL_Input_Mouse_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/Math/Vec2.hpp>
+#include <LDL/Math/Vec2u.hpp>
 
 namespace LDL
 {

@@ -9,7 +9,7 @@ int main()
 {
 	SDL_Init(0);
 
-	SDL_Window* window = SDL_CreateWindow("Example: SDL3_Window", 800, 600, 0);
+	SDL_Window* window = SDL_CreateWindow(__FILE__, 800, 600, 0);
 
 	bool running = true;
 

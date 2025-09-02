@@ -6,8 +6,8 @@
 
 namespace LDL
 {
-	LDL_LIBRARY void* Malloc(size_t bytes);
-	LDL_LIBRARY void Free(void* ptr);
+	LDL_LIBRARY void* LDL_malloc(size_t bytes);
+	LDL_LIBRARY void LDL_free(void* ptr);
 }
 
 #endif    

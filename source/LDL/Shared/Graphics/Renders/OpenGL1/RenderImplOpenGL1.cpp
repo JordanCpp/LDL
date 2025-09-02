@@ -3,16 +3,15 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "RenderImplOpenGL1.hpp"
-#include "../OpenGL/Util.hpp"
-#include "TextureImplOpenGL1.hpp"
-
 #include <LDL/Math/Funcs.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/RenderImplOpenGL1.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/TextureImplOpenGL1.hpp>
 
 #if defined(_WIN32)
-#include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp>
 #elif defined(__unix__)
-#include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
+    #include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
 #endif
 
 using namespace LDL;

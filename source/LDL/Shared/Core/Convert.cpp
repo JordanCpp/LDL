@@ -29,7 +29,7 @@ const char* Convert::ToString(intmax_t num, uint8_t base)
         
         size_t len = strlen(min_str);
         
-        LDL::Memcpy(_buffer, min_str, len + 1);
+        LDL::LDL_memcpy(_buffer, min_str, len + 1);
 
         return _buffer;
     }

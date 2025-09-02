@@ -6,8 +6,8 @@
 #ifndef Arcanum_Graphics_Camera_hpp
 #define Arcanum_Graphics_Camera_hpp
 
-#include <LDL/Math/Vec2.hpp>
-#include <LDL/Math/Rect.hpp>
+#include <LDL/Math/Vec2u.hpp>
+#include <LDL/Math/Rectu.hpp>
 #include <LDL/Events/Event.hpp>
 
 namespace Arcanum

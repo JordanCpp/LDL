@@ -6,8 +6,8 @@
 #ifndef LDL_Core_Directory_hpp
 #define LDL_Core_Directory_hpp
 
-#include <LDL/Core/FileInfo.hpp>
 #include <LDL/Core/Result.hpp>
+#include <LDL/Core/FileInfo.hpp>
 
 namespace LDL
 {

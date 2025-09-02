@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "RenderContextImplOpenGL1.hpp"
+#include <LDL/Shared/Graphics/Renders/OpenGL1/RenderContextImplOpenGL1.hpp>
 
 using namespace LDL;
 
@@ -16,4 +16,3 @@ size_t RenderContextImplOpenGL1::Mode()
 {
 	return _mode;
 }
-

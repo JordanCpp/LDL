@@ -6,31 +6,28 @@
 #ifndef LDL_Events_Eventer_hpp
 #define LDL_Events_Eventer_hpp
 
-#include <LDL/STL/ring_buffer.hpp>
 #include <LDL/Events/Event.hpp>
+#include <LDL/STL/ring_buffer.hpp>
 
 namespace LDL
 {
-	namespace Events
+	class LDL_LIBRARY Eventer
 	{
-		class LDL_LIBRARY Eventer
+	public:
+		enum
 		{
-		public:
-			enum
-			{
-				Max = 128
-			};
-			Eventer();
-			bool Empty();
-			void Push(Event& event);
-			bool Pop(Event& event);
-			bool Running();
-			void Stop();
-		private:
-			bool                    _running;
-			ring_buffer<Event, Max> _queue;
+			Max = 128
 		};
-	}
+		Eventer();
+		bool Empty();
+		void Push(Event& event);
+		bool Pop(Event& event);
+		bool Running();
+		void Stop();
+	private:
+		bool                    _running;
+		ring_buffer<Event, Max> _queue;
+	};
 }
 
 #endif

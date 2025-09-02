@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_TextureImpl_hpp
-#define LDL_Graphics_TextureImpl_hpp
+#ifndef LDL_Graphics_Impls_TextureImpl_hpp
+#define LDL_Graphics_Impls_TextureImpl_hpp
 
 #include <LDL/Graphics/Surface.hpp>
 
@@ -18,7 +18,6 @@ namespace LDL
 		virtual void Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& srcSize) = 0;
 		virtual const Vec2u& Size() = 0;
 		virtual const Vec2u& Quad() = 0;
-	private:
 	};
 }
 

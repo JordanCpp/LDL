@@ -3,10 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Platforms/Utils/KeyMapping.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
+#include <LDL/Shared/Input/KeyMapping.hpp>
 
-using namespace LDL::Utils;
 using namespace LDL;
 
 KeyMapping::KeyMapping()

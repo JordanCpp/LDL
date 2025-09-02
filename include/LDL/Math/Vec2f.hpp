@@ -3,22 +3,14 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Platforms/Utils/KeyMap.hpp>
+#ifndef LDL_Math_Vec2f_hpp
+#define LDL_Math_Vec2f_hpp
 
-using namespace LDL;
+#include <LDL/Math/Vec2.hpp>
 
-KeyMap::KeyMap(size_t code, uint8_t key) :
-	_key(key),
-	_code(code)
+namespace LDL
 {
+	typedef Vec2<float>  Vec2f;
 }
 
-size_t KeyMap::GetCode()
-{
-	return _code;
-}
-
-uint8_t KeyMap::GetKey()
-{
-	return _key;
-}
+#endif     

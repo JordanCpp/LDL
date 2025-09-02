@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "SDL_Application.hpp"
+#include <LDL/Shared/APIs/SDL3/SDL_Application.hpp>
 
 using namespace LDL;
 
@@ -26,6 +26,10 @@ static SDL_Application mainApplication;
 SDL_Application& App()
 {
 	return mainApplication;
+}
+
+SDL_Application::SDL_Application()
+{
 }
 
 LDL::Result& SDL_Application::GetResult()

@@ -3,15 +3,15 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+#include <stdlib.h>
 #include <LDL/LDL.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
-#include <LDL/APIs/OpenGL/GLU.hpp>
-#include <stdlib.h>
 
 // A simple two-dimensional point class to make life easy.  It allows you to
 // reference points with x and y coordinates instead of array indices) and
 // encapsulates a midpoint function.
-struct Point {
+struct Point 
+{
 	GLfloat x, y;
 	Point(GLfloat x = 0, GLfloat y = 0) : x(x), y(y) {}
 	Point midpoint(Point p) { return Point((x + p.x) / 2.0f, (y + p.y) / 2.0f); }
@@ -72,7 +72,7 @@ int main()
 	LDL::Result result;
 	LDL::RenderContext renderContext(LDL::RenderMode::OpenGL1);
 
-	LDL::Window window(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), "Window!");
+	LDL::Window window(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), __FILE__);
 	LDL::Render render(result, renderContext, &window);
 
 	LDL::Event report;

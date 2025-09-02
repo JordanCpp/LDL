@@ -6,13 +6,13 @@
 #ifndef LDL_Platforms_Windows_Graphics_MainWindow_hpp
 #define LDL_Platforms_Windows_Graphics_MainWindow_hpp
 
+#include <LDL/Core/Result.hpp>
+#include <LDL/Enums/WindowMode.hpp>
+#include <LDL/Shared/Events/Eventer.hpp>
+#include <LDL/Platforms/Windows/WinError.hpp>
+#include <LDL/Shared/Input/KeyMapping.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
 #include <LDL/Shared/Graphics/Base/BaseWindow.hpp>
-#include <LDL/Shared/Events/Eventer.hpp>
-#include <LDL/Enums/WindowMode.hpp>
-#include <LDL/Core/Result.hpp>
-#include <LDL/Platforms/Windows/WinError.hpp>
-#include <LDL/Platforms/Utils/KeyMapping.hpp>
 
 namespace LDL
 {
@@ -35,11 +35,11 @@ namespace LDL
 		uint8_t ConvertKey(size_t key);
 		static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 		LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
-		LDL::Utils::KeyMapping _keyMapping;
+		KeyMapping      _keyMapping;
 		WindowError     _windowError;
 		BaseWindow      _baseWindow;
-		Result& _result;
-		Events::Eventer _eventer;
+		Result&         _result;
+		Eventer         _eventer;
 		WNDCLASS        _windowClass;
 		HINSTANCE       _instance;
 		MSG             _msg;

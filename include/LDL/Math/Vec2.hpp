@@ -29,10 +29,6 @@ namespace LDL
 		T x;
 		T y;
 	};
-
-	typedef Vec2<float>    Vec2f;
-	typedef Vec2<int32_t>  Vec2i;
-	typedef Vec2<uint32_t> Vec2u;
 }
 
 #endif     

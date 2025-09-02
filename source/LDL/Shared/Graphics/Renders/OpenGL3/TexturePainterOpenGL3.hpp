@@ -6,10 +6,10 @@
 #ifndef LDL_Graphics_OpenGL3_TexturePainter_hpp
 #define LDL_Graphics_OpenGL3_TexturePainter_hpp
 
-#include <LDL/APIs/OpenGL/OpenGL3_0.hpp>
-#include "ShaderLoaderOpenGL3.hpp"
-#include <LDL/Graphics/Texture.hpp>
 #include <LDL/Math/Mat4.hpp>
+#include <LDL/Graphics/Texture.hpp>
+#include <LDL/APIs/OpenGL/OpenGL3_0.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL3/ShaderLoaderOpenGL3.hpp>
 
 namespace LDL
 {

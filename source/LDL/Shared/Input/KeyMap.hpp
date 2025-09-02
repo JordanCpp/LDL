@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Platforms_Utils_KeyMap_hpp
-#define LDL_Platforms_Utils_KeyMap_hpp
+#ifndef LDL_Shared_Input_KeyMap_hpp
+#define LDL_Shared_Input_KeyMap_hpp
 
 #include <LDL/std/stddef.hpp>
 #include <LDL/std/stdint.hpp>

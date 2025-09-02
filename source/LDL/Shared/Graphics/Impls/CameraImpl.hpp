@@ -3,10 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_CameraImpl_hpp
-#define LDL_Graphics_CameraImpl_hpp
+#ifndef LDL_Graphics_Impls_CameraImpl_hpp
+#define LDL_Graphics_Impls_CameraImpl_hpp
 
-#include <LDL/Math/Vec2.hpp>
+#include <LDL/Math/Vec2u.hpp>
 
 namespace LDL
 {
@@ -18,7 +18,6 @@ namespace LDL
 		virtual const Vec2u& Size() = 0;
 		virtual void Pos(const Vec2u& pos) = 0;
 		virtual void Size(const Vec2u& size) = 0;
-	private:
 	};
 }
 

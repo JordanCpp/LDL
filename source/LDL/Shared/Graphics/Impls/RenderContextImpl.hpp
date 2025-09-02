@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_RenderContextImpl_hpp
-#define LDL_Graphics_RenderContextImpl_hpp
+#ifndef LDL_Graphics_Impls_RenderContextImpl_hpp
+#define LDL_Graphics_Impls_RenderContextImpl_hpp
 
 #include <LDL/std/stddef.hpp>
 
@@ -15,7 +15,6 @@ namespace LDL
 	public:
 		virtual ~RenderContextImpl() {};
 		virtual size_t Mode() = 0;
-	private:
 	};
 }
 

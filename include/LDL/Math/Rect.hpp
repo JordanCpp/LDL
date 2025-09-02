@@ -62,10 +62,6 @@ namespace LDL
 		Vec2<T> _pos;
 		Vec2<T> _size;
 	};
-
-	typedef Rect<float>    Rectf;
-	typedef Rect<int32_t>  Recti;
-	typedef Rect<uint32_t> Rectu;
 }
 
 #endif    

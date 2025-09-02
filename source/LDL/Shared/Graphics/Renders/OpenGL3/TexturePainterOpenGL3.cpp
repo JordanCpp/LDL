@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "TexturePainterOpenGL3.hpp"
-#include "TextureImplOpenGL3.hpp"
+#include <LDL/Shared/Graphics/Renders/OpenGL3/TextureImplOpenGL3.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL3/TexturePainterOpenGL3.hpp>
 
 using namespace LDL;
 

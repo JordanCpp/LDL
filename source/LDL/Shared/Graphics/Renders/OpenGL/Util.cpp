@@ -3,11 +3,11 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "Util.hpp"
-#include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
-#include <LDL/Core/Convert.hpp>
 #include <LDL/Core/Assert.hpp>
+#include <LDL/Core/Convert.hpp>
 #include <LDL/STL/inplace_strings.hpp>
+#include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
 
 using namespace LDL;
 
@@ -77,7 +77,7 @@ GLuint LDL::CreateTexture(GLsizei width, GLsizei height, GLint format)
 
 void LDL::DeleteTexture(GLint id)
 {
-	GL_CHECK(glDeleteTextures(0, (GLuint*)&id));
+	GL_CHECK(glDeleteTextures(1, (GLuint*)&id));
 }
 
 void LDL::DrawQuad(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize, size_t textureSize)

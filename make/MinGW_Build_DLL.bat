@@ -1,5 +1,5 @@
 
-call "c:\Downloads\codeblocks-25.03mingw-32bit-setup\MinGW\mingwvars.bat"
+call "c:\Downloads\codeblocks-8.02mingw-setup\MinGW\mingwvars.bat"
 
 g++ -fno-rtti -fno-exceptions -Wall -Wextra -pedantic -O2 -s -static -shared -o LDL_MinGW.dll -DLDL_SHARED_LIBRARY ^
 ..\source\LDL\Shared\APIs\OpenGL\*.cpp ^
@@ -7,6 +7,7 @@ g++ -fno-rtti -fno-exceptions -Wall -Wextra -pedantic -O2 -s -static -shared -o 
 ..\source\LDL\Shared\Core\*.cpp ^
 ..\source\LDL\Shared\Events\*.cpp ^
 ..\source\LDL\Shared\Graphics\*.cpp ^
+..\source\LDL\Shared\Input\*.cpp ^
 ..\source\LDL\Shared\Loaders\*.cpp ^
 ..\source\LDL\Shared\Math\*.cpp ^
 ..\source\LDL\Shared\std\*.cpp ^
@@ -18,7 +19,6 @@ g++ -fno-rtti -fno-exceptions -Wall -Wextra -pedantic -O2 -s -static -shared -o 
 ..\source\LDL\Shared\Graphics\Renders\OpenGL1\*.cpp ^
 ..\source\LDL\Shared\Graphics\Renders\OpenGL3\*.cpp ^
 ..\source\LDL\Shared\Graphics\Utils\*.cpp ^
-..\source\LDL\Platforms\Utils\*.cpp ^
 ..\source\LDL\Platforms\Windows\*.cpp ^
 ..\source\LDL\Platforms\Windows\Core\*.cpp ^
 ..\source\LDL\Platforms\Windows\Graphics\*.cpp ^

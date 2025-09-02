@@ -6,7 +6,7 @@
 #ifndef Arcanum_Objects_MapObject_hpp
 #define Arcanum_Objects_MapObject_hpp
 
-#include <LDL/Math/Vec2.hpp>
+#include <LDL/Math/Vec2u.hpp>
 
 namespace Arcanum
 {

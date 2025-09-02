@@ -4,8 +4,8 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Core/TestEqual.hpp>
-#include <LDL/Math/Rect.hpp>
-#include <LDL/Math/Vec2.hpp>
+#include <LDL/Math/Rectu.hpp>
+#include <LDL/Math/Vec2u.hpp>
 
 using namespace LDL;
 

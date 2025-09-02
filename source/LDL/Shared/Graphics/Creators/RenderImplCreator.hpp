@@ -6,10 +6,10 @@
 #ifndef LDL_Graphics_Creators_RenderImplCreator_hpp
 #define LDL_Graphics_Creators_RenderImplCreator_hpp
 
-#include <LDL/Graphics/Window.hpp>
-#include "../Impls/RenderImpl.hpp"
-#include <LDL/Graphics/RenderContext.hpp>
 #include <LDL/Math/Vec2.hpp>
+#include <LDL/Graphics/Window.hpp>
+#include <LDL/Graphics/RenderContext.hpp>
+#include <LDL/Shared/Graphics/Impls/RenderImpl.hpp>
 
 namespace LDL
 {
@@ -17,7 +17,6 @@ namespace LDL
 	{
 	public:
 		RenderImpl* Create(uint8_t* memory, Result& result, RenderContext& renderContext, Window* window);
-	private:
 	};
 }
 

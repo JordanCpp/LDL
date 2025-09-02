@@ -6,7 +6,7 @@
 #ifndef Arcanum_Core_Isometric_hpp
 #define Arcanum_Core_Isometric_hpp
 
-#include <LDL/Math/Vec2.hpp>
+#include <LDL/Math/Vec2u.hpp>
 
 namespace Arcanum
 {

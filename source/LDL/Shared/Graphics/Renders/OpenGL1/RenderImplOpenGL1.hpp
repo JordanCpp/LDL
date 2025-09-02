@@ -6,15 +6,15 @@
 #ifndef LDL_Graphics_OpenGL1_RenderImpl_hpp
 #define LDL_Graphics_OpenGL1_RenderImpl_hpp
 
-#include "../../Base/BaseRender.hpp"
+#include <LDL/Math/Mat4.hpp>
 #include <LDL/Graphics/Window.hpp>
-#include "TextureImplOpenGL1.hpp"
-#include "ScreenOpenGL1.hpp"
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Graphics/TextureBatcher.hpp>
-#include "RenderBufferOpenGL1.hpp"
-#include <LDL/Math/Mat4.hpp>
-#include "../../Impls/RenderImpl.hpp"
+#include <LDL/Shared/Graphics/Base/BaseRender.hpp>
+#include <LDL/Shared/Graphics/Impls/RenderImpl.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/ScreenOpenGL1.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/TextureImplOpenGL1.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/RenderBufferOpenGL1.hpp>
 
 namespace LDL
 {
@@ -42,15 +42,15 @@ namespace LDL
 		void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
 		void Draw(SpriteBatcher* textureBatcher);
 	private:
-		Result& _result;
-		Window* _window;
+		Result&            _result;
+		Window*            _window;
 		ScreenOpenGL1      _screen;
 		LDL::Color         _color;
 		RenderContextImpl* _renderContextImpl;
 		RenderBuffer       _renderBuffer;
 	public:
-		Mat4f        _projection;
-		Mat4f        _modelView;
+		Mat4f              _projection;
+		Mat4f              _modelView;
 	};
 }
 

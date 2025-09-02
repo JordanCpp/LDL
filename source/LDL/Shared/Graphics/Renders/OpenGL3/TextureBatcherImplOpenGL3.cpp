@@ -3,24 +3,24 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "TextureBatcherImplOpenGL3.hpp"
-#include "TextureImplOpenGL3.hpp"
-#include "../OpenGL/Util.hpp"
+#include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL3/TextureImplOpenGL3.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL3/TextureBatcherImplOpenGL3.hpp>
 
 using namespace LDL;
 
 SpriteBatcherImplOpenGL3::SpriteBatcherImplOpenGL3(Texture* texture, size_t count) :
-	_Texture(((TextureImplOpenGL3*)texture->GetTextureImpl())->Id()),
-	_TextureSize(texture->GetTextureImpl()->Quad().x)
+	_texture(((TextureImplOpenGL3*)texture->GetTextureImpl())->Id()),
+	_textureSize(texture->GetTextureImpl()->Quad().x)
 {
-	_Quads.reserve(count);
+	_quads.reserve(count);
 }
 
 void SpriteBatcherImplOpenGL3::Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	Quad quad;
 
-	float ps = 1.0f / (float)_TextureSize;
+	float ps = 1.0f / (float)_textureSize;
 
 	quad.data[0] = (float)dstPos.x;
 	quad.data[1] = float(dstSize.y + dstPos.y);
@@ -58,25 +58,25 @@ void SpriteBatcherImplOpenGL3::Draw(const Vec2u& dstPos, const Vec2u& dstSize, c
 	quad.data[28] = ps * srcPos.x;
 	quad.data[29] = ps * srcPos.y;
 
-	_Quads.push_back(quad);
+	_quads.push_back(quad);
 }
 
 void SpriteBatcherImplOpenGL3::Clear()
 {
-	_Quads.clear();
+	_quads.clear();
 }
 
 size_t SpriteBatcherImplOpenGL3::TextureId()
 {
-	return _Texture;
+	return _texture;
 }
 
 size_t SpriteBatcherImplOpenGL3::Count()
 {
-	return _Quads.size();
+	return _quads.size();
 }
 
 Quad* SpriteBatcherImplOpenGL3::Content()
 {
-	return &_Quads[0];
+	return &_quads[0];
 }

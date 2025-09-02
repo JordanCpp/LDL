@@ -8,7 +8,7 @@
 
 #include <LDL/Config.hpp>
 #include <LDL/std/stddef.hpp>
-#include <LDL/Math/Vec2.hpp>
+#include <LDL/Math/Vec2u.hpp>
 
 namespace LDL
 {

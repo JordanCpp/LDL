@@ -6,22 +6,18 @@
 #ifndef LDL_Graphics_Creators_WindowImplCreator_hpp
 #define LDL_Graphics_Creators_WindowImplCreator_hpp
 
-#include <LDL/Platforms/WindowImpl.hpp>
+#include <LDL/Math/Vec2.hpp>
 #include <LDL/Core/Result.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
-#include <LDL/Math/Vec2.hpp>
+#include <LDL/Platforms/WindowImpl.hpp>
 
 namespace LDL
 {
-	namespace Graphics
+	class WindowImplCreator
 	{
-		class WindowImplCreator
-		{
-		public:
-			WindowImpl* Create(uint8_t* memory, Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode);
-		private:
-		};
-	}
+	public:
+		WindowImpl* Create(uint8_t* memory, Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode);
+	};
 }
 
-#endif   
+#endif

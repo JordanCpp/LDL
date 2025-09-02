@@ -6,7 +6,6 @@
 #ifndef LDL_Math_Mat4_hpp
 #define LDL_Math_Mat4_hpp
 
-#include <math.h>
 #include <string.h>
 
 namespace LDL

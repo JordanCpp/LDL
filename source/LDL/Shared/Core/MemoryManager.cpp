@@ -53,7 +53,7 @@ MemoryManager& MemoryManager::Instance()
 {
 	if (_instance == NULL)
 	{
-		_instance = new (&_bytes) MemoryManager();
+		_instance = new(&_bytes) MemoryManager();
 	}
 
 	return *_instance;

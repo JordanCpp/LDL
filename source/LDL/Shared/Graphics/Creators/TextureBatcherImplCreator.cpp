@@ -3,15 +3,13 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "TextureImplCreator.hpp"
-#include <LDL/Enums/RenderMode.hpp>
-
-#include "../Renders/Software/TextureBatcherImplSoftware.hpp"
-#include "../Renders/OpenGL1/TextureBatcherImplOpenGL1.hpp"
-#include "../Renders/OpenGL3/TextureBatcherImplOpenGL3.hpp"
-
-#include "TextureBatcherImplCreator.hpp"
 #include <LDL/Core/Assert.hpp>
+#include <LDL/Enums/RenderMode.hpp>
+#include <LDL/Shared/Graphics/Creators/TextureImplCreator.hpp>
+#include <LDL/Shared/Graphics/Creators/TextureBatcherImplCreator.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/TextureBatcherImplOpenGL1.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL3/TextureBatcherImplOpenGL3.hpp>
+#include <LDL/Shared/Graphics/Renders/Software/TextureBatcherImplSoftware.hpp>
 
 using namespace LDL;
 

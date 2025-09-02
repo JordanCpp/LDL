@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "RenderImplSoftware.hpp"
+#include <LDL/Shared/Graphics/Renders/Software/RenderImplSoftware.hpp>
 
 #if defined(_WIN32)
     #include <LDL/Platforms/Windows/Graphics/WindowImplSoftware.hpp>

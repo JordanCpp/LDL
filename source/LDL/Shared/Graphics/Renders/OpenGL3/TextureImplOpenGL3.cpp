@@ -3,26 +3,26 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "TextureImplOpenGL3.hpp"
-#include <LDL/APIs/OpenGL/OpenGL1_1.hpp>
 #include <LDL/Core/Assert.hpp>
-#include "../OpenGL/Util.hpp"
+#include <LDL/APIs/OpenGL/OpenGL1_1.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL3/TextureImplOpenGL3.hpp>
 
 using namespace LDL;
 
 TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
-	_RenderContextImpl(renderContextImpl),
-	_Id(0)
+	_renderContextImpl(renderContextImpl),
+	_id(0)
 {
 	LDL_ASSERT(size.x > 0);
 	LDL_ASSERT(size.y > 0);
 	LDL_ASSERT(bytesPerPixel >= 1 && bytesPerPixel <= 4);
 	LDL_ASSERT(pixels != NULL);
 
-	_Size = size;
+	_size = size;
 
-	GL_CHECK(glGenTextures(1, (GLuint*)&_Id));
-	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_Id));
+	GL_CHECK(glGenTextures(1, (GLuint*)&_id));
+	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_id));
 
 	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
 	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
@@ -34,12 +34,12 @@ TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, con
 	else
 		format = GL_RGBA;
 
-	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_Size.x, (GLsizei)_Size.y, 0, format, GL_UNSIGNED_BYTE, pixels));
+	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_size.x, (GLsizei)_size.y, 0, format, GL_UNSIGNED_BYTE, pixels));
 }
 
 TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel) :
-	_RenderContextImpl(renderContextImpl),
-	_Id(0)
+	_renderContextImpl(renderContextImpl),
+	_id(0)
 {
 	LDL_UNUSED(size);
 	LDL_UNUSED(bytesPerPixel);
@@ -47,22 +47,22 @@ TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, con
 
 TextureImplOpenGL3::~TextureImplOpenGL3()
 {
-	GL_CHECK(glDeleteTextures(0, (GLuint*)&_Id));
+	GL_CHECK(glDeleteTextures(1, (GLuint*)&_id));
 }
 
 const Vec2u& TextureImplOpenGL3::Size()
 {
-	return _Size;
+	return _size;
 }
 
 const Vec2u& TextureImplOpenGL3::Quad()
 {
-	return _Quad;
+	return _quad;
 }
 
 size_t TextureImplOpenGL3::Id()
 {
-	return _Id;
+	return _id;
 }
 
 void TextureImplOpenGL3::Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel)

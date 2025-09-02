@@ -7,8 +7,8 @@
 #define LDL_Graphics_Software_TextureBatcherImpl_hpp
 
 #include <LDL/Graphics/Texture.hpp>
-#include "../OpenGL/Util.hpp"
-#include "../../Impls/TextureBatcherImpl.hpp"
+#include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
+#include <LDL/Shared/Graphics/Impls/TextureBatcherImpl.hpp>
 
 namespace LDL
 {

@@ -6,10 +6,10 @@
 #ifndef LDL_Graphics_OpenGL1_TextureImpl_hpp
 #define LDL_Graphics_OpenGL1_TextureImpl_hpp
 
-#include "RenderContextImplOpenGL1.hpp"
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Graphics/Surface.hpp>
-#include "../../Impls/TextureImpl.hpp"
+#include <LDL/Shared/Graphics/Impls/TextureImpl.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/RenderContextImplOpenGL1.hpp>
 
 namespace LDL
 {

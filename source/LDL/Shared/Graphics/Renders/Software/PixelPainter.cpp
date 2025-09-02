@@ -3,9 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Graphics/PixelPainter.hpp>
-#include <LDL/Core/Assert.hpp>
 #include <LDL/std/math.hpp>
+#include <LDL/Core/Assert.hpp>
+#include <LDL/Graphics/PixelPainter.hpp>
 
 using namespace LDL;
 

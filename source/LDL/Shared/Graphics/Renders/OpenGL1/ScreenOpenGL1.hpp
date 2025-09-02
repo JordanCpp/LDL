@@ -7,7 +7,7 @@
 #define LDL_Graphics_OpenGL1_Screen_hpp
 
 #include <LDL/Graphics/Surface.hpp>
-#include "../../Utils/PotTextureSizer.hpp"
+#include <LDL/Shared/Graphics/Utils/PotTextureSizer.hpp>
 
 namespace LDL
 {

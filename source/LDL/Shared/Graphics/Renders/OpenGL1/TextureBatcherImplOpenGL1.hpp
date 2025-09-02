@@ -6,10 +6,10 @@
 #ifndef LDL_Graphics_OpenGL1_TextureBatcherImpl_hpp
 #define LDL_Graphics_OpenGL1_TextureBatcherImpl_hpp
 
-#include <LDL/Graphics/Texture.hpp>
-#include "../OpenGL/Util.hpp"
 #include <LDL/STL/vector.hpp>
-#include "../../Impls/TextureBatcherImpl.hpp"
+#include <LDL/Graphics/Texture.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
+#include <LDL/Shared/Graphics/Impls/TextureBatcherImpl.hpp>
 
 namespace LDL
 {

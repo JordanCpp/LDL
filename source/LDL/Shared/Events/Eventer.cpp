@@ -6,7 +6,6 @@
 #include <LDL/Shared/Events/Eventer.hpp>
 
 using namespace LDL;
-using namespace Events;
 
 Eventer::Eventer() :
 	_running(true)

@@ -3,14 +3,12 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "RenderImplCreator.hpp"
-
-#include "../Renders/Software/RenderImplSoftware.hpp"
-#include "../Renders/OpenGL1/RenderImplOpenGL1.hpp"
-#include "../Renders/OpenGL3/RenderImplOpenGL3.hpp"
-
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Enums/RenderMode.hpp>
+#include <LDL/Shared/Graphics/Creators/RenderImplCreator.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/RenderImplOpenGL1.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL3/RenderImplOpenGL3.hpp>
+#include <LDL/Shared/Graphics/Renders/Software/RenderImplSoftware.hpp>
 
 using namespace LDL;
 

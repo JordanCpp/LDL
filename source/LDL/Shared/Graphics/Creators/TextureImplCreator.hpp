@@ -8,7 +8,7 @@
 
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
-#include "../Impls/TextureImpl.hpp"
+#include <LDL/Shared/Graphics/Impls/TextureImpl.hpp>
 
 namespace LDL
 {
@@ -18,7 +18,6 @@ namespace LDL
 		TextureImpl* Create(uint8_t* memory, RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);
 		TextureImpl* Create(uint8_t* memory, RenderContext* renderContext, const Vec2u& size, uint8_t bytesPerPixel);
 		TextureImpl* Create(uint8_t* memory, RenderContext* renderContext, Surface* surface);
-	private:
 	};
 }
 

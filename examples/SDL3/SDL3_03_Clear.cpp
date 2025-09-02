@@ -9,7 +9,7 @@ int main()
 {
 	SDL_Init(0);
 
-	SDL_Window* window     = SDL_CreateWindow("Example: SDL3_Renderer", 800, 600, 0);
+	SDL_Window* window     = SDL_CreateWindow(__FILE__, 800, 600, 0);
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, NULL);
 
 	bool running = true;
@@ -29,7 +29,6 @@ int main()
 		}
 
 		SDL_RenderClear(renderer);
-
 		SDL_RenderPresent(renderer);
 	}
 

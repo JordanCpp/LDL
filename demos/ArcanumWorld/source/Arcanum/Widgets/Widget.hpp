@@ -7,7 +7,7 @@
 #define Arcanum_Widgets_Widget_hpp
 
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/Math/Rect.hpp>
+#include <LDL/Math/Rectu.hpp>
 #include <LDL/Math/Vec2.hpp>
 
 namespace Arcanum

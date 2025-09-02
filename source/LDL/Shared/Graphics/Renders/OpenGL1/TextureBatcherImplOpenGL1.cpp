@@ -3,9 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "TextureBatcherImplOpenGL1.hpp"
-#include "TextureImplOpenGL1.hpp"
-#include "../OpenGL/Util.hpp"
+#include <LDL/Shared/Graphics/Renders/OpenGL1/TextureImplOpenGL1.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/TextureBatcherImplOpenGL1.hpp>
 
 using namespace LDL;
 

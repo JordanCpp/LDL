@@ -6,11 +6,11 @@
 #ifndef LDL_Graphics_Window_hpp
 #define LDL_Graphics_Window_hpp
 
+#include <LDL/Math/Vec2u.hpp>
+#include <LDL/Core/Result.hpp>
 #include <LDL/Events/Event.hpp>
-#include <LDL/Math/Vec2.hpp>
 #include <LDL/Enums/WindowMode.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
-#include <LDL/Core/Result.hpp>
 
 namespace LDL
 {

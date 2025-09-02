@@ -6,10 +6,11 @@
 #ifndef LDL_Platforms_Windows_Graphics_OpenGL1_WindowImpl_hpp
 #define LDL_Platforms_Windows_Graphics_OpenGL1_WindowImpl_hpp
 
-#include "MainWindow.hpp"
-#include "../../WindowImpl.hpp"
 #include <LDL/Graphics/Window.hpp>
+#include <LDL/Platforms/WindowImpl.hpp>
 #include <LDL/APIs/OpenGL/OpenGLLoader.hpp>
+#include <LDL/Platforms/Windows/Windows.hpp>
+#include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 
 namespace LDL
 {

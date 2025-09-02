@@ -3,9 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "ScreenOpenGL1.hpp"
 #include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
-#include "../OpenGL/Util.hpp"
+#include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/ScreenOpenGL1.hpp>
 
 using namespace LDL;
 
@@ -37,15 +37,21 @@ ScreenOpenGL1::ScreenOpenGL1(const Vec2u& size) :
 ScreenOpenGL1::~ScreenOpenGL1()
 {
 	if (IsMaxTextureSize(_size, _maxTextureSize))
-		GL_CHECK(glDeleteTextures(0, (GLuint*)&_screen));
+	{
+		GL_CHECK(glDeleteTextures(1, (GLuint*)&_screen));
+	}
 }
 
 void ScreenOpenGL1::Draw(Surface* image, const Vec2u& pos, const Vec2u& size)
 {
 	if (IsMaxTextureSize(_size, _maxTextureSize))
+	{
 		DrawTexture(image, pos, size);
+	}
 	else
+	{
 		DrawPixels(image, pos, size);
+	}
 }
 
 void ScreenOpenGL1::Draw(Surface* image, const Vec2u& pos)
@@ -68,7 +74,7 @@ void ScreenOpenGL1::DrawTexture(Surface* image, const Vec2u& pos, const Vec2u& s
 	else
 		format = GL_RGB;
 
-	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)pos.x, (GLint)pos.y, (GLsizei)image->Size().x, (GLsizei)image->Size().y, format, GL_UNSIGNED_BYTE, image->Pixels()));
+	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, (GLsizei)image->Size().x, (GLsizei)image->Size().y, format, GL_UNSIGNED_BYTE, image->Pixels()));
 
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }

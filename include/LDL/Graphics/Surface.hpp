@@ -6,7 +6,7 @@
 #ifndef LDL_Graphics_Surface_hpp
 #define LDL_Graphics_Surface_hpp
 
-#include <LDL/Math/Vec2.hpp>
+#include <LDL/Math/Vec2u.hpp>
 #include <LDL/STL/vector.hpp>
 #include <LDL/Graphics/Color.hpp>
 #include <LDL/Graphics/PixelFormat.hpp>

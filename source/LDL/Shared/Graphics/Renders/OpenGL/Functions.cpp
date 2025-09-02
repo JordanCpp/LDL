@@ -6,11 +6,10 @@
 #include <LDL/APIs/OpenGL/OpenGL_Functions.hpp>
 
 #if defined(_WIN32)
-#include <LDL/Platforms/Windows/Graphics/OpenGLFunctionsImpl.hpp>
+    #include <LDL/Platforms/Windows/Graphics/OpenGLFunctionsImpl.hpp>
 #elif defined(__unix__)
-#include <LDL/Platforms/Linux/Graphics/OpenGL/FunctionsImpl.hpp>
+    #include <LDL/Platforms/Linux/Graphics/OpenGL/FunctionsImpl.hpp>
 #endif
-
 
 using namespace LDL;
 

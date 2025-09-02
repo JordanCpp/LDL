@@ -1,4 +1,4 @@
-call "c:\Downloads\codeblocks-25.03mingw-32bit-setup\MinGW\mingwvars.bat"
+call "c:\Downloads\codeblocks-8.02mingw-setup\MinGW\mingwvars.bat"
 
 g++ -std=c++98 -Wall -Wextra -pedantic -o MinGW_Arcanum.exe -O2 -s -static ^
 -I..\include\  ^

@@ -7,9 +7,9 @@
 #define LDL_Graphics_OpenGL1_ScreenShotterImpl_hpp
 
 #include <LDL/Graphics/Render.hpp>
-#include "../../Base/BaseScreenshoter.hpp"
 #include <LDL/Graphics/ImageWritter.hpp>
-#include "../../Impls/ScreenshoterImpl.hpp"
+#include <LDL/Shared/Graphics/Base/BaseScreenshoter.hpp>
+#include <LDL/Shared/Graphics/Impls/ScreenshoterImpl.hpp>
 
 namespace LDL
 {
@@ -24,8 +24,8 @@ namespace LDL
 		FileString        _shortPath;
 		FileString        _name;
 		FileString        _fullPath;
-		Render* _render;
-		Surface* _image;
+		Render*           _render;
+		Surface*          _image;
 	};
 }
 

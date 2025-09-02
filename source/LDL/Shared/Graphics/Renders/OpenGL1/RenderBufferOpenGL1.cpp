@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "RenderBufferOpenGL1.hpp"
-#include "../OpenGL/Util.hpp"
+#include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/RenderBufferOpenGL1.hpp>
 
 using namespace LDL;
 

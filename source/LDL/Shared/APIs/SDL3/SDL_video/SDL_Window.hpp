@@ -7,8 +7,8 @@
 #define LDL_Shared_SDL3_SDL_Window_hpp
 
 #include <SDL3/SDL_video.h>
-#include <LDL/Graphics/Window.hpp>
 #include <LDL/Core/Result.hpp>
+#include <LDL/Graphics/Window.hpp>
 
 struct SDL_Window
 {

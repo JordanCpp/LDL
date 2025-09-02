@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "SDL_Window.hpp"
+#include <LDL/Shared/APIs/SDL3/SDL_video/SDL_Window.hpp>
 
 using namespace LDL;
 

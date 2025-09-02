@@ -7,7 +7,7 @@
 #define Arcanum_Game_Settings_hpp
 
 #include <string>
-#include <LDL/Math/Vec2.hpp>
+#include <LDL/Math/Vec2u.hpp>
 
 namespace Arcanum
 {

@@ -40,7 +40,7 @@ int main()
 	LDL::Result result;
 	LDL::RenderContext renderContext(LDL::RenderMode::OpenGL1);
 
-	LDL::Window window(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), "Window!");
+	LDL::Window window(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), __FILE__);
 	LDL::Render render(result, renderContext, &window);
 
 	LDL::Event report;

@@ -6,21 +6,24 @@
 #ifndef LDL_Shared_SDL3_SDL_Application_hpp
 #define LDL_Shared_SDL3_SDL_Application_hpp
 
-#include <LDL/STL/vector.hpp>
-#include <LDL/Shared/APIs/SDL3/SDL_video/SDL_Window.hpp>
 #include <SDL3/SDL_events.h>
-#include <LDL/STL/ring_buffer.hpp>
+#include <LDL/STL/vector.hpp>
 #include <LDL/Core/Result.hpp>
+#include <LDL/STL/ring_buffer.hpp>
+#include <LDL/Shared/APIs/SDL3/SDL_Memory.hpp>
+#include <LDL/Shared/APIs/SDL3/SDL_video/SDL_Window.hpp>
 
 class SDL_Application
 {
 public:
+	SDL_Application();
 	LDL::Result& GetResult();
 	void Append(SDL_Window* window);
 	LDL::vector<SDL_Window*>& GetWindows();
 	void PollEvents();
 	bool PollEvent(SDL_Event& dest);
 private:
+	SDL_Memory                        _memory;
 	LDL::Result                       _result;
 	LDL::vector<SDL_Window*>          _windows;
 	LDL::ring_buffer<SDL_Event, 1024> _events;

@@ -29,18 +29,16 @@ namespace LDL
 		const Vec2u &Size();
 		const Vec2u &Pos();
 		void Show();
-
 	private:
 		BaseWindow _BaseWindow;
 		size_t ConvertKey(size_t key);
-		LDL::Events::Eventer _Eventer;
-
+		Eventer _Eventer;
 	public:
 		Display *_Display;
-		int     _Screen;
-		Window _Root;
-		Window _Window;
-		size_t _EventMask;
+		int      _Screen;
+		Window   _Root;
+		Window   _Window;
+		size_t   _EventMask;
 	};
 }
 

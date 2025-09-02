@@ -6,8 +6,8 @@
 #ifndef LDL_Platforms_WindowImpl_hpp
 #define LDL_Platforms_WindowImpl_hpp
 
+#include <LDL/Math/Vec2u.hpp>
 #include <LDL/Events/Event.hpp>
-#include <LDL/Math/Vec2.hpp>
 
 namespace LDL
 {
@@ -26,7 +26,6 @@ namespace LDL
 		virtual const Vec2u& Size() = 0;
 		virtual const Vec2u& Pos() = 0;
 		virtual void* NativeHandle() = 0;
-	private:
 	};
 }
 

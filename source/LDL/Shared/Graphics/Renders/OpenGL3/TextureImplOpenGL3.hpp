@@ -6,9 +6,9 @@
 #ifndef LDL_Graphics_OpenGL3_TextureImpl_hpp
 #define LDL_Graphics_OpenGL3_TextureImpl_hpp
 
-#include "RenderContextImplOpenGL3.hpp"
 #include <LDL/Graphics/Surface.hpp>
-#include "../../Impls/TextureImpl.hpp"
+#include <LDL/Shared/Graphics/Impls/TextureImpl.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL3/RenderContextImplOpenGL3.hpp>
 
 namespace LDL
 {
@@ -26,10 +26,10 @@ namespace LDL
 		void Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
 		void Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& srcSize);
 	private:
-		RenderContextImpl* _RenderContextImpl;
-		size_t _Id;
-		Vec2u _Size;
-		Vec2u _Quad;
+		RenderContextImpl* _renderContextImpl;
+		size_t             _id;
+		Vec2u              _size;
+		Vec2u              _quad;
 	};
 }
 

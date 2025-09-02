@@ -20,13 +20,11 @@ include_directories("source")
 
 if (WIN32)
     file(GLOB_RECURSE SOURCE 
-    "source/LDL/Shared/*.cpp" 
-    "source/LDL/Platforms/Utils/*.cpp" 
+    "source/LDL/Shared/*.cpp"
     "source/LDL/Platforms/Windows/*.cpp")
 elseif(UNIX AND NOT APPLE)
     file(GLOB_RECURSE SOURCE 
-    "source/LDL/Shared/*.cpp" 
-    "source/LDL/Platforms/Utils/*.cpp" 
+    "source/LDL/Shared/*.cpp"
     "source/LDL/Platforms/Linux/*.cpp")
 endif()
 

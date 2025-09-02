@@ -4,10 +4,9 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Core/Assert.hpp>
-#include "WindowImplOpenGL1.hpp"
+#include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp>
 
 using namespace LDL;
-using namespace LDL::Events;
 
 WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _result(result),

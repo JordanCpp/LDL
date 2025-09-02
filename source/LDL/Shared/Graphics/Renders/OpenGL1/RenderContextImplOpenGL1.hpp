@@ -6,7 +6,7 @@
 #ifndef LDL_Graphics_OpenGL1_RenderContextImpl_hpp
 #define LDL_Graphics_OpenGL1_RenderContextImpl_hpp
 
-#include "../../Impls/RenderContextImpl.hpp"
+#include <LDL/Shared/Graphics/Impls/RenderContextImpl.hpp>
 
 namespace LDL
 {

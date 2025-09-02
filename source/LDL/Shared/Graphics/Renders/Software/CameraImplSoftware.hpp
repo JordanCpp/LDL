@@ -24,8 +24,8 @@ namespace LDL
 			void Size(const Vec2u& size);
 		private:
 			RenderImpl* _impl;
-			Vec2u _pos;
-			Vec2u _size;
+			Vec2u       _pos;
+			Vec2u       _size;
 		};
 	}
 }

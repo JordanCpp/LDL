@@ -6,9 +6,9 @@
 #ifndef LDL_Graphics_Software_TextureImpl_hpp
 #define LDL_Graphics_Software_TextureImpl_hpp
 
-#include "RenderContextImplSoftware.hpp"
 #include <LDL/Graphics/Surface.hpp>
-#include "../../Impls/TextureImpl.hpp"
+#include <LDL/Shared/Graphics/Impls/TextureImpl.hpp>
+#include <LDL/Shared/Graphics/Renders/Software/RenderContextImplSoftware.hpp>
 
 namespace LDL
 {
@@ -26,8 +26,8 @@ namespace LDL
 		const Vec2u& Quad();
 		Surface* GetSurface();
 	private:
-		Vec2u _size;
-		Surface     _surface;
+		Vec2u   _size;
+		Surface _surface;
 	};
 }
 

@@ -3,22 +3,20 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "WindowImplCreator.hpp"
+#include <LDL/Core/Assert.hpp>
+#include <LDL/Shared/Graphics/Creators/WindowImplCreator.hpp>
 
 #if defined(_WIN32)
-#include <LDL/Platforms/Windows/Graphics/WindowImplSoftware.hpp>
-#include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp>
-#include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL3.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplSoftware.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL3.hpp>
 #elif defined(__unix__)
-#include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
-#include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
-#include <LDL/Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
+    #include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
+    #include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
+    #include <LDL/Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
 #endif
 
-#include <LDL/Core/Assert.hpp>
-
 using namespace LDL;
-using namespace LDL::Graphics;
 
 WindowImpl* WindowImplCreator::Create(uint8_t * memory, Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode)
 {

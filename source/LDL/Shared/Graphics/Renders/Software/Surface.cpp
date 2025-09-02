@@ -3,9 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Graphics/Surface.hpp>
-#include <LDL/Core/Assert.hpp>
 #include <LDL/std/string.hpp>
+#include <LDL/Core/Assert.hpp>
+#include <LDL/Graphics/Surface.hpp>
 
 using namespace LDL;
 
@@ -39,7 +39,7 @@ Surface::Surface(size_t pixelFormat, const Vec2u& size, uint8_t* pixels) :
 	LDL_ASSERT(pixels != NULL);
 
 	_pixels.resize(_size.x * _size.y * BytesPerPixelFromPixelFormat(_pixelFormat));
-	LDL::Memcpy(_pixels.data(), pixels, _pixels.size());
+	LDL::LDL_memcpy(_pixels.data(), pixels, _pixels.size());
 }
 
 Surface::Surface(size_t pixelFormat, const Vec2u& size, const Vec2u& capacity) :
@@ -72,7 +72,7 @@ Surface::Surface(size_t pixelFormat, const Vec2u& size, const Vec2u& capacity, u
 	LDL_ASSERT(pixels != NULL);
 
 	_pixels.resize(_size.x * _size.y * BytesPerPixelFromPixelFormat(_pixelFormat));
-	LDL::Memcpy(_pixels.data(), pixels, _pixels.size());
+	LDL::LDL_memcpy(_pixels.data(), pixels, _pixels.size());
 }
 
 Surface::~Surface()

@@ -6,16 +6,16 @@
 #ifndef LDL_Graphics_Software_RenderImpl_hpp
 #define LDL_Graphics_Software_RenderImpl_hpp
 
-#include "../../Base/BaseRender.hpp"
 #include <LDL/Graphics/Window.hpp>
-#include "TextureImplSoftware.hpp"
 #include <LDL/Graphics/Surface.hpp>
 #include <LDL/Graphics/Texture.hpp>
-#include <LDL/Graphics/PixelPainter.hpp>
 #include <LDL/Graphics/PixelCopier.hpp>
 #include <LDL/Graphics/ImageResizer.hpp>
+#include <LDL/Graphics/PixelPainter.hpp>
 #include <LDL/Graphics/TextureBatcher.hpp>
-#include "../../Impls/RenderImpl.hpp"
+#include <LDL/Shared/Graphics/Base/BaseRender.hpp>
+#include <LDL/Shared/Graphics/Impls/RenderImpl.hpp>
+#include <LDL/Shared/Graphics/Renders/Software/TextureImplSoftware.hpp>
 
 namespace LDL
 {
