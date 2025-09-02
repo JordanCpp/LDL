@@ -19,6 +19,10 @@ namespace LDL
 	class LDL_LIBRARY Window
 	{
 	public:
+		enum
+		{
+			SizeOf = 2048
+		};
 		Window(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode = WindowMode::Resized);
 		~Window();
 		bool Running();
@@ -34,6 +38,7 @@ namespace LDL
 		void* NativeHandle();
 	private:
 		WindowImpl* _impl;
+		uint8_t     _memory[SizeOf];
 	};
 }
 

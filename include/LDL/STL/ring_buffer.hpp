@@ -7,6 +7,7 @@
 #define LDL_STL_ring_buffer_hpp
 
 #include <LDL/std/string.hpp>
+#include <LDL/STL/vector.hpp>
 
 namespace LDL
 {
@@ -20,7 +21,7 @@ namespace LDL
 			_length(0),
 			_capacity(COUNT)
 		{
-			LDL::memset(&_content, 0, sizeof(T) * COUNT);
+			_content.resize(COUNT);
 		}
 
 		bool empty()
@@ -73,11 +74,11 @@ namespace LDL
 		}
 
 	private:
-		T       _content[COUNT];
-		size_t  _head;
-		size_t  _tail;
-		size_t  _length;
-		size_t  _capacity;
+		LDL::vector<T> _content;
+		size_t         _head;
+		size_t         _tail;
+		size_t         _length;
+		size_t         _capacity;
 	};
 }
 

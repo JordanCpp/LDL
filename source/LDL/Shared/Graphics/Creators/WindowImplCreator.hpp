@@ -18,7 +18,7 @@ namespace LDL
 		class WindowImplCreator
 		{
 		public:
-			WindowImpl* Create(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode);
+			WindowImpl* Create(uint8_t* memory, Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode);
 		private:
 		};
 	}

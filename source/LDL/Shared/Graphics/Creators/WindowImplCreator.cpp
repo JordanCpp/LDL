@@ -20,7 +20,7 @@
 using namespace LDL;
 using namespace LDL::Graphics;
 
-WindowImpl* WindowImplCreator::Create(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode)
+WindowImpl* WindowImplCreator::Create(uint8_t * memory, Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode)
 {
 	size_t renderMode = renderContext.Mode();
 
@@ -35,13 +35,13 @@ WindowImpl* WindowImplCreator::Create(Result& result, RenderContext& renderConte
 	switch (renderMode)
 	{
 	case RenderMode::Software:
-		impl = new WindowImplSoftware(result, pos, size, title, mode);
+		impl = new(memory) WindowImplSoftware(result, pos, size, title, mode);
 		break;
 	case RenderMode::OpenGL1:
-		impl = new WindowImplOpenGL1(result, pos, size, title, mode);
+		impl = new(memory) WindowImplOpenGL1(result, pos, size, title, mode);
 		break;
 	case RenderMode::OpenGL3:
-		impl = new WindowImplOpenGL3(result, pos, size, title, mode);
+		impl = new(memory) WindowImplOpenGL3(result, pos, size, title, mode);
 		break;
 	}
 

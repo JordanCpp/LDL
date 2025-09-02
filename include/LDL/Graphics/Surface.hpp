@@ -30,7 +30,6 @@ namespace LDL
 		void Clear();
 		uint8_t BytesPerPixel();
 		uint8_t* Pixels();
-		Color Pixel(const Vec2u& pos);
 	private:
 		bool            _enabled;
 		LDL::Color      _key;

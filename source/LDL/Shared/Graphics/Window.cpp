@@ -15,12 +15,12 @@ Window::Window(Result& result, RenderContext& renderContext, const Vec2u& pos, c
 {
 	WindowImplCreator creator;
 
-	_impl = creator.Create(result, renderContext, pos, size, title, mode);
+	_impl = creator.Create(_memory, result, renderContext, pos, size, title, mode);
 }
 
 Window::~Window()
 {
-	delete _impl;
+	_impl->~WindowImpl();
 }
 
 bool Window::Running()

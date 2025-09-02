@@ -127,10 +127,3 @@ uint8_t* Surface::Pixels()
 {
 	return _pixels.data();
 }
-
-Color Surface::Pixel(const Vec2u& pos)
-{
-	size_t i = ((Size().x * pos.y) + pos.x) * BytesPerPixel();
-
-	return Color(_pixels[i], _pixels[i + 1], _pixels[i + 2]);
-}
