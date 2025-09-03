@@ -1,7 +1,7 @@
 
-call "C:\VC6\Microsoft Visual Studio\VC98\Bin\VCVARS32.BAT"
+call "C:\Program Files\DevStudio\VC\bin\VCVARS32.BAT"
 
-CL /O2 /FeLDL_VC6.dll -LD -GX /DLDL_SHARED_LIBRARY ^
+CL /O2 /FeLDL_VC5.dll -LD -GX /DLDL_SHARED_LIBRARY ^
 ..\source\LDL\Shared\APIs\OpenGL\*.cpp ^
 ..\source\LDL\Shared\Core\*.cpp ^
 ..\source\LDL\Shared\Events\*.cpp ^

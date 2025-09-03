@@ -7,19 +7,19 @@
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
 
-static int counter = 0;
+static int totalCount = 0;
+static int totalBytes = 0;
 
 void* CustomMalloc(size_t bytes)
 {
-	counter++;
+	totalCount++;
+	totalBytes += (int)bytes;
 
 	return malloc(bytes);
 }
 
 void CustomFree(void* ptr)
 {
-	counter--;
-
 	free(ptr);
 }
 
@@ -79,7 +79,7 @@ int main()
 			window.Title(convert.ToString(fpsCounter.Fps()));
 		}
 
-		printf("Allocation count: %d\n", counter);
+		printf("Allocation count: %d allocation bytes %d\n", totalCount, totalBytes);
 	}
 
 	return 0;

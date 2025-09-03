@@ -6,7 +6,7 @@
 #ifndef LDL_Graphics_Creators_TextureBatcherImplCreator_hpp
 #define LDL_Graphics_Creators_TextureBatcherImplCreator_hpp
 
-#include <LDL/Graphics/TextureBatcher.hpp>
+#include <LDL/Graphics/SpriteBatcher.hpp>
 #include <LDL/Shared/Graphics/Impls/TextureBatcherImpl.hpp>
 
 namespace LDL

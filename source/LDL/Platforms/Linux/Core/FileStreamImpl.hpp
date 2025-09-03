@@ -6,8 +6,8 @@
 #ifndef LDL_Platforms_Linux_Core_FileStreamImpl_hpp
 #define LDL_Platforms_Linux_Core_FileStreamImpl_hpp
 
-#include <LDL/Platforms/Windows/WinError.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
+#include <LDL/Platforms/Windows/WinError.hpp>
 
 namespace LDL
 {

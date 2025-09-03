@@ -10,7 +10,7 @@
 
 namespace LDL
 {
-	template<typename T>
+	template<class T>
 	class Rect
 	{
 	public:

@@ -13,6 +13,10 @@ SDL_Window::SDL_Window(LDL::Result& result, const char* title, int w, int h, SDL
 {
 }
 
+SDL_Window::~SDL_Window()
+{
+}
+
 Window& SDL_Window::GetWindow()
 {
 	return _window;

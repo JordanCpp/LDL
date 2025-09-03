@@ -15,7 +15,7 @@ namespace LDL
 	LDL_LIBRARY size_t strlen(const char* src);
 
 	LDL_LIBRARY void* LDL_memcpy(void* dst, const void* src, size_t size);
-	LDL_LIBRARY void* memset(void* ptr, int value, size_t num);
+	LDL_LIBRARY void* LDL_memset(void* ptr, int value, size_t num);
 }
 
 #endif

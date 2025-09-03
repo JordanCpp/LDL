@@ -3,9 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/std/stddef.hpp>
-#include "LibraryImpl.hpp"
 #include <dlfcn.h>
+#include <LDL/std/stddef.hpp>
+#include <LDL/Platforms/Linux/Core/LibraryImpl.hpp>
 
 using namespace LDL;
 

@@ -29,6 +29,7 @@ DEALINGS IN THE SOFTWARE.
 
 #include <LDL/Config.hpp>
 #include <LDL/std/stddef.hpp>
+#include <LDL/std/stdbool.hpp>
 
 namespace LDL
 {

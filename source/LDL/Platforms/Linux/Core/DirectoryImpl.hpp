@@ -6,10 +6,10 @@
 #ifndef LDL_Platforms_Linux_Core_DirectoryImpl_hpp
 #define LDL_Platforms_Linux_Core_DirectoryImpl_hpp
 
-#include <LDL/Core/Directory.hpp>
-#include <LDL/Core/FileInfo.hpp>
-#include <LDL/Core/Result.hpp>
 #include <dirent.h>
+#include <LDL/Core/Result.hpp>
+#include <LDL/Core/FileInfo.hpp>
+#include <LDL/Core/Directory.hpp>
 
 namespace LDL
 {

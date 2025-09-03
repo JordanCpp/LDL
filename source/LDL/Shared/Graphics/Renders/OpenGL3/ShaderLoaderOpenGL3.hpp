@@ -9,6 +9,7 @@
 #include <LDL/Config.hpp>
 #include <LDL/std/stddef.hpp>
 #include <LDL/std/stdint.hpp>
+#include <LDL/std/stdbool.hpp>
 
 namespace LDL
 {

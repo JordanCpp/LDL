@@ -7,7 +7,7 @@
 #define LDL_Graphics_OpenGL1_ScreenShotterImpl_hpp
 
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/Graphics/ImageWritter.hpp>
+#include <LDL/Graphics/ImageWriter.hpp>
 #include <LDL/Shared/Graphics/Base/BaseScreenshoter.hpp>
 #include <LDL/Shared/Graphics/Impls/ScreenshoterImpl.hpp>
 

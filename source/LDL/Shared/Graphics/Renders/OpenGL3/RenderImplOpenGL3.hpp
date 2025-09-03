@@ -13,7 +13,7 @@
 #include <LDL/Math/Mat4.hpp>
 #include "LinePainterOpenGL3.hpp"
 #include "TexturePainterOpenGL3.hpp"
-#include <LDL/Graphics/TextureBatcher.hpp>
+#include <LDL/Graphics/SpriteBatcher.hpp>
 #include "../../Impls/RenderImpl.hpp"
 
 namespace LDL

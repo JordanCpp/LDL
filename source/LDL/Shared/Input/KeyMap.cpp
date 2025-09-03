@@ -7,6 +7,12 @@
 
 using namespace LDL;
 
+KeyMap::KeyMap() :
+	_key(0),
+	_code(0)
+{
+}
+
 KeyMap::KeyMap(size_t code, uint8_t key) :
 	_key(key),
 	_code(code)

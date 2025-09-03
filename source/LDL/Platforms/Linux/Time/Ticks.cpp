@@ -3,9 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Time/Ticks.hpp>
 #include <unistd.h>
 #include <sys/time.h>
+#include <LDL/Time/Ticks.hpp>
 
 size_t LDL::Ticks()
 {

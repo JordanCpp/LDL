@@ -10,7 +10,7 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
-#include <LDL/Graphics/TextureBatcher.hpp>
+#include <LDL/Graphics/SpriteBatcher.hpp>
 
 namespace LDL
 {

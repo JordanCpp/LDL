@@ -8,7 +8,7 @@
 
 #include <LDL/Graphics/Render.hpp>
 #include "../../Base/BaseScreenshoter.hpp"
-#include <LDL/Graphics/ImageWritter.hpp>
+#include <LDL/Graphics/ImageWriter.hpp>
 #include "../../Impls/ScreenshoterImpl.hpp"
 
 namespace LDL

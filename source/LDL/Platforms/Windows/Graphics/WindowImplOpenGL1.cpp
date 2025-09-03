@@ -15,7 +15,7 @@ WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec
 {
     PIXELFORMATDESCRIPTOR pfd;
 
-    LDL::memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
+    LDL::LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
 
     _Window._hdc = GetDC(_Window._hwnd);
     if (_Window._hdc == NULL)

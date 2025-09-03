@@ -64,7 +64,7 @@ void* LDL::LDL_memcpy(void* dst, const void* src, size_t size)
 	return dst;
 }
 
-void* LDL::memset(void* ptr, int value, size_t num)
+void* LDL::LDL_memset(void* ptr, int value, size_t num)
 {
 	if (!ptr || num == 0)
 	{

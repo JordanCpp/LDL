@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_OpenGL_OpenGL4_0_hpp
-#define LDL_OpenGL_OpenGL4_0_hpp
+#ifndef LDL_APIs_OpenGL_OpenGL4_0_hpp
+#define LDL_APIs_OpenGL_OpenGL4_0_hpp
 
 #include <LDL/APIs/OpenGL/OpenGL3_3.hpp>
 

@@ -7,6 +7,7 @@
 #define LDL_STL_inplace_string_hpp
 
 #include <LDL/std/string.hpp>
+#include <LDL/std/stdbool.hpp>
 
 namespace LDL
 {

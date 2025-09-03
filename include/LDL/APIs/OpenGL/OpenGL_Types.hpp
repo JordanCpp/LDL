@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_OpenGL_OpenGLTypes_hpp
-#define LDL_OpenGL_OpenGLTypes_hpp
+#ifndef LDL_APIs_OpenGL_OpenGL_Types_hpp
+#define LDL_APIs_OpenGL_OpenGL_Types_hpp
 
 #include <LDL/Config.hpp>
 #include <LDL/std/stddef.hpp>

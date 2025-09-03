@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "WindowImplSoftware.hpp"
 #include <assert.h>
+#include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
 
 using namespace LDL;
 

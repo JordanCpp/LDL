@@ -12,7 +12,7 @@ WindowImplSoftware::WindowImplSoftware(Result& result, const Vec2u& pos, const V
     _result(result),
     _mainWindow(_result, pos, size, title, mode)
 {
-    LDL::memset(&_bitmapInfo, 0, sizeof(_bitmapInfo));
+    LDL::LDL_memset(&_bitmapInfo, 0, sizeof(_bitmapInfo));
 }
 
 WindowImplSoftware::~WindowImplSoftware()

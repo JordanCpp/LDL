@@ -12,7 +12,7 @@
 #include <LDL/Graphics/PixelCopier.hpp>
 #include <LDL/Graphics/ImageResizer.hpp>
 #include <LDL/Graphics/PixelPainter.hpp>
-#include <LDL/Graphics/TextureBatcher.hpp>
+#include <LDL/Graphics/SpriteBatcher.hpp>
 #include <LDL/Shared/Graphics/Base/BaseRender.hpp>
 #include <LDL/Shared/Graphics/Impls/RenderImpl.hpp>
 #include <LDL/Shared/Graphics/Renders/Software/TextureImplSoftware.hpp>

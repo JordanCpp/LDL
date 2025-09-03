@@ -3,10 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_OpenGL_OpenGL1_0_hpp
-#define LDL_OpenGL_OpenGL1_0_hpp
+#ifndef LDL_APIs_OpenGL_OpenGL1_0_hpp
+#define LDL_APIs_OpenGL_OpenGL1_0_hpp
 
-#include <LDL/APIs/OpenGL/OpenGLTypes.hpp>
+#include <LDL/APIs/OpenGL/OpenGL_Types.hpp>
 #include <LDL/APIs/OpenGL/OpenGL_Constants.hpp>
 
 #ifdef __cplusplus

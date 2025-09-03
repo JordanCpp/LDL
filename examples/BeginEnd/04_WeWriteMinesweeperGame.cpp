@@ -38,7 +38,7 @@ int closedCell;
 void GameNew()
 {
 	srand((uint32_t)time(NULL));
-	LDL::memset(map, 0, sizeof(map));
+	LDL::LDL_memset(map, 0, sizeof(map));
 
 	mines = 20;
 	closedCell = mapW * mapH;

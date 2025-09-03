@@ -40,7 +40,7 @@ WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec
 
     PIXELFORMATDESCRIPTOR pfd;
 
-    LDL::memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
+    LDL::LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
 
     _mainWindow._hdc = GetDC(_mainWindow._hwnd);
 

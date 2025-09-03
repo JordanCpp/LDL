@@ -13,8 +13,6 @@ namespace LDL
 	public:
 		ConsoleImpl();
 		void Write(const char *text);
-
-	private:
 	};
 }
 

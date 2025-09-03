@@ -12,7 +12,7 @@
 
 namespace LDL
 {
-	template<typename T>
+	template<class T>
 	Mat4<T> Translate(Mat4<T>& m, const Vec3<T>& s)
 	{
 		Mat4<T> result;
@@ -24,7 +24,7 @@ namespace LDL
 		return result * m;
 	}
 
-	template<typename T>
+	template<class T>
 	Mat4<T> Rotate(Mat4<T>& m, T angle, const Vec3<T>& axis)
 	{
 		T x = axis.x;
@@ -89,7 +89,7 @@ namespace LDL
 		return result;
 	}
 
-	template<typename T>
+	template<class T>
 	Mat4<T> Scale(Mat4<T>& m, const Vec3<T>& s)
 	{
 		/**
@@ -109,7 +109,7 @@ namespace LDL
 		return result * m;
 	}
 
-	template<typename T>
+	template<class T>
 	Mat4<T> Perspective(T fovy, T aspect, T zNear, T zFar)
 	{
 		T f = 1 / (T)tan(fovy * (3.14159265358979323846 / 360.0f));
@@ -139,7 +139,7 @@ namespace LDL
 		return result;
 	}
 
-	template<typename T>
+	template<class T>
 	Mat4<T> Ortho(T left, T right, T bottom, T top, T farv, T nearv)
 	{
 		Mat4<T> result;
@@ -154,7 +154,7 @@ namespace LDL
 		return result;
 	}
 
-	template<typename T>
+	template<class T>
 	Mat4<T> LookAt(const Vec3<T>& eye, const Vec3<T>& center, const Vec3<T>& up)
 	{
 		T x0, x1, x2, y0, y1, y2, z0, z1, z2, len,
@@ -240,7 +240,7 @@ namespace LDL
 		return result;
 	}
 
-	template<typename T>
+	template<class T>
 	Mat4<T> Frustum(T left, T right, T bottom, T top, T zNear, T zFar)
 	{
 		T rl = (right - left),
@@ -269,7 +269,7 @@ namespace LDL
 		return result;
 	}
 
-	template<typename T>
+	template<class T>
 	Vec3<T> Normalize(const Vec3<T>& v)
 	{
 		T length = sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
@@ -283,7 +283,7 @@ namespace LDL
 		return result;
 	}
 
-	template<typename T>
+	template<class T>
 	Vec3<T> Cross(const Vec3<T>& v1, const Vec3<T>& v2)
 	{
 		Vec3<T> result;

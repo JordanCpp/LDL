@@ -8,7 +8,7 @@
 
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Graphics/Surface.hpp>
-#include <LDL/Graphics/TextureBatcher.hpp>
+#include <LDL/Graphics/SpriteBatcher.hpp>
 
 namespace LDL
 {

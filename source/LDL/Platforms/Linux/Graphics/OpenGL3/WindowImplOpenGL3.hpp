@@ -6,9 +6,9 @@
 #ifndef LDL_Platforms_Linux_Graphics_OpenGL3_WindowImpl_hpp
 #define LDL_Platforms_Linux_Graphics_OpenGL3_WindowImpl_hpp
 
-#include "../MainWindow.hpp"
-#include "../../../WindowImpl.hpp"
 #include <LDL/Core/Result.hpp>
+#include <LDL/Platforms/WindowImpl.hpp>
+#include <LDL/Platforms/Linux/Graphics/MainWindow.hpp>
 
 namespace LDL
 {

@@ -9,7 +9,7 @@
 #include <LDL/Math/Mat4.hpp>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Texture.hpp>
-#include <LDL/Graphics/TextureBatcher.hpp>
+#include <LDL/Graphics/SpriteBatcher.hpp>
 #include <LDL/Shared/Graphics/Base/BaseRender.hpp>
 #include <LDL/Shared/Graphics/Impls/RenderImpl.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL1/ScreenOpenGL1.hpp>

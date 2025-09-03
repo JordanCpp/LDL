@@ -16,6 +16,7 @@ struct SDL_Window
 	LDL::RenderContext _context;
 	LDL::Window        _window;
 	SDL_Window(LDL::Result& result, const char* title, int w, int h, SDL_WindowFlags flags);
+	~SDL_Window();
 	LDL::Window& GetWindow();
 	LDL::RenderContext& GetRenderContext();
 };

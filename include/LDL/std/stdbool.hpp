@@ -3,19 +3,14 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_STL_new_hpp
-#define LDL_STL_new_hpp
+#ifndef LDL_std_stdbool_hpp
+#define LDL_std_stdbool_hpp
 
 #if (_MSC_VER < 1600 && !__GNUC__)
-    #include <LDL/std/stddef.hpp>
-
-inline void* operator new(size_t bytes, void* ptr)
-{
-    return ptr;
-}
-
-#else
-    #include <new>
+    #include <Windows.h>
+    #define bool  BOOL
+    #define true  TRUE
+    #define false FALSE
 #endif
 
 #endif

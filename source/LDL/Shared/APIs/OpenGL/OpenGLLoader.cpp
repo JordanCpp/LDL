@@ -1,9 +1,14 @@
-#include <LDL/APIs/OpenGL/OpenGLLoader.hpp>
-#include <LDL/APIs/OpenGL/OpenGL4_6.hpp>
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <LDL/Core/Convert.hpp>
 #include <LDL/Core/Console.hpp>
 #include <LDL/Core/Terminate.hpp>
 #include <LDL/STL/inplace_strings.hpp>
+#include <LDL/APIs/OpenGL/OpenGL4_6.hpp>
+#include <LDL/APIs/OpenGL/OpenGL_Loader.hpp>
 
 using namespace LDL;
 

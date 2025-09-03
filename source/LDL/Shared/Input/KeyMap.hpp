@@ -14,6 +14,7 @@ namespace LDL
 	class KeyMap
 	{
 	public:
+		KeyMap();
 		KeyMap(size_t code, uint8_t key);
 		size_t GetCode();
 		uint8_t GetKey();
