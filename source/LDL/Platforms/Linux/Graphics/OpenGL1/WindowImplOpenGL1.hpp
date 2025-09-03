@@ -8,7 +8,7 @@
 
 #include <LDL/Core/Result.hpp>
 #include <LDL/Platforms/WindowImpl.hpp>
-#include <LDL/APIs/OpenGL/OpenGLLoader.hpp>
+#include <LDL/APIs/OpenGL/OpenGL_Loader.hpp>
 #include <LDL/Platforms/Linux/Graphics/GLX.hpp>
 #include <LDL/Platforms/Linux/Graphics/MainWindow.hpp>
 

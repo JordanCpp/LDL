@@ -6,8 +6,8 @@
 #ifndef LDL_Platforms_Linux_Core_FileStreamImpl_hpp
 #define LDL_Platforms_Linux_Core_FileStreamImpl_hpp
 
-#include <LDL/Platforms/Windows/Windows.hpp>
-#include <LDL/Platforms/Windows/WinError.hpp>
+#include <LDL/std/stddef.hpp>
+#include <LDL/Core/Result.hpp>
 
 namespace LDL
 {
@@ -22,7 +22,7 @@ namespace LDL
 			OpenModeCreate = 8
 		};
 
-		FileStreamImpl();
+		FileStreamImpl(Result& result);
 		~FileStreamImpl();
 		bool Open(const char* path, size_t mode);
 		void Close();
@@ -34,8 +34,8 @@ namespace LDL
 		size_t Tell() const;
 		size_t Size() const;
 	private:
-		bool   _isOpen;
-		HANDLE _handle;
+		bool    _isOpen;
+		Result& _result;
 	};
 }
 
