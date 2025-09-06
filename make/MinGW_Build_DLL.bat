@@ -4,6 +4,8 @@ call "c:\Downloads\codeblocks-8.02mingw-setup\MinGW\mingwvars.bat"
 g++ -fno-rtti -fno-exceptions -Wall -Wextra -pedantic -O2 -s -static -shared -o LDL_MinGW.dll -DLDL_SHARED_LIBRARY ^
 ..\source\LDL\Shared\APIs\OpenGL\*.cpp ^
 ..\source\LDL\Shared\APIs\SDL3\*.cpp ^
+..\source\LDL\Shared\APIs\SDL3\SDL_render\*.cpp ^
+..\source\LDL\Shared\APIs\SDL3\SDL_video\*.cpp ^
 ..\source\LDL\Shared\Core\*.cpp ^
 ..\source\LDL\Shared\Events\*.cpp ^
 ..\source\LDL\Shared\Graphics\*.cpp ^

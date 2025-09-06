@@ -6,6 +6,7 @@
 #ifndef SDL3_SDL_events_h
 #define SDL3_SDL_events_h
 
+#include <LDL/Config.hpp>
 #include <SDL3/SDL_mouse.h>
 #include <SDL3/SDL_video.h>
 
@@ -41,6 +42,6 @@ typedef union SDL_Event
     SDL_MouseMotionEvent motion;
 } SDL_Event;
 
-bool SDL_PollEvent(SDL_Event* event);
+LDL_LIBRARY bool SDL_PollEvent(SDL_Event* event);
 
 #endif
