@@ -7,7 +7,7 @@
 #define LDL_Platforms_Linux_Graphics_Software_WindowImpl_hpp
 
 #include <LDL/Core/Result.hpp>
-#include <LDL/Platforms/WindowImpl.hpp>
+#include <LDL/Shared/Graphics/Impls/WindowImpl.hpp>
 #include <LDL/Platforms/Linux/Graphics/MainWindow.hpp>
 
 namespace LDL
