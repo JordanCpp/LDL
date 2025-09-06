@@ -31,7 +31,7 @@ bool SettingsLoader::Reset(const std::string& path, Settings& settings)
 	_xmlReader->NextNode("Width");
 	uint32_t width = _xmlReader->ValueInt();
 
-	_xmlReader->NextNode("Heigth");
+	_xmlReader->NextNode("Height");
 	uint32_t height = _xmlReader->ValueInt();
 
 	settings.Size(Vec2u(width, height));

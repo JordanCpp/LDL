@@ -2,7 +2,7 @@
 	<Video>
 		<Render>2</Render>
 		<Width>1024</Width>
-		<Heigth>768</Heigth>
+		<Height>768</Height>
 		<Fps>60</Fps>
 		<Title>Arcanum World Project</Title>
 	</Video>
