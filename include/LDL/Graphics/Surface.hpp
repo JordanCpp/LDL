@@ -30,6 +30,7 @@ namespace LDL
 		void Clear();
 		uint8_t BytesPerPixel();
 		uint8_t* Pixels();
+		size_t Format();
 	private:
 		bool            _enabled;
 		LDL::Color      _key;

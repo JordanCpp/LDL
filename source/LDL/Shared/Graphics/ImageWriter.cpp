@@ -3,11 +3,11 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Graphics/ImageWriter.hpp>
+#include <LDL/Graphics/PixelWriter.hpp>
 
 using namespace LDL;
 
-void ImageWriter::Save(const char* path, const Vec2u& size, size_t bytesPerPixel, uint8_t* pixels)
+void PixelWriter::Save(const char* path, const Vec2u& size, size_t bytesPerPixel, uint8_t* pixels)
 {
 	LDL_UNUSED(path);
 	LDL_UNUSED(size);

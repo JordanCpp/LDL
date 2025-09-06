@@ -9,7 +9,7 @@ using namespace Arcanum;
 using namespace LDL;
 
 Image::Image(RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, const Vec2u& offset, const Vec2u& delta) :
-	_texture(renderContext, size, pixels, 4),
+	_texture(renderContext, LDL::PixelFormat::RGBA32, size, pixels),
 	_offset(offset),
 	_delta(delta)
 {

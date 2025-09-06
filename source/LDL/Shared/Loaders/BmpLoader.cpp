@@ -146,7 +146,7 @@ uint8_t* BmpLoader::Pixels()
     return _pixels.data();
 }
 
-size_t BmpLoader::GetPixelFormat()
+size_t BmpLoader::Format()
 {
     return _pixelFormat;
 }

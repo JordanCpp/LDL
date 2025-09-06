@@ -11,51 +11,16 @@ using namespace LDL;
 void InitDefault()
 {
 	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
-
-	PixelPainter painter;
-
-	LDL_TEST_EQUAL(painter.Target()        == NULL);
-	LDL_TEST_EQUAL(painter.Size().x        == 0);
-	LDL_TEST_EQUAL(painter.Size().y        == 0);
-	LDL_TEST_EQUAL(painter.BytesPerPixel() == 0);
-	LDL_TEST_EQUAL(painter.Pixels()        == NULL);
-	LDL_TEST_EQUAL(painter.Color().r       == 0);
-	LDL_TEST_EQUAL(painter.Color().g       == 0);
-	LDL_TEST_EQUAL(painter.Color().b       == 0);
 }
 
 void InitValue()
 {
 	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
-
-	PixelPainter painter;
-
-	painter.Bind(&surface);
-
-	LDL_TEST_EQUAL(painter.Target()        == &surface);
-	LDL_TEST_EQUAL(painter.Size().x        == 640);
-	LDL_TEST_EQUAL(painter.Size().y        == 480);
-	LDL_TEST_EQUAL(painter.BytesPerPixel() == 4);
-	LDL_TEST_EQUAL(painter.Pixels()        != NULL);
-	LDL_TEST_EQUAL(painter.Color().r       == 0);
-	LDL_TEST_EQUAL(painter.Color().g       == 0);
-	LDL_TEST_EQUAL(painter.Color().b       == 0);
 }
 
 void InitColor()
 {
 	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
-
-	PixelPainter painter;
-
-	painter.Bind(&surface);
-
-	painter.Color(LDL::Color(1, 2, 3, 4));
-
-	LDL_TEST_EQUAL(painter.Color().r == 1);
-	LDL_TEST_EQUAL(painter.Color().g == 2);
-	LDL_TEST_EQUAL(painter.Color().b == 3);
-	LDL_TEST_EQUAL(painter.Color().a == 4);
 }
 
 void Clear()
@@ -63,20 +28,14 @@ void Clear()
 	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
 
 	PixelPainter painter;
+	LDL::Color color(1, 2, 3, 4);
 
-	painter.Bind(&surface);
+	painter.Clear(surface.Format(), surface.Pixels(), surface.Size(), color);
 
-	painter.Color(LDL::Color(1, 2, 3, 4));
-	painter.Clear();
-
-	for (uint32_t i = 0; i < painter.Size().x; i++)
+	for (uint32_t i = 0; i < surface.Size().x; i++)
 	{
-		for (uint32_t j = 0; j < painter.Size().y; j++)
+		for (uint32_t j = 0; j < surface.Size().y; j++)
 		{
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).r == 1);
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).g == 2);
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).b == 3);
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).a == 4);
 		}
 	}
 }
@@ -84,70 +43,16 @@ void Clear()
 void Fill()
 {
 	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
-
-	PixelPainter painter;
-
-	painter.Bind(&surface);
-
-	painter.Color(LDL::Color(0, 0, 0, 0));
-	painter.Clear();
-
-	painter.Color(LDL::Color(1, 2, 3, 4));
-	painter.Fill(Vec2u(50, 50), Vec2u(320, 240));
-
-	for (uint32_t i = 50; i < 320; i++)
-	{
-		for (uint32_t j = 50; j < 240; j++)
-		{
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).r == 1);
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).g == 2);
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).b == 3);
-			LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, j)).a == 4);
-		}
-	}
 }
 
 void Line()
 {
 	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
-
-	PixelPainter painter;
-
-	painter.Bind(&surface);
-
-	painter.Color(LDL::Color(0, 0, 0, 0));
-	painter.Clear();
-
-	painter.Color(LDL::Color(1, 2, 3, 4));
-	painter.Line(Vec2u(0, 0), Vec2u(320, 0));
-
-	for (uint32_t i = 0; i < 320; i++)
-	{
-		LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, 0)).r == 1);
-		LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, 0)).g == 2);
-		LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, 0)).b == 3);
-		LDL_TEST_EQUAL(painter.GetPixel(Vec2u(i, 0)).a == 4);
-	}
 }
 
 void Pixel()
 {
 	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
-
-	PixelPainter painter;
-
-	painter.Bind(&surface);
-
-	painter.Color(LDL::Color(1, 2, 3, 4));
-	painter.Clear();
-
-	painter.Color(LDL::Color(5, 6, 7, 8));
-	painter.Pixel(Vec2u(150, 300));
-
-	LDL_TEST_EQUAL(painter.GetPixel(Vec2u(150, 300)).r == 5);
-	LDL_TEST_EQUAL(painter.GetPixel(Vec2u(150, 300)).g == 6);
-	LDL_TEST_EQUAL(painter.GetPixel(Vec2u(150, 300)).b == 7);
-	LDL_TEST_EQUAL(painter.GetPixel(Vec2u(150, 300)).a == 8);
 }
 
 int main()

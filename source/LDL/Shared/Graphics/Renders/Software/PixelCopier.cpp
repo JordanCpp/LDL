@@ -8,88 +8,76 @@
 
 using namespace LDL;
 
-void PixelCopier::Copy(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
+void PixelCopier::Copy(size_t srcFormat, uint8_t* srcPixels, const Vec2u& srcSize, Surface* srcSurf, size_t dstFormat, uint8_t* dstPixels, const Vec2u& dstSize, const Vec2u& pos, Surface* dstSurf)
 {
-	LDL_ASSERT(srcSurf != NULL);
-	LDL_ASSERT(dstSurf != NULL);
+	size_t dstBpp  = BytesPerPixelFromPixelFormat(dstFormat);
+	size_t srcBpp  = BytesPerPixelFromPixelFormat(srcFormat);
 
-	LDL_ASSERT(srcSurf->Size().x <= dstSurf->Size().x);
-	LDL_ASSERT(srcSurf->Size().y <= dstSurf->Size().y);
+	size_t limit = dstSize.x * dstSize.y * dstBpp;
 
-	uint8_t bpp = srcSurf->BytesPerPixel();
-
-	switch (bpp)
+	switch (dstFormat)
 	{
-	case 4:
-		Copy32(srcSurf, dstSurf, pos);
-		break;
-	case 3:
-		Copy24(srcSurf, dstSurf, pos);
-		break;
-	case 2:
-		Copy16(srcSurf, dstSurf, pos);
-		break;
-	default:
-		Copy8(srcSurf, dstSurf, pos);
-	}
-}
-
-void PixelCopier::Copy8(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
-{
-	LDL_UNUSED(srcSurf);
-	LDL_UNUSED(dstSurf);
-	LDL_UNUSED(pos);
-}
-
-void PixelCopier::Copy16(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
-{
-	LDL_UNUSED(srcSurf);
-	LDL_UNUSED(dstSurf);
-	LDL_UNUSED(pos);
-}
-
-void PixelCopier::Copy24(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
-{
-	Copy32(srcSurf, dstSurf, pos);
-}
-
-void PixelCopier::Copy32(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
-{
-	size_t   dst_w    = dstSurf->Size().x;
-	size_t   dst_h    = dstSurf->Size().y;
-	size_t   dst_bpp  = dstSurf->BytesPerPixel();
-	uint8_t* dst_data = dstSurf->Pixels();
-
-	size_t   src_w    = srcSurf->Size().x;
-	size_t   src_h    = srcSurf->Size().y;
-	size_t   src_bpp  = srcSurf->BytesPerPixel();
-	uint8_t* src_data = srcSurf->Pixels();
-
-	size_t limit = dst_w * dst_h * dst_bpp;
-
-	for (size_t y = 0; y < src_h; ++y)
-	{
-		for (size_t x = 0; x < src_w; ++x)
+	case PixelFormat::BGR24:
+		switch (srcFormat)
 		{
-			size_t dst_index = (dst_w * (pos.y + y) + pos.x + x) * dst_bpp;
-			size_t src_index = (src_w * y + x) * src_bpp;
-
-			if (dst_index < limit)
+		case PixelFormat::RGB24:
+			for (size_t y = 0; y < srcSize.y; y++)
 			{
-				if (src_data[src_index + 3] != 0)
+				for (size_t x = 0; x < srcSize.x; x++)
 				{
-#if defined(LDL_CONFIG_COLOR_BGRA)
-					dst_data[dst_index + 0] = src_data[src_index + 2];
-					dst_data[dst_index + 1] = src_data[src_index + 1];
-					dst_data[dst_index + 2] = src_data[src_index + 0];
-#else
-					dst_data[dst_index + 0] = src_data[src_index + 0];
-					dst_data[dst_index + 1] = src_data[src_index + 1];
-					dst_data[dst_index + 2] = src_data[src_index + 2];
-#endif
-				}
+					size_t dstIndex = (dstSize.x * (pos.y + y) + pos.x + x) * dstBpp;
+					size_t srcIndex = (srcSize.x * y + x) * srcBpp;
 
+					if (dstIndex < limit)
+					{
+						dstPixels[dstIndex + 0] = srcPixels[srcIndex + 2];
+						dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
+						dstPixels[dstIndex + 2] = srcPixels[srcIndex + 0];
+					}
+				}
 			}
+			break;
+		case PixelFormat::RGBA32:
+			for (size_t y = 0; y < srcSize.y; y++)
+			{
+				for (size_t x = 0; x < srcSize.x; x++)
+				{
+					size_t dstIndex = (dstSize.x * (pos.y + y) + pos.x + x) * dstBpp;
+					size_t srcIndex = (srcSize.x * y + x) * srcBpp;
+
+					if (dstIndex < limit)
+					{
+						if (srcPixels[srcIndex + 3] != 0)
+						{
+							dstPixels[dstIndex + 0] = srcPixels[srcIndex + 2];
+							dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
+							dstPixels[dstIndex + 2] = srcPixels[srcIndex + 0];
+						}
+					}
+				}
+			}
+			break;
+		case PixelFormat::BGRA32:
+			for (size_t y = 0; y < srcSize.y; y++)
+			{
+				for (size_t x = 0; x < srcSize.x; x++)
+				{
+					size_t dstIndex = (dstSize.x * (pos.y + y) + pos.x + x) * dstBpp;
+					size_t srcIndex = (srcSize.x * y + x) * srcBpp;
+
+					if (dstIndex < limit)
+					{
+						if (srcPixels[srcIndex + 3] != 0)
+						{
+							dstPixels[dstIndex + 0] = srcPixels[srcIndex + 0];
+							dstPixels[dstIndex + 1] = srcPixels[srcIndex + 1];
+							dstPixels[dstIndex + 2] = srcPixels[srcIndex + 2];
+						}
+					}
+				}
+			}
+			break;
 		}
+		break;
 	}
 }

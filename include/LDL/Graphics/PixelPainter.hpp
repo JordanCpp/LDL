@@ -15,31 +15,10 @@ namespace LDL
 	public:
 		PixelPainter();
 		~PixelPainter();
-		Surface* Target();
-		const Vec2u& Size();
-		uint8_t BytesPerPixel();
-		uint8_t* Pixels();
-		const LDL::Color& Color();
-		void Color(const LDL::Color& color);
-		void Clear();
-		void Bind(Surface* source);
-		void Pixel(const Vec2u& pos);
-		const LDL::Color& GetPixel(const Vec2u& pos);
-		void Fill(const Vec2u& pos, const Vec2u& size);
 		void Line(const Vec2u& pos1, const Vec2u& pos2);
-	private:
-		uint8_t     _red;
-		uint8_t     _green;
-		uint8_t     _blue;
-		uint8_t     _alpha;
-		Surface*    _target;
-		uint32_t    _width;
-		uint32_t    _height;
-		uint8_t     _bytesPerPixel;
-		uint8_t*    _pixels;
-		Vec2u       _size;
-		LDL::Color  _color;
-		LDL::Color  _colorGetPixel;
+		void Fill(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSize, const Vec2u& pos, const Vec2u& size, const LDL::Color& color);
+		void Clear(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSize, const LDL::Color& color);
+		void Line(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSize, const Vec2u& pos1, const Vec2u& pos2, const LDL::Color& color);
 	};
 }
 

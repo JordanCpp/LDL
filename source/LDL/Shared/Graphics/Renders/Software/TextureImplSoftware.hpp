@@ -17,8 +17,8 @@ namespace LDL
 	class TextureImplSoftware : public TextureImpl
 	{
 	public:
-		TextureImplSoftware(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);
-		TextureImplSoftware(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel);
+		TextureImplSoftware(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size, uint8_t* pixels);
+		TextureImplSoftware(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size);
 		~TextureImplSoftware();
 		void Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
 		void Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& srcSize);

@@ -12,7 +12,7 @@
 
 using namespace LDL;
 
-TextureImpl* TextureImplCreator::Create(uint8_t* memory, RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel)
+TextureImpl* TextureImplCreator::Create(uint8_t* memory, RenderContext* renderContext, size_t pixelFormat, const Vec2u& size, uint8_t* pixels)
 {
 	size_t mode = renderContext->Mode();
 
@@ -23,20 +23,20 @@ TextureImpl* TextureImplCreator::Create(uint8_t* memory, RenderContext* renderCo
 	switch (mode)
 	{
 	case RenderMode::Software:
-		result = new(memory) TextureImplSoftware(renderContext->GetRenderContextImpl(), size, pixels, bytesPerPixel);
+		result = new(memory) TextureImplSoftware(renderContext->GetRenderContextImpl(), pixelFormat, size, pixels);
 		break;
 	case RenderMode::OpenGL1:
-		result = new(memory) TextureImplOpenGL1(renderContext->GetRenderContextImpl(), size, pixels, bytesPerPixel);
+		result = new(memory) TextureImplOpenGL1(renderContext->GetRenderContextImpl(), pixelFormat, size, pixels);
 		break;
 	case RenderMode::OpenGL3:
-		result = new(memory) TextureImplOpenGL3(renderContext->GetRenderContextImpl(), size, pixels, bytesPerPixel);
+		result = new(memory) TextureImplOpenGL3(renderContext->GetRenderContextImpl(), pixelFormat, size, pixels);
 		break;
 	}
 
 	return result;
 }
 
-TextureImpl* TextureImplCreator::Create(uint8_t* memory, RenderContext* renderContext, const Vec2u& size, uint8_t bytesPerPixel)
+TextureImpl* TextureImplCreator::Create(uint8_t* memory, RenderContext* renderContext, size_t pixelFormat, const Vec2u& size)
 {
 	size_t mode = renderContext->Mode();
 
@@ -47,13 +47,13 @@ TextureImpl* TextureImplCreator::Create(uint8_t* memory, RenderContext* renderCo
 	switch (mode)
 	{
 	case RenderMode::Software:
-		result = new(memory) TextureImplSoftware(renderContext->GetRenderContextImpl(), size, bytesPerPixel);
+		result = new(memory) TextureImplSoftware(renderContext->GetRenderContextImpl(), pixelFormat, size);
 		break;
 	case RenderMode::OpenGL1:
-		result = new(memory) TextureImplOpenGL1(renderContext->GetRenderContextImpl(), size, bytesPerPixel);
+		result = new(memory) TextureImplOpenGL1(renderContext->GetRenderContextImpl(), pixelFormat, size);
 		break;
 	case RenderMode::OpenGL3:
-		result = new(memory) TextureImplOpenGL3(renderContext->GetRenderContextImpl(), size, bytesPerPixel);
+		result = new(memory) TextureImplOpenGL3(renderContext->GetRenderContextImpl(), pixelFormat, size);
 		break;
 	}
 

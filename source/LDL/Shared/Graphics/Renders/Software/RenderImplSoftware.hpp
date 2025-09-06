@@ -10,7 +10,7 @@
 #include <LDL/Graphics/Surface.hpp>
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Graphics/PixelCopier.hpp>
-#include <LDL/Graphics/ImageResizer.hpp>
+#include <LDL/Graphics/PixelResizer.hpp>
 #include <LDL/Graphics/PixelPainter.hpp>
 #include <LDL/Graphics/SpriteBatcher.hpp>
 #include <LDL/Shared/Graphics/Base/BaseRender.hpp>
@@ -44,11 +44,12 @@ namespace LDL
 		void Draw(SpriteBatcher* textureBatcher);
 	private:
 		Result&       _result;
+		LDL::Color    _color;
 		Window*       _window;
 		Surface       _canvas;
 		PixelPainter  _pixelPainter;
 		PixelCopier   _pixelCopier;
-		ImageResizer  _imageResizer;
+		PixelResizer  _imageResizer;
 	};
 }
 

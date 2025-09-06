@@ -19,8 +19,8 @@ namespace LDL
 	{
 	public:
 		TextureImplOpenGL1(RenderContextImpl* renderContextImpl, Surface* surface);
-		TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);
-		TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel);
+		TextureImplOpenGL1(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size, uint8_t* pixels);
+		TextureImplOpenGL1(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size);
 		~TextureImplOpenGL1();
 		void Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
 		void Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& srcSize);

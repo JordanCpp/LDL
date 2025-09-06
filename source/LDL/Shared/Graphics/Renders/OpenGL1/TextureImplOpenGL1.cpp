@@ -70,23 +70,27 @@ TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, Sur
 	}
 }
 
-TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
+TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size, uint8_t* pixels) :
 	_renderContextImpl(renderContextImpl),
 	_id(0)
 {
 	LDL_ASSERT(size.x > 0);
 	LDL_ASSERT(size.y > 0);
-	LDL_ASSERT(bytesPerPixel >= 1 && bytesPerPixel <= 4);
 	LDL_ASSERT(pixels != NULL);
 
 	_size = size;
 
 	GLint format = 0;
+	uint8_t bpp  = BytesPerPixelFromPixelFormat(pixelFormat);
 
-	if (bytesPerPixel == 3)
+	if (bpp == 3)
+	{
 		format = GL_RGB;
+	}
 	else
+	{
 		format = GL_RGBA;
+	}
 
 	uint32_t sz = SelectTextureSize(_size);
 
@@ -94,21 +98,26 @@ TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, con
 
 	_id = CreateTexture((GLsizei)_quad.x, (GLsizei)_quad.y, format);
 
-	Copy(Vec2u(0, 0), _size, pixels, bytesPerPixel);
+	Copy(Vec2u(0, 0), _size, pixels, bpp);
 }
 
-TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel) :
+TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size) :
 	_renderContextImpl(renderContextImpl),
 	_id(0)
 {
 	_size = size;
 
 	GLint format = 0;
+	uint8_t bpp  = BytesPerPixelFromPixelFormat(pixelFormat);
 
-	if (bytesPerPixel == 3)
+	if (bpp == 3)
+	{
 		format = GL_RGB;
+	}
 	else
+	{
 		format = GL_RGBA;
+	}
 
 	uint32_t sz = SelectTextureSize(_size);
 

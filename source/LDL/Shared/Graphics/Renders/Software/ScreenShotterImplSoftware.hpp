@@ -7,7 +7,7 @@
 #define LDL_Graphics_Software_ScreenshoterImpl_hpp
 
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/Graphics/ImageWriter.hpp>
+#include <LDL/Graphics/PixelWriter.hpp>
 #include <LDL/Shared/Graphics/Base/BaseScreenshoter.hpp>
 #include <LDL/Shared/Graphics/Impls/ScreenshoterImpl.hpp>
 
@@ -19,7 +19,7 @@ namespace LDL
 		ScreenShotterImplSoftware(const char* path, const char* name, Render* render, Surface* image);
 		void Shot();
 	private:
-		ImageWriter       _imageWriter;
+		PixelWriter       _imageWriter;
 		BaseScreenShotter _baseScreenShotter;
 		FileString        _shortPath;
 		FileString        _name;

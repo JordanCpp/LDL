@@ -127,3 +127,8 @@ uint8_t* Surface::Pixels()
 {
 	return _pixels.data();
 }
+
+size_t Surface::Format()
+{
+	return _pixelFormat;
+}

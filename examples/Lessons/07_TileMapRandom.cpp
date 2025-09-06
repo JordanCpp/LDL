@@ -49,7 +49,7 @@ int main()
 
 	bmpLoader.Load("Data/SeasonsTiles.bmp");
 
-	LDL::Surface surface(bmpLoader.GetPixelFormat(), bmpLoader.Size(), bmpLoader.Pixels());
+	LDL::Surface surface(bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
 
 	surface.ColorKey(LDL::Color(255, 255, 255));
 

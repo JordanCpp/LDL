@@ -7,14 +7,14 @@
 
 using namespace LDL;
 
-TextureImplSoftware::TextureImplSoftware(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
-	_surface(PixelFormat::RGBA32, size, pixels)
+TextureImplSoftware::TextureImplSoftware(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size, uint8_t* pixels) :
+	_surface(pixelFormat, size, pixels)
 {
 	LDL_UNUSED(renderContextImpl);
 }
 
-TextureImplSoftware::TextureImplSoftware(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel) :
-	_surface(PixelFormat::RGBA32, size, size)
+TextureImplSoftware::TextureImplSoftware(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size) :
+	_surface(pixelFormat, size, size)
 {
 	LDL_UNUSED(renderContextImpl);
 }

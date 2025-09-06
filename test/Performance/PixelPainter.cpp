@@ -13,48 +13,40 @@ using namespace LDL;
 
 int main()
 {
-	    Result result;
-		RenderContext renderContext;
+	Result result;
+	RenderContext renderContext;
 
-		Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
-		Render render(result, renderContext, &window);
+	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
+	Render render(result, renderContext, &window);
 
-		Surface screen(PixelFormat::RGBA32, Vec2u(800, 600));
-		PixelPainter painter;
+	Surface screen(PixelFormat::RGBA32, Vec2u(800, 600));
+	PixelPainter painter;
 
-		painter.Bind(&screen);
+	Event report;
 
-		Event report;
+	FpsCounter fpsCounter;
+	Convert convert;
 
-		FpsCounter fpsCounter;
-		Convert convert;
+	while (window.GetEvent(report))
+	{
+		fpsCounter.Start();
 
-		while (window.GetEvent(report))
+		render.Begin();
+
+		render.Draw(&screen, Vec2u(0, 0));
+
+		render.End();
+
+		if (report.Type == IsQuit)
 		{
-			fpsCounter.Start();
-
-			render.Begin();
-
-			painter.Color(Color(0, 162, 232));
-			painter.Clear();
-
-			painter.Color(Color(237, 28, 36));
-			painter.Line(Vec2u(0, 0), Vec2u(render.Size().x - 1, render.Size().y - 1));
-
-			render.Draw(&screen, Vec2u(0, 0));
-
-			render.End();
-
-			if (report.Type == IsQuit)
-			{
-				window.StopEvent();
-			} 
-
-			if (fpsCounter.Calc())
-			{
-				window.Title(convert.ToString(fpsCounter.Fps()));
-			}
+			window.StopEvent();
 		}
+
+		if (fpsCounter.Calc())
+		{
+			window.Title(convert.ToString(fpsCounter.Fps()));
+		}
+	}
 
 	return 0;
 }

@@ -8,18 +8,18 @@
 
 using namespace LDL;
 
-Texture::Texture(RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel)
+Texture::Texture(RenderContext* renderContext, size_t pixelFormat, const Vec2u& size, uint8_t* pixels)
 {
 	TextureImplCreator creator;
 
-	_impl = creator.Create(_memory, renderContext, size, pixels, bytesPerPixel);
+	_impl = creator.Create(_memory, renderContext, pixelFormat, size, pixels);
 }
 
-Texture::Texture(RenderContext* renderContext, const Vec2u& size, uint8_t bytesPerPixel)
+Texture::Texture(RenderContext* renderContext, size_t pixelFormat, const Vec2u& size)
 {
 	TextureImplCreator creator;
 
-	_impl = creator.Create(_memory, renderContext, size, bytesPerPixel);
+	_impl = creator.Create(_memory, renderContext, pixelFormat, size);
 }
 
 Texture::Texture(RenderContext* renderContext, Surface* surface)

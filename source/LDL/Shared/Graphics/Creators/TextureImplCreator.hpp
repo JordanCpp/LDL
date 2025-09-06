@@ -15,8 +15,8 @@ namespace LDL
 	class TextureImplCreator
 	{
 	public:
-		TextureImpl* Create(uint8_t* memory, RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);
-		TextureImpl* Create(uint8_t* memory, RenderContext* renderContext, const Vec2u& size, uint8_t bytesPerPixel);
+		TextureImpl* Create(uint8_t* memory, RenderContext* renderContext, size_t pixelFormat, const Vec2u& size, uint8_t* pixels);
+		TextureImpl* Create(uint8_t* memory, RenderContext* renderContext, size_t pixelFormat, const Vec2u& size);
 		TextureImpl* Create(uint8_t* memory, RenderContext* renderContext, Surface* surface);
 	};
 }

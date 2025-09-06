@@ -3,18 +3,18 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_ImageResizer_hpp
-#define LDL_Graphics_ImageResizer_hpp
+#ifndef LDL_Graphics_PixelResizer_hpp
+#define LDL_Graphics_PixelResizer_hpp
 
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Graphics/Surface.hpp>
 
 namespace LDL
 {
-	class LDL_LIBRARY ImageResizer
+	class LDL_LIBRARY PixelResizer
 	{
 	public:
-		ImageResizer(const Vec2u& size);
+		PixelResizer(const Vec2u& size);
 		Surface* Resize(const Vec2u& size, Surface* surface);
 	private:
 		Surface _surface;

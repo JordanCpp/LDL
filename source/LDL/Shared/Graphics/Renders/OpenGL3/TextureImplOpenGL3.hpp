@@ -17,8 +17,8 @@ namespace LDL
 	class TextureImplOpenGL3 : public TextureImpl
 	{
 	public:
-		TextureImplOpenGL3(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);
-		TextureImplOpenGL3(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel);
+		TextureImplOpenGL3(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size, uint8_t* pixels);
+		TextureImplOpenGL3(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size);
 		~TextureImplOpenGL3();
 		const Vec2u& Size();
 		const Vec2u& Quad();

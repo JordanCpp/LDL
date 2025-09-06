@@ -9,16 +9,7 @@
 
 using namespace LDL;
 
-PixelPainter::PixelPainter() :
-	_red(0),
-	_green(0),
-	_blue(0),
-	_alpha(0),
-	_target(NULL),
-	_width(0),
-	_height(0),
-	_bytesPerPixel(0),
-	_pixels(NULL)
+PixelPainter::PixelPainter()
 {
 }
 
@@ -26,195 +17,105 @@ PixelPainter::~PixelPainter()
 {
 }
 
-Surface* PixelPainter::Target()
+void PixelPainter::Fill(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSize, const Vec2u& pos, const Vec2u& size, const LDL::Color& color)
 {
-	return _target;
-}
+	size_t x = (size_t)pos.x;
+	size_t y = (size_t)pos.y;
+	size_t w = (size_t)size.x;
+	size_t h = (size_t)size.y;
 
-const Vec2u& PixelPainter::Size()
-{
-	_size = Vec2u(_width, _height);
+	size_t   dstW = dstSize.x;
+	size_t   dstH = dstSize.y;
+	uint8_t* dstP = pixels;
+	uint8_t  dstB = BytesPerPixelFromPixelFormat(pixelFormat);
 
-	return _size;
-}
-
-uint8_t PixelPainter::BytesPerPixel()
-{
-	return _bytesPerPixel;
-}
-
-uint8_t* PixelPainter::Pixels()
-{
-	return _pixels;
-}
-
-const LDL::Color& LDL::PixelPainter::Color()
-{
-	return _color;
-}
-
-void LDL::PixelPainter::Color(const LDL::Color& color)
-{
-	_color = color;
-
-	_red   = _color.r;
-	_green = _color.g;
-	_blue  = _color.b;
-	_alpha = _color.a;
-}
-
-void PixelPainter::Clear()
-{
-	size_t size = _width * _height * _bytesPerPixel;
-
-	size_t i = 0;
-
-	switch(_bytesPerPixel)
+	switch (pixelFormat)
 	{
-  case 4:
-	  for (i = 0; i < size; i += 4)
-	  {
-#if defined(LDL_CONFIG_COLOR_BGRA)
-		  _pixels[i]     = _blue;
-		  _pixels[i + 2] = _red;
-#else
-		  _pixels[i]     = _red;
-		  _pixels[i + 2] = _blue;
-#endif
-		  _pixels[i + 1] = _green;
-		  _pixels[i + 3] = _alpha;
-	  }
-	  break;
-  case 3:
-	  for (i = 0; i < size; i += 3)
-	  {
-#if defined(LDL_CONFIG_COLOR_BGRA)
-		  _pixels[i] = _blue;
-		  _pixels[i + 2] = _red;
-#else
-		  _pixels[i]     = _red;
-		  _pixels[i + 2] = _blue;
-#endif
-		  _pixels[i + 1] = _green;
-	  }
-	  break;
-  case 2:
-	  for (i = 0; i < size; i += 2)
-	  {
-		  _pixels[i]     = _red;
-		  _pixels[i + 1] = _green;
-	  }
-	  break;
-  default:
-	  for (i = 0; i < size; i++)
-	  {
-		  _pixels[i] = _red;
-	  }
-	}
-}
-
-void PixelPainter::Bind(Surface* source)
-{
-	LDL_ASSERT(source != NULL);
-
-	_target = source;
-
-	_width = _target->Size().x;
-	_height = _target->Size().y;
-	_bytesPerPixel = _target->BytesPerPixel();
-	_pixels = _target->Pixels();
-}
-
-void PixelPainter::Pixel(const Vec2u& pos)
-{
-	size_t i = (_width * pos.y + pos.x) * _bytesPerPixel;
-
-	if (i < _width * _height * _bytesPerPixel)
-	{
-		switch (_bytesPerPixel)
+	case PixelFormat::BGR24:
+		for (size_t i = 0; i < size.x; i++)
 		{
-		case 4:
-#if defined(LDL_CONFIG_COLOR_BGRA)
-			_pixels[i]     = _blue;
-			_pixels[i + 2] = _red;
-#else
-			_pixels[i]     = _red;
-			_pixels[i + 2] = _blue;
-#endif
-			_pixels[i + 1] = _green;
-			_pixels[i + 3] = _alpha;
-			break;
-		case 3:
-#if defined(LDL_CONFIG_COLOR_BGRA)
-			_pixels[i]     = _blue;
-			_pixels[i + 2] = _red;
-#else
-			_pixels[i]     = _red;
-			_pixels[i + 2] = _blue;
-#endif
-			_pixels[i + 1] = _green;
-			break;
-		case 2:
-			_pixels[i]     = _red;
-			_pixels[i + 1] = _green;
-			break;
-		default:
-			_pixels[i]     = _red;
+			for (size_t j = 0; j < size.y; j++)
+			{
+				size_t index = (dstW * (y + j) + (x + i)) * dstB;
+
+				if (index < dstW * dstH * dstB)
+				{
+					dstP[index + 0] = color.b;
+					dstP[index + 1] = color.g;
+					dstP[index + 2] = color.r;
+				}
+			}
 		}
-	}
-}
-
-const LDL::Color& PixelPainter::GetPixel(const Vec2u& pos)
-{
-	size_t i = (_width * pos.y + pos.x) * _bytesPerPixel;
-
-	LDL_ASSERT(i < _width * _height * _bytesPerPixel);
-
-	switch (_bytesPerPixel)
-	{
-	case 4:
-#if defined(LDL_CONFIG_COLOR_BGRA)
-		_colorGetPixel = LDL::Color(_pixels[i + 2], _pixels[i + 1], _pixels[i], _pixels[i + 3]);
-#else
-		_colorGetPixel = LDL::Color(_pixels[i], _pixels[i + 1], _pixels[i + 2], _pixels[i + 3]);
-#endif
 		break;
-	case 3:
-#if defined(LDL_CONFIG_COLOR_BGRA)
-		_colorGetPixel = LDL::Color(_pixels[i + 2], _pixels[i + 1], _pixels[i], 0);
-#else
-		_colorGetPixel = LDL::Color(_pixels[i], _pixels[i + 1], _pixels[i + 2], 0);
-#endif
-		break;
-	case 2:
-		_colorGetPixel = LDL::Color(_pixels[i], _pixels[i + 1], 0, 0);
-		break;
-	default:
-		_colorGetPixel = LDL::Color(_pixels[i], 0, 0, 0);
-	}
-
-	return _colorGetPixel;
-}
-
-void PixelPainter::Fill(const Vec2u& pos, const Vec2u& size)
-{
-	LDL_ASSERT(size.x > 0);
-	LDL_ASSERT(size.y > 0);
-
-	uint32_t x = pos.x;
-	uint32_t y = pos.y;
-
-	for (uint32_t i = 0; i < size.x; i++)
-	{
-		for (uint32_t j = 0; j < size.y; j++)
+	case PixelFormat::RGB24:
+		for (size_t i = 0; i < size.x; i++)
 		{
-			Pixel(Vec2u(x + i, y + j));
+			for (size_t j = 0; j < size.y; j++)
+			{
+				size_t index = (dstW * (y + j) + (x + i)) * dstB;
+
+				if (index < dstW * dstH * dstB)
+				{
+					dstP[index + 0] = color.r;
+					dstP[index + 1] = color.g;
+					dstP[index + 2] = color.b;
+				}
+			}
 		}
+		break;
 	}
 }
 
-void PixelPainter::Line(const Vec2u& pos1, const Vec2u& pos2)
+void PixelPainter::Clear(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSize, const LDL::Color& color)
 {
+	size_t total = dstSize.x * dstSize.y * BytesPerPixelFromPixelFormat(pixelFormat);
+
+	switch (pixelFormat)
+	{
+	case PixelFormat::BGR24:
+		for (size_t i = 0; i < total; i++)
+		{
+			pixels[i + 0] = color.b;
+			pixels[i + 1] = color.g;
+			pixels[i + 2] = color.r;
+		}
+		break;
+	case PixelFormat::RGB24:
+		for (size_t i = 0; i < total; i++)
+		{
+			pixels[i + 0] = color.r;
+			pixels[i + 1] = color.g;
+			pixels[i + 2] = color.b;
+		}
+		break;
+	case PixelFormat::BGRA32:
+		for (size_t i = 0; i < total; i++)
+		{
+			pixels[i + 0] = color.b;
+			pixels[i + 1] = color.g;
+			pixels[i + 2] = color.r;
+			pixels[i + 3] = color.a;
+		}
+		break;
+	case PixelFormat::RGBA32:
+		for (size_t i = 0; i < total; i++)
+		{
+			pixels[i + 0] = color.r;
+			pixels[i + 1] = color.g;
+			pixels[i + 2] = color.b;
+			pixels[i + 3] = color.a;
+		}
+		break;
+	}
+}
+
+void PixelPainter::Line(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSize, const Vec2u& pos1, const Vec2u& pos2, const LDL::Color& color)
+{
+	size_t   dstW = dstSize.x;
+	size_t   dstH = dstSize.y;
+	uint8_t* dstP = pixels;
+	uint8_t  dstB = BytesPerPixelFromPixelFormat(pixelFormat);
+
 	int x1 = (int)pos1.x;
 	int y1 = (int)pos1.y;
 
@@ -235,11 +136,63 @@ void PixelPainter::Line(const Vec2u& pos1, const Vec2u& pos2)
 
 	error = deltaX - deltaY;
 
-	Pixel(Vec2u(x2, y2));
+	size_t index = (dstW * y2 + x2) * dstB;
+
+	switch (pixelFormat)
+	{
+	case PixelFormat::BGR24:
+			pixels[index + 0] = color.b;
+			pixels[index + 1] = color.g;
+			pixels[index + 2] = color.r;
+		break;
+	case PixelFormat::RGB24:
+			pixels[index + 0] = color.r;
+			pixels[index + 1] = color.g;
+			pixels[index + 2] = color.b;
+		break;
+	case PixelFormat::BGRA32:
+			pixels[index + 0] = color.b;
+			pixels[index + 1] = color.g;
+			pixels[index + 2] = color.r;
+			pixels[index + 3] = color.a;
+		break;
+	case PixelFormat::RGBA32:
+			pixels[index + 0] = color.r;
+			pixels[index + 1] = color.g;
+			pixels[index + 2] = color.b;
+			pixels[index + 3] = color.a;
+		break;
+	}
 
 	while (x1 != x2 || y1 != y2)
 	{
-		Pixel(Vec2u(x1, y1));
+		index = (dstW * y1 + x1) * dstB;
+
+		switch (pixelFormat)
+		{
+		case PixelFormat::BGR24:
+			pixels[index + 0] = color.b;
+			pixels[index + 1] = color.g;
+			pixels[index + 2] = color.r;
+			break;
+		case PixelFormat::RGB24:
+			pixels[index + 0] = color.r;
+			pixels[index + 1] = color.g;
+			pixels[index + 2] = color.b;
+			break;
+		case PixelFormat::BGRA32:
+			pixels[index + 0] = color.b;
+			pixels[index + 1] = color.g;
+			pixels[index + 2] = color.r;
+			pixels[index + 3] = color.a;
+			break;
+		case PixelFormat::RGBA32:
+			pixels[index + 0] = color.r;
+			pixels[index + 1] = color.g;
+			pixels[index + 2] = color.b;
+			pixels[index + 3] = color.a;
+			break;
+		}
 
 		error2 = error * 2;
 

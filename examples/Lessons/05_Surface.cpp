@@ -46,7 +46,7 @@ int main()
 		return -1;
 	}
 
-	LDL::Surface surface(bmpLoader.GetPixelFormat(), bmpLoader.Size(), bmpLoader.Pixels());
+	LDL::Surface surface(bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
 
 	while (window.Running() || result.Ok())
 	{

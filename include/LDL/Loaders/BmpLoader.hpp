@@ -21,7 +21,7 @@ namespace LDL
 		const Vec2u& Size();
 		uint8_t Bpp();
 		uint8_t* Pixels();
-		size_t GetPixelFormat();
+		size_t Format();
 	private:
 		uint8_t         _bpp;
 		size_t          _pixelFormat;

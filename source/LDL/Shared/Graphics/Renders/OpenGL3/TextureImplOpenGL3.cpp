@@ -10,13 +10,12 @@
 
 using namespace LDL;
 
-TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
+TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size, uint8_t* pixels) :
 	_renderContextImpl(renderContextImpl),
 	_id(0)
 {
 	LDL_ASSERT(size.x > 0);
 	LDL_ASSERT(size.y > 0);
-	LDL_ASSERT(bytesPerPixel >= 1 && bytesPerPixel <= 4);
 	LDL_ASSERT(pixels != NULL);
 
 	_size = size;
@@ -28,21 +27,25 @@ TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, con
 	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
 
 	GLint format = 0;
+	uint8_t bpp  = BytesPerPixelFromPixelFormat(pixelFormat);
 
-	if (bytesPerPixel == 3)
+	if (bpp == 3)
+	{
 		format = GL_RGB;
+	}
 	else
+	{
 		format = GL_RGBA;
+	}
 
 	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_size.x, (GLsizei)_size.y, 0, format, GL_UNSIGNED_BYTE, pixels));
 }
 
-TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t bytesPerPixel) :
+TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size) :
 	_renderContextImpl(renderContextImpl),
 	_id(0)
 {
 	LDL_UNUSED(size);
-	LDL_UNUSED(bytesPerPixel);
 }
 
 TextureImplOpenGL3::~TextureImplOpenGL3()

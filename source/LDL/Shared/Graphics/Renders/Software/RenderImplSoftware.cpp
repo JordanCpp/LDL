@@ -16,12 +16,10 @@ using namespace LDL;
 RenderImplSoftware::RenderImplSoftware(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
 	_result(result),
 	_window(window),
-	_canvas(PixelFormat::RGB24, _window->Size()),
+	_canvas(PixelFormat::BGR24, _window->Size()),
 	_imageResizer(_window->Size())
 {
 	LDL_UNUSED(renderContextImpl);
-
-	_pixelPainter.Bind(&_canvas);
 }
 
 void RenderImplSoftware::Buffer(uint8_t* dst)
@@ -47,32 +45,31 @@ const Vec2u& RenderImplSoftware::Size()
 
 const Color& RenderImplSoftware::Color()
 {
-	return _pixelPainter.Color();
+	return _color;
 }
 
 void RenderImplSoftware::Clear()
 {
-	_pixelPainter.Clear();
+	_pixelPainter.Clear(_canvas.Format(), _canvas.Pixels(), _canvas.Size(), _color);
 }
 
 void RenderImplSoftware::Color(const LDL::Color& color)
 {
-	_pixelPainter.Color(color);
+	_color = color;
 }
 
 void RenderImplSoftware::Pixel(const Vec2u& pos)
 {
-	_pixelPainter.Pixel(pos);
 }
 
 void RenderImplSoftware::Line(const Vec2u& pos1, const Vec2u& pos2)
 {
-	_pixelPainter.Line(pos1, pos2);
+	_pixelPainter.Fill(_canvas.Format(), _canvas.Pixels(), _canvas.Size(), pos1, pos2, _color);
 }
 
 void RenderImplSoftware::Fill(const Vec2u& pos, const Vec2u& size)
 {
-	_pixelPainter.Fill(pos, size);
+	_pixelPainter.Fill(_canvas.Format(), _canvas.Pixels(), _canvas.Size(), pos, size, _color);
 }
 
 void RenderImplSoftware::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
@@ -92,11 +89,11 @@ void RenderImplSoftware::Draw(Surface* image, const Vec2u& pos, const Vec2u& siz
 	if (size.x != image->Size().x || size.y != image->Size().y)
 	{
 		Surface* result = _imageResizer.Resize(size, image);
-		_pixelCopier.Copy(result, &_canvas, pos);
+		//_pixelCopier.Copy(result, &_canvas, pos);
 	}
 	else
 	{
-		_pixelCopier.Copy(image, &_canvas, pos);
+		_pixelCopier.Copy(image->Format(), image->Pixels(), image->Size(), image, _canvas.Format(), _canvas.Pixels(), _canvas.Size(), pos, &_canvas);
 	}
 }
 

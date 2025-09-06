@@ -13,11 +13,7 @@ namespace LDL
 	class PixelCopier
 	{
 	public:
-		void Copy(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos);
-		void Copy8(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos);
-		void Copy16(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos);
-		void Copy24(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos);
-		void Copy32(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos);
+		void Copy(size_t srcFormat, uint8_t* srcPixels, const Vec2u& srcSize, Surface* srcSurf, size_t dstFormat, uint8_t* dstPixels, const Vec2u& dstSize, const Vec2u& pos, Surface* dstSurf);
 	private:
 	};
 }

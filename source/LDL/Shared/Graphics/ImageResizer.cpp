@@ -3,17 +3,17 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Graphics/ImageResizer.hpp>
+#include <LDL/Graphics/PixelResizer.hpp>
 
 using namespace LDL;
 
-ImageResizer::ImageResizer(const Vec2u& size) :
+PixelResizer::PixelResizer(const Vec2u& size) :
 	_surface(PixelFormat::RGBA32, size)
 {
 	LDL_UNUSED(size);
 }
 
-Surface* ImageResizer::Resize(const Vec2u& size, Surface* surface)
+Surface* PixelResizer::Resize(const Vec2u& size, Surface* surface)
 {
 	LDL_UNUSED(size);
 	LDL_UNUSED(surface);
