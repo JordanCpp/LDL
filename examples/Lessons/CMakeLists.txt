@@ -1,5 +1,5 @@
 
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Data DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/data DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/)
 
 add_executable(01_WindowAndRender "01_WindowAndRender.cpp")
 target_link_libraries(01_WindowAndRender LDL)

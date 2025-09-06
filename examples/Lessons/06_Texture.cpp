@@ -37,7 +37,7 @@ int main()
 
 	LDL::BmpLoader bmpLoader(result);
 
-	bmpLoader.Load("Data/trehmachtovyiy-korabl-kartina-maslom-60x50_512x.bmp");
+	bmpLoader.Load("data/trehmachtovyiy-korabl-kartina-maslom-60x50_512x.bmp");
 	LDL::Texture image(&renderContext, bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
 
 	LDL::FpsCounter fpsCounter;

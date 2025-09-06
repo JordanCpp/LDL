@@ -1,6 +1,6 @@
 <Config>
 	<Video>
-		<Render>1</Render>
+		<Render>2</Render>
 		<Width>1024</Width>
 		<Heigth>768</Heigth>
 		<Fps>60</Fps>

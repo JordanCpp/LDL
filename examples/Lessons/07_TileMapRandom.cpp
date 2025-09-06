@@ -47,7 +47,7 @@ int main()
 
 	LDL::BmpLoader bmpLoader(result);
 
-	bmpLoader.Load("Data/SeasonsTiles.bmp");
+	bmpLoader.Load("data/SeasonsTiles.bmp");
 
 	LDL::Surface surface(bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
 

@@ -40,7 +40,7 @@ int main()
 
 	LDL::BmpLoader bmpLoader(result);
 
-	if (!bmpLoader.Load("Data/NeHe.bmp"))
+	if (!bmpLoader.Load("data/NeHe.bmp"))
 	{
 		ErrorShow(result);
 		return -1;
