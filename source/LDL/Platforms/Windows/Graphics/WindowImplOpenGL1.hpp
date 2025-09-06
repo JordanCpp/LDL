@@ -7,9 +7,9 @@
 #define LDL_Platforms_Windows_Graphics_OpenGL1_WindowImpl_hpp
 
 #include <LDL/Graphics/Window.hpp>
-#include <LDL/Platforms/WindowImpl.hpp>
 #include <LDL/APIs/OpenGL/OpenGL_Loader.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
+#include <LDL/Shared/Graphics/Impls/WindowImpl.hpp>
 #include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 
 namespace LDL

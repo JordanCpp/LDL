@@ -19,13 +19,9 @@ include_directories("include")
 include_directories("source")
 
 if (WIN32)
-    file(GLOB_RECURSE SOURCE 
-    "source/LDL/Shared/*.cpp"
-    "source/LDL/Platforms/Windows/*.cpp")
+    file(GLOB_RECURSE SOURCE "source/LDL/Shared/*.cpp" "source/LDL/Platforms/Windows/*.cpp")
 elseif(UNIX AND NOT APPLE)
-    file(GLOB_RECURSE SOURCE 
-    "source/LDL/Shared/*.cpp"
-    "source/LDL/Platforms/Linux/*.cpp")
+    file(GLOB_RECURSE SOURCE "source/LDL/Shared/*.cpp" "source/LDL/Platforms/Linux/*.cpp")
 endif()
 
 if (LDL_SHARED_LIBRARY)

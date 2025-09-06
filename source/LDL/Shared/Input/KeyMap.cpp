@@ -13,13 +13,13 @@ KeyMap::KeyMap() :
 {
 }
 
-KeyMap::KeyMap(size_t code, uint8_t key) :
+KeyMap::KeyMap(uint32_t code, uint8_t key) :
 	_key(key),
 	_code(code)
 {
 }
 
-size_t KeyMap::GetCode()
+uint32_t KeyMap::GetCode()
 {
 	return _code;
 }

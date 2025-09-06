@@ -15,12 +15,12 @@ namespace LDL
 	{
 	public:
 		KeyMap();
-		KeyMap(size_t code, uint8_t key);
-		size_t GetCode();
+		KeyMap(uint32_t code, uint8_t key);
+		uint32_t GetCode();
 		uint8_t GetKey();
 	private:
-		uint8_t _key;
-		size_t  _code;
+		uint8_t  _key;
+		uint32_t _code;
 	};
 }
 

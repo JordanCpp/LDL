@@ -9,7 +9,7 @@
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Core/Result.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
-#include <LDL/Platforms/WindowImpl.hpp>
+#include <LDL/Shared/Graphics/Impls/WindowImpl.hpp>
 
 namespace LDL
 {

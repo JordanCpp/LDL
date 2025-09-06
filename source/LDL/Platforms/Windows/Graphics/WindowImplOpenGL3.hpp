@@ -8,8 +8,8 @@
 
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/APIs/OpenGL/OpenGL_Loader.hpp>
-#include "MainWindow.hpp"
-#include "../../WindowImpl.hpp"
+#include <LDL/Shared/Graphics/Impls/WindowImpl.hpp>
+#include  <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 
 namespace LDL
 {
