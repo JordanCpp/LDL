@@ -7,3 +7,6 @@ target_link_libraries(SDL3_02_Renderer LDL)
 
 add_executable(SDL3_03_Clear "SDL3_03_Clear.cpp")
 target_link_libraries(SDL3_03_Clear LDL)
+
+add_executable(SDL3_04_Surface "SDL3_04_Surface.cpp")
+target_link_libraries(SDL3_04_Surface LDL)
