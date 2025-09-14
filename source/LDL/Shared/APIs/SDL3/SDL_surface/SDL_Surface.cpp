@@ -5,22 +5,24 @@
 
 #include <LDL/Shared/APIs/SDL3/SDL_surface/SDL_Surface.hpp>
 
+using namespace LDL;
+
 SDL_PixelFormat LDL_PixelFormatToSDL_PixelFormat(size_t pixelFormat)
 {
 	SDL_PixelFormat format = SDL_PIXELFORMAT_UNKNOWN;
 
 	switch (pixelFormat)
 	{
-	case LDL::PixelFormat::RGB24:
+	case PixelFormat::RGB24:
 		format = SDL_PIXELFORMAT_RGB24;
 		break;
-	case LDL::PixelFormat::BGR24:
+	case PixelFormat::BGR24:
 		format = SDL_PIXELFORMAT_BGR24;
 		break;
-	case LDL::PixelFormat::RGBA32:
+	case PixelFormat::RGBA32:
 		format = SDL_PIXELFORMAT_RGBA32;
 		break;
-	case LDL::PixelFormat::BGRA32:
+	case PixelFormat::BGRA32:
 		format = SDL_PIXELFORMAT_BGRA32;
 		break;
 	}
@@ -29,11 +31,11 @@ SDL_PixelFormat LDL_PixelFormatToSDL_PixelFormat(size_t pixelFormat)
 }
 
 SDL_SurfaceDetail::SDL_SurfaceDetail(int width, int height, SDL_PixelFormat format) :
-	_surface(format, LDL::Vec2u(width, height))
+	_surface(format, Vec2u(width, height))
 {
 }
 
-LDL::Surface& SDL_SurfaceDetail::GetSurface()
+Surface& SDL_SurfaceDetail::GetSurface()
 {
 	return _surface;
 }

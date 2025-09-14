@@ -17,7 +17,13 @@ namespace LDL
 		~PixelPainter();
 		void Line(const Vec2u& pos1, const Vec2u& pos2);
 		void Fill(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSize, const Vec2u& pos, const Vec2u& size, const LDL::Color& color);
+		void FillBGR24(uint8_t* pixels, const Vec2u& dstSize, const Vec2u& pos, const Vec2u& size, const LDL::Color& color);
+		void FillRGB24(uint8_t* pixels, const Vec2u& dstSize, const Vec2u& pos, const Vec2u& size, const LDL::Color& color);
 		void Clear(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSize, const LDL::Color& color);
+		void ClearRGB24(uint8_t* pixels, const Vec2u& dstSize, const LDL::Color& color);
+		void ClearBGR24(uint8_t* pixels, const Vec2u& dstSize, const LDL::Color& color);
+		void ClearBGRA32(uint8_t* pixels, const Vec2u& dstSize, const LDL::Color& color);
+		void ClearRGBA32(uint8_t* pixels, const Vec2u& dstSize, const LDL::Color& color);
 		void Line(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSize, const Vec2u& pos1, const Vec2u& pos2, const LDL::Color& color);
 	};
 }

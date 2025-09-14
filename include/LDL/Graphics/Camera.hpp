@@ -15,6 +15,10 @@ namespace LDL
     class LDL_LIBRARY Camera
     {
     public:
+        enum
+        {
+            SizeOf = 64
+        };
         Camera(Render* render, const Vec2u& pos, const Vec2u& size);
         CameraImpl* GetCameraImpl();
         const Vec2u& Pos();
@@ -23,6 +27,7 @@ namespace LDL
         void Size(const Vec2u& size);
     private:
         CameraImpl* _impl;
+        uint8_t     _memory[SizeOf];
     };
 }
 

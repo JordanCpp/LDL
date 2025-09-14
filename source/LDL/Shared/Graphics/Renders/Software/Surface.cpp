@@ -132,3 +132,8 @@ size_t Surface::Format()
 {
 	return _pixelFormat;
 }
+
+size_t Surface::Pitch()
+{
+	return BytesPerPixel() * Size().x;
+}

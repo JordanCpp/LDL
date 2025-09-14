@@ -6,9 +6,13 @@
 #include <LDL/std/stdlib.hpp>
 #include <LDL/Shared/APIs/SDL3/SDL_Application.hpp>
 
+using namespace LDL;
+
 SDL_Window* SDL_CreateWindow(const char* title, int w, int h, SDL_WindowFlags flags)
 {
-	SDL_Window* result = new(LDL::LDL_malloc(sizeof(SDL_Window))) SDL_Window(App().GetResult(), title, w, h, flags);
+	void* memory = LDL_malloc(sizeof(SDL_Window));
+
+	SDL_Window* result = new(memory) SDL_Window(App().GetResult(), title, w, h, flags);
 
 	App().Append(result);
 

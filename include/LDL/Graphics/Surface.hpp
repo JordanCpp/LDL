@@ -31,6 +31,7 @@ namespace LDL
 		uint8_t BytesPerPixel();
 		uint8_t* Pixels();
 		size_t Format();
+		size_t Pitch();
 	private:
 		bool            _enabled;
 		LDL::Color      _key;
