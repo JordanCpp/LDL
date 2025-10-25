@@ -7,7 +7,7 @@
 
 struct LDL::FILE
 {
-	HANDLE file;
+	int file;
 };
 
 LDL::FILE* LDL::fopen(const char* path, const char* mode)
