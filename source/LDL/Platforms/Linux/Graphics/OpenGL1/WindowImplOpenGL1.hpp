@@ -34,9 +34,10 @@ namespace LDL
 		void *NativeHandle();
 
 	private:
-		MainWindow _Window;
-		XVisualInfo *_Visual;
-		GLXContext _Context;
+		Result&      _result;
+		MainWindow   _Window;
+		XVisualInfo* _Visual;
+		GLXContext   _Context;
 		OpenGLLoader _OpenGLLoader;
 	};
 }

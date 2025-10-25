@@ -32,7 +32,10 @@ WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u &pos, const Vec
     _Visual = glXChooseVisual(_Window._Display, _Window._Screen, ga);
 
     if (_Visual == NULL)
-        throw std::runtime_error("glXChooseVisual failed");
+    {
+        _result.Message("glXChooseVisual failed");
+        return;
+    }
 
     XSetWindowAttributes wa;
 

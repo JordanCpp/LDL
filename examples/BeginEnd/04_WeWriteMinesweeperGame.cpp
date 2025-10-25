@@ -144,7 +144,9 @@ int main()
 			}
 
 			if (report.IsKeyPressed(LDL::KeyboardKey::Escape))
+			{
 				window.StopEvent();
+			}
 		}
 
 		render.Begin();
@@ -158,7 +160,6 @@ int main()
 		if (fpsCounter.Calc())
 		{
 			window.Title(convert.ToString(fpsCounter.Fps()));
-			
 		}
 	}
 

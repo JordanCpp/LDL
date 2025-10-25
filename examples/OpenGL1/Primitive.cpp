@@ -115,7 +115,6 @@ int main()
 		if (fpsCounter.Calc())
 		{
 			window.Title(convert.ToString(fpsCounter.Fps()));
-			
 		}
 	}
 

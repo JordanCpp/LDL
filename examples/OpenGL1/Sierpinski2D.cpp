@@ -108,8 +108,7 @@ int main()
 
 		if (fpsCounter.Calc())
 		{
-			window.Title(convert.ToString(fpsCounter.Fps()));
-			
+			window.Title(convert.ToString(fpsCounter.Fps()));	
 		}
 	}
 

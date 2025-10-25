@@ -56,10 +56,9 @@ int main()
 	LDL::Window window(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), "Window!");
 	LDL::Render render(result, renderContext, &window);
 
-	LDL::Event report;
-
+	LDL::Event      report;
 	LDL::FpsCounter fpsCounter;
-	LDL::Convert convert;
+	LDL::Convert    convert;
 	LDL::FpsLimiter fpsLimiter;
 
 	while (window.Running())
@@ -75,7 +74,9 @@ int main()
 			}
 
 			if (report.IsKeyPressed(LDL::KeyboardKey::Escape))
+			{
 				window.StopEvent();
+			}
 		}
 
 		render.Begin();
@@ -89,7 +90,6 @@ int main()
 		if (fpsCounter.Calc())
 		{
 			window.Title(convert.ToString(fpsCounter.Fps()));
-			
 		}
 	}
 
