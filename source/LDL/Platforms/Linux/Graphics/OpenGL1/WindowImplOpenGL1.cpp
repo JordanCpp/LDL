@@ -10,6 +10,7 @@
 using namespace LDL;
 
 WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u &pos, const Vec2u &size, const char* title, size_t mode) : 
+    _result(result),
     _Window(pos, size, title, mode)
 {
     GLint major = 0;
