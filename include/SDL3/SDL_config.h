@@ -3,9 +3,12 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Shared/APIs/SDL3/SDL_video/SDL_Window.hpp>
+#ifndef SDL3_SDL_config_h
+#define SDL3_SDL_config_h
 
-void SDL_DestroyWindow(SDL_Window* window)
-{
-	delete window;
-}
+#include <LDL/Config.hpp>
+
+#define SDL_DECLSPEC LDL_LIBRARY
+#define SDLCALL
+
+#endif

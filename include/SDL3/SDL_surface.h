@@ -6,8 +6,12 @@
 #ifndef SDL3_SDL_surface_h
 #define SDL3_SDL_surface_h
 
-#include <LDL/Config.hpp>
+#include <SDL3/SDL_config.h>
 #include <SDL3/SDL_pixels.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif 
 
 typedef Uint32 SDL_SurfaceFlags;
 
@@ -28,8 +32,14 @@ struct SDL_Surface
     void*            reserved;
 };
 
-LDL_LIBRARY SDL_Surface* SDL_CreateSurface(int width, int height, SDL_PixelFormat format);
-LDL_LIBRARY SDL_Surface* SDL_CreateSurfaceFrom(int width, int height, SDL_PixelFormat format, void* pixels, int pitch);
-LDL_LIBRARY void SDL_DestroySurface(SDL_Surface* surface);
+typedef struct SDL_Surface SDL_Surface;
+
+extern SDL_DECLSPEC SDL_Surface* SDLCALL SDL_CreateSurface(int width, int height, SDL_PixelFormat format);
+extern SDL_DECLSPEC SDL_Surface* SDLCALL SDL_CreateSurfaceFrom(int width, int height, SDL_PixelFormat format, void* pixels, int pitch);
+extern SDL_DECLSPEC void SDLCALL SDL_DestroySurface(SDL_Surface* surface);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

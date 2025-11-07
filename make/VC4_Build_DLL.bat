@@ -3,6 +3,7 @@ call "C:\MSDEV\BIN\VCVARS32.BAT"
 
 CL /O2 /FeLDL_VC5.dll -LD -GX /DLDL_SHARED_LIBRARY ^
 ..\source\LDL\Shared\APIs\OpenGL\*.cpp ^
+..\source\LDL\Shared\APIs\SDL3\*.cpp ^
 ..\source\LDL\Shared\Core\*.cpp ^
 ..\source\LDL\Shared\Events\*.cpp ^
 ..\source\LDL\Shared\Graphics\*.cpp ^

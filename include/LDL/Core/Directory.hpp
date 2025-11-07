@@ -6,6 +6,7 @@
 #ifndef LDL_Core_Directory_hpp
 #define LDL_Core_Directory_hpp
 
+#include <LDL/std/stdint.hpp>
 #include <LDL/Core/Result.hpp>
 #include <LDL/Core/FileInfo.hpp>
 
@@ -16,6 +17,10 @@ namespace LDL
 	class LDL_LIBRARY Directory
 	{
 	public:
+		enum
+		{
+			SizeOf = 1024,
+		};
 		Directory(Result& result);
 		~Directory();
 		const char* AllFiles();
@@ -28,8 +33,9 @@ namespace LDL
 		bool Next(FileInfo& fileInfo);
 		bool Remove(const char* path);
 	private:
-		Result& _result;
+		Result&        _result;
 		DirectoryImpl* _impl;
+		uint8_t        _memory[SizeOf];
 	};
 }
 

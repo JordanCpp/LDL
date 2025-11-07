@@ -3,6 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+#include <LDL/STL/new.hpp>
 #include <LDL/Core/Library.hpp>
 
 #if defined(_WIN32)
@@ -14,7 +15,7 @@
 using namespace LDL;
 
 Library::Library(const char* path) :
-    _impl(new LibraryImpl(path))
+    _impl(new(_memory) LibraryImpl(path))
 {
 }
 

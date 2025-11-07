@@ -32,7 +32,7 @@ SDL_Application::SDL_Application()
 {
 }
 
-LDL::Result& SDL_Application::GetResult()
+Result& SDL_Application::GetResult()
 {
 	return _result;
 }

@@ -3,17 +3,12 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+#include <SDL3/SDL_error.h>
 #include <LDL/Shared/APIs/SDL3/SDL_Application.hpp>
-#include <LDL/Shared/APIs/SDL3/SDL_render/SDL_Renderer.hpp>
 
 using namespace LDL;
 
-SDL_Renderer::SDL_Renderer(SDL_Window* window, const char* name) :
-	_render(App().GetResult(), window->GetRenderContext(), &window->GetWindow())
+const char* SDL_GetError(void)
 {
-}
-
-Render& SDL_Renderer::GetRender()
-{
-	return _render;
+	return App().GetResult().Message();
 }

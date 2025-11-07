@@ -15,11 +15,16 @@ namespace LDL
 	class ScreenShotter
 	{
 	public:
+		enum
+		{
+			SizeOf = 2048
+		};
 		ScreenShotter(const char* path, const char* name, Render* render, Surface* image);
 		~ScreenShotter();
 		void Shot();
 	private:
 		ScreenShotterImpl* _impl;
+		uint8_t            _memory[SizeOf];
 	};
 }
 

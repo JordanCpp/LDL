@@ -6,9 +6,13 @@
 #ifndef SDL3_SDL_events_h
 #define SDL3_SDL_events_h
 
-#include <LDL/Config.hpp>
+#include <SDL3/SDL_config.h>
 #include <SDL3/SDL_mouse.h>
 #include <SDL3/SDL_video.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif 
 
 typedef enum SDL_EventType
 {
@@ -42,6 +46,10 @@ typedef union SDL_Event
     SDL_MouseMotionEvent motion;
 } SDL_Event;
 
-LDL_LIBRARY bool SDL_PollEvent(SDL_Event* event);
+extern SDL_DECLSPEC bool SDLCALL SDL_PollEvent(SDL_Event* event);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

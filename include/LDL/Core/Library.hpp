@@ -7,6 +7,7 @@
 #define LDL_Core_Library_hpp
 
 #include <LDL/Config.hpp>
+#include <LDL/std/stdint.hpp>
 
 namespace LDL
 {
@@ -17,11 +18,16 @@ namespace LDL
 	class LDL_LIBRARY Library
 	{
 	public:
+		enum
+		{
+			SizeOf = 512,
+		};
 		Library(const char* path);
 		~Library();
 		VoidFuncPtr Function(const char* name);
 	private:
 		LibraryImpl* _impl;
+		uint8_t      _memory[SizeOf];
 	};
 }
 

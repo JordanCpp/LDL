@@ -7,36 +7,37 @@
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
 
-void ErrorShow(LDL::Result& result)
+using namespace LDL;
+
+void ErrorShow(Result& result)
 {
 	printf("LDL error: %s", result.Message());
 }
 
 int main()
 {
-	LDL::MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
-	LDL::Result result;
-	LDL::RenderContext renderContext;
+	Result result;
+	RenderContext renderContext;
 
-	LDL::Window window(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), __FILE__);
+	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	LDL::Render render(result, renderContext, &window);
+	Render render(result, renderContext, &window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	LDL::Event report;
-
-	LDL::FpsCounter fpsCounter;
-	LDL::Convert convert;
+	Event      report;
+	FpsCounter fpsCounter;
+	Convert    convert;
 
 	while (window.Running())
 	{
@@ -44,7 +45,7 @@ int main()
 
 		while (window.GetEvent(report))
 		{
-			if (report.Type == LDL::IsQuit)
+			if (report.Type == IsQuit)
 			{
 				window.StopEvent();
 			}

@@ -8,6 +8,10 @@
 
 #include <SDL3/SDL_stdinc.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif 
+
 typedef enum SDL_PixelFormat
 {
     SDL_PIXELFORMAT_UNKNOWN = 0,
@@ -16,5 +20,9 @@ typedef enum SDL_PixelFormat
     SDL_PIXELFORMAT_RGB24,
     SDL_PIXELFORMAT_BGR24
 } SDL_PixelFormat;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

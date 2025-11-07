@@ -3,6 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+#include <LDL/STL/new.hpp>
 #include <LDL/Core/Directory.hpp>
 
 #if defined(_WIN32)
@@ -15,7 +16,7 @@ using namespace LDL;
 
 Directory::Directory(Result& result) :
     _result(result),
-    _impl(new DirectoryImpl(result))
+    _impl(new(_memory) DirectoryImpl(result))
 {
 }
 

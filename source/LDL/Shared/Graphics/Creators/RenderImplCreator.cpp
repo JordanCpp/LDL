@@ -5,6 +5,7 @@
 
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Enums/RenderMode.hpp>
+#include <LDL/APIs/OpenGL/OpenGL_Loader.hpp>
 #include <LDL/Shared/Graphics/Creators/RenderImplCreator.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL1/RenderImplOpenGL1.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL3/RenderImplOpenGL3.hpp>
@@ -30,11 +31,21 @@ RenderImpl* RenderImplCreator::Create(uint8_t* memory, Result& result, RenderCon
 		impl = new(memory) RenderImplSoftware(result, renderContext.GetRenderContextImpl(), window);
 		break;
 	case RenderMode::OpenGL1:
+	{
+		OpenGLLoader loader;
+		loader.Init(1, 1);
+
 		impl = new(memory) RenderImplOpenGL1(result, renderContext.GetRenderContextImpl(), window);
 		break;
+	}
 	case RenderMode::OpenGL3:
+	{
+		OpenGLLoader loader;
+		loader.Init(3, 3);
+
 		impl = new(memory) RenderImplOpenGL3(result, renderContext.GetRenderContextImpl(), window);
 		break;
+	}
 	}
 
 	return impl;

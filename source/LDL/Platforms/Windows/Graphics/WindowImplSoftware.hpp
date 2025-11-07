@@ -7,7 +7,7 @@
 #define LDL_Platforms_Windows_Graphics_Software_WindowImpl_hpp
 
 #include <LDL/Shared/Graphics/Impls/WindowImpl.hpp>
-#include  <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
+#include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 
 namespace LDL
 {

@@ -3,9 +3,23 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Shared/APIs/SDL3/SDL_surface/SDL_Surface.hpp>
+#ifndef SDL3_SDL_rect_h
+#define SDL3_SDL_rect_h
 
-void SDL_DestroySurface(SDL_Surface* surface)
+#ifdef __cplusplus
+extern "C" {
+#endif 
+
+typedef struct SDL_FRect
 {
-    delete surface;
+    float x;
+    float y;
+    float w;
+    float h;
+} SDL_FRect;
+
+#ifdef __cplusplus
 }
+#endif
+
+#endif

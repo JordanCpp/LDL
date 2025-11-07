@@ -26,7 +26,7 @@ namespace LDL
 		bool Next(FileInfo& fileInfo);
 		bool Remove(const char* path);
 	private:
-		Result& _result;
+		Result&         _result;
 		char            _allFiles[4];
 		HANDLE          _file;
 		WIN32_FIND_DATA _data;

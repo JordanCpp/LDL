@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "WindowImplOpenGL3.hpp"
 #include <LDL/Core/Assert.hpp>
+#include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL3.hpp>
 
 using namespace LDL;
 
@@ -14,13 +14,13 @@ typedef BOOL (WINAPI* PFNWGLDELETECONTEXT)(HGLRC);
 
 typedef HGLRC(WINAPI* PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareContext, const int* attribList);
 
-#define WGL_CONTEXT_MAJOR_VERSION_ARB             0x2091
-#define WGL_CONTEXT_MINOR_VERSION_ARB             0x2092  
-#define WGL_CONTEXT_FLAGS_ARB                     0x2094 
-#define WGL_CONTEXT_PROFILE_MASK_ARB              0x9126  
-#define WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB    0x00000002 
-#define WGL_CONTEXT_CORE_PROFILE_BIT_ARB          0x00000001
-#define WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB 0x00000002
+const int WGL_CONTEXT_MAJOR_VERSION_ARB             = 0x2091;
+const int WGL_CONTEXT_MINOR_VERSION_ARB             = 0x2092;
+const int WGL_CONTEXT_FLAGS_ARB                     = 0x2094;
+const int WGL_CONTEXT_PROFILE_MASK_ARB              = 0x9126;
+const int WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB    = 0x00000002;
+const int WGL_CONTEXT_CORE_PROFILE_BIT_ARB          = 0x00000001;
+const int WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB = 0x00000002;
 
 WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _result(result),
@@ -114,8 +114,6 @@ WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec
         _result.Message("wglMakeCurrent failed");
         return;
     }
-
-    _OpenGLLoader.Init(3, 3);
 }
 
 WindowImplOpenGL3::~WindowImplOpenGL3()

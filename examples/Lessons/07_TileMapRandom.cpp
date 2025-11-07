@@ -7,17 +7,19 @@
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
 
-void ErrorShow(LDL::Result& result)
+using namespace LDL;
+
+void ErrorShow(Result& result)
 {
 	printf("LDL error: %s", result.Message());
 }
 
-uint32_t CartToIsoX(const LDL::Vec2u& pt)
+uint32_t CartToIsoX(const Vec2u& pt)
 {
 	return pt.x - pt.y;
 }
 
-uint32_t CartToIsoY(const LDL::Vec2u& pt)
+uint32_t CartToIsoY(const Vec2u& pt)
 {
 	return (pt.x + pt.y) / 2;
 }

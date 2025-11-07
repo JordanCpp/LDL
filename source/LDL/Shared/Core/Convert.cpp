@@ -37,29 +37,29 @@ const char* Convert::ToString(intmax_t num, uint8_t base)
 
     int i           = 0;
     bool isNegative = false;
-    uintmax_t unum;
+    uintmax_t number;
 
     if (num < 0 && base == 10)
     {
         isNegative = true;
-        unum = (uintmax_t)(-num);
+        number = (uintmax_t)(-num);
     }
     else
     {
-        unum = (uintmax_t)num;
+        number = (uintmax_t)num;
     }
 
-    if (unum == 0)
+    if (number == 0)
     {
         _buffer[i++] = '0';
     }
     else
     {
-        while (unum != 0)
+        while (number != 0)
         {
-            uintmax_t rem = unum % base;
+            uintmax_t rem = number % base;
             _buffer[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
-            unum = unum / base;
+            number = number / base;
         }
     }
 
