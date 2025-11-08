@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Core/Convert.hpp>
 #include <LDL/Core/Console.hpp>
+#include <LDL/Core/Formatter.hpp>
 #include <LDL/Core/Terminate.hpp>
 #include <LDL/STL/inplace_strings.hpp>
 #include <LDL/APIs/OpenGL/OpenGL4_6.hpp>
@@ -282,16 +282,10 @@ void OpenGLLoader::Init(size_t major, size_t minor)
 	}
 	else
 	{
-		Convert conv;
-
-		ErrorString error = "OpenGL ";
-		error += conv.ToString(Major());
-		error += ".";
-		error += conv.ToString(Minor());
-		error += " not support";
+		Formatter formatter;
 
 		Console console;
-		console.Write(error.c_str());
+		console.Write(formatter.Format("OpenGL %d.%d not support", Major(), Minor()));
 
 		Terminate();
 	}
