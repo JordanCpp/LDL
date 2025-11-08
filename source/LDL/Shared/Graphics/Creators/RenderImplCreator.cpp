@@ -32,7 +32,7 @@ RenderImpl* RenderImplCreator::Create(uint8_t* memory, Result& result, RenderCon
 		break;
 	case RenderMode::OpenGL1:
 	{
-		OpenGLLoader loader;
+		OpenGLLoader loader(result);
 		loader.Init(1, 1);
 
 		impl = new(memory) RenderImplOpenGL1(result, renderContext.GetRenderContextImpl(), window);
@@ -40,7 +40,7 @@ RenderImpl* RenderImplCreator::Create(uint8_t* memory, Result& result, RenderCon
 	}
 	case RenderMode::OpenGL3:
 	{
-		OpenGLLoader loader;
+		OpenGLLoader loader(result);
 		loader.Init(3, 3);
 
 		impl = new(memory) RenderImplOpenGL3(result, renderContext.GetRenderContextImpl(), window);

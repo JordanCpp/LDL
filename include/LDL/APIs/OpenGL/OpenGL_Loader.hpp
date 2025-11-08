@@ -8,6 +8,7 @@
 
 #include <LDL/std/stddef.hpp>
 #include <LDL/std/stdbool.hpp>
+#include <LDL/Core/Result.hpp>
 #include <LDL/APIs/OpenGL/OpenGL_Functions.hpp>
 
 namespace LDL
@@ -15,10 +16,9 @@ namespace LDL
 	class LDL_LIBRARY OpenGLLoader
 	{
 	public:
-		OpenGLLoader();
-		OpenGLLoader(size_t major, size_t minor);
+		OpenGLLoader(Result& result);
 		~OpenGLLoader();
-		void Init(size_t major, size_t minor);
+		bool Init(size_t major, size_t minor);
 		bool Equal(size_t major, size_t minor);
 		size_t Major();
 		size_t Minor();
@@ -42,9 +42,10 @@ namespace LDL
 		void Init_4_5();
 		void Init_4_6();
 	private:
-		LDL::OpenGLFunctions _Functions;
-		size_t _Major;
-		size_t _Minor;
+		Result&              _result;
+		LDL::OpenGLFunctions _functions;
+		size_t               _major;
+		size_t               _minor;
 	};
 }
 
