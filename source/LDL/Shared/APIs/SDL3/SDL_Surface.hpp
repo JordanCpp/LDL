@@ -6,7 +6,7 @@
 #ifndef LDL_Shared_SDL3_SDL_Surface_hpp
 #define LDL_Shared_SDL3_SDL_Surface_hpp
 
-#include <SDL3/SDL_surface.h>
+#include <LDL/APIs/SDL3/SDL_surface.h>
 #include <LDL/Graphics/Surface.hpp>
 
 SDL_PixelFormat LDL_PixelFormatToSDL_PixelFormat(size_t pixelFormat);

@@ -6,10 +6,10 @@
 #ifndef SDL3_SDL_render_h
 #define SDL3_SDL_render_h
 
-#include <SDL3/SDL_config.h>
-#include <SDL3/SDL_video.h>
-#include <SDL3/SDL_surface.h>
-#include <SDL3/SDL_rect.h>
+#include <LDL/APIs/SDL3/SDL_config.h>
+#include <LDL/APIs/SDL3/SDL_video.h>
+#include <LDL/APIs/SDL3/SDL_surface.h>
+#include <LDL/APIs/SDL3/SDL_rect.h>
 #include <LDL/std/stdbool.hpp>
 
 #ifdef __cplusplus

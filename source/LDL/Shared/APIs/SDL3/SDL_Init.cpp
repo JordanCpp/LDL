@@ -4,7 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Config.hpp>
-#include <SDL3/SDL_init.h>
+#include <LDL/APIs/SDL3/SDL_init.h>
 
 bool SDL_Init(SDL_InitFlags flags)
 {

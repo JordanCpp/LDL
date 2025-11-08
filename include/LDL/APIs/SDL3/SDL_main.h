@@ -6,7 +6,7 @@
 #ifndef SDL3_SDL_main_h
 #define SDL3_SDL_main_h
 
-#include <SDL3/SDL.h>
+#include <LDL/APIs/SDL3/SDL.h>
 
 #ifdef __cplusplus
 extern "C" {

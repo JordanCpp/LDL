@@ -6,8 +6,8 @@
 #ifndef SDL3_SDL_surface_h
 #define SDL3_SDL_surface_h
 
-#include <SDL3/SDL_config.h>
-#include <SDL3/SDL_pixels.h>
+#include <LDL/APIs/SDL3/SDL_config.h>
+#include <LDL/APIs/SDL3/SDL_pixels.h>
 
 #ifdef __cplusplus
 extern "C" {

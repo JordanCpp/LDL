@@ -6,8 +6,8 @@
 #ifndef SDL3_SDL_init_h
 #define SDL3_SDL_init_h
 
-#include <SDL3/SDL_config.h>
-#include <SDL3/SDL_stdinc.h>
+#include <LDL/APIs/SDL3/SDL_config.h>
+#include <LDL/APIs/SDL3/SDL_stdinc.h>
 
 #ifdef __cplusplus
 extern "C" {
