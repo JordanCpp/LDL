@@ -41,5 +41,6 @@ SDL_Window* SDL_CreateWindow(const char* title, int w, int h, SDL_WindowFlags fl
 
 void SDL_DestroyWindow(SDL_Window* window)
 {
-	delete window;
+	window->~SDL_Window();
+	LDL_free(window);
 }

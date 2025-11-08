@@ -34,7 +34,8 @@ SDL_Texture* SDL_CreateTexture(SDL_Renderer* renderer, SDL_PixelFormat format, S
 
 void SDL_DestroyTexture(SDL_Texture* texture)
 {
-	delete texture;
+	texture->~SDL_Texture();
+	LDL_free(texture);
 }
 
 bool SDL_GetTextureSize(SDL_Texture* texture, float* w, float* h)
@@ -54,39 +55,4 @@ SDL_Texture* SDL_CreateTextureFromSurface(SDL_Renderer* renderer, SDL_Surface* s
 	SDL_Texture* texture = new(memory) SDL_Texture(&renderer->GetRenderContext(), (SDL_SurfaceDetail*)surface);
 
 	return texture;
-}
-
-bool SDL_RenderTexture(SDL_Renderer* renderer, SDL_Texture* texture, const SDL_FRect* srcrect, const SDL_FRect* dstrect)
-{
-	Vec2u srcPos;
-	Vec2u srcSize;
-
-	Vec2u dstPos;
-	Vec2u dstSize;
-
-	if (srcrect == NULL)
-	{
-		srcPos  = Vec2u(0, 0);
-		srcSize = texture->GetTexture().Size();
-	}
-	else
-	{
-		srcPos  = Vec2u((uint32_t)srcrect->x, (uint32_t)srcrect->y);
-		srcSize = Vec2u((uint32_t)srcrect->w, (uint32_t)srcrect->h);
-	}
-
-	if (dstrect == NULL)
-	{
-		dstPos  = Vec2u(0, 0);
-		dstSize = texture->GetTexture().Size();
-	}
-	else
-	{
-		dstPos  = Vec2u((uint32_t)dstrect->x, (uint32_t)dstrect->y);
-		dstSize = Vec2u((uint32_t)dstrect->w, (uint32_t)dstrect->h);
-	}
-
-	renderer->GetRender().Draw(&texture->GetTexture(), dstPos, dstSize, srcPos, srcSize);
-
-	return true;
 }

@@ -5,6 +5,7 @@
 
 #include <LDL/Shared/APIs/SDL3/SDL_Application.hpp>
 #include <LDL/Shared/APIs/SDL3/SDL_Renderer.hpp>
+#include <LDL/Shared/APIs/SDL3/SDL_Texture.hpp>
 
 using namespace LDL;
 
@@ -35,7 +36,8 @@ SDL_Renderer* SDL_CreateRenderer(SDL_Window* window, const char* name)
 
 void SDL_DestroyRenderer(SDL_Renderer* renderer)
 {
-	delete renderer;
+	renderer->~SDL_Renderer();
+	LDL_free(renderer);
 }
 
 bool SDL_GetRenderDrawColor(SDL_Renderer* renderer, Uint8* r, Uint8* g, Uint8* b, Uint8* a)
@@ -67,6 +69,41 @@ bool SDL_SetRenderDrawColor(SDL_Renderer* renderer, Uint8 r, Uint8 g, Uint8 b, U
 bool SDL_RenderPresent(SDL_Renderer* renderer)
 {
 	renderer->GetRender().End();
+
+	return true;
+}
+
+bool SDL_RenderTexture(SDL_Renderer* renderer, SDL_Texture* texture, const SDL_FRect* srcrect, const SDL_FRect* dstrect)
+{
+	Vec2u srcPos;
+	Vec2u srcSize;
+
+	Vec2u dstPos;
+	Vec2u dstSize;
+
+	if (srcrect == NULL)
+	{
+		srcPos = Vec2u(0, 0);
+		srcSize = texture->GetTexture().Size();
+	}
+	else
+	{
+		srcPos = Vec2u((uint32_t)srcrect->x, (uint32_t)srcrect->y);
+		srcSize = Vec2u((uint32_t)srcrect->w, (uint32_t)srcrect->h);
+	}
+
+	if (dstrect == NULL)
+	{
+		dstPos = Vec2u(0, 0);
+		dstSize = texture->GetTexture().Size();
+	}
+	else
+	{
+		dstPos = Vec2u((uint32_t)dstrect->x, (uint32_t)dstrect->y);
+		dstSize = Vec2u((uint32_t)dstrect->w, (uint32_t)dstrect->h);
+	}
+
+	renderer->GetRender().Draw(&texture->GetTexture(), dstPos, dstSize, srcPos, srcSize);
 
 	return true;
 }
