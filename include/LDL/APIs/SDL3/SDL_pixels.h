@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef SDL3_SDL_pixels_h
-#define SDL3_SDL_pixels_h
+#ifndef LDL_APIs_SDL3_SDL_pixels_h
+#define LDL_APIs_SDL3_SDL_pixels_h
 
 #include <LDL/APIs/SDL3/SDL_stdinc.h>
 

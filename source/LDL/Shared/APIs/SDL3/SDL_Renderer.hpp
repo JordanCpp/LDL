@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Shared_SDL3_SDL_Renderer_hpp
-#define LDL_Shared_SDL3_SDL_Renderer_hpp
+#ifndef LDL_Shared_APIs_SDL3_SDL_Renderer_hpp
+#define LDL_Shared_APIs_SDL3_SDL_Renderer_hpp
 
 #include <LDL/APIs/SDL3/SDL_render.h>
 #include <LDL/Graphics/Render.hpp>

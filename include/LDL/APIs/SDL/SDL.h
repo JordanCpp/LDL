@@ -3,14 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Shared_APIs_SDL3_SDL_Memory_hpp
-#define LDL_Shared_APIs_SDL3_SDL_Memory_hpp
-
-class SDL_Memory
-{
-public:
-	SDL_Memory();
-private:
-};
+#ifndef LDL_APIs_SDL_SDL_h
+#define LDL_APIs_SDL_SDL_h
 
 #endif
