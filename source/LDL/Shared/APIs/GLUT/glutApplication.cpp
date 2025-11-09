@@ -71,7 +71,7 @@ void glutApplication::MainLoop()
 			{
 				if (_reshapeFunc)
 				{
-					_reshapeFunc(report.Resize.Width, report.Resize.Height);
+					_reshapeFunc((int)report.Resize.Width, (int)report.Resize.Height);
 				}
 			}
 		}
