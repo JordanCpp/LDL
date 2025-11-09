@@ -12,14 +12,14 @@
 extern "C" {
 #endif 
 
-GLUT_DECLSPEC void GLUTCALL glutInit(int* pargc, char** argv);
-GLUT_DECLSPEC void GLUTCALL glutSwapBuffers();
-GLUT_DECLSPEC void GLUTCALL glutMainLoop();
-GLUT_DECLSPEC void GLUTCALL glutInitWindowPosition(int x, int y);
-GLUT_DECLSPEC void GLUTCALL glutInitWindowSize(int width, int height);
-GLUT_DECLSPEC int  GLUTCALL glutCreateWindow(const char* title);
-GLUT_DECLSPEC void GLUTCALL glutDisplayFunc(void (*func)());
-GLUT_DECLSPEC void GLUTCALL glutReshapeFunc(void (*func)(int, int));
+extern GLUT_DECLSPEC void GLUTCALL glutInit(int* pargc, char** argv);
+extern GLUT_DECLSPEC void GLUTCALL glutSwapBuffers();
+extern GLUT_DECLSPEC void GLUTCALL glutMainLoop();
+extern GLUT_DECLSPEC void GLUTCALL glutInitWindowPosition(int x, int y);
+extern GLUT_DECLSPEC void GLUTCALL glutInitWindowSize(int width, int height);
+extern GLUT_DECLSPEC int  GLUTCALL glutCreateWindow(const char* title);
+extern GLUT_DECLSPEC void GLUTCALL glutDisplayFunc(void (*func)());
+extern GLUT_DECLSPEC void GLUTCALL glutReshapeFunc(void (*func)(int, int));
 
 #ifdef __cplusplus
 }

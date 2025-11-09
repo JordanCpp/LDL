@@ -3,9 +3,12 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL_SDL_h
-#define LDL_APIs_SDL_SDL_h
+#ifndef LDL_APIs_SDL_SDL_config_h
+#define LDL_APIs_SDL_SDL_config_h
 
-#include <LDL/APIs/SDL/SDL_video.h>
+#include <LDL/Config.hpp>
+
+#define SDL_DECLSPEC LDL_LIBRARY
+#define SDLCALL
 
 #endif

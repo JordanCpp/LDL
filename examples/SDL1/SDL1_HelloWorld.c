@@ -3,9 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL_SDL_h
-#define LDL_APIs_SDL_SDL_h
+#include <LDL/APIs/SDL/SDL.h>
 
-#include <LDL/APIs/SDL/SDL_video.h>
-
-#endif
+int main(int argc, char* argv[])
+{
+    return 0;
+}

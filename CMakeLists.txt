@@ -42,6 +42,10 @@ elseif (UNIX AND NOT APPLE)
     target_link_libraries(LDL X11 GL dl)
 endif()
 
+file(GLOB LDL_SDL_SOURCE "source/LDL/APIs/SDL/*.cpp")
+add_library(LDL_SDL STATIC ${LDL_SDL_SOURCE})	
+target_link_libraries(LDL_SDL LDL)
+
 file(GLOB LDL_SDL3_SOURCE "source/LDL/APIs/SDL3/*.cpp")
 add_library(LDL_SDL3 STATIC ${LDL_SDL3_SOURCE})	
 target_link_libraries(LDL_SDL3 LDL)
