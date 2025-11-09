@@ -13,6 +13,8 @@ class glutApplication
 public:
 	glutApplication();
 	~glutApplication();
+	void Init(int* pargc, char** argv);
+	void SwapBuffers();
 	void InitWindowPos(const LDL::Vec2u& pos);
 	void InitWindowSize(const LDL::Vec2u& size);
 	int CreateWindow(const char* title);

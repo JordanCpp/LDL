@@ -33,6 +33,7 @@ void Draw(void)
 
 int main(int argc, char* argv[])
 {
+    glutInit(&argc, argv);
     glutInitWindowSize(800, 600);
     glutCreateWindow("Hello World");
     glutDisplayFunc(Draw);

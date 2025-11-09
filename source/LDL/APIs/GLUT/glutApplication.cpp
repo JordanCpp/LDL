@@ -26,6 +26,18 @@ glutApplication::~glutApplication()
 	delete _window;
 }
 
+void glutApplication::Init(int* pargc, char** argv)
+{
+}
+
+void glutApplication::SwapBuffers()
+{
+	if (_window)
+	{
+		_window->Present();
+	}
+}
+
 void glutApplication::InitWindowPos(const Vec2u& pos)
 {
 	_pos = pos;

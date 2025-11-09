@@ -8,6 +8,11 @@
 
 using namespace LDL;
 
+void glutInit(int* pargc, char** argv)
+{
+	App().Init(pargc, argv);
+}
+
 void glutMainLoop()
 {
 	App().MainLoop();
@@ -27,7 +32,7 @@ int glutCreateWindow(const char* title)
 	return App().CreateWindow(title);
 }
 
-void glutDisplayFunc(void(*func)(void))
+void glutDisplayFunc(void(*func)())
 {
 	App().DisplayFunc(func);
 }
