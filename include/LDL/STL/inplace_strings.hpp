@@ -10,9 +10,9 @@
 
 namespace LDL
 {
-	typedef inplace_string<256> AssertString;
-	typedef inplace_string<256> TitleString;
-	typedef inplace_string<512> ErrorString;
+	typedef inplace_string<128> AssertString;
+	typedef inplace_string<128> TitleString;
+	typedef inplace_string<128> ErrorString;
 	typedef inplace_string<512> FileString;
 }
 
