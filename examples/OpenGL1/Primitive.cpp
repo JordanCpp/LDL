@@ -3,10 +3,12 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
+#include <LDL/APIs/OpenGL/OpenGL_Loader.hpp>
+
+using namespace LDL;
 
 void Identity()
 {
@@ -74,19 +76,21 @@ void Display()
 
 int main()
 {
-	LDL::MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
-	LDL::Result result;
-	LDL::RenderContext renderContext(LDL::RenderMode::OpenGL1);
+	Result result;
+	RenderContext renderContext(RenderMode::OpenGL1);
 
-	LDL::Window window(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), __FILE__);
-	LDL::Render render(result, renderContext, &window);
+	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__);
 
-	LDL::Event report;
+	OpenGLLoader loader(result);
+	loader.Init(1, 1);
 
-	LDL::FpsCounter fpsCounter;
-	LDL::Convert convert;
-	LDL::FpsLimiter fpsLimiter;
+	Event report;
+
+	FpsCounter fpsCounter;
+	Convert convert;
+	FpsLimiter fpsLimiter;
 
 	while (window.Running())
 	{
@@ -95,20 +99,18 @@ int main()
 
 		while (window.GetEvent(report))
 		{
-			if (report.Type == LDL::IsQuit)
+			if (report.Type == IsQuit)
 			{
 				window.StopEvent();
 			}
 
-			if (report.IsKeyPressed(LDL::KeyboardKey::Escape))
+			if (report.IsKeyPressed(KeyboardKey::Escape))
 				window.StopEvent();
 		}
 
-		render.Begin();
-
 		Display();
 
-		render.End();
+		window.Present();
 
 		fpsLimiter.Throttle();
 

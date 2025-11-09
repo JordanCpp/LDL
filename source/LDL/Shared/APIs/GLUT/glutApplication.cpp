@@ -45,7 +45,6 @@ void glutApplication::MainLoop()
 
 	while (_window->Running())
 	{
-
 		while (_window->GetEvent(report))
 		{
 			if (report.Type == IsQuit)
@@ -53,6 +52,8 @@ void glutApplication::MainLoop()
 				_window->StopEvent();
 			}
 		}
+
+		_window->Present();
 	}
 }
 

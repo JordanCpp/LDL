@@ -26,6 +26,7 @@ namespace LDL
 		Window(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode = WindowMode::Resized);
 		~Window();
 		bool Running();
+		void Present();
 		void PollEvents();
 		bool GetEvent(Event& event);
 		bool WaitEvent(Event& event);

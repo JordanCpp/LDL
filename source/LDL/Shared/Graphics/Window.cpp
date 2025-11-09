@@ -26,6 +26,11 @@ bool Window::Running()
 	return _impl->Running();
 }
 
+void Window::Present()
+{
+	_impl->Present();
+}
+
 void Window::PollEvents()
 {
 	_impl->PollEvents();
