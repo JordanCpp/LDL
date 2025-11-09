@@ -16,12 +16,16 @@ public:
 	void InitWindowPos(const LDL::Vec2u& pos);
 	void InitWindowSize(const LDL::Vec2u& size);
 	int CreateWindow(const char* title);
+	void DisplayFunc(void (*func)(void));
+	void ReshapeFunc(void (*func)(int, int));
 	void MainLoop();
 private:
 	LDL::Result  _result;
 	LDL::Window* _window;
 	LDL::Vec2u   _pos;
 	LDL::Vec2u   _size;
+	void (*_displayFunc)();
+	void (*_reshapeFunc)(int, int);
 };
 
 glutApplication& App();

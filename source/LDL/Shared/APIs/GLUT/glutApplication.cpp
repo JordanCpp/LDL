@@ -5,14 +5,20 @@
 
 #include <stdlib.h>
 #include <LDL/Core/MemoryManager.hpp>
+#include <LDL/APIs/OpenGL/OpenGL_Loader.hpp>
 #include <LDL/Shared/APIs/GLUT/glutApplication.hpp>
 
 using namespace LDL;
 
 glutApplication::glutApplication() :
-	_window(NULL)
+	_window(NULL),
+	_displayFunc(NULL),
+	_reshapeFunc(NULL)
 {
 	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	
+	OpenGLLoader loader(_result);
+	loader.Init(1, 1);
 }
 
 glutApplication::~glutApplication()
@@ -39,6 +45,16 @@ int glutApplication::CreateWindow(const char* title)
 	return 0;
 }
 
+void glutApplication::DisplayFunc(void(*func)(void))
+{
+	_displayFunc = func;
+}
+
+void glutApplication::ReshapeFunc(void(*func)(int, int))
+{
+	_reshapeFunc = func;
+}
+
 void glutApplication::MainLoop()
 {
 	Event report;
@@ -51,6 +67,18 @@ void glutApplication::MainLoop()
 			{
 				_window->StopEvent();
 			}
+			else if (report.Type == IsResize)
+			{
+				if (_reshapeFunc)
+				{
+					_reshapeFunc(report.Resize.Width, report.Resize.Height);
+				}
+			}
+		}
+
+		if (_displayFunc)
+		{
+			_displayFunc();
 		}
 
 		_window->Present();

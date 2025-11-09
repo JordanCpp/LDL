@@ -26,3 +26,13 @@ int glutCreateWindow(const char* title)
 {
 	return App().CreateWindow(title);
 }
+
+void glutDisplayFunc(void(*func)(void))
+{
+	App().DisplayFunc(func);
+}
+
+void glutReshapeFunc(void(*func)(int, int))
+{
+	App().ReshapeFunc(func);
+}

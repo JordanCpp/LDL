@@ -16,6 +16,8 @@ GLUT_DECLSPEC void GLUTCALL glutMainLoop();
 GLUT_DECLSPEC void GLUTCALL glutInitWindowPosition(int x, int y);
 GLUT_DECLSPEC void GLUTCALL glutInitWindowSize(int width, int height);
 GLUT_DECLSPEC int  GLUTCALL glutCreateWindow(const char* title);
+GLUT_DECLSPEC void GLUTCALL glutDisplayFunc(void (*func)(void));
+GLUT_DECLSPEC void GLUTCALL glutReshapeFunc(void (*func)(int, int));
 
 #ifdef __cplusplus
 }
