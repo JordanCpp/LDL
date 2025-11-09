@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <LDL/Core/MemoryManager.hpp>
 #include <LDL/APIs/OpenGL/OpenGL_Loader.hpp>
-#include <LDL/Shared/APIs/GLUT/glutApplication.hpp>
+#include <LDL/APIs/GLUT/glutApplication.hpp>
 
 using namespace LDL;
 

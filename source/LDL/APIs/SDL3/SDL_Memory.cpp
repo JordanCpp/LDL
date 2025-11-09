@@ -3,17 +3,13 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/APIs/SDL3/SDL_events.h>
-#include <LDL/Shared/APIs/SDL3/SDL_Application.hpp>
+#include <stdlib.h>
+#include <LDL/Core/MemoryManager.hpp>
+#include <LDL/APIs/SDL3/SDL_Memory.hpp>
 
-bool SDL_PollEvent(SDL_Event* event)
+using namespace LDL;
+
+SDL_Memory::SDL_Memory()
 {
-	if (App().PollEvent(*event))
-	{
-		return true;
-	}
-
-	App().PollEvents();
-
-	return false;
+	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 }

@@ -8,8 +8,8 @@
 
 #include <LDL/APIs/SDL3/SDL_render.h>
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/Shared/APIs/SDL3/SDL_Window.hpp>
-#include <LDL/Shared/APIs/SDL3/SDL_Surface.hpp>
+#include <LDL/APIs/SDL3/SDL_Window.hpp>
+#include <LDL/APIs/SDL3/SDL_Surface.hpp>
 
 struct SDL_Texture
 {

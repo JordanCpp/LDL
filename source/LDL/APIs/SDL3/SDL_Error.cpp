@@ -3,13 +3,12 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <stdlib.h>
-#include <LDL/Core/MemoryManager.hpp>
-#include <LDL/Shared/APIs/SDL3/SDL_Memory.hpp>
+#include <LDL/APIs/SDL3/SDL_error.h>
+#include <LDL/APIs/SDL3/SDL_Application.hpp>
 
 using namespace LDL;
 
-SDL_Memory::SDL_Memory()
+const char* SDL_GetError(void)
 {
-	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	return App().GetResult().Message();
 }

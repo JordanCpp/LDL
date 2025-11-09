@@ -10,8 +10,8 @@
 #include <LDL/STL/vector.hpp>
 #include <LDL/Core/Result.hpp>
 #include <LDL/STL/ring_buffer.hpp>
-#include <LDL/Shared/APIs/SDL3/SDL_Memory.hpp>
-#include <LDL/Shared/APIs/SDL3/SDL_Window.hpp>
+#include <LDL/APIs/SDL3/SDL_Memory.hpp>
+#include <LDL/APIs/SDL3/SDL_Window.hpp>
 
 class SDL_Application
 {

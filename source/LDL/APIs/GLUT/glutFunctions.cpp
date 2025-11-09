@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Shared/APIs/GLUT/glutApplication.hpp>
-#include <LDL/Shared/APIs/GLUT/glutFunctions.hpp>
+#include <LDL/APIs/GLUT/glutApplication.hpp>
+#include <LDL/APIs/GLUT/glutFunctions.hpp>
 
 using namespace LDL;
 

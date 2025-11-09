@@ -8,7 +8,7 @@
 
 #include <LDL/APIs/SDL3/SDL_render.h>
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/Shared/APIs/SDL3/SDL_Window.hpp>
+#include <LDL/APIs/SDL3/SDL_Window.hpp>
 
 struct SDL_Renderer
 {

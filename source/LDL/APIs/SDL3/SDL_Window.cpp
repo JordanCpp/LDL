@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Shared/APIs/SDL3/SDL_Application.hpp>
-#include <LDL/Shared/APIs/SDL3/SDL_Window.hpp>
+#include <LDL/APIs/SDL3/SDL_Application.hpp>
+#include <LDL/APIs/SDL3/SDL_Window.hpp>
 
 using namespace LDL;
 

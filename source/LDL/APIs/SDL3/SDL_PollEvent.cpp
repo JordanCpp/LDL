@@ -3,12 +3,17 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/APIs/SDL3/SDL_error.h>
-#include <LDL/Shared/APIs/SDL3/SDL_Application.hpp>
+#include <LDL/APIs/SDL3/SDL_events.h>
+#include <LDL/APIs/SDL3/SDL_Application.hpp>
 
-using namespace LDL;
-
-const char* SDL_GetError(void)
+bool SDL_PollEvent(SDL_Event* event)
 {
-	return App().GetResult().Message();
+	if (App().PollEvent(*event))
+	{
+		return true;
+	}
+
+	App().PollEvents();
+
+	return false;
 }

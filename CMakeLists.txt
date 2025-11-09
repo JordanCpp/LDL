@@ -19,9 +19,15 @@ include_directories("include")
 include_directories("source")
 
 if (WIN32)
-    file(GLOB_RECURSE SOURCE "source/LDL/Shared/*.cpp" "source/LDL/Platforms/Windows/*.cpp")
+    file(GLOB_RECURSE SOURCE 
+    "source/LDL/Shared/*.cpp" 
+    "source/LDL/APIs/OpenGL/*.cpp" 
+    "source/LDL/Platforms/Windows/*.cpp")
 elseif(UNIX AND NOT APPLE)
-    file(GLOB_RECURSE SOURCE "source/LDL/Shared/*.cpp" "source/LDL/Platforms/Linux/*.cpp")
+    file(GLOB_RECURSE SOURCE 
+    "source/LDL/Shared/*.cpp" 
+    "source/LDL/APIs/OpenGL/*.cpp" 
+    "source/LDL/Platforms/Linux/*.cpp")
 endif()
 
 if (LDL_SHARED_LIBRARY)
@@ -35,6 +41,14 @@ if (WIN32)
 elseif (UNIX AND NOT APPLE)
     target_link_libraries(LDL X11 GL dl)
 endif()
+
+file(GLOB LDL_SDL3_SOURCE "source/LDL/APIs/SDL3/*.cpp")
+add_library(LDL_SDL3 STATIC ${LDL_SDL3_SOURCE})	
+target_link_libraries(LDL_SDL3 LDL)
+
+file(GLOB LDL_GLUT_SOURCE "source/LDL/APIs/GLUT/*.cpp")
+add_library(LDL_GLUT STATIC ${LDL_GLUT_SOURCE})	
+target_link_libraries(LDL_GLUT LDL)
 
 add_subdirectory("test")
 add_subdirectory("examples")
