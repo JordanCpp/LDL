@@ -65,5 +65,6 @@ SDL_Surface* SDL_CreateSurfaceFrom(int width, int height, SDL_PixelFormat format
 
 void SDL_DestroySurface(SDL_Surface* surface)
 {
-	delete surface;
+	surface->~SDL_Surface();
+	LDL_free(surface);
 }
