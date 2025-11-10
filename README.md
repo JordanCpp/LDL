@@ -70,7 +70,8 @@ LDL **is not a replacement** for existing libraries, but serves as a **compatibi
 
 ---
 
-🏗️ Unified Architecture, Not Just Compatibility
+## 🏗️ Unified Architecture, Not Just Compatibility
+
 LDL is not just a compatibility layer - it's a unified core that serves as the foundation for all compatible APIs:
     ┌─────────────────────────────────────────────────────┐
     │           Your Applications & Libraries              │
@@ -86,22 +87,26 @@ LDL is not just a compatibility layer - it's a unified core that serves as the f
     ┌─────────────────────────────────────────────────────┐
     │        Windows 95+  │  Linux  │  Other Platforms    │ ← Platform Abstraction
     └─────────────────────────────────────────────────────┘
+
 Key Difference: Other libraries are built ON TOP of LDL, not the other way around!
 
-🎯 How It Works: Single Foundation Architecture
+## 🎯 How It Works: Single Foundation Architecture
+
 Core Philosophy
 LDL implements a unified multimedia foundation with multiple compatibility layers on top. Unlike traditional wrappers that translate between different implementations, all LDL compatibility layers share the same optimized core:
 
-// Traditional approach: Wrappers with separate implementations
-SDL1 → SDL1 Implementation
-SDL2 → SDL2 Implementation  
-SDL3 → SDL3 Implementation
+// Traditional approach: Wrappers with separate implementations:
 
-// LDL approach: Single foundation with API surfaces
-SDL1 Layer → LDL Core
-SDL2 Layer → LDL Core
-SDL3 Layer → LDL Core
-GLUT Layer → LDL Core
+- SDL1 → SDL1 Implementation
+- SDL2 → SDL2 Implementation  
+- SDL3 → SDL3 Implementation
+
+// LDL approach: Single foundation with API surfaces:
+
+- SDL1 Layer → LDL Core
+- SDL2 Layer → LDL Core
+- SDL3 Layer → LDL Core
+- GLUT Layer → LDL Core
 
 ---
 
