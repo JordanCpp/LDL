@@ -69,7 +69,7 @@ void Engine::Run()
 
 		_render.Begin();
 
-		_render.Color(Color(0, 0, 0));
+		_render.SetColor(Color(0, 0, 0));
 		_render.Clear();
 
 		_location.Draw(_camera.Pos());

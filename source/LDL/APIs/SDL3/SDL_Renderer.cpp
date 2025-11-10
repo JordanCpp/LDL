@@ -27,7 +27,7 @@ RenderContext& SDL_Renderer::GetRenderContext()
 
 SDL_Renderer* SDL_CreateRenderer(SDL_Window* window, const char* name)
 {
-	void* memory = LDL_malloc(sizeof(SDL_Renderer));
+	void* memory = SDL_malloc(sizeof(SDL_Renderer));
 
 	SDL_Renderer* result = new(memory) SDL_Renderer(window, name);
 
@@ -37,12 +37,12 @@ SDL_Renderer* SDL_CreateRenderer(SDL_Window* window, const char* name)
 void SDL_DestroyRenderer(SDL_Renderer* renderer)
 {
 	renderer->~SDL_Renderer();
-	LDL_free(renderer);
+	SDL_free(renderer);
 }
 
 bool SDL_GetRenderDrawColor(SDL_Renderer* renderer, Uint8* r, Uint8* g, Uint8* b, Uint8* a)
 {
-	LDL::Color color = renderer->GetRender().Color();
+	Color color = renderer->GetRender().GetColor();
 
 	*r = color.r;
 	*g = color.g;
@@ -61,7 +61,7 @@ bool SDL_RenderClear(SDL_Renderer* renderer)
 
 bool SDL_SetRenderDrawColor(SDL_Renderer* renderer, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
-	renderer->GetRender().Color(LDL::Color(r, g, b, a));
+	renderer->GetRender().SetColor(Color(r, g, b, a));
 
 	return true;
 }

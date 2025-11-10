@@ -30,7 +30,6 @@ typedef struct SDL_Color
 	Uint8 unused;
 } SDL_Color;
 
-
 typedef struct SDL_Palette 
 {
 	int        ncolors;
@@ -68,7 +67,13 @@ typedef struct SDL_Surface
 	void*            pixels;
 } SDL_Surface;
 
+typedef struct SDL_Surface SDL_Surface;
+
 extern SDL_DECLSPEC SDL_Surface* SDLCALL SDL_SetVideoMode(int width, int height, int bpp, Uint32 flags);
+extern SDL_DECLSPEC int          SDLCALL SDL_Flip(SDL_Surface* screen);
+extern SDL_DECLSPEC SDL_Surface* SDLCALL SDL_CreateRGBSurface(Uint32 flags, int width, int height, int depth, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask);
+extern SDL_DECLSPEC void         SDLCALL SDL_FreeSurface(SDL_Surface* surface);
+extern SDL_DECLSPEC SDL_Surface* SDLCALL SDL_LoadBMP(const char* path);
 
 #ifdef __cplusplus
 }

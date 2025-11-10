@@ -20,9 +20,9 @@ namespace LDL
 		virtual void Begin() = 0;
 		virtual void End() = 0;
 		virtual const Vec2u& Size() = 0;
-		virtual const LDL::Color& Color() = 0;
+		virtual const Color& GetColor() = 0;
 		virtual void Clear() = 0;
-		virtual void Color(const LDL::Color& color) = 0;
+		virtual void SetColor(const LDL::Color& color) = 0;
 		virtual void Pixel(const Vec2u& pos) = 0;
 		virtual void Fill(const Vec2u& pos, const Vec2u& size) = 0;
 		virtual void Line(const Vec2u& pos1, const Vec2u& pos2) = 0;

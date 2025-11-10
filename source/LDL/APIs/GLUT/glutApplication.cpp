@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <stdlib.h>
-#include <LDL/Core/MemoryManager.hpp>
+#include <LDL/STL/new.hpp>
+#include <LDL/std/stdlib.hpp>
 #include <LDL/APIs/OpenGL/OpenGL_Loader.hpp>
 #include <LDL/APIs/GLUT/glutApplication.hpp>
 
@@ -15,18 +15,17 @@ glutApplication::glutApplication() :
 	_displayFunc(NULL),
 	_reshapeFunc(NULL)
 {
-	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
-	
 	OpenGLLoader loader(_result);
 	loader.Init(1, 1);
 }
 
 glutApplication::~glutApplication()
 {
-	delete _window;
+	_window->~Window();
+	LDL_free(_window);
 }
 
-void glutApplication::Init(int* pargc, char** argv)
+void glutApplication::Init(int* argc, char** argv)
 {
 }
 
@@ -52,7 +51,9 @@ int glutApplication::CreateWindow(const char* title)
 {
 	RenderContext renderContext(RenderMode::OpenGL1);
 
-	_window = new Window(_result, renderContext, _pos, _size, title);
+	void* memory = LDL_malloc(sizeof(Window));
+
+	_window = new(memory) Window(_result, renderContext, _pos, _size, title);
 
 	return 0;
 }

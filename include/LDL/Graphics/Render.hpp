@@ -31,9 +31,9 @@ namespace LDL
 		void Begin();
 		void End();
 		const Vec2u& Size();
-		const LDL::Color& Color();
+		const Color& GetColor();
 		void Clear();
-		void Color(const LDL::Color& color);
+		void SetColor(const Color& color);
 		void Pixel(const Vec2u& pos);
 		void Fill(const Vec2u& pos, const Vec2u& size);
 		void Line(const Vec2u& pos1, const Vec2u& pos2);

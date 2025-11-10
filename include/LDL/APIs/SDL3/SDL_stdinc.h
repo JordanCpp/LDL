@@ -6,8 +6,9 @@
 #ifndef LDL_APIs_SDL3_SDL_stdinc_h
 #define LDL_APIs_SDL3_SDL_stdinc_h
 
-#include <LDL/std/stdbool.hpp>
 #include <LDL/std/stdint.hpp>
+#include <LDL/std/stdbool.hpp>
+#include <LDL/APIs/SDL3/SDL_config.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -24,6 +25,9 @@ typedef uint32_t Uint32;
 
 typedef int64_t  Sint64;
 typedef uint64_t Uint64;
+
+extern SDL_DECLSPEC void* SDLCALL SDL_malloc(size_t size);
+extern SDL_DECLSPEC void  SDLCALL SDL_free(void* mem);
 
 #ifdef __cplusplus
 }

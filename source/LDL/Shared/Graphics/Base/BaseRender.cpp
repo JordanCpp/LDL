@@ -17,12 +17,12 @@ const Vec2u& BaseRender::Size()
 	return _size;
 }
 
-const LDL::Color& BaseRender::Color()
+const Color& BaseRender::GetColor()
 {
 	return _current;
 }
 
-void BaseRender::Color(const LDL::Color& color)
+void BaseRender::SetColor(const Color& color)
 {
 	_current = color;
 }

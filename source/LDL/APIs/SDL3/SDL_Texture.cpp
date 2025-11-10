@@ -25,7 +25,7 @@ Texture& SDL_Texture::GetTexture()
 
 SDL_Texture* SDL_CreateTexture(SDL_Renderer* renderer, SDL_PixelFormat format, SDL_TextureAccess access, int w, int h)
 {
-	void* memory = LDL_malloc(sizeof(SDL_Texture));
+	void* memory = SDL_malloc(sizeof(SDL_Texture));
 
 	SDL_Texture* texture = new(memory) SDL_Texture(&renderer->GetRenderContext(), format, Vec2u(w, h));
 
@@ -35,7 +35,7 @@ SDL_Texture* SDL_CreateTexture(SDL_Renderer* renderer, SDL_PixelFormat format, S
 void SDL_DestroyTexture(SDL_Texture* texture)
 {
 	texture->~SDL_Texture();
-	LDL_free(texture);
+	SDL_free(texture);
 }
 
 bool SDL_GetTextureSize(SDL_Texture* texture, float* w, float* h)
@@ -50,7 +50,7 @@ bool SDL_GetTextureSize(SDL_Texture* texture, float* w, float* h)
 
 SDL_Texture* SDL_CreateTextureFromSurface(SDL_Renderer* renderer, SDL_Surface* surface)
 {
-	void* memory = LDL_malloc(sizeof(SDL_Texture));
+	void* memory = SDL_malloc(sizeof(SDL_Texture));
 
 	SDL_Texture* texture = new(memory) SDL_Texture(&renderer->GetRenderContext(), (SDL_SurfaceDetail*)surface);
 

@@ -7,6 +7,11 @@
 #define LDL_Shared_APIs_GLUT_glutApplication_hpp
 
 #include <LDL/Graphics/Window.hpp>
+#include <LDL/APIs/GLUT/glutMemory.hpp>
+
+#if defined(_WIN32)
+    #undef CreateWindow
+#endif
 
 class glutApplication
 {
@@ -22,6 +27,7 @@ public:
 	void ReshapeFunc(void (*func)(int, int));
 	void MainLoop();
 private:
+	glutMemory   _memory;
 	LDL::Window* _window;
 	void (*_displayFunc)();
 	void (*_reshapeFunc)(int, int);

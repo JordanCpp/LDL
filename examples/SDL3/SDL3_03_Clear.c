@@ -8,31 +8,32 @@
 
 int main()
 {
+	SDL_Window* window     = NULL;
+	SDL_Renderer* renderer = NULL;
+	bool running           = true;
+	SDL_Event event;
+
 	if (!SDL_Init(SDL_INIT_VIDEO))
 	{
 		printf("SDL_Init: %s\n", SDL_GetError());
 	}
 
-	SDL_Window* window = SDL_CreateWindow(__FILE__, 800, 600, 0);
+	window = SDL_CreateWindow(__FILE__, 800, 600, 0);
 	if (window == NULL)
 	{
 		printf("SDL_CreateWindow: %s\n", SDL_GetError());
 		return -1;
 	}
 
-	SDL_Renderer* renderer = SDL_CreateRenderer(window, NULL);
+	renderer = SDL_CreateRenderer(window, NULL);
 	if (renderer == NULL)
 	{
 		printf("SDL_CreateRenderer: %s\n", SDL_GetError());
 		return -1;
 	}
 
-	bool running = true;
-
 	while (running)
 	{
-		SDL_Event event;
-
 		SDL_SetRenderDrawColor(renderer, 0, 162, 232, 0);
 
 		while (SDL_PollEvent(&event))

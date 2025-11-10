@@ -42,7 +42,7 @@ Surface& SDL_SurfaceDetail::GetSurface()
 
 SDL_Surface* SDL_CreateSurface(int width, int height, SDL_PixelFormat format)
 {
-	void* memory = LDL_malloc(sizeof(SDL_SurfaceDetail));
+	void* memory = SDL_malloc(sizeof(SDL_SurfaceDetail));
 
 	SDL_SurfaceDetail* surface = new(memory) SDL_SurfaceDetail(width, height, format);
 
@@ -66,5 +66,5 @@ SDL_Surface* SDL_CreateSurfaceFrom(int width, int height, SDL_PixelFormat format
 void SDL_DestroySurface(SDL_Surface* surface)
 {
 	surface->~SDL_Surface();
-	LDL_free(surface);
+	SDL_free(surface);
 }

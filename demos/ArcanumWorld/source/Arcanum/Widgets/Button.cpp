@@ -15,6 +15,6 @@ Button::Button(Render& render, const Vec2u& pos, const Vec2u& size) :
 
 void Button::Draw()
 {
-	GetRender().Color(Color(192, 192, 192));
+	GetRender().SetColor(Color(192, 192, 192));
 	GetRender().Fill(Pos(), Size());
 }

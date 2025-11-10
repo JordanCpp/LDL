@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
 
+using namespace LDL;
+
 static int totalCount = 0;
 static int totalBytes = 0;
 
@@ -23,37 +25,37 @@ void CustomFree(void* ptr)
 	free(ptr);
 }
 
-void ErrorShow(LDL::Result& result)
+void ErrorShow(Result& result)
 {
 	printf("LDL error: %s", result.Message());
 }
 
 int main()
 {
-	LDL::MemoryManager::Instance().Functions(CustomMalloc, NULL, NULL, CustomFree);
+	MemoryManager::Instance().Functions(CustomMalloc, NULL, NULL, CustomFree);
 
-	LDL::Result result;
-	LDL::RenderContext renderContext;
+	Result result;
+	RenderContext renderContext;
 
-	LDL::Window window(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), __FILE__);
+	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	LDL::Render render(result, renderContext, &window);
+	Render render(result, renderContext, &window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	LDL::Event report;
+	Event report;
 
-	LDL::FpsCounter fpsCounter;
-	LDL::Convert    convert;
-	LDL::FpsLimiter fpsLimiter;
+	FpsCounter fpsCounter;
+	Convert    convert;
+	FpsLimiter fpsLimiter;
 
 	while (window.Running())
 	{
@@ -63,7 +65,7 @@ int main()
 
 		while (window.GetEvent(report))
 		{
-			if (report.Type == LDL::IsQuit)
+			if (report.Type == IsQuit)
 			{
 				window.StopEvent();
 			}

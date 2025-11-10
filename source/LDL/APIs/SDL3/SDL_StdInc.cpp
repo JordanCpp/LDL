@@ -4,16 +4,16 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/std/stdlib.hpp>
-#include <LDL/Core/MemoryManager.hpp>
+#include <LDL/APIs/SDL3/SDL_stdinc.h>
 
 using namespace LDL;
 
-void* LDL::LDL_malloc(size_t bytes)
+void* SDL_malloc(size_t size)
 {
-	return MemoryManager::Instance().GetMalloc()(bytes);
+	return LDL_malloc(size);
 }
 
-void LDL::LDL_free(void* ptr)
+void SDL_free(void* mem)
 {
-	MemoryManager::Instance().GetFree()(ptr);
+	LDL_free(mem);
 }

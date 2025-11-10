@@ -53,10 +53,10 @@ int main()
 
 		render.Begin();
 
-		render.Color(LDL::Color(0, 162, 232));
+		render.SetColor(Color(0, 162, 232));
 		render.Clear();
 
-		render.Color(LDL::Color(237, 28, 36));
+		render.SetColor(Color(237, 28, 36));
 		render.Line(Vec2u(0, 0), Vec2u(render.Size().x, render.Size().y));
 		render.Line(Vec2u(render.Size().x, 0), Vec2u(0, render.Size().y));
 

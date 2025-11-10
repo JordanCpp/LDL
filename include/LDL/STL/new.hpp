@@ -14,6 +14,10 @@ inline void* operator new(size_t bytes, void* ptr)
     return ptr;
 }
 
+inline void operator delete(void* ptr, void* place)
+{
+}
+
 #else
     #include <new>
 #endif

@@ -30,7 +30,7 @@ RenderContext& SDL_Window::GetRenderContext()
 
 SDL_Window* SDL_CreateWindow(const char* title, int w, int h, SDL_WindowFlags flags)
 {
-	void* memory = LDL_malloc(sizeof(SDL_Window));
+	void* memory = SDL_malloc(sizeof(SDL_Window));
 
 	SDL_Window* result = new(memory) SDL_Window(App().GetResult(), title, w, h, flags);
 
@@ -42,5 +42,5 @@ SDL_Window* SDL_CreateWindow(const char* title, int w, int h, SDL_WindowFlags fl
 void SDL_DestroyWindow(SDL_Window* window)
 {
 	window->~SDL_Window();
-	LDL_free(window);
+	SDL_free(window);
 }

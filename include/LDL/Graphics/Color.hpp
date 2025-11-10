@@ -6,11 +6,12 @@
 #ifndef LDL_Graphics_Color_hpp
 #define LDL_Graphics_Color_hpp
 
+#include <LDL/Config.hpp>
 #include <LDL/std/stdint.hpp>
 
 namespace LDL
 {
-	class Color
+	class LDL_LIBRARY Color
 	{
 	public:
 		Color();

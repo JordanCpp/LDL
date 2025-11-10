@@ -6,18 +6,18 @@
 #ifndef LDL_Shared_APIs_SDL3_SDL_Surface_hpp
 #define LDL_Shared_APIs_SDL3_SDL_Surface_hpp
 
-#include <LDL/APIs/SDL3/SDL_surface.h>
+#include <LDL/APIs/SDL/SDL_video.h>
 #include <LDL/Graphics/Surface.hpp>
-
-SDL_PixelFormat LDL_PixelFormatToSDL_PixelFormat(size_t pixelFormat);
 
 struct SDL_SurfaceDetail : public SDL_Surface
 {
 public:
-	SDL_SurfaceDetail(int width, int height, SDL_PixelFormat format);
+	SDL_SurfaceDetail(size_t pixelFormat, const LDL::Vec2u& size);
 	LDL::Surface& GetSurface();
+	SDL_PixelFormat* GetPixelFormat();
 private:
-	LDL::Surface _surface;
+	LDL::Surface    _surface;
+	SDL_PixelFormat _format;
 };
 
 #endif

@@ -47,7 +47,7 @@ const Vec2u& RenderImplOpenGL3::Size()
 	return _window->Size();
 }
 
-const Color& RenderImplOpenGL3::Color()
+const Color& RenderImplOpenGL3::GetColor()
 {
 	return _color;
 }
@@ -64,7 +64,7 @@ void RenderImplOpenGL3::Clear()
 	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
-void RenderImplOpenGL3::Color(const LDL::Color& color)
+void RenderImplOpenGL3::SetColor(const Color& color)
 {
 	_color = color;
 }

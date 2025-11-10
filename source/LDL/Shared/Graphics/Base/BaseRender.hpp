@@ -17,11 +17,11 @@ namespace LDL
 	public:
 		BaseRender(const Vec2u& size);
 		const Vec2u& Size();
-		const LDL::Color& Color();
-		void Color(const LDL::Color& color);
+		const Color& GetColor();
+		void SetColor(const Color& color);
 	public:
-		LDL::Color _current;
-		Vec2u      _size;
+		Color _current;
+		Vec2u _size;
 	};
 }
 

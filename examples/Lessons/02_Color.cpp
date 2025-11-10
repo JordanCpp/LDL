@@ -39,7 +39,7 @@ int main()
 	FpsCounter fpsCounter;
 	Convert    convert;
 
-	render.Color(LDL::Color(0, 162, 232));
+	render.SetColor(Color(0, 162, 232));
 
 	while (window.Running())
 	{

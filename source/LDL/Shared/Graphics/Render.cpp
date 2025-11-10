@@ -46,9 +46,9 @@ const Vec2u& Render::Size()
 	return _impl->Size();
 }
 
-const Color& Render::Color()
+const Color& Render::GetColor()
 {
-	return _impl->Color();
+	return _impl->GetColor();
 }
 
 void Render::Clear()
@@ -56,9 +56,9 @@ void Render::Clear()
 	_impl->Clear();
 }
 
-void Render::Color(const LDL::Color& color)
+void Render::SetColor(const Color& color)
 {
-	_impl->Color(color);
+	_impl->SetColor(color);
 }
 
 void Render::Pixel(const Vec2u& pos)

@@ -18,7 +18,7 @@ class SDL_Application
 public:
 	enum
 	{
-		ringBufferLimit = 1024
+		Max = 1024
 	};
 	SDL_Application();
 	LDL::Result& GetResult();
@@ -27,10 +27,10 @@ public:
 	void PollEvents();
 	bool PollEvent(SDL_Event& dest);
 private:
-	SDL_Memory                                   _memory;
-	LDL::Result                                  _result;
-	LDL::vector<SDL_Window*>                     _windows;
-	LDL::ring_buffer<SDL_Event, ringBufferLimit> _events;
+	SDL_Memory                       _memory;
+	LDL::Result                      _result;
+	LDL::vector<SDL_Window*>         _windows;
+	LDL::ring_buffer<SDL_Event, Max> _events;
 };
 
 SDL_Application& App();

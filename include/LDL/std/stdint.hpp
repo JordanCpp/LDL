@@ -8,30 +8,24 @@
 
 #if (_MSC_VER >= 1900 || __GNUC__)
     #include <stdint.h>
-
-    typedef int8_t   Sint8;
-    typedef uint8_t  Uint8;
-
-    typedef int16_t  Sint16;
-    typedef uint16_t Uint16;
-
-    typedef int32_t  Sint32;
-    typedef uint32_t Uint32;
-
-    typedef int64_t  Sint64;
-    typedef uint64_t Uint64;
 #else
-    typedef signed char    Sint8;
-    typedef unsigned char  Uint8;
+    typedef signed char     int8_t;
+    typedef unsigned char   uint8_t;
 
-    typedef signed short   Sint16;
-    typedef unsigned short Uint16;
+    typedef signed short    int16_t;
+    typedef unsigned short  uint16_t;
 
-    typedef signed int     Sint32;
-    typedef unsigned int   Uint32;
+    typedef signed int      int32_t;
+    typedef unsigned int    uint32_t;
 
-    typedef Sint32         Sint64;
-    typedef size_t         Uint64;
+    typedef signed int      int64_t;
+    typedef unsigned int    uint64_t;
+
+    typedef signed int      intptr_t;
+    typedef unsigned int    uintptr_t;
+
+    typedef signed int      intmax_t;
+    typedef signed int      uintmax_t;
 #endif
 
 #endif

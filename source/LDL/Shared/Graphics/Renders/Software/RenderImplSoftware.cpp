@@ -43,7 +43,7 @@ const Vec2u& RenderImplSoftware::Size()
 	return _window->Size();
 }
 
-const Color& RenderImplSoftware::Color()
+const Color& RenderImplSoftware::GetColor()
 {
 	return _color;
 }
@@ -53,7 +53,7 @@ void RenderImplSoftware::Clear()
 	_pixelPainter.Clear(_canvas.Format(), _canvas.Pixels(), _canvas.Size(), _color);
 }
 
-void RenderImplSoftware::Color(const LDL::Color& color)
+void RenderImplSoftware::SetColor(const Color& color)
 {
 	_color = color;
 }

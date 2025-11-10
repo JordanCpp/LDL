@@ -62,7 +62,7 @@ const Vec2u& RenderImplOpenGL1::Size()
 	return _window->Size();
 }
 
-const Color& RenderImplOpenGL1::Color()
+const Color& RenderImplOpenGL1::GetColor()
 {
 	return _color;
 }
@@ -79,7 +79,7 @@ void RenderImplOpenGL1::Clear()
 	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
-void RenderImplOpenGL1::Color(const LDL::Color& color)
+void RenderImplOpenGL1::SetColor(const Color& color)
 {
 	_color = color;
 }

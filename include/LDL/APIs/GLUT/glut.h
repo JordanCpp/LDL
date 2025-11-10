@@ -12,7 +12,7 @@
 extern "C" {
 #endif 
 
-extern GLUT_DECLSPEC void GLUTCALL glutInit(int* pargc, char** argv);
+extern GLUT_DECLSPEC void GLUTCALL glutInit(int* argc, char** argv);
 extern GLUT_DECLSPEC void GLUTCALL glutSwapBuffers();
 extern GLUT_DECLSPEC void GLUTCALL glutMainLoop();
 extern GLUT_DECLSPEC void GLUTCALL glutInitWindowPosition(int x, int y);

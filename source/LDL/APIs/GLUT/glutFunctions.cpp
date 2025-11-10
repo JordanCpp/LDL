@@ -8,9 +8,9 @@
 
 using namespace LDL;
 
-void glutInit(int* pargc, char** argv)
+void glutInit(int* argc, char** argv)
 {
-	App().Init(pargc, argv);
+	App().Init(argc, argv);
 }
 
 void glutMainLoop()

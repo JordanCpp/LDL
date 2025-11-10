@@ -3,15 +3,14 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL_SDL_h
-#define LDL_APIs_SDL_SDL_h
+#ifndef LDL_APIs_SDL_SDL_Memory_hpp
+#define LDL_APIs_SDL_SDL_Memory_hpp
 
-#ifdef NULL
-#else
-    #define NULL 0
-#endif
-
-#include <LDL/APIs/SDL/SDL_video.h>
-#include <LDL/APIs/SDL/SDL_events.h>
+class SDL_Memory
+{
+public:
+	SDL_Memory();
+private:
+};
 
 #endif
