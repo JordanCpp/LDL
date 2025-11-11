@@ -72,7 +72,7 @@ LDL **is not a replacement** for existing libraries, but serves as a **compatibi
 
 ## 🏗️ Unified Architecture, Not Just Compatibility
 
-[Architecture](Screenshots/AppArch.jpg)
+![Architecture](Screenshots/AppArch.jpg)
 
 ## 🎯 How It Works: Single Foundation Architecture
 
