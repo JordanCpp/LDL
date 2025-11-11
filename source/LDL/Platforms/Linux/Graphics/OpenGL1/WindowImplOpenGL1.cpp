@@ -59,8 +59,6 @@ WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u &pos, const Vec
 
     glXMakeCurrent(_Window._Display, _Window._Window, _Context);
 
-    _OpenGLLoader.Init(1, 2);
-
     _Window.Title(title);
 
     _Window.Show();

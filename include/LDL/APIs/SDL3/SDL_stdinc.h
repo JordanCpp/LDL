@@ -6,6 +6,7 @@
 #ifndef LDL_APIs_SDL3_SDL_stdinc_h
 #define LDL_APIs_SDL3_SDL_stdinc_h
 
+#include <LDL/std/stddef.hpp>
 #include <LDL/std/stdint.hpp>
 #include <LDL/std/stdbool.hpp>
 #include <LDL/APIs/SDL3/SDL_config.h>
