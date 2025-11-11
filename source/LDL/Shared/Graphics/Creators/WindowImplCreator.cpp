@@ -4,6 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Core/Assert.hpp>
+#include <LDL/Core/Formatter.hpp>
 #include <LDL/Shared/Graphics/Creators/WindowImplCreator.hpp>
 
 #if defined(_WIN32)
@@ -24,7 +25,9 @@ WindowImpl* WindowImplCreator::Create(uint8_t * memory, Result& result, RenderCo
 
 	if (mode >= RenderMode::Max)
 	{
-		result.Message("Unknown graphics mode");
+		Formatter formatter;
+
+		result.Message(formatter.Format("Unknown graphics mode: %d\n", mode));
 		return NULL;
 	}
 

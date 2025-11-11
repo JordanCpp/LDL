@@ -1,4 +1,6 @@
 
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/data DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/)
+
 add_executable(SDL3_01_Window "SDL3_01_Window.c")
 target_link_libraries(SDL3_01_Window LDL_SDL3)
 

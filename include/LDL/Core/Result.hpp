@@ -18,6 +18,7 @@ namespace LDL
 		void Message(const char* message);
 		void Message(const char* message, const char* detail);
 		const char* Message();
+		void Clear();
 	private:
 		bool        _ok;
 		ErrorString _message;

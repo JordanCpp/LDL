@@ -10,6 +10,7 @@
 #include <LDL/Shared/Graphics/Renders/OpenGL1/RenderImplOpenGL1.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL3/RenderImplOpenGL3.hpp>
 #include <LDL/Shared/Graphics/Renders/Software/RenderImplSoftware.hpp>
+#include <LDL/Core/Formatter.hpp>
 
 using namespace LDL;
 
@@ -19,7 +20,9 @@ RenderImpl* RenderImplCreator::Create(uint8_t* memory, Result& result, RenderCon
 
 	if (mode >= RenderMode::Max)
 	{
-		result.Message("Unknown graphics mode");
+		Formatter formatter;
+
+		result.Message(formatter.Format("Unknown graphics mode: %d\n", mode));
 		return NULL;
 	}
 

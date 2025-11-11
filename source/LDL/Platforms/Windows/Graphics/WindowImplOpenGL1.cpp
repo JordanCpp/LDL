@@ -17,10 +17,12 @@ WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec
 
     LDL::LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
 
+    WindowError windowError;
+
     _window._hdc = GetDC(_window._hwnd);
     if (_window._hdc == NULL)
     {
-        _result.Message("GetDC failed");
+        _result.Message(windowError.GetErrorMessage());
         return;
     }
 
@@ -35,26 +37,26 @@ WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec
     int format = ChoosePixelFormat(_window._hdc, &pfd);
     if (format == 0)
     {
-        _result.Message("ChoosePixelFormat failed");
+        _result.Message(windowError.GetErrorMessage());
         return;
     }
 
     if (!SetPixelFormat(_window._hdc, format, &pfd))
     {
-        _result.Message("SetPixelFormat failed");
+        _result.Message(windowError.GetErrorMessage());
         return;
     }
 
     _hglrc = wglCreateContext(_window._hdc);
     if (_hglrc == NULL)
     {
-        _result.Message("wglCreateContext failed");
+        _result.Message(windowError.GetErrorMessage());
         return;
     }
 
     if (!wglMakeCurrent(_window._hdc, _hglrc))
     {
-        _result.Message("wglMakeCurrent failed");
+        _result.Message(windowError.GetErrorMessage());
         return;
     }
 }

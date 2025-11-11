@@ -10,6 +10,7 @@
 #include <LDL/STL/vector.hpp>
 #include <LDL/Core/Result.hpp>
 #include <LDL/Graphics/PixelFormat.hpp>
+#include <LDL/Core/Formatter.hpp>
 
 namespace LDL
 {
@@ -28,6 +29,7 @@ namespace LDL
 		Result&         _result;
 		Vec2u           _size;
 		vector<uint8_t> _pixels;
+		Formatter       _formatter;
 	};
 }
 

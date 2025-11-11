@@ -49,7 +49,7 @@ bool BmpLoader::Load(const char* path)
 
     if (!file.IsOpen())
     {
-        _result.Message("Can't open file: ", path);
+        _result.Message(_formatter.Format("Can't open file: %s\n", path));
         return false;
     }
 
@@ -61,19 +61,19 @@ bool BmpLoader::Load(const char* path)
 
     if (file_header.file_type != 0x4D42)
     {
-        _result.Message("Not a BMP file: ", path);
+        _result.Message(_formatter.Format("Not a BMP file: %s\n", path));
         return false;
     }
 
     if (info_header.bit_count != 8 && info_header.bit_count != 24 && info_header.bit_count != 32)
     {
-        _result.Message("Unsupported BMP format (only 8, 24, and 32-bit supported): ", path);
+        _result.Message(_formatter.Format("Unsupported BMP format (only 8, 24, and 32-bit supported): %s\n", path));
         return false;
     }
 
     if (info_header.compression != 0)
     {
-        _result.Message("Only uncompressed BMP supported: ", path);
+        _result.Message(_formatter.Format("Only uncompressed BMP supported: %s\n", path));
         return false;
     }
 
@@ -96,7 +96,7 @@ bool BmpLoader::Load(const char* path)
     {
         if (file.Read(_pixels.data() + y * row_stride, row_stride) != row_stride)
         {
-            _result.Message("Failed to read pixel data: ", path);
+            _result.Message(_formatter.Format("Failed to read pixel data: %s\n", path));
             return false;
         }
     }

@@ -5,9 +5,15 @@
 
 #include <stdio.h>
 #include <stdarg.h>
+#include <LDL/std/string.hpp>
 #include <LDL/Core/Formatter.hpp>
 
 using namespace LDL;
+
+Formatter::Formatter()
+{
+	LDL_memset(&_buffer, 0, sizeof(_buffer));
+}
 
 char* Formatter::Format(const char* format, ...)
 {

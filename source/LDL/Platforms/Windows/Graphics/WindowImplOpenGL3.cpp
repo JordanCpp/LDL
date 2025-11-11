@@ -42,11 +42,13 @@ WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec
 
     LDL::LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
 
+    WindowError windowError;
+
     _mainWindow._hdc = GetDC(_mainWindow._hwnd);
 
     if (_mainWindow._hdc == NULL)
     {
-        _result.Message("GetDC failed");
+        _result.Message(windowError.GetErrorMessage());
         return;
     }
 
@@ -60,26 +62,26 @@ WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec
     int format = ChoosePixelFormat(_mainWindow._hdc, &pfd);
     if (format == 0)
     {
-        _result.Message("ChoosePixelFormat failed");
+        _result.Message(windowError.GetErrorMessage());
         return;
     }
 
     if (!SetPixelFormat(_mainWindow._hdc, format, &pfd))
     {
-        _result.Message("SetPixelFormat failed");
+        _result.Message(windowError.GetErrorMessage());
         return;
     }
 
     _hglrc = wglCreateContext(_mainWindow._hdc);
     if (_hglrc == NULL)
     {
-        _result.Message("wglCreateContext failed");
+        _result.Message(windowError.GetErrorMessage());
         return;
     }
 
     if (!wglMakeCurrent(_mainWindow._hdc, _hglrc))
     {
-        _result.Message("wglMakeCurrent failed");
+        _result.Message(windowError.GetErrorMessage());
         return;
     }
 
@@ -92,26 +94,26 @@ WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec
 
     if (!wglMakeCurrent(NULL, NULL))
     {
-        _result.Message("wglMakeCurrent failed");
+        _result.Message(windowError.GetErrorMessage());
         return;
     }
 
     if (!wglDeleteContext(_hglrc))
     {
-        _result.Message("wglDeleteContext failed");
+        _result.Message(windowError.GetErrorMessage());
         return;
     }
 
     _hglrc = wglCreateContextAttribsARB(_mainWindow._hdc, 0, attribs);
     if (_hglrc == NULL)
     {
-        _result.Message("wglCreateContextAttribsARB failed");
+        _result.Message(windowError.GetErrorMessage());
         return;
     }
 
     if (!wglMakeCurrent(_mainWindow._hdc, _hglrc))
     {
-        _result.Message("wglMakeCurrent failed");
+        _result.Message(windowError.GetErrorMessage());
         return;
     }
 }

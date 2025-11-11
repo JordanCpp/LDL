@@ -14,10 +14,16 @@ namespace LDL
 	{
 	public:
 		void Copy(size_t srcFormat, uint8_t* srcPixels, const Vec2u& srcSize, Surface* srcSurf, size_t dstFormat, uint8_t* dstPixels, const Vec2u& dstSize, const Vec2u& pos, Surface* dstSurf);
+		
+		//BGR24
 		void CopyRGB24ToBGR24(uint8_t* srcPixels, const Vec2u& srcSize, Surface* srcSurf, uint8_t* dstPixels, const Vec2u& dstSize, const Vec2u& pos, Surface* dstSurf);
 		void CopyBGR24ToBGR24(uint8_t* srcPixels, const Vec2u& srcSize, Surface* srcSurf, uint8_t* dstPixels, const Vec2u& dstSize, const Vec2u& pos, Surface* dstSurf);
 		void CopyRGBA32ToBGR24(uint8_t* srcPixels, const Vec2u& srcSize, Surface* srcSurf, uint8_t* dstPixels, const Vec2u& dstSize, const Vec2u& pos, Surface* dstSurf);
 		void CopyBGRA32ToBGR24(uint8_t* srcPixels, const Vec2u& srcSize, Surface* srcSurf, uint8_t* dstPixels, const Vec2u& dstSize, const Vec2u& pos, Surface* dstSurf);
+	
+		//RGB24
+		void CopyRGB24ToRGB24(uint8_t* srcPixels, const Vec2u& srcSize, Surface* srcSurf, uint8_t* dstPixels, const Vec2u& dstSize, const Vec2u& pos, Surface* dstSurf);
+		void CopyBGR24ToRGB24(uint8_t* srcPixels, const Vec2u& srcSize, Surface* srcSurf, uint8_t* dstPixels, const Vec2u& dstSize, const Vec2u& pos, Surface* dstSurf);
 	private:
 	};
 }

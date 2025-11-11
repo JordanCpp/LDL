@@ -11,7 +11,13 @@ using namespace LDL;
 SDL_SurfaceDetail::SDL_SurfaceDetail(size_t pixelFormat, const Vec2u& size) :
 	_surface(pixelFormat, size)
 {
-	LDL_memset(&_format, 0, sizeof(SDL_PixelFormat));
+	SDL_memset(&_format, 0, sizeof(SDL_PixelFormat));
+}
+
+SDL_SurfaceDetail::SDL_SurfaceDetail(size_t pixelFormat, const Vec2u& size, uint8_t* pixels) :
+	_surface(pixelFormat, size, pixels)
+{
+	SDL_memset(&_format, 0, sizeof(SDL_PixelFormat));
 }
 
 Surface& SDL_SurfaceDetail::GetSurface()

@@ -5,15 +5,39 @@
 
 #include <LDL/STL/new.hpp>
 #include <LDL/std/stdlib.hpp>
-#include <LDL/APIs/SDL/SDL_Application.hpp>
-#include <LDL/APIs/SDL/SDL_Surface.hpp>
 #include <LDL/Loaders/BmpLoader.hpp>
+#include <LDL/APIs/SDL/SDL_Surface.hpp>
+#include <LDL/APIs/SDL/SDL_Application.hpp>
+#include <LDL/Graphics/PixelCopier.hpp>
 
 using namespace LDL;
 
+SDL_Surface* SDL_CreateRGBSurfaceFromPixels(size_t pixelFormat, void* pixels, int width, int height, int depth, int pitch, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask)
+{
+	void* memory = SDL_malloc(sizeof(SDL_SurfaceDetail));
+
+	SDL_SurfaceDetail* surface = new(memory) SDL_SurfaceDetail(pixelFormat, Vec2u(width, height), (uint8_t*)pixels);
+
+	surface->flags  = 0;
+	surface->format = surface->GetPixelFormat();
+	surface->w      = (int)width;
+	surface->h      = (int)height;
+	surface->pitch  = (Uint16)surface->GetSurface().Pitch();
+	surface->pixels = pixels;
+
+	surface->format->BytesPerPixel = surface->GetSurface().BytesPerPixel();
+
+	return surface;
+}
+
+SDL_Surface* SDL_CreateRGBSurfaceFrom(void* pixels, int width, int height, int depth, int pitch, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask)
+{
+	return SDL_CreateRGBSurfaceFromPixels(PixelFormat::RGB24, (uint8_t*)pixels, width, height, 0, 0, 0, 0, 0, 0);
+}
+
 SDL_Surface* SDL_CreateRGBSurface(Uint32 flags, int width, int height, int depth, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask)
 {
-	void* memory = LDL_malloc(sizeof(SDL_SurfaceDetail));
+	void* memory = SDL_malloc(sizeof(SDL_SurfaceDetail));
 
 	SDL_SurfaceDetail* surface = new(memory) SDL_SurfaceDetail(PixelFormat::RGB24, Vec2u(width, height));
 
@@ -35,13 +59,56 @@ void SDL_FreeSurface(SDL_Surface* surface)
 	LDL_free(surface);
 }
 
+int SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcRect, SDL_Surface* dst, SDL_Rect* dstRect)
+{
+	Vec2u srcPos;
+	Vec2u srcSize;
+
+	Vec2u dstPos;
+	Vec2u dstSize;
+
+	if (srcRect == NULL)
+	{
+		srcPos  = Vec2u(0, 0);
+		srcSize = Vec2u(src->w, src->h);
+	}
+	else
+	{
+		srcPos  = Vec2u(srcRect->x, srcRect->y);
+		srcSize = Vec2u(srcRect->w, srcRect->h);
+	}
+
+	if (dstRect == NULL)
+	{
+		dstPos  = Vec2u(0, 0);
+		dstSize = Vec2u(dst->w, dst->h);
+	}
+	else
+	{
+		dstPos  = Vec2u(dstRect->x, dstRect->y);
+		dstSize = Vec2u(dstRect->w, dstRect->h);
+	}
+
+	SDL_SurfaceDetail* srcSurf = (SDL_SurfaceDetail*)src;
+	SDL_SurfaceDetail* dstSurf = (SDL_SurfaceDetail*)dst;
+
+	PixelCopier copier;
+
+	copier.Copy(srcSurf->GetSurface().Format(), srcSurf->GetSurface().Pixels(), srcSize, &srcSurf->GetSurface(),
+		        dstSurf->GetSurface().Format(), dstSurf->GetSurface().Pixels(), dstSize, dstPos, &dstSurf->GetSurface());
+
+	return 0;
+}
+
 SDL_Surface* SDL_SetVideoMode(int width, int height, int bpp, Uint32 flags)
 {
-	void* memoryWindow = LDL_malloc(sizeof(Window));
-	App()._window = new(memoryWindow) Window(App()._result, App()._context, Vec2u(0, 0), Vec2u(width, height), "", flags);
+	void* memoryWindow = SDL_malloc(sizeof(Window));
+	Window* window = new(memoryWindow) Window(App().GetResult(), App().GetContext(), Vec2u(0, 0), Vec2u(width, height), "", flags);
+	App().SetWindow(window);
 
-	void* memoryRender = LDL_malloc(sizeof(Window));
-	App()._render = new(memoryRender) Render(App()._result, App()._context, App()._window);
+	void* memoryRender = SDL_malloc(sizeof(Render));
+	Render* render = new(memoryRender) Render(App().GetResult(), App().GetContext(), App().GetWindow());
+	App().SetRender(render);
 
 	SDL_Surface* surface = SDL_CreateRGBSurface(0, width, height, 0, 0, 0, 0, 0);
 
@@ -50,22 +117,27 @@ SDL_Surface* SDL_SetVideoMode(int width, int height, int bpp, Uint32 flags)
 
 int SDL_Flip(SDL_Surface* screen)
 {
-	App()._render->Begin();
+	App().GetRender()->Begin();
 
 	SDL_SurfaceDetail* surface = (SDL_SurfaceDetail*)screen;
 
-	App()._render->Draw(&surface->GetSurface(), Vec2u(0, 0));
+	App().GetRender()->Draw(&surface->GetSurface(), Vec2u(0, 0));
 
-	App()._render->End();
+	App().GetRender()->End();
 
 	return 0;
 }
 
 SDL_Surface* SDL_LoadBMP(const char* path)
 {
-	BmpLoader loader(App()._result);
+	BmpLoader loader(App().GetResult());
 
-	loader.Load(path);
+	SDL_Surface* result = NULL;
 
-	return NULL;
+	if (loader.Load(path))
+	{
+		result = SDL_CreateRGBSurfaceFromPixels(loader.Format(), loader.Pixels(), loader.Size().x, loader.Size().y, 0, 0, 0, 0, 0, 0);
+	}
+
+	return result;
 }

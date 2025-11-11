@@ -13,9 +13,14 @@ namespace LDL
 	class LDL_LIBRARY Formatter
 	{
 	public:
+		enum
+		{
+			Max = 128
+		};
+		Formatter();
 		char* Format(const char* format, ...);
 	private:
-		char _buffer[1024];
+		char _buffer[Max];
 	};
 }
 

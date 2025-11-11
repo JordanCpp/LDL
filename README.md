@@ -72,23 +72,7 @@ LDL **is not a replacement** for existing libraries, but serves as a **compatibi
 
 ## 🏗️ Unified Architecture, Not Just Compatibility
 
-LDL is not just a compatibility layer - it's a unified core that serves as the foundation for all compatible APIs:
-    ┌─────────────────────────────────────────────────────┐
-    │           Your Applications & Libraries              │
-    └─────────────────────────────────────────────────────┘
-    ┌─────────────┬─────────────┬─────────────┬───────────┐
-    │   SDL1 API  │   SDL2 API  │   SDL3 API  │   GLUT    │ ← Thin Compatibility Layers
-    │  (surface)  │  (surface)  │  (surface)  │   API     │
-    └─────────────┴─────────────┴─────────────┴───────────┘
-    ┌─────────────────────────────────────────────────────┐
-    │              LDL Core API (Unified Core)            │ ← Single Implementation
-    │           Optimized Codebase                        │
-    └─────────────────────────────────────────────────────┘
-    ┌─────────────────────────────────────────────────────┐
-    │        Windows 95+  │  Linux  │  Other Platforms    │ ← Platform Abstraction
-    └─────────────────────────────────────────────────────┘
-
-Key Difference: Other libraries are built ON TOP of LDL, not the other way around!
+[Architecture](Screenshots/AppArch.jpg)
 
 ## 🎯 How It Works: Single Foundation Architecture
 
@@ -111,6 +95,63 @@ LDL implements a unified multimedia foundation with multiple compatibility layer
 ---
 
 ## 📊 Implementation Status
+
+**SDL 1.2 API**
+- SDL_Init
+- SDL_Quit
+- SDL_SetVideoMode
+- SDL_Flip
+- SDL_CreateRGBSurface
+- SDL_CreateRGBSurfaceFrom
+- SDL_FreeSurface
+- SDL_LoadBMP
+- SDL_BlitSurface
+- SDL_malloc
+- SDL_free
+- SDL_memset
+- SDL_PollEvent
+- SDL_SetError
+- SDL_GetError
+- SDL_ClearError
+
+**SDL 3.x API**
+- SDL_Init
+- SDL_Quit
+- SDL_PollEvent
+- SDL_GetError
+- SDL_CreateWindow
+- SDL_DestroyWindow
+- SDL_CreateRenderer
+- SDL_DestroyRenderer
+- SDL_RenderPresent
+- SDL_RenderClear
+- SDL_SetRenderDrawColor
+- SDL_GetRenderDrawColor
+- SDL_CreateTexture
+- SDL_DestroyTexture
+- SDL_GetTextureSize
+- SDL_CreateTextureFromSurface
+- SDL_RenderTexture
+- SDL_CreateSurface
+- SDL_CreateSurfaceFrom
+- SDL_DestroySurface
+- SDL_LoadBMP
+- SDL_malloc
+- SDL_free
+- SDL_AppInit
+- SDL_AppEvent
+- SDL_AppIterate
+- SDL_AppQuit
+
+**GLUT API**
+- glutInit
+- glutSwapBuffers
+- glutMainLoop
+- glutInitWindowPosition
+- glutInitWindowSize
+- glutCreateWindow
+- glutDisplayFunc
+- glutReshapeFunc
 
 **CORE COMPONENTS** ✅ COMPLETE
 - Graphics subsystem (windows, rendering contexts)
@@ -388,3 +429,21 @@ Please feel free to open issues and pull requests.
 **LDL - One Foundation, Many Interfaces. Built to Last.** 🚀
 
 **LDL - Preserving the past, enabling the future.** 🚀
+
+LDL is not just a compatibility layer - it's a unified core that serves as the foundation for all compatible APIs:
+    ┌─────────────────────────────────────────────────────┐
+    │           Your Applications & Libraries              │
+    └─────────────────────────────────────────────────────┘
+    ┌─────────────┬─────────────┬─────────────┬───────────┐
+    │   SDL1 API  │   SDL2 API  │   SDL3 API  │   GLUT    │ ← Thin Compatibility Layers
+    │  (surface)  │  (surface)  │  (surface)  │   API     │
+    └─────────────┴─────────────┴─────────────┴───────────┘
+    ┌─────────────────────────────────────────────────────┐
+    │              LDL Core API (Unified Core)            │ ← Single Implementation
+    │           Optimized Codebase                        │
+    └─────────────────────────────────────────────────────┘
+    ┌─────────────────────────────────────────────────────┐
+    │        Windows 95+  │  Linux  │  Other Platforms    │ ← Platform Abstraction
+    └─────────────────────────────────────────────────────┘
+
+Key Difference: Other libraries are built ON TOP of LDL, not the other way around!

@@ -22,6 +22,13 @@ public:
 	SDL_Application();
 	void PollEvents();
 	bool PollEvent(SDL_Event& dest);
+	LDL::RenderContext& GetContext();
+	LDL::Result& GetResult();
+	LDL::Window* GetWindow();
+	LDL::Render* GetRender();
+	void SetWindow(LDL::Window* window);
+	void SetRender(LDL::Render* render);
+private:
 	SDL_Memory                       _memory;
 	LDL::RenderContext               _context;
 	LDL::Result                      _result;

@@ -36,7 +36,8 @@ typedef struct SDL_Surface SDL_Surface;
 
 extern SDL_DECLSPEC SDL_Surface* SDLCALL SDL_CreateSurface(int width, int height, SDL_PixelFormat format);
 extern SDL_DECLSPEC SDL_Surface* SDLCALL SDL_CreateSurfaceFrom(int width, int height, SDL_PixelFormat format, void* pixels, int pitch);
-extern SDL_DECLSPEC void SDLCALL SDL_DestroySurface(SDL_Surface* surface);
+extern SDL_DECLSPEC void         SDLCALL SDL_DestroySurface(SDL_Surface* surface);
+extern SDL_DECLSPEC SDL_Surface* SDLCALL SDL_LoadBMP(const char* file);
 
 #ifdef __cplusplus
 }

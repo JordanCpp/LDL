@@ -34,7 +34,7 @@ int main()
 		return -1;
 	}
 
-	surface = SDL_CreateSurface(80, 60, SDL_PIXELFORMAT_RGB24);
+	surface = SDL_LoadBMP("data/sample.bmp");
 	if (surface == NULL)
 	{
 		printf("SDL_CreateSurface: %s\n", SDL_GetError());

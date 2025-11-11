@@ -14,7 +14,8 @@ SDL_PixelFormat LDL_PixelFormatToSDL_PixelFormat(size_t pixelFormat);
 struct SDL_SurfaceDetail : public SDL_Surface
 {
 public:
-	SDL_SurfaceDetail(int width, int height, SDL_PixelFormat format);
+	SDL_SurfaceDetail(int width, int height, SDL_PixelFormat pixelFormat);
+	SDL_SurfaceDetail(int width, int height, SDL_PixelFormat pixelFormat, uint8_t* pixels);
 	LDL::Surface& GetSurface();
 private:
 	LDL::Surface _surface;

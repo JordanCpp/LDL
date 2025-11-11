@@ -15,6 +15,7 @@ extern "C" {
 typedef enum 
 {
     SDL_NOEVENT,
+    SDL_MOUSEMOTION,
     SDL_QUIT
 } SDL_EventType;
 
@@ -23,10 +24,21 @@ typedef struct SDL_QuitEvent
     Uint8 type;
 } SDL_QuitEvent;
 
+typedef struct SDL_MouseMotionEvent 
+{
+	Uint8 type;
+	Uint8 which;
+	Uint8 state;
+	Uint16 x, y;
+	Sint16 xrel;
+	Sint16 yrel;
+} SDL_MouseMotionEvent;
+
 typedef union SDL_Event
 {
-    Uint8         type;
-    SDL_QuitEvent quit;
+    Uint8                type;
+    SDL_QuitEvent        quit;
+	SDL_MouseMotionEvent motion;
 } SDL_Event;
 
 extern SDL_DECLSPEC bool SDLCALL SDL_PollEvent(SDL_Event* event);

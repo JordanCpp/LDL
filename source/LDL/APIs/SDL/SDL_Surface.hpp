@@ -13,6 +13,7 @@ struct SDL_SurfaceDetail : public SDL_Surface
 {
 public:
 	SDL_SurfaceDetail(size_t pixelFormat, const LDL::Vec2u& size);
+	SDL_SurfaceDetail(size_t pixelFormat, const LDL::Vec2u& size, uint8_t* pixels);
 	LDL::Surface& GetSurface();
 	SDL_PixelFormat* GetPixelFormat();
 private:

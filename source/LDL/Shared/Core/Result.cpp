@@ -32,3 +32,9 @@ const char* Result::Message()
 {
 	return _message.c_str();
 }
+
+void Result::Clear()
+{
+	_ok = false;
+	_message.clear();
+}
