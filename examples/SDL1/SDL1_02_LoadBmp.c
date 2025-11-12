@@ -30,6 +30,8 @@ int main(int argc, char* argv[])
         ErrorShow(SDL_GetError());
         return -1;
     }
+
+    SDL_WM_SetCaption(__FILE__, NULL);
     
     image = SDL_LoadBMP("data/sample.bmp");
     if (image == NULL)

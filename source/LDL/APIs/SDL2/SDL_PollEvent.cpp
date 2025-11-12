@@ -3,13 +3,17 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL3_SDL_Memory_hpp
-#define LDL_APIs_SDL3_SDL_Memory_hpp
+#include <LDL/APIs/SDL2/SDL_events.h>
+#include <LDL/APIs/SDL2/SDL_Application.hpp>
 
-class SDL_Memory
+int SDL_PollEvent(SDL_Event* event)
 {
-public:
-	SDL_Memory();
-};
+	if (App().PollEvent(*event))
+	{
+		return true;
+	}
 
-#endif
+	App().PollEvents();
+
+	return false;
+}

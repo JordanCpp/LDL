@@ -3,13 +3,13 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL3_SDL_Memory_hpp
-#define LDL_APIs_SDL3_SDL_Memory_hpp
+#include <LDL/APIs/SDL/SDL_init.h>
 
-class SDL_Memory
+int SDL_Init(Uint32 flags)
 {
-public:
-	SDL_Memory();
-};
+	return 1;
+}
 
-#endif
+void SDL_Quit(void)
+{
+}

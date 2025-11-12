@@ -3,13 +3,13 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL3_SDL_Memory_hpp
-#define LDL_APIs_SDL3_SDL_Memory_hpp
+#include <stdlib.h>
+#include <LDL/Core/MemoryManager.hpp>
+#include <LDL/APIs/SDL2/SDL_Memory.hpp>
 
-class SDL_Memory
+using namespace LDL;
+
+SDL_Memory::SDL_Memory()
 {
-public:
-	SDL_Memory();
-};
-
-#endif
+	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+}

@@ -3,13 +3,17 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL3_SDL_Memory_hpp
-#define LDL_APIs_SDL3_SDL_Memory_hpp
+#include <LDL/APIs/SDL/SDL_timer.h>
+#include <LDL/Time/Ticks.hpp>
 
-class SDL_Memory
+using namespace LDL;
+
+Uint32 SDL_GetTicks(void)
 {
-public:
-	SDL_Memory();
-};
+	return (Uint32)Ticks();
+}
 
-#endif
+void SDL_Delay(Uint32 ms)
+{
+	Delay(ms);
+}

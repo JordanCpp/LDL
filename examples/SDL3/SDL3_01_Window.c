@@ -25,7 +25,7 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
         return SDL_APP_FAILURE;
     }
 
-    window = SDL_CreateWindow("Renderer", WINDOW_WIDTH, WINDOW_HEIGTH, 0);
+    window = SDL_CreateWindow(__FILE__, WINDOW_WIDTH, WINDOW_HEIGTH, 0);
     if (window == NULL)
     {
         printf("Create window error: %s\n", SDL_GetError());

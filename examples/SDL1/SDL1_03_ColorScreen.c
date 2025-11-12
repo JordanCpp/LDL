@@ -48,6 +48,8 @@ int main(int argc, char* argv[])
         return -1;
     }
 
+    SDL_WM_SetCaption(__FILE__, NULL);
+
     ColorScreen(screen, 237, 28, 36);
 
     while (running)

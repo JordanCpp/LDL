@@ -86,6 +86,8 @@ extern SDL_DECLSPEC void         SDLCALL SDL_FreeSurface(SDL_Surface* surface);
 extern SDL_DECLSPEC SDL_Surface* SDLCALL SDL_LoadBMP(const char* path);
 extern SDL_DECLSPEC int          SDLCALL SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcRect, SDL_Surface* dst, SDL_Rect* dstRect);
 
+extern SDL_DECLSPEC void         SDLCALL SDL_WM_SetCaption(const char* title, const char* icon);
+
 #ifdef __cplusplus
 }
 #endif

@@ -3,15 +3,15 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL3_SDL_Application_hpp
-#define LDL_APIs_SDL3_SDL_Application_hpp
+#ifndef LDL_APIs_SDL2_SDL_Application_hpp
+#define LDL_APIs_SDL2_SDL_Application_hpp
 
 #include <LDL/STL/vector.hpp>
 #include <LDL/Core/Result.hpp>
 #include <LDL/STL/ring_buffer.hpp>
-#include <LDL/APIs/SDL3/SDL_events.h>
-#include <LDL/APIs/SDL3/SDL_Memory.hpp>
-#include <LDL/APIs/SDL3/SDL_Window.hpp>
+#include <LDL/APIs/SDL2/SDL_events.h>
+#include <LDL/APIs/SDL2/SDL_Memory.hpp>
+#include <LDL/APIs/SDL2/SDL_Window.hpp>
 
 class SDL_Application
 {

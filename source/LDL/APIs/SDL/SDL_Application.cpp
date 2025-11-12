@@ -3,20 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/APIs/SDL/SDL.h>
-#include <LDL/APIs/SDL/SDL_Memory.hpp>
+#include <LDL/APIs/SDL/SDL_mouse.h>
 #include <LDL/APIs/SDL/SDL_Application.hpp>
 
 using namespace LDL;
-
-int SDL_Init(Uint32 flags)
-{
-	return 1;
-}
-
-void SDL_Quit(void)
-{
-}
 
 static SDL_Application mainApplication;
 
@@ -49,6 +39,41 @@ void SDL_Application::PollEvents()
 				dst.type     = SDL_MOUSEMOTION;
 				dst.motion.x = (Uint16)src.Mouse.PosX;
 				dst.motion.y = (Uint16)src.Mouse.PosY;
+			}
+			else if (src.Type == IsMouseClick)
+			{
+				if (src.Mouse.State == ButtonState::Pressed)
+				{
+					dst.type = SDL_MOUSEBUTTONDOWN;
+					dst.button.state = SDL_PRESSED;
+				}
+				else
+				{
+					dst.type = SDL_MOUSEBUTTONUP;
+					dst.button.state = SDL_RELEASED;
+				}
+
+				if (src.Mouse.Button == MouseButton::Left)
+				{
+					dst.button.button = SDL_BUTTON_LEFT;
+				}
+				else if (src.Mouse.Button == MouseButton::Middle)
+				{
+					dst.button.button = SDL_BUTTON_MIDDLE;
+				}
+				else if (src.Mouse.Button == MouseButton::Right)
+				{
+					dst.button.button = SDL_BUTTON_RIGHT;
+				}
+
+				dst.button.x = (Uint16)src.Mouse.PosX;
+				dst.button.y = (Uint16)src.Mouse.PosY;
+			}
+			else if (src.Type == IsResize)
+			{
+				dst.type     = SDL_VIDEORESIZE;
+				dst.resize.w = src.Resize.Width;
+				dst.resize.h = src.Resize.Height;
 			}
 
 			_events.enqueue(dst);

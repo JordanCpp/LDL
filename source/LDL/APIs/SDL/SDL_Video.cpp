@@ -141,3 +141,8 @@ SDL_Surface* SDL_LoadBMP(const char* path)
 
 	return result;
 }
+
+void SDL_WM_SetCaption(const char* title, const char* icon)
+{
+	App().GetWindow()->Title(title);
+}

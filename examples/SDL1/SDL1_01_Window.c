@@ -30,6 +30,8 @@ int main(int argc, char* argv[])
         return -1;
     }
 
+    SDL_WM_SetCaption(__FILE__, NULL);
+
     while (running)
     {
         while (SDL_PollEvent(&event))

@@ -1,3 +1,6 @@
+
+cmake_minimum_required(VERSION 3.12)
+
 project(LDL)
 
 if (MSVC)
@@ -45,6 +48,10 @@ endif()
 file(GLOB LDL_SDL_SOURCE "source/LDL/APIs/SDL/*.cpp")
 add_library(LDL_SDL STATIC ${LDL_SDL_SOURCE})	
 target_link_libraries(LDL_SDL LDL)
+
+file(GLOB LDL_SDL2_SOURCE "source/LDL/APIs/SDL2/*.cpp")
+add_library(LDL_SDL2 STATIC ${LDL_SDL2_SOURCE})	
+target_link_libraries(LDL_SDL2 LDL)
 
 file(GLOB LDL_SDL3_SOURCE "source/LDL/APIs/SDL3/*.cpp")
 add_library(LDL_SDL3 STATIC ${LDL_SDL3_SOURCE})	
