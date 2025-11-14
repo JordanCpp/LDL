@@ -6,7 +6,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
 #include <LDL/APIs/SDL/SDL_image.h>
-#include <LDL/APIs/SDL/SDL_Video.h>
+#include <LDL/APIs/SDL/SDL_video.h>
 #include <LDL/APIs/SDL/SDL_error.h>
 #include <LDL/Graphics/PixelFormat.hpp>
 
