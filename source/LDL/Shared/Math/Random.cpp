@@ -4,7 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <time.h>
-#include <LDL/std/stdint.hpp>
+#include <LDL/Core/Types.hpp>
 #include <LDL/Math/Random.hpp>
 
 using namespace LDL;

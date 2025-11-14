@@ -6,8 +6,7 @@
 #ifndef LDL_APIs_OpenGL_OpenGL_Loader_hpp
 #define LDL_APIs_OpenGL_OpenGL_Loader_hpp
 
-#include <LDL/std/stddef.hpp>
-#include <LDL/std/stdbool.hpp>
+#include <LDL/Core/Types.hpp>
 #include <LDL/Core/Result.hpp>
 #include <LDL/APIs/OpenGL/OpenGL_Functions.hpp>
 

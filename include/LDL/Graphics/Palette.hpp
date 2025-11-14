@@ -7,7 +7,7 @@
 #define LDL_Graphics_Palette_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/std/stddef.hpp>
+#include <LDL/Core/Types.hpp>
 #include <LDL/Graphics/Color.hpp>
 
 namespace LDL

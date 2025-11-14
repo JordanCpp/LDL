@@ -6,7 +6,7 @@
 #ifndef LDL_Graphics_OpenGL1_TextureBatcherImpl_hpp
 #define LDL_Graphics_OpenGL1_TextureBatcherImpl_hpp
 
-#include <LDL/STL/vector.hpp>
+#include <LDL/Core/vector.hpp>
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
 #include <LDL/Shared/Graphics/Impls/TextureBatcherImpl.hpp>
@@ -25,7 +25,7 @@ namespace LDL
 	private:
 		size_t       _texture;
 		size_t       _textureSize;
-		vector<Quad> _quads;
+		Vector<Quad> _quads;
 	};
 }
 

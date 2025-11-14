@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/std/string.hpp>
+#include <LDL/Core/StdFuncs.hpp>
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Graphics/Surface.hpp>
 

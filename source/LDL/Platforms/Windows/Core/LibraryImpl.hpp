@@ -7,7 +7,7 @@
 #define LDL_Platforms_Windows_Core_LibraryImpl_hpp
 
 #include <LDL/Core/Library.hpp>
-#include <LDL/STL/inplace_strings.hpp>
+#include <LDL/Core/InPlaceStrings.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
 
 namespace LDL

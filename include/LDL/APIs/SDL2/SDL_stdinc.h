@@ -6,9 +6,7 @@
 #ifndef LDL_APIs_SDL2_SDL_stdinc_h
 #define LDL_APIs_SDL2_SDL_stdinc_h
 
-#include <LDL/std/stddef.hpp>
-#include <LDL/std/stdint.hpp>
-#include <LDL/std/stdbool.hpp>
+#include <LDL/Core/Types.hpp>
 #include <LDL/APIs/SDL2/SDL_config.h>
 
 #ifdef __cplusplus

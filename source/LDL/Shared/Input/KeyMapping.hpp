@@ -6,7 +6,7 @@
 #ifndef LDL_Shared_Input_KeyMapping_hpp
 #define LDL_Shared_Input_KeyMapping_hpp
 
-#include <LDL/STL/vector.hpp>
+#include <LDL/Core/vector.hpp>
 #include <LDL/Shared/Input/KeyMap.hpp>
 
 namespace LDL
@@ -22,7 +22,7 @@ namespace LDL
 		void Add(const KeyMap& keyMap);
 		uint8_t FindKey(size_t key);
 	private:
-		vector<KeyMap> _table;
+		Vector<KeyMap> _table;
 	};
 }
 

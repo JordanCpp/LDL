@@ -6,8 +6,7 @@
 #ifndef LDL_Events_Resize_hpp
 #define LDL_Events_Resize_hpp
 
-#include <LDL/std/stddef.hpp>
-#include <LDL/std/stdint.hpp>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {

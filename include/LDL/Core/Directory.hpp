@@ -6,7 +6,7 @@
 #ifndef LDL_Core_Directory_hpp
 #define LDL_Core_Directory_hpp
 
-#include <LDL/std/stdint.hpp>
+#include <LDL/Core/Types.hpp>
 #include <LDL/Core/Result.hpp>
 #include <LDL/Core/FileInfo.hpp>
 

@@ -7,7 +7,7 @@
 #define LDL_Loaders_BmpLoader_hpp
 
 #include <LDL/Math/Vec2u.hpp>
-#include <LDL/STL/vector.hpp>
+#include <LDL/Core/Vector.hpp>
 #include <LDL/Core/Result.hpp>
 #include <LDL/Graphics/PixelFormat.hpp>
 #include <LDL/Core/Formatter.hpp>
@@ -28,7 +28,7 @@ namespace LDL
 		size_t          _pixelFormat;
 		Result&         _result;
 		Vec2u           _size;
-		vector<uint8_t> _pixels;
+		Vector<uint8_t> _pixels;
 		Formatter       _formatter;
 	};
 }

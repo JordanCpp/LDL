@@ -6,7 +6,7 @@
 #ifndef LDL_Events_LostFocus_hpp
 #define LDL_Events_LostFocus_hpp
 
-#include <LDL/std/stdint.hpp>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {

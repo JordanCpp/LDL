@@ -74,10 +74,10 @@ void FormatterTest()
 
 	Formatter formatter;
 
-	inplace_string<limit> strEmpty = formatter.Format("");
+	InPlaceString<limit> strEmpty = formatter.Format("");
 	LDL_TEST_EQUAL(strcmp(strEmpty.c_str(), "") == 0);
 
-	inplace_string<limit> strData = formatter.Format("Test string %s and number %d", "hello", 42);
+	InPlaceString<limit> strData = formatter.Format("Test string %s and number %d", "hello", 42);
 	LDL_TEST_EQUAL(strcmp(strData.c_str(), "Test string hello and number 42") == 0);
 }
 

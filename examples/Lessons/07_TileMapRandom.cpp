@@ -69,8 +69,8 @@ int main()
 	uint32_t dy   = 0;
 	uint32_t step = tileSize.x / 2;
 
-	vector<uint32_t> tilesX;
-	vector<uint32_t> tilesY;
+	Vector<uint32_t> tilesX;
+	Vector<uint32_t> tilesY;
 
 	tilesX.resize(mapSize.x * mapSize.y);
 	tilesY.resize(mapSize.x * mapSize.y);

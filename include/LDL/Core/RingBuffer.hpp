@@ -6,8 +6,8 @@
 #ifndef LDL_STL_ring_buffer_hpp
 #define LDL_STL_ring_buffer_hpp
 
-#include <LDL/std/string.hpp>
-#include <LDL/STL/vector.hpp>
+#include <LDL/Core/StdFuncs.hpp>
+#include <LDL/Core/vector.hpp>
 
 namespace LDL
 {
@@ -74,7 +74,7 @@ namespace LDL
 		}
 
 	private:
-		LDL::vector<T> _content;
+		LDL::Vector<T> _content;
 		size_t         _head;
 		size_t         _tail;
 		size_t         _length;

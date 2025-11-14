@@ -10,7 +10,6 @@ g++ -fno-rtti -fno-exceptions -Wall -Wextra -pedantic -O2 -s -static -shared -o 
 ..\source\LDL\Shared\Input\*.cpp ^
 ..\source\LDL\Shared\Loaders\*.cpp ^
 ..\source\LDL\Shared\Math\*.cpp ^
-..\source\LDL\Shared\std\*.cpp ^
 ..\source\LDL\Shared\Time\*.cpp ^
 ..\source\LDL\Shared\Graphics\Base\*.cpp ^
 ..\source\LDL\Shared\Graphics\Creators\*.cpp ^

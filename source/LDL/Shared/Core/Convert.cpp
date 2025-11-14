@@ -4,9 +4,8 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Core/Convert.hpp>
-#include <LDL/std/string.hpp>
-#include <LDL/std/limits.hpp>
-#include <LDL/std/stdbool.hpp>
+#include <LDL/Core/StdFuncs.hpp>
+#include <LDL/Core/Types.hpp>
 
 using namespace LDL;
 

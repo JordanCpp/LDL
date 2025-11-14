@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 #include <stdarg.h>
-#include <LDL/std/string.hpp>
+#include <LDL/Core/StdFuncs.hpp>
 #include <LDL/Core/Formatter.hpp>
 
 using namespace LDL;

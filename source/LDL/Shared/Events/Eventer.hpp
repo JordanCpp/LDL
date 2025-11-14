@@ -7,7 +7,7 @@
 #define LDL_Events_Eventer_hpp
 
 #include <LDL/Events/Event.hpp>
-#include <LDL/STL/ring_buffer.hpp>
+#include <LDL/Core/RingBuffer.hpp>
 
 namespace LDL
 {

@@ -6,9 +6,9 @@
 #ifndef LDL_APIs_SDL3_SDL_Application_hpp
 #define LDL_APIs_SDL3_SDL_Application_hpp
 
-#include <LDL/STL/vector.hpp>
+#include <LDL/Core/vector.hpp>
 #include <LDL/Core/Result.hpp>
-#include <LDL/STL/ring_buffer.hpp>
+#include <LDL/Core/RingBuffer.hpp>
 #include <LDL/APIs/SDL3/SDL_events.h>
 #include <LDL/APIs/SDL3/SDL_Memory.hpp>
 #include <LDL/APIs/SDL3/SDL_Window.hpp>
@@ -23,13 +23,13 @@ public:
 	SDL_Application();
 	LDL::Result& GetResult();
 	void Append(SDL_Window* window);
-	LDL::vector<SDL_Window*>& GetWindows();
+	LDL::Vector<SDL_Window*>& GetWindows();
 	void PollEvents();
 	bool PollEvent(SDL_Event& dest);
 private:
 	SDL_Memory                       _memory;
 	LDL::Result                      _result;
-	LDL::vector<SDL_Window*>         _windows;
+	LDL::Vector<SDL_Window*>         _windows;
 	LDL::ring_buffer<SDL_Event, Max> _events;
 };
 

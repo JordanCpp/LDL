@@ -7,7 +7,7 @@
 #define LDL_Graphics_VideoMode_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/std/stddef.hpp>
+#include <LDL/Core/Types.hpp>
 #include <LDL/Math/Vec2u.hpp>
 
 namespace LDL

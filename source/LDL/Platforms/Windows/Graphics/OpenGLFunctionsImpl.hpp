@@ -6,7 +6,7 @@
 #ifndef LDL_Platforms_Windows_Graphics_OpenGL_OpenGLFunctionsImpl_hpp
 #define LDL_Platforms_Windows_Graphics_OpenGL_OpenGLFunctionsImpl_hpp
 
-#include <LDL/std/stdbool.hpp>
+#include <LDL/Core/Types.hpp>
 #include <LDL/Core/Library.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
 

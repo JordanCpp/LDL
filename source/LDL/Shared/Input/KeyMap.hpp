@@ -6,8 +6,7 @@
 #ifndef LDL_Shared_Input_KeyMap_hpp
 #define LDL_Shared_Input_KeyMap_hpp
 
-#include <LDL/std/stddef.hpp>
-#include <LDL/std/stdint.hpp>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {

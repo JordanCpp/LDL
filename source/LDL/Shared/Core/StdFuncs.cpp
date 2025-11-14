@@ -3,8 +3,25 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/std/string.hpp>
-#include <LDL/std/stdint.hpp>
+#include <LDL/Core/StdFuncs.hpp>
+#include <LDL/Core/MemoryManager.hpp>
+
+using namespace LDL;
+
+void* LDL::LDL_malloc(size_t bytes)
+{
+	return MemoryManager::Instance().GetMalloc()(bytes);
+}
+
+void LDL::LDL_free(void* ptr)
+{
+	MemoryManager::Instance().GetFree()(ptr);
+}
+
+int LDL::abs(int x)
+{
+	return x < 0 ? -x : x;
+}
 
 size_t LDL::strlcpy(char* dst, const char* src, size_t size)
 {

@@ -3,17 +3,19 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_std_string_hpp
-#define LDL_std_string_hpp
+#ifndef LDL_Core_StdFuncs_hpp
+#define LDL_Core_StdFuncs_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/std/stddef.hpp>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {
+	LDL_LIBRARY int abs(int x);
+	LDL_LIBRARY void* LDL_malloc(size_t bytes);
+	LDL_LIBRARY void LDL_free(void* ptr);
 	LDL_LIBRARY size_t strlcpy(char* dst, const char* src, size_t size);
 	LDL_LIBRARY size_t strlen(const char* src);
-
 	LDL_LIBRARY void* LDL_memcpy(void* dst, const void* src, size_t size);
 	LDL_LIBRARY void* LDL_memset(void* ptr, int value, size_t num);
 }

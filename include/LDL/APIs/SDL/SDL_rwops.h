@@ -7,9 +7,7 @@
 #define LDL_APIs_SDL_SDL_rwops_h
 
 #include <LDL/APIs/SDL/SDL_config.h>
-#include <LDL/std/stddef.hpp>
-#include <LDL/std/stdbool.hpp>
-#include <LDL/std/stdint.hpp>
+#include <LDL/Core/Types.hpp>
 
 #ifdef __cplusplus
 extern "C" {

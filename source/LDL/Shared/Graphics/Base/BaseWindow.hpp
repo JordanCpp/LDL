@@ -7,7 +7,7 @@
 #define LDL_Graphics_BaseWindow_hpp
 
 #include <LDL/Math/Vec2u.hpp>
-#include <LDL/STL/inplace_strings.hpp>
+#include <LDL/Core/InPlaceStrings.hpp>
 
 namespace LDL
 {

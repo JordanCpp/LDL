@@ -6,8 +6,7 @@
 #ifndef LDL_Events_Mouse_hpp
 #define LDL_Events_Mouse_hpp
 
-#include <LDL/std/stddef.hpp>
-#include <LDL/std/stdint.hpp>
+#include <LDL/Core/Types.hpp>
 #include <LDL/Enums/MouseButton.hpp>
 #include <LDL/Enums/ButtonState.hpp>
 #include <LDL/Enums/MouseScroll.hpp>

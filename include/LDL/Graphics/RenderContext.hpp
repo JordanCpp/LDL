@@ -7,8 +7,7 @@
 #define LDL_Graphics_RenderContext_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/std/stddef.hpp>
-#include <LDL/std/stdint.hpp>
+#include <LDL/Core/Types.hpp>
 #include <LDL/Enums/RenderMode.hpp>
 
 namespace LDL

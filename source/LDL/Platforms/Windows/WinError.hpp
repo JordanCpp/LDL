@@ -6,7 +6,7 @@
 #ifndef LDL_Platforms_Windows_WinError_hpp
 #define LDL_Platforms_Windows_WinError_hpp
 
-#include <LDL/STL/inplace_strings.hpp>
+#include <LDL/Core/InPlaceStrings.hpp>
 
 namespace LDL
 {

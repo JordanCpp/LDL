@@ -5,7 +5,7 @@
 
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Core/Convert.hpp>
-#include <LDL/STL/inplace_strings.hpp>
+#include <LDL/Core/InPlaceStrings.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
 

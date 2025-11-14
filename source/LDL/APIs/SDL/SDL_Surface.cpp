@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/std/string.hpp>
+#include <LDL/Core/StdFuncs.hpp>
 #include <LDL/APIs/SDL/SDL_Surface.hpp>
 
 using namespace LDL;

@@ -7,7 +7,7 @@
 #define LDL_Time_FpsCounter_hpp
 
 #include <LDL/Time/Ticks.hpp>
-#include <LDL/std/stdbool.hpp>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {

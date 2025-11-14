@@ -7,7 +7,7 @@
 #define LDL_Graphics_Utils_PotTextureSizer_hpp
 
 #include <LDL/Math/Vec2u.hpp>
-#include <LDL/std/stddef.hpp>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {

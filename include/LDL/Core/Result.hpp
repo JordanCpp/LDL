@@ -6,7 +6,8 @@
 #ifndef LDL_Core_Result_hpp
 #define LDL_Core_Result_hpp
 
-#include <LDL/STL/inplace_strings.hpp>
+#include <LDL/Config.hpp>
+#include <LDL/Core/InPlaceStrings.hpp>
 
 namespace LDL
 {

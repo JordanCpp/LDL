@@ -6,8 +6,7 @@
 #ifndef LDL_Core_FileStream_hpp
 #define LDL_Core_FileStream_hpp
 
-#include <LDL/std/stddef.hpp>
-#include <LDL/std/stdint.hpp>
+#include <LDL/Core/Types.hpp>
 #include <LDL/Core/Result.hpp>
 
 namespace LDL

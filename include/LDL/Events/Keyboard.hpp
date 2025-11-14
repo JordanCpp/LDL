@@ -6,7 +6,7 @@
 #ifndef LDL_Events_Keyboard_hpp
 #define LDL_Events_Keyboard_hpp
 
-#include <LDL/std/stdint.hpp>
+#include <LDL/Core/Types.hpp>
 #include <LDL/Enums/ButtonState.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
 

@@ -16,7 +16,7 @@ TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, Sur
 {
 	GLint format = 0;
 
-	LDL::vector<uint8_t> pixels;
+	LDL::Vector<uint8_t> pixels;
 
 	if (surface->Enabled())
 	{

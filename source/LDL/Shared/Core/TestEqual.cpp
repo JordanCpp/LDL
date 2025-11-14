@@ -6,7 +6,6 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Core/Convert.hpp>
 #include <LDL/Core/Console.hpp>
-#include <LDL/STL/inplace_strings.hpp>
 #include <LDL/Core/Formatter.hpp>
 
 using namespace LDL;

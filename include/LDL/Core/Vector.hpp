@@ -3,17 +3,17 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_STL_vector_hpp
-#define LDL_STL_vector_hpp
+#ifndef LDL_Core_Vector_hpp
+#define LDL_Core_Vector_hpp
 
-#include <LDL/STL/new.hpp>
-#include <LDL/std/stdlib.hpp>
+#include <LDL/Core/new.hpp>
+#include <LDL/Core/StdFuncs.hpp>
 #include <LDL/Core/Assert.hpp>
 
 namespace LDL
 {
     template <class T>
-    class vector
+    class Vector
     {
     private:
         char*  _storage;
@@ -41,12 +41,12 @@ namespace LDL
         }
 
     public:
-        vector() : 
+        Vector() : 
             _storage(0), _size(0), _capacity(0)
         {
         }
 
-        ~vector()
+        ~Vector()
         {
             for (size_t i = 0; i < _size; ++i)
             {
@@ -56,7 +56,7 @@ namespace LDL
             dealloc(_storage);
         }
 
-        vector(const vector& other) : 
+        Vector(const Vector& other) : 
             _storage(0), _size(0), _capacity(0)
         {
             if (other._size == 0)
@@ -74,7 +74,7 @@ namespace LDL
             _size = other._size;
         }
 
-        vector& operator=(const vector& other)
+        Vector& operator=(const Vector& other)
         {
             if (this == &other)
             {

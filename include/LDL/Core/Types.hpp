@@ -3,8 +3,21 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_std_stdint_hpp
-#define LDL_std_stdint_hpp
+#ifndef LDL_Core_Types_hpp
+#define LDL_Core_Types_hpp
+
+#include <limits.h>
+#include <stddef.h>
+
+#if (_MSC_VER >= 1900)
+    #include <stdbool.h>
+#else
+    #if (_MSC_VER <= 1200) && (!__cplusplus)
+        #define bool  char
+        #define true  1
+        #define false 0
+    #endif
+#endif
 
 #if (_MSC_VER >= 1900 || __GNUC__)
     #include <stdint.h>
@@ -28,4 +41,4 @@
     typedef signed int      uintmax_t;
 #endif
 
-#endif
+#endif    

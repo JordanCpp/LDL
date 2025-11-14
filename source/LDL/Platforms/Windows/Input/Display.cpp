@@ -27,7 +27,7 @@ Display::Display()
 	}
 }
 
-const vector<VideoMode>& Display::Modes()
+const Vector<VideoMode>& Display::Modes()
 {
 	return _videoModes;
 }

@@ -7,9 +7,7 @@
 #define LDL_Graphics_OpenGL3_ShaderLoader_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/std/stddef.hpp>
-#include <LDL/std/stdint.hpp>
-#include <LDL/std/stdbool.hpp>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {

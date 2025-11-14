@@ -45,7 +45,7 @@ void SDL_Application::Append(SDL_Window* window)
 	}
 }
 
-vector<SDL_Window*>& SDL_Application::GetWindows()
+Vector<SDL_Window*>& SDL_Application::GetWindows()
 {
 	return _windows;
 }

@@ -7,7 +7,7 @@
 #define LDL_APIs_SDL_SDL_Application_hpp
 
 #include <LDL/Graphics/Render.hpp>
-#include <LDL/STL/ring_buffer.hpp>
+#include <LDL/Core/RingBuffer.hpp>
 #include <LDL/APIs/SDL/SDL_video.h>
 #include <LDL/APIs/SDL/SDL_events.h>
 #include <LDL/APIs/SDL/SDL_Memory.hpp>
