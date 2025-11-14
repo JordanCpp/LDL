@@ -7,25 +7,17 @@
 #include <LDL/Core/Convert.hpp>
 #include <LDL/Core/Console.hpp>
 #include <LDL/STL/inplace_strings.hpp>
+#include <LDL/Core/Formatter.hpp>
+
+using namespace LDL;
 
 void LDL::TestEqual(bool condition, const char* description, const char* function, const char* file, size_t line)
 {
 	if (!condition)
 	{
-		Convert conv;
-
-		ErrorString message;
-
-		message += "\nTest failed: ";
-		message += description;
-		message += ", function ";
-		message += function;
-		message += ", file ";
-		message += file;
-		message += ", line ";
-		message += conv.ToString(line) + '\n';
+		Formatter formatter;
 
 		Console console;
-		console.Write(message.c_str());
+		console.Write(formatter.Format("Test failed: %s, function: %s, file: %s, line: %d\n", description, function, file, line));
 	}
 }

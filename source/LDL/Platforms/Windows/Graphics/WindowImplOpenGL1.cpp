@@ -15,7 +15,7 @@ WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec
 {
     PIXELFORMATDESCRIPTOR pfd;
 
-    LDL::LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
+    LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
 
     WindowError windowError;
 

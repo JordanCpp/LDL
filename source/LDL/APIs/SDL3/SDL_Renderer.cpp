@@ -13,6 +13,7 @@ SDL_Renderer::SDL_Renderer(SDL_Window* window, const char* name) :
 	_render(App().GetResult(), window->GetRenderContext(), &window->GetWindow()),
 	_renderContext(window->GetRenderContext())
 {
+	LDL_UNUSED(name);
 }
 
 Render& SDL_Renderer::GetRender()

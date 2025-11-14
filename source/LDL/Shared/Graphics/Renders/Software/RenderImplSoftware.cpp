@@ -60,6 +60,7 @@ void RenderImplSoftware::SetColor(const Color& color)
 
 void RenderImplSoftware::Pixel(const Vec2u& pos)
 {
+	LDL_UNUSED(pos);
 }
 
 void RenderImplSoftware::Line(const Vec2u& pos1, const Vec2u& pos2)
@@ -88,7 +89,7 @@ void RenderImplSoftware::Draw(Surface* image, const Vec2u& pos, const Vec2u& siz
 {
 	if (size.x != image->Size().x || size.y != image->Size().y)
 	{
-		Surface* result = _imageResizer.Resize(size, image);
+		//Surface* result = _imageResizer.Resize(size, image);
 		//_pixelCopier.Copy(result, &_canvas, pos);
 	}
 	else

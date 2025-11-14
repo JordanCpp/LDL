@@ -19,7 +19,7 @@ namespace LDL
 	public:
 		enum
 		{
-			SizeOf = 1024,
+			SizeOf = 1024
 		};
 		Directory(Result& result);
 		~Directory();

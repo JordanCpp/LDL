@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <LDL/APIs/SDL/SDL.h>
+#include <LDL/APIs/SDL/SDL_image.h>
 
 void ErrorShow(const char* error)
 {
@@ -17,7 +18,6 @@ int main(int argc, char* argv[])
     SDL_Surface* image  = NULL;
     bool running        = true;
     SDL_Event event;
-    SDL_Rect rect;
 
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -33,8 +33,8 @@ int main(int argc, char* argv[])
     }
 
     SDL_WM_SetCaption(__FILE__, NULL);
-    
-    image = SDL_LoadBMP("data/sample.bmp");
+
+    image = IMG_Load("data/testyuv.png");
     if (image == NULL)
     {
         ErrorShow(SDL_GetError());
@@ -51,12 +51,7 @@ int main(int argc, char* argv[])
             }
         }
 
-        rect.x = 55;
-        rect.y = 35;
-        rect.w = image->w;
-        rect.h = image->h;
-
-        SDL_BlitSurface(image, NULL, screen, &rect);
+        SDL_BlitSurface(image, NULL, screen, NULL);
 
         SDL_Flip(screen);
     }

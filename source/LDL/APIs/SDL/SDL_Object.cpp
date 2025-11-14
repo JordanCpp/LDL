@@ -22,7 +22,7 @@ void* SDL_LoadFunction(void* handle, const char* name)
 {
 	Library* library = (Library*)handle;
 
-	return library->Function(name);
+	return (void*)library->Function(name);
 }
 
 void SDL_UnloadObject(void* handle)

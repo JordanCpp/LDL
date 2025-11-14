@@ -10,9 +10,13 @@
 
 namespace LDL
 {
-	class PixelCopier
+	class LDL_LIBRARY PixelCopier
 	{
 	public:
+		void Copy(uint8_t* dstPixels, size_t dstFormat, const Vec2u& dstArea, const Vec2u& dstPos, const Vec2u& dstSize, uint8_t* srcPixels, size_t srcFormat, const Vec2u& srcArea, const Vec2u& srcPos, const Vec2u& srcSize);
+		void RGB24FromRGB24(uint8_t* dstPixels, const Vec2u& dstArea, const Vec2u& dstPos, const Vec2u& dstSize, uint8_t* srcPixels, const Vec2u& srcArea, const Vec2u& srcPos, const Vec2u& srcSize);
+		void RGB24FromRGBA32(uint8_t* dstPixels, const Vec2u& dstArea, const Vec2u& dstPos, const Vec2u& dstSize, uint8_t* srcPixels, const Vec2u& srcArea, const Vec2u& srcPos, const Vec2u& srcSize);
+
 		void Copy(size_t srcFormat, uint8_t* srcPixels, const Vec2u& srcSize, Surface* srcSurf, size_t dstFormat, uint8_t* dstPixels, const Vec2u& dstSize, const Vec2u& pos, Surface* dstSurf);
 		
 		//BGR24
@@ -24,6 +28,7 @@ namespace LDL
 		//RGB24
 		void CopyRGB24ToRGB24(uint8_t* srcPixels, const Vec2u& srcSize, Surface* srcSurf, uint8_t* dstPixels, const Vec2u& dstSize, const Vec2u& pos, Surface* dstSurf);
 		void CopyBGR24ToRGB24(uint8_t* srcPixels, const Vec2u& srcSize, Surface* srcSurf, uint8_t* dstPixels, const Vec2u& dstSize, const Vec2u& pos, Surface* dstSurf);
+		void CopyRGBA32ToRGB24(uint8_t* srcPixels, const Vec2u& srcSize, Surface* srcSurf, uint8_t* dstPixels, const Vec2u& dstSize, const Vec2u& pos, Surface* dstSurf);
 	private:
 	};
 }

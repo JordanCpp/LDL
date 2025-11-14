@@ -24,3 +24,6 @@ target_link_libraries(07_TileMapRandom LDL)
 
 add_executable(08_Memory "08_Memory.cpp")
 target_link_libraries(08_Memory LDL)
+
+add_executable(09_Software "09_Software.cpp")
+target_link_libraries(09_Software LDL)

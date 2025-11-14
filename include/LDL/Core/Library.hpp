@@ -20,7 +20,7 @@ namespace LDL
 	public:
 		enum
 		{
-			SizeOf = 512,
+			SizeOf = 512
 		};
 		Library(const char* path);
 		~Library();

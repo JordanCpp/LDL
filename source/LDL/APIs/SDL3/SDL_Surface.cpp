@@ -67,6 +67,8 @@ SDL_Surface* SDL_CreateSurface(int width, int height, SDL_PixelFormat pixelForma
 
 SDL_Surface* SDL_CreateSurfaceFrom(int width, int height, SDL_PixelFormat pixelFormat, void* pixels, int pitch)
 {
+	LDL_UNUSED(pitch);
+
 	void* memory = SDL_malloc(sizeof(SDL_SurfaceDetail));
 
 	SDL_SurfaceDetail* surface = new(memory) SDL_SurfaceDetail(width, height, pixelFormat, (uint8_t*)pixels);

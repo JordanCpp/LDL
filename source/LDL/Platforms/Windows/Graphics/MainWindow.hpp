@@ -10,9 +10,9 @@
 #include <LDL/Enums/WindowMode.hpp>
 #include <LDL/Shared/Events/Eventer.hpp>
 #include <LDL/Platforms/Windows/WinError.hpp>
-#include <LDL/Shared/Input/KeyMapping.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
 #include <LDL/Shared/Graphics/Base/BaseWindow.hpp>
+#include <LDL/Platforms/Windows/Input/KeyMapper.hpp>
 
 namespace LDL
 {
@@ -21,7 +21,6 @@ namespace LDL
 	public:
 		MainWindow(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode);
 		~MainWindow();
-		void InitKeyMapping();
 		bool Running();
 		void PollEvents();
 		bool GetEvent(Event& event);
@@ -35,7 +34,7 @@ namespace LDL
 		uint8_t ConvertKey(size_t key);
 		static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 		LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
-		KeyMapping      _keyMapping;
+		KeyMapper       _keyMapper;
 		WindowError     _windowError;
 		BaseWindow      _baseWindow;
 		Result&         _result;

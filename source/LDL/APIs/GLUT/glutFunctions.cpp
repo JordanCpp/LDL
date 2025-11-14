@@ -20,6 +20,8 @@ void glutMainLoop()
 
 void glutInitWindowPosition(int x, int y)
 {
+	LDL_UNUSED(x);
+	LDL_UNUSED(y);
 }
 
 void glutInitWindowSize(int width, int height)

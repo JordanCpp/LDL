@@ -9,7 +9,7 @@ using namespace LDL;
 
 uint8_t LDL::BytesPerPixelFromPixelFormat(size_t pixelFormat)
 {
-	uint8_t bytesPerPixel = 0;
+	uint8_t bytesPerPixel = PixelFormat::UNKNOWN;
 
 	switch (pixelFormat)
 	{

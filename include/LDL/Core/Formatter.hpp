@@ -15,7 +15,7 @@ namespace LDL
 	public:
 		enum
 		{
-			Max = 128
+			Max = 256
 		};
 		Formatter();
 		char* Format(const char* format, ...);

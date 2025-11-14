@@ -9,3 +9,6 @@ target_link_libraries(SDL1_02_LoadBmp LDL_SDL)
 
 add_executable(SDL1_03_ColorScreen "SDL1_03_ColorScreen.c")
 target_link_libraries(SDL1_03_ColorScreen LDL_SDL)
+
+add_executable(SDL1_04_Image "SDL1_04_Image.c")
+target_link_libraries(SDL1_04_Image LDL_SDL LDL_SDL_image)

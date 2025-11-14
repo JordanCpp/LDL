@@ -20,6 +20,8 @@ namespace LDL
 		uint8_t Type;
 		size_t  PosX;
 		size_t  PosY;
+		size_t  PosRelX;
+		size_t  PosRelY;
 		uint8_t State;
 		uint8_t Button;
 		size_t  Scroll;

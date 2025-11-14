@@ -3,20 +3,16 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL3_SDL_rect_h
-#define LDL_APIs_SDL3_SDL_rect_h
+#ifndef LDL_APIs_SDL_SDL_image_h
+#define LDL_APIs_SDL_SDL_image_h
+
+#include <LDL/APIs/SDL/SDL_video.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif 
 
-typedef struct SDL_FRect
-{
-    float x;
-    float y;
-    float w;
-    float h;
-} SDL_FRect;
+extern SDL_DECLSPEC SDL_Surface* SDLCALL IMG_Load(const char* file);
 
 #ifdef __cplusplus
 }

@@ -17,7 +17,7 @@ PixelPainter::~PixelPainter()
 {
 }
 
-void PixelPainter::Fill(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSize, const Vec2u& pos, const Vec2u& size, const LDL::Color& color)
+void PixelPainter::Fill(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSize, const Vec2u& pos, const Vec2u& size, const Color& color)
 {
 	switch (pixelFormat)
 	{
@@ -30,12 +30,15 @@ void PixelPainter::Fill(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSiz
 	}
 }
 
-void PixelPainter::FillBGR24(uint8_t* pixels, const Vec2u& dstSize, const Vec2u& pos, const Vec2u& size, const LDL::Color& color)
+void PixelPainter::FillBGR24(uint8_t* pixels, const Vec2u& dstSize, const Vec2u& pos, const Vec2u& size, const Color& color)
 {
 	size_t x = pos.x;
 	size_t y = pos.y;
 	size_t w = size.x;
 	size_t h = size.y;
+
+	LDL_UNUSED(w);
+	LDL_UNUSED(h);
 
 	size_t   dstW = dstSize.x;
 	size_t   dstH = dstSize.y;
@@ -58,12 +61,15 @@ void PixelPainter::FillBGR24(uint8_t* pixels, const Vec2u& dstSize, const Vec2u&
 	}
 }
 
-void PixelPainter::FillRGB24(uint8_t* pixels, const Vec2u& dstSize, const Vec2u& pos, const Vec2u& size, const LDL::Color& color)
+void PixelPainter::FillRGB24(uint8_t* pixels, const Vec2u& dstSize, const Vec2u& pos, const Vec2u& size, const Color& color)
 {
 	size_t x = (size_t)pos.x;
 	size_t y = (size_t)pos.y;
 	size_t w = (size_t)size.x;
 	size_t h = (size_t)size.y;
+
+	LDL_UNUSED(w);
+	LDL_UNUSED(h);
 
 	size_t   dstW = dstSize.x;
 	size_t   dstH = dstSize.y;
@@ -86,9 +92,11 @@ void PixelPainter::FillRGB24(uint8_t* pixels, const Vec2u& dstSize, const Vec2u&
 	}
 }
 
-void PixelPainter::Clear(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSize, const LDL::Color& color)
+void PixelPainter::Clear(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSize, const Color& color)
 {
 	size_t total = dstSize.x * dstSize.y * BytesPerPixelFromPixelFormat(pixelFormat);
+
+	LDL_UNUSED(total);
 
 	switch (pixelFormat)
 	{
@@ -107,11 +115,12 @@ void PixelPainter::Clear(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSi
 	}
 }
 
-void PixelPainter::ClearRGB24(uint8_t* pixels, const Vec2u& dstSize, const LDL::Color& color)
+void PixelPainter::ClearRGB24(uint8_t* pixels, const Vec2u& dstSize, const Color& color)
 {
-	size_t total = dstSize.x * dstSize.y * BytesPerPixelFromPixelFormat(PixelFormat::RGB24);
+	size_t bpp   = BytesPerPixelFromPixelFormat(PixelFormat::RGB24);
+	size_t total = dstSize.x * dstSize.y * bpp;
 
-	for (size_t i = 0; i < total; i++)
+	for (size_t i = 0; i < total; i += bpp)
 	{
 		pixels[i + 0] = color.r;
 		pixels[i + 1] = color.g;
@@ -119,11 +128,12 @@ void PixelPainter::ClearRGB24(uint8_t* pixels, const Vec2u& dstSize, const LDL::
 	}
 }
 
-void PixelPainter::ClearBGR24(uint8_t* pixels, const Vec2u& dstSize, const LDL::Color& color)
+void PixelPainter::ClearBGR24(uint8_t* pixels, const Vec2u& dstSize, const Color& color)
 {
-	size_t total = dstSize.x * dstSize.y * BytesPerPixelFromPixelFormat(PixelFormat::BGR24);
+	size_t bpp   = BytesPerPixelFromPixelFormat(PixelFormat::BGR24);
+	size_t total = dstSize.x * dstSize.y * bpp;
 
-	for (size_t i = 0; i < total; i++)
+	for (size_t i = 0; i < total; i += bpp)
 	{
 		pixels[i + 0] = color.b;
 		pixels[i + 1] = color.g;
@@ -131,11 +141,12 @@ void PixelPainter::ClearBGR24(uint8_t* pixels, const Vec2u& dstSize, const LDL::
 	}
 }
 
-void PixelPainter::ClearBGRA32(uint8_t* pixels, const Vec2u& dstSize, const LDL::Color& color)
+void PixelPainter::ClearBGRA32(uint8_t* pixels, const Vec2u& dstSize, const Color& color)
 {
-	size_t total = dstSize.x * dstSize.y * BytesPerPixelFromPixelFormat(PixelFormat::BGRA32);
+	size_t bpp   = BytesPerPixelFromPixelFormat(PixelFormat::BGRA32);
+	size_t total = dstSize.x * dstSize.y * bpp;
 
-	for (size_t i = 0; i < total; i++)
+	for (size_t i = 0; i < total; i += bpp)
 	{
 		pixels[i + 0] = color.b;
 		pixels[i + 1] = color.g;
@@ -144,11 +155,12 @@ void PixelPainter::ClearBGRA32(uint8_t* pixels, const Vec2u& dstSize, const LDL:
 	}
 }
 
-void PixelPainter::ClearRGBA32(uint8_t* pixels, const Vec2u& dstSize, const LDL::Color& color)
+void PixelPainter::ClearRGBA32(uint8_t* pixels, const Vec2u& dstSize, const Color& color)
 {
-	size_t total = dstSize.x * dstSize.y * BytesPerPixelFromPixelFormat(PixelFormat::RGBA32);
+	size_t bpp   = BytesPerPixelFromPixelFormat(PixelFormat::RGBA32);
+	size_t total = dstSize.x * dstSize.y * bpp;
 
-	for (size_t i = 0; i < total; i++)
+	for (size_t i = 0; i < total; i += bpp)
 	{
 		pixels[i + 0] = color.r;
 		pixels[i + 1] = color.g;
@@ -163,6 +175,9 @@ void PixelPainter::Line(size_t pixelFormat, uint8_t* pixels, const Vec2u& dstSiz
 	size_t   dstH = dstSize.y;
 	uint8_t* dstP = pixels;
 	uint8_t  dstB = BytesPerPixelFromPixelFormat(pixelFormat);
+
+	LDL_UNUSED(dstH);
+	LDL_UNUSED(dstP);
 
 	int x1 = (int)pos1.x;
 	int y1 = (int)pos1.y;

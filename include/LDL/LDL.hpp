@@ -15,5 +15,6 @@
 #include <LDL/Core/MemoryManager.hpp>
 #include <LDL/Math/Random.hpp>
 #include <LDL/Loaders/BmpLoader.hpp>
+#include <LDL/Graphics/PixelPainter.hpp>
 
 #endif

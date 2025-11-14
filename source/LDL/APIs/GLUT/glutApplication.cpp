@@ -27,6 +27,8 @@ glutApplication::~glutApplication()
 
 void glutApplication::Init(int* argc, char** argv)
 {
+	LDL_UNUSED(argc);
+	LDL_UNUSED(argv);
 }
 
 void glutApplication::SwapBuffers()

@@ -82,6 +82,7 @@ extern SDL_DECLSPEC SDL_Surface* SDLCALL SDL_SetVideoMode(int width, int height,
 extern SDL_DECLSPEC int          SDLCALL SDL_Flip(SDL_Surface* screen);
 extern SDL_DECLSPEC SDL_Surface* SDLCALL SDL_CreateRGBSurface(Uint32 flags, int width, int height, int depth, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask);
 extern SDL_DECLSPEC SDL_Surface* SDLCALL SDL_CreateRGBSurfaceFrom(void* pixels, int width, int height, int depth, int pitch, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask);
+extern SDL_DECLSPEC SDL_Surface* SDLCALL SDL_CreateRGBSurfaceFromPixels(size_t pixelFormat, void* pixels, int width, int height, int depth, int pitch, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask);
 extern SDL_DECLSPEC void         SDLCALL SDL_FreeSurface(SDL_Surface* surface);
 extern SDL_DECLSPEC SDL_Surface* SDLCALL SDL_LoadBMP(const char* path);
 extern SDL_DECLSPEC int          SDLCALL SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcRect, SDL_Surface* dst, SDL_Rect* dstRect);

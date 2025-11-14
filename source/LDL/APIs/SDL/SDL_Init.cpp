@@ -7,6 +7,8 @@
 
 int SDL_Init(Uint32 flags)
 {
+	LDL_UNUSED(flags);
+
 	return 1;
 }
 

@@ -48,6 +48,7 @@ SDL_RWops* SDL_RWFromMem(void* mem, int size)
 
 	context->type   = SDL_RWops::IsMemory;
 	context->data   = (uint8_t*)mem;
+	context->size   = size;
 	context->offset = 0;
 	
 	return context;

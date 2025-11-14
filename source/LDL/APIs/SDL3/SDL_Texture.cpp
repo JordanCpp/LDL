@@ -25,6 +25,8 @@ Texture& SDL_Texture::GetTexture()
 
 SDL_Texture* SDL_CreateTexture(SDL_Renderer* renderer, SDL_PixelFormat format, SDL_TextureAccess access, int w, int h)
 {
+	LDL_UNUSED(access);
+
 	void* memory = SDL_malloc(sizeof(SDL_Texture));
 
 	SDL_Texture* texture = new(memory) SDL_Texture(&renderer->GetRenderContext(), format, Vec2u(w, h));

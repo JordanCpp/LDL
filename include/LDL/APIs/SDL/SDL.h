@@ -17,5 +17,6 @@
 #include <LDL/APIs/SDL/SDL_events.h>
 #include <LDL/APIs/SDL/SDL_error.h>
 #include <LDL/APIs/SDL/SDL_mouse.h>
+#include <LDL/APIs/SDL/SDL_rwops.h>
 
 #endif

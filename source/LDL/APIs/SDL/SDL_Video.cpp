@@ -14,6 +14,13 @@ using namespace LDL;
 
 SDL_Surface* SDL_CreateRGBSurfaceFromPixels(size_t pixelFormat, void* pixels, int width, int height, int depth, int pitch, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask)
 {
+	LDL_UNUSED(depth);
+	LDL_UNUSED(pitch);
+	LDL_UNUSED(Rmask);
+	LDL_UNUSED(Gmask);
+	LDL_UNUSED(Bmask);
+	LDL_UNUSED(Amask);
+
 	void* memory = SDL_malloc(sizeof(SDL_SurfaceDetail));
 
 	SDL_SurfaceDetail* surface = new(memory) SDL_SurfaceDetail(pixelFormat, Vec2u(width, height), (uint8_t*)pixels);
@@ -32,11 +39,25 @@ SDL_Surface* SDL_CreateRGBSurfaceFromPixels(size_t pixelFormat, void* pixels, in
 
 SDL_Surface* SDL_CreateRGBSurfaceFrom(void* pixels, int width, int height, int depth, int pitch, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask)
 {
+	LDL_UNUSED(depth);
+	LDL_UNUSED(pitch);
+	LDL_UNUSED(Rmask);
+	LDL_UNUSED(Gmask);
+	LDL_UNUSED(Bmask);
+	LDL_UNUSED(Amask);
+
 	return SDL_CreateRGBSurfaceFromPixels(PixelFormat::RGB24, (uint8_t*)pixels, width, height, 0, 0, 0, 0, 0, 0);
 }
 
 SDL_Surface* SDL_CreateRGBSurface(Uint32 flags, int width, int height, int depth, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask)
 {
+	LDL_UNUSED(flags);
+	LDL_UNUSED(depth);
+	LDL_UNUSED(Rmask);
+	LDL_UNUSED(Gmask);
+	LDL_UNUSED(Bmask);
+	LDL_UNUSED(Amask);
+
 	void* memory = SDL_malloc(sizeof(SDL_SurfaceDetail));
 
 	SDL_SurfaceDetail* surface = new(memory) SDL_SurfaceDetail(PixelFormat::RGB24, Vec2u(width, height));
@@ -94,14 +115,19 @@ int SDL_BlitSurface(SDL_Surface* src, SDL_Rect* srcRect, SDL_Surface* dst, SDL_R
 
 	PixelCopier copier;
 
-	copier.Copy(srcSurf->GetSurface().Format(), srcSurf->GetSurface().Pixels(), srcSize, &srcSurf->GetSurface(),
-		        dstSurf->GetSurface().Format(), dstSurf->GetSurface().Pixels(), dstSize, dstPos, &dstSurf->GetSurface());
+	copier.Copy(dstSurf->GetSurface().Pixels(), dstSurf->GetSurface().Format(), dstSurf->GetSurface().Size(), dstPos, dstSize,
+		        srcSurf->GetSurface().Pixels(), srcSurf->GetSurface().Format(), srcSurf->GetSurface().Size(), srcPos, srcSize);
+
+	//copier.Copy(srcSurf->GetSurface().Format(), srcSurf->GetSurface().Pixels(), srcSize, &srcSurf->GetSurface(),
+	//	        dstSurf->GetSurface().Format(), dstSurf->GetSurface().Pixels(), dstSize, dstPos, &dstSurf->GetSurface());
 
 	return 0;
 }
 
 SDL_Surface* SDL_SetVideoMode(int width, int height, int bpp, Uint32 flags)
 {
+	LDL_UNUSED(bpp);
+
 	void* memoryWindow = SDL_malloc(sizeof(Window));
 	Window* window = new(memoryWindow) Window(App().GetResult(), App().GetContext(), Vec2u(0, 0), Vec2u(width, height), "", flags);
 	App().SetWindow(window);
@@ -144,5 +170,7 @@ SDL_Surface* SDL_LoadBMP(const char* path)
 
 void SDL_WM_SetCaption(const char* title, const char* icon)
 {
+	LDL_UNUSED(icon);
+
 	App().GetWindow()->Title(title);
 }
