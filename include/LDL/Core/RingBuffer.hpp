@@ -7,7 +7,7 @@
 #define LDL_STL_ring_buffer_hpp
 
 #include <LDL/Core/StdFuncs.hpp>
-#include <LDL/Core/vector.hpp>
+#include <LDL/Core/Vector.hpp>
 
 namespace LDL
 {

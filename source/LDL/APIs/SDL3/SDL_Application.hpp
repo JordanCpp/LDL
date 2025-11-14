@@ -6,7 +6,7 @@
 #ifndef LDL_APIs_SDL3_SDL_Application_hpp
 #define LDL_APIs_SDL3_SDL_Application_hpp
 
-#include <LDL/Core/vector.hpp>
+#include <LDL/Core/Vector.hpp>
 #include <LDL/Core/Result.hpp>
 #include <LDL/Core/RingBuffer.hpp>
 #include <LDL/APIs/SDL3/SDL_events.h>

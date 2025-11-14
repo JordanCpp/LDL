@@ -7,7 +7,7 @@
 #define LDL_Graphics_OpenGL1_RenderBuffer_hpp
 
 #include <LDL/Math/Vec2.hpp>
-#include <LDL/Core/vector.hpp>
+#include <LDL/Core/Vector.hpp>
 #include <LDL/Graphics/Color.hpp>
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL1/TextureBatcherImplOpenGL1.hpp>

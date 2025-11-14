@@ -6,7 +6,7 @@
 #ifndef LDL_Shared_Input_KeyMapping_hpp
 #define LDL_Shared_Input_KeyMapping_hpp
 
-#include <LDL/Core/vector.hpp>
+#include <LDL/Core/Vector.hpp>
 #include <LDL/Shared/Input/KeyMap.hpp>
 
 namespace LDL

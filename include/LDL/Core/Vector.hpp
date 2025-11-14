@@ -6,7 +6,7 @@
 #ifndef LDL_Core_Vector_hpp
 #define LDL_Core_Vector_hpp
 
-#include <LDL/Core/new.hpp>
+#include <LDL/Core/New.hpp>
 #include <LDL/Core/StdFuncs.hpp>
 #include <LDL/Core/Assert.hpp>
 

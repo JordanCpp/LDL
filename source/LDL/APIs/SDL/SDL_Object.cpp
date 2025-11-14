@@ -5,7 +5,7 @@
 
 #include <LDL/APIs/SDL/SDL_loadso.h>
 #include <LDL/Core/Library.hpp>
-#include <LDL/Core/new.hpp>
+#include <LDL/Core/New.hpp>
 
 using namespace LDL;
 

@@ -12,7 +12,7 @@ Display::Display()
 	_videoModes.reserve(VideoMode::Limit);
 }
 
-const vector<VideoMode>& Display::Modes()
+const Vector<VideoMode>& Display::Modes()
 {
 	return _videoModes;
 }

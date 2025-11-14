@@ -6,7 +6,6 @@
 #ifndef LDL_Platforms_Linux_Core_FileStreamImpl_hpp
 #define LDL_Platforms_Linux_Core_FileStreamImpl_hpp
 
-#include <LDL/std/stddef.hpp>
 #include <LDL/Core/Result.hpp>
 
 namespace LDL

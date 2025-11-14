@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Core/new.hpp>
+#include <LDL/Core/New.hpp>
 #include <LDL/Core/StdFuncs.hpp>
 #include <LDL/Loaders/BmpLoader.hpp>
 #include <LDL/APIs/SDL/SDL_Surface.hpp>
