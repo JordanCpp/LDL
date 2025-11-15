@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Platforms_Windows_Graphics_Software_WindowImpl_hpp
-#define LDL_Platforms_Windows_Graphics_Software_WindowImpl_hpp
+#ifndef LDL_Platforms_WinNT_Graphics_Software_WindowImpl_hpp
+#define LDL_Platforms_WinNT_Graphics_Software_WindowImpl_hpp
 
 #include <LDL/Shared/Graphics/Impls/WindowImpl.hpp>
 #include <LDL/Platforms/WinNT/Graphics/MainWindow.hpp>

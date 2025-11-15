@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Platforms_Windows_Core_FileStreamImpl_hpp
-#define LDL_Platforms_Windows_Core_FileStreamImpl_hpp
+#ifndef LDL_Platforms_WinNT_Core_FileStreamImpl_hpp
+#define LDL_Platforms_WinNT_Core_FileStreamImpl_hpp
 
 #include <LDL/Platforms/WinNT/WinError.hpp>
 #include <LDL/Platforms/WinNT/Windows.hpp>

@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Platforms_Windows_Graphics_OpenGL_OpenGLFunctionsImpl_hpp
-#define LDL_Platforms_Windows_Graphics_OpenGL_OpenGLFunctionsImpl_hpp
+#ifndef LDL_Platforms_WinNT_Graphics_OpenGL_OpenGLFunctionsImpl_hpp
+#define LDL_Platforms_WinNT_Graphics_OpenGL_OpenGLFunctionsImpl_hpp
 
 #include <LDL/Core/Types.hpp>
 #include <LDL/Core/Library.hpp>

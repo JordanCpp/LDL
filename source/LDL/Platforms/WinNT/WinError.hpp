@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Platforms_Windows_WinError_hpp
-#define LDL_Platforms_Windows_WinError_hpp
+#ifndef LDL_Platforms_WinNT_WinError_hpp
+#define LDL_Platforms_WinNT_WinError_hpp
 
 #include <LDL/Core/InPlaceStrings.hpp>
 
