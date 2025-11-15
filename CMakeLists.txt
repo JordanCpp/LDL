@@ -22,11 +22,23 @@ include_directories("deps")
 include_directories("include")
 include_directories("source")
 
+#set(LDL_WINDOWS_9X true)
+#add_definitions(-DLDL_WINDOWS_9X)
+
+set(LDL_WINDOWS_NT true)
+add_definitions(-DLDL_WINDOWS_NT)
+
+if (LDL_WINDOWS_NT)
+    set(LDL_WINDOWS_NAME "WinNT")
+elseif (LDL_WINDOWS_9X)
+    set(LDL_WINDOWS_NAME "Win9X")
+endif()
+
 if (WIN32)
     file(GLOB_RECURSE SOURCE 
     "source/LDL/Shared/*.cpp" 
     "source/LDL/APIs/OpenGL/*.cpp" 
-    "source/LDL/Platforms/Windows/*.cpp")
+    "source/LDL/Platforms/${LDL_WINDOWS_NAME}/*.cpp")
 elseif(UNIX AND NOT APPLE)
     file(GLOB_RECURSE SOURCE 
     "source/LDL/Shared/*.cpp" 

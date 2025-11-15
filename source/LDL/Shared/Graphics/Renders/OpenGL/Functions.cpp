@@ -5,8 +5,10 @@
 
 #include <LDL/APIs/OpenGL/OpenGL_Functions.hpp>
 
-#if defined(_WIN32)
-    #include <LDL/Platforms/Windows/Graphics/OpenGLFunctionsImpl.hpp>
+#if defined(LDL_WINDOWS_NT)
+    #include <LDL/Platforms/WinNT/Graphics/OpenGLFunctionsImpl.hpp>
+#elif defined(LDL_WINDOWS_9X)
+    #include <LDL/Platforms/Win9X/Graphics/OpenGLFunctionsImpl.hpp>
 #elif defined(__unix__)
     #include <LDL/Platforms/Linux/Graphics/OpenGL/FunctionsImpl.hpp>
 #endif

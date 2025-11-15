@@ -6,8 +6,10 @@
 #include <LDL/Core/New.hpp>
 #include <LDL/Core/Library.hpp>
 
-#if defined(_WIN32)
-    #include <LDL/Platforms/Windows/Core/LibraryImpl.hpp>
+#if defined(LDL_WINDOWS_NT)
+    #include <LDL/Platforms/WinNT/Core/LibraryImpl.hpp>
+#elif defined(LDL_WINDOWS_9X)
+    #include <LDL/Platforms/Win9X/Core/LibraryImpl.hpp>
 #elif defined(__unix__)
     #include <LDL/Platforms/Linux/Core/LibraryImpl.hpp>
 #endif

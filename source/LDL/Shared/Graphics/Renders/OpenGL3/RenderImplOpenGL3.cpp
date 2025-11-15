@@ -8,10 +8,12 @@
 #include "TextureImplOpenGL3.hpp"
 #include <LDL/Math/Funcs.hpp>
 
-#if defined(_WIN32)
-#include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL3.hpp>
+#if defined(LDL_WINDOWS_NT)
+    #include <LDL/Platforms/WinNT/Graphics/WindowImplOpenGL3.hpp>
+#elif defined(LDL_WINDOWS_9X)
+    #include <LDL/Platforms/Win9X/Graphics/WindowImplOpenGL3.hpp>
 #elif defined(__unix__)
-#include <LDL/Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
+    #include <LDL/Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
 #endif
 
 using namespace LDL;

@@ -7,10 +7,14 @@
 #include <LDL/Core/Formatter.hpp>
 #include <LDL/Shared/Graphics/Creators/WindowImplCreator.hpp>
 
-#if defined(_WIN32)
-    #include <LDL/Platforms/Windows/Graphics/WindowImplSoftware.hpp>
-    #include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp>
-    #include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL3.hpp>
+#if defined(LDL_WINDOWS_NT)
+    #include <LDL/Platforms/WinNT/Graphics/WindowImplSoftware.hpp>
+    #include <LDL/Platforms/WinNT/Graphics/WindowImplOpenGL1.hpp>
+    #include <LDL/Platforms/WinNT/Graphics/WindowImplOpenGL3.hpp>
+#elif defined(LDL_WINDOWS_9X)
+    #include <LDL/Platforms/Win9X/Graphics/WindowImplSoftware.hpp>
+    #include <LDL/Platforms/Win9X/Graphics/WindowImplOpenGL1.hpp>
+    #include <LDL/Platforms/Win9X/Graphics/WindowImplOpenGL3.hpp>
 #elif defined(__unix__)
     #include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
     #include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>

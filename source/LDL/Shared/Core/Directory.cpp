@@ -6,8 +6,10 @@
 #include <LDL/Core/New.hpp>
 #include <LDL/Core/Directory.hpp>
 
-#if defined(_WIN32)
-    #include <LDL/Platforms/Windows/Core/DirectoryImpl.hpp>
+#if defined(LDL_WINDOWS_NT)
+    #include <LDL/Platforms/WinNT/Core/DirectoryImpl.hpp>
+#elif defined(LDL_WINDOWS_9X)
+    #include <LDL/Platforms/Win9X/Core/DirectoryImpl.hpp>
 #elif defined(__unix__)
     #include <LDL/Platforms/Linux/Core/DirectoryImpl.hpp>
 #endif

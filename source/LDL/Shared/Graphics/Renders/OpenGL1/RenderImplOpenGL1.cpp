@@ -8,8 +8,10 @@
 #include <LDL/Shared/Graphics/Renders/OpenGL1/RenderImplOpenGL1.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL1/TextureImplOpenGL1.hpp>
 
-#if defined(_WIN32)
-    #include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp>
+#if defined(LDL_WINDOWS_NT)
+    #include <LDL/Platforms/WinNT/Graphics/WindowImplOpenGL1.hpp>
+#elif defined(LDL_WINDOWS_9X)
+    #include <LDL/Platforms/Win9X/Graphics/WindowImplOpenGL1.hpp>
 #elif defined(__unix__)
     #include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
 #endif

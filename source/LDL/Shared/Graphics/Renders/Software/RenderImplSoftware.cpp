@@ -5,8 +5,10 @@
 
 #include <LDL/Shared/Graphics/Renders/Software/RenderImplSoftware.hpp>
 
-#if defined(_WIN32)
-    #include <LDL/Platforms/Windows/Graphics/WindowImplSoftware.hpp>
+#if defined(LDL_WINDOWS_NT)
+    #include <LDL/Platforms/WinNT/Graphics/WindowImplSoftware.hpp>
+#elif defined(LDL_WINDOWS_9X)
+    #include <LDL/Platforms/Win9X/Graphics/WindowImplSoftware.hpp>
 #elif defined(__unix__)
     #include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
 #endif
