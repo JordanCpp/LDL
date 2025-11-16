@@ -13,6 +13,7 @@
 #include <LDL/Platforms/WinNT/Windows.hpp>
 #include <LDL/Shared/Graphics/Base/BaseWindow.hpp>
 #include <LDL/Platforms/WinNT/Input/KeyMapper.hpp>
+#include <LDL/Core/UtfConverter.hpp>
 
 namespace LDL
 {
@@ -31,6 +32,7 @@ namespace LDL
 		const Vec2u& Size();
 		const Vec2u& Pos();
 	private:
+		UtfConverter    _utfConverter;
 		uint8_t ConvertKey(size_t key);
 		static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 		LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
@@ -39,7 +41,7 @@ namespace LDL
 		BaseWindow      _baseWindow;
 		Result&         _result;
 		Eventer         _eventer;
-		WNDCLASS        _windowClass;
+		WNDCLASSEXW     _windowClass;
 		HINSTANCE       _instance;
 		MSG             _msg;
 		ATOM            _atom;
