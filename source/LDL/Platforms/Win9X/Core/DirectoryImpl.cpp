@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Platforms/Win9X/Core/DirectoryImpl.hpp>
 #include <LDL/Platforms/Win9X/WinError.hpp>
+#include <LDL/Platforms/Win9X/Core/DirectoryImpl.hpp>
 
 using namespace LDL;
 
@@ -12,6 +12,8 @@ DirectoryImpl::DirectoryImpl(Result& result) :
     _result(result),
     _file(INVALID_HANDLE_VALUE)
 {
+    LDL_memset(&_allFiles, 0, sizeof(_allFiles));
+    LDL_memset(&_data, 0, sizeof(_data));
 }
 
 const char* DirectoryImpl::AllFiles()
@@ -40,7 +42,7 @@ bool DirectoryImpl::Create(const char* path)
 
 bool DirectoryImpl::DirExist(const char* path)
 {
-    DWORD attr = GetFileAttributes(path);
+    DWORD attr = GetFileAttributesA(path);
 
     if ((attr == INVALID_FILE_ATTRIBUTES && (attr & FILE_ATTRIBUTE_DIRECTORY)))
     {
@@ -54,7 +56,7 @@ bool DirectoryImpl::DirExist(const char* path)
 
 bool DirectoryImpl::FileExist(const char* path)
 {
-    DWORD attr = GetFileAttributes(path);
+    DWORD attr = GetFileAttributesA(path);
 
     if ((attr == INVALID_FILE_ATTRIBUTES && (attr & FILE_ATTRIBUTE_DIRECTORY)))
     {
@@ -68,7 +70,7 @@ bool DirectoryImpl::FileExist(const char* path)
 
 bool DirectoryImpl::Delete(const char* path)
 {
-    bool remove = RemoveDirectory(path);
+    bool remove = RemoveDirectoryA(path);
 
     if (!remove)
     {
@@ -82,7 +84,7 @@ bool DirectoryImpl::Delete(const char* path)
 
 bool DirectoryImpl::Open(const char* path)
 {
-    _file = FindFirstFile(path, &_data);
+    _file = FindFirstFileA(path, &_data);
 
     if (_file == INVALID_HANDLE_VALUE)
     {
@@ -104,7 +106,7 @@ void DirectoryImpl::Close()
 
 bool DirectoryImpl::Next(FileInfo& fileInfo)
 {
-    BOOL result = FindNextFile(_file, &_data);
+    BOOL result = FindNextFileA(_file, &_data);
 
     if (result)
     {
@@ -116,5 +118,5 @@ bool DirectoryImpl::Next(FileInfo& fileInfo)
 
 bool DirectoryImpl::Remove(const char* path)
 {
-    return DeleteFile(path);
+    return DeleteFileA(path);
 }

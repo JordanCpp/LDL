@@ -19,7 +19,7 @@ Display::Display()
 	ZeroMemory(&dev, sizeof(dev));
 	dev.dmSize = sizeof(dev);
 
-	while (EnumDisplaySettings(NULL, i++, &dev) != 0)
+	while (EnumDisplaySettingsA(NULL, i++, &dev) != 0)
 	{
 		_videoModes.push_back(VideoMode(Vec2u(dev.dmPelsWidth, dev.dmPelsHeight), dev.dmBitsPerPel));
 

@@ -11,7 +11,7 @@ using namespace LDL;
 LibraryImpl::LibraryImpl(const char* path) :
     _module(NULL)
 {
-    _module = LoadLibrary(path);
+    _module = LoadLibraryA(path);
 
     _assert = "LoadLibrary failed: ";
     _assert += path;

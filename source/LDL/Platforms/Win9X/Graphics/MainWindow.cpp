@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Core/StdFuncs.hpp>
 #include <LDL/Core/Assert.hpp>
+#include <LDL/Core/StdFuncs.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
 #include <LDL/Platforms/Win9X/Graphics/MainWindow.hpp>
 
@@ -146,7 +146,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
     }
 
-    return DefWindowProc(_hwnd, Message, WParam, LParam);
+    return DefWindowProcA(_hwnd, Message, WParam, LParam);
 }
 
 LRESULT CALLBACK MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam)
@@ -154,15 +154,15 @@ LRESULT CALLBACK MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPA
     LRESULT result;
 
 #ifdef _WIN64
-    MainWindow* This = (MainWindow*)GetWindowLongPtr(Hwnd, GWLP_USERDATA);
+    MainWindow* This = (MainWindow*)GetWindowLongPtrA(Hwnd, GWLP_USERDATA);
 #elif _WIN32
-    MainWindow* This = (MainWindow*)GetWindowLong(Hwnd, GWL_USERDATA);
+    MainWindow* This = (MainWindow*)GetWindowLongA(Hwnd, GWL_USERDATA);
 #endif  
 
     if (This != NULL)
         result = This->Handler(Message, WParam, LParam);
     else
-        result = DefWindowProc(Hwnd, Message, WParam, LParam);
+        result = DefWindowProcA(Hwnd, Message, WParam, LParam);
 
     return result;
 }
@@ -180,22 +180,22 @@ MainWindow::MainWindow(Result& result, const Vec2u& pos, const Vec2u& size, cons
     LDL::LDL_memset(&_hwnd, 0, sizeof(HWND));
     LDL::LDL_memset(&_hdc, 0, sizeof(HDC));
 
-    _instance = GetModuleHandle(NULL);
+    _instance = GetModuleHandleA(NULL);
     if (_instance == NULL)
     {
         _result.Message(_windowError.GetErrorMessage());
         return;
     }
 
-    _windowClass.hInstance = _instance;
+    _windowClass.hInstance     = _instance;
     _windowClass.lpszClassName = AppName;
-    _windowClass.lpfnWndProc = WndProc;
-    _windowClass.style = CS_HREDRAW | CS_VREDRAW;
+    _windowClass.lpfnWndProc   = WndProc;
+    _windowClass.style         = CS_HREDRAW | CS_VREDRAW;
     _windowClass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-    _windowClass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-    _windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
+    _windowClass.hIcon         = LoadIconA(NULL, IDI_APPLICATION);
+    _windowClass.hCursor       = LoadCursorA(NULL, IDC_ARROW);
 
-    _atom = RegisterClass(&_windowClass);
+    _atom = RegisterClassA(&_windowClass);
     if (_atom == INVALID_ATOM)
     {
         _result.Message(_windowError.GetErrorMessage());
@@ -227,7 +227,7 @@ MainWindow::MainWindow(Result& result, const Vec2u& pos, const Vec2u& size, cons
         return;
     }
 
-    _hwnd = CreateWindow(AppName, "", style, (int)_baseWindow.Pos().x, (int)_baseWindow.Pos().y, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _instance, 0);
+    _hwnd = CreateWindowA(AppName, "", style, (int)_baseWindow.Pos().x, (int)_baseWindow.Pos().y, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _instance, 0);
     if (_hwnd == NULL)
     {
         _result.Message(_windowError.GetErrorMessage());
@@ -235,9 +235,9 @@ MainWindow::MainWindow(Result& result, const Vec2u& pos, const Vec2u& size, cons
     }
 
 #ifdef _WIN64
-    LONG_PTR setWindow = SetWindowLongPtr(_hwnd, GWLP_USERDATA, (LONG_PTR)this);
+    LONG_PTR setWindow = SetWindowLongPtrA(_hwnd, GWLP_USERDATA, (LONG_PTR)this);
 #elif _WIN32
-    LONG     setWindow = SetWindowLong(_hwnd, GWL_USERDATA, (LONG)this);
+    LONG     setWindow = SetWindowLongA(_hwnd, GWL_USERDATA, (LONG)this);
 #endif  
 
     if (setWindow == 0 && GetLastError() != 0)
@@ -261,7 +261,7 @@ MainWindow::~MainWindow()
 {
     timeEndPeriod(timePeriod);
 
-    UnregisterClass(AppName, _instance);
+    UnregisterClassA(AppName, _instance);
     ReleaseDC(_hwnd, _hdc);
 }
 
@@ -272,10 +272,10 @@ bool MainWindow::Running()
 
 void MainWindow::PollEvents()
 {
-    while (PeekMessage(&_msg, _hwnd, 0, 0, PM_REMOVE))
+    while (PeekMessageA(&_msg, _hwnd, 0, 0, PM_REMOVE))
     {
         TranslateMessage(&_msg);
-        DispatchMessage(&_msg);
+        DispatchMessageA(&_msg);
     }
 }
 
@@ -297,7 +297,7 @@ bool MainWindow::WaitEvent(Event& event)
 {
     if (_eventer.Running())
     {
-        if (GetMessage(&_msg, _hwnd, 0, 0) == -1)
+        if (GetMessageA(&_msg, _hwnd, 0, 0) == -1)
         {
         }
         else
@@ -305,7 +305,7 @@ bool MainWindow::WaitEvent(Event& event)
             _eventer.Pop(event);
 
             TranslateMessage(&_msg);
-            DispatchMessage(&_msg);
+            DispatchMessageA(&_msg);
         }
     }
 
