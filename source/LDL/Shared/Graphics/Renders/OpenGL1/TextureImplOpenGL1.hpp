@@ -8,19 +8,19 @@
 
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Graphics/Surface.hpp>
-#include <LDL/Shared/Graphics/Impls/TextureImpl.hpp>
-#include <LDL/Shared/Graphics/Renders/OpenGL1/RenderContextImplOpenGL1.hpp>
+#include <LDL/Graphics/Texture.hpp>
+#include <LDL/Graphics/RenderContext.hpp>
 
 namespace LDL
 {
-	class RenderImpl;
+	class IRender;
 
-	class TextureImplOpenGL1 : public TextureImpl
+	class TextureImplOpenGL1 : public ITexture
 	{
 	public:
-		TextureImplOpenGL1(RenderContextImpl* renderContextImpl, Surface* surface);
-		TextureImplOpenGL1(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size, uint8_t* pixels);
-		TextureImplOpenGL1(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size);
+		TextureImplOpenGL1(RenderContext* renderContextImpl, Surface* surface);
+		TextureImplOpenGL1(RenderContext* renderContextImpl, size_t pixelFormat, const Vec2u& size, uint8_t* pixels);
+		TextureImplOpenGL1(RenderContext* renderContextImpl, size_t pixelFormat, const Vec2u& size);
 		~TextureImplOpenGL1();
 		void Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
 		void Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& srcSize);
@@ -28,7 +28,7 @@ namespace LDL
 		const Vec2u& Quad();
 		size_t Id();
 	private:
-		RenderContextImpl* _renderContextImpl;
+		RenderContext* _renderContextImpl;
 		size_t             _id;
 		Vec2u              _size;
 		Vec2u              _quad;

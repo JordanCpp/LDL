@@ -5,12 +5,13 @@
 
 #include <LDL/APIs/SDL2/SDL_Application.hpp>
 #include <LDL/APIs/SDL2/SDL_Window.hpp>
+#include <LDL/Graphics/WindowImplCreator.hpp>
 
 using namespace LDL;
 
 SDL_Window::SDL_Window(Result& result, const char* title, int x, int y, int w, int h, Uint32 flags) :
 	_result(result),
-	_window(_result, _context, Vec2u(x, y), Vec2u(w, h), title, (size_t)flags)
+	_window(CreateWindowImpl(_result, _context, Vec2u(x, y), Vec2u(w, h), title, (size_t)flags))
 {
 }
 
@@ -18,7 +19,7 @@ SDL_Window::~SDL_Window()
 {
 }
 
-Window& SDL_Window::GetWindow()
+IWindow* SDL_Window::GetWindow()
 {
 	return _window;
 }

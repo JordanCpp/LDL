@@ -105,22 +105,22 @@ Result& SDL_Application::GetResult()
 	return _result;
 }
 
-Window* SDL_Application::GetWindow()
+IWindow* SDL_Application::GetWindow()
 {
 	return _window;
 }
 
-Render* SDL_Application::GetRender()
+IRender* SDL_Application::GetRender()
 {
 	return _render;
 }
 
-void SDL_Application::SetWindow(Window* window)
+void SDL_Application::SetWindow(IWindow* window)
 {
 	_window = window;
 }
 
-void SDL_Application::SetRender(Render* render)
+void SDL_Application::SetRender(IRender* render)
 {
 	_render = render;
 }

@@ -3,53 +3,39 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_Render_hpp
-#define LDL_Graphics_Render_hpp
+#ifndef LDL_Graphics_Impls_RenderImpl_hpp
+#define LDL_Graphics_Impls_RenderImpl_hpp
 
-#include <LDL/Graphics/Surface.hpp>
-#include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Texture.hpp>
-#include <LDL/Graphics/RenderContext.hpp>
+#include <LDL/Graphics/Surface.hpp>
 #include <LDL/Graphics/SpriteBatcher.hpp>
 
 namespace LDL
 {
-	class RenderImpl;
-	class Texture;
-
-	class LDL_LIBRARY Render
+	class IRender
 	{
 	public:
-		enum
-		{
-			SizeOf = 1024
-		};
-		Render(Result& result, RenderContext& renderContext, Window* window);
-		~Render();
-		RenderImpl* GetRenderImpl();
-		void Buffer(uint8_t* dst);
-		void Begin();
-		void End();
-		const Vec2u& Size();
-		const Color& GetColor();
-		void Clear();
-		void SetColor(const Color& color);
-		void Pixel(const Vec2u& pos);
-		void Fill(const Vec2u& pos, const Vec2u& size);
-		void Line(const Vec2u& pos1, const Vec2u& pos2);
-		void Draw(Texture* image, const Vec2u& pos);
-		void Draw(Texture* image, const Vec2u& pos, const Vec2u& size);
-		void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize);
-		void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
-		void Draw(Surface* image, const Vec2u& pos);
-		void Draw(Surface* image, const Vec2u& pos, const Vec2u& size);
-		void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize);
-		void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
-		void Draw(SpriteBatcher* textureBatcher);
-	private:
-		RenderImpl* _impl;
-		uint8_t     _memory[SizeOf];
+		virtual ~IRender() {};
+		virtual void Buffer(uint8_t* dst) = 0;
+		virtual void Begin() = 0;
+		virtual void End() = 0;
+		virtual const Vec2u& Size() = 0;
+		virtual const Color& GetColor() = 0;
+		virtual void Clear() = 0;
+		virtual void SetColor(const LDL::Color& color) = 0;
+		virtual void Pixel(const Vec2u& pos) = 0;
+		virtual void Fill(const Vec2u& pos, const Vec2u& size) = 0;
+		virtual void Line(const Vec2u& pos1, const Vec2u& pos2) = 0;
+		virtual void Draw(ITexture* image, const Vec2u& pos) = 0;
+		virtual void Draw(ITexture* image, const Vec2u& pos, const Vec2u& size) = 0;
+		virtual void Draw(ITexture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize) = 0;
+		virtual void Draw(ITexture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize) = 0;
+		virtual void Draw(Surface* image, const Vec2u& pos) = 0;
+		virtual void Draw(Surface* image, const Vec2u& pos, const Vec2u& size) = 0;
+		virtual void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize) = 0;
+		virtual void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize) = 0;
+		virtual void Draw(SpriteBatcher* textureBatcher) = 0;
 	};
 }
 
-#endif 
+#endif    

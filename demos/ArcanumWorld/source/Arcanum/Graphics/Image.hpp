@@ -16,11 +16,11 @@ namespace Arcanum
 	{
 	public:
 		Image(LDL::RenderContext* renderContext, const LDL::Vec2u& size, uint8_t* pixels, const LDL::Vec2u& offset, const LDL::Vec2u& delta);
-		LDL::Texture* GetTexture();
+		LDL::ITexture* GetTexture();
 		const LDL::Vec2u& Offset();
 		const LDL::Vec2u& Delta();
 	private:
-		LDL::Texture _texture;
+		LDL::ITexture* _texture;
 		LDL::Vec2u   _offset;
 		LDL::Vec2u   _delta;
 	};

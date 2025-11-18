@@ -8,7 +8,7 @@
 using namespace LDL;
 using namespace Arcanum;
 
-LocationPainter::LocationPainter(Render* render, LocationData* location) :
+LocationPainter::LocationPainter(IRender* render, LocationData* location) :
 	_render(render),
 	_location(location)
 {
@@ -22,7 +22,7 @@ void LocationPainter::DrawTiles(const Vec2u& start)
 	{
 		pos = _location->TileObjects()[i].Pos();
 
-		Texture* texture = _location->TileObjects()[i].Body()->Single()->GetTexture();
+		ITexture* texture = _location->TileObjects()[i].Body()->Single()->GetTexture();
 
 		_render->Draw(texture, Vec2u(start.x + pos.x, start.y + pos.y));
 	}

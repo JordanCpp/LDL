@@ -26,7 +26,7 @@ namespace LDL
 		void Stop();
 	private:
 		bool                    _running;
-		ring_buffer<Event, Max> _queue;
+		RingBuffer<Event, Max> _queue;
 	};
 }
 

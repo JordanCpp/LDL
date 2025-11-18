@@ -17,7 +17,7 @@ namespace LDL
 	{
 	public:
 		TexturePainter(ShaderLoader* shaderLoader);
-		void Draw(Mat4f proj, Texture* texture);
+		void Draw(Mat4f proj, ITexture* texture);
 	private:
 		ShaderLoader* _shaderLoader;
 		GLuint        _shaderProgram;

@@ -8,7 +8,7 @@
 using namespace LDL;
 using namespace Arcanum;
 
-WidgetManager::WidgetManager(Render& render) :
+WidgetManager::WidgetManager(IRender* render) :
 	_render(render)
 {
 }
@@ -32,7 +32,7 @@ Button* WidgetManager::GetButton(const Vec2u& pos, const Vec2u& size)
 
 Form* WidgetManager::GetForm()
 {
-	Form* result = new Form(_render, Vec2u(0,0), _render.Size());
+	Form* result = new Form(_render, Vec2u(0,0), _render->Size());
 
 	_widgets.push_back(result);
 

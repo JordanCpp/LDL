@@ -6,16 +6,16 @@
 #include <LDL/Shared/Graphics/Renders/Software/RenderImplSoftware.hpp>
 
 #if defined(LDL_WINDOWS_NT)
-    #include <LDL/Platforms/WinNT/Graphics/WindowImplSoftware.hpp>
+    #include <LDL/WinNT/Graphics/WindowImplSoftware.hpp>
 #elif defined(LDL_WINDOWS_9X)
-    #include <LDL/Platforms/Win9X/Graphics/WindowImplSoftware.hpp>
+    #include <LDL/Win9X/Graphics/WindowImplSoftware.hpp>
 #elif defined(__unix__)
-    #include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
+    #include <LDL/Linux/Graphics/Software/WindowImplSoftware.hpp>
 #endif
 
 using namespace LDL;
 
-RenderImplSoftware::RenderImplSoftware(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
+RenderImplSoftware::RenderImplSoftware(Result& result, RenderContext* renderContextImpl, IWindow* window) :
 	_result(result),
 	_window(window),
 	_canvas(PixelFormat::BGR24, _window->Size()),
@@ -35,7 +35,7 @@ void RenderImplSoftware::Begin()
 
 void RenderImplSoftware::End()
 {
-	WindowImplSoftware* windowImpl = (WindowImplSoftware*)_window->GetWindowImpl();
+	WindowImplSoftware* windowImpl = (WindowImplSoftware*)_window;
 
 	windowImpl->Present(_canvas.Pixels(), _canvas.BytesPerPixel());
 }
@@ -75,14 +75,14 @@ void RenderImplSoftware::Fill(const Vec2u& pos, const Vec2u& size)
 	_pixelPainter.Fill(_canvas.Format(), _canvas.Pixels(), _canvas.Size(), pos, size, _color);
 }
 
-void RenderImplSoftware::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
+void RenderImplSoftware::Draw(ITexture* image, const Vec2u& pos, const Vec2u& size)
 {
-	TextureImplSoftware* textureImpl = (TextureImplSoftware*)image->GetTextureImpl();
+	TextureImplSoftware* textureImpl = (TextureImplSoftware*)image;
 
 	Draw(textureImpl->GetSurface(), pos, size);
 }
 
-void RenderImplSoftware::Draw(Texture* image, const Vec2u& pos)
+void RenderImplSoftware::Draw(ITexture* image, const Vec2u& pos)
 {
 	Draw(image, pos, image->Size());
 }
@@ -122,7 +122,7 @@ void RenderImplSoftware::Draw(Surface* image, const Vec2u& pos)
 	Draw(image, pos, image->Size());
 }
 
-void RenderImplSoftware::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
+void RenderImplSoftware::Draw(ITexture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	LDL_UNUSED(image);
 	LDL_UNUSED(dstPos);
@@ -130,7 +130,7 @@ void RenderImplSoftware::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& 
 	LDL_UNUSED(srcSize);
 }
 
-void RenderImplSoftware::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
+void RenderImplSoftware::Draw(ITexture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	LDL_UNUSED(image);
 	LDL_UNUSED(dstPos);

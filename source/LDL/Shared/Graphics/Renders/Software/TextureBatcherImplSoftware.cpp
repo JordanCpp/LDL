@@ -8,7 +8,7 @@
 
 using namespace LDL;
 
-SpriteBatcherImplSoftware::SpriteBatcherImplSoftware(Texture* texture, size_t count)
+SpriteBatcherImplSoftware::SpriteBatcherImplSoftware(ITexture* texture, size_t count)
 {
 	LDL_UNUSED(texture);
 	LDL_UNUSED(count);

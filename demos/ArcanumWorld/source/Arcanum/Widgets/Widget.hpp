@@ -15,14 +15,14 @@ namespace Arcanum
     class Widget
     {
     public:
-        Widget(LDL::Render& render, const LDL::Vec2u& pos, const LDL::Vec2u& size);
+        Widget(LDL::IRender* render, const LDL::Vec2u& pos, const LDL::Vec2u& size);
         virtual ~Widget();
         const LDL::Vec2u Pos();
         const LDL::Vec2u Size();
-        LDL::Render& GetRender();
+        LDL::IRender* GetRender();
         virtual void Draw() = 0;
     private:
-        LDL::Render& _render;
+        LDL::IRender* _render;
         LDL::Rectu   _area;
     };
 }

@@ -10,7 +10,7 @@
 
 using namespace LDL;
 
-TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, Surface* surface) :
+TextureImplOpenGL1::TextureImplOpenGL1(RenderContext* renderContextImpl, Surface* surface) :
 	_renderContextImpl(renderContextImpl),
 	_id(0)
 {
@@ -70,7 +70,7 @@ TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, Sur
 	}
 }
 
-TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size, uint8_t* pixels) :
+TextureImplOpenGL1::TextureImplOpenGL1(RenderContext* renderContextImpl, size_t pixelFormat, const Vec2u& size, uint8_t* pixels) :
 	_renderContextImpl(renderContextImpl),
 	_id(0)
 {
@@ -101,7 +101,7 @@ TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, siz
 	Copy(Vec2u(0, 0), _size, pixels, bpp);
 }
 
-TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size) :
+TextureImplOpenGL1::TextureImplOpenGL1(RenderContext* renderContextImpl, size_t pixelFormat, const Vec2u& size) :
 	_renderContextImpl(renderContextImpl),
 	_id(0)
 {

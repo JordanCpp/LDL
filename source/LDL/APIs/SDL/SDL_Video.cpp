@@ -9,6 +9,8 @@
 #include <LDL/APIs/SDL/SDL_Surface.hpp>
 #include <LDL/APIs/SDL/SDL_Application.hpp>
 #include <LDL/Graphics/PixelCopier.hpp>
+#include <LDL/Graphics/WindowImplCreator.hpp>
+#include <LDL/Graphics//RenderCreator.hpp>
 
 using namespace LDL;
 
@@ -128,12 +130,10 @@ SDL_Surface* SDL_SetVideoMode(int width, int height, int bpp, Uint32 flags)
 {
 	LDL_UNUSED(bpp);
 
-	void* memoryWindow = SDL_malloc(sizeof(Window));
-	Window* window = new(memoryWindow) Window(App().GetResult(), App().GetContext(), Vec2u(0, 0), Vec2u(width, height), "", flags);
+	IWindow* window = CreateWindowImpl(App().GetResult(), App().GetContext(), Vec2u(0, 0), Vec2u(width, height), "", flags);
 	App().SetWindow(window);
 
-	void* memoryRender = SDL_malloc(sizeof(Render));
-	Render* render = new(memoryRender) Render(App().GetResult(), App().GetContext(), App().GetWindow());
+	IRender* render = CreateRenderImpl(App().GetResult(), App().GetContext(), App().GetWindow());
 	App().SetRender(render);
 
 	SDL_Surface* surface = SDL_CreateRGBSurface(0, width, height, 0, 0, 0, 0, 0);

@@ -45,8 +45,8 @@ namespace Arcanum
 		FileManager        _fileManager;
 		ObjectAllocator    _objectAllocator;
 		std::string        _title;
-		LDL::Window        _window;
-		LDL::Render        _render;
+		LDL::IWindow*   _window;
+		LDL::IRender*        _render;
 		LDL::FpsCounter    _fpsCounter;
 		LDL::Convert       _convert;
 		LDL::FpsLimiter    _fpsLimiter;

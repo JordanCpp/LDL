@@ -55,13 +55,13 @@ void CreateWindowTest()
 	Result result;
 	RenderContext renderContext;
 
-	Window window(result, renderContext, Vec2u(1, 2), Vec2u(640, 480), title);
+	IWindow* window = CreateWindowImpl(result, renderContext, Vec2u(0, 0), Vec2u(640, 480), __FILE__, 0);
 
-	LDL_TEST_EQUAL(window.Pos().x  == 1);
-	LDL_TEST_EQUAL(window.Pos().y  == 2);
-	LDL_TEST_EQUAL(window.Size().x == 640);
-	LDL_TEST_EQUAL(window.Size().y == 480);
-	LDL_TEST_EQUAL(window.Title()  == title);
+	LDL_TEST_EQUAL(window->Pos().x  == 1);
+	LDL_TEST_EQUAL(window->Pos().y  == 2);
+	LDL_TEST_EQUAL(window->Size().x == 640);
+	LDL_TEST_EQUAL(window->Size().y == 480);
+	LDL_TEST_EQUAL(window->Title()  == title);
 }
 
 /****************************************************************************************************************************

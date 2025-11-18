@@ -8,7 +8,7 @@
 using namespace LDL;
 using namespace Arcanum;
 
-Form::Form(Render& render, const Vec2u& pos, const Vec2u& size) :
+Form::Form(IRender* render, const Vec2u& pos, const Vec2u& size) :
 	Widget(render, pos, size)
 {
 }

@@ -14,32 +14,21 @@
 
 namespace LDL
 {
-	class WindowImpl;
-
-	class LDL_LIBRARY Window
+	class IWindow
 	{
 	public:
-		enum
-		{
-			SizeOf = 2048
-		};
-		Window(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode = WindowMode::Resized);
-		~Window();
-		bool Running();
-		void Present();
-		void PollEvents();
-		bool GetEvent(Event& event);
-		bool WaitEvent(Event& event);
-		void StopEvent();
-		void Title(const char* title);
-		const char* Title();
-		const Vec2u& Size();
-		const Vec2u& Pos();
-		WindowImpl* GetWindowImpl();
-		void* NativeHandle();
-	private:
-		WindowImpl* _impl;
-		uint8_t     _memory[SizeOf];
+		virtual ~IWindow() {};
+		virtual bool Running() = 0;
+		virtual void Present() = 0;
+		virtual void PollEvents() = 0;
+		virtual bool GetEvent(Event& event) = 0;
+		virtual bool WaitEvent(Event& event) = 0;
+		virtual void StopEvent() = 0;
+		virtual void Title(const char* title) = 0;
+		virtual const char* Title() = 0;
+		virtual const Vec2u& Size() = 0;
+		virtual const Vec2u& Pos() = 0;
+		virtual void* NativeHandle() = 0;
 	};
 }
 

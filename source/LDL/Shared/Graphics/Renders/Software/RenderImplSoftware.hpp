@@ -13,16 +13,16 @@
 #include <LDL/Graphics/PixelResizer.hpp>
 #include <LDL/Graphics/PixelPainter.hpp>
 #include <LDL/Graphics/SpriteBatcher.hpp>
-#include <LDL/Shared/Graphics/Base/BaseRender.hpp>
-#include <LDL/Shared/Graphics/Impls/RenderImpl.hpp>
+#include <LDL/Shared/Graphics/BaseRender.hpp>
+#include <LDL/Graphics/Render.hpp>
 #include <LDL/Shared/Graphics/Renders/Software/TextureImplSoftware.hpp>
 
 namespace LDL
 {
-	class RenderImplSoftware : public RenderImpl
+	class RenderImplSoftware : public IRender
 	{
 	public:
-		RenderImplSoftware(Result& result, RenderContextImpl* renderContextImpl, Window* window);
+		RenderImplSoftware(Result& result, RenderContext* renderContextImpl, IWindow* window);
 		void Buffer(uint8_t* dst);
 		void Begin();
 		void End();
@@ -33,10 +33,10 @@ namespace LDL
 		void Pixel(const Vec2u& pos);
 		void Fill(const Vec2u& pos, const Vec2u& size);
 		void Line(const Vec2u& pos1, const Vec2u& pos2);
-		void Draw(Texture* image, const Vec2u& pos);
-		void Draw(Texture* image, const Vec2u& pos, const Vec2u& size);
-		void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize);
-		void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(ITexture* image, const Vec2u& pos);
+		void Draw(ITexture* image, const Vec2u& pos, const Vec2u& size);
+		void Draw(ITexture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(ITexture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
 		void Draw(Surface* image, const Vec2u& pos);
 		void Draw(Surface* image, const Vec2u& pos, const Vec2u& size);
 		void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize);
@@ -45,7 +45,7 @@ namespace LDL
 	private:
 		Result&       _result;
 		LDL::Color    _color;
-		Window*       _window;
+		IWindow*       _window;
 		Surface       _canvas;
 		PixelPainter  _pixelPainter;
 		PixelCopier   _pixelCopier;

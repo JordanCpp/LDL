@@ -7,6 +7,7 @@
 #define LDL_Graphics_SpriteBatcher_hpp
 
 #include <LDL/Graphics/Texture.hpp>
+#include <LDL/Graphics/RenderContext.hpp>
 
 namespace LDL
 {
@@ -19,7 +20,7 @@ namespace LDL
 		{
 			SizeOf = 64
 		};
-		SpriteBatcher(RenderContext* renderContext, Texture* texture, size_t count);
+		SpriteBatcher(RenderContext* renderContext, ITexture* texture, size_t count);
 		~SpriteBatcher();
 		SpriteBatcherImpl* GetTextureBatcherImpl();
 		void Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);

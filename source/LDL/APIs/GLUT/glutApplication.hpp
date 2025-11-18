@@ -28,7 +28,7 @@ public:
 	void MainLoop();
 private:
 	glutMemory   _memory;
-	LDL::Window* _window;
+	LDL::IWindow* _window;
 	void (*_displayFunc)();
 	void (*_reshapeFunc)(int, int);
 	LDL::Vec2u   _pos;

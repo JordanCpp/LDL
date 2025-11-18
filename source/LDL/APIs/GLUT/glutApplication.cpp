@@ -7,6 +7,7 @@
 #include <LDL/Core/StdFuncs.hpp>
 #include <LDL/APIs/OpenGL/OpenGL_Loader.hpp>
 #include <LDL/APIs/GLUT/glutApplication.hpp>
+#include <LDL/Graphics/WindowImplCreator.hpp>
 
 using namespace LDL;
 
@@ -21,7 +22,6 @@ glutApplication::glutApplication() :
 
 glutApplication::~glutApplication()
 {
-	_window->~Window();
 	LDL_free(_window);
 }
 
@@ -53,9 +53,7 @@ int glutApplication::CreateWindow(const char* title)
 {
 	RenderContext renderContext(RenderMode::OpenGL1);
 
-	void* memory = LDL_malloc(sizeof(Window));
-
-	_window = new(memory) Window(_result, renderContext, _pos, _size, title);
+	_window = CreateWindowImpl(_result, renderContext, _pos, _size, title, 0);
 
 	return 0;
 }

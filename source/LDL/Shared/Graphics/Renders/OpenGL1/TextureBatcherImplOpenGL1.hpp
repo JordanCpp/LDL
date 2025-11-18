@@ -9,14 +9,14 @@
 #include <LDL/Core/Vector.hpp>
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL/Util.hpp>
-#include <LDL/Shared/Graphics/Impls/TextureBatcherImpl.hpp>
+#include <LDL/Graphics/TextureBatcherImpl.hpp>
 
 namespace LDL
 {
 	class SpriteBatcherImplOpenGL1 : public SpriteBatcherImpl
 	{
 	public:
-		SpriteBatcherImplOpenGL1(Texture* texture, size_t count);
+		SpriteBatcherImplOpenGL1(ITexture* texture, size_t count);
 		void Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
 		void Clear();
 		size_t TextureId();

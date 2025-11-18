@@ -8,7 +8,7 @@
 
 using namespace LDL;
 
-SpriteBatcher::SpriteBatcher(RenderContext* renderContext, Texture* texture, size_t count)
+SpriteBatcher::SpriteBatcher(RenderContext* renderContext, ITexture* texture, size_t count)
 {
 	TextureBatcherImplCreator creator;
 

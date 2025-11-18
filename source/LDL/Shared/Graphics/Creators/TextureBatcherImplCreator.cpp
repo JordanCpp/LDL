@@ -5,7 +5,7 @@
 
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Enums/RenderMode.hpp>
-#include <LDL/Shared/Graphics/Creators/TextureImplCreator.hpp>
+#include <LDL/Graphics/TextureImplCreator.hpp>
 #include <LDL/Shared/Graphics/Creators/TextureBatcherImplCreator.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL1/TextureBatcherImplOpenGL1.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL3/TextureBatcherImplOpenGL3.hpp>
@@ -13,7 +13,7 @@
 
 using namespace LDL;
 
-SpriteBatcherImpl* TextureBatcherImplCreator::Create(uint8_t* memory, RenderContext* renderContext, Texture* texture, size_t count)
+SpriteBatcherImpl* TextureBatcherImplCreator::Create(uint8_t* memory, RenderContext* renderContext, ITexture* texture, size_t count)
 {
 	size_t mode = renderContext->Mode();
 

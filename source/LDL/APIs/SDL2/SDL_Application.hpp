@@ -30,7 +30,7 @@ private:
 	SDL_Memory                       _memory;
 	LDL::Result                      _result;
 	LDL::Vector<SDL_Window*>         _windows;
-	LDL::ring_buffer<SDL_Event, Max> _events;
+	LDL::RingBuffer<SDL_Event, Max> _events;
 };
 
 SDL_Application& App();

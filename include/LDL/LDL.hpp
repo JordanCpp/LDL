@@ -16,5 +16,8 @@
 #include <LDL/Math/Random.hpp>
 #include <LDL/Loaders/BmpLoader.hpp>
 #include <LDL/Graphics/PixelPainter.hpp>
+#include <LDL/Graphics/WindowImplCreator.hpp>
+#include <LDL/Graphics/RenderCreator.hpp>
+#include <LDL/Graphics/TextureImplCreator.hpp>
 
 #endif

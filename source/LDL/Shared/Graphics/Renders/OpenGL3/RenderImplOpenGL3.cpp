@@ -9,16 +9,16 @@
 #include <LDL/Math/Funcs.hpp>
 
 #if defined(LDL_WINDOWS_NT)
-    #include <LDL/Platforms/WinNT/Graphics/WindowImplOpenGL3.hpp>
+    #include <LDL/WinNT/Graphics/WindowImplOpenGL3.hpp>
 #elif defined(LDL_WINDOWS_9X)
-    #include <LDL/Platforms/Win9X/Graphics/WindowImplOpenGL3.hpp>
+    #include <LDL/Win9X/Graphics/WindowImplOpenGL3.hpp>
 #elif defined(__unix__)
-    #include <LDL/Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
+    #include <LDL/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
 #endif
 
 using namespace LDL;
 
-RenderImplOpenGL3::RenderImplOpenGL3(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
+RenderImplOpenGL3::RenderImplOpenGL3(Result& result, RenderContext* renderContextImpl, IWindow* window) :
 	_result(result),
 	_window(window),
 	_linePainter(&_shaderLoader),
@@ -41,7 +41,7 @@ void RenderImplOpenGL3::Begin()
 
 void RenderImplOpenGL3::End()
 {
-	_window->GetWindowImpl()->Present();
+	_window->Present();
 }
 
 const Vec2u& RenderImplOpenGL3::Size()
@@ -117,22 +117,22 @@ void RenderImplOpenGL3::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& d
 	LDL_UNUSED(srcSize);
 }
 
-void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& pos)
+void RenderImplOpenGL3::Draw(ITexture* image, const Vec2u& pos)
 {
 	Draw(image, pos, image->Size(), Vec2u(0,0), image->Size());
 }
 
-void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
+void RenderImplOpenGL3::Draw(ITexture* image, const Vec2u& pos, const Vec2u& size)
 {
 	Draw(image, pos, size, Vec2u(0, 0), image->Size());
 }
 
-void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
+void RenderImplOpenGL3::Draw(ITexture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	Draw(image, dstPos, image->Size(), srcPos, srcSize);
 }
 
-void RenderImplOpenGL3::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
+void RenderImplOpenGL3::Draw(ITexture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	LDL_UNUSED(dstPos);
 	LDL_UNUSED(dstSize);

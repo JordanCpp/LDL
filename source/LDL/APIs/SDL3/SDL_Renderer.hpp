@@ -12,10 +12,10 @@
 
 struct SDL_Renderer
 {
-	LDL::Render         _render;
+	LDL::IRender*    _render;
 	LDL::RenderContext& _renderContext;
 	SDL_Renderer(SDL_Window* window, const char* name);
-	LDL::Render& GetRender();
+	LDL::IRender* GetRender();
 	LDL::RenderContext& GetRenderContext();
 };
 

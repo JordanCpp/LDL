@@ -9,16 +9,16 @@
 #include <LDL/Shared/Graphics/Renders/OpenGL1/TextureImplOpenGL1.hpp>
 
 #if defined(LDL_WINDOWS_NT)
-    #include <LDL/Platforms/WinNT/Graphics/WindowImplOpenGL1.hpp>
+    #include <LDL/WinNT/Graphics/WindowImplOpenGL1.hpp>
 #elif defined(LDL_WINDOWS_9X)
-    #include <LDL/Platforms/Win9X/Graphics/WindowImplOpenGL1.hpp>
+    #include <LDL/Win9X/Graphics/WindowImplOpenGL1.hpp>
 #elif defined(__unix__)
-    #include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
+    #include <LDL/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
 #endif
 
 using namespace LDL;
 
-RenderImplOpenGL1::RenderImplOpenGL1(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
+RenderImplOpenGL1::RenderImplOpenGL1(Result& result, RenderContext* renderContextImpl, IWindow* window) :
 	_result(result),
 	_window(window),
 	_screen(_window->Size()),
@@ -54,7 +54,7 @@ void RenderImplOpenGL1::End()
 	_modelView.Identity();
 	_renderBuffer.Draw();
 
-	_window->GetWindowImpl()->Present();
+	_window->Present();
 
 	_renderBuffer.Reset();
 }
@@ -137,24 +137,24 @@ void RenderImplOpenGL1::Draw(Surface* image, const Vec2u& dstPos, const Vec2u& d
 	LDL_UNUSED(srcSize);
 }
 
-void RenderImplOpenGL1::Draw(Texture* image, const Vec2u& pos)
+void RenderImplOpenGL1::Draw(ITexture* image, const Vec2u& pos)
 {
 	Draw(image, pos, image->Size(), Vec2u(0, 0), image->Size());
 }
 
-void RenderImplOpenGL1::Draw(Texture* image, const Vec2u& pos, const Vec2u& size)
+void RenderImplOpenGL1::Draw(ITexture* image, const Vec2u& pos, const Vec2u& size)
 {
 	Draw(image, pos, size, Vec2u(0, 0), image->Size());
 }
 
-void RenderImplOpenGL1::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
+void RenderImplOpenGL1::Draw(ITexture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize)
 {
 	Draw(image, dstPos, srcSize, srcPos, srcSize);
 }
 
-void RenderImplOpenGL1::Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
+void RenderImplOpenGL1::Draw(ITexture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize)
 {
-	_renderBuffer.Texture(dstPos, dstSize, srcPos, srcSize, ((TextureImplOpenGL1*)image->GetTextureImpl())->Id(), image->GetTextureImpl()->Quad().x);
+	_renderBuffer.Texture(dstPos, dstSize, srcPos, srcSize, ((TextureImplOpenGL1*)image)->Id(), image->Quad().x);
 }
 
 void RenderImplOpenGL1::Draw(SpriteBatcher* textureBatcher)

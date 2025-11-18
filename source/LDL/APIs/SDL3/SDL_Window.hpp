@@ -14,11 +14,11 @@ struct SDL_Window
 {
 	SDL_Window(LDL::Result& result, const char* title, int w, int h, SDL_WindowFlags flags);
 	~SDL_Window();
-	LDL::Window& GetWindow();
+	LDL::IWindow* GetWindow();
 	LDL::RenderContext& GetRenderContext();
 	LDL::Result&       _result;
 	LDL::RenderContext _context;
-	LDL::Window        _window;
+	LDL::IWindow*   _window;
 };
 
 #endif

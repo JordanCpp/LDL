@@ -11,7 +11,7 @@
 
 namespace LDL
 {
-	LDL_LIBRARY void Assert(bool condition, const char* description, const char* detail, const char* file, size_t line);
+	LDL_LIBRARY void Assert(bool condition, const char* description, const char* detail, const char* file, int line);
 }
 
 #define LDL_ASSERT(x)            LDL::Assert(x, #x, "", __FILE__, __LINE__)

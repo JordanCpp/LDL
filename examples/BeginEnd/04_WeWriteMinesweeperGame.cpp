@@ -120,8 +120,8 @@ int main()
 	LDL::Result result;
 	LDL::RenderContext renderContext(LDL::RenderMode::OpenGL1);
 
-	LDL::Window window(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), "Window!");
-	LDL::Render render(result, renderContext, &window);
+	LDL::IWindow* window = CreateWindowImpl(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), __FILE__, 0);
+	LDL::IRender* render = CreateRenderImpl(result, renderContext, window);
 
 	LDL::Event report;
 
@@ -131,35 +131,35 @@ int main()
 
 	GameNew();
 
-	while (window.Running())
+	while (window->Running())
 	{
 		fpsLimiter.Mark();
 		fpsCounter.Start();
 
-		while (window.GetEvent(report))
+		while (window->GetEvent(report))
 		{
 			if (report.Type == LDL::IsQuit)
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 
 			if (report.IsKeyPressed(LDL::KeyboardKey::Escape))
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 		}
 
-		render.Begin();
+		render->Begin();
 
 		Display();
 
-		render.End();
+		render->End();
 
 		fpsLimiter.Throttle();
 
 		if (fpsCounter.Calc())
 		{
-			window.Title(convert.ToString(fpsCounter.Fps()));
+			window->Title(convert.ToString(fpsCounter.Fps()));
 		}
 	}
 

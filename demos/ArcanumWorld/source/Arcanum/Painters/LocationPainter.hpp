@@ -15,12 +15,12 @@ namespace Arcanum
     class LocationPainter
     {
     public:
-        LocationPainter(LDL::Render* render, LocationData* location);
+        LocationPainter(LDL::IRender* render, LocationData* location);
         void DrawTiles(const LDL::Vec2u& start);
         void DrawSceneries(const LDL::Vec2u& start);
         void Draw(const LDL::Vec2u& start);
     private:
-        LDL::Render*   _render;
+        LDL::IRender*   _render;
         LocationData*  _location;
         Isometric      _isometric;
     };

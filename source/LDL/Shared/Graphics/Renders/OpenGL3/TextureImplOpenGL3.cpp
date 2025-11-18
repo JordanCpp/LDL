@@ -10,7 +10,7 @@
 
 using namespace LDL;
 
-TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size, uint8_t* pixels) :
+TextureImplOpenGL3::TextureImplOpenGL3(RenderContext* renderContextImpl, size_t pixelFormat, const Vec2u& size, uint8_t* pixels) :
 	_renderContextImpl(renderContextImpl),
 	_id(0)
 {
@@ -41,7 +41,7 @@ TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, siz
 	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_size.x, (GLsizei)_size.y, 0, format, GL_UNSIGNED_BYTE, pixels));
 }
 
-TextureImplOpenGL3::TextureImplOpenGL3(RenderContextImpl* renderContextImpl, size_t pixelFormat, const Vec2u& size) :
+TextureImplOpenGL3::TextureImplOpenGL3(RenderContext* renderContextImpl, size_t pixelFormat, const Vec2u& size) :
 	_renderContextImpl(renderContextImpl),
 	_id(0)
 {

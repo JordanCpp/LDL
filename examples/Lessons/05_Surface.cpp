@@ -21,14 +21,14 @@ int main()
 	Result result;
 	RenderContext renderContext;
 
-	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__);
+	IWindow* window = CreateWindowImpl(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__, 0);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	Render render(result, renderContext, &window);
+	LDL::IRender* render = CreateRenderImpl(result, renderContext, window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
@@ -50,30 +50,30 @@ int main()
 
 	Surface surface(bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
 
-	while (window.Running() || result.Ok())
+	while (window->Running() || result.Ok())
 	{
 		fpsCounter.Start();
 
-		while (window.GetEvent(report))
+		while (window->GetEvent(report))
 		{
 			if (report.Type == IsQuit)
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 		}
 
-		render.Begin();
+		render->Begin();
 
-		render.SetColor(Color(0, 162, 232));
-		render.Clear();
+		render->SetColor(Color(0, 162, 232));
+		render->Clear();
 
-		render.Draw(&surface, Vec2u(0, 0));
+		render->Draw(&surface, Vec2u(0, 0));
 
-		render.End();
+		render->End();
 
 		if (fpsCounter.Calc())
 		{
-			window.Title(convert.ToString(fpsCounter.Fps()));
+			window->Title(convert.ToString(fpsCounter.Fps()));
 		}
 	}
 

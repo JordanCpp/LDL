@@ -40,12 +40,12 @@ if (WIN32)
     file(GLOB_RECURSE SOURCE 
     "source/LDL/Shared/*.cpp" 
     "source/LDL/APIs/OpenGL/*.cpp" 
-    "source/LDL/Platforms/${LDL_WINDOWS_NAME}/*.cpp")
+    "source/LDL/${LDL_WINDOWS_NAME}/*.cpp")
 elseif(UNIX AND NOT APPLE)
     file(GLOB_RECURSE SOURCE 
     "source/LDL/Shared/*.cpp" 
     "source/LDL/APIs/OpenGL/*.cpp" 
-    "source/LDL/Platforms/Linux/*.cpp")
+    "source/LDL/Linux/*.cpp")
 endif()
 
 if (LDL_SHARED_LIBRARY)

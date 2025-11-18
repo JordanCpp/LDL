@@ -6,17 +6,19 @@
 #include <LDL/APIs/SDL3/SDL_Application.hpp>
 #include <LDL/APIs/SDL3/SDL_Renderer.hpp>
 #include <LDL/APIs/SDL3/SDL_Texture.hpp>
+#include <LDL/Graphics/RenderCreator.hpp>
+#include <LDL/Graphics/Texture.hpp>
 
 using namespace LDL;
 
 SDL_Renderer::SDL_Renderer(SDL_Window* window, const char* name) :
-	_render(App().GetResult(), window->GetRenderContext(), &window->GetWindow()),
+	_render(CreateRenderImpl(App().GetResult(), window->GetRenderContext(), window->GetWindow())),
 	_renderContext(window->GetRenderContext())
 {
 	LDL_UNUSED(name);
 }
 
-Render& SDL_Renderer::GetRender()
+IRender* SDL_Renderer::GetRender()
 {
 	return _render;
 }
@@ -43,7 +45,7 @@ void SDL_DestroyRenderer(SDL_Renderer* renderer)
 
 bool SDL_GetRenderDrawColor(SDL_Renderer* renderer, Uint8* r, Uint8* g, Uint8* b, Uint8* a)
 {
-	Color color = renderer->GetRender().GetColor();
+	Color color = renderer->GetRender()->GetColor();
 
 	*r = color.r;
 	*g = color.g;
@@ -55,21 +57,21 @@ bool SDL_GetRenderDrawColor(SDL_Renderer* renderer, Uint8* r, Uint8* g, Uint8* b
 
 bool SDL_RenderClear(SDL_Renderer* renderer)
 {
-	renderer->GetRender().Clear();
+	renderer->GetRender()->Clear();
 
 	return true;
 }
 
 bool SDL_SetRenderDrawColor(SDL_Renderer* renderer, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
-	renderer->GetRender().SetColor(Color(r, g, b, a));
+	renderer->GetRender()->SetColor(Color(r, g, b, a));
 
 	return true;
 }
 
 bool SDL_RenderPresent(SDL_Renderer* renderer)
 {
-	renderer->GetRender().End();
+	renderer->GetRender()->End();
 
 	return true;
 }
@@ -85,7 +87,7 @@ bool SDL_RenderTexture(SDL_Renderer* renderer, SDL_Texture* texture, const SDL_F
 	if (srcrect == NULL)
 	{
 		srcPos = Vec2u(0, 0);
-		srcSize = texture->GetTexture().Size();
+		srcSize = texture->GetTexture()->Size();
 	}
 	else
 	{
@@ -96,7 +98,7 @@ bool SDL_RenderTexture(SDL_Renderer* renderer, SDL_Texture* texture, const SDL_F
 	if (dstrect == NULL)
 	{
 		dstPos = Vec2u(0, 0);
-		dstSize = texture->GetTexture().Size();
+		dstSize = texture->GetTexture()->Size();
 	}
 	else
 	{
@@ -104,7 +106,7 @@ bool SDL_RenderTexture(SDL_Renderer* renderer, SDL_Texture* texture, const SDL_F
 		dstSize = Vec2u((uint32_t)dstrect->w, (uint32_t)dstrect->h);
 	}
 
-	renderer->GetRender().Draw(&texture->GetTexture(), dstPos, dstSize, srcPos, srcSize);
+	renderer->GetRender()->Draw(texture->GetTexture(), dstPos, dstSize, srcPos, srcSize);
 
 	return true;
 }

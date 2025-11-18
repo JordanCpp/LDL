@@ -37,14 +37,14 @@ int main()
 	Result result;
 	RenderContext renderContext;
 
-	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__);
+	IWindow* window = CreateWindowImpl(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__, 0);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	Render render(result, renderContext, &window);
+	LDL::IRender* render = CreateRenderImpl(result, renderContext, window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
@@ -57,28 +57,28 @@ int main()
 	Convert    convert;
 	FpsLimiter fpsLimiter;
 
-	while (window.Running())
+	while (window->Running())
 	{
 		fpsLimiter.Mark();
 
 		fpsCounter.Start();
 
-		while (window.GetEvent(report))
+		while (window->GetEvent(report))
 		{
 			if (report.Type == IsQuit)
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 		}
 
-		render.Begin();
-		render.End();
+		render->Begin();
+		render->End();
 
 		fpsLimiter.Throttle();
 
 		if (fpsCounter.Calc())
 		{
-			window.Title(convert.ToString(fpsCounter.Fps()));
+			window->Title(convert.ToString(fpsCounter.Fps()));
 		}
 
 		printf("Allocation count: %d allocation bytes %d\n", totalCount, totalBytes);

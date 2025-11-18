@@ -10,18 +10,18 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Graphics/SpriteBatcher.hpp>
-#include <LDL/Shared/Graphics/Base/BaseRender.hpp>
-#include <LDL/Shared/Graphics/Impls/RenderImpl.hpp>
+#include <LDL/Shared/Graphics/BaseRender.hpp>
+#include <LDL/Graphics/Render.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL1/ScreenOpenGL1.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL1/TextureImplOpenGL1.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL1/RenderBufferOpenGL1.hpp>
 
 namespace LDL
 {
-	class RenderImplOpenGL1 : public RenderImpl
+	class RenderImplOpenGL1 : public IRender
 	{
 	public:
-		RenderImplOpenGL1(Result& result, RenderContextImpl* renderContextImpl, Window* window);
+		RenderImplOpenGL1(Result& result, RenderContext* renderContextImpl, IWindow* window);
 		void Buffer(uint8_t* dst);
 		void Begin();
 		void End();
@@ -36,17 +36,17 @@ namespace LDL
 		void Draw(Surface* image, const Vec2u& pos, const Vec2u& size);
 		void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize);
 		void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
-		void Draw(Texture* image, const Vec2u& pos);
-		void Draw(Texture* image, const Vec2u& pos, const Vec2u& size);
-		void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize);
-		void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(ITexture* image, const Vec2u& pos);
+		void Draw(ITexture* image, const Vec2u& pos, const Vec2u& size);
+		void Draw(ITexture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(ITexture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
 		void Draw(SpriteBatcher* textureBatcher);
 	private:
 		Result&            _result;
-		Window*            _window;
+		IWindow*            _window;
 		ScreenOpenGL1      _screen;
 		LDL::Color         _color;
-		RenderContextImpl* _renderContextImpl;
+		RenderContext* _renderContextImpl;
 		RenderBuffer       _renderBuffer;
 	public:
 		Mat4f              _projection;

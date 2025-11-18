@@ -8,13 +8,13 @@
 using namespace LDL;
 using namespace Arcanum;
 
-Button::Button(Render& render, const Vec2u& pos, const Vec2u& size) :
+Button::Button(IRender* render, const Vec2u& pos, const Vec2u& size) :
 	Widget(render, pos, size)
 {
 }
 
 void Button::Draw()
 {
-	GetRender().SetColor(Color(192, 192, 192));
-	GetRender().Fill(Pos(), Size());
+	GetRender()->SetColor(Color(192, 192, 192));
+	GetRender()->Fill(Pos(), Size());
 }

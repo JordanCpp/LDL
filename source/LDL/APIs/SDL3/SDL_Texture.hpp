@@ -13,10 +13,10 @@
 
 struct SDL_Texture
 {
-	LDL::Texture _texture;
+	LDL::ITexture* _texture;
 	SDL_Texture(LDL::RenderContext* renderContext, size_t pixelFormat, const LDL::Vec2u& size);
 	SDL_Texture(LDL::RenderContext* renderContext, SDL_SurfaceDetail* surface);
-	LDL::Texture& GetTexture();
+	LDL::ITexture* GetTexture();
 };
 
 #endif

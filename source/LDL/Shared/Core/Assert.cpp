@@ -3,23 +3,17 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+#include <stdio.h>
+#include <cstdlib>
 #include <LDL/Core/Assert.hpp>
-#include <LDL/Core/Console.hpp>
-#include <LDL/Core/Terminate.hpp>
-#include <LDL/Core/Formatter.hpp>
-#include <LDL/Core/InPlaceStrings.hpp>
 
 using namespace LDL;
 
-void LDL::Assert(bool condition, const char* description, const char* detail, const char* file, size_t line)
+void LDL::Assert(bool condition, const char* description, const char* detail, const char* file, int line)
 {
 	if (!condition)
 	{
-		Console console;
-		Formatter formatter;
-
-		console.Write(formatter.Format("%s, detail: %s, file: %s, line: %d\n", description, detail, file, line));
-
-		Terminate();
+		printf("%s, detail: %s, file: %s, line: %d\n", description, detail, file, line);
+		abort();
 	}
 }

@@ -13,7 +13,7 @@ namespace Arcanum
     class Button : public Widget
     {
     public:
-        Button(LDL::Render& render, const LDL::Vec2u& pos, const LDL::Vec2u& size);
+        Button(LDL::IRender* render, const LDL::Vec2u& pos, const LDL::Vec2u& size);
         void Draw();
     private:
     };

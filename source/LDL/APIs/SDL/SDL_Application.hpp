@@ -6,7 +6,9 @@
 #ifndef LDL_APIs_SDL_SDL_Application_hpp
 #define LDL_APIs_SDL_SDL_Application_hpp
 
+#include <LDL/Core/Result.hpp>
 #include <LDL/Graphics/Render.hpp>
+#include <LDL/Graphics/Window.hpp>
 #include <LDL/Core/RingBuffer.hpp>
 #include <LDL/APIs/SDL/SDL_video.h>
 #include <LDL/APIs/SDL/SDL_events.h>
@@ -24,17 +26,17 @@ public:
 	bool PollEvent(SDL_Event& dest);
 	LDL::RenderContext& GetContext();
 	LDL::Result& GetResult();
-	LDL::Window* GetWindow();
-	LDL::Render* GetRender();
-	void SetWindow(LDL::Window* window);
-	void SetRender(LDL::Render* render);
+	LDL::IWindow* GetWindow();
+	LDL::IRender* GetRender();
+	void SetWindow(LDL::IWindow* window);
+	void SetRender(LDL::IRender* render);
 private:
 	SDL_Memory                       _memory;
 	LDL::RenderContext               _context;
 	LDL::Result                      _result;
-	LDL::Window*                     _window;
-	LDL::Render*                     _render;
-	LDL::ring_buffer<SDL_Event, Max> _events;
+	LDL::IWindow*                     _window;
+	LDL::IRender*                     _render;
+	LDL::RingBuffer<SDL_Event, Max> _events;
 };
 
 SDL_Application& App();

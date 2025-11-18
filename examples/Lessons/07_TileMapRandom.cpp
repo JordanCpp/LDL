@@ -31,14 +31,14 @@ int main()
 	Result result;
 	RenderContext renderContext;
 
-	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__);
+	IWindow* window = CreateWindowImpl(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__, 0);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	Render render(result, renderContext, &window);
+	LDL::IRender* render = CreateRenderImpl(result, renderContext, window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
@@ -55,7 +55,7 @@ int main()
 
 	surface.ColorKey(Color(255, 255, 255));
 
-	Texture image(&renderContext,  &surface);
+	ITexture* image = CreateTextureImpl(&renderContext,  &surface);
 
 	FpsCounter fpsCounter;
 	Convert    convert;
@@ -83,13 +83,13 @@ int main()
 		tilesY[i] = random.Range(0, 5);
 	}
 
-	while (window.Running())
+	while (window->Running())
 	{
 		fpsLimiter.Mark();
 
 		fpsCounter.Start();
 
-		while (window.GetEvent(report))
+		while (window->GetEvent(report))
 		{
 			if (report.IsKeyPressed(KeyboardKey::Q))
 			{
@@ -122,14 +122,14 @@ int main()
 
 			if (report.Type == IsQuit)
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 		}
 
-		render.Begin();
+		render->Begin();
 
-		render.SetColor(Color(0, 162, 232));
-		render.Clear();
+		render->SetColor(Color(0, 162, 232));
+		render->Clear();
 
 		uint32_t j = 0;
 
@@ -149,17 +149,17 @@ int main()
 				uint32_t ty = tileSize.y * tilesY[j];
 				j++;
 
-				render.Draw(&image, Vec2u(start.x + pt.x + dx, start.y + pt.y + dy), Vec2u(tx, ty), tileSize);
+				render->Draw(image, Vec2u(start.x + pt.x + dx, start.y + pt.y + dy), Vec2u(tx, ty), tileSize);
 			}
 		}
 
-		render.End();
+		render->End();
 
 		fpsLimiter.Throttle();
 
 		if (fpsCounter.Calc())
 		{
-			window.Title(convert.ToString(fpsCounter.Fps()));
+			window->Title(convert.ToString(fpsCounter.Fps()));
 		}
 	}
 

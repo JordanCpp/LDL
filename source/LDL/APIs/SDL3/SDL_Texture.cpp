@@ -5,20 +5,23 @@
 
 #include <LDL/APIs/SDL3/SDL_Renderer.hpp>
 #include <LDL/APIs/SDL3/SDL_Texture.hpp>
+#include <LDL/Graphics/TextureImplCreator.hpp>
 
 using namespace LDL;
 
 SDL_Texture::SDL_Texture(RenderContext* renderContext, size_t pixelFormat, const Vec2u& size) :
-	_texture(renderContext, pixelFormat, size)
+	_texture(NULL)
 {
+	_texture = CreateTextureImpl(renderContext, pixelFormat, size);
 }
 
 SDL_Texture::SDL_Texture(RenderContext* renderContext, SDL_SurfaceDetail* surface) :
-	_texture(renderContext, surface->GetSurface().Format(), surface->GetSurface().Size(), surface->GetSurface().Pixels())
+	_texture(NULL)
 {
+	_texture = CreateTextureImpl(renderContext, surface->GetSurface().Format(), surface->GetSurface().Size(), surface->GetSurface().Pixels());
 }
 
-Texture& SDL_Texture::GetTexture()
+ITexture* SDL_Texture::GetTexture()
 {
 	return _texture;
 }
@@ -42,7 +45,7 @@ void SDL_DestroyTexture(SDL_Texture* texture)
 
 bool SDL_GetTextureSize(SDL_Texture* texture, float* w, float* h)
 {
-	Vec2u size = texture->GetTexture().Size();
+	Vec2u size = texture->GetTexture()->Size();
 
 	*w = (float)size.x;
 	*h = (float)size.y;

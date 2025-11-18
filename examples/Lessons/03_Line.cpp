@@ -21,14 +21,14 @@ int main()
 	Result result;
 	RenderContext renderContext;
 
-	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__);
+	IWindow* window = CreateWindowImpl(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__, 0);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	Render render(result, renderContext, &window);
+	IRender* render = CreateRenderImpl(result, renderContext, window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
@@ -39,32 +39,32 @@ int main()
 	Convert    convert;
 	FpsCounter fpsCounter;
 
-	while (window.Running())
+	while (window->Running())
 	{
 		fpsCounter.Start();
 
-		while (window.GetEvent(report))
+		while (window->GetEvent(report))
 		{
 			if (report.Type == IsQuit)
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 		}
 
-		render.Begin();
+		render->Begin();
 
-		render.SetColor(Color(0, 162, 232));
-		render.Clear();
+		render->SetColor(Color(0, 162, 232));
+		render->Clear();
 
-		render.SetColor(Color(237, 28, 36));
-		render.Line(Vec2u(0, 0), Vec2u(render.Size().x, render.Size().y));
-		render.Line(Vec2u(render.Size().x, 0), Vec2u(0, render.Size().y));
+		render->SetColor(Color(237, 28, 36));
+		render->Line(Vec2u(0, 0), Vec2u(render->Size().x, render->Size().y));
+		render->Line(Vec2u(render->Size().x, 0), Vec2u(0, render->Size().y));
 
-		render.End();
+		render->End();
 
 		if (fpsCounter.Calc())
 		{
-			window.Title(convert.ToString(fpsCounter.Fps()));
+			window->Title(convert.ToString(fpsCounter.Fps()));
 		}
 	}
 

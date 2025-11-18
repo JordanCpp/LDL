@@ -11,7 +11,7 @@
 
 namespace LDL
 {
-	void LDL_LIBRARY TestEqual(bool condition, const char* description, const char* function, const char* file, size_t line);
+	void LDL_LIBRARY TestEqual(bool condition, const char* description, const char* function, const char* file, int line);
 }
 
 #define LDL_TEST_EQUAL(x) LDL::TestEqual(x, #x, "__FUNCTION__", __FILE__, __LINE__)

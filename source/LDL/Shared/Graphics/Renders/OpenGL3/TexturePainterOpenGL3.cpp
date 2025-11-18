@@ -71,11 +71,11 @@ TexturePainter::TexturePainter(ShaderLoader* shaderLoader) :
     glEnableVertexAttribArray(2);
 }
 
-void TexturePainter::Draw(Mat4f proj, Texture* texture)
+void TexturePainter::Draw(Mat4f proj, ITexture* texture)
 {
     LDL_UNUSED(proj);
 
-    GLuint id = (GLuint)((TextureImplOpenGL3*)texture->GetTextureImpl())->Id();
+    GLuint id = (GLuint)((TextureImplOpenGL3*)texture)->Id();
 
     glBindTexture(GL_TEXTURE_2D, id);
 

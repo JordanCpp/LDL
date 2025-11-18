@@ -53,14 +53,14 @@ void SDL_Application::PollEvents()
 	{
 		SDL_Window* window = _windows[i];
 
-		while (window->_window.GetEvent(src))
+		while (window->_window->GetEvent(src))
 		{
 			EventConvertor(src, dst);
 
 			_events.enqueue(dst);
 		}
 
-		window->_window.PollEvents();
+		window->_window->PollEvents();
 	}
 }
 

@@ -7,11 +7,11 @@
 #include <LDL/Core/FileStream.hpp>
 
 #if defined(LDL_WINDOWS_NT)
-    #include <LDL/Platforms/WinNT/Core/FileStreamImpl.hpp>
+    #include <LDL/WinNT/Core/FileStreamImpl.hpp>
 #elif defined(LDL_WINDOWS_9X)
-    #include <LDL/Platforms/Win9X/Core/FileStreamImpl.hpp>
+    #include <LDL/Win9X/Core/FileStreamImpl.hpp>
 #elif defined(__unix__)
-    #include <LDL/Platforms/Linux/Core/FileStreamImpl.hpp>
+    #include <LDL/Linux/Core/FileStreamImpl.hpp>
 #endif
 
 using namespace LDL;

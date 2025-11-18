@@ -9,9 +9,9 @@
 
 using namespace LDL;
 
-SpriteBatcherImplOpenGL3::SpriteBatcherImplOpenGL3(Texture* texture, size_t count) :
-	_texture(((TextureImplOpenGL3*)texture->GetTextureImpl())->Id()),
-	_textureSize(texture->GetTextureImpl()->Quad().x)
+SpriteBatcherImplOpenGL3::SpriteBatcherImplOpenGL3(ITexture* texture, size_t count) :
+	_texture(((TextureImplOpenGL3*)texture)->Id()),
+	_textureSize(texture->Quad().x)
 {
 	_quads.reserve(count);
 }

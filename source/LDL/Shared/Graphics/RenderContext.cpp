@@ -4,33 +4,20 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Graphics/RenderContext.hpp>
-#include <LDL/Shared/Graphics/Creators/RenderContextImplCreator.hpp>
+#include <LDL/Graphics//RenderContext.hpp>
 
 using namespace LDL;
 
-RenderContext::RenderContext(size_t mode)
+RenderContext::RenderContext(size_t mode) :
+	_mode(mode)
 {
-    RenderContextImplCreator creator;
-	
-	_impl = creator.Create(_memory, mode);
 }
 
 RenderContext::~RenderContext()
 {
-	_impl->~RenderContextImpl();
-}
-
-RenderContextImpl* RenderContext::GetRenderContextImpl()
-{
-	return _impl;
 }
 
 size_t RenderContext::Mode()
 {
-    return _impl->Mode();
-}
-
-void* RenderContext::Context()
-{
-	return _impl;
+    return _mode;
 }
