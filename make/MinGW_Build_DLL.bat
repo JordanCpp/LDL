@@ -1,7 +1,7 @@
 
 call "C:\iso\mingw\codeblocks-8.02mingw-setup\MinGW\mingwvars.bat"
 
-g++ -fno-rtti -fno-exceptions -Wall -Wextra -pedantic -O2 -s -static -shared -o LDL_MinGW.dll -DLDL_SHARED_LIBRARY ^
+g++ -fno-rtti -fno-exceptions -Wall -Wextra -pedantic -O2 -s -static -shared -o LDL_MinGW.dll -DLDL_WINDOWS_NT -DLDL_SHARED_LIBRARY ^
 ..\source\LDL\OpenGL\*.cpp ^
 ..\source\LDL\WinNT\*.cpp ^
 ..\source\LDL\*.cpp ^

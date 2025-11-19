@@ -3,11 +3,11 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Math_Recti_hpp
-#define LDL_Math_Recti_hpp
+#ifndef LDL_Recti_hpp
+#define LDL_Recti_hpp
 
-#include <LDL/Math/Rect.hpp>
+#include <LDL/Rect.hpp>
 
-typedef LDL_Rect<int32_t>  Recti;
+typedef LDL_Rect<int32_t>  LDL_Recti;
 
 #endif    

@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Enums_ButtonState_hpp
-#define LDL_Enums_ButtonState_hpp
+#ifndef LDL_Enums_hpp
+#define LDL_Enums_hpp
 
 class LDL_ButtonState
 {

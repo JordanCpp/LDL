@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_PixelResizer_hpp
-#define LDL_Graphics_PixelResizer_hpp
+#ifndef LDL_PixRszer_hpp
+#define LDL_PixRszer_hpp
 
 #include <LDL/Vec2.hpp>
 #include <LDL/Surface.hpp>

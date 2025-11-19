@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Math_Random_hpp
-#define LDL_Math_Random_hpp
+#ifndef LDL_Random_hpp
+#define LDL_Random_hpp
 
 #include <LDL/Config.hpp>
 #include <LDL/Types.hpp>

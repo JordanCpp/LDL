@@ -3,10 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Math_Vec2f_hpp
-#define LDL_Math_Vec2f_hpp
+#ifndef LDL_Vec2f_hpp
+#define LDL_Vec2f_hpp
 
-#include <LDL/Math/Vec2.hpp>
+#include <LDL/Vec2.hpp>
 
 typedef LDL_Vec2<float>  LDL_Vec2f;
 

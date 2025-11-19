@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Time_FpsLimiter_hpp
-#define LDL_Time_FpsLimiter_hpp
+#ifndef LDL_FpsLimit_hpp
+#define LDL_FpsLimit_hpp
 
 #include <LDL/Config.hpp>
 #include <LDL/Types.hpp>

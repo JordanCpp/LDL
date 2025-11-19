@@ -9,7 +9,7 @@
 #include <LDL/Batcher.hpp>
 #include <LDL/Renders/OpenGL1/BatchGL1.hpp>
 #include <LDL/Renders/OpenGL3/TextureBatcherImplOpenGL3.hpp>
-#include <LDL/Renders/Software/TextureBatcherImplSoftware.hpp>
+#include <LDL/Renders/Software/BtchSoft.hpp>
 
 LDL_ISpriteBatcher* CreateSpriteBatcherImpl(LDL_RenderContext* renderContext, LDL_ITexture* texture, size_t count)
 {
@@ -22,7 +22,7 @@ LDL_ISpriteBatcher* CreateSpriteBatcherImpl(LDL_RenderContext* renderContext, LD
 	switch (mode)
 	{
 	case LDL_RenderMode::Software:
-		result = new SpriteBatcherImplSoftware(texture, count);
+		result = new LDL_SpriteBatcherSoftware(texture, count);
 		break;
 	case LDL_RenderMode::OpenGL1:
 		result = new LDL_SpriteBatcherImplOpenGL1(texture, count);

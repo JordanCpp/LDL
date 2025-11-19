@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_PixelCopier_hpp
-#define LDL_Graphics_PixelCopier_hpp
+#ifndef LDL_PixCopy_hpp
+#define LDL_PixCopy_hpp
 
 #include <LDL/Surface.hpp>
 

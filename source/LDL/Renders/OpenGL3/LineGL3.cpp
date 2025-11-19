@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "LinePainterOpenGL3.hpp"
+#include <LDL/Renders/OpenGL3/LineGL3.hpp>
 
 LinePainter::LinePainter(ShaderLoader* shaderLoader) :
     _shaderLoader(shaderLoader)

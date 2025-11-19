@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Time_FpsCounter_hpp
-#define LDL_Time_FpsCounter_hpp
+#ifndef LDL_FpsCount_hpp
+#define LDL_FpsCount_hpp
 
 #include <LDL/Ticks.hpp>
 #include <LDL/Types.hpp>

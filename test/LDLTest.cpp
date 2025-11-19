@@ -172,7 +172,7 @@ void PixelPainterClearRGB24Test()
 	const LDL_Vec2u size  = LDL_Vec2u(640, 480);
 	const LDL_Color color = LDL_Color(25, 75, 125);
 
-	PixelPainter painter;
+	LDL_PixelPainter painter;
 
 	LDL_Surface surfRgb24(LDL_PixelFormat::RGB24, size);
 
@@ -191,7 +191,7 @@ void PixelPainterClearBGR24Test()
 	const LDL_Vec2u size = LDL_Vec2u(640, 480);
 	const LDL_Color color = LDL_Color(25, 75, 125);
 
-	PixelPainter painter;
+	LDL_PixelPainter painter;
 
 	LDL_Surface surf(LDL_PixelFormat::BGR24, size);
 
@@ -210,7 +210,7 @@ void PixelPainterClearRGBA32Test()
 	const LDL_Vec2u size  = LDL_Vec2u(640, 480);
 	const LDL_Color color = LDL_Color(25, 75, 125, 235);
 
-	PixelPainter painter;
+	LDL_PixelPainter painter;
 
 	LDL_Surface surf(LDL_PixelFormat::RGBA32, size);
 
@@ -230,7 +230,7 @@ void PixelPainterClearBGRA32Test()
 	const LDL_Vec2u size  = LDL_Vec2u(640, 480);
 	const LDL_Color color = LDL_Color(25, 75, 125, 235);
 
-	PixelPainter painter;
+	LDL_PixelPainter painter;
 
 	LDL_Surface surf(LDL_PixelFormat::BGRA32, size);
 

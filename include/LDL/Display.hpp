@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Input_Display_hpp
-#define LDL_Input_Display_hpp
+#ifndef LDL_Display_hpp
+#define LDL_Display_hpp
 
 #include <LDL/Video.hpp>
 #include <LDL/Vector.hpp>

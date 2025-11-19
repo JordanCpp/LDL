@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Core_Vector_hpp
-#define LDL_Core_Vector_hpp
+#ifndef LDL_Vector_hpp
+#define LDL_Vector_hpp
 
 #include <LDL/New.hpp>
 #include <LDL/StdFuncs.hpp>

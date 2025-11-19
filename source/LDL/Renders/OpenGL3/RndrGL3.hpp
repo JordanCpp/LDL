@@ -3,24 +3,23 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_Software_RenderImpl_hpp
-#define LDL_Graphics_Software_RenderImpl_hpp
+#ifndef LDL_Graphics_OpenGL3_RenderImpl_hpp
+#define LDL_Graphics_OpenGL3_RenderImpl_hpp
 
-#include <LDL/Window.hpp>
-#include <LDL/Surface.hpp>
-#include <LDL/Texture.hpp>
-#include <LDL/PixCopy.hpp>
-#include <LDL/PixRszer.hpp>
-#include <LDL/PixPaint.hpp>
-#include <LDL/Batcher.hpp>
 #include <LDL/BaseRndr.hpp>
+#include <LDL/Window.hpp>
+#include "TextureImplOpenGL3.hpp"
+#include <LDL/Texture.hpp>
+#include <LDL/Mat4.hpp>
+#include <LDL/Renders/OpenGL3/LineGL3.hpp>
+#include "TexturePainterOpenGL3.hpp"
+#include <LDL/Batcher.hpp>
 #include <LDL/Render.hpp>
-#include <LDL/Renders/Software/TextureImplSoftware.hpp>
 
-class RenderImplSoftware : public LDL_IRender
+class RenderImplOpenGL3 : public LDL_IRender
 {
 public:
-	RenderImplSoftware(LDL_Result& result, LDL_RenderContext* renderContextImpl, LDL_IWindow* window);
+	RenderImplOpenGL3(LDL_Result& result, LDL_RenderContext* renderContextImpl, LDL_IWindow* window);
 	void Buffer(uint8_t* dst);
 	void Begin();
 	void End();
@@ -42,12 +41,15 @@ public:
 	void Draw(LDL_ISpriteBatcher* textureBatcher);
 private:
 	LDL_Result& _result;
-	LDL_Color    _color;
 	LDL_IWindow* _window;
-	LDL_Surface       _canvas;
-	PixelPainter  _pixelPainter;
-	LDL_PixelCopier   _pixelCopier;
-	LDL_PixelResizer  _imageResizer;
+	LDL_Color _color;
+	Mat4f     _projection;
+	ShaderLoader    _shaderLoader;
+	LinePainter     _linePainter;
+	TexturePainter  _texturePainter;
+public:
+	Mat4f     _Projection;
+	Mat4f     _ModelView;
 };
 
-#endif   
+#endif    

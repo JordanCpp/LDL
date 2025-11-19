@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Math_Funcs_hpp
-#define LDL_Math_Funcs_hpp
+#ifndef LDL_Funcs_hpp
+#define LDL_Funcs_hpp
 
 #include <math.h>
 #include <LDL/Mat4.hpp>

@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Math_Vec3_hpp
-#define LDL_Math_Vec3_hpp
+#ifndef LDL_Vec3_hpp
+#define LDL_Vec3_hpp
 
 template<class T>
 class LDL_Vec3

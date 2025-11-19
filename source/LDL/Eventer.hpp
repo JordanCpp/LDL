@@ -6,7 +6,7 @@
 #ifndef LDL_Events_Eventer_hpp
 #define LDL_Events_Eventer_hpp
 
-#include <LDL/Event.hpp>
+#include <LDL/Events.hpp>
 #include <LDL/RingBuffer.hpp>
 
 class LDL_LIBRARY LDL_Eventer

@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_Palette_hpp
-#define LDL_Graphics_Palette_hpp
+#ifndef LDL_Palette_hpp
+#define LDL_Palette_hpp
 
 #include <LDL/Config.hpp>
 #include <LDL/Types.hpp>

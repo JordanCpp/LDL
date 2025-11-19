@@ -23,7 +23,7 @@ namespace Arcanum
         virtual void Draw() = 0;
     private:
         LDL_IRender* _render;
-        Rectu   _area;
+        LDL_Rectu    _area;
     };
 }
 

@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Core_New_hpp
-#define LDL_Core_New_hpp
+#ifndef LDL_New_hpp
+#define LDL_New_hpp
 
 #if (_MSC_VER < 1600 && !__GNUC__)
     #include <LDL/std/stddef.hpp>

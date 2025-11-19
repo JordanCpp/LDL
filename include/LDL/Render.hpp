@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_Impls_RenderImpl_hpp
-#define LDL_Graphics_Impls_RenderImpl_hpp
+#ifndef LDL_Render_hpp
+#define LDL_Render_hpp
 
 #include <LDL/Texture.hpp>
 #include <LDL/Surface.hpp>

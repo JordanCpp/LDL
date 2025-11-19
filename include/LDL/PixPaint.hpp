@@ -3,16 +3,16 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_PixelPainter_hpp
-#define LDL_Graphics_PixelPainter_hpp
+#ifndef LDL_PixPaint_hpp
+#define LDL_PixPaint_hpp
 
 #include <LDL/Surface.hpp>
 
-class LDL_LIBRARY PixelPainter
+class LDL_LIBRARY LDL_PixelPainter
 {
 public:
-	PixelPainter();
-	~PixelPainter();
+	LDL_PixelPainter();
+	~LDL_PixelPainter();
 	void Line(const LDL_Vec2u& pos1, const LDL_Vec2u& pos2);
 	void Fill(size_t pixelFormat, uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Vec2u& pos, const LDL_Vec2u& size, const LDL_Color& color);
 	void FillBGR24(uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Vec2u& pos, const LDL_Vec2u& size, const LDL_Color& color);

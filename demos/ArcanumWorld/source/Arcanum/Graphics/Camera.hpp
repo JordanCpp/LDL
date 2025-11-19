@@ -8,7 +8,7 @@
 
 #include <LDL/Vec2u.hpp>
 #include <LDL/Rectu.hpp>
-#include <LDL/Event.hpp>
+#include <LDL/Events.hpp>
 
 namespace Arcanum
 {
@@ -22,7 +22,7 @@ namespace Arcanum
 		void Handle(LDL_Event& event);
 	private:
 		uint32_t   _step;
-		Rectu _area;
+		LDL_Rectu  _area;
 	};
 }
 

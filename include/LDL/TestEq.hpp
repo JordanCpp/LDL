@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Core_TestEqual_hpp
-#define LDL_Core_TestEqual_hpp
+#ifndef LDL_TestEq_hpp
+#define LDL_TestEq_hpp
 
 #include <LDL/Config.hpp>
 #include <LDL/Types.hpp>

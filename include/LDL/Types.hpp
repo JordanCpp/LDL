@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Core_Types_hpp
-#define LDL_Core_Types_hpp
+#ifndef LDL_Types_hpp
+#define LDL_Types_hpp
 
 #include <limits.h>
 #include <stddef.h>

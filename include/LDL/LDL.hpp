@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_LDL_hpp
-#define LDL_LDL_hpp
+#ifndef LDL_hpp
+#define LDL_hpp
 
 #include <LDL/Convert.hpp>
 #include <LDL/Assert.hpp>

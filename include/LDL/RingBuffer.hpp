@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Core_RingBuffer_hpp
-#define LDL_Core_RingBuffer_hpp
+#ifndef LDL_RingBuffer_hpp
+#define LDL_RingBuffer_hpp
 
 #include <LDL/StdFuncs.hpp>
 #include <LDL/Vector.hpp>

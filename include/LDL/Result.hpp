@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Core_Result_hpp
-#define LDL_Core_Result_hpp
+#ifndef LDL_Result_hpp
+#define LDL_Result_hpp
 
 #include <LDL/Config.hpp>
 #include <LDL/InPlaceStrings.hpp>

@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Core_MemoryManager_hpp
-#define LDL_Core_MemoryManager_hpp
+#ifndef LDL_MemMngr_hpp
+#define LDL_MemMngr_hpp
 
 #include <LDL/Config.hpp>
 #include <LDL/Types.hpp>

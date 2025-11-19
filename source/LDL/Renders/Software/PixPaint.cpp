@@ -3,19 +3,19 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/StdFuncs.hpp>
 #include <LDL/Assert.hpp>
+#include <LDL/StdFuncs.hpp>
 #include <LDL/PixPaint.hpp>
 
-PixelPainter::PixelPainter()
+LDL_PixelPainter::LDL_PixelPainter()
 {
 }
 
-PixelPainter::~PixelPainter()
+LDL_PixelPainter::~LDL_PixelPainter()
 {
 }
 
-void PixelPainter::Fill(size_t pixelFormat, uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Vec2u& pos, const LDL_Vec2u& size, const LDL_Color& color)
+void LDL_PixelPainter::Fill(size_t pixelFormat, uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Vec2u& pos, const LDL_Vec2u& size, const LDL_Color& color)
 {
 	switch (pixelFormat)
 	{
@@ -28,7 +28,7 @@ void PixelPainter::Fill(size_t pixelFormat, uint8_t* pixels, const LDL_Vec2u& ds
 	}
 }
 
-void PixelPainter::FillBGR24(uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Vec2u& pos, const LDL_Vec2u& size, const LDL_Color& color)
+void LDL_PixelPainter::FillBGR24(uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Vec2u& pos, const LDL_Vec2u& size, const LDL_Color& color)
 {
 	size_t x = pos.x;
 	size_t y = pos.y;
@@ -59,7 +59,7 @@ void PixelPainter::FillBGR24(uint8_t* pixels, const LDL_Vec2u& dstSize, const LD
 	}
 }
 
-void PixelPainter::FillRGB24(uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Vec2u& pos, const LDL_Vec2u& size, const LDL_Color& color)
+void LDL_PixelPainter::FillRGB24(uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Vec2u& pos, const LDL_Vec2u& size, const LDL_Color& color)
 {
 	size_t x = (size_t)pos.x;
 	size_t y = (size_t)pos.y;
@@ -90,7 +90,7 @@ void PixelPainter::FillRGB24(uint8_t* pixels, const LDL_Vec2u& dstSize, const LD
 	}
 }
 
-void PixelPainter::Clear(size_t pixelFormat, uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Color& color)
+void LDL_PixelPainter::Clear(size_t pixelFormat, uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Color& color)
 {
 	size_t total = dstSize.x * dstSize.y * LDL_BytesPerPixelFromPixelFormat(pixelFormat);
 
@@ -113,7 +113,7 @@ void PixelPainter::Clear(size_t pixelFormat, uint8_t* pixels, const LDL_Vec2u& d
 	}
 }
 
-void PixelPainter::ClearRGB24(uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Color& color)
+void LDL_PixelPainter::ClearRGB24(uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Color& color)
 {
 	size_t bpp   = LDL_BytesPerPixelFromPixelFormat(LDL_PixelFormat::RGB24);
 	size_t total = dstSize.x * dstSize.y * bpp;
@@ -126,7 +126,7 @@ void PixelPainter::ClearRGB24(uint8_t* pixels, const LDL_Vec2u& dstSize, const L
 	}
 }
 
-void PixelPainter::ClearBGR24(uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Color& color)
+void LDL_PixelPainter::ClearBGR24(uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Color& color)
 {
 	size_t bpp   = LDL_BytesPerPixelFromPixelFormat(LDL_PixelFormat::BGR24);
 	size_t total = dstSize.x * dstSize.y * bpp;
@@ -139,7 +139,7 @@ void PixelPainter::ClearBGR24(uint8_t* pixels, const LDL_Vec2u& dstSize, const L
 	}
 }
 
-void PixelPainter::ClearBGRA32(uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Color& color)
+void LDL_PixelPainter::ClearBGRA32(uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Color& color)
 {
 	size_t bpp   = LDL_BytesPerPixelFromPixelFormat(LDL_PixelFormat::BGRA32);
 	size_t total = dstSize.x * dstSize.y * bpp;
@@ -153,7 +153,7 @@ void PixelPainter::ClearBGRA32(uint8_t* pixels, const LDL_Vec2u& dstSize, const 
 	}
 }
 
-void PixelPainter::ClearRGBA32(uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Color& color)
+void LDL_PixelPainter::ClearRGBA32(uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Color& color)
 {
 	size_t bpp   = LDL_BytesPerPixelFromPixelFormat(LDL_PixelFormat::RGBA32);
 	size_t total = dstSize.x * dstSize.y * bpp;
@@ -167,7 +167,7 @@ void PixelPainter::ClearRGBA32(uint8_t* pixels, const LDL_Vec2u& dstSize, const 
 	}
 }
 
-void PixelPainter::Line(size_t pixelFormat, uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Vec2u& pos1, const LDL_Vec2u& pos2, const LDL_Color& color)
+void LDL_PixelPainter::Line(size_t pixelFormat, uint8_t* pixels, const LDL_Vec2u& dstSize, const LDL_Vec2u& pos1, const LDL_Vec2u& pos2, const LDL_Color& color)
 {
 	size_t   dstW = dstSize.x;
 	size_t   dstH = dstSize.y;
@@ -190,8 +190,8 @@ void PixelPainter::Line(size_t pixelFormat, uint8_t* pixels, const LDL_Vec2u& ds
 	int error;
 	int error2;
 
-	deltaX = abs(x2 - x1);
-	deltaY = abs(y2 - y1);
+	deltaX = LDL_abs(x2 - x1);
+	deltaY = LDL_abs(y2 - y1);
 	signX = x1 < x2 ? 1 : -1;
 	signY = y1 < y2 ? 1 : -1;
 

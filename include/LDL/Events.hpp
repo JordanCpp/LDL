@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Events_Event_hpp
-#define LDL_Events_Event_hpp
+#ifndef LDL_Events_hpp
+#define LDL_Events_hpp
 
 #include <LDL/Types.hpp>
 #include <LDL/Enums.hpp>

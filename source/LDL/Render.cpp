@@ -8,8 +8,8 @@
 #include <LDL/OpenGL/GLLoader.hpp>
 #include <LDL/Render.hpp>
 #include <LDL/Renders/OpenGL1/RndrGL1.hpp>
-#include <LDL/Renders/OpenGL3/RenderImplOpenGL3.hpp>
-#include <LDL/Renders/Software/RenderImplSoftware.hpp>
+#include <LDL/Renders/OpenGL3/RndrGL3.hpp>
+#include <LDL/Renders/Software/RndrSoft.hpp>
 #include <LDL/Format.hpp>
 
 LDL_IRender* LDL_CreateRender(LDL_Result& result, LDL_RenderContext& renderContext, LDL_IWindow* window)

@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "RenderImplOpenGL3.hpp"
-#include "../OpenGL/Util.hpp"
+#include <LDL/Renders/OpenGL3/RndrGL3.hpp>
+#include <LDL/Renders/OpenGL/Util.hpp>
 #include "TextureImplOpenGL3.hpp"
 #include <LDL/Funcs.hpp>
 

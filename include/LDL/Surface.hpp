@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_Surface_hpp
-#define LDL_Graphics_Surface_hpp
+#ifndef LDL_Surface_hpp
+#define LDL_Surface_hpp
 
 #include <LDL/Vec2u.hpp>
 #include <LDL/Vector.hpp>
