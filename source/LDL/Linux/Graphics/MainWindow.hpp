@@ -6,11 +6,11 @@
 #ifndef LDL_Platforms_Linux_Graphics_MainWindow_hpp
 #define LDL_Platforms_Linux_Graphics_MainWindow_hpp
 
-#include <LDL/Enums/WindowMode.hpp>
-#include <LDL/Shared/Events/Eventer.hpp>
-#include <LDL/APIs/OpenGL/OpenGL1_1.hpp>
+#include <LDL/Enums.hpp>
+#include <LDL/Eventer.hpp>
+#include <LDL/OpenGL/OpenGL1_1.hpp>
 #include <LDL/Platforms/Linux/Graphics/GLX.hpp>
-#include <LDL/Shared/Graphics/Base/BaseWindow.hpp>
+#include <LDL/BaseWindow.hpp>
 
 namespace LDL
 {
@@ -21,8 +21,8 @@ namespace LDL
 		~MainWindow();
 		bool Running();
 		void PollEvents();
-		bool GetEvent(Event &event);
-		bool WaitEvent(Event &event);
+		bool GetEvent(LDL_Event &event);
+		bool WaitEvent(LDL_Event &event);
 		void StopEvent();
 		void Title(const char* title);
 		const char* Title();
@@ -34,7 +34,7 @@ namespace LDL
 		size_t ConvertKey(size_t key);
 		Eventer _Eventer;
 	public:
-		Display *_Display;
+		LDL_Display *_Display;
 		int      _Screen;
 		Window   _Root;
 		Window   _Window;

@@ -21,7 +21,7 @@ namespace LDL
 			OpenModeCreate = 8
 		};
 
-		FileStreamImpl(Result& result);
+		FileStreamImpl(LDL_Result& result);
 		~FileStreamImpl();
 		bool Open(const char* path, size_t mode);
 		void Close();
@@ -34,7 +34,7 @@ namespace LDL
 		size_t Size() const;
 	private:
 		bool    _isOpen;
-		Result& _result;
+		LDL_Result& _result;
 	};
 }
 

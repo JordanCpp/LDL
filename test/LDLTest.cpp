@@ -6,9 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <LDL/LDL.hpp>
-#include <LDL/Core/TestEqual.hpp>
-
-using namespace LDL;
+#include <LDL/TestEq.hpp>
 
 /****************************************************************************************************************************
                                                               Color
@@ -16,7 +14,7 @@ using namespace LDL;
 
 void ColorDefaultTest()
 {
-	Color color;
+	LDL_Color color;
 
 	LDL_TEST_EQUAL(color.r == 0);
 	LDL_TEST_EQUAL(color.g == 0);
@@ -26,7 +24,7 @@ void ColorDefaultTest()
 
 void ColorNoAlphaTest()
 {
-	Color color(15, 20, 25);
+	LDL_Color color(15, 20, 25);
 
 	LDL_TEST_EQUAL(color.r == 15);
 	LDL_TEST_EQUAL(color.g == 20);
@@ -36,7 +34,7 @@ void ColorNoAlphaTest()
 
 void ColorYesAlphaTest()
 {
-	Color color(15, 20, 25, 100);
+	LDL_Color color(15, 20, 25, 100);
 
 	LDL_TEST_EQUAL(color.r == 15);
 	LDL_TEST_EQUAL(color.g == 20);
@@ -52,10 +50,10 @@ void CreateWindowTest()
 {
 	const char title[] = "LDL Window title!";
 
-	Result result;
-	RenderContext renderContext;
+	LDL_Result result;
+	LDL_RenderContext renderContext;
 
-	IWindow* window = CreateWindowImpl(result, renderContext, Vec2u(0, 0), Vec2u(640, 480), __FILE__, 0);
+	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(640, 480), __FILE__, 0);
 
 	LDL_TEST_EQUAL(window->Pos().x  == 1);
 	LDL_TEST_EQUAL(window->Pos().y  == 2);
@@ -72,7 +70,7 @@ void FormatterTest()
 {
 	const size_t limit = 1024;
 
-	Formatter formatter;
+	LDL_Formatter formatter;
 
 	InPlaceString<limit> strEmpty = formatter.Format("");
 	LDL_TEST_EQUAL(strcmp(strEmpty.c_str(), "") == 0);
@@ -87,11 +85,11 @@ void FormatterTest()
 
 void BytesPerPixelFromPixelFormatTest()
 {
-	LDL_TEST_EQUAL(BytesPerPixelFromPixelFormat(100500)              == PixelFormat::UNKNOWN);
-	LDL_TEST_EQUAL(BytesPerPixelFromPixelFormat(PixelFormat::RGB24)  == 3);
-	LDL_TEST_EQUAL(BytesPerPixelFromPixelFormat(PixelFormat::BGR24)  == 3);
-	LDL_TEST_EQUAL(BytesPerPixelFromPixelFormat(PixelFormat::RGBA32) == 4);
-	LDL_TEST_EQUAL(BytesPerPixelFromPixelFormat(PixelFormat::BGRA32) == 4);
+	LDL_TEST_EQUAL(LDL_BytesPerPixelFromPixelFormat(100500)              == LDL_PixelFormat::UNKNOWN);
+	LDL_TEST_EQUAL(LDL_BytesPerPixelFromPixelFormat(LDL_PixelFormat::RGB24)  == 3);
+	LDL_TEST_EQUAL(LDL_BytesPerPixelFromPixelFormat(LDL_PixelFormat::BGR24)  == 3);
+	LDL_TEST_EQUAL(LDL_BytesPerPixelFromPixelFormat(LDL_PixelFormat::RGBA32) == 4);
+	LDL_TEST_EQUAL(LDL_BytesPerPixelFromPixelFormat(LDL_PixelFormat::BGRA32) == 4);
 }
 
 /****************************************************************************************************************************
@@ -100,9 +98,9 @@ void BytesPerPixelFromPixelFormatTest()
 
 void SurfaceRGB24InitDefaultTest()
 {
-	Surface surface(PixelFormat::RGB24, Vec2u(640, 480));
+	LDL_Surface surface(LDL_PixelFormat::RGB24, LDL_Vec2u(640, 480));
 
-	LDL_TEST_EQUAL(surface.Format()        == PixelFormat::RGB24);
+	LDL_TEST_EQUAL(surface.Format()        == LDL_PixelFormat::RGB24);
 	LDL_TEST_EQUAL(surface.BytesPerPixel() == 3);
 	LDL_TEST_EQUAL(surface.Size().x        == 640);
 	LDL_TEST_EQUAL(surface.Size().y        == 480);
@@ -114,9 +112,9 @@ void SurfaceRGB24InitDefaultTest()
 
 void SurfaceRGBA32InitDefaultTest()
 {
-	Surface surface(PixelFormat::RGBA32, Vec2u(640, 480));
+	LDL_Surface surface(LDL_PixelFormat::RGBA32, LDL_Vec2u(640, 480));
 
-	LDL_TEST_EQUAL(surface.Format()        == PixelFormat::RGBA32);
+	LDL_TEST_EQUAL(surface.Format()        == LDL_PixelFormat::RGBA32);
 	LDL_TEST_EQUAL(surface.BytesPerPixel() == 4);
 	LDL_TEST_EQUAL(surface.Size().x        == 640);
 	LDL_TEST_EQUAL(surface.Size().y        == 480);
@@ -128,9 +126,9 @@ void SurfaceRGBA32InitDefaultTest()
 
 void SurfaceBGR24InitDefaultTest()
 {
-	Surface surface(PixelFormat::BGR24, Vec2u(640, 480));
+	LDL_Surface surface(LDL_PixelFormat::BGR24, LDL_Vec2u(640, 480));
 
-	LDL_TEST_EQUAL(surface.Format()        == PixelFormat::BGR24);
+	LDL_TEST_EQUAL(surface.Format()        == LDL_PixelFormat::BGR24);
 	LDL_TEST_EQUAL(surface.BytesPerPixel() == 3);
 	LDL_TEST_EQUAL(surface.Size().x        == 640);
 	LDL_TEST_EQUAL(surface.Size().y        == 480);
@@ -142,9 +140,9 @@ void SurfaceBGR24InitDefaultTest()
 
 void SurfaceBGRA32InitDefaultTest()
 {
-	Surface surface(PixelFormat::BGRA32, Vec2u(640, 480));
+	LDL_Surface surface(LDL_PixelFormat::BGRA32, LDL_Vec2u(640, 480));
 
-	LDL_TEST_EQUAL(surface.Format()        == PixelFormat::BGRA32);
+	LDL_TEST_EQUAL(surface.Format()        == LDL_PixelFormat::BGRA32);
 	LDL_TEST_EQUAL(surface.BytesPerPixel() == 4);
 	LDL_TEST_EQUAL(surface.Size().x        == 640);
 	LDL_TEST_EQUAL(surface.Size().y        == 480);
@@ -160,23 +158,23 @@ void SurfaceBGRA32InitDefaultTest()
 
 void Vec2Test()
 {
-	Vec2u vec;
+	LDL_Vec2u vec;
 	LDL_TEST_EQUAL(vec.x == 0);
 	LDL_TEST_EQUAL(vec.y == 0);
 
-	Vec2u vec2 = Vec2u(50, 75);
+	LDL_Vec2u vec2 = LDL_Vec2u(50, 75);
 	LDL_TEST_EQUAL(vec2.x == 50);
 	LDL_TEST_EQUAL(vec2.y == 75);
 }
 
 void PixelPainterClearRGB24Test()
 {
-	const Vec2u size  = Vec2u(640, 480);
-	const Color color = Color(25, 75, 125);
+	const LDL_Vec2u size  = LDL_Vec2u(640, 480);
+	const LDL_Color color = LDL_Color(25, 75, 125);
 
 	PixelPainter painter;
 
-	Surface surfRgb24(PixelFormat::RGB24, size);
+	LDL_Surface surfRgb24(LDL_PixelFormat::RGB24, size);
 
 	painter.ClearRGB24(surfRgb24.Pixels(), size, color);
 
@@ -190,12 +188,12 @@ void PixelPainterClearRGB24Test()
 
 void PixelPainterClearBGR24Test()
 {
-	const Vec2u size = Vec2u(640, 480);
-	const Color color = Color(25, 75, 125);
+	const LDL_Vec2u size = LDL_Vec2u(640, 480);
+	const LDL_Color color = LDL_Color(25, 75, 125);
 
 	PixelPainter painter;
 
-	Surface surf(PixelFormat::BGR24, size);
+	LDL_Surface surf(LDL_PixelFormat::BGR24, size);
 
 	painter.ClearBGR24(surf.Pixels(), size, color);
 
@@ -209,12 +207,12 @@ void PixelPainterClearBGR24Test()
 
 void PixelPainterClearRGBA32Test()
 {
-	const Vec2u size  = Vec2u(640, 480);
-	const Color color = Color(25, 75, 125, 235);
+	const LDL_Vec2u size  = LDL_Vec2u(640, 480);
+	const LDL_Color color = LDL_Color(25, 75, 125, 235);
 
 	PixelPainter painter;
 
-	Surface surf(PixelFormat::RGBA32, size);
+	LDL_Surface surf(LDL_PixelFormat::RGBA32, size);
 
 	painter.ClearRGBA32(surf.Pixels(), size, color);
 
@@ -229,12 +227,12 @@ void PixelPainterClearRGBA32Test()
 
 void PixelPainterClearBGRA32Test()
 {
-	const Vec2u size  = Vec2u(640, 480);
-	const Color color = Color(25, 75, 125, 235);
+	const LDL_Vec2u size  = LDL_Vec2u(640, 480);
+	const LDL_Color color = LDL_Color(25, 75, 125, 235);
 
 	PixelPainter painter;
 
-	Surface surf(PixelFormat::BGRA32, size);
+	LDL_Surface surf(LDL_PixelFormat::BGRA32, size);
 
 	painter.ClearBGRA32(surf.Pixels(), size, color);
 
@@ -249,7 +247,7 @@ void PixelPainterClearBGRA32Test()
 
 int main()
 {
-	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
 	ColorDefaultTest();
 	ColorNoAlphaTest();

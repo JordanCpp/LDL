@@ -5,7 +5,6 @@
 
 #include <Arcanum/Loaders/ArtLoader.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
 void ArtLoader::Load(MemoryReader& memoryReader)
@@ -13,17 +12,17 @@ void ArtLoader::Load(MemoryReader& memoryReader)
 	_file.LoadArt(memoryReader);
 }
 
-const Vec2u& ArtLoader::Size()
+const LDL_Vec2u& ArtLoader::Size()
 {
 	return _size;
 }
 
-const Vec2u& ArtLoader::Offset()
+const LDL_Vec2u& ArtLoader::Offset()
 {
 	return _offset;
 }
 
-const Vec2u& ArtLoader::Delta()
+const LDL_Vec2u& ArtLoader::Delta()
 {
 	return _delta;
 }
@@ -42,15 +41,15 @@ void ArtLoader::Frame(size_t index)
 {
 	uint32_t w = _file.frame_data[index].header.width;
 	uint32_t h = _file.frame_data[index].header.height;
-	_size = Vec2u(w, h);
+	_size = LDL_Vec2u(w, h);
 
 	uint32_t ow = _file.frame_data[index].header.c_x;
 	uint32_t oh = _file.frame_data[index].header.c_y;
-	_offset = Vec2u(ow, oh);
+	_offset = LDL_Vec2u(ow, oh);
 
 	uint32_t dw = _file.frame_data[index].header.d_x;
 	uint32_t dh = _file.frame_data[index].header.d_y;
-	_delta = Vec2u(dw, dh);
+	_delta = LDL_Vec2u(dw, dh);
 
 	_pixels.clear();
 	_pixels.resize(w * h * 4);

@@ -9,9 +9,9 @@
 
 using namespace LDL;
 
-Display::Display()
+LDL_Display::LDL_Display()
 {
-	_videoModes.reserve(VideoMode::Limit);
+	_videoModes.reserve(LDL_VideoMode::Limit);
 
 	DWORD i = 0;
 	DEVMODE dev;
@@ -21,18 +21,18 @@ Display::Display()
 
 	while (EnumDisplaySettingsA(NULL, i++, &dev) != 0)
 	{
-		_videoModes.push_back(VideoMode(Vec2u(dev.dmPelsWidth, dev.dmPelsHeight), dev.dmBitsPerPel));
+		_videoModes.push_back(LDL_VideoMode(LDL_Vec2u(dev.dmPelsWidth, dev.dmPelsHeight), dev.dmBitsPerPel));
 
 		ZeroMemory(&dev, sizeof(dev));
 	}
 }
 
-const Vector<VideoMode>& Display::Modes()
+const LDL_Vector<LDL_VideoMode>& LDL_Display::Modes()
 {
 	return _videoModes;
 }
 
-const VideoMode& Display::Current()
+const LDL_VideoMode& LDL_Display::Current()
 {
 	HDC hdc = GetDC(NULL);
 	LDL_ASSERT_DETAIL(hdc != NULL, "GetDC failed");
@@ -41,7 +41,7 @@ const VideoMode& Display::Current()
 	int height = GetDeviceCaps(hdc, VERTRES);
 	int bpp    = GetDeviceCaps(hdc, BITSPIXEL);
 
-	_videoMode = VideoMode(Vec2u(width, height), bpp);
+	_videoMode = LDL_VideoMode(LDL_Vec2u(width, height), bpp);
 
 	return _videoMode;
 }

@@ -1,0 +1,26 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
+#include <LDL/OpenGL/OpenGL1_5.hpp>
+
+PFNGLGENQUERIESPROC glGenQueries = NULL;
+PFNGLDELETEQUERIESPROC glDeleteQueries = NULL;
+PFNGLISQUERYPROC glIsQuery = NULL;
+PFNGLBEGINQUERYPROC glBeginQuery = NULL;
+PFNGLENDQUERYPROC glEndQuery = NULL;
+PFNGLGETQUERYIVPROC glGetQueryiv = NULL;
+PFNGLGETQUERYOBJECTIVPROC glGetQueryObjectiv = NULL;
+PFNGLGETQUERYOBJECTUIVPROC glGetQueryObjectuiv = NULL;
+PFNGLBINDBUFFERPROC glBindBuffer = NULL;
+PFNGLDELETEBUFFERSPROC glDeleteBuffers = NULL;
+PFNGLGENBUFFERSPROC glGenBuffers = NULL;
+PFNGLISBUFFERPROC glIsBuffer = NULL;
+PFNGLBUFFERDATAPROC glBufferData = NULL;
+PFNGLBUFFERSUBDATAPROC glBufferSubData = NULL;
+PFNGLGETBUFFERSUBDATAPROC glGetBufferSubData = NULL;
+PFNGLMAPBUFFERPROC glMapBuffer = NULL;
+PFNGLUNMAPBUFFERPROC glUnmapBuffer = NULL;
+PFNGLGETBUFFERPARAMETERIVPROC glGetBufferParameteriv = NULL;
+PFNGLGETBUFFERPOINTERVPROC glGetBufferPointerv = NULL;

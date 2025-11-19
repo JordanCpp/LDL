@@ -38,19 +38,19 @@ typedef XID GLXDrawable;
 
 typedef struct __GLXcontextRec *GLXContext;
 
-extern Bool glXQueryVersion( Display *dpy, int *maj, int *min );
-extern XVisualInfo* glXChooseVisual( Display *dpy, int screen,
+extern Bool glXQueryVersion( LDL_Display *dpy, int *maj, int *min );
+extern XVisualInfo* glXChooseVisual( LDL_Display *dpy, int screen,
 				     int *attribList );
 
-extern GLXContext glXCreateContext( Display *dpy, XVisualInfo *vis,
+extern GLXContext glXCreateContext( LDL_Display *dpy, XVisualInfo *vis,
 				    GLXContext shareList, Bool direct );
 
-extern void glXDestroyContext( Display *dpy, GLXContext ctx );
+extern void glXDestroyContext( LDL_Display *dpy, GLXContext ctx );
 
-extern Bool glXMakeCurrent( Display *dpy, GLXDrawable drawable,
+extern Bool glXMakeCurrent( LDL_Display *dpy, GLXDrawable drawable,
 			    GLXContext ctx);
 
-extern void glXSwapBuffers( Display *dpy, GLXDrawable drawable );
+extern void glXSwapBuffers( LDL_Display *dpy, GLXDrawable drawable );
 
 typedef unsigned char	GLubyte;
 

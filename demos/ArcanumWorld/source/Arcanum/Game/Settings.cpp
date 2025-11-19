@@ -5,7 +5,6 @@
 
 #include <Arcanum/Game/Settings.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
 Settings::Settings() : 
@@ -34,12 +33,12 @@ void Settings::Title(const std::string& title)
 	_title = title;
 }
 
-const Vec2u& Settings::Size()
+const LDL_Vec2u& Settings::Size()
 {
 	return _size;
 }
 
-void Settings::Size(const Vec2u& size)
+void Settings::Size(const LDL_Vec2u& size)
 {
 	_size = size;
 }

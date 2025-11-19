@@ -7,11 +7,11 @@
 
 using namespace LDL;
 
-Vec2u Mouse::Pos()
+LDL_Vec2u LDL_Mouse::Pos()
 {
     return _pos;
 }
 
-void Mouse::Pos(const Vec2u& pos)
+void LDL_Mouse::Pos(const LDL_Vec2u& pos)
 {
 }

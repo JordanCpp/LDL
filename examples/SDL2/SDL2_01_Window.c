@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/APIs/SDL2/SDL.h> 
+#include <LDL/SDL2/SDL.h> 
 
 int main()
 {

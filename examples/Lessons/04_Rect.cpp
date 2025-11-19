@@ -7,37 +7,35 @@
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
 
-using namespace LDL;
-
-void ErrorShow(LDL::Result& result)
+void ErrorShow(LDL_Result& result)
 {
 	printf("LDL error: %s", result.Message());
 }
 
 int main()
 {
-	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
-	Result result;
-	RenderContext renderContext;
+	LDL_Result result;
+	LDL_RenderContext renderContext;
 
-	IWindow* window = CreateWindowImpl(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__, 0);
+	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, 0);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	LDL::IRender* render = CreateRenderImpl(result, renderContext, window);
+	LDL_IRender* render = LDL_CreateRender(result, renderContext, window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	Event      report;
-	Convert    convert;
-	FpsCounter fpsCounter;
+	LDL_Event      report;
+	LDL_Convert    convert;
+	LDL_FpsCounter fpsCounter;
 
 	while (window->Running())
 	{
@@ -53,11 +51,11 @@ int main()
 
 		render->Begin();
 
-		render->SetColor(Color(0, 162, 232));
+		render->SetColor(LDL_Color(0, 162, 232));
 		render->Clear();
 
-		render->SetColor(Color(237, 28, 36));
-		render->Fill(Vec2u(0, 0), Vec2u(400, 300));
+		render->SetColor(LDL_Color(237, 28, 36));
+		render->Fill(LDL_Vec2u(0, 0), LDL_Vec2u(400, 300));
 
 		render->End();
 

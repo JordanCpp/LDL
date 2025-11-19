@@ -8,7 +8,7 @@
 
 using namespace LDL;
 
-WindowImplSoftware::WindowImplSoftware(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
+WindowImplSoftware::WindowImplSoftware(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
     _result(result),
     _mainWindow(_result, pos, size, title, mode)
 {
@@ -39,12 +39,12 @@ void WindowImplSoftware::Present()
 {
 }
 
-const Vec2u& WindowImplSoftware::Size()
+const LDL_Vec2u& WindowImplSoftware::Size()
 {
     return _mainWindow.Size();
 }
 
-const Vec2u& WindowImplSoftware::Pos()
+const LDL_Vec2u& WindowImplSoftware::Pos()
 {
     return _mainWindow.Pos();
 }
@@ -59,12 +59,12 @@ void WindowImplSoftware::PollEvents()
     _mainWindow.PollEvents();
 }
 
-bool WindowImplSoftware::GetEvent(Event& event)
+bool WindowImplSoftware::GetEvent(LDL_Event& event)
 {
     return _mainWindow.GetEvent(event);
 }
 
-bool WindowImplSoftware::WaitEvent(Event& event)
+bool WindowImplSoftware::WaitEvent(LDL_Event& event)
 {
     return _mainWindow.WaitEvent(event);
 }

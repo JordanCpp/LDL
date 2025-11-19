@@ -37,10 +37,45 @@ if (WIN32)
 endif()
 
 if (WIN32)
-    file(GLOB_RECURSE SOURCE 
+    file(GLOB SOURCE 
+    "source/LDL/Renders/OpenGL/*.cpp" 
+    "source/LDL/Renders/OpenGL1/*.cpp" 
+    "source/LDL/Renders/OpenGL3/*.cpp" 
+    "source/LDL/Renders/Software/*.cpp"
     "source/LDL/Shared/*.cpp" 
-    "source/LDL/APIs/OpenGL/*.cpp" 
-    "source/LDL/${LDL_WINDOWS_NAME}/*.cpp")
+    "source/LDL/OpenGL/*.cpp" 
+    "source/LDL/${LDL_WINDOWS_NAME}/*.cpp"
+    "source/LDL/Eventer.cpp"
+    "source/LDL/FpsCount.cpp"
+    "source/LDL/FpsLimit.cpp"
+    "source/LDL/Random.cpp"
+    "source/LDL/BmpLoad.cpp"
+    "source/LDL/KeyMap.cpp"
+    "source/LDL/Mapping.cpp"
+    "source/LDL/Assert.cpp"
+    "source/LDL/Convert.cpp"
+    "source/LDL/Format.cpp"
+    "source/LDL/MemMngr.cpp"
+    "source/LDL/Result.cpp"
+    "source/LDL/StdFuncs.cpp"
+    "source/LDL/Stream.cpp"
+    "source/LDL/TestEq.cpp"
+    "source/LDL/UtfConv.cpp"
+    "source/LDL/BaseRndr.cpp"
+    "source/LDL/BaseWin.cpp"
+    "source/LDL/Batcher.cpp"
+    "source/LDL/Color.cpp"
+    "source/LDL/Context.cpp"
+    "source/LDL/Palette.cpp"
+    "source/LDL/PixConv.cpp"
+    "source/LDL/PixFrmt.cpp"
+    "source/LDL/PixRszr.cpp"
+    "source/LDL/PixWrtr.cpp"
+    "source/LDL/Render.cpp"
+    "source/LDL/TexSizer.cpp"
+    "source/LDL/Texture.cpp"
+    "source/LDL/Video.cpp"
+    "source/LDL/Window.cpp")
 elseif(UNIX AND NOT APPLE)
     file(GLOB_RECURSE SOURCE 
     "source/LDL/Shared/*.cpp" 
@@ -60,7 +95,7 @@ elseif (UNIX AND NOT APPLE)
     target_link_libraries(LDL X11 GL dl)
 endif()
 
-file(GLOB LDL_SDL_SOURCE "source/LDL/APIs/SDL/*.cpp")
+file(GLOB LDL_SDL_SOURCE "source/LDL/SDL/*.cpp")
 if (LDL_SHARED_LIBRARY)
     add_library(LDL_SDL SHARED ${LDL_SDL_SOURCE})		
 elseif (LDL_STATIC_LIBRARY)
@@ -69,13 +104,13 @@ endif()
 target_link_libraries(LDL_SDL LDL)
 
 if (LDL_SHARED_LIBRARY)
-    add_library(LDL_SDL_image SHARED "source/LDL/APIs/SDL_image/SDL_image.cpp")		
+    add_library(LDL_SDL_image SHARED "source/LDL/SDL_image/SDL_image.cpp")		
 elseif (LDL_STATIC_LIBRARY)
-    add_library(LDL_SDL_image STATIC "source/LDL/APIs/SDL_image/SDL_image.cpp")		
+    add_library(LDL_SDL_image STATIC "source/LDL/SDL_image/SDL_image.cpp")		
 endif()
 target_link_libraries(LDL_SDL_image LDL_SDL)
 
-file(GLOB LDL_SDL2_SOURCE "source/LDL/APIs/SDL2/*.cpp")
+file(GLOB LDL_SDL2_SOURCE "source/LDL/SDL2/*.cpp")
 if (LDL_SHARED_LIBRARY)
     add_library(LDL_SDL2 SHARED ${LDL_SDL2_SOURCE})		
 elseif (LDL_STATIC_LIBRARY)
@@ -83,7 +118,7 @@ elseif (LDL_STATIC_LIBRARY)
 endif()
 target_link_libraries(LDL_SDL2 LDL)
 
-file(GLOB LDL_SDL3_SOURCE "source/LDL/APIs/SDL3/*.cpp")
+file(GLOB LDL_SDL3_SOURCE "source/LDL/SDL3/*.cpp")
 if (LDL_SHARED_LIBRARY)
     add_library(LDL_SDL3 SHARED ${LDL_SDL3_SOURCE})		
 elseif (LDL_STATIC_LIBRARY)
@@ -91,7 +126,7 @@ elseif (LDL_STATIC_LIBRARY)
 endif()
 target_link_libraries(LDL_SDL3 LDL)
 
-file(GLOB LDL_GLUT_SOURCE "source/LDL/APIs/GLUT/*.cpp")
+file(GLOB LDL_GLUT_SOURCE "source/LDL/GLUT/*.cpp")
 if (LDL_SHARED_LIBRARY)
     add_library(LDL_GLUT SHARED ${LDL_GLUT_SOURCE})		
 elseif (LDL_STATIC_LIBRARY)

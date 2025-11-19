@@ -22,7 +22,7 @@ const int WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB    = 0x00000002;
 const int WGL_CONTEXT_CORE_PROFILE_BIT_ARB          = 0x00000001;
 const int WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB = 0x00000002;
 
-WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
+WindowImplOpenGL3::WindowImplOpenGL3(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
     _result(result),
     _mainWindow(_result,pos, size, title, mode),
     _hglrc(NULL)
@@ -142,22 +142,22 @@ void WindowImplOpenGL3::Present()
     LDL_ASSERT_DETAIL(result, "SwapBuffers failed");
 }
 
-const Vec2u& WindowImplOpenGL3::Size()
+const LDL_Vec2u& WindowImplOpenGL3::Size()
 {
     return _mainWindow.Size();
 }
 
-const Vec2u& WindowImplOpenGL3::Pos()
+const LDL_Vec2u& WindowImplOpenGL3::Pos()
 {
     return _mainWindow.Pos();
 }
 
-bool WindowImplOpenGL3::GetEvent(Event& event)
+bool WindowImplOpenGL3::GetEvent(LDL_Event& event)
 {
     return _mainWindow.GetEvent(event);
 }
 
-bool WindowImplOpenGL3::WaitEvent(Event& event)
+bool WindowImplOpenGL3::WaitEvent(LDL_Event& event)
 {
     return _mainWindow.WaitEvent(event);
 }

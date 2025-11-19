@@ -7,46 +7,44 @@
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
 
-using namespace LDL;
-
-void ErrorShow(Result& result)
+void ErrorShow(LDL_Result& result)
 {
 	printf("LDL error: %s", result.Message());
 }
 
 int main()
 {
-	Random rnd;
+	LDL_Random rnd;
 
-	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
-	Result result;
-	RenderContext renderContext(RenderMode::Software);
+	LDL_Result result;
+	LDL_RenderContext renderContext(LDL_RenderMode::Software);
 
-	Vec2u windowSize = Vec2u(800, 600);
-	IWindow* window = CreateWindowImpl(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__, WindowMode::Fixed);
+	LDL_Vec2u windowSize = LDL_Vec2u(800, 600);
+	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, LDL_WindowMode::Fixed);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	LDL::IRender* render = CreateRenderImpl(result, renderContext, window);
+	LDL_IRender* render = LDL_CreateRender(result, renderContext, window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	Event report;
+	LDL_Event report;
 
-	FpsCounter fpsCounter;
-	Convert    convert;
+	LDL_FpsCounter fpsCounter;
+	LDL_Convert    convert;
 
-	Color colorScreen;
-	Color colorRect;
-	Vec2u posRect;
-	Vec2u sizeRect;
+	LDL_Color colorScreen;
+	LDL_Color colorRect;
+	LDL_Vec2u posRect;
+	LDL_Vec2u sizeRect;
 
 	while (window->Running())
 	{
@@ -72,11 +70,11 @@ int main()
 
 		if (fpsCounter.Calc())
 		{
-			colorScreen = Color(rnd.Range(0, 255), rnd.Range(0, 255), rnd.Range(0, 255));
-			colorRect   = Color(rnd.Range(0, 255), rnd.Range(0, 255), rnd.Range(0, 255));
+			colorScreen = LDL_Color(rnd.Range(0, 255), rnd.Range(0, 255), rnd.Range(0, 255));
+			colorRect   = LDL_Color(rnd.Range(0, 255), rnd.Range(0, 255), rnd.Range(0, 255));
 
-			posRect  = Vec2u(rnd.Range(0, 500), rnd.Range(0, 500));
-			sizeRect = Vec2u(rnd.Range(0, 300), rnd.Range(0, 300));
+			posRect  = LDL_Vec2u(rnd.Range(0, 500), rnd.Range(0, 500));
+			sizeRect = LDL_Vec2u(rnd.Range(0, 300), rnd.Range(0, 300));
 
 			window->Title(convert.ToString(fpsCounter.Fps()));
 		}

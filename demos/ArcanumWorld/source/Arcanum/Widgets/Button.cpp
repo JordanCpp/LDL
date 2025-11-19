@@ -5,16 +5,15 @@
 
 #include <Arcanum/Widgets/Button.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
-Button::Button(IRender* render, const Vec2u& pos, const Vec2u& size) :
+Button::Button(LDL_IRender* render, const LDL_Vec2u& pos, const LDL_Vec2u& size) :
 	Widget(render, pos, size)
 {
 }
 
 void Button::Draw()
 {
-	GetRender()->SetColor(Color(192, 192, 192));
+	GetRender()->SetColor(LDL_Color(192, 192, 192));
 	GetRender()->Fill(Pos(), Size());
 }

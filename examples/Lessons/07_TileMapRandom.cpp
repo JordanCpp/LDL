@@ -7,75 +7,73 @@
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
 
-using namespace LDL;
-
-void ErrorShow(Result& result)
+void ErrorShow(LDL_Result& result)
 {
 	printf("LDL error: %s", result.Message());
 }
 
-uint32_t CartToIsoX(const Vec2u& pt)
+uint32_t CartToIsoX(const LDL_Vec2u& pt)
 {
 	return pt.x - pt.y;
 }
 
-uint32_t CartToIsoY(const Vec2u& pt)
+uint32_t CartToIsoY(const LDL_Vec2u& pt)
 {
 	return (pt.x + pt.y) / 2;
 }
 
 int main()
 {
-	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
-	Result result;
-	RenderContext renderContext;
+	LDL_Result result;
+	LDL_RenderContext renderContext;
 
-	IWindow* window = CreateWindowImpl(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__, 0);
+	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, 0);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	LDL::IRender* render = CreateRenderImpl(result, renderContext, window);
+	LDL_IRender* render = LDL_CreateRender(result, renderContext, window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	Event report;
+	LDL_Event report;
 
-	BmpLoader bmpLoader(result);
+	LDL_BmpLoader bmpLoader(result);
 
 	bmpLoader.Load("data/SeasonsTiles.bmp");
 
-	Surface surface(bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
+	LDL_Surface surface(bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
 
-	surface.ColorKey(Color(255, 255, 255));
+	surface.ColorKey(LDL_Color(255, 255, 255));
 
-	ITexture* image = CreateTextureImpl(&renderContext,  &surface);
+	LDL_ITexture* image = LDL_CreateTexture(&renderContext,  &surface);
 
-	FpsCounter fpsCounter;
-	Convert    convert;
-	FpsLimiter fpsLimiter;
+	LDL_FpsCounter fpsCounter;
+	LDL_Convert    convert;
+	LDL_FpsLimiter fpsLimiter;
 
-	Vec2u start    = Vec2u(550, 0);
-	Vec2u mapSize  = Vec2u(9, 9);
-	Vec2u tileSize = Vec2u(128, 64);
+	LDL_Vec2u start    = LDL_Vec2u(550, 0);
+	LDL_Vec2u mapSize  = LDL_Vec2u(9, 9);
+	LDL_Vec2u tileSize = LDL_Vec2u(128, 64);
 
 	uint32_t dx   = 0;
 	uint32_t dy   = 0;
 	uint32_t step = tileSize.x / 2;
 
-	Vector<uint32_t> tilesX;
-	Vector<uint32_t> tilesY;
+	LDL_Vector<uint32_t> tilesX;
+	LDL_Vector<uint32_t> tilesY;
 
 	tilesX.resize(mapSize.x * mapSize.y);
 	tilesY.resize(mapSize.x * mapSize.y);
 
-	Random random;
+	LDL_Random random;
 
 	for (uint32_t i = 0; i < mapSize.x * mapSize.y; i++)
 	{
@@ -91,7 +89,7 @@ int main()
 
 		while (window->GetEvent(report))
 		{
-			if (report.IsKeyPressed(KeyboardKey::Q))
+			if (report.IsKeyPressed(LDL_KeyboardKey::Q))
 			{
 				for (uint32_t i = 0; i < mapSize.x * mapSize.y; i++)
 				{
@@ -100,22 +98,22 @@ int main()
 				}
 			}
 
-			if (report.IsKeyPressed(KeyboardKey::W))
+			if (report.IsKeyPressed(LDL_KeyboardKey::W))
 			{
 				dy -= step;
 			}
 
-			if (report.IsKeyPressed(KeyboardKey::S))
+			if (report.IsKeyPressed(LDL_KeyboardKey::S))
 			{
 				dy += step;;
 			}
 
-			if (report.IsKeyPressed(KeyboardKey::A))
+			if (report.IsKeyPressed(LDL_KeyboardKey::A))
 			{
 				dx -= step;;
 			}
 
-			if (report.IsKeyPressed(KeyboardKey::D))
+			if (report.IsKeyPressed(LDL_KeyboardKey::D))
 			{
 				dx += step;;
 			}
@@ -128,7 +126,7 @@ int main()
 
 		render->Begin();
 
-		render->SetColor(Color(0, 162, 232));
+		render->SetColor(LDL_Color(0, 162, 232));
 		render->Clear();
 
 		uint32_t j = 0;
@@ -140,16 +138,16 @@ int main()
 				uint32_t x = cols * tileSize.x / 2;
 				uint32_t y = rows * tileSize.y;
 
-				uint32_t isoX = CartToIsoX(Vec2u(x, y));
-				uint32_t isoY = CartToIsoY(Vec2u(x, y));
+				uint32_t isoX = CartToIsoX(LDL_Vec2u(x, y));
+				uint32_t isoY = CartToIsoY(LDL_Vec2u(x, y));
 
-				Vec2u pt = Vec2u(isoX, isoY);
+				LDL_Vec2u pt = LDL_Vec2u(isoX, isoY);
 
 				uint32_t tx = tileSize.x * tilesX[j];
 				uint32_t ty = tileSize.y * tilesY[j];
 				j++;
 
-				render->Draw(image, Vec2u(start.x + pt.x + dx, start.y + pt.y + dy), Vec2u(tx, ty), tileSize);
+				render->Draw(image, LDL_Vec2u(start.x + pt.x + dx, start.y + pt.y + dy), LDL_Vec2u(tx, ty), tileSize);
 			}
 		}
 

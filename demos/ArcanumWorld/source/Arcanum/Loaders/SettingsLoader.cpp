@@ -6,7 +6,6 @@
 #include <Arcanum/Loaders/SettingsLoader.hpp>
 #include <Arcanum/Core/RuntimeError.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
 SettingsLoader::SettingsLoader(XmlReader* xmlReader) :
@@ -34,7 +33,7 @@ bool SettingsLoader::Reset(const std::string& path, Settings& settings)
 	_xmlReader->NextNode("Height");
 	uint32_t height = _xmlReader->ValueInt();
 
-	settings.Size(Vec2u(width, height));
+	settings.Size(LDL_Vec2u(width, height));
 
 	_xmlReader->NextNode("Fps");
 	settings.Fps(_xmlReader->ValueInt());

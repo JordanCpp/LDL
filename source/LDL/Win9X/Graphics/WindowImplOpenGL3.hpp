@@ -15,21 +15,21 @@ namespace LDL
 	class WindowImplOpenGL3 : public WindowImpl
 	{
 	public:
-		WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode = WindowMode::Resized);
+		WindowImplOpenGL3(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode = LDL_WindowMode::Resized);
 		~WindowImplOpenGL3();
 		bool Running();
 		void PollEvents();
 		void Present();
-		bool GetEvent(Event& event);
-		bool WaitEvent(Event& event);
+		bool GetEvent(LDL_Event& event);
+		bool WaitEvent(LDL_Event& event);
 		void StopEvent();
 		void Title(const char* title);
 		const char* Title();
-		const Vec2u& Size();
-		const Vec2u& Pos();
+		const LDL_Vec2u& Size();
+		const LDL_Vec2u& Pos();
 		void* NativeHandle();
 	private:
-		Result&      _result;
+		LDL_Result&      _result;
 		MainWindow   _mainWindow;
 		HGLRC        _hglrc;
 	};

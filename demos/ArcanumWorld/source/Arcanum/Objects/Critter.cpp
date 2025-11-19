@@ -5,7 +5,6 @@
 
 #include <Arcanum/Objects/Critter.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
 void Critter::Init(CritterScript* script)
@@ -13,12 +12,12 @@ void Critter::Init(CritterScript* script)
 	_script = script;
 }
 
-const Vec2u& Critter::Pos()
+const LDL_Vec2u& Critter::Pos()
 {
 	return _mapObject.Pos();
 }
 
-void Critter::Pos(const Vec2u& pos)
+void Critter::Pos(const LDL_Vec2u& pos)
 {
 	_mapObject.Pos(pos);
 }

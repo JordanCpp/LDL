@@ -19,26 +19,26 @@ namespace LDL
 	class MainWindow
 	{
 	public:
-		MainWindow(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode);
+		MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode);
 		~MainWindow();
 		bool Running();
 		void PollEvents();
-		bool GetEvent(Event& event);
-		bool WaitEvent(Event& event);
+		bool GetEvent(LDL_Event& event);
+		bool WaitEvent(LDL_Event& event);
 		void StopEvent();
 		void Title(const char* title);
 		const char* Title();
-		const Vec2u& Size();
-		const Vec2u& Pos();
+		const LDL_Vec2u& Size();
+		const LDL_Vec2u& Pos();
 	private:
 		uint8_t ConvertKey(size_t key);
 		static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 		LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
 		KeyMapper       _keyMapper;
 		WindowError     _windowError;
-		BaseWindow      _baseWindow;
-		Result&         _result;
-		Eventer         _eventer;
+		LDL_BaseWindow      _baseWindow;
+		LDL_Result&         _result;
+		LDL_Eventer         _eventer;
 		WNDCLASS        _windowClass;
 		HINSTANCE       _instance;
 		MSG             _msg;

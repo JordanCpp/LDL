@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 {
 	try
 	{
-		LDL::MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+		LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
 		CommandLineParser parser(argc, argv);
 		Settings settings;

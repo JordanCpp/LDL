@@ -5,7 +5,6 @@
 
 #include <Arcanum/Loaders/LocationLoader.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
 LocationLoader::LocationLoader(XmlReader* xmlReader, LocationCreator* locationCreator) :
@@ -27,7 +26,7 @@ void LocationLoader::Reset(const std::string& path)
 	_xmlReader->NextNode("Heigth");
 	uint32_t height = _xmlReader->ValueInt();
 
-	_locationCreator->Reset(Vec2u(width, height));
+	_locationCreator->Reset(LDL_Vec2u(width, height));
 
 	_xmlReader->NextNode("Sceneries");
 	_sceneryCount = _xmlReader->ValueInt();
@@ -59,7 +58,7 @@ void LocationLoader::Reset(const std::string& path)
 		uint32_t y = _xmlReader->ValueInt();
 
 		_xmlReader->NextNode("Body");
-		_locationCreator->NewScenery(Vec2u(x, y), _xmlReader->Value());
+		_locationCreator->NewScenery(LDL_Vec2u(x, y), _xmlReader->Value());
 
 		_xmlReader->NextClosing("Scenery");
 	}

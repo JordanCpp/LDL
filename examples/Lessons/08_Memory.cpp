@@ -7,8 +7,6 @@
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
 
-using namespace LDL;
-
 static int totalCount = 0;
 static int totalBytes = 0;
 
@@ -25,37 +23,37 @@ void CustomFree(void* ptr)
 	free(ptr);
 }
 
-void ErrorShow(Result& result)
+void ErrorShow(LDL_Result& result)
 {
 	printf("LDL error: %s", result.Message());
 }
 
 int main()
 {
-	MemoryManager::Instance().Functions(CustomMalloc, NULL, NULL, CustomFree);
+	LDL_MemoryManager::Instance().Functions(CustomMalloc, NULL, NULL, CustomFree);
 
-	Result result;
-	RenderContext renderContext;
+	LDL_Result result;
+	LDL_RenderContext renderContext;
 
-	IWindow* window = CreateWindowImpl(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__, 0);
+	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, 0);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	LDL::IRender* render = CreateRenderImpl(result, renderContext, window);
+	LDL_IRender* render = LDL_CreateRender(result, renderContext, window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
 		return -1;
 	}
 
-	Event report;
+	LDL_Event report;
 
-	FpsCounter fpsCounter;
-	Convert    convert;
-	FpsLimiter fpsLimiter;
+	LDL_FpsCounter fpsCounter;
+	LDL_Convert    convert;
+	LDL_FpsLimiter fpsLimiter;
 
 	while (window->Running())
 	{

@@ -7,17 +7,17 @@
 
 using namespace LDL;
 
-Display::Display()
+LDL_Display::LDL_Display()
 {
-	_videoModes.reserve(VideoMode::Limit);
+	_videoModes.reserve(LDL_VideoMode::Limit);
 }
 
-const Vector<VideoMode>& Display::Modes()
+const LDL_Vector<LDL_VideoMode>& LDL_Display::Modes()
 {
 	return _videoModes;
 }
 
-const VideoMode& Display::Current()
+const LDL_VideoMode& LDL_Display::Current()
 {
 	return _videoMode;
 }

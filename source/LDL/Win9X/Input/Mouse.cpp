@@ -9,30 +9,30 @@
 
 using namespace LDL;
 
-Vec2u Mouse::Pos()
+LDL_Vec2u LDL_Mouse::Pos()
 {
     POINT point;
 
     bool result = GetCursorPos(&point);
     LDL_ASSERT_DETAIL(result, "GetCursorPos failed");
 
-    _pos = Vec2u(point.x, point.y);
+    _pos = LDL_Vec2u(point.x, point.y);
 
     return _pos;
 }
 
-void Mouse::Pos(const Vec2u& pos)
+void LDL_Mouse::Pos(const LDL_Vec2u& pos)
 {
     bool result = SetCursorPos((int)pos.x, (int)pos.y);
     LDL_ASSERT_DETAIL(result, "SetCursorPos failed");
 }
 
-void Mouse::Hide()
+void LDL_Mouse::Hide()
 {
     ShowCursor(FALSE);
 }
 
-void Mouse::Show()
+void LDL_Mouse::Show()
 {
     ShowCursor(TRUE);
 }

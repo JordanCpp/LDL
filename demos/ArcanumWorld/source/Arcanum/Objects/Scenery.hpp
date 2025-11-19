@@ -17,8 +17,8 @@ namespace Arcanum
 		Scenery();
 		void Init(Sprite* sprite);
 		Sprite* Body();
-		const LDL::Vec2u& Pos();
-		void Pos(const LDL::Vec2u& pos);
+		const LDL_Vec2u& Pos();
+		void Pos(const LDL_Vec2u& pos);
 	private:
 		MapObject _mapObject;
 		Sprite*   _body;

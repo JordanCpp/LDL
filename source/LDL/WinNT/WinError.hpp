@@ -6,19 +6,16 @@
 #ifndef LDL_Platforms_WinNT_WinError_hpp
 #define LDL_Platforms_WinNT_WinError_hpp
 
-#include <LDL/Core/InPlaceStrings.hpp>
+#include <LDL/InPlaceStrings.hpp>
 
-namespace LDL
+class WindowError
 {
-	class WindowError
-	{
-	public:
-		WindowError();
-		void Clear();
-		const char* GetErrorMessage();
-	private:
-		ErrorString _buffer;
-	};
-}
+public:
+	WindowError();
+	void Clear();
+	const char* GetErrorMessage();
+private:
+	ErrorString _buffer;
+};
 
 #endif    

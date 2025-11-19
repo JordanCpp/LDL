@@ -5,10 +5,8 @@
 
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
-#include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
-#include <LDL/APIs/OpenGL/OpenGL_Loader.hpp>
-
-using namespace LDL;
+#include <LDL/OpenGL/OpenGL1_2.hpp>
+#include <LDL/OpenGL/GLLoader.hpp>
 
 void Identity()
 {
@@ -55,7 +53,7 @@ void Init()
 	glRotatef(70, 0, 1, 0);
 }
 
-void Display()
+void LDL_Display()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -85,21 +83,21 @@ void Display()
 
 int main()
 {
-	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
-	Result result;
-	RenderContext renderContext(RenderMode::OpenGL1);
+	LDL_Result result;
+	LDL_RenderContext renderContext(LDL_RenderMode::OpenGL1);
 
-	IWindow* window = CreateWindowImpl(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__, 0);
+	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, 0);
 
 	OpenGLLoader loader(result);
 	loader.Init(1, 1);
 
-	Event report;
+	LDL_Event report;
 
-	FpsCounter fpsCounter;
-	Convert convert;
-	FpsLimiter fpsLimiter;
+	LDL_FpsCounter fpsCounter;
+	LDL_Convert convert;
+	LDL_FpsLimiter fpsLimiter;
 
 	while (window->Running())
 	{
@@ -113,12 +111,12 @@ int main()
 				window->StopEvent();
 			}
 
-			if (report.IsKeyPressed(KeyboardKey::Escape))
+			if (report.IsKeyPressed(LDL_KeyboardKey::Escape))
 				window->StopEvent();
 		}
 
 		Init();
-		Display();
+		LDL_Display();
 
 		window->Present();
 

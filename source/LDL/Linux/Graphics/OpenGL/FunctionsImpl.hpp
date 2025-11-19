@@ -8,17 +8,14 @@
 
 #include <LDL/Core/Library.hpp>
 
-namespace LDL
+class OpenGLFunctionsImpl
 {
-	class OpenGLFunctionsImpl
-	{
-	public:
-		OpenGLFunctionsImpl(const char *path);
-		LDL::VoidFuncPtr Function(const char *name);
+public:
+	OpenGLFunctionsImpl(const char* path);
+	LDL::VoidFuncPtr Function(const char* name);
 
-	private:
-		LDL::Library _Library;
-	};
-}
+private:
+	LDL::Library _Library;
+};
 
 #endif

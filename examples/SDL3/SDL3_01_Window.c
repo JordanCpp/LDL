@@ -5,8 +5,8 @@
 
 #include <stdio.h>
 #define SDL_MAIN_USE_CALLBACKS 1
-#include <LDL/APIs/SDL3/SDL.h>
-#include <LDL/APIs/SDL3/SDL_main.h> 
+#include <LDL/SDL3/SDL.h>
+#include <LDL/SDL3/SDL_main.h> 
 
 static SDL_Window* window     = NULL;
 static SDL_Renderer* renderer = NULL;

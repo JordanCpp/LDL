@@ -5,7 +5,7 @@
 
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
-#include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
+#include <LDL/OpenGL/OpenGL1_2.hpp>
 
 float theta = 0.0f;
 
@@ -18,7 +18,7 @@ void Identity()
 	glLoadIdentity();
 }
 
-void Display()
+void LDL_Display()
 {
 	Identity();
 
@@ -43,18 +43,18 @@ void Display()
 
 int main()
 {
-	LDL::MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
-	LDL::Result result;
-	LDL::RenderContext renderContext(LDL::RenderMode::OpenGL1);
+	LDL_Result result;
+	LDL_RenderContext renderContext(LDL_RenderMode::OpenGL1);
 
-	LDL::IWindow* window = CreateWindowImpl(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), __FILE__, 0);
-	LDL::IRender* render = CreateRenderImpl(result, renderContext, window);
+	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, 0);
+	LDL_IRender* render = LDL_CreateRender(result, renderContext, window);
 
-	LDL::Event      report;
-	LDL::FpsCounter fpsCounter;
-	LDL::Convert    convert;
-	LDL::FpsLimiter fpsLimiter;
+	LDL_Event      report;
+	LDL_FpsCounter fpsCounter;
+	LDL_Convert    convert;
+	LDL_FpsLimiter fpsLimiter;
 
 	while (window->Running())
 	{
@@ -63,12 +63,12 @@ int main()
 
 		while (window->GetEvent(report))
 		{
-			if (report.Type == LDL::IsQuit)
+			if (report.Type == IsQuit)
 			{
 				window->StopEvent();
 			}
 
-			if (report.IsKeyPressed(LDL::KeyboardKey::Escape))
+			if (report.IsKeyPressed(LDL_KeyboardKey::Escape))
 			{
 				window->StopEvent();
 			}
@@ -76,7 +76,7 @@ int main()
 
 		render->Begin();
 
-		Display();
+		LDL_Display();
 
 		render->End();
 

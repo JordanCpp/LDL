@@ -6,7 +6,6 @@
 #include <Arcanum/Objects/LocationData.hpp>
 #include <Arcanum/Objects/LocationLimits.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
 LocationData::LocationData()
@@ -23,7 +22,7 @@ LocationData::LocationData()
 	_wallObjects.reserve(LocationLimits::Walls);
 }
 
-void LocationData::Reset(const Vec2u& size)
+void LocationData::Reset(const LDL_Vec2u& size)
 {
     _size = size;
 
@@ -46,7 +45,7 @@ void LocationData::CalculateTiles()
 			uint32_t dx = y * Tile::Width / 2;
 			uint32_t dy = x * Tile::Height;
 
-			Vec2u pt = _isometric.CartesianToIsometric(Vec2u(dx, dy));
+			LDL_Vec2u pt = _isometric.CartesianToIsometric(LDL_Vec2u(dx, dy));
 
 			size_t index = Index(x, y);
 			
@@ -60,12 +59,12 @@ size_t LocationData::Index(size_t x, size_t y)
     return (_size.x * y) + x;
 }
 
-size_t LocationData::Index(const Vec2u& pos)
+size_t LocationData::Index(const LDL_Vec2u& pos)
 {
 	return Index(pos.x, pos.y);
 }
 
-const Vec2u& LocationData::Size()
+const LDL_Vec2u& LocationData::Size()
 {
     return _size;
 }
@@ -110,12 +109,12 @@ std::vector<CritterScript*>& LocationData::CritterScripts()
 	return _critterScripts;
 }
 
-Scenery* LocationData::GetScenery(const Vec2u& pos)
+Scenery* LocationData::GetScenery(const LDL_Vec2u& pos)
 {
 	return _sceneryObjects.at(Index(pos.x, pos.y));
 }
 
-Tile* LocationData::GetTile(const Vec2u& pos)
+Tile* LocationData::GetTile(const LDL_Vec2u& pos)
 {
 	return &_tileObjects.at(Index(pos.x, pos.y));
 }

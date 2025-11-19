@@ -4,8 +4,8 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <stdio.h>
-#include <LDL/APIs/SDL/SDL.h>
-#include <LDL/APIs/SDL/SDL_image.h>
+#include <LDL/SDL/SDL.h>
+#include <LDL/SDL/SDL_image.h>
 
 void ErrorShow(const char* error)
 {

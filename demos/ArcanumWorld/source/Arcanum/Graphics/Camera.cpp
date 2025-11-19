@@ -6,53 +6,52 @@
 #include <Arcanum/Graphics/Camera.hpp>
 
 using namespace Arcanum;
-using namespace LDL;
 
-Camera::Camera(const Vec2u& pos, const Vec2u& size) :
+Camera::Camera(const LDL_Vec2u& pos, const LDL_Vec2u& size) :
 	_step(25),
 	_area(pos, size)
 {
 }
 
-const Vec2u& Camera::Pos()
+const LDL_Vec2u& Camera::Pos()
 {
 	return _area.Pos();
 }
 
-const Vec2u& Camera::Size()
+const LDL_Vec2u& Camera::Size()
 {
 	return _area.Size();
 }
 
-void Camera::Move(const Vec2u& pos)
+void Camera::Move(const LDL_Vec2u& pos)
 {
 	_area.Pos(pos.x, pos.y);
 }
 
-void Camera::Handle(Event& event)
+void Camera::Handle(LDL_Event& event)
 {
 	uint32_t x = Pos().x;
 	uint32_t y = Pos().y;
 
-	if (event.IsKeyPressed(KeyboardKey::W))
+	if (event.IsKeyPressed(LDL_KeyboardKey::W))
 	{
 		y += _step;
 	}
 
-	if (event.IsKeyPressed(KeyboardKey::S))
+	if (event.IsKeyPressed(LDL_KeyboardKey::S))
 	{
 		y -= _step;
 	}
 
-	if (event.IsKeyPressed(KeyboardKey::A))
+	if (event.IsKeyPressed(LDL_KeyboardKey::A))
 	{
 		x += _step;
 	}
 
-	if (event.IsKeyPressed(KeyboardKey::D))
+	if (event.IsKeyPressed(LDL_KeyboardKey::D))
 	{
 		x -= _step;
 	}
 
-	Move(Vec2u(x, y));
+	Move(LDL_Vec2u(x, y));
 }

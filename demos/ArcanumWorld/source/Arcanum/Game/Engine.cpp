@@ -4,11 +4,10 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <Arcanum/Game/Engine.hpp>
-#include <LDL/Enums/KeyboardKey.hpp>
-#include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
-#include <LDL/Graphics/RenderCreator.hpp>
+#include <LDL/Enums.hpp>
+#include <LDL/OpenGL/OpenGL1_2.hpp>
+#include <LDL/Render.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
 Engine::Engine(CommandLineParser* commandLineParser, Settings* settings) :
@@ -17,14 +16,14 @@ Engine::Engine(CommandLineParser* commandLineParser, Settings* settings) :
 	_renderContext(settings->Render()),
 	_pathManager(settings->Path()),
 	_fileManager(&_pathManager),
-	_window(CreateWindowImpl(_result, _renderContext, Vec2u(0,0), _settings->Size(), _settings->Title().c_str(), WindowMode::Fixed)),
-	_render(CreateRenderImpl(  _result, _renderContext, _window)),
+	_window(LDL_CreateWindow(_result, _renderContext, LDL_Vec2u(0,0), _settings->Size(), _settings->Title().c_str(), LDL_WindowMode::Fixed)),
+	_render(LDL_CreateRender(  _result, _renderContext, _window)),
 	_fpsLimiter(_settings->Fps()),
 	_spriteManager(&_renderContext, &_fileManager, &_artLoader, &_pathManager),
 	_locationPainter(_render, &_locationData),
 	_widgetManager(_render),
 	_gameMenu(_render),
-	_camera(Vec2u(400, 100), _render->Size()),
+	_camera(LDL_Vec2u(400, 100), _render->Size()),
 	_objectManager(_objectAllocator, _spriteManager),
 	_locationCreator(&_locationData, &_objectManager),
 	_location(&_locationData, &_locationCreator, &_locationPainter),
@@ -53,7 +52,7 @@ void Engine::Update()
 
 void Engine::Run()
 {
-	Event report = { 0 };
+	LDL_Event report = { 0 };
 
 	while (_window->Running())
 	{
@@ -62,7 +61,7 @@ void Engine::Run()
 
 		while (_window->GetEvent(report))
 		{
-			if (report.Type == IsQuit || report.IsKeyPressed(KeyboardKey::Escape))
+			if (report.Type == IsQuit || report.IsKeyPressed(LDL_KeyboardKey::Escape))
 			{
 				_window->StopEvent();
 			}
@@ -70,7 +69,7 @@ void Engine::Run()
 
 		_render->Begin();
 
-		_render->SetColor(Color(0, 0, 0));
+		_render->SetColor(LDL_Color(0, 0, 0));
 		_render->Clear();
 
 		_location.Draw(_camera.Pos());

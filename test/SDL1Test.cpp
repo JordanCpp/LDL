@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Core/TestEqual.hpp>
-#include <LDL/APIs/SDL/SDL.h>
+#include <LDL/TestEq.hpp>
+#include <LDL/SDL/SDL.h>
 
 void SDL_SetVideoModeTest()
 {

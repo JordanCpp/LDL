@@ -6,8 +6,6 @@
 #include <LDL/WinNT/WinError.hpp>
 #include <LDL/WinNT/Windows.hpp>
 
-using namespace LDL;
-
 WindowError::WindowError()
 {
     Clear();

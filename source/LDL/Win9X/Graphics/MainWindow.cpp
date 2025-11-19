@@ -15,7 +15,7 @@ static const char AppName[]  = "MainWindow";
 
 LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 {
-    Event event;
+    LDL_Event event;
 
     ZeroMemory(&event, sizeof(event));
 
@@ -29,69 +29,69 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 
     case WM_MOUSEMOVE:
         event.Type       = IsMouseMove;
-        event.Mouse.PosX = LOWORD(LParam);
-        event.Mouse.PosY = HIWORD(LParam);
+        event.LDL_Mouse.PosX = LOWORD(LParam);
+        event.LDL_Mouse.PosY = HIWORD(LParam);
         _eventer.Push(event);
         break;
 
     case WM_LBUTTONDOWN:
         event.Type         = IsMouseClick;
-        event.Mouse.State  = ButtonState::Pressed;
-        event.Mouse.Button = MouseButton::Left;
-        event.Mouse.PosX   = LOWORD(LParam);
-        event.Mouse.PosY   = HIWORD(LParam);
+        event.LDL_Mouse.State  = LDL_ButtonState::Pressed;
+        event.LDL_Mouse.Button = LDL_MouseButton::Left;
+        event.LDL_Mouse.PosX   = LOWORD(LParam);
+        event.LDL_Mouse.PosY   = HIWORD(LParam);
         _eventer.Push(event);
         break;
 
     case WM_LBUTTONUP:
         event.Type         = IsMouseClick;
-        event.Mouse.State  = ButtonState::Released;
-        event.Mouse.Button = MouseButton::Left;
-        event.Mouse.PosX   = LOWORD(LParam);
-        event.Mouse.PosY   = HIWORD(LParam);
+        event.LDL_Mouse.State  = LDL_ButtonState::Released;
+        event.LDL_Mouse.Button = LDL_MouseButton::Left;
+        event.LDL_Mouse.PosX   = LOWORD(LParam);
+        event.LDL_Mouse.PosY   = HIWORD(LParam);
         _eventer.Push(event);
         break;
 
     case WM_RBUTTONDOWN:
         event.Type         = IsMouseClick;
-        event.Mouse.State  = ButtonState::Pressed;
-        event.Mouse.Button = MouseButton::Right;
-        event.Mouse.PosX   = LOWORD(LParam);
-        event.Mouse.PosY   = HIWORD(LParam);
+        event.LDL_Mouse.State  = LDL_ButtonState::Pressed;
+        event.LDL_Mouse.Button = LDL_MouseButton::Right;
+        event.LDL_Mouse.PosX   = LOWORD(LParam);
+        event.LDL_Mouse.PosY   = HIWORD(LParam);
         _eventer.Push(event);
         break;
 
     case WM_RBUTTONUP:
         event.Type         = IsMouseClick;
-        event.Mouse.State  = ButtonState::Released;
-        event.Mouse.Button = MouseButton::Right;
-        event.Mouse.PosX   = LOWORD(LParam);
-        event.Mouse.PosY   = HIWORD(LParam);
+        event.LDL_Mouse.State  = LDL_ButtonState::Released;
+        event.LDL_Mouse.Button = LDL_MouseButton::Right;
+        event.LDL_Mouse.PosX   = LOWORD(LParam);
+        event.LDL_Mouse.PosY   = HIWORD(LParam);
         _eventer.Push(event);
         break;
 
     case WM_MBUTTONDOWN:
         event.Type         = IsMouseClick;
-        event.Mouse.State  = ButtonState::Pressed;
-        event.Mouse.Button = MouseButton::Middle;
-        event.Mouse.PosX   = LOWORD(LParam);
-        event.Mouse.PosY   = HIWORD(LParam);
+        event.LDL_Mouse.State  = LDL_ButtonState::Pressed;
+        event.LDL_Mouse.Button = LDL_MouseButton::Middle;
+        event.LDL_Mouse.PosX   = LOWORD(LParam);
+        event.LDL_Mouse.PosY   = HIWORD(LParam);
         _eventer.Push(event);
         break;
 
     case WM_MBUTTONUP:
         event.Type         = IsMouseClick;
-        event.Mouse.State  = ButtonState::Released;
-        event.Mouse.Button = MouseButton::Middle;
-        event.Mouse.PosX   = LOWORD(LParam);
-        event.Mouse.PosY   = HIWORD(LParam);
+        event.LDL_Mouse.State  = LDL_ButtonState::Released;
+        event.LDL_Mouse.Button = LDL_MouseButton::Middle;
+        event.LDL_Mouse.PosX   = LOWORD(LParam);
+        event.LDL_Mouse.PosY   = HIWORD(LParam);
         _eventer.Push(event);
         break;
 
     case WM_SIZE:
         event.Type          = IsResize;
-        event.Resize.Width  = LOWORD(LParam);
-        event.Resize.Height = HIWORD(LParam);
+        event.LDL_Resize.Width  = LOWORD(LParam);
+        event.LDL_Resize.Height = HIWORD(LParam);
         _eventer.Push(event);
         break;
 
@@ -104,16 +104,16 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
     case WM_KEYDOWN:
     case WM_SYSKEYDOWN:
         event.Type           = IsKeyboard;
-        event.Keyboard.State = ButtonState::Pressed;
-        event.Keyboard.Key   = _keyMapper.ConvertKey(WParam);
+        event.LDL_Keyboard.State = LDL_ButtonState::Pressed;
+        event.LDL_Keyboard.Key   = _keyMapper.ConvertKey(WParam);
         _eventer.Push(event);
         break;
 
     case WM_KEYUP:
     case WM_SYSKEYUP:
         event.Type           = IsKeyboard;
-        event.Keyboard.State = ButtonState::Released;
-        event.Keyboard.Key   = _keyMapper.ConvertKey(WParam);
+        event.LDL_Keyboard.State = LDL_ButtonState::Released;
+        event.LDL_Keyboard.Key   = _keyMapper.ConvertKey(WParam);
         _eventer.Push(event);
         break;
 
@@ -129,19 +129,19 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 
     case WM_MOUSEWHEEL:
         event.Type         = IsMouseScroll;
-        event.Mouse.Scroll = MouseScroll::Vertical;
-        event.Mouse.Delta  = HIWORD(WParam);
-        event.Mouse.PosX   = LOWORD(LParam);
-        event.Mouse.PosY   = HIWORD(LParam);
+        event.LDL_Mouse.Scroll = LDL_MouseScroll::Vertical;
+        event.LDL_Mouse.Delta  = HIWORD(WParam);
+        event.LDL_Mouse.PosX   = LOWORD(LParam);
+        event.LDL_Mouse.PosY   = HIWORD(LParam);
         _eventer.Push(event);
         break;
 
     case WM_MOUSEHWHEEL:
         event.Type         = IsMouseScroll;
-        event.Mouse.Scroll = MouseScroll::Horizontal;
-        event.Mouse.Delta  = HIWORD(WParam);
-        event.Mouse.PosX   = LOWORD(LParam);
-        event.Mouse.PosY   = HIWORD(LParam);
+        event.LDL_Mouse.Scroll = LDL_MouseScroll::Horizontal;
+        event.LDL_Mouse.Delta  = HIWORD(WParam);
+        event.LDL_Mouse.PosX   = LOWORD(LParam);
+        event.LDL_Mouse.PosY   = HIWORD(LParam);
         _eventer.Push(event);
         break;
     }
@@ -167,7 +167,7 @@ LRESULT CALLBACK MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPA
     return result;
 }
 
-MainWindow::MainWindow(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
+MainWindow::MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
     _baseWindow(pos, size, title),
     _result(result)
 {
@@ -204,11 +204,11 @@ MainWindow::MainWindow(Result& result, const Vec2u& pos, const Vec2u& size, cons
 
     DWORD style = 0;
     
-    if (mode == WindowMode::Fixed)
+    if (mode == LDL_WindowMode::Fixed)
     {
         style = WS_OVERLAPPED | WS_SYSMENU;
     }
-    else if (mode == WindowMode::Resized)
+    else if (mode == LDL_WindowMode::Resized)
     {
         style = WS_OVERLAPPEDWINDOW;
     }
@@ -279,7 +279,7 @@ void MainWindow::PollEvents()
     }
 }
 
-bool MainWindow::GetEvent(Event& event)
+bool MainWindow::GetEvent(LDL_Event& event)
 {
     if (!_eventer.Empty())
     {
@@ -293,7 +293,7 @@ bool MainWindow::GetEvent(Event& event)
     return false;
 }
 
-bool MainWindow::WaitEvent(Event& event)
+bool MainWindow::WaitEvent(LDL_Event& event)
 {
     if (_eventer.Running())
     {
@@ -329,7 +329,7 @@ const char* MainWindow::Title()
     return _baseWindow.Title();
 }
 
-const Vec2u& MainWindow::Size()
+const LDL_Vec2u& MainWindow::Size()
 {
     RECT rect;
 
@@ -337,13 +337,13 @@ const Vec2u& MainWindow::Size()
 
     if (GetClientRect(_hwnd, &rect))
     {
-        _baseWindow.Size(Vec2u(rect.right - rect.left, rect.bottom - rect.top));
+        _baseWindow.Size(LDL_Vec2u(rect.right - rect.left, rect.bottom - rect.top));
     }
 
     return _baseWindow.Size();
 }
 
-const Vec2u& MainWindow::Pos()
+const LDL_Vec2u& MainWindow::Pos()
 {
     return _baseWindow.Pos();
 }

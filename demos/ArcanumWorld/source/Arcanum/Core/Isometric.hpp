@@ -6,17 +6,17 @@
 #ifndef Arcanum_Core_Isometric_hpp
 #define Arcanum_Core_Isometric_hpp
 
-#include <LDL/Math/Vec2u.hpp>
+#include <LDL/Vec2u.hpp>
 
 namespace Arcanum
 {
     class Isometric
     {
     public:
-        const LDL::Vec2u& CartesianToIsometric(const LDL::Vec2u& pt);
-        const LDL::Vec2u& IsometricToCartesian(const LDL::Vec2u& pt);
+        const LDL_Vec2u& CartesianToIsometric(const LDL_Vec2u& pt);
+        const LDL_Vec2u& IsometricToCartesian(const LDL_Vec2u& pt);
     private:
-        LDL::Vec2u _result;
+        LDL_Vec2u _result;
     };
 }
 

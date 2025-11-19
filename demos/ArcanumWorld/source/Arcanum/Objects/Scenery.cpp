@@ -5,7 +5,6 @@
 
 #include <Arcanum/Objects/Scenery.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
 Scenery::Scenery() :
@@ -23,12 +22,12 @@ Sprite* Scenery::Body()
 	return _body;
 }
 
-const Vec2u& Scenery::Pos()
+const LDL_Vec2u& Scenery::Pos()
 {
 	return _mapObject.Pos();
 }
 
-void Scenery::Pos(const Vec2u& pos)
+void Scenery::Pos(const LDL_Vec2u& pos)
 {
 	_mapObject.Pos(pos);
 }

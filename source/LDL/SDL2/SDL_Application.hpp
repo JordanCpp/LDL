@@ -1,0 +1,38 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
+#ifndef LDL_APIs_SDL2_SDL_Application_hpp
+#define LDL_APIs_SDL2_SDL_Application_hpp
+
+#include <LDL/Vector.hpp>
+#include <LDL/Result.hpp>
+#include <LDL/RingBuffer.hpp>
+#include <LDL/SDL2/SDL_events.h>
+#include <LDL/SDL2/SDL_Memory.hpp>
+#include <LDL/SDL2/SDL_Window.hpp>
+
+class SDL_Application
+{
+public:
+	enum
+	{
+		Max = 1024
+	};
+	SDL_Application();
+	LDL_Result& GetResult();
+	void Append(SDL_Window* window);
+	LDL_Vector<SDL_Window*>& GetWindows();
+	void PollEvents();
+	bool PollEvent(SDL_Event& dest);
+private:
+	SDL_Memory                       _memory;
+	LDL_Result                      _result;
+	LDL_Vector<SDL_Window*>         _windows;
+	LDL_RingBuffer<SDL_Event, Max> _events;
+};
+
+SDL_Application& App();
+
+#endif

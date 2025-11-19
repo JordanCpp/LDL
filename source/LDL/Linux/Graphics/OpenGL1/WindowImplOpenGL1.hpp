@@ -17,23 +17,23 @@ namespace LDL
 	class WindowImplOpenGL1 : public WindowImpl
 	{
 	public:
-		WindowImplOpenGL1(Result& result, const Vec2u &pos, const Vec2u &size, const char *title, size_t mode = WindowMode::Resized);
+		WindowImplOpenGL1(LDL_Result& result, const LDL_Vec2u &pos, const LDL_Vec2u &size, const char *title, size_t mode = LDL_WindowMode::Resized);
 		~WindowImplOpenGL1();
 		void Present(uint8_t *pixels, uint8_t bytesPerPixel);
 		void Present();
 		bool Running();
 		void PollEvents();
-		bool GetEvent(Event &event);
-		bool WaitEvent(Event &event);
+		bool GetEvent(LDL_Event &event);
+		bool WaitEvent(LDL_Event &event);
 		void StopEvent();
 		void Title(const char* title);
 		const char* Title();
-		const Vec2u &Size();
-		const Vec2u &Pos();
+		const LDL_Vec2u &Size();
+		const LDL_Vec2u &Pos();
 		void *NativeHandle();
 
 	private:
-		Result&      _result;
+		LDL_Result&      _result;
 		MainWindow   _Window;
 		XVisualInfo* _Visual;
 		GLXContext   _Context;
