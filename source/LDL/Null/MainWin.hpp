@@ -7,48 +7,26 @@
 #define LDL_Platforms_WinNT_Graphics_MainWindow_hpp
 
 #include <LDL/Result.hpp>
-#include <LDL/Enums.hpp>
-#include <LDL/Eventer.hpp>
-#include <LDL/WinNT/WinError.hpp>
-#include <LDL/WinNT/Windows.hpp>
-#include <LDL/BaseWin.hpp>
-#include <LDL/WinNT/KeyMapper.hpp>
-#include <LDL/UtfConv.hpp>
+#include <LDL/Vec2u.hpp>
+#include <LDL/Events.hpp>
 
-namespace LDL
+class LDL_MainWindow
 {
-	class LDL_MainWindow
-	{
-	public:
-		LDL_MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode);
-		~LDL_MainWindow();
-		bool Running();
-		void PollEvents();
-		bool GetEvent(LDL_Event& event);
-		bool WaitEvent(LDL_Event& event);
-		void StopEvent();
-		void Title(const char* title);
-		const char* Title();
-		const LDL_Vec2u& Size();
-		const LDL_Vec2u& Pos();
-	private:
-		LDL_UtfConverter    _utfConverter;
-		uint8_t ConvertKey(size_t key);
-		static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
-		LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
-		LDL_KeyMapper       _keyMapper;
-		WindowError     _windowError;
-		LDL_BaseWindow      _baseWindow;
-		LDL_Result&         _result;
-		LDL_Eventer         _eventer;
-		WNDCLASSEXW     _windowClass;
-		HINSTANCE       _instance;
-		MSG             _msg;
-		ATOM            _atom;
-	public:
-		HWND            _hwnd;
-		HDC             _hdc;
-	};
-}
+public:
+	LDL_MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode);
+	~LDL_MainWindow();
+	bool Running();
+	void PollEvents();
+	bool GetEvent(LDL_Event& event);
+	bool WaitEvent(LDL_Event& event);
+	void StopEvent();
+	void Title(const char* title);
+	const char* Title();
+	const LDL_Vec2u& Size();
+	const LDL_Vec2u& Pos();
+private:
+	LDL_Vec2u _pos;
+	LDL_Vec2u _size;
+};
 
 #endif   

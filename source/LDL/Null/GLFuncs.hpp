@@ -8,20 +8,14 @@
 
 #include <LDL/Types.hpp>
 #include <LDL/Library.hpp>
-#include <LDL/WinNT/Windows.hpp>
 
-namespace LDL
+class LDL_LIBRARY OpenGLFunctionsImpl
 {
-	class LDL_LIBRARY OpenGLFunctionsImpl
-	{
-	public:
-		OpenGLFunctionsImpl(const char *path);
-		VoidFuncPtr Function(const char *name);
-	private:
-		bool IsValid(LDL::VoidFuncPtr ptr);
-		ILibrary* _library;
-	};
-
-}
+public:
+	OpenGLFunctionsImpl(const char* path);
+	VoidFuncPtr Function(const char* name);
+private:
+	bool IsValid(VoidFuncPtr ptr);
+};
 
 #endif

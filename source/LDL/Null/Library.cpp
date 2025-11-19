@@ -4,41 +4,22 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Assert.hpp>
-#include <LDL/WinNT/Library.hpp>
+#include <LDL/Null/Library.hpp>
 
-using namespace LDL;
-
-LibraryImpl::LibraryImpl(const char* path) :
-    _module(NULL)
+LDL_Library::LDL_Library(const char* path)
 {
-    _module = LoadLibrary(path);
-
-    _assert = "LoadLibrary failed: ";
-    _assert += path;
-
-    LDL_ASSERT_DETAIL(_module != NULL, _assert.c_str());
 }
 
-LibraryImpl::~LibraryImpl()
+LDL_Library::~LDL_Library()
 {
-    LDL_ASSERT(_module != NULL);
-
-    FreeLibrary(_module);
 }
 
-VoidFuncPtr LibraryImpl::Function(const char* name)
+VoidFuncPtr LDL_Library::Function(const char* name)
 {
-    VoidFuncPtr result = (VoidFuncPtr)GetProcAddress(_module, name);
-
-    _assert = "GetProcAddress failed: ";
-    _assert += name;
-
-    LDL_ASSERT_DETAIL(result != NULL, _assert.c_str());
-
-    return result;
+    return NULL;
 }
 
-ILibrary* LDL::CreateLibraryImpl(const char* name)
+LDL_ILibrary* LDL_CreateLibraryImpl(const char* name)
 {
-    return new LibraryImpl(name);
+    return NULL;
 }

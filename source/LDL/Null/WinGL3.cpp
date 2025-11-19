@@ -3,127 +3,15 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Assert.hpp>
-#include <LDL/WinNT/WinGL3.hpp>
-
-using namespace LDL;
-
-typedef HGLRC(WINAPI* PFNWGLCREATECONTEXT)(HDC);
-typedef BOOL (WINAPI* PFNWGLMAKECURRENT  )(HDC, HGLRC);
-typedef BOOL (WINAPI* PFNWGLDELETECONTEXT)(HGLRC);
-
-typedef HGLRC(WINAPI* PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareContext, const int* attribList);
-
-const int WGL_CONTEXT_MAJOR_VERSION_ARB             = 0x2091;
-const int WGL_CONTEXT_MINOR_VERSION_ARB             = 0x2092;
-const int WGL_CONTEXT_FLAGS_ARB                     = 0x2094;
-const int WGL_CONTEXT_PROFILE_MASK_ARB              = 0x9126;
-const int WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB    = 0x00000002;
-const int WGL_CONTEXT_CORE_PROFILE_BIT_ARB          = 0x00000001;
-const int WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB = 0x00000002;
+#include <LDL/Null/WinGL3.hpp>
 
 LDL_WindowOpenGL3::LDL_WindowOpenGL3(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
-    _result(result),
-    _mainWindow(_result,pos, size, title, mode),
-    _hglrc(NULL)
+    _mainWindow(result,pos, size, title, mode)
 {
-    PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
-
-    int attribs[] =
-    {
-        WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
-        WGL_CONTEXT_MINOR_VERSION_ARB, 3,
-        WGL_CONTEXT_FLAGS_ARB,         WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
-        WGL_CONTEXT_PROFILE_MASK_ARB,  WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
-        0
-    };
-
-    PIXELFORMATDESCRIPTOR pfd;
-
-    LDL::LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
-
-    WindowError windowError;
-
-    _mainWindow._hdc = GetDC(_mainWindow._hwnd);
-
-    if (_mainWindow._hdc == NULL)
-    {
-        _result.Message(windowError.GetErrorMessage());
-        return;
-    }
-
-    pfd.nSize      = sizeof(pfd);
-    pfd.nVersion   = 1;
-    pfd.dwFlags    = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-    pfd.iPixelType = PFD_TYPE_RGBA;
-    pfd.cColorBits = 32;
-    pfd.cDepthBits = 24;
-
-    int format = ChoosePixelFormat(_mainWindow._hdc, &pfd);
-    if (format == 0)
-    {
-        _result.Message(windowError.GetErrorMessage());
-        return;
-    }
-
-    if (!SetPixelFormat(_mainWindow._hdc, format, &pfd))
-    {
-        _result.Message(windowError.GetErrorMessage());
-        return;
-    }
-
-    _hglrc = wglCreateContext(_mainWindow._hdc);
-    if (_hglrc == NULL)
-    {
-        _result.Message(windowError.GetErrorMessage());
-        return;
-    }
-
-    if (!wglMakeCurrent(_mainWindow._hdc, _hglrc))
-    {
-        _result.Message(windowError.GetErrorMessage());
-        return;
-    }
-
-    wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
-    if (wglCreateContextAttribsARB == NULL)
-    {
-        _result.Message("wglGetProcAddress failed");
-        return;
-    }
-
-    if (!wglMakeCurrent(NULL, NULL))
-    {
-        _result.Message(windowError.GetErrorMessage());
-        return;
-    }
-
-    if (!wglDeleteContext(_hglrc))
-    {
-        _result.Message(windowError.GetErrorMessage());
-        return;
-    }
-
-    _hglrc = wglCreateContextAttribsARB(_mainWindow._hdc, 0, attribs);
-    if (_hglrc == NULL)
-    {
-        _result.Message(windowError.GetErrorMessage());
-        return;
-    }
-
-    if (!wglMakeCurrent(_mainWindow._hdc, _hglrc))
-    {
-        _result.Message(windowError.GetErrorMessage());
-        return;
-    }
 }
 
 LDL_WindowOpenGL3::~LDL_WindowOpenGL3()
 {
-    wglMakeCurrent(NULL, NULL);
-    wglDeleteContext(_hglrc);
-
-    ReleaseDC(_mainWindow._hwnd, _mainWindow._hdc);
 }
 
 bool LDL_WindowOpenGL3::Running()
@@ -138,8 +26,6 @@ void LDL_WindowOpenGL3::PollEvents()
 
 void LDL_WindowOpenGL3::Present()
 {
-    BOOL result = SwapBuffers(_mainWindow._hdc);
-    LDL_ASSERT_DETAIL(result, "SwapBuffers failed");
 }
 
 const LDL_Vec2u& LDL_WindowOpenGL3::Size()
@@ -179,5 +65,5 @@ void LDL_WindowOpenGL3::Title(const char* title)
 
 void* LDL_WindowOpenGL3::NativeHandle()
 {
-    return _mainWindow._hwnd;
+    return NULL;
 }

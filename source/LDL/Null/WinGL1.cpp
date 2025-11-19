@@ -3,68 +3,15 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Assert.hpp>
-#include <LDL/WinNT/WinGL1.hpp>
-
-using namespace LDL;
+#include <LDL/Null/WinGL1.hpp>
 
 LDL_WindowOpenGL1::LDL_WindowOpenGL1(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
-    _result(result),
-    _hglrc(NULL),
-    _window(_result, pos, size, title, mode)
+    _window(result, pos, size, title, mode)
 {
-    PIXELFORMATDESCRIPTOR pfd;
-
-    LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
-
-    WindowError windowError;
-
-    _window._hdc = GetDC(_window._hwnd);
-    if (_window._hdc == NULL)
-    {
-        _result.Message(windowError.GetErrorMessage());
-        return;
-    }
-
-    pfd.nSize      = sizeof(pfd);
-    pfd.nVersion   = 1;
-    pfd.dwFlags    = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-    pfd.iPixelType = PFD_TYPE_RGBA;
-    pfd.cColorBits = 24;
-    pfd.cDepthBits = 16;
-    pfd.iLayerType = PFD_MAIN_PLANE;
-
-    int format = ChoosePixelFormat(_window._hdc, &pfd);
-    if (format == 0)
-    {
-        _result.Message(windowError.GetErrorMessage());
-        return;
-    }
-
-    if (!SetPixelFormat(_window._hdc, format, &pfd))
-    {
-        _result.Message(windowError.GetErrorMessage());
-        return;
-    }
-
-    _hglrc = wglCreateContext(_window._hdc);
-    if (_hglrc == NULL)
-    {
-        _result.Message(windowError.GetErrorMessage());
-        return;
-    }
-
-    if (!wglMakeCurrent(_window._hdc, _hglrc))
-    {
-        _result.Message(windowError.GetErrorMessage());
-        return;
-    }
 }
 
 LDL_WindowOpenGL1::~LDL_WindowOpenGL1()
 {
-    wglMakeCurrent(NULL, NULL);
-    wglDeleteContext(_hglrc);
 }
 
 bool LDL_WindowOpenGL1::Running()
@@ -74,7 +21,6 @@ bool LDL_WindowOpenGL1::Running()
 
 void LDL_WindowOpenGL1::Present()
 {
-    SwapBuffers(_window._hdc);
 }
 
 void LDL_WindowOpenGL1::PollEvents()
@@ -119,5 +65,5 @@ void LDL_WindowOpenGL1::Title(const char* title)
 
 void* LDL_WindowOpenGL1::NativeHandle()
 {
-    return _window._hwnd;
+    return NULL;
 }

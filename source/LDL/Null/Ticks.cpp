@@ -4,14 +4,12 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Ticks.hpp>
-#include <LDL/WinNT/Windows.hpp>
 
-size_t LDL::Ticks()
+size_t LDL_Ticks()
 {
-	return timeGetTime();
+	return 0;
 }
 
-void LDL::Delay(size_t count)
+void LDL_Delay(size_t count)
 {
-	Sleep((DWORD)count);
 }

@@ -3,29 +3,18 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/WinNT/GLFuncs.hpp>
+#include <LDL/Null/GLFuncs.hpp>
 
-using namespace LDL;
-
-OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path) :
-    _library(NULL)
+OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path)
 {
-    _library = CreateLibraryImpl(path);
 }
 
 VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
 {
-    VoidFuncPtr result = (VoidFuncPtr)wglGetProcAddress(name);
-
-    if (IsValid(result))
-    {
-        result = _library->Function(name);
-    }
-
-    return result;
+    return NULL;
 }
 
 bool OpenGLFunctionsImpl::IsValid(VoidFuncPtr ptr)
 {
-    return (ptr == 0 || (ptr == (VoidFuncPtr)0x1) || (ptr == (VoidFuncPtr)0x2) || (ptr == (VoidFuncPtr)0x3) || (ptr == (VoidFuncPtr)-1));
+    return true;
 }

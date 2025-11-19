@@ -3,16 +3,11 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Assert.hpp>
-#include <LDL/WinNT/WinSoft.hpp>
-
-using namespace LDL;
+#include <LDL/Null/WinSoft.hpp>
 
 LDL_WindowSoftware::LDL_WindowSoftware(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
-    _result(result),
-    _mainWindow(_result, pos, size, title, mode)
+    _mainWindow(result, pos, size, title, mode)
 {
-    LDL::LDL_memset(&_bitmapInfo, 0, sizeof(_bitmapInfo));
 }
 
 LDL_WindowSoftware::~LDL_WindowSoftware()
@@ -21,18 +16,6 @@ LDL_WindowSoftware::~LDL_WindowSoftware()
 
 void LDL_WindowSoftware::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 {
-    LDL_ASSERT(pixels != NULL);
-    LDL_ASSERT(bytesPerPixel >= 1 && bytesPerPixel <= 4);
-
-    _bitmapInfo.bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
-    _bitmapInfo.bmiHeader.biWidth       = (LONG)_mainWindow.Size().x;
-    _bitmapInfo.bmiHeader.biHeight      = -(LONG)_mainWindow.Size().y;
-    _bitmapInfo.bmiHeader.biPlanes      = 1;
-    _bitmapInfo.bmiHeader.biBitCount    = bytesPerPixel * 8;
-    _bitmapInfo.bmiHeader.biCompression = BI_RGB;
-
-    int result = SetDIBitsToDevice(_mainWindow._hdc, 0, 0, (DWORD)_mainWindow.Size().x, (DWORD)_mainWindow.Size().y, 0, 0, 0, (UINT)_mainWindow.Size().y, pixels, &_bitmapInfo, DIB_RGB_COLORS);
-    LDL_ASSERT_DETAIL(result != 0, "SetDIBitsToDevice failed");
 }
 
 void LDL_WindowSoftware::Present()
@@ -86,5 +69,5 @@ void LDL_WindowSoftware::Title(const char* title)
 
 void* LDL_WindowSoftware::NativeHandle()
 {
-    return _mainWindow._hwnd;
+    return NULL;
 }

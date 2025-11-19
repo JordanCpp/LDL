@@ -7,18 +7,14 @@
 #define LDL_Platforms_WinNT_Input_KeyMapper_hpp
 
 #include <LDL/Mapping.hpp>
-#include <LDL/WinNT/WinError.hpp>
 
-namespace LDL
+class LDL_KeyMapper
 {
-	class LDL_KeyMapper
-	{
-	public:
-		LDL_KeyMapper();
-		uint8_t ConvertKey(size_t key);
-	private:
-		KeyMapping _keyMapping;
-	};
-}
+public:
+	LDL_KeyMapper();
+	uint8_t ConvertKey(size_t key);
+private:
+	LDL_KeyMapping _keyMapping;
+};
 
 #endif   

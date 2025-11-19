@@ -4,35 +4,20 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Mouse.hpp>
-#include <LDL/Assert.hpp>
-#include <LDL/WinNT/Windows.hpp>
-
-using namespace LDL;
 
 LDL_Vec2u LDL_Mouse::Pos()
 {
-    POINT point;
-
-    bool result = GetCursorPos(&point);
-    LDL_ASSERT_DETAIL(result, "GetCursorPos failed");
-
-    _pos = LDL_Vec2u(point.x, point.y);
-
     return _pos;
 }
 
 void LDL_Mouse::Pos(const LDL_Vec2u& pos)
 {
-    bool result = SetCursorPos((int)pos.x, (int)pos.y);
-    LDL_ASSERT_DETAIL(result, "SetCursorPos failed");
 }
 
 void LDL_Mouse::Hide()
 {
-    ShowCursor(FALSE);
 }
 
 void LDL_Mouse::Show()
 {
-    ShowCursor(TRUE);
 }

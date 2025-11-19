@@ -7,21 +7,13 @@
 #define LDL_Platforms_WinNT_Core_LibraryImpl_hpp
 
 #include <LDL/Library.hpp>
-#include <LDL/InPlaceStrings.hpp>
-#include <LDL/WinNT/Windows.hpp>
 
-namespace LDL
+class LDL_Library : public LDL_ILibrary
 {
-	class LibraryImpl: public ILibrary
-	{
-	public:
-		LibraryImpl(const char* path);
-		~LibraryImpl();
-		LDL::VoidFuncPtr Function(const char* name);
-	private:
-		AssertString _assert;
-		HMODULE      _module;
-	};
-}
+public:
+	LDL_Library(const char* path);
+	~LDL_Library();
+	VoidFuncPtr Function(const char* name);
+};
 
 #endif    
