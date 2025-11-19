@@ -38,10 +38,10 @@ endif()
 
 if (WIN32)
     file(GLOB SOURCE 
-    "source/LDL/Renders/OpenGL/*.cpp" 
-    "source/LDL/Renders/OpenGL1/*.cpp" 
-    "source/LDL/Renders/OpenGL3/*.cpp" 
-    "source/LDL/Renders/Software/*.cpp"
+    "source/LDL/Renders/GL/*.cpp" 
+    "source/LDL/Renders/GL1/*.cpp" 
+    "source/LDL/Renders/GL3/*.cpp" 
+    "source/LDL/Renders/Soft/*.cpp"
     "source/LDL/Shared/*.cpp" 
     "source/LDL/OpenGL/*.cpp" 
     "source/LDL/${LDL_WINDOWS_NAME}/*.cpp"

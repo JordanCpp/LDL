@@ -4,9 +4,9 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Assert.hpp>
-#include <LDL/OpenGL/OpenGL1_1.hpp>
-#include <LDL/Renders/OpenGL/Util.hpp>
-#include <LDL/Renders/OpenGL3/TextureImplOpenGL3.hpp>
+#include <LDL/OpenGL/GL1_1.hpp>
+#include <LDL/Renders/GL/Util.hpp>
+#include <LDL/Renders/GL3/TexGL3.hpp>
 
 TextureImplOpenGL3::TextureImplOpenGL3(LDL_RenderContext* renderContextImpl, size_t pixelFormat, const LDL_Vec2u& size, uint8_t* pixels) :
 	_context(renderContextImpl),

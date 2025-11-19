@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Renders/Software/TexSoft.hpp>
-#include <LDL/Renders/Software/BtchSoft.hpp>
+#include <LDL/Renders/Soft/TexSoft.hpp>
+#include <LDL/Renders/Soft/BtchSoft.hpp>
 
 LDL_SpriteBatcherSoftware::LDL_SpriteBatcherSoftware(LDL_ITexture* texture, size_t count)
 {

@@ -6,8 +6,8 @@
 #include <LDL/Assert.hpp>
 #include <LDL/Format.hpp>
 #include <LDL/InPlaceStrings.hpp>
-#include <LDL/OpenGL/OpenGL1_0.hpp>
-#include <LDL/Renders/OpenGL/Util.hpp>
+#include <LDL/OpenGL/GL1_0.hpp>
+#include <LDL/Renders/GL/Util.hpp>
 
 const uint32_t TextureCount = 12;
 const uint32_t TextureSizes[TextureCount] = { 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };

@@ -4,9 +4,9 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Funcs.hpp>
-#include <LDL/Renders/OpenGL/Util.hpp>
-#include <LDL/Renders/OpenGL1/RndrGL1.hpp>
-#include <LDL/Renders/OpenGL1/TexGL1.hpp>
+#include <LDL/Renders/GL/Util.hpp>
+#include <LDL/Renders/GL1/RndrGL1.hpp>
+#include <LDL/Renders/GL1/TexGL1.hpp>
 
 #if defined(LDL_WINDOWS_NT)
     #include <LDL/WinNT/WinGL1.hpp>

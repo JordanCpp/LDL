@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "ShaderLoaderOpenGL3.hpp"
+#include <LDL/Renders/GL3/ShdrGL3.hpp>
 
 ShaderLoader::ShaderLoader()
 {

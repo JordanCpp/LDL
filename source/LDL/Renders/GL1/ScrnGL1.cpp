@@ -3,9 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/OpenGL/OpenGL1_0.hpp>
-#include <LDL/Renders/OpenGL/Util.hpp>
-#include <LDL/Renders/OpenGL1/ScrnGL1.hpp>
+#include <LDL/OpenGL/GL1_0.hpp>
+#include <LDL/Renders/GL/Util.hpp>
+#include <LDL/Renders/GL1/ScrnGL1.hpp>
 
 ScreenOpenGL1::ScreenOpenGL1(const LDL_Vec2u& size) :
 	_size(size),

@@ -9,7 +9,7 @@
 #include <LDL/Vec2u.hpp>
 #include <LDL/Types.hpp>
 #include <LDL/Color.hpp>
-#include <LDL/OpenGL/OpenGL1_1.hpp>
+#include <LDL/OpenGL/GL1_1.hpp>
 
 struct Quad
 {

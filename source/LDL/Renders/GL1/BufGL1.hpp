@@ -10,7 +10,7 @@
 #include <LDL/Vector.hpp>
 #include <LDL/Color.hpp>
 #include <LDL/Texture.hpp>
-#include <LDL/Renders/OpenGL1/BatchGL1.hpp>
+#include <LDL/Renders/GL1/BatchGL1.hpp>
 
 class LDL_TextureElement
 {

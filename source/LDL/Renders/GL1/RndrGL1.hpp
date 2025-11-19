@@ -12,9 +12,9 @@
 #include <LDL/Batcher.hpp>
 #include <LDL/BaseRndr.hpp>
 #include <LDL/Render.hpp>
-#include <LDL/Renders/OpenGL1/ScrnGL1.hpp>
-#include <LDL/Renders/OpenGL1/TexGL1.hpp>
-#include <LDL/Renders/OpenGL1/BufGL1.hpp>
+#include <LDL/Renders/GL1/ScrnGL1.hpp>
+#include <LDL/Renders/GL1/TexGL1.hpp>
+#include <LDL/Renders/GL1/BufGL1.hpp>
 
 class RenderImplOpenGL1 : public LDL_IRender
 {

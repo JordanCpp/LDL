@@ -6,7 +6,7 @@
 #ifndef LDL_APIs_OpenGL_OpenGL1_1_hpp
 #define LDL_APIs_OpenGL_OpenGL1_1_hpp
 
-#include <LDL/OpenGL/OpenGL1_0.hpp>
+#include <LDL/OpenGL/GL1_0.hpp>
 
 #ifdef __cplusplus
 extern "C" {

@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Renders/Software/RndrSoft.hpp>
+#include <LDL/Renders/Soft/RndrSoft.hpp>
 
 #if defined(LDL_WINDOWS_NT)
     #include <LDL/WinNT/WinSoft.hpp>

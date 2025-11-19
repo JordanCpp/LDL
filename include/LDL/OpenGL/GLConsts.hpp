@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_OpenGL_OpenGL_Constants_hpp
-#define LDL_APIs_OpenGL_OpenGL_Constants_hpp
+#ifndef LDL_GLConsts_hpp
+#define LDL_GLConsts_hpp
 
 #define	GL_DEPTH_BUFFER_BIT	(0x00000100)
 #define	GL_STENCIL_BUFFER_BIT	(0x00000400)

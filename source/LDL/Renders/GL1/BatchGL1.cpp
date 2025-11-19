@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Renders/OpenGL1/TexGL1.hpp>
-#include <LDL/Renders/OpenGL1/BatchGL1.hpp>
+#include <LDL/Renders/GL1/TexGL1.hpp>
+#include <LDL/Renders/GL1/BatchGL1.hpp>
 
 LDL_SpriteBatcherImplOpenGL1::LDL_SpriteBatcherImplOpenGL1(LDL_ITexture* texture, size_t count) :
 	_texture(((LDL_TextureOpenGL1*)texture)->Id()),

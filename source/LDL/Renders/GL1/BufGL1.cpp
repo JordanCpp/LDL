@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Renders/OpenGL/Util.hpp>
-#include <LDL/Renders/OpenGL1/BufGL1.hpp>
+#include <LDL/Renders/GL/Util.hpp>
+#include <LDL/Renders/GL1/BufGL1.hpp>
 
 RenderBuffer::RenderBuffer()
 {

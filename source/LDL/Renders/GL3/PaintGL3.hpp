@@ -9,7 +9,7 @@
 #include <LDL/Mat4.hpp>
 #include <LDL/Texture.hpp>
 #include <LDL/OpenGL/OpenGL3_0.hpp>
-#include <LDL/Renders/OpenGL3/ShaderLoaderOpenGL3.hpp>
+#include <LDL/Renders/GL3/ShdrGL3.hpp>
 
 class TexturePainter
 {

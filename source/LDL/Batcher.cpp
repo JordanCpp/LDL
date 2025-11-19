@@ -7,9 +7,9 @@
 #include <LDL/Enums.hpp>
 #include <LDL/Texture.hpp>
 #include <LDL/Batcher.hpp>
-#include <LDL/Renders/OpenGL1/BatchGL1.hpp>
-#include <LDL/Renders/OpenGL3/TextureBatcherImplOpenGL3.hpp>
-#include <LDL/Renders/Software/BtchSoft.hpp>
+#include <LDL/Renders/GL1/BatchGL1.hpp>
+#include <LDL/Renders/GL3/BatchGL3.hpp>
+#include <LDL/Renders/Soft/BtchSoft.hpp>
 
 LDL_ISpriteBatcher* CreateSpriteBatcherImpl(LDL_RenderContext* renderContext, LDL_ITexture* texture, size_t count)
 {

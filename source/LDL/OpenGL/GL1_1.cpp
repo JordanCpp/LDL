@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/OpenGL/OpenGL1_1.hpp>
+#include <LDL/OpenGL/GL1_1.hpp>
 
 PFNGLDRAWARRAYSPROC glDrawArrays = NULL;
 PFNGLDRAWELEMENTSPROC glDrawElements = NULL;

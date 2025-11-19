@@ -7,7 +7,7 @@
 #define LDL_Graphics_Software_TextureBatcherImpl_hpp
 
 #include <LDL/Batcher.hpp>
-#include <LDL/Renders/OpenGL/Util.hpp>
+#include <LDL/Renders/GL/Util.hpp>
 
 class LDL_SpriteBatcherSoftware : public LDL_ISpriteBatcher
 {

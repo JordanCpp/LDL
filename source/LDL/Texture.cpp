@@ -6,9 +6,9 @@
 #include <LDL/Assert.hpp>
 #include <LDL/Enums.hpp>
 #include <LDL/Texture.hpp>
-#include <LDL/Renders/OpenGL1/TexGL1.hpp>
-#include <LDL/Renders/OpenGL3/TextureImplOpenGL3.hpp>
-#include <LDL/Renders/Software/TexSoft.hpp>
+#include <LDL/Renders/GL1/TexGL1.hpp>
+#include <LDL/Renders/GL3/TexGL3.hpp>
+#include <LDL/Renders/Soft/TexSoft.hpp>
 
 LDL_ITexture* LDL_CreateTexture(LDL_RenderContext* renderContext, size_t pixelFormat, const LDL_Vec2u& size, uint8_t* pixels)
 {

@@ -3,13 +3,13 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_OpenGL3_LinePainter_hpp
-#define LDL_Graphics_OpenGL3_LinePainter_hpp
+#ifndef LDL_LineGL3_hpp
+#define LDL_LineGL3_hpp
 
-#include <LDL/OpenGL/OpenGL3_0.hpp>
 #include <LDL/Mat4.hpp>
 #include <LDL/Vec3.hpp>
-#include "ShaderLoaderOpenGL3.hpp"
+#include <LDL/OpenGL/OpenGL3_0.hpp>
+#include <LDL/Renders/GL3/ShdrGL3.hpp>
 
 class LinePainter
 {

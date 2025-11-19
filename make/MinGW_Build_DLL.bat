@@ -5,10 +5,10 @@ g++ -fno-rtti -fno-exceptions -Wall -Wextra -pedantic -O2 -s -static -shared -o 
 ..\source\LDL\OpenGL\*.cpp ^
 ..\source\LDL\WinNT\*.cpp ^
 ..\source\LDL\*.cpp ^
-..\source\LDL\Renders\Software\*.cpp ^
-..\source\LDL\Renders\OpenGL\*.cpp ^
-..\source\LDL\Renders\OpenGL1\*.cpp ^
-..\source\LDL\Renders\OpenGL3\*.cpp ^
+..\source\LDL\Renders\Soft\*.cpp ^
+..\source\LDL\Renders\GL\*.cpp ^
+..\source\LDL\Renders\GL1\*.cpp ^
+..\source\LDL\Renders\GL3\*.cpp ^
 -I..\include\ ^
 -I..\source\ ^
 -lgdi32 ^

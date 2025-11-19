@@ -4,9 +4,9 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Assert.hpp>
-#include <LDL/OpenGL/OpenGL1_0.hpp>
-#include <LDL/Renders/OpenGL/Util.hpp>
-#include <LDL/Renders/OpenGL1/TexGL1.hpp>
+#include <LDL/OpenGL/GL1_0.hpp>
+#include <LDL/Renders/GL/Util.hpp>
+#include <LDL/Renders/GL1/TexGL1.hpp>
 
 LDL_TextureOpenGL1::LDL_TextureOpenGL1(LDL_RenderContext* renderContextImpl, LDL_Surface* surface) :
 	_context(renderContextImpl),
