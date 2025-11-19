@@ -9,10 +9,10 @@
 #include <LDL/Mapping.hpp>
 #include <LDL/WinNT/WinError.hpp>
 
-class KeyMapper
+class LDL_KeyMapper
 {
 public:
-	KeyMapper();
+	LDL_KeyMapper();
 	uint8_t ConvertKey(size_t key);
 private:
 	LDL_KeyMapping _keyMapping;

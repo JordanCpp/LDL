@@ -11,11 +11,11 @@
 
 namespace LDL
 {
-	class WindowImplSoftware : public LDL_IWindow
+	class LDL_WindowSoftware : public LDL_IWindow
 	{
 	public:
-		WindowImplSoftware(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode = LDL_WindowMode::Resized);
-		~WindowImplSoftware();
+		LDL_WindowSoftware(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode = LDL_WindowMode::Resized);
+		~LDL_WindowSoftware();
 		void Present(uint8_t* pixels, uint8_t bytesPerPixel);
 		void Present();
 		bool Running();
@@ -30,7 +30,7 @@ namespace LDL
 		void* NativeHandle();
 	private:
 		LDL_Result&    _result;
-		MainWindow _mainWindow;
+		LDL_MainWindow _mainWindow;
 		BITMAPINFO _bitmapInfo;
 	};
 }

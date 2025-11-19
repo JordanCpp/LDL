@@ -8,18 +8,18 @@
 
 using namespace LDL;
 
-WindowImplSoftware::WindowImplSoftware(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
+LDL_WindowSoftware::LDL_WindowSoftware(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
     _result(result),
     _mainWindow(_result, pos, size, title, mode)
 {
     LDL::LDL_memset(&_bitmapInfo, 0, sizeof(_bitmapInfo));
 }
 
-WindowImplSoftware::~WindowImplSoftware()
+LDL_WindowSoftware::~LDL_WindowSoftware()
 {
 }
 
-void WindowImplSoftware::Present(uint8_t* pixels, uint8_t bytesPerPixel)
+void LDL_WindowSoftware::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 {
     LDL_ASSERT(pixels != NULL);
     LDL_ASSERT(bytesPerPixel >= 1 && bytesPerPixel <= 4);
@@ -35,56 +35,56 @@ void WindowImplSoftware::Present(uint8_t* pixels, uint8_t bytesPerPixel)
     LDL_ASSERT_DETAIL(result != 0, "SetDIBitsToDevice failed");
 }
 
-void WindowImplSoftware::Present()
+void LDL_WindowSoftware::Present()
 {
 }
 
-const LDL_Vec2u& WindowImplSoftware::Size()
+const LDL_Vec2u& LDL_WindowSoftware::Size()
 {
     return _mainWindow.Size();
 }
 
-const LDL_Vec2u& WindowImplSoftware::Pos()
+const LDL_Vec2u& LDL_WindowSoftware::Pos()
 {
     return _mainWindow.Pos();
 }
 
-bool WindowImplSoftware::Running()
+bool LDL_WindowSoftware::Running()
 {
     return _mainWindow.Running();
 }
 
-void WindowImplSoftware::PollEvents()
+void LDL_WindowSoftware::PollEvents()
 {
     _mainWindow.PollEvents();
 }
 
-bool WindowImplSoftware::GetEvent(LDL_Event& event)
+bool LDL_WindowSoftware::GetEvent(LDL_Event& event)
 {
     return _mainWindow.GetEvent(event);
 }
 
-bool WindowImplSoftware::WaitEvent(LDL_Event& event)
+bool LDL_WindowSoftware::WaitEvent(LDL_Event& event)
 {
     return _mainWindow.WaitEvent(event);
 }
 
-void WindowImplSoftware::StopEvent()
+void LDL_WindowSoftware::StopEvent()
 {
     _mainWindow.StopEvent();
 }
 
-const char* WindowImplSoftware::Title()
+const char* LDL_WindowSoftware::Title()
 {
     return _mainWindow.Title();
 }
 
-void WindowImplSoftware::Title(const char* title)
+void LDL_WindowSoftware::Title(const char* title)
 {
     _mainWindow.Title(title);
 }
 
-void* WindowImplSoftware::NativeHandle()
+void* LDL_WindowSoftware::NativeHandle()
 {
     return _mainWindow._hwnd;
 }

@@ -9,7 +9,7 @@
 
 using namespace LDL;
 
-WindowImplOpenGL1::WindowImplOpenGL1(LDL_Result& result, const LDL_Vec2u &pos, const LDL_Vec2u &size, const char* title, size_t mode) : 
+LDL_WindowOpenGL1::LDL_WindowOpenGL1(LDL_Result& result, const LDL_Vec2u &pos, const LDL_Vec2u &size, const char* title, size_t mode) : 
     _result(result),
     _Window(pos, size, title, mode)
 {
@@ -64,68 +64,68 @@ WindowImplOpenGL1::WindowImplOpenGL1(LDL_Result& result, const LDL_Vec2u &pos, c
     _Window.Show();
 }
 
-WindowImplOpenGL1::~WindowImplOpenGL1()
+LDL_WindowOpenGL1::~LDL_WindowOpenGL1()
 {
     glXDestroyContext(_Window._Display, _Context);
 }
 
-void WindowImplOpenGL1::Present(uint8_t* pixels, uint8_t bytesPerPixel)
+void LDL_WindowOpenGL1::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 {
     assert(pixels != NULL);
     assert(bytesPerPixel == 1 || bytesPerPixel == 2 || bytesPerPixel == 3 || bytesPerPixel == 4);
 }
 
-void WindowImplOpenGL1::Present()
+void LDL_WindowOpenGL1::Present()
 {
     glXSwapBuffers(_Window._Display, _Window._Window);
 }
 
-const LDL_Vec2u& WindowImplOpenGL1::Size()
+const LDL_Vec2u& LDL_WindowOpenGL1::Size()
 {
     return _Window.Size();
 }
 
-const LDL_Vec2u& WindowImplOpenGL1::Pos()
+const LDL_Vec2u& LDL_WindowOpenGL1::Pos()
 {
     return _Window.Pos();
 }
 
-bool WindowImplOpenGL1::Running()
+bool LDL_WindowOpenGL1::Running()
 {
     return _Window.Running();
 }
 
-void WindowImplOpenGL1::PollEvents()
+void LDL_WindowOpenGL1::PollEvents()
 {
     _Window.PollEvents();
 }
 
-bool WindowImplOpenGL1::GetEvent(LDL_Event& event)
+bool LDL_WindowOpenGL1::GetEvent(LDL_Event& event)
 {
     return _Window.GetEvent(event);
 }
 
-bool WindowImplOpenGL1::WaitEvent(LDL_Event& event)
+bool LDL_WindowOpenGL1::WaitEvent(LDL_Event& event)
 {
     return _Window.WaitEvent(event);
 }
 
-void WindowImplOpenGL1::StopEvent()
+void LDL_WindowOpenGL1::StopEvent()
 {
     _Window.StopEvent();
 }
 
-const char* WindowImplOpenGL1::Title()
+const char* LDL_WindowOpenGL1::Title()
 {
     return _Window.Title();
 }
 
-void WindowImplOpenGL1::Title(const char* title)
+void LDL_WindowOpenGL1::Title(const char* title)
 {
     _Window.Title(title);
 }
 
-void* WindowImplOpenGL1::NativeHandle()
+void* LDL_WindowOpenGL1::NativeHandle()
 {
     return NULL;
 }

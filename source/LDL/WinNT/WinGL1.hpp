@@ -10,11 +10,11 @@
 #include <LDL/WinNT/Windows.hpp>
 #include <LDL/WinNT/MainWin.hpp>
 
-class WindowImplOpenGL1 : public LDL_IWindow
+class LDL_WindowOpenGL1 : public LDL_IWindow
 {
 public:
-	WindowImplOpenGL1(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode = LDL_WindowMode::Resized);
-	~WindowImplOpenGL1();
+	LDL_WindowOpenGL1(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode = LDL_WindowMode::Resized);
+	~LDL_WindowOpenGL1();
 	bool Running();
 	void Present();
 	void PollEvents();
@@ -29,7 +29,7 @@ public:
 private:
 	LDL_Result& _result;
 	HGLRC       _hglrc;
-	MainWindow  _window;
+	LDL_MainWindow  _window;
 };
 
 #endif  

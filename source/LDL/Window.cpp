@@ -38,13 +38,13 @@ LDL_IWindow* LDL_CreateWindow(LDL_Result& result, LDL_RenderContext& renderConte
 	switch (renderMode)
 	{
 	case LDL_RenderMode::Software:
-		impl = new WindowImplSoftware(result, pos, size, title, mode);
+		impl = new LDL_WindowSoftware(result, pos, size, title, mode);
 		break;
 	case LDL_RenderMode::OpenGL1:
-		impl = new WindowImplOpenGL1(result, pos, size, title, mode);
+		impl = new LDL_WindowOpenGL1(result, pos, size, title, mode);
 		break;
 	case LDL_RenderMode::OpenGL3:
-		impl = new WindowImplOpenGL3(result, pos, size, title, mode);
+		impl = new LDL_WindowOpenGL3(result, pos, size, title, mode);
 		break;
 	}
 

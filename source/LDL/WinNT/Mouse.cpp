@@ -9,7 +9,6 @@
 
 LDL_Vec2u LDL_Mouse::Pos()
 {
-
     return _pos;
 }
 

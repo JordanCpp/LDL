@@ -11,11 +11,11 @@
 
 namespace LDL
 {
-	class WindowImplOpenGL3 : public LDL_IWindow
+	class LDL_WindowOpenGL3 : public LDL_IWindow
 	{
 	public:
-		WindowImplOpenGL3(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode = LDL_WindowMode::Resized);
-		~WindowImplOpenGL3();
+		LDL_WindowOpenGL3(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode = LDL_WindowMode::Resized);
+		~LDL_WindowOpenGL3();
 		bool Running();
 		void PollEvents();
 		void Present();
@@ -29,7 +29,7 @@ namespace LDL
 		void* NativeHandle();
 	private:
 		LDL_Result&      _result;
-		MainWindow   _mainWindow;
+		LDL_MainWindow   _mainWindow;
 		HGLRC        _hglrc;
 	};
 }

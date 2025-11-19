@@ -7,7 +7,7 @@
 #include <LDL/WinNT/Windows.hpp>
 #include <LDL/WinNT/KeyMapper.hpp>
 
-KeyMapper::KeyMapper()
+LDL_KeyMapper::LDL_KeyMapper()
 {
     _keyMapping.Add(LDL_KeyMap(VK_LWIN, LDL_KeyboardKey::LSystem));
     _keyMapping.Add(LDL_KeyMap(VK_RWIN, LDL_KeyboardKey::RSystem));
@@ -98,7 +98,7 @@ KeyMapper::KeyMapper()
     _keyMapping.Add(LDL_KeyMap('W', LDL_KeyboardKey::W));
 }
 
-uint8_t KeyMapper::ConvertKey(size_t key)
+uint8_t LDL_KeyMapper::ConvertKey(size_t key)
 {
     return _keyMapping.FindKey(key);
 }

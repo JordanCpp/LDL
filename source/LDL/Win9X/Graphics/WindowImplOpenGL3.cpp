@@ -22,7 +22,7 @@ const int WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB    = 0x00000002;
 const int WGL_CONTEXT_CORE_PROFILE_BIT_ARB          = 0x00000001;
 const int WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB = 0x00000002;
 
-WindowImplOpenGL3::WindowImplOpenGL3(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
+LDL_WindowOpenGL3::LDL_WindowOpenGL3(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
     _result(result),
     _mainWindow(_result,pos, size, title, mode),
     _hglrc(NULL)
@@ -118,7 +118,7 @@ WindowImplOpenGL3::WindowImplOpenGL3(LDL_Result& result, const LDL_Vec2u& pos, c
     }
 }
 
-WindowImplOpenGL3::~WindowImplOpenGL3()
+LDL_WindowOpenGL3::~LDL_WindowOpenGL3()
 {
     wglMakeCurrent(NULL, NULL);
     wglDeleteContext(_hglrc);
@@ -126,58 +126,58 @@ WindowImplOpenGL3::~WindowImplOpenGL3()
     ReleaseDC(_mainWindow._hwnd, _mainWindow._hdc);
 }
 
-bool WindowImplOpenGL3::Running()
+bool LDL_WindowOpenGL3::Running()
 {
     return _mainWindow.Running();
 }
 
-void WindowImplOpenGL3::PollEvents()
+void LDL_WindowOpenGL3::PollEvents()
 {
     _mainWindow.PollEvents();
 }
 
-void WindowImplOpenGL3::Present()
+void LDL_WindowOpenGL3::Present()
 {
     BOOL result = SwapBuffers(_mainWindow._hdc);
     LDL_ASSERT_DETAIL(result, "SwapBuffers failed");
 }
 
-const LDL_Vec2u& WindowImplOpenGL3::Size()
+const LDL_Vec2u& LDL_WindowOpenGL3::Size()
 {
     return _mainWindow.Size();
 }
 
-const LDL_Vec2u& WindowImplOpenGL3::Pos()
+const LDL_Vec2u& LDL_WindowOpenGL3::Pos()
 {
     return _mainWindow.Pos();
 }
 
-bool WindowImplOpenGL3::GetEvent(LDL_Event& event)
+bool LDL_WindowOpenGL3::GetEvent(LDL_Event& event)
 {
     return _mainWindow.GetEvent(event);
 }
 
-bool WindowImplOpenGL3::WaitEvent(LDL_Event& event)
+bool LDL_WindowOpenGL3::WaitEvent(LDL_Event& event)
 {
     return _mainWindow.WaitEvent(event);
 }
 
-void WindowImplOpenGL3::StopEvent()
+void LDL_WindowOpenGL3::StopEvent()
 {
     _mainWindow.StopEvent();
 }
 
-const char* WindowImplOpenGL3::Title()
+const char* LDL_WindowOpenGL3::Title()
 {
     return _mainWindow.Title();
 }
 
-void WindowImplOpenGL3::Title(const char* title)
+void LDL_WindowOpenGL3::Title(const char* title)
 {
     _mainWindow.Title(title);
 }
 
-void* WindowImplOpenGL3::NativeHandle()
+void* LDL_WindowOpenGL3::NativeHandle()
 {
     return _mainWindow._hwnd;
 }

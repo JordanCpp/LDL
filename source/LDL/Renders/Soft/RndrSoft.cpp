@@ -33,7 +33,7 @@ void RenderImplSoftware::Begin()
 
 void RenderImplSoftware::End()
 {
-	WindowImplSoftware* windowImpl = (WindowImplSoftware*)_window;
+	LDL_WindowSoftware* windowImpl = (LDL_WindowSoftware*)_window;
 
 	windowImpl->Present(_canvas.Pixels(), _canvas.BytesPerPixel());
 }

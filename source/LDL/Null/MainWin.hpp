@@ -17,11 +17,11 @@
 
 namespace LDL
 {
-	class MainWindow
+	class LDL_MainWindow
 	{
 	public:
-		MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode);
-		~MainWindow();
+		LDL_MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode);
+		~LDL_MainWindow();
 		bool Running();
 		void PollEvents();
 		bool GetEvent(LDL_Event& event);
@@ -36,7 +36,7 @@ namespace LDL
 		uint8_t ConvertKey(size_t key);
 		static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 		LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
-		KeyMapper       _keyMapper;
+		LDL_KeyMapper       _keyMapper;
 		WindowError     _windowError;
 		LDL_BaseWindow      _baseWindow;
 		LDL_Result&         _result;

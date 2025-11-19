@@ -6,7 +6,7 @@
 #include <LDL/Assert.hpp>
 #include <LDL/WinNT/WinGL1.hpp>
 
-WindowImplOpenGL1::WindowImplOpenGL1(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
+LDL_WindowOpenGL1::LDL_WindowOpenGL1(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
     _result(result),
     _hglrc(NULL),
     _window(_result, pos, size, title, mode)
@@ -59,63 +59,63 @@ WindowImplOpenGL1::WindowImplOpenGL1(LDL_Result& result, const LDL_Vec2u& pos, c
     }
 }
 
-WindowImplOpenGL1::~WindowImplOpenGL1()
+LDL_WindowOpenGL1::~LDL_WindowOpenGL1()
 {
     wglMakeCurrent(NULL, NULL);
     wglDeleteContext(_hglrc);
 }
 
-bool WindowImplOpenGL1::Running()
+bool LDL_WindowOpenGL1::Running()
 {
     return _window.Running();
 }
 
-void WindowImplOpenGL1::Present()
+void LDL_WindowOpenGL1::Present()
 {
     SwapBuffers(_window._hdc);
 }
 
-void WindowImplOpenGL1::PollEvents()
+void LDL_WindowOpenGL1::PollEvents()
 {
     _window.PollEvents();
 }
 
-const LDL_Vec2u& WindowImplOpenGL1::Size()
+const LDL_Vec2u& LDL_WindowOpenGL1::Size()
 {
     return _window.Size();
 }
 
-const LDL_Vec2u& WindowImplOpenGL1::Pos()
+const LDL_Vec2u& LDL_WindowOpenGL1::Pos()
 {
     return _window.Pos();
 }
 
-bool WindowImplOpenGL1::GetEvent(LDL_Event& event)
+bool LDL_WindowOpenGL1::GetEvent(LDL_Event& event)
 {
     return _window.GetEvent(event);
 }
 
-bool WindowImplOpenGL1::WaitEvent(LDL_Event& event)
+bool LDL_WindowOpenGL1::WaitEvent(LDL_Event& event)
 {
     return _window.WaitEvent(event);
 }
 
-void WindowImplOpenGL1::StopEvent()
+void LDL_WindowOpenGL1::StopEvent()
 {
     _window.StopEvent();
 }
 
-const char* WindowImplOpenGL1::Title()
+const char* LDL_WindowOpenGL1::Title()
 {
     return _window.Title();
 }
 
-void WindowImplOpenGL1::Title(const char* title)
+void LDL_WindowOpenGL1::Title(const char* title)
 {
     _window.Title(title);
 }
 
-void* WindowImplOpenGL1::NativeHandle()
+void* LDL_WindowOpenGL1::NativeHandle()
 {
     return _window._hwnd;
 }

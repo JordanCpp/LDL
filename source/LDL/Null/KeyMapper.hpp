@@ -11,10 +11,10 @@
 
 namespace LDL
 {
-	class KeyMapper
+	class LDL_KeyMapper
 	{
 	public:
-		KeyMapper();
+		LDL_KeyMapper();
 		uint8_t ConvertKey(size_t key);
 	private:
 		KeyMapping _keyMapping;

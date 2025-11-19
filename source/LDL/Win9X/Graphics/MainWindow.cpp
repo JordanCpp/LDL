@@ -13,7 +13,7 @@ using namespace LDL;
 static const UINT timePeriod = 1;
 static const char AppName[]  = "MainWindow";
 
-LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
+LRESULT CALLBACK LDL_MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 {
     LDL_Event event;
 
@@ -149,14 +149,14 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
     return DefWindowProcA(_hwnd, Message, WParam, LParam);
 }
 
-LRESULT CALLBACK MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam)
+LRESULT CALLBACK LDL_MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam)
 {
     LRESULT result;
 
 #ifdef _WIN64
-    MainWindow* This = (MainWindow*)GetWindowLongPtrA(Hwnd, GWLP_USERDATA);
+    LDL_MainWindow* This = (LDL_MainWindow*)GetWindowLongPtrA(Hwnd, GWLP_USERDATA);
 #elif _WIN32
-    MainWindow* This = (MainWindow*)GetWindowLongA(Hwnd, GWL_USERDATA);
+    LDL_MainWindow* This = (LDL_MainWindow*)GetWindowLongA(Hwnd, GWL_USERDATA);
 #endif  
 
     if (This != NULL)
@@ -167,7 +167,7 @@ LRESULT CALLBACK MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPA
     return result;
 }
 
-MainWindow::MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
+LDL_MainWindow::LDL_MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
     _baseWindow(pos, size, title),
     _result(result)
 {
@@ -257,7 +257,7 @@ MainWindow::MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u
     ShowWindow(_hwnd, SW_SHOW);
 }
 
-MainWindow::~MainWindow()
+LDL_MainWindow::~LDL_MainWindow()
 {
     timeEndPeriod(timePeriod);
 
@@ -265,12 +265,12 @@ MainWindow::~MainWindow()
     ReleaseDC(_hwnd, _hdc);
 }
 
-bool MainWindow::Running()
+bool LDL_MainWindow::Running()
 {
     return _eventer.Running();
 }
 
-void MainWindow::PollEvents()
+void LDL_MainWindow::PollEvents()
 {
     while (PeekMessageA(&_msg, _hwnd, 0, 0, PM_REMOVE))
     {
@@ -279,7 +279,7 @@ void MainWindow::PollEvents()
     }
 }
 
-bool MainWindow::GetEvent(LDL_Event& event)
+bool LDL_MainWindow::GetEvent(LDL_Event& event)
 {
     if (!_eventer.Empty())
     {
@@ -293,7 +293,7 @@ bool MainWindow::GetEvent(LDL_Event& event)
     return false;
 }
 
-bool MainWindow::WaitEvent(LDL_Event& event)
+bool LDL_MainWindow::WaitEvent(LDL_Event& event)
 {
     if (_eventer.Running())
     {
@@ -312,24 +312,24 @@ bool MainWindow::WaitEvent(LDL_Event& event)
     return _eventer.Running();
 }
 
-void MainWindow::StopEvent()
+void LDL_MainWindow::StopEvent()
 {
     _eventer.Stop();
 }
 
-void MainWindow::Title(const char* title)
+void LDL_MainWindow::Title(const char* title)
 {
     _baseWindow.Title(title);
 
     SetWindowText(_hwnd, _baseWindow.Title());
 }
 
-const char* MainWindow::Title()
+const char* LDL_MainWindow::Title()
 {
     return _baseWindow.Title();
 }
 
-const LDL_Vec2u& MainWindow::Size()
+const LDL_Vec2u& LDL_MainWindow::Size()
 {
     RECT rect;
 
@@ -343,7 +343,7 @@ const LDL_Vec2u& MainWindow::Size()
     return _baseWindow.Size();
 }
 
-const LDL_Vec2u& MainWindow::Pos()
+const LDL_Vec2u& LDL_MainWindow::Pos()
 {
     return _baseWindow.Pos();
 }

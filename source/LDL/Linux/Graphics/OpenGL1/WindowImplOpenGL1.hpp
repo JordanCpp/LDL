@@ -14,11 +14,11 @@
 namespace LDL
 {
 
-	class WindowImplOpenGL1 : public WindowImpl
+	class LDL_WindowOpenGL1 : public WindowImpl
 	{
 	public:
-		WindowImplOpenGL1(LDL_Result& result, const LDL_Vec2u &pos, const LDL_Vec2u &size, const char *title, size_t mode = LDL_WindowMode::Resized);
-		~WindowImplOpenGL1();
+		LDL_WindowOpenGL1(LDL_Result& result, const LDL_Vec2u &pos, const LDL_Vec2u &size, const char *title, size_t mode = LDL_WindowMode::Resized);
+		~LDL_WindowOpenGL1();
 		void Present(uint8_t *pixels, uint8_t bytesPerPixel);
 		void Present();
 		bool Running();
@@ -34,7 +34,7 @@ namespace LDL
 
 	private:
 		LDL_Result&      _result;
-		MainWindow   _Window;
+		LDL_MainWindow   _Window;
 		XVisualInfo* _Visual;
 		GLXContext   _Context;
 	};
