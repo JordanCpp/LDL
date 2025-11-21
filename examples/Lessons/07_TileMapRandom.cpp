@@ -67,8 +67,8 @@ int main()
 	uint32_t dy   = 0;
 	uint32_t step = tileSize.x / 2;
 
-	LDL_Vector<uint32_t> tilesX;
-	LDL_Vector<uint32_t> tilesY;
+	LDL_PodVector<uint32_t> tilesX;
+	LDL_PodVector<uint32_t> tilesY;
 
 	tilesX.resize(mapSize.x * mapSize.y);
 	tilesY.resize(mapSize.x * mapSize.y);

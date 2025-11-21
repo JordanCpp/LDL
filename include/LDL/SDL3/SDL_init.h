@@ -6,7 +6,7 @@
 #ifndef LDL_APIs_SDL3_SDL_init_h
 #define LDL_APIs_SDL3_SDL_init_h
 
-#include <LDL/SDL3/SDL_config.h>
+#include <LDL/SDL3/config.h>
 #include <LDL/SDL3/SDL_stdinc.h>
 
 #ifdef __cplusplus

@@ -6,7 +6,7 @@
 #ifndef LDL_APIs_SDL3_SDL_render_h
 #define LDL_APIs_SDL3_SDL_render_h
 
-#include <LDL/SDL3/SDL_config.h>
+#include <LDL/SDL3/config.h>
 #include <LDL/SDL3/SDL_video.h>
 #include <LDL/SDL3/SDL_surface.h>
 #include <LDL/SDL3/SDL_rect.h>

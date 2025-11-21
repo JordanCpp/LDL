@@ -18,6 +18,6 @@ public:
 	virtual VoidFuncPtr Function(const char* name) = 0;
 };
 
-LDL_ILibrary* CreateLibraryImpl(const char* name);
+LDL_ILibrary* LDL_CreateLibrary(const char* name);
 
 #endif    

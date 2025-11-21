@@ -7,7 +7,7 @@
 #define LDL_BmpLoad_hpp
 
 #include <LDL/Vec2u.hpp>
-#include <LDL/Vector.hpp>
+#include <LDL/PVector.hpp>
 #include <LDL/Result.hpp>
 #include <LDL/PixFrmt.hpp>
 #include <LDL/Format.hpp>
@@ -22,12 +22,12 @@ public:
 	uint8_t* Pixels();
 	size_t Format();
 private:
-	uint8_t         _bpp;
-	size_t          _pixelFormat;
-	LDL_Result&         _result;
-	LDL_Vec2u           _size;
-	LDL_Vector<uint8_t> _pixels;
-	LDL_Formatter   _formatter;
+	uint8_t                _bpp;
+	size_t                 _pixelFormat;
+	LDL_Result&            _result;
+	LDL_Vec2u              _size;
+	LDL_PodVector<uint8_t> _pixels;
+	LDL_Formatter          _formatter;
 };
 
 #endif

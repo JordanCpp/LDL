@@ -7,8 +7,8 @@
 #define LDL_Surface_hpp
 
 #include <LDL/Vec2u.hpp>
-#include <LDL/Vector.hpp>
 #include <LDL/Color.hpp>
+#include <LDL/PVector.hpp>
 #include <LDL/PixFrmt.hpp>
 
 class LDL_LIBRARY LDL_Surface
@@ -31,12 +31,12 @@ public:
 	size_t Format();
 	size_t Pitch();
 private:
-	bool                _enabled;
-	LDL_Color           _key;
-	size_t              _pixelFormat;
-	LDL_Vec2u           _capacity;
-	LDL_Vec2u           _size;
-	LDL_Vector<uint8_t> _pixels;
+	bool                   _enabled;
+	LDL_Color              _key;
+	size_t                 _pixelFormat;
+	LDL_Vec2u              _capacity;
+	LDL_Vec2u              _size;
+	LDL_PodVector<uint8_t> _pixels;
 };
 
 #endif 

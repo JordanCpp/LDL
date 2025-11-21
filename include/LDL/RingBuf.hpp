@@ -7,7 +7,7 @@
 #define LDL_RingBuf_hpp
 
 #include <LDL/StdFuncs.hpp>
-#include <LDL/Vector.hpp>
+#include <LDL/PVector.hpp>
 
 template<class T>
 class LDL_RingBuffer
@@ -76,11 +76,11 @@ public:
 	}
 
 private:
-	LDL_Vector<T> _content;
-	size_t    _head;
-	size_t    _tail;
-	size_t    _length;
-	size_t    _capacity;
+	LDL_PodVector<T> _content;
+	size_t           _head;
+	size_t           _tail;
+	size_t           _length;
+	size_t           _capacity;
 };
 
 #endif

@@ -11,10 +11,10 @@
     #define NULL 0
 #endif
 
-#include <LDL/SDL3/SDL_error.h>
+#include <LDL/SDL3/error.h>
 #include <LDL/SDL3/SDL_init.h>
 #include <LDL/SDL3/SDL_video.h>
-#include <LDL/SDL3/SDL_events.h>
+#include <LDL/SDL3/events.h>
 #include <LDL/SDL3/SDL_render.h>
 
 #endif

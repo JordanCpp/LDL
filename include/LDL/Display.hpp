@@ -7,17 +7,17 @@
 #define LDL_Display_hpp
 
 #include <LDL/Video.hpp>
-#include <LDL/Vector.hpp>
+#include <LDL/PVector.hpp>
 
 class LDL_LIBRARY LDL_Display
 {
 public:
 	LDL_Display();
-	const LDL_Vector<LDL_VideoMode>& Modes();
+	const LDL_PodVector<LDL_VideoMode>& Modes();
 	const LDL_VideoMode& Current();
 private:
-	LDL_VideoMode         _videoMode;
-	LDL_Vector<LDL_VideoMode> _videoModes;
+	LDL_VideoMode                _videoMode;
+	LDL_PodVector<LDL_VideoMode> _videoModes;
 };
 
 #endif     
