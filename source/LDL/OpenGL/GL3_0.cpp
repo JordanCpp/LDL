@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/OpenGL/OpenGL3_0.hpp>
+#include <LDL/OpenGL/GL3_0.hpp>
 
 PFNGLCOLORMASKIPROC glColorMaski = NULL;
 PFNGLGETBOOLEANI_VPROC glGetBooleani_v = NULL;

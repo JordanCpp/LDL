@@ -4,7 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Format.hpp>
-#include <LDL/OpenGL/OpenGL4_6.hpp>
+#include <LDL/OpenGL/GL4_6.hpp>
 #include <LDL/OpenGL/GLLoader.hpp>
 
 OpenGLLoader::OpenGLLoader(LDL_Result& result) :

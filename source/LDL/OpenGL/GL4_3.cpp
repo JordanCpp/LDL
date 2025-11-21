@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/OpenGL/OpenGL4_3.hpp>
+#include <LDL/OpenGL/GL4_3.hpp>
 
 PFNGLCLEARBUFFERDATAPROC glClearBufferData = NULL;
 PFNGLCLEARBUFFERSUBDATAPROC glClearBufferSubData = NULL;

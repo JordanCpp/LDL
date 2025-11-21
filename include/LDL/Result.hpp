@@ -7,7 +7,8 @@
 #define LDL_Result_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/InPlaceStrings.hpp>
+#include <LDL/StrView.hpp>
+#include <LDL/StrTypes.hpp>
 
 class LDL_LIBRARY LDL_Result
 {
@@ -19,8 +20,9 @@ public:
 	const char* Message();
 	void Clear();
 private:
-	bool        _ok;
-	ErrorString _message;
+	bool           _ok;
+	char           _bufferMessage[LDL_ErrorMax];
+	LDL_StringView _message;
 };
 
 #endif

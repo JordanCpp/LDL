@@ -1,0 +1,58 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <LDL/LDL.hpp>
+
+void ErrorShow(LDL_Result& result)
+{
+	printf("LDL error: %s", result.Message());
+}
+
+int main()
+{
+	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+
+	LDL_Result result;
+	LDL_RenderContext renderContext;
+
+	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, 0);
+	if (!result.Ok())
+	{
+		ErrorShow(result);
+		return -1;
+	}
+
+	LDL_IRender* render = LDL_CreateRender(result, renderContext, window);
+	if (!result.Ok())
+	{
+		ErrorShow(result);
+		return -1;
+	}
+
+	LDL_Event      report;
+	LDL_FpsCounter fpsCounter;
+	LDL_Convert    convert;
+
+	while (window->Running())
+	{
+		fpsCounter.Start();
+
+		while (window->GetEvent(report))
+		{
+			if (report.Type == IsQuit)
+			{
+				window->StopEvent();
+			}
+		}
+
+		render->Begin();
+		render->End();
+
+		if (fpsCounter.Calc())
+		{
+			window->Title(convert.ToString(fpsCounter.Fps()));
+		}
+	}
+
+	return 0;
+}

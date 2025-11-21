@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/OpenGL/OpenGL3_3.hpp>
+#include <LDL/OpenGL/GL3_3.hpp>
 
 PFNGLBINDFRAGDATALOCATIONINDEXEDPROC glBindFragDataLocationIndexed = NULL;
 PFNGLGETFRAGDATAINDEXPROC glGetFragDataIndex = NULL;

@@ -3,22 +3,19 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Platforms_Windows_WinError_hpp
-#define LDL_Platforms_Windows_WinError_hpp
+#ifndef LDL_Win9X_WinError_hpp
+#define LDL_Win9X_WinError_hpp
 
-#include <LDL/Core/InPlaceStrings.hpp>
+#include <LDL/InPlaceStrings.hpp>
 
-namespace LDL
+class WindowError
 {
-	class WindowError
-	{
-	public:
-		WindowError();
-		void Clear();
-		const char* GetErrorMessage();
-	private:
-		ErrorString _buffer;
-	};
-}
+public:
+	WindowError();
+	void Clear();
+	const char* GetErrorMessage();
+private:
+	ErrorString _buffer;
+};
 
-#endif    
+#endif

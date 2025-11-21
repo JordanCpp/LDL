@@ -13,7 +13,7 @@ WindowError::WindowError()
 
 void WindowError::Clear()
 {
-    _buffer.clear();
+    _formatter.Clear();
 }
 
 const char* WindowError::GetErrorMessage()
@@ -24,9 +24,7 @@ const char* WindowError::GetErrorMessage()
 
     if (lastError == 0)
     {
-        _buffer.assign("No error");
-
-        return _buffer.c_str();
+        return _formatter.Format("No error");
     }
 
     DWORD size = FormatMessageA(
@@ -35,32 +33,15 @@ const char* WindowError::GetErrorMessage()
         NULL,
         lastError,
         MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-        _buffer.data(),
-        (DWORD)_buffer.capacity() + 1,
+        _formatter.Data(),
+        (DWORD)LDL_Formatter::Max,
         NULL
     );
 
     if (size == 0)
     {
-        _buffer.assign("Unknown error");
+        _formatter.Format("Unknown error");
     }
 
-    size_t length = _buffer.size();
-
-    while (length > 0)
-    {
-        char lastChar = _buffer.c_str()[length - 1];
-
-        if (lastChar == '\r' || lastChar == '\n')
-        {
-            _buffer.resize(length - 1);
-            length = length - 1;
-        }
-        else
-        {
-            break;
-        }
-    }
-
-    return _buffer.c_str();
+    return _formatter.Data();
 }

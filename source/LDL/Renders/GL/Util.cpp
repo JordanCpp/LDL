@@ -5,7 +5,8 @@
 
 #include <LDL/Assert.hpp>
 #include <LDL/Format.hpp>
-#include <LDL/InPlaceStrings.hpp>
+#include <LDL/StrView.hpp>
+#include <LDL/StrTypes.hpp>
 #include <LDL/OpenGL/GL1_0.hpp>
 #include <LDL/Renders/GL/Util.hpp>
 
@@ -115,37 +116,38 @@ void Check(const char* file, int line, const char* expression)
 {
     GLenum code = glGetError();
 
-	AssertString error;
+	char errorBuffer[LDL_AssertMax];
+	LDL_StringView errorString(errorBuffer, sizeof(errorBuffer));
 
     if (code != GL_NO_ERROR)
     { 
 		switch (code)
 		{
 		case GL_INVALID_ENUM:
-			error = "GL_INVALID_ENUM";
+			errorString.assign("GL_INVALID_ENUM");
 			break;
 		case GL_INVALID_VALUE:
-			error = "GL_INVALID_VALUE";
+			errorString.assign("GL_INVALID_VALUE");
 			break;
 		case GL_INVALID_OPERATION:
-			error = "GL_INVALID_OPERATION";
+			errorString.assign("GL_INVALID_OPERATION");
 			break;
 		case GL_STACK_OVERFLOW:
-			error = "GL_STACK_OVERFLOW";
+			errorString.assign("GL_STACK_OVERFLOW");
 			break;
 		case GL_STACK_UNDERFLOW:
-			error = "GL_STACK_UNDERFLOW";
+			errorString.assign("GL_STACK_UNDERFLOW");
 			break;
 		case GL_OUT_OF_MEMORY:
-			error = "GL_OUT_OF_MEMORY";
+			errorString.assign("GL_OUT_OF_MEMORY");
 			break;
 		default:
-			error = "Unknown error";
+			errorString.assign("Unknown error");
 		}
 
 		LDL_Formatter formatter;
 
-		LDL_ASSERT_DETAIL(code == GL_NO_ERROR, formatter.Format("OpenGL error: %s File: %s  Line: %d  Detail: %s\n", error.c_str(), file, line, expression));
+		LDL_ASSERT_DETAIL(code == GL_NO_ERROR, formatter.Format("OpenGL error: %s File: %s  Line: %d  Detail: %s\n", errorString.c_str(), file, line, expression));
     }
 }
 

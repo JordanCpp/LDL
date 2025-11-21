@@ -72,11 +72,15 @@ void FormatterTest()
 
 	LDL_Formatter formatter;
 
-	InPlaceString<limit> strEmpty = formatter.Format("");
-	LDL_TEST_EQUAL(strcmp(strEmpty.c_str(), "") == 0);
+	char buffer[limit];
 
-	InPlaceString<limit> strData = formatter.Format("Test string %s and number %d", "hello", 42);
-	LDL_TEST_EQUAL(strcmp(strData.c_str(), "Test string hello and number 42") == 0);
+	LDL_StringView stringView(buffer, limit);
+
+	stringView.assign(formatter.Format(""));
+	LDL_TEST_EQUAL(strcmp(stringView.c_str(), "") == 0);
+
+	stringView.assign(formatter.Format("Test string %s and number %d", "hello", 42));
+	LDL_TEST_EQUAL(strcmp(stringView.c_str(), "Test string hello and number 42") == 0);
 }
 
 /****************************************************************************************************************************
@@ -245,6 +249,17 @@ void PixelPainterClearBGRA32Test()
 	}
 }
 
+void LDL_MutableStringViewTest()
+{
+	const size_t sizeBuffer = 256;
+
+	char buffer[sizeBuffer];
+	LDL_StringView stringView(buffer, sizeBuffer);
+
+	stringView.assign("Hello");
+	stringView.append("World!");
+}
+
 int main()
 {
 	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
@@ -270,6 +285,8 @@ int main()
 	PixelPainterClearBGR24Test();
 	PixelPainterClearRGBA32Test();
 	PixelPainterClearBGRA32Test();
+
+	LDL_MutableStringViewTest();
 
 	return 0;
 }

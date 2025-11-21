@@ -10,14 +10,24 @@
 
 LDL_Formatter::LDL_Formatter()
 {
+	Clear();
+}
+
+void LDL_Formatter::Clear()
+{
 	LDL_memset(&_buffer, 0, sizeof(_buffer));
+}
+
+char* LDL_Formatter::Data()
+{
+	return _buffer;
 }
 
 char* LDL_Formatter::Format(const char* format, ...)
 {
 	va_list args;
 	va_start(args, format);
-	vsnprintf(_buffer, sizeof(_buffer), format, args);
+	vsprintf(_buffer, format, args);
 	va_end(args);
 
 	return _buffer;

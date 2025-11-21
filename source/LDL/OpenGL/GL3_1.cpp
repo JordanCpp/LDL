@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/OpenGL/OpenGL3_1.hpp>
+#include <LDL/OpenGL/GL3_1.hpp>
 
 PFNGLDRAWARRAYSINSTANCEDPROC glDrawArraysInstanced = NULL;
 PFNGLDRAWELEMENTSINSTANCEDPROC glDrawElementsInstanced = NULL;

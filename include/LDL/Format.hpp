@@ -16,6 +16,8 @@ public:
 		Max = 512
 	};
 	LDL_Formatter();
+	void Clear();
+	char* Data();
 	char* Format(const char* format, ...);
 private:
 	char _buffer[Max];

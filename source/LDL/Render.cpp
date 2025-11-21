@@ -3,14 +3,19 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Assert.hpp>
 #include <LDL/Enums.hpp>
-#include <LDL/OpenGL/GLLoader.hpp>
+#include <LDL/Assert.hpp>
 #include <LDL/Render.hpp>
-#include <LDL/Renders/GL1/RndrGL1.hpp>
-#include <LDL/Renders/GL3/RndrGL3.hpp>
-#include <LDL/Renders/Soft/RndrSoft.hpp>
 #include <LDL/Format.hpp>
+
+#if defined(LDL_WINDOWS_NT) || defined(LDL_WINDOWS_9X) || defined(__unix__)
+    #include <LDL/OpenGL/GLLoader.hpp>
+    #include <LDL/Renders/GL1/RndrGL1.hpp>
+    #include <LDL/Renders/GL3/RndrGL3.hpp>
+    #include <LDL/Renders/Soft/RndrSoft.hpp>
+#else
+    #include <LDL/Renders/Soft/RndrSoft.hpp>
+#endif
 
 LDL_IRender* LDL_CreateRender(LDL_Result& result, LDL_RenderContext& renderContext, LDL_IWindow* window)
 {
@@ -31,6 +36,8 @@ LDL_IRender* LDL_CreateRender(LDL_Result& result, LDL_RenderContext& renderConte
 	case LDL_RenderMode::Software:
 		impl = new RenderImplSoftware(result, &renderContext, window);
 		break;
+
+#if defined(LDL_WINDOWS_NT) || defined(LDL_WINDOWS_9X) || defined(__unix__)
 	case LDL_RenderMode::OpenGL1:
 	{
 		OpenGLLoader loader(result);
@@ -47,6 +54,8 @@ LDL_IRender* LDL_CreateRender(LDL_Result& result, LDL_RenderContext& renderConte
 		impl = new RenderImplOpenGL3(result, &renderContext, window);
 		break;
 	}
+#endif
+
 	}
 
 	return impl;

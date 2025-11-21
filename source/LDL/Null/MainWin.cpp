@@ -5,7 +5,9 @@
 
 #include <LDL/Null/MainWin.hpp>
 
-LDL_MainWindow::LDL_MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode)
+LDL_MainWindow::LDL_MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
+    _result(result),
+    _baseWindow(pos, size, title)
 {
 }
 
@@ -15,7 +17,7 @@ LDL_MainWindow::~LDL_MainWindow()
 
 bool LDL_MainWindow::Running()
 {
-    return false;
+    return _eventer.Running();
 }
 
 void LDL_MainWindow::PollEvents()
@@ -24,7 +26,7 @@ void LDL_MainWindow::PollEvents()
 
 bool LDL_MainWindow::GetEvent(LDL_Event& event)
 {
-    return false;
+    return _eventer.Running();
 }
 
 bool LDL_MainWindow::WaitEvent(LDL_Event& event)
@@ -34,23 +36,25 @@ bool LDL_MainWindow::WaitEvent(LDL_Event& event)
 
 void LDL_MainWindow::StopEvent()
 {
+    _eventer.Stop();
 }
 
 void LDL_MainWindow::Title(const char* title)
 {
+    _baseWindow.Title(title);
 }
 
 const char* LDL_MainWindow::Title()
 {
-    return NULL;
+    return _baseWindow.Title();
 }
 
 const LDL_Vec2u& LDL_MainWindow::Size()
 {
-    return _pos;
+    return _baseWindow.Size();
 }
 
 const LDL_Vec2u& LDL_MainWindow::Pos()
 {
-    return _size;
+    return _baseWindow.Pos();
 }

@@ -8,9 +8,11 @@
 #if defined(LDL_WINDOWS_NT)
     #include <LDL/WinNT/WinSoft.hpp>
 #elif defined(LDL_WINDOWS_9X)
-    #include <LDL/Win9X/Graphics/WindowImplSoftware.hpp>
+    #include <LDL/Win9X/WinSoft.hpp>
 #elif defined(__unix__)
     #include <LDL/Linux/Graphics/Software/WindowImplSoftware.hpp>
+#else
+    #include <LDL/Null/WinSoft.hpp>
 #endif
 
 RenderImplSoftware::RenderImplSoftware(LDL_Result& result, LDL_RenderContext* renderContextImpl, LDL_IWindow* window) :

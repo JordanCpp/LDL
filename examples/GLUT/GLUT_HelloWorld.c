@@ -4,7 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/GLUT/glut.h>
-#include <LDL/OpenGL/OpenGL1_2.hpp>
+#include <LDL/OpenGL/GL1_2.hpp>
 
 void Reshape(int width, int height)
 {

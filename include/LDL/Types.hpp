@@ -19,6 +19,12 @@
     #endif
 #endif
 
+#if defined(__TURBOC__)
+    #define bool  char
+    #define true  1
+    #define false 0
+#endif
+
 #if (_MSC_VER >= 1900 || __GNUC__)
     #include <stdint.h>
 #else

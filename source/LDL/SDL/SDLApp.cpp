@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/SDL/SDL_mouse.h>
+#include <LDL/SDL/mouse.h>
 #include <LDL/SDL/SDLApp.hpp>
 
 static SDL_Application mainApplication;

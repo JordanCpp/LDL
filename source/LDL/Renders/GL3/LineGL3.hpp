@@ -8,7 +8,7 @@
 
 #include <LDL/Mat4.hpp>
 #include <LDL/Vec3.hpp>
-#include <LDL/OpenGL/OpenGL3_0.hpp>
+#include <LDL/OpenGL/GL3_0.hpp>
 #include <LDL/Renders/GL3/ShdrGL3.hpp>
 
 class LinePainter

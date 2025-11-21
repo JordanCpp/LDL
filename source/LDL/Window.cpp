@@ -12,13 +12,17 @@
     #include <LDL/WinNT/WinGL1.hpp>
     #include <LDL/WinNT/WinGL3.hpp>
 #elif defined(LDL_WINDOWS_9X)
-    #include <LDL/Win9X/Graphics/WindowImplSoftware.hpp>
-    #include <LDL/Win9X/Graphics/WindowImplOpenGL1.hpp>
-    #include <LDL/Win9X/Graphics/WindowImplOpenGL3.hpp>
+    #include <LDL/Win9X/WinSoft.hpp>
+    #include <LDL/Win9X/WinGL1.hpp>
+    #include <LDL/Win9X/WinGL3.hpp>
 #elif defined(__unix__)
     #include <LDL/Linux/Graphics/Software/WindowImplSoftware.hpp>
     #include <LDL/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
     #include <LDL/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
+#else
+    #include <LDL/Null/WinSoft.hpp>
+    #include <LDL/Null/WinGL1.hpp>
+    #include <LDL/Null/WinGL3.hpp>
 #endif
 
 LDL_IWindow* LDL_CreateWindow(LDL_Result& result, LDL_RenderContext& renderContext, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode)
@@ -40,12 +44,16 @@ LDL_IWindow* LDL_CreateWindow(LDL_Result& result, LDL_RenderContext& renderConte
 	case LDL_RenderMode::Software:
 		impl = new LDL_WindowSoftware(result, pos, size, title, mode);
 		break;
+
+#if defined(LDL_WINDOWS_NT) || defined(LDL_WINDOWS_9X) || defined(__unix__)
 	case LDL_RenderMode::OpenGL1:
 		impl = new LDL_WindowOpenGL1(result, pos, size, title, mode);
 		break;
 	case LDL_RenderMode::OpenGL3:
 		impl = new LDL_WindowOpenGL3(result, pos, size, title, mode);
 		break;
+#endif
+
 	}
 
 	return impl;

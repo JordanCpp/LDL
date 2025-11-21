@@ -7,8 +7,8 @@
 #define LDL_Platforms_WinNT_Graphics_MainWindow_hpp
 
 #include <LDL/Result.hpp>
-#include <LDL/Vec2u.hpp>
-#include <LDL/Events.hpp>
+#include <LDL/Eventer.hpp>
+#include <LDL/BaseWin.hpp>
 
 class LDL_MainWindow
 {
@@ -25,8 +25,9 @@ public:
 	const LDL_Vec2u& Size();
 	const LDL_Vec2u& Pos();
 private:
-	LDL_Vec2u _pos;
-	LDL_Vec2u _size;
+	LDL_Result&    _result;
+	LDL_BaseWindow _baseWindow;
+	LDL_Eventer    _eventer;
 };
 
 #endif   

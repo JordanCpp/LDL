@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/OpenGL/OpenGL1_3.hpp>
+#include <LDL/OpenGL/GL1_3.hpp>
 
 PFNGLACTIVETEXTUREPROC glActiveTexture = NULL;
 PFNGLSAMPLECOVERAGEPROC glSampleCoverage = NULL;

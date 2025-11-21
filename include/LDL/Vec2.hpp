@@ -14,8 +14,8 @@ class LDL_Vec2
 public:
 	LDL_Vec2()
 	{
-		x = T();
-		y = T();
+		x = 0;
+		y = 0;
 	}
 
 	LDL_Vec2(T v1, T v2)

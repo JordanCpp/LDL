@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/OpenGL/OpenGL2_0.hpp>
+#include <LDL/OpenGL/GL2_0.hpp>
 
 PFNGLBLENDEQUATIONSEPARATEPROC glBlendEquationSeparate = NULL;
 PFNGLDRAWBUFFERSPROC glDrawBuffers = NULL;

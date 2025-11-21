@@ -14,19 +14,9 @@ template <class T>
 class LDL_Vector
 {
 private:
-    char*  _storage;
-    size_t _size;
-    size_t _capacity;
-
-    T* data_ptr()
-    {
-        return (T*)(_storage);
-    }
-
-    const T* data_ptr() const
-    {
-        return (const T*)(_storage);
-    }
+    T*      _data;
+    size_t  _size;
+    size_t  _capacity;
 
     void* alloc(size_t bytes)
     {
@@ -40,7 +30,7 @@ private:
 
 public:
     LDL_Vector() :
-        _storage(0), _size(0), _capacity(0)
+        _data(0), _size(0), _capacity(0)
     {
     }
 
@@ -48,14 +38,14 @@ public:
     {
         for (size_t i = 0; i < _size; ++i)
         {
-            data_ptr()[i].~T();
+            _data[i].~T();
         }
 
-        dealloc(_storage);
+        dealloc(_data);
     }
 
     LDL_Vector(const LDL_Vector& other) :
-        _storage(0), _size(0), _capacity(0)
+        _data(0), _size(0), _capacity(0)
     {
         if (other._size == 0)
         {
@@ -66,7 +56,7 @@ public:
 
         for (size_t i = 0; i < other._size; ++i)
         {
-            new (&data_ptr()[i]) T(other.data_ptr()[i]);
+            new (&_data[i]) T(other._data[i]);
         }
 
         _size = other._size;
@@ -81,20 +71,19 @@ public:
 
         for (size_t i = 0; i < _size; ++i)
         {
-            data_ptr()[i].~T();
+            _data[i].~T();
         }
-
 
         if (_capacity < other._size)
         {
-            dealloc(_storage);
+            dealloc(_data);
 
-            _storage = 0;
+            _data = 0;
             _capacity = 0;
 
             if (other._size > 0)
             {
-                _storage = (char*)alloc(other._size * sizeof(T));
+                _data = (T*)alloc(other._size * sizeof(T));
                 _capacity = other._size;
             }
         }
@@ -103,7 +92,7 @@ public:
 
         for (size_t j = 0; j < other._size; ++j)
         {
-            new (&data_ptr()[j]) T(other.data_ptr()[j]);
+            new (&_data[j]) T(other._data[j]);
             ++_size;
         }
 
@@ -117,7 +106,7 @@ public:
             reserve(_capacity == 0 ? 1 : _capacity * 2);
         }
 
-        new (&data_ptr()[_size]) T(element);
+        new (&_data[_size]) T(element);
         ++_size;
     }
 
@@ -128,16 +117,16 @@ public:
             return;
         }
 
-        char* new_storage = (char*)alloc(count * sizeof(T));
+        T* new_data = (T*)alloc(count * sizeof(T));
 
         for (size_t i = 0; i < _size; ++i)
         {
-            new (&reinterpret_cast<T*>(new_storage)[i]) T(data_ptr()[i]);
-            data_ptr()[i].~T();
+            new (&new_data[i]) T(_data[i]);
+            _data[i].~T();
         }
 
-        dealloc(_storage);
-        _storage = new_storage;
+        dealloc(_data);
+        _data = new_data;
         _capacity = count;
     }
 
@@ -150,13 +139,13 @@ public:
 
         while (_size < count)
         {
-            new (&data_ptr()[_size]) T();
+            new (&_data[_size]) T();
             ++_size;
         }
 
         while (_size > count)
         {
-            data_ptr()[--_size].~T();
+            _data[--_size].~T();
         }
     }
 
@@ -164,7 +153,7 @@ public:
     {
         for (size_t i = 0; i < _size; ++i)
         {
-            data_ptr()[i].~T();
+            _data[i].~T();
         }
 
         _size = 0;
@@ -172,60 +161,56 @@ public:
 
     T& operator[](size_t index)
     {
-        LDL_ASSERT_DETAIL(index < _size, "Index of bounds");
-
-        return data_ptr()[index];
+        LDL_ASSERT_DETAIL(index < _size, "Index out of bounds");
+        return _data[index];
     }
 
     const T& operator[](size_t index) const
     {
-        LDL_ASSERT_DETAIL(index < _size, "Index of bounds");
-
-        return data_ptr()[index];
+        LDL_ASSERT_DETAIL(index < _size, "Index out of bounds");
+        return _data[index];
     }
 
     T& at(size_t index)
     {
-        LDL_ASSERT_DETAIL(index < _size, "Index of bounds");
-
-        return data_ptr()[index];
+        LDL_ASSERT_DETAIL(index < _size, "Index out of bounds");
+        return _data[index];
     }
 
     const T& at(size_t index) const
     {
-        LDL_ASSERT_DETAIL(index < _size, "Index of bounds");
-
-        return data_ptr()[index];
+        LDL_ASSERT_DETAIL(index < _size, "Index out of bounds");
+        return _data[index];
     }
 
     T& front()
     {
-        return data_ptr()[0];
+        return _data[0];
     }
 
     const T& front() const
     {
-        return data_ptr()[0];
+        return _data[0];
     }
 
     T& back()
     {
-        return data_ptr()[_size - 1];
+        return _data[_size - 1];
     }
 
     const T& back() const
     {
-        return data_ptr()[_size - 1];
+        return _data[_size - 1];
     }
 
     T* data()
     {
-        return data_ptr();
+        return _data;
     }
 
     const T* data() const
     {
-        return data_ptr();
+        return _data;
     }
 
     size_t size() const

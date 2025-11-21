@@ -17,5 +17,6 @@
 #include <LDL/FpsLimit.hpp>
 #include <LDL/FpsCount.hpp>
 #include <LDL/Random.hpp>
+#include <LDL/StrView.hpp>
 
 #endif

@@ -5,7 +5,7 @@
 
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
-#include <LDL/OpenGL/OpenGL1_2.hpp>
+#include <LDL/OpenGL/GL1_2.hpp>
 
 float theta = 0.0f;
 

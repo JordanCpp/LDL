@@ -6,7 +6,7 @@
 #ifndef LDL_APIs_SDL3_SDL_Surface_hpp
 #define LDL_APIs_SDL3_SDL_Surface_hpp
 
-#include <LDL/SDL/SDL_video.h>
+#include <LDL/SDL/video.h>
 #include <LDL/Surface.hpp>
 
 struct SDL_SurfaceDetail : public SDL_Surface

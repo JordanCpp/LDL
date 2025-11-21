@@ -9,9 +9,11 @@
 #if defined(LDL_WINDOWS_NT)
     #include <LDL/WinNT/FileStreamImpl.hpp>
 #elif defined(LDL_WINDOWS_9X)
-    #include <LDL/Win9X/Core/FileStreamImpl.hpp>
+    #include <LDL/Win9X/FileStreamImpl.hpp>
 #elif defined(__unix__)
     #include <LDL/Linux/Core/FileStreamImpl.hpp>
+#else
+    #include <LDL/Null/FStreamI.hpp>
 #endif
 
 LDL_FileStream::LDL_FileStream(LDL_Result& result) :
@@ -23,7 +25,7 @@ LDL_FileStream::~LDL_FileStream()
 {
     _impl->Close();
     
-    _impl->~FileStreamImpl();
+    //_impl->~FileStreamImpl();
 }
 
 bool LDL_FileStream::Open(const char* path, size_t mode)

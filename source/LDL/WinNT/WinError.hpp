@@ -6,7 +6,7 @@
 #ifndef LDL_Platforms_WinNT_WinError_hpp
 #define LDL_Platforms_WinNT_WinError_hpp
 
-#include <LDL/InPlaceStrings.hpp>
+#include <LDL/Format.hpp>
 
 class WindowError
 {
@@ -15,7 +15,7 @@ public:
 	void Clear();
 	const char* GetErrorMessage();
 private:
-	ErrorString _buffer;
+	LDL_Formatter _formatter;
 };
 
 #endif    

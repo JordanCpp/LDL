@@ -17,6 +17,10 @@ typedef void  (*freeFunc)   (void* mem);
 class LDL_LIBRARY LDL_MemoryManager
 {
 public:
+	enum
+	{
+		SizeOf = 64
+	};
 	static LDL_MemoryManager& Instance();
 	bool Functions(mallocFunc malloc_func, callocFunc calloc_func, reallocFunc realloc_func, freeFunc free_func);
 	mallocFunc  GetMalloc();
@@ -24,11 +28,6 @@ public:
 	reallocFunc GetRealloc();
 	freeFunc    GetFree();
 private:
-	enum
-	{
-		SizeOf = 64
-	};
-
 	LDL_MemoryManager();
 	~LDL_MemoryManager();
 

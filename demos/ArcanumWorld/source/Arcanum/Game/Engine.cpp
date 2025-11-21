@@ -3,10 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <Arcanum/Game/Engine.hpp>
 #include <LDL/Enums.hpp>
-#include <LDL/OpenGL/OpenGL1_2.hpp>
 #include <LDL/Render.hpp>
+#include <LDL/OpenGL/GL1_2.hpp>
+#include <Arcanum/Game/Engine.hpp>
 
 using namespace Arcanum;
 

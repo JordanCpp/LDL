@@ -3,10 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Platforms/Win9X/WinError.hpp>
-#include <LDL/Platforms/Win9X/Windows.hpp>
-
-using namespace LDL;
+#include <LDL/Win9X/WinError.hpp>
+#include <LDL/Win9X/Windows.hpp>
 
 WindowError::WindowError()
 {

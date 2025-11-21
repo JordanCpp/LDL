@@ -7,7 +7,8 @@
 #define LDL_Graphics_BaseWindow_hpp
 
 #include <LDL/Vec2u.hpp>
-#include <LDL/InPlaceStrings.hpp>
+#include <LDL/StrView.hpp>
+#include <LDL/StrTypes.hpp>
 
 class LDL_LIBRARY LDL_BaseWindow
 {
@@ -19,10 +20,11 @@ public:
 	const char* Title();
 	void Title(const char* source);
 private:
-	LDL_Vec2u _pos;
-	LDL_Vec2u _size;
-	LDL_Vec2u _view;
-	TitleString _title;
+	LDL_Vec2u       _pos;
+	LDL_Vec2u      _size;
+	LDL_Vec2u      _view;
+	char           _bufferTitle[LDL_TitleMax];
+	LDL_StringView _title;
 };
 
 #endif  

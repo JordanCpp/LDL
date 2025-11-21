@@ -6,9 +6,14 @@
 #include <LDL/Assert.hpp>
 #include <LDL/Enums.hpp>
 #include <LDL/Texture.hpp>
-#include <LDL/Renders/GL1/TexGL1.hpp>
-#include <LDL/Renders/GL3/TexGL3.hpp>
-#include <LDL/Renders/Soft/TexSoft.hpp>
+
+#if defined(LDL_WINDOWS_NT) || defined(LDL_WINDOWS_9X) || defined(__unix__)
+    #include <LDL/Renders/GL1/TexGL1.hpp>
+    #include <LDL/Renders/GL3/TexGL3.hpp>
+    #include <LDL/Renders/Soft/TexSoft.hpp>
+#else
+    #include <LDL/Renders/Soft/TexSoft.hpp>
+#endif
 
 LDL_ITexture* LDL_CreateTexture(LDL_RenderContext* renderContext, size_t pixelFormat, const LDL_Vec2u& size, uint8_t* pixels)
 {
@@ -23,12 +28,16 @@ LDL_ITexture* LDL_CreateTexture(LDL_RenderContext* renderContext, size_t pixelFo
 	case LDL_RenderMode::Software:
 		result = new TextureImplSoftware(renderContext, pixelFormat, size, pixels);
 		break;
+
+#if defined(LDL_WINDOWS_NT) || defined(LDL_WINDOWS_9X) || defined(__unix__)
 	case LDL_RenderMode::OpenGL1:
 		result = new LDL_TextureOpenGL1(renderContext, pixelFormat, size, pixels);
 		break;
 	case LDL_RenderMode::OpenGL3:
 		result = new TextureImplOpenGL3(renderContext, pixelFormat, size, pixels);
 		break;
+#endif
+
 	}
 
 	return result;
@@ -47,12 +56,16 @@ LDL_ITexture* LDL_CreateTexture(LDL_RenderContext* renderContext, size_t pixelFo
 	case LDL_RenderMode::Software:
 		result = new TextureImplSoftware(renderContext, pixelFormat, size);
 		break;
+
+#if defined(LDL_WINDOWS_NT) || defined(LDL_WINDOWS_9X) || defined(__unix__)
 	case LDL_RenderMode::OpenGL1:
 		result = new LDL_TextureOpenGL1(renderContext, pixelFormat, size);
 		break;
 	case LDL_RenderMode::OpenGL3:
 		result = new  TextureImplOpenGL3(renderContext, pixelFormat, size);
 		break;
+#endif
+
 	}
 
 	return result;
@@ -68,8 +81,11 @@ LDL_ITexture* LDL_CreateTexture(LDL_RenderContext* renderContext, LDL_Surface* s
 
 	switch (mode)
 	{
+#if defined(LDL_WINDOWS_NT) || defined(LDL_WINDOWS_9X) || defined(__unix__)
 	case LDL_RenderMode::OpenGL1:
 		result = new LDL_TextureOpenGL1(renderContext, surface);
+#endif
+
 	}
 
 	return result;

@@ -3,10 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL_SDL_image_h
-#define LDL_APIs_SDL_SDL_image_h
+#ifndef LDL_SDL_SDL_image_h
+#define LDL_SDL_SDL_image_h
 
-#include <LDL/SDL/SDL_video.h>
+#include <LDL/SDL/video.h>
 
 #ifdef __cplusplus
 extern "C" {

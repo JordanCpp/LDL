@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/SDL/SDL_init.h>
+#include <LDL/SDL/init.h>
 
 int SDL_Init(Uint32 flags)
 {

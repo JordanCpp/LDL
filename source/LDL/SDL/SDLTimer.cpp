@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/SDL/SDL_timer.h>
+#include <LDL/SDL/timer.h>
 #include <LDL/Ticks.hpp>
 
 Uint32 SDL_GetTicks(void)

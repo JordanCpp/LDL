@@ -9,9 +9,9 @@
 #include <LDL/Result.hpp>
 #include <LDL/Render.hpp>
 #include <LDL/Window.hpp>
-#include <LDL/RingBuffer.hpp>
-#include <LDL/SDL/SDL_video.h>
-#include <LDL/SDL/SDL_events.h>
+#include <LDL/RingBuf.hpp>
+#include <LDL/SDL/video.h>
+#include <LDL/SDL/events.h>
 #include <LDL/SDL/SDLMem.hpp>
 
 class SDL_Application
@@ -36,7 +36,7 @@ private:
 	LDL_Result                      _result;
 	LDL_IWindow*                     _window;
 	LDL_IRender*                     _render;
-	LDL_RingBuffer<SDL_Event, Max> _events;
+	LDL_RingBuffer<SDL_Event> _events;
 };
 
 SDL_Application& App();

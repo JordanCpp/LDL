@@ -11,7 +11,7 @@
 #if defined(LDL_WINDOWS_NT)
     #include <LDL/WinNT/WinGL1.hpp>
 #elif defined(LDL_WINDOWS_9X)
-    #include <LDL/Win9X/Graphics/WindowImplOpenGL1.hpp>
+    #include <LDL/Win9X/WinGL1.hpp>
 #elif defined(__unix__)
     #include <LDL/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
 #endif

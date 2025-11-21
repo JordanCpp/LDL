@@ -7,7 +7,7 @@
 #define LDL_Events_Eventer_hpp
 
 #include <LDL/Events.hpp>
-#include <LDL/RingBuffer.hpp>
+#include <LDL/RingBuf.hpp>
 
 class LDL_LIBRARY LDL_Eventer
 {
@@ -24,7 +24,7 @@ public:
 	void Stop();
 private:
 	bool                       _running;
-	LDL_RingBuffer<LDL_Event, Max> _queue;
+	LDL_RingBuffer<LDL_Event> _queue;
 };
 
 #endif

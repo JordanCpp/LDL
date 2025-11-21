@@ -4,7 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <stdio.h>
-#include <cstdlib>
+#include <stdlib.h>
 #include <LDL/Assert.hpp>
 
 void LDL_Assert(bool condition, const char* description, const char* detail, const char* file, int line)

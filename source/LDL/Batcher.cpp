@@ -7,9 +7,14 @@
 #include <LDL/Enums.hpp>
 #include <LDL/Texture.hpp>
 #include <LDL/Batcher.hpp>
-#include <LDL/Renders/GL1/BatchGL1.hpp>
-#include <LDL/Renders/GL3/BatchGL3.hpp>
-#include <LDL/Renders/Soft/BtchSoft.hpp>
+
+#if defined(LDL_WINDOWS_NT) || defined(LDL_WINDOWS_9X) || defined(__unix__)
+    #include <LDL/Renders/GL1/BatchGL1.hpp>
+    #include <LDL/Renders/GL3/BatchGL3.hpp>
+    #include <LDL/Renders/Soft/BtchSoft.hpp>
+#else
+    #include <LDL/Renders/Soft/BtchSoft.hpp>
+#endif
 
 LDL_ISpriteBatcher* CreateSpriteBatcherImpl(LDL_RenderContext* renderContext, LDL_ITexture* texture, size_t count)
 {
@@ -24,12 +29,16 @@ LDL_ISpriteBatcher* CreateSpriteBatcherImpl(LDL_RenderContext* renderContext, LD
 	case LDL_RenderMode::Software:
 		result = new LDL_SpriteBatcherSoftware(texture, count);
 		break;
+
+#if defined(LDL_WINDOWS_NT) || defined(LDL_WINDOWS_9X) || defined(__unix__)
 	case LDL_RenderMode::OpenGL1:
 		result = new LDL_SpriteBatcherImplOpenGL1(texture, count);
 		break;
 	case LDL_RenderMode::OpenGL3:
 		result = new SpriteBatcherImplOpenGL3(texture, count);
 		break;
+#endif
+
 	}
 
 	return result;

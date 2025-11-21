@@ -8,7 +8,7 @@
 
 #include <LDL/Vector.hpp>
 #include <LDL/Result.hpp>
-#include <LDL/RingBuffer.hpp>
+#include <LDL/RingBuf.hpp>
 #include <LDL/SDL3/SDL_events.h>
 #include <LDL/SDL3/SDL_Memory.hpp>
 #include <LDL/SDL3/SDL_Window.hpp>
@@ -30,7 +30,7 @@ private:
 	SDL_Memory                       _memory;
 	LDL_Result                      _result;
 	LDL_Vector<SDL_Window*>         _windows;
-	LDL_RingBuffer<SDL_Event, Max> _events;
+	LDL_RingBuffer<SDL_Event> _events;
 };
 
 SDL_Application& App();

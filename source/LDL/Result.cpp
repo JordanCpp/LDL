@@ -6,7 +6,8 @@
 #include <LDL/Result.hpp>
 
 LDL_Result::LDL_Result() :
-	_ok(true)
+	_ok(true),
+	_message(_bufferMessage, sizeof(_bufferMessage))
 {
 }
 
@@ -17,13 +18,13 @@ bool LDL_Result::Ok()
 
 void LDL_Result::Message(const char* message)
 {
-	_message = message;
+	_message.assign(message);
 }
 
 void LDL_Result::Message(const char* message, const char* detail)
 {
-	_message = message;
-	_message += detail;
+	_message.assign(message);
+	_message.append(detail);
 }
 
 const char* LDL_Result::Message()

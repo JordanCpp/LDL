@@ -7,7 +7,7 @@
 #include <LDL/MemMngr.hpp>
 
 LDL_MemoryManager* LDL_MemoryManager::_instance = NULL;
-char LDL_MemoryManager::_bytes[SizeOf];
+char LDL_MemoryManager::_bytes[LDL_MemoryManager::SizeOf];
 
 LDL_MemoryManager::LDL_MemoryManager() :
 	_mallocFunc(NULL),

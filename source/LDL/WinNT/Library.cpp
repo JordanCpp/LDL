@@ -4,6 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Assert.hpp>
+#include <LDL/Format.hpp>
 #include <LDL/WinNT/Library.hpp>
 
 LDL_Library::LDL_Library(const char* path) :
@@ -11,10 +12,11 @@ LDL_Library::LDL_Library(const char* path) :
 {
     _module = LoadLibrary(path);
 
-    _assert = "LoadLibrary failed: ";
-    _assert += path;
-
-    LDL_ASSERT_DETAIL(_module != NULL, _assert.c_str());
+    if (_module == NULL)
+    {
+        LDL_Formatter formatter;
+        LDL_ASSERT_DETAIL(_module != NULL, formatter.Format("LoadLibrary failed: %s", path));
+    }
 }
 
 LDL_Library::~LDL_Library()
@@ -28,10 +30,11 @@ VoidFuncPtr LDL_Library::Function(const char* name)
 {
     VoidFuncPtr result = (VoidFuncPtr)GetProcAddress(_module, name);
 
-    _assert = "GetProcAddress failed: ";
-    _assert += name;
-
-    LDL_ASSERT_DETAIL(result != NULL, _assert.c_str());
+    if (result == NULL)
+    {
+        LDL_Formatter formatter;
+        LDL_ASSERT_DETAIL(_module != NULL, formatter.Format("GetProcAddress failed: %s", name));
+    }
 
     return result;
 }

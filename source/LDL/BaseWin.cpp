@@ -8,8 +8,9 @@
 LDL_BaseWindow::LDL_BaseWindow(const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title):
     _pos(pos),
     _size(size),
-    _title(title)
+    _title(_bufferTitle, sizeof(_bufferTitle))
 {
+    _title.assign(title);
 }
 
 const LDL_Vec2u& LDL_BaseWindow::Pos()
@@ -34,5 +35,5 @@ const char* LDL_BaseWindow::Title()
 
 void LDL_BaseWindow::Title(const char* source)
 {
-    _title = source;
+    _title.assign(source);
 }

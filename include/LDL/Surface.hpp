@@ -31,9 +31,9 @@ public:
 	size_t Format();
 	size_t Pitch();
 private:
-	bool            _enabled;
-	LDL_Color       _key;
-	size_t          _pixelFormat;
+	bool                _enabled;
+	LDL_Color           _key;
+	size_t              _pixelFormat;
 	LDL_Vec2u           _capacity;
 	LDL_Vec2u           _size;
 	LDL_Vector<uint8_t> _pixels;

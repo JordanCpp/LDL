@@ -6,8 +6,8 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
 #include <LDL/SDL/SDL_image.h>
-#include <LDL/SDL/SDL_video.h>
-#include <LDL/SDL/SDL_error.h>
+#include <LDL/SDL/video.h>
+#include <LDL/SDL/error.h>
 #include <LDL/PixFrmt.hpp>
 
 SDL_Surface* IMG_Load(const char* file)

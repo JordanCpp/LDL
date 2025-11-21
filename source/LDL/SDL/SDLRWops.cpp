@@ -4,9 +4,9 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <stdio.h>
-#include <LDL/SDL/SDL_rwops.h>
-#include <LDL/SDL/SDL_stdinc.h>
-#include <LDL/SDL/SDL_error.h>
+#include <LDL/SDL/rwops.h>
+#include <LDL/SDL/stdinc.h>
+#include <LDL/SDL/error.h>
 
 struct SDL_RWops
 {

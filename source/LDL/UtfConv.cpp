@@ -79,25 +79,25 @@ void LDL_UtfConverter::encodeUTF8Char(uint32_t code_point, LDL_Vector<char>& out
 {
     if (code_point <= 0x7F) 
     {
-        output.push_back(static_cast<char>(code_point));
+        output.push_back((char)(code_point));
     }
     else if (code_point <= 0x7FF) 
     {
-        output.push_back(static_cast<char>(0xC0 | ((code_point >> 6) & 0x1F)));
-        output.push_back(static_cast<char>(0x80 | (code_point & 0x3F)));
+        output.push_back((char)(0xC0 | ((code_point >> 6) & 0x1F)));
+        output.push_back((char)(0x80 | (code_point & 0x3F)));
     }
     else if (code_point <= 0xFFFF) 
     {
-        output.push_back(static_cast<char>(0xE0 | ((code_point >> 12) & 0x0F)));
-        output.push_back(static_cast<char>(0x80 | ((code_point >> 6) & 0x3F)));
-        output.push_back(static_cast<char>(0x80 | (code_point & 0x3F)));
+        output.push_back((char)(0xE0 | ((code_point >> 12) & 0x0F)));
+        output.push_back((char)(0x80 | ((code_point >> 6) & 0x3F)));
+        output.push_back((char)(0x80 | (code_point & 0x3F)));
     }
     else if (code_point <= 0x10FFFF) 
     {
-        output.push_back(static_cast<char>(0xF0 | ((code_point >> 18) & 0x07)));
-        output.push_back(static_cast<char>(0x80 | ((code_point >> 12) & 0x3F)));
-        output.push_back(static_cast<char>(0x80 | ((code_point >> 6) & 0x3F)));
-        output.push_back(static_cast<char>(0x80 | (code_point & 0x3F)));
+        output.push_back((char)(0xF0 | ((code_point >> 18) & 0x07)));
+        output.push_back((char)(0x80 | ((code_point >> 12) & 0x3F)));
+        output.push_back((char)(0x80 | ((code_point >> 6) & 0x3F)));
+        output.push_back((char)(0x80 | (code_point & 0x3F)));
     }
     else 
     {
@@ -134,13 +134,13 @@ bool LDL_UtfConverter::convertToUTF16(const char* utf8_str)
 
         if (code_point <= 0xFFFF)
         {
-            utf16_buffer.push_back(static_cast<uint16_t>(code_point));
+            utf16_buffer.push_back((uint16_t)(code_point));
         }
         else if (code_point <= 0x10FFFF) 
         {
             code_point -= 0x10000;
-            uint16_t high_surrogate = 0xD800 | static_cast<uint16_t>((code_point >> 10) & 0x3FF);
-            uint16_t low_surrogate = 0xDC00 | static_cast<uint16_t>(code_point & 0x3FF);
+            uint16_t high_surrogate = 0xD800 | (uint16_t)((code_point >> 10) & 0x3FF);
+            uint16_t low_surrogate  = 0xDC00 | (uint16_t)(code_point & 0x3FF);
             utf16_buffer.push_back(high_surrogate);
             utf16_buffer.push_back(low_surrogate);
         }

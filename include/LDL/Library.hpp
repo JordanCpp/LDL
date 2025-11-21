@@ -14,6 +14,7 @@ typedef void(*VoidFuncPtr)(void);
 class LDL_ILibrary
 {
 public:
+	virtual ~LDL_ILibrary() {};
 	virtual VoidFuncPtr Function(const char* name) = 0;
 };
 

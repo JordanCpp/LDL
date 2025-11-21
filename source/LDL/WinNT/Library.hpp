@@ -7,7 +7,6 @@
 #define LDL_Platforms_WinNT_Core_LibraryImpl_hpp
 
 #include <LDL/Library.hpp>
-#include <LDL/InPlaceStrings.hpp>
 #include <LDL/WinNT/Windows.hpp>
 
 class LDL_Library : public LDL_ILibrary
@@ -17,8 +16,7 @@ public:
 	~LDL_Library();
 	VoidFuncPtr Function(const char* name);
 private:
-	AssertString _assert;
-	HMODULE      _module;
+	HMODULE _module;
 };
 
 #endif    

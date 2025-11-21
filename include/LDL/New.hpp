@@ -7,16 +7,16 @@
 #define LDL_New_hpp
 
 #if (_MSC_VER < 1600 && !__GNUC__)
-    #include <LDL/std/stddef.hpp>
+    #include <stddef.h>
 
 inline void* operator new(size_t bytes, void* ptr)
 {
     return ptr;
 }
 
-inline void operator delete(void* ptr, void* place)
-{
-}
+//inline void operator delete(void* ptr, void* place)
+//{
+//}
 
 #else
     #include <new>
