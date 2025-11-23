@@ -16,9 +16,9 @@
     #include <LDL/Win9X/WinGL1.hpp>
     #include <LDL/Win9X/WinGL3.hpp>
 #elif defined(__unix__)
-    #include <LDL/Linux/Graphics/Software/WindowImplSoftware.hpp>
-    #include <LDL/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
-    #include <LDL/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
+    #include <LDL/Linux/WinSoft.hpp>
+    #include <LDL/Linux/WinGL1.hpp>
+    #include <LDL/Linux/WinGL3.hpp>
 #elif defined(__MSDOS__)
     #include <LDL/Dos16/WinSoft.hpp>
 #else

@@ -10,7 +10,7 @@
 #elif defined(LDL_WINDOWS_9X)
     #include <LDL/Win9X/GLFuncs.hpp>
 #elif defined(__unix__)
-    #include <LDL/Linux/Graphics/OpenGL/FunctionsImpl.hpp>
+    #include <LDL/Linux/GLFuncs.hpp>
 #endif
 
 OpenGLFunctions::OpenGLFunctions() :

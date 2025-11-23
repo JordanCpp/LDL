@@ -5,9 +5,7 @@
 
 #include <assert.h>
 #include <stdexcept>
-#include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
-
-using namespace LDL;
+#include <LDL/Linux/WinGL1.hpp>
 
 LDL_WindowOpenGL1::LDL_WindowOpenGL1(LDL_Result& result, const LDL_Vec2u &pos, const LDL_Vec2u &size, const char* title, size_t mode) : 
     _result(result),

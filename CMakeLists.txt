@@ -47,9 +47,14 @@ if (WIN32)
     "src/LDL/OpenGL/*.cpp" 
     "src/LDL/${LDL_WINDOWS_NAME}/*.cpp")
 elseif(UNIX AND NOT APPLE)
-    file(GLOB_RECURSE SOURCE 
-    "src/LDL/Shared/*.cpp" 
-    "src/LDL/APIs/OpenGL/*.cpp" 
+    file(GLOB SOURCE 
+    "src/LDL/Cpp98/*.cpp"
+    "src/LDL/Renders/GL/*.cpp" 
+    "src/LDL/Renders/GL1/*.cpp" 
+    "src/LDL/Renders/GL3/*.cpp" 
+    "src/LDL/Renders/Soft/*.cpp"
+    "src/LDL/*.cpp" 
+    "src/LDL/OpenGL/*.cpp" 
     "src/LDL/Linux/*.cpp")
 endif()
 

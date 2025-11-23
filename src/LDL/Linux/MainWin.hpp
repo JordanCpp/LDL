@@ -8,17 +8,15 @@
 
 #include <LDL/Enums.hpp>
 #include <LDL/Eventer.hpp>
-#include <LDL/OpenGL/OpenGL1_1.hpp>
-#include <LDL/Platforms/Linux/Graphics/GLX.hpp>
-#include <LDL/BaseWindow.hpp>
+#include <LDL/OpenGL/GL1_1.hpp>
+#include <LDL/Linux/GLX.hpp>
+#include <LDL/BaseWin.hpp>
 
-namespace LDL
-{
-	class MainWindow
+	class LDL_MainWindow
 	{
 	public:
-		MainWindow(const Vec2u &pos, const Vec2u &size, const char* title, size_t mode);
-		~MainWindow();
+		LDL_MainWindow(const LDL_Vec2u &pos, const LDL_Vec2u &size, const char* title, size_t mode);
+		~LDL_MainWindow();
 		bool Running();
 		void PollEvents();
 		bool GetEvent(LDL_Event &event);
@@ -26,20 +24,19 @@ namespace LDL
 		void StopEvent();
 		void Title(const char* title);
 		const char* Title();
-		const Vec2u &Size();
-		const Vec2u &Pos();
+		const LDL_Vec2u &Size();
+		const LDL_Vec2u &Pos();
 		void Show();
 	private:
-		BaseWindow _BaseWindow;
+		LDL_BaseWindow _BaseWindow;
 		size_t ConvertKey(size_t key);
-		Eventer _Eventer;
+		LDL_Eventer _Eventer;
 	public:
-		LDL_Display *_Display;
+		Display *_Display;
 		int      _Screen;
 		Window   _Root;
 		Window   _Window;
 		size_t   _EventMask;
 	};
-}
 
 #endif

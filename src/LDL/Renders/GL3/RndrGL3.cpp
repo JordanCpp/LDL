@@ -13,7 +13,7 @@
 #elif defined(LDL_WINDOWS_9X)
     #include <LDL/Win9X/WinGL3.hpp>
 #elif defined(__unix__)
-    #include <LDL/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
+    #include <LDL/Linux/WinGL3.hpp>
 #endif
 
 RenderImplOpenGL3::RenderImplOpenGL3(LDL_Result& result, LDL_RenderContext* renderContextImpl, LDL_IWindow* window) :

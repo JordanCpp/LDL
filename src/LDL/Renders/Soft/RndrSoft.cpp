@@ -10,7 +10,7 @@
 #elif defined(LDL_WINDOWS_9X)
     #include <LDL/Win9X/WinSoft.hpp>
 #elif defined(__unix__)
-    #include <LDL/Linux/Graphics/Software/WindowImplSoftware.hpp>
+    #include <LDL/Linux/WinSoft.hpp>
 #else
     #include <LDL/Null/WinSoft.hpp>
 #endif

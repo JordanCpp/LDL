@@ -6,19 +6,16 @@
 #ifndef LDL_Platforms_Linux_Core_LibraryImpl_hpp
 #define LDL_Platforms_Linux_Core_LibraryImpl_hpp
 
-#include <LDL/Core/Library.hpp>
+#include <LDL/Library.hpp>
 
-namespace LDL
-{
-	class LibraryImpl
+	class LDL_Library : public LDL_ILibrary
 	{
 	public:
-		LibraryImpl(const char *path);
-		~LibraryImpl();
-		LDL::VoidFuncPtr Function(const char *name);
+		LDL_Library(const char *path);
+		~LDL_Library();
+		VoidFuncPtr Function(const char *name);
 	private:
-		void *_Library;
+		void*_Library;
 	};
-}
 
 #endif

@@ -3,12 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Core/FileStream.hpp>
-#include <LDL/Platforms/Linux/Core/FileStreamImpl.hpp>
+#include <LDL/Stream.hpp>
+#include <LDL/Linux/FStreamI.hpp>
 
-using namespace LDL;
-
-FileStreamImpl::FileStreamImpl(Result& result) :
+FileStreamImpl::FileStreamImpl(LDL_Result& result) :
 	_isOpen(false),
     _result(result)
 {

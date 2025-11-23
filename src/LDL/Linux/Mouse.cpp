@@ -3,9 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Input/Mouse.hpp>
-
-using namespace LDL;
+#include <LDL/Mouse.hpp>
 
 LDL_Vec2u LDL_Mouse::Pos()
 {

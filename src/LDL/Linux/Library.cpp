@@ -4,17 +4,15 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <dlfcn.h>
-#include <LDL/Core/Types.hpp>
-#include <LDL/Platforms/Linux/Core/LibraryImpl.hpp>
+#include <LDL/Types.hpp>
+#include <LDL/Linux/Library.hpp>
 
-using namespace LDL;
-
-LibraryImpl::LibraryImpl(const char *path)
+LDL_Library::LDL_Library(const char *path)
 {
     _Library = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
 }
 
-LibraryImpl::~LibraryImpl()
+LDL_Library::~LDL_Library()
 {
     if (_Library != NULL)
     {
@@ -22,7 +20,12 @@ LibraryImpl::~LibraryImpl()
     }
 }
 
-LDL::VoidFuncPtr LibraryImpl::Function(const char *name)
+VoidFuncPtr LDL_Library::Function(const char *name)
 {
-    return (LDL::VoidFuncPtr)dlsym(_Library, name);
+    return (VoidFuncPtr)dlsym(_Library, name);
+}
+
+LDL_ILibrary* LDL_CreateLibrary(const char* name)
+{
+    return new LDL_Library(name);
 }

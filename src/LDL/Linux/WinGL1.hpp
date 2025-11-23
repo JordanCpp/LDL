@@ -6,15 +6,12 @@
 #ifndef LDL_Platforms_Linux_Graphics_OpenGL1_WindowImpl_hpp
 #define LDL_Platforms_Linux_Graphics_OpenGL1_WindowImpl_hpp
 
-#include <LDL/Core/Result.hpp>
-#include <LDL/Platforms/Linux/Graphics/GLX.hpp>
-#include <LDL/Shared/Graphics/Impls/WindowImpl.hpp>
-#include <LDL/Platforms/Linux/Graphics/MainWindow.hpp>
+#include <LDL/Result.hpp>
+#include <LDL/Linux/GLX.hpp>
+#include <LDL/Window.hpp>
+#include <LDL/Linux/MainWin.hpp>
 
-namespace LDL
-{
-
-	class LDL_WindowOpenGL1 : public WindowImpl
+	class LDL_WindowOpenGL1 : public LDL_IWindow
 	{
 	public:
 		LDL_WindowOpenGL1(LDL_Result& result, const LDL_Vec2u &pos, const LDL_Vec2u &size, const char *title, size_t mode = LDL_WindowMode::Resized);
@@ -38,6 +35,5 @@ namespace LDL
 		XVisualInfo* _Visual;
 		GLXContext   _Context;
 	};
-}
 
 #endif

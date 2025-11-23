@@ -11,7 +11,7 @@
 #elif defined(LDL_WINDOWS_9X)
     #include <LDL/Win9X/FStreamI.hpp>
 #elif defined(__unix__)
-    #include <LDL/Linux/Core/FileStreamImpl.hpp>
+    #include <LDL/Linux/FStreamI.hpp>
 #else
     #include <LDL/Null/FStreamI.hpp>
 #endif

@@ -4,19 +4,18 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <stdexcept>
-#include <LDL/Platforms/Linux/Graphics/GLX.hpp>
-#include <LDL/Platforms/Linux/Graphics/OpenGL/FunctionsImpl.hpp>
-
-using namespace LDL;
+#include <LDL/Linux/GLX.hpp>
+#include <LDL/Linux/GLFuncs.hpp>
 
 OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path) :
-    _Library(path)
+    _Library(NULL)
 {
+    _Library = LDL_CreateLibrary(path);
 }
 
-LDL::VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
+VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
 {
-    LDL::VoidFuncPtr result = glXGetProcAddress((const GLubyte*)name);
+    VoidFuncPtr result = glXGetProcAddress((const GLubyte*)name);
 
     if (result == NULL)
     {

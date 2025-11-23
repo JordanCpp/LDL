@@ -6,10 +6,8 @@
 #ifndef LDL_Platforms_Linux_Core_FileStreamImpl_hpp
 #define LDL_Platforms_Linux_Core_FileStreamImpl_hpp
 
-#include <LDL/Core/Result.hpp>
+#include <LDL/Result.hpp>
 
-namespace LDL
-{
 	class FileStreamImpl
 	{
 	public:
@@ -36,6 +34,5 @@ namespace LDL
 		bool    _isOpen;
 		LDL_Result& _result;
 	};
-}
 
 #endif

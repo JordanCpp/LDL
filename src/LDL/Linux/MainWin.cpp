@@ -3,10 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Enums/KeyboardKey.hpp>
-#include <LDL/Platforms/Linux/Graphics/MainWindow.hpp>
-
-using namespace LDL;
+#include <LDL/Enums.hpp>
+#include <LDL/Linux/MainWin.hpp>
 
 const size_t eventMask =
       PointerMotionMask 
@@ -16,7 +14,7 @@ const size_t eventMask =
     | KeyPressMask
     | KeyReleaseMask;
 
-size_t MainWindow::ConvertKey(size_t key)
+size_t LDL_MainWindow::ConvertKey(size_t key)
 {
     switch (key)
     {
@@ -247,7 +245,7 @@ size_t MainWindow::ConvertKey(size_t key)
     return LDL_KeyboardKey::Unknown;
 }
 
-MainWindow::MainWindow(const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
+LDL_MainWindow::LDL_MainWindow(const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
     _BaseWindow(pos, size, title),
     _EventMask(eventMask)
 {
@@ -260,17 +258,17 @@ MainWindow::MainWindow(const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* 
     _Root   = RootWindow(_Display, _Screen);
 }
 
-MainWindow::~MainWindow()
+LDL_MainWindow::~LDL_MainWindow()
 {
 	XCloseDisplay(_Display);
 }
 
-bool MainWindow::Running()
+bool LDL_MainWindow::Running()
 {
     return _Eventer.Running();
 }
 
-void MainWindow::PollEvents()
+void LDL_MainWindow::PollEvents()
 {
     XEvent event;
     LDL_Event report;
@@ -284,30 +282,30 @@ void MainWindow::PollEvents()
         {
         case KeyPress:
             report.Type = IsKeyboard;
-            report.LDL_Keyboard.State = LDL_ButtonState::Pressed;
+            report.Keyboard.State = LDL_ButtonState::Pressed;
             key = ConvertKey(XKeycodeToKeysym(_Display, event.xkey.keycode, 0));
-            report.LDL_Keyboard.Key = key;
+            report.Keyboard.Key = key;
             _Eventer.Push(report);
             break;
 
         case KeyRelease:
             report.Type = IsKeyboard;
-            report.LDL_Keyboard.State = LDL_ButtonState::Released;
+            report.Keyboard.State = LDL_ButtonState::Released;
             key = ConvertKey(XKeycodeToKeysym(_Display, event.xkey.keycode, 0));
-            report.LDL_Keyboard.Key = key;
+            report.Keyboard.Key = key;
             _Eventer.Push(report);
             break;
 
         case MotionNotify:
             report.Type = IsMouseMove;
-            report.LDL_Mouse.PosX = event.xmotion.x;
-            report.LDL_Mouse.PosY = event.xmotion.y;
+            report.Mouse.PosX = event.xmotion.x;
+            report.Mouse.PosY = event.xmotion.y;
             _Eventer.Push(report);
             break;
 
         case ButtonPress:
             report.Type = IsMouseClick;
-            report.LDL_Mouse.State = LDL_ButtonState::Pressed;
+            report.Mouse.State = LDL_ButtonState::Pressed;
 
             size_t button = 0;
 
@@ -324,16 +322,16 @@ void MainWindow::PollEvents()
                 break;
             }
 
-            report.LDL_Mouse.Button = button;
-            report.LDL_Mouse.PosX = event.xbutton.x;
-            report.LDL_Mouse.PosY = event.xbutton.y;
+            report.Mouse.Button = button;
+            report.Mouse.PosX = event.xbutton.x;
+            report.Mouse.PosY = event.xbutton.y;
             _Eventer.Push(report);
             break;
         }
     }
 }
 
-bool MainWindow::GetEvent(LDL_Event& event)
+bool LDL_MainWindow::GetEvent(LDL_Event& event)
 {
     if (!_Eventer.Empty())
     {
@@ -345,29 +343,29 @@ bool MainWindow::GetEvent(LDL_Event& event)
     return false;
 }
 
-bool MainWindow::WaitEvent(LDL_Event& event)
+bool LDL_MainWindow::WaitEvent(LDL_Event& event)
 {
     return _Eventer.Running();
 }
 
-void MainWindow::StopEvent()
+void LDL_MainWindow::StopEvent()
 {
     _Eventer.Stop();
 }
 
-void MainWindow::Title(const char* title)
+void LDL_MainWindow::Title(const char* title)
 {
     _BaseWindow.Title(title);
 
     XStoreName(_Display, _Window, _BaseWindow.Title());
 }
 
-const char* MainWindow::Title()
+const char* LDL_MainWindow::Title()
 {
     return _BaseWindow.Title();
 }
 
-const LDL_Vec2u& MainWindow::Size()
+const LDL_Vec2u& LDL_MainWindow::Size()
 {
     XWindowAttributes attributes;
     XGetWindowAttributes(_Display, _Window, &attributes);
@@ -377,12 +375,12 @@ const LDL_Vec2u& MainWindow::Size()
     return _BaseWindow.Size();
 }
 
-const LDL_Vec2u& MainWindow::Pos()
+const LDL_Vec2u& LDL_MainWindow::Pos()
 {
     return _BaseWindow.Pos();
 }
 
-void MainWindow::Show()
+void LDL_MainWindow::Show()
 {
     XClearWindow(_Display, _Window);
 	XMapRaised(_Display, _Window); 
