@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Platforms_Linux_Graphics_GLX_hpp
-#define LDL_Platforms_Linux_Graphics_GLX_hpp
+#ifndef LDL_Linux_GLX_hpp
+#define LDL_Linux_GLX_hpp
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
