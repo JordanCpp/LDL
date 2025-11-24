@@ -13,7 +13,7 @@
 	public:
 		LDL_Library(const char *path);
 		~LDL_Library();
-		VoidFuncPtr Function(const char *name);
+		LDL_VoidFuncPtr Function(const char *name);
 	private:
 		void* _Library;
 	};

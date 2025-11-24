@@ -22,8 +22,8 @@ public:
 	const LDL_Vec2u& Size();
 	size_t BitsPerPixel();
 private:
+	size_t     _bitsPerPixel;
 	LDL_Vec2u  _size;
-	size_t _bitsPerPixel;
 };
 
 #endif

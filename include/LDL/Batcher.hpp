@@ -17,6 +17,6 @@ public:
 	virtual void Clear() = 0;
 };
 
-LDL_ISpriteBatcher* CreateSpriteBatcherImpl(LDL_RenderContext* renderContext, LDL_ITexture* texture, size_t count);
+LDL_ISpriteBatcher* LDL_CreateSpriteBatcher(LDL_RenderContext* renderContext, LDL_ITexture* texture, size_t count);
 
 #endif    

@@ -20,9 +20,9 @@ LDL_Library::~LDL_Library()
     }
 }
 
-VoidFuncPtr LDL_Library::Function(const char *name)
+LDL_VoidFuncPtr LDL_Library::Function(const char *name)
 {
-    return (VoidFuncPtr)dlsym(_Library, name);
+    return (LDL_VoidFuncPtr)dlsym(_Library, name);
 }
 
 LDL_ILibrary* LDL_CreateLibrary(const char* name)

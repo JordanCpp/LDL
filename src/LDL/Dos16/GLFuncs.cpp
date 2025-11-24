@@ -9,12 +9,12 @@ OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path)
 {
 }
 
-VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
+LDL_VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
 {
     return NULL;
 }
 
-bool OpenGLFunctionsImpl::IsValid(VoidFuncPtr ptr)
+bool OpenGLFunctionsImpl::IsValid(LDL_VoidFuncPtr ptr)
 {
     return true;
 }

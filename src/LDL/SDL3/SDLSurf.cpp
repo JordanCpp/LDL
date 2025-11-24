@@ -4,7 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/BmpLoad.hpp>
-#include <LDL/SDL3/SDL_Surface.hpp>
+#include <LDL/SDL3/SDLSurf.hpp>
 #include <LDL/SDL3/SDLApp.hpp>
 
 SDL_PixelFormat LDL_PixelFormatToSDL_PixelFormat(size_t pixelFormat)

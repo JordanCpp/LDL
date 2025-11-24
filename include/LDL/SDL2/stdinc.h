@@ -7,7 +7,7 @@
 #define LDL_APIs_SDL2_SDL_stdinc_h
 
 #include <LDL/Types.hpp>
-#include <LDL/SDL2/SDL_config.h>
+#include <LDL/SDL2/config.h>
 
 #ifdef __cplusplus
 extern "C" {

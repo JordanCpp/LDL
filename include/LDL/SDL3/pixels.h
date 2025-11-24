@@ -6,7 +6,7 @@
 #ifndef LDL_APIs_SDL3_SDL_pixels_h
 #define LDL_APIs_SDL3_SDL_pixels_h
 
-#include <LDL/SDL3/SDL_stdinc.h>
+#include <LDL/SDL3/stdinc.h>
 
 #ifdef __cplusplus
 extern "C" {

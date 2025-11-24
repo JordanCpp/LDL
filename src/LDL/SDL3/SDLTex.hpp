@@ -6,10 +6,10 @@
 #ifndef LDL_APIs_SDL3_SDL_Texture_hpp
 #define LDL_APIs_SDL3_SDL_Texture_hpp
 
-#include <LDL/SDL3/SDL_render.h>
 #include <LDL/Render.hpp>
-#include <LDL/SDL3/SDL_Window.hpp>
-#include <LDL/SDL3/SDL_Surface.hpp>
+#include <LDL/SDL3/render.h>
+#include <LDL/SDL3/SDLWin.hpp>
+#include <LDL/SDL3/SDLSurf.hpp>
 
 struct SDL_Texture
 {

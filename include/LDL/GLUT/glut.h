@@ -6,7 +6,7 @@
 #ifndef LDL_APIs_GLUT_glut_h
 #define LDL_APIs_GLUT_glut_h
 
-#include <LDL/GLUT/glut_config.h>
+#include <LDL/GLUT/config.h>
 
 #ifdef __cplusplus
 extern "C" {

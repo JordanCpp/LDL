@@ -4,8 +4,8 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/SDL3/SDLApp.hpp>
-#include <LDL/SDL3/SDL_Renderer.hpp>
-#include <LDL/SDL3/SDL_Texture.hpp>
+#include <LDL/SDL3/SDLRndr.hpp>
+#include <LDL/SDL3/SDLTex.hpp>
 #include <LDL/Render.hpp>
 #include <LDL/Texture.hpp>
 

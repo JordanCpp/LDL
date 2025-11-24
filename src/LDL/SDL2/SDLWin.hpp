@@ -8,7 +8,7 @@
 
 #include <LDL/Result.hpp>
 #include <LDL/Window.hpp>
-#include <LDL/SDL2/SDL_video.h>
+#include <LDL/SDL2/video.h>
 
 struct SDL_Window
 {

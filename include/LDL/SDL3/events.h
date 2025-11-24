@@ -7,8 +7,8 @@
 #define LDL_SDL3_events_h
 
 #include <LDL/SDL3/config.h>
-#include <LDL/SDL3/SDL_mouse.h>
-#include <LDL/SDL3/SDL_video.h>
+#include <LDL/SDL3/mouse.h>
+#include <LDL/SDL3/video.h>
 
 #ifdef __cplusplus
 extern "C" {

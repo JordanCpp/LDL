@@ -14,7 +14,7 @@ LDL_Library::~LDL_Library()
 {
 }
 
-VoidFuncPtr LDL_Library::Function(const char* name)
+LDL_VoidFuncPtr LDL_Library::Function(const char* name)
 {
     return NULL;
 }

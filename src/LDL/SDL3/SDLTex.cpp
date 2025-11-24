@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/SDL3/SDL_Renderer.hpp>
-#include <LDL/SDL3/SDL_Texture.hpp>
+#include <LDL/SDL3/SDLRndr.hpp>
+#include <LDL/SDL3/SDLTex.hpp>
 #include <LDL/Texture.hpp>
 
 SDL_Texture::SDL_Texture(LDL_RenderContext* renderContext, size_t pixelFormat, const LDL_Vec2u& size) :

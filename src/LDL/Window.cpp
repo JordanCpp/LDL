@@ -31,11 +31,11 @@ LDL_IWindow* LDL_CreateWindow(LDL_Result& result, LDL_RenderContext& renderConte
 {
 	size_t renderMode = renderContext.Mode();
 
-	if (mode >= LDL_RenderMode::Max)
+	if (renderMode >= LDL_RenderMode::Max)
 	{
 		LDL_Formatter formatter;
 
-		result.Message(formatter.Format("Unknown graphics mode: %d\n", mode));
+		result.Message(formatter.Format("Unknown graphics mode: %d\n", renderMode));
 		return NULL;
 	}
 

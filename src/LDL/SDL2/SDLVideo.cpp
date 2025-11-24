@@ -3,9 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/SDL2/SDL_video.h>
-#include <LDL/SDL2/SDL_Window.hpp>
-#include <LDL/SDL2/SDL_Application.hpp>
+#include <LDL/SDL2/video.h>
+#include <LDL/SDL2/SDLWin.hpp>
+#include <LDL/SDL2/SDLApp.hpp>
 
 SDL_Window* SDL_CreateWindow(const char* title, int x, int y, int w, int h, Uint32 flags)
 {

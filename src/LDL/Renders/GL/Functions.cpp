@@ -18,7 +18,7 @@ OpenGLFunctions::OpenGLFunctions() :
 {
 }
 
-VoidFuncPtr OpenGLFunctions::Function(const char* name)
+LDL_VoidFuncPtr OpenGLFunctions::Function(const char* name)
 {
     return _FunctionsImpl->Function(name);
 }

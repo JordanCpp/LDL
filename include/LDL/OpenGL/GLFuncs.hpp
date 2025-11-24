@@ -14,7 +14,7 @@ class LDL_LIBRARY OpenGLFunctions
 {
 public:
 	OpenGLFunctions();
-	VoidFuncPtr Function(const char* name);
+	LDL_VoidFuncPtr Function(const char* name);
 
 private:
 	OpenGLFunctionsImpl* _FunctionsImpl;

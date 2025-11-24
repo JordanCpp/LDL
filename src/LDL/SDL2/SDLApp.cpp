@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/SDL2/SDL_Application.hpp>
+#include <LDL/SDL2/SDLApp.hpp>
 
 void EventConvertor(LDL_Event& src, SDL_Event& dst)
 {

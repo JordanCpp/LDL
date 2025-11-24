@@ -9,9 +9,9 @@
 #include <LDL/PVector.hpp>
 #include <LDL/Result.hpp>
 #include <LDL/RingBuf.hpp>
-#include <LDL/SDL2/SDL_events.h>
-#include <LDL/SDL2/SDL_Memory.hpp>
-#include <LDL/SDL2/SDL_Window.hpp>
+#include <LDL/SDL2/events.h>
+#include <LDL/SDL2/SDLMem.hpp>
+#include <LDL/SDL2/SDLWin.hpp>
 
 class SDL_Application
 {

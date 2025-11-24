@@ -6,7 +6,7 @@
 #ifndef LDL_APIs_SDL3_SDL_Window_hpp
 #define LDL_APIs_SDL3_SDL_Window_hpp
 
-#include <LDL/SDL3/SDL_video.h>
+#include <LDL/SDL3/video.h>
 #include <LDL/Result.hpp>
 #include <LDL/Window.hpp>
 

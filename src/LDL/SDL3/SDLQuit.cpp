@@ -3,12 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Config.hpp>
-#include <LDL/SDL3/SDL_init.h>
+#include <LDL/SDL3/init.h>
 
-bool SDL_Init(SDL_InitFlags flags)
+void SDL_Quit(void)
 {
-	LDL_UNUSED(flags);
-
-	return true;
 }

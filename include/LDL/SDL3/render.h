@@ -7,9 +7,9 @@
 #define LDL_APIs_SDL3_SDL_render_h
 
 #include <LDL/SDL3/config.h>
-#include <LDL/SDL3/SDL_video.h>
-#include <LDL/SDL3/SDL_surface.h>
-#include <LDL/SDL3/SDL_rect.h>
+#include <LDL/SDL3/video.h>
+#include <LDL/SDL3/surface.h>
+#include <LDL/SDL3/rect.h>
 #include <LDL/Types.hpp>
 
 #ifdef __cplusplus

@@ -4,7 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/StdFuncs.hpp>
-#include <LDL/SDL3/SDL_stdinc.h>
+#include <LDL/SDL3/stdinc.h>
 
 void* SDL_malloc(size_t size)
 {

@@ -5,7 +5,7 @@
 
 #include <stdlib.h>
 #include <LDL/MemMngr.hpp>
-#include <LDL/SDL2/SDL_Memory.hpp>
+#include <LDL/SDL2/SDLMem.hpp>
 
 SDL_Memory::SDL_Memory()
 {

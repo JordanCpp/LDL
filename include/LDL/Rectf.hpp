@@ -6,7 +6,7 @@
 #ifndef LDL_Rectf_hpp
 #define LDL_Rectf_hpp
 
-#include <LDL/Math/Rect.hpp>
+#include <LDL/Rect.hpp>
 
 typedef LDL_Rect<float>  LDL_Rectf;
 

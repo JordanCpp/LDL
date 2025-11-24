@@ -177,7 +177,7 @@ LRESULT CALLBACK LDL_MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam,
 }
 
 LDL_MainWindow::LDL_MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
-    _baseWindow(pos, size, title),
+    _baseWindow(pos, size, title, mode),
     _result(result)
 {
     timeBeginPeriod(timePeriod);
@@ -214,13 +214,17 @@ LDL_MainWindow::LDL_MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const L
 
     DWORD style = 0;
     
-    if (mode == LDL_WindowMode::Fixed)
+    if (_baseWindow.IsFixed())
     {
         style = WS_OVERLAPPED | WS_SYSMENU;
     }
-    else if (mode == LDL_WindowMode::Resized)
+    else if (_baseWindow.IsResized())
     {
         style = WS_OVERLAPPEDWINDOW;
+    }
+    else
+    {
+        style = WS_OVERLAPPED | WS_SYSMENU;
     }
 
     RECT rect;
@@ -235,6 +239,11 @@ LDL_MainWindow::LDL_MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const L
     {
         _result.Message(_windowError.GetErrorMessage());
         return;
+    }
+
+    if (_baseWindow.IsCentered())
+    {
+
     }
 
     _hwnd = CreateWindowW(AppName, L"", style, (int)_baseWindow.Pos().x, (int)_baseWindow.Pos().y, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _instance, 0);

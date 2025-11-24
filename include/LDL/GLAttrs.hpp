@@ -3,15 +3,15 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/StdFuncs.hpp>
-#include <LDL/SDL2/SDL_stdinc.h>
+#ifndef LDL_GLAttrs_hpp
+#define LDL_GLAttrs_hpp
 
-void* SDL_malloc(size_t size)
-{
-	return LDL_malloc(size);
-}
+#include <LDL/Types.hpp>
 
-void SDL_free(void* mem)
+class LDL_OpenGLAttributes
 {
-	LDL_free(mem);
-}
+public:
+private:
+};
+
+#endif

@@ -16,7 +16,7 @@
     #include <LDL/Renders/Soft/BtchSoft.hpp>
 #endif
 
-LDL_ISpriteBatcher* CreateSpriteBatcherImpl(LDL_RenderContext* renderContext, LDL_ITexture* texture, size_t count)
+LDL_ISpriteBatcher* LDL_CreateSpriteBatcher(LDL_RenderContext* renderContext, LDL_ITexture* texture, size_t count)
 {
 	size_t mode = renderContext->Mode();
 

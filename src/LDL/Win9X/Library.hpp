@@ -14,7 +14,7 @@ class LDL_Library : public LDL_ILibrary
 public:
 	LDL_Library(const char* path);
 	~LDL_Library();
-	VoidFuncPtr Function(const char* name);
+	LDL_VoidFuncPtr Function(const char* name);
 private:
 	HMODULE _module;
 };

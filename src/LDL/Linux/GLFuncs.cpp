@@ -13,9 +13,9 @@ OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path) :
     _Library = LDL_CreateLibrary(path);
 }
 
-VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
+LDL_VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
 {
-    VoidFuncPtr result = glXGetProcAddress((const GLubyte*)name);
+    LDL_VoidFuncPtr result = glXGetProcAddress((const GLubyte*)name);
 
     if (result == NULL)
     {

@@ -12,7 +12,7 @@ class OpenGLFunctionsImpl
 {
 public:
 	OpenGLFunctionsImpl(const char* path);
-	VoidFuncPtr Function(const char* name);
+	LDL_VoidFuncPtr Function(const char* name);
 
 private:
 	LDL_ILibrary* _Library;

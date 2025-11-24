@@ -7,7 +7,7 @@
 #define LDL_APIs_SDL3_SDL_surface_h
 
 #include <LDL/SDL3/config.h>
-#include <LDL/SDL3/SDL_pixels.h>
+#include <LDL/SDL3/pixels.h>
 
 #ifdef __cplusplus
 extern "C" {

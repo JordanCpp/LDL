@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/SDL2/SDL_events.h>
-#include <LDL/SDL2/SDL_Application.hpp>
+#include <LDL/SDL2/events.h>
+#include <LDL/SDL2/SDLApp.hpp>
 
 int SDL_PollEvent(SDL_Event* event)
 {

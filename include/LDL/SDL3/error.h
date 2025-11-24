@@ -7,7 +7,7 @@
 #define LDL_SDL3_error_h
 
 #include <LDL/SDL3/config.h>
-#include <LDL/SDL3/SDL_stdinc.h>
+#include <LDL/SDL3/stdinc.h>
 
 #ifdef __cplusplus
 extern "C" {

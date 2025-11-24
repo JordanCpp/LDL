@@ -6,9 +6,9 @@
 #ifndef LDL_APIs_SDL3_SDL_Renderer_hpp
 #define LDL_APIs_SDL3_SDL_Renderer_hpp
 
-#include <LDL/SDL3/SDL_render.h>
 #include <LDL/Render.hpp>
-#include <LDL/SDL3/SDL_Window.hpp>
+#include <LDL/SDL3/render.h>
+#include <LDL/SDL3/SDLWin.hpp>
 
 struct SDL_Renderer
 {

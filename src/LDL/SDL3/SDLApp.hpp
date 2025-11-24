@@ -10,8 +10,8 @@
 #include <LDL/Result.hpp>
 #include <LDL/RingBuf.hpp>
 #include <LDL/SDL3/events.h>
-#include <LDL/SDL3/SDL_Memory.hpp>
-#include <LDL/SDL3/SDL_Window.hpp>
+#include <LDL/SDL3/SDLMem.hpp>
+#include <LDL/SDL3/SDLWin.hpp>
 
 class SDL_Application
 {

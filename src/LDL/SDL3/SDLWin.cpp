@@ -4,7 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/SDL3/SDLApp.hpp>
-#include <LDL/SDL3/SDL_Window.hpp>
+#include <LDL/SDL3/SDLWin.hpp>
 #include <LDL/Window.hpp>
 
 SDL_Window::SDL_Window(LDL_Result& result, const char* title, int w, int h, SDL_WindowFlags flags) :

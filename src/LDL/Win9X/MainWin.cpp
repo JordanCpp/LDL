@@ -166,7 +166,7 @@ LRESULT CALLBACK LDL_MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam,
 }
 
 LDL_MainWindow::LDL_MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
-    _baseWindow(pos, size, title),
+    _baseWindow(pos, size, title, mode),
     _result(result)
 {
     timeBeginPeriod(timePeriod);

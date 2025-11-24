@@ -3,15 +3,11 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL2_SDL_h
-#define LDL_APIs_SDL2_SDL_h
+#include <stdlib.h>
+#include <LDL/MemMngr.hpp>
+#include <LDL/SDL3/SDLMem.hpp>
 
-#ifdef NULL
-#else
-    #define NULL 0
-#endif
-
-#include <LDL/SDL2/events.h>
-#include <LDL/SDL2/video.h>
-
-#endif
+SDL_Memory::SDL_Memory()
+{
+	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+}

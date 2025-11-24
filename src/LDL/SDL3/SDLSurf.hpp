@@ -6,8 +6,8 @@
 #ifndef LDL_APIs_SDL3_SDL_Surface_hpp
 #define LDL_APIs_SDL3_SDL_Surface_hpp
 
-#include <LDL/SDL3/SDL_surface.h>
 #include <LDL/Surface.hpp>
+#include <LDL/SDL3/surface.h>
 
 SDL_PixelFormat LDL_PixelFormatToSDL_PixelFormat(size_t pixelFormat);
 

@@ -26,9 +26,9 @@ LDL_Library::~LDL_Library()
     FreeLibrary(_module);
 }
 
-VoidFuncPtr LDL_Library::Function(const char* name)
+LDL_VoidFuncPtr LDL_Library::Function(const char* name)
 {
-    VoidFuncPtr result = (VoidFuncPtr)GetProcAddress(_module, name);
+    LDL_VoidFuncPtr result = (LDL_VoidFuncPtr)GetProcAddress(_module, name);
 
     if (result == NULL)
     {

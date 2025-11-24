@@ -12,6 +12,28 @@ void ErrorShow(LDL_Result& result)
 	printf("LDL error: %s", result.Message());
 }
 
+LDL_IWindow* window = NULL;
+LDL_IRender* render = NULL;
+LDL_ITexture* image = NULL;
+
+void CleanUp()
+{
+	if (image != NULL)
+	{
+		delete image;
+	}
+
+	if (render != NULL)
+	{
+		delete render;
+	}
+
+	if (window != NULL)
+	{
+		delete window;
+	}
+}
+
 int main()
 {
 	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
@@ -19,17 +41,19 @@ int main()
 	LDL_Result result;
 	LDL_RenderContext renderContext;
 
-	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, 0);
+	window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, 0);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
+		CleanUp();
 		return -1;
 	}
 
-	LDL_IRender* render = LDL_CreateRender(result, renderContext, window);
+	render = LDL_CreateRender(result, renderContext, window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
+		CleanUp();
 		return -1;
 	}
 
@@ -37,11 +61,17 @@ int main()
 
 	LDL_BmpLoader bmpLoader(result);
 
-	bmpLoader.Load("data/trehmachtovyiy-korabl-kartina-maslom-60x50_512x.bmp");
-	LDL_ITexture* image = LDL_CreateTexture(&renderContext, bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
+	if (!bmpLoader.Load("data/trehmachtovyiy-korabl-kartina-maslom-60x50_512x.bmp"))
+	{
+		ErrorShow(result);
+		CleanUp();
+		return -1;
+	}
+
+	image = LDL_CreateTexture(&renderContext, bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
 
 	LDL_FpsCounter fpsCounter;
-	LDL_Convert convert;
+	LDL_Convert    convert;
 
 	while (window->Running())
 	{
@@ -69,6 +99,8 @@ int main()
 			window->Title(convert.ToString(fpsCounter.Fps()));
 		}
 	}
+
+	CleanUp();
 
 	return 0;
 }

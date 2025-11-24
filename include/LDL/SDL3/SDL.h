@@ -12,9 +12,9 @@
 #endif
 
 #include <LDL/SDL3/error.h>
-#include <LDL/SDL3/SDL_init.h>
-#include <LDL/SDL3/SDL_video.h>
+#include <LDL/SDL3/init.h>
+#include <LDL/SDL3/video.h>
 #include <LDL/SDL3/events.h>
-#include <LDL/SDL3/SDL_render.h>
+#include <LDL/SDL3/render.h>
 
 #endif

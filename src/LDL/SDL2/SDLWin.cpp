@@ -3,9 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/SDL2/SDL_Application.hpp>
-#include <LDL/SDL2/SDL_Window.hpp>
 #include <LDL/Window.hpp>
+#include <LDL/SDL2/SDLApp.hpp>
+#include <LDL/SDL2/SDLWin.hpp>
 
 SDL_Window::SDL_Window(LDL_Result& result, const char* title, int x, int y, int w, int h, Uint32 flags) :
 	_result(result),

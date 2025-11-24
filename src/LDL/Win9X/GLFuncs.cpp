@@ -11,9 +11,9 @@ OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path) :
     _library = LDL_CreateLibrary(path);
 }
 
-VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
+LDL_VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
 {
-    VoidFuncPtr result = (VoidFuncPtr)wglGetProcAddress(name);
+    LDL_VoidFuncPtr result = (LDL_VoidFuncPtr)wglGetProcAddress(name);
 
     if (IsValid(result))
     {
@@ -23,7 +23,7 @@ VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
     return result;
 }
 
-bool OpenGLFunctionsImpl::IsValid(VoidFuncPtr ptr)
+bool OpenGLFunctionsImpl::IsValid(LDL_VoidFuncPtr ptr)
 {
-    return (ptr == 0 || (ptr == (VoidFuncPtr)0x1) || (ptr == (VoidFuncPtr)0x2) || (ptr == (VoidFuncPtr)0x3) || (ptr == (VoidFuncPtr)-1));
+    return (ptr == 0 || (ptr == (LDL_VoidFuncPtr)0x1) || (ptr == (LDL_VoidFuncPtr)0x2) || (ptr == (LDL_VoidFuncPtr)0x3) || (ptr == (LDL_VoidFuncPtr)-1));
 }

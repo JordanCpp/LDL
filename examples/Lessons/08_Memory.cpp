@@ -28,6 +28,22 @@ void ErrorShow(LDL_Result& result)
 	printf("LDL error: %s", result.Message());
 }
 
+LDL_IWindow* window = NULL;
+LDL_IRender* render = NULL;
+
+void CleanUp()
+{
+	if (render != NULL)
+	{
+		delete render;
+	}
+
+	if (window != NULL)
+	{
+		delete window;
+	}
+}
+
 int main()
 {
 	LDL_MemoryManager::Instance().Functions(CustomMalloc, NULL, NULL, CustomFree);
@@ -35,17 +51,19 @@ int main()
 	LDL_Result result;
 	LDL_RenderContext renderContext;
 
-	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, 0);
+	window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, 0);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
+		CleanUp();
 		return -1;
 	}
 
-	LDL_IRender* render = LDL_CreateRender(result, renderContext, window);
+	render = LDL_CreateRender(result, renderContext, window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
+		CleanUp();
 		return -1;
 	}
 
@@ -81,6 +99,8 @@ int main()
 
 		printf("Allocation count: %d allocation bytes %d\n", totalCount, totalBytes);
 	}
+
+	CleanUp();
 
 	return 0;
 }

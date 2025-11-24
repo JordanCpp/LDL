@@ -162,9 +162,12 @@ class LDL_WindowMode
 public:
 	enum
 	{
-		Resized,
-		Fixed,
-		FullScreen
+		FullScreen = 1 << 1,
+		Resized    = 1 << 2,
+		Fixed      = 1 << 3,
+		Minimized  = 1 << 4,
+		Maximized  = 1 << 5,
+		Centered   = 1 << 6
 	};
 };
 

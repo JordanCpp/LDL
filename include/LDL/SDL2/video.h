@@ -6,8 +6,8 @@
 #ifndef LDL_APIs_SDL2_SDL_video_h
 #define LDL_APIs_SDL2_SDL_video_h
 
-#include <LDL/SDL2/SDL_config.h>
-#include <LDL/SDL2/SDL_stdinc.h>
+#include <LDL/SDL2/config.h>
+#include <LDL/SDL2/stdinc.h>
 
 #ifdef __cplusplus
 extern "C" {
