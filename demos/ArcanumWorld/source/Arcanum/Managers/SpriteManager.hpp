@@ -27,10 +27,10 @@ namespace Arcanum
 	private:
 		typedef std::map<std::string, Sprite*> container;
 		LDL_RenderContext* _renderContext;
-		FileManager* _fileManager;
-		ArtLoader*   _artLoader;
-		PathManager* _pathManager;
-		container    _sprites;
+		FileManager*       _fileManager;
+		ArtLoader*         _artLoader;
+		PathManager*       _pathManager;
+		container          _sprites;
 	};
 }
 

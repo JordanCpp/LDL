@@ -13,7 +13,7 @@
 class LDL_LIBRARY OpenGLFunctionsImpl
 {
 public:
-	OpenGLFunctionsImpl(const char* path);
+	OpenGLFunctionsImpl(LDL_Result& result, const char* path);
 	LDL_VoidFuncPtr Function(const char* name);
 private:
 	bool IsValid(LDL_VoidFuncPtr ptr);

@@ -16,7 +16,7 @@
     #include <LDL/Linux/WinGL1.hpp>
 #endif
 
-RenderImplOpenGL1::RenderImplOpenGL1(LDL_Result& result, LDL_RenderContext* renderContextImpl, LDL_IWindow* window) :
+LDL_RenderOpenGL1::LDL_RenderOpenGL1(LDL_Result& result, LDL_RenderContext* renderContextImpl, LDL_IWindow* window) :
 	_result(result),
 	_window(window),
 	_screen(_window->Size()),
@@ -28,12 +28,12 @@ RenderImplOpenGL1::RenderImplOpenGL1(LDL_Result& result, LDL_RenderContext* rend
 	GL_CHECK(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 }
 
-void RenderImplOpenGL1::Buffer(uint8_t* dst)
+void LDL_RenderOpenGL1::Buffer(uint8_t* dst)
 {
 	GL_CHECK(glReadPixels(0, 0, (GLsizei)_window->Size().x, (GLsizei)_window->Size().y, GL_RGBA, GL_UNSIGNED_BYTE, dst));
 }
 
-void RenderImplOpenGL1::Begin()
+void LDL_RenderOpenGL1::Begin()
 {
 	LDL_Vec2u size = _window->Size();
 
@@ -47,7 +47,7 @@ void RenderImplOpenGL1::Begin()
 	GL_CHECK(glLoadMatrixf(_modelView.Values()));
 }
 
-void RenderImplOpenGL1::End()
+void LDL_RenderOpenGL1::End()
 {
 	_modelView.Identity();
 	_renderBuffer.Draw();
@@ -57,17 +57,17 @@ void RenderImplOpenGL1::End()
 	_renderBuffer.Reset();
 }
 
-const LDL_Vec2u& RenderImplOpenGL1::Size()
+const LDL_Vec2u& LDL_RenderOpenGL1::Size()
 {
 	return _window->Size();
 }
 
-const LDL_Color& RenderImplOpenGL1::GetColor()
+const LDL_Color& LDL_RenderOpenGL1::GetColor()
 {
 	return _color;
 }
 
-void RenderImplOpenGL1::Clear()
+void LDL_RenderOpenGL1::Clear()
 {
 	GLclampf r;
 	GLclampf g;
@@ -79,12 +79,12 @@ void RenderImplOpenGL1::Clear()
 	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
-void RenderImplOpenGL1::SetColor(const LDL_Color& color)
+void LDL_RenderOpenGL1::SetColor(const LDL_Color& color)
 {
 	_color = color;
 }
 
-void RenderImplOpenGL1::Pixel(const LDL_Vec2u& pos)
+void LDL_RenderOpenGL1::Pixel(const LDL_Vec2u& pos)
 {
 	GLclampf r;
 	GLclampf g;
@@ -98,27 +98,27 @@ void RenderImplOpenGL1::Pixel(const LDL_Vec2u& pos)
 	glEnd();
 }
 
-void RenderImplOpenGL1::Line(const LDL_Vec2u& pos1, const LDL_Vec2u& pos2)
+void LDL_RenderOpenGL1::Line(const LDL_Vec2u& pos1, const LDL_Vec2u& pos2)
 {
 	_renderBuffer.Line(pos1, pos2, _color);
 }
 
-void RenderImplOpenGL1::Fill(const LDL_Vec2u& pos, const LDL_Vec2u& size)
+void LDL_RenderOpenGL1::Fill(const LDL_Vec2u& pos, const LDL_Vec2u& size)
 {
 	_renderBuffer.Fill(pos, size, _color);
 }
 
-void RenderImplOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& pos)
+void LDL_RenderOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& pos)
 {
 	_screen.Draw(image, pos);
 }
 
-void RenderImplOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& pos, const LDL_Vec2u& size)
+void LDL_RenderOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& pos, const LDL_Vec2u& size)
 {
 	_screen.Draw(image, pos, size);
 }
 
-void RenderImplOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& dstPos, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize)
+void LDL_RenderOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& dstPos, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize)
 {
 	LDL_UNUSED(image);
 	LDL_UNUSED(dstPos);
@@ -126,7 +126,7 @@ void RenderImplOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& dstPos, const 
 	LDL_UNUSED(srcSize);
 }
 
-void RenderImplOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& dstPos, const LDL_Vec2u& dstSize, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize)
+void LDL_RenderOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& dstPos, const LDL_Vec2u& dstSize, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize)
 {
 	LDL_UNUSED(image);
 	LDL_UNUSED(dstPos);
@@ -135,29 +135,29 @@ void RenderImplOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& dstPos, const 
 	LDL_UNUSED(srcSize);
 }
 
-void RenderImplOpenGL1::Draw(LDL_ITexture* image, const LDL_Vec2u& pos)
+void LDL_RenderOpenGL1::Draw(LDL_ITexture* image, const LDL_Vec2u& pos)
 {
 	Draw(image, pos, image->Size(), LDL_Vec2u(0, 0), image->Size());
 }
 
-void RenderImplOpenGL1::Draw(LDL_ITexture* image, const LDL_Vec2u& pos, const LDL_Vec2u& size)
+void LDL_RenderOpenGL1::Draw(LDL_ITexture* image, const LDL_Vec2u& pos, const LDL_Vec2u& size)
 {
 	Draw(image, pos, size, LDL_Vec2u(0, 0), image->Size());
 }
 
-void RenderImplOpenGL1::Draw(LDL_ITexture* image, const LDL_Vec2u& dstPos, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize)
+void LDL_RenderOpenGL1::Draw(LDL_ITexture* image, const LDL_Vec2u& dstPos, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize)
 {
 	Draw(image, dstPos, srcSize, srcPos, srcSize);
 }
 
-void RenderImplOpenGL1::Draw(LDL_ITexture* image, const LDL_Vec2u& dstPos, const LDL_Vec2u& dstSize, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize)
+void LDL_RenderOpenGL1::Draw(LDL_ITexture* image, const LDL_Vec2u& dstPos, const LDL_Vec2u& dstSize, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize)
 {
 	_renderBuffer.Texture(dstPos, dstSize, srcPos, srcSize, ((LDL_TextureOpenGL1*)image)->Id(), image->Quad().x);
 }
 
-void RenderImplOpenGL1::Draw(LDL_ISpriteBatcher* textureBatcher)
+void LDL_RenderOpenGL1::Draw(LDL_ISpriteBatcher* textureBatcher)
 {
-	LDL_SpriteBatcherImplOpenGL1* batcher = (LDL_SpriteBatcherImplOpenGL1*)textureBatcher;
+	LDL_SpriteBatcherOpenGL1* batcher = (LDL_SpriteBatcherOpenGL1*)textureBatcher;
 
 	_renderBuffer.TextureBatcher(batcher->TextureId(), batcher->Count(), batcher->Content());
 }

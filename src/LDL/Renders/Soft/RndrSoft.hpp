@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_Software_RenderImpl_hpp
-#define LDL_Graphics_Software_RenderImpl_hpp
+#ifndef LDL_Renders_Soft_RndrSoft_hpp
+#define LDL_Renders_Soft_RndrSoft_hpp
 
 #include <LDL/Window.hpp>
 #include <LDL/Surface.hpp>
@@ -17,10 +17,10 @@
 #include <LDL/Render.hpp>
 #include <LDL/Renders/Soft/TexSoft.hpp>
 
-class RenderImplSoftware : public LDL_IRender
+class LDL_RenderSoftware : public LDL_IRender
 {
 public:
-	RenderImplSoftware(LDL_Result& result, LDL_RenderContext* renderContextImpl, LDL_IWindow* window);
+	LDL_RenderSoftware(LDL_Result& result, LDL_RenderContext* renderContextImpl, LDL_IWindow* window);
 	void Buffer(uint8_t* dst);
 	void Begin();
 	void End();
@@ -41,9 +41,9 @@ public:
 	void Draw(LDL_Surface* image, const LDL_Vec2u& dstPos, const LDL_Vec2u& dstSize, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize);
 	void Draw(LDL_ISpriteBatcher* textureBatcher);
 private:
-	LDL_Result& _result;
-	LDL_Color    _color;
-	LDL_IWindow* _window;
+	LDL_Result&       _result;
+	LDL_Color         _color;
+	LDL_IWindow*      _window;
 	LDL_Surface       _canvas;
 	LDL_PixelPainter  _pixelPainter;
 	LDL_PixelCopier   _pixelCopier;

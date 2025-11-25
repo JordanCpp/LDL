@@ -6,7 +6,6 @@
 #ifndef Arcanum_Allocators_ObjectAllocator_hpp
 #define Arcanum_Allocators_ObjectAllocator_hpp
 
-#include <LDL/LDL.hpp>
 #include <Arcanum/Objects/LocationLimits.hpp>
 #include <Arcanum/Objects/Critter.hpp>
 #include <Arcanum/Objects/Scenery.hpp>

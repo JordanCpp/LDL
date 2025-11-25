@@ -98,6 +98,4 @@ public:
 	T z;
 };
 
-typedef LDL_Vec3<float> Vec3f;
-
 #endif     

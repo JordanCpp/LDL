@@ -32,10 +32,10 @@ LDL_ISpriteBatcher* LDL_CreateSpriteBatcher(LDL_RenderContext* renderContext, LD
 
 #if defined(LDL_WINDOWS_NT) || defined(LDL_WINDOWS_9X) || defined(__unix__)
 	case LDL_RenderMode::OpenGL1:
-		result = new LDL_SpriteBatcherImplOpenGL1(texture, count);
+		result = new LDL_SpriteBatcherOpenGL1(texture, count);
 		break;
 	case LDL_RenderMode::OpenGL3:
-		result = new SpriteBatcherImplOpenGL3(texture, count);
+		result = new LDL_SpriteBatcherOpenGL3(texture, count);
 		break;
 #endif
 

@@ -6,7 +6,7 @@
 #ifndef LDL_Mat4_hpp
 #define LDL_Mat4_hpp
 
-#include <string.h>
+#include <LDL/StdFuncs.hpp>
 
 template<class T>
 class LDL_Mat4
@@ -24,7 +24,7 @@ public:
 			return *this;
 		}
 
-		memcpy(&_values, source._values, sizeof(_values));
+		LDL_memcpy(&_values, source._values, sizeof(_values));
 
 		return *this;
 	}
@@ -82,7 +82,5 @@ public:
 
 	T _values[16];
 };
-
-typedef LDL_Mat4<float> Mat4f;
 
 #endif      

@@ -6,8 +6,8 @@
 #ifndef Arcanum_Widgets_Container_hpp
 #define Arcanum_Widgets_Container_hpp
 
-#include <Arcanum/Widgets/Widget.hpp>
 #include <vector>
+#include <Arcanum/Widgets/Widget.hpp>
 
 namespace Arcanum
 {

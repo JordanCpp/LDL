@@ -5,7 +5,6 @@
 
 #include <LDL/Enums.hpp>
 #include <LDL/Render.hpp>
-#include <LDL/OpenGL/GL1_2.hpp>
 #include <Arcanum/Game/Engine.hpp>
 
 using namespace Arcanum;

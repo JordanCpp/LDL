@@ -6,7 +6,7 @@
 #include <LDL/Renders/GL3/TexGL3.hpp>
 #include <LDL/Renders/GL3/PaintGL3.hpp>
 
-TexturePainter::TexturePainter(ShaderLoader* shaderLoader) :
+LDL_TexturePainterOpenGL3::LDL_TexturePainterOpenGL3(LDL_ShaderLoaderOpenGL3* shaderLoader) :
 	_shaderLoader(shaderLoader),
     _shaderProgram(0),
     _vertexBufferObject(0),
@@ -69,11 +69,11 @@ TexturePainter::TexturePainter(ShaderLoader* shaderLoader) :
     glEnableVertexAttribArray(2);
 }
 
-void TexturePainter::Draw(Mat4f proj, LDL_ITexture* texture)
+void LDL_TexturePainterOpenGL3::Draw(LDL_Mat4f proj, LDL_ITexture* texture)
 {
     LDL_UNUSED(proj);
 
-    GLuint id = (GLuint)((TextureImplOpenGL3*)texture)->Id();
+    GLuint id = (GLuint)((LDL_TextureOpenGL3*)texture)->Id();
 
     glBindTexture(GL_TEXTURE_2D, id);
 

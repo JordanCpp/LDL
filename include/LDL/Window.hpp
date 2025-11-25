@@ -9,7 +9,6 @@
 #include <LDL/Vec2u.hpp>
 #include <LDL/Result.hpp>
 #include <LDL/Events.hpp>
-#include <LDL/Enums.hpp>
 #include <LDL/Context.hpp>
 
 class LDL_IWindow

@@ -26,7 +26,7 @@ LDL_ITexture* LDL_CreateTexture(LDL_RenderContext* renderContext, size_t pixelFo
 	switch (mode)
 	{
 	case LDL_RenderMode::Software:
-		result = new TextureImplSoftware(renderContext, pixelFormat, size, pixels);
+		result = new LDL_TextureSoftware(renderContext, pixelFormat, size, pixels);
 		break;
 
 #if defined(LDL_WINDOWS_NT) || defined(LDL_WINDOWS_9X) || defined(__unix__)
@@ -34,7 +34,7 @@ LDL_ITexture* LDL_CreateTexture(LDL_RenderContext* renderContext, size_t pixelFo
 		result = new LDL_TextureOpenGL1(renderContext, pixelFormat, size, pixels);
 		break;
 	case LDL_RenderMode::OpenGL3:
-		result = new TextureImplOpenGL3(renderContext, pixelFormat, size, pixels);
+		result = new LDL_TextureOpenGL3(renderContext, pixelFormat, size, pixels);
 		break;
 #endif
 
@@ -54,7 +54,7 @@ LDL_ITexture* LDL_CreateTexture(LDL_RenderContext* renderContext, size_t pixelFo
 	switch (mode)
 	{
 	case LDL_RenderMode::Software:
-		result = new TextureImplSoftware(renderContext, pixelFormat, size);
+		result = new LDL_TextureSoftware(renderContext, pixelFormat, size);
 		break;
 
 #if defined(LDL_WINDOWS_NT) || defined(LDL_WINDOWS_9X) || defined(__unix__)
@@ -62,7 +62,7 @@ LDL_ITexture* LDL_CreateTexture(LDL_RenderContext* renderContext, size_t pixelFo
 		result = new LDL_TextureOpenGL1(renderContext, pixelFormat, size);
 		break;
 	case LDL_RenderMode::OpenGL3:
-		result = new  TextureImplOpenGL3(renderContext, pixelFormat, size);
+		result = new  LDL_TextureOpenGL3(renderContext, pixelFormat, size);
 		break;
 #endif
 

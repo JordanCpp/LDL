@@ -3,11 +3,11 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL3_SDL_Application_hpp
-#define LDL_APIs_SDL3_SDL_Application_hpp
+#ifndef LDL_SDL3_SDLApp_hpp
+#define LDL_SDL3_SDLApp_hpp
 
-#include <LDL/PVector.hpp>
 #include <LDL/Result.hpp>
+#include <LDL/PVector.hpp>
 #include <LDL/RingBuf.hpp>
 #include <LDL/SDL3/events.h>
 #include <LDL/SDL3/SDLMem.hpp>
@@ -16,10 +16,6 @@
 class SDL_Application
 {
 public:
-	enum
-	{
-		Max = 1024
-	};
 	SDL_Application();
 	LDL_Result& GetResult();
 	void Append(SDL_Window* window);

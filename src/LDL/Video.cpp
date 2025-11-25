@@ -11,8 +11,8 @@ LDL_VideoMode::LDL_VideoMode() :
 }
 
 LDL_VideoMode::LDL_VideoMode(const LDL_Vec2u& size, size_t bytesPerPixel) :
-	_size(size),
-	_bitsPerPixel(bytesPerPixel)
+	_bitsPerPixel(bytesPerPixel),
+	_size(size)
 {
 }
 

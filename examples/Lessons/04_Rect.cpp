@@ -35,7 +35,7 @@ int main()
 	LDL_Result result;
 	LDL_RenderContext renderContext;
 
-	window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, 0);
+	window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, LDL_WindowMode::Fixed);
 	if (!result.Ok())
 	{
 		ErrorShow(result);

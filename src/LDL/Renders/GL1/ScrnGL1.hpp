@@ -3,17 +3,17 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_OpenGL1_Screen_hpp
-#define LDL_Graphics_OpenGL1_Screen_hpp
+#ifndef LDL_Renders_GL1_ScrnGL1_hpp
+#define LDL_Renders_GL1_ScrnGL1_hpp
 
 #include <LDL/Surface.hpp>
 #include <LDL/TexSizer.hpp>
 
-class ScreenOpenGL1
+class LDL_ScreenOpenGL1
 {
 public:
-	ScreenOpenGL1(const LDL_Vec2u& size);
-	~ScreenOpenGL1();
+	LDL_ScreenOpenGL1(const LDL_Vec2u& size);
+	~LDL_ScreenOpenGL1();
 	void Draw(LDL_Surface* image, const LDL_Vec2u& pos, const LDL_Vec2u& size);
 	void Draw(LDL_Surface* image, const LDL_Vec2u& pos);
 private:

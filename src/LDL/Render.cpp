@@ -34,24 +34,24 @@ LDL_IRender* LDL_CreateRender(LDL_Result& result, LDL_RenderContext& renderConte
 	switch (mode)
 	{
 	case LDL_RenderMode::Software:
-		impl = new RenderImplSoftware(result, &renderContext, window);
+		impl = new LDL_RenderSoftware(result, &renderContext, window);
 		break;
 
 #if defined(LDL_WINDOWS_NT) || defined(LDL_WINDOWS_9X) || defined(__unix__)
 	case LDL_RenderMode::OpenGL1:
 	{
-		OpenGLLoader loader(result);
+		LDL_OpenGLLoader loader(result);
 		loader.Init(1, 1);
 
-		impl = new RenderImplOpenGL1(result, &renderContext, window);
+		impl = new LDL_RenderOpenGL1(result, &renderContext, window);
 		break;
 	}
 	case LDL_RenderMode::OpenGL3:
 	{
-		OpenGLLoader loader(result);
+		LDL_OpenGLLoader loader(result);
 		loader.Init(3, 3);
 
-		impl = new RenderImplOpenGL3(result, &renderContext, window);
+		impl = new LDL_RenderOpenGL3(result, &renderContext, window);
 		break;
 	}
 #endif

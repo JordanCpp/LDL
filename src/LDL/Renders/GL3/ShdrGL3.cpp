@@ -5,15 +5,15 @@
 
 #include <LDL/Renders/GL3/ShdrGL3.hpp>
 
-ShaderLoader::ShaderLoader()
+LDL_ShaderLoaderOpenGL3::LDL_ShaderLoaderOpenGL3()
 {
 }
 
-ShaderLoader::~ShaderLoader()
+LDL_ShaderLoaderOpenGL3::~LDL_ShaderLoaderOpenGL3()
 {
 }
 
-bool ShaderLoader::Load(const char* path)
+bool LDL_ShaderLoaderOpenGL3::Load(const char* path)
 {
 	LDL_UNUSED(path);
 
@@ -39,7 +39,7 @@ bool ShaderLoader::Load(const char* path)
 	return false;
 }
 
-const char* ShaderLoader::LDL_Result()
+const char* LDL_ShaderLoaderOpenGL3::LDL_Result()
 {
 	return NULL;
 }

@@ -6,14 +6,14 @@
 #include <LDL/Renders/GL1/TexGL1.hpp>
 #include <LDL/Renders/GL1/BatchGL1.hpp>
 
-LDL_SpriteBatcherImplOpenGL1::LDL_SpriteBatcherImplOpenGL1(LDL_ITexture* texture, size_t count) :
+LDL_SpriteBatcherOpenGL1::LDL_SpriteBatcherOpenGL1(LDL_ITexture* texture, size_t count) :
 	_texture(((LDL_TextureOpenGL1*)texture)->Id()),
 	_textureSize(texture->Quad().x)
 {
 	_quads.reserve(count);
 }
 
-void LDL_SpriteBatcherImplOpenGL1::Draw(const LDL_Vec2u& dstPos, const LDL_Vec2u& dstSize, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize)
+void LDL_SpriteBatcherOpenGL1::Draw(const LDL_Vec2u& dstPos, const LDL_Vec2u& dstSize, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize)
 {
 	Quad quad;
 
@@ -22,22 +22,22 @@ void LDL_SpriteBatcherImplOpenGL1::Draw(const LDL_Vec2u& dstPos, const LDL_Vec2u
 	_quads.push_back(quad);
 }
 
-void LDL_SpriteBatcherImplOpenGL1::Clear()
+void LDL_SpriteBatcherOpenGL1::Clear()
 {
 	_quads.clear();
 }
 
-size_t LDL_SpriteBatcherImplOpenGL1::TextureId()
+size_t LDL_SpriteBatcherOpenGL1::TextureId()
 {
 	return _texture;
 }
 
-size_t LDL_SpriteBatcherImplOpenGL1::Count()
+size_t LDL_SpriteBatcherOpenGL1::Count()
 {
 	return _quads.size();
 }
 
-Quad* LDL_SpriteBatcherImplOpenGL1::Content()
+Quad* LDL_SpriteBatcherOpenGL1::Content()
 {
 	return &_quads[0];
 }

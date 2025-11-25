@@ -3,17 +3,17 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_OpenGL3_ShaderLoader_hpp
-#define LDL_Graphics_OpenGL3_ShaderLoader_hpp
+#ifndef LDL_Renders_GL3_ShdrGL3_hpp
+#define LDL_Renders_GL3_ShdrGL3_hpp
 
 #include <LDL/Config.hpp>
 #include <LDL/Types.hpp>
 
-class ShaderLoader
+class LDL_ShaderLoaderOpenGL3
 {
 public:
-	ShaderLoader();
-	~ShaderLoader();
+	LDL_ShaderLoaderOpenGL3();
+	~LDL_ShaderLoaderOpenGL3();
 	bool Load(const char* path);
 	const char* LDL_Result();
 private:

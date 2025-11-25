@@ -3,12 +3,12 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_OpenGL1_RenderBuffer_hpp
-#define LDL_Graphics_OpenGL1_RenderBuffer_hpp
+#ifndef LDL_Renders_GL1_BufGL1_hpp
+#define LDL_Renders_GL1_BufGL1_hpp
 
 #include <LDL/Vec2.hpp>
-#include <LDL/PVector.hpp>
 #include <LDL/Color.hpp>
+#include <LDL/PVector.hpp>
 #include <LDL/Texture.hpp>
 #include <LDL/Renders/GL1/BatchGL1.hpp>
 
@@ -41,7 +41,7 @@ public:
 	uint16_t lastY;
 };
 
-class FillElement
+class LDL_FillElement
 {
 public:
 	uint8_t  type;
@@ -54,7 +54,7 @@ public:
 	uint16_t sizeY;
 };
 
-class ClearElement
+class LDL_ClearElement
 {
 public:
 	uint8_t type;
@@ -63,7 +63,7 @@ public:
 	uint8_t b;
 };
 
-class TextureBatcherElement
+class LDL_TextureBatcherElement
 {
 public:
 	uint8_t     type;
@@ -72,7 +72,7 @@ public:
 	Quad* quads;
 };
 
-class RenderElement
+class LDL_RenderElement
 {
 public:
 	enum
@@ -90,16 +90,16 @@ public:
 	{
 		LDL_TextureElement        textureElement;
 		LDL_LineElement           lineElement;
-		FillElement           fillElement;
-		ClearElement          clearElement;
-		TextureBatcherElement textureBatcherElement;
+		LDL_FillElement           fillElement;
+		LDL_ClearElement          clearElement;
+		LDL_TextureBatcherElement textureBatcherElement;
 	};
 };
 
-class RenderBuffer
+class LDL_RenderBuffer
 {
 public:
-	RenderBuffer();
+	LDL_RenderBuffer();
 	void Reset();
 	void Texture(const LDL_Vec2u& dstPos, const LDL_Vec2u& dstSize, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize, size_t textureId, size_t textureQuad);
 	void Line(const LDL_Vec2u& first, const LDL_Vec2u& last, const LDL_Color& color);
@@ -109,11 +109,11 @@ public:
 	void Draw();
 	void Draw(LDL_TextureElement& src);
 	void Draw(LDL_LineElement& src);
-	void Draw(FillElement& src);
-	void Draw(ClearElement& src);
-	void Draw(TextureBatcherElement& src);
+	void Draw(LDL_FillElement& src);
+	void Draw(LDL_ClearElement& src);
+	void Draw(LDL_TextureBatcherElement& src);
 private:
-	LDL_PodVector<RenderElement> _elements;
+	LDL_PodVector<LDL_RenderElement> _elements;
 };
 
 #endif    

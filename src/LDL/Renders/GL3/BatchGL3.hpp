@@ -3,18 +3,18 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_OpenGL3_TextureBatcherImpl_hpp
-#define LDL_Graphics_OpenGL3_TextureBatcherImpl_hpp
+#ifndef LDL_Renders_GL3_BatchGL3_hpp
+#define LDL_Renders_GL3_BatchGL3_hpp
 
 #include <LDL/PVector.hpp>
 #include <LDL/Texture.hpp>
-#include <LDL/Renders/GL/Util.hpp>
 #include <LDL/Batcher.hpp>
+#include <LDL/Renders/GL/Util.hpp>
 
-class SpriteBatcherImplOpenGL3 :public LDL_ISpriteBatcher
+class LDL_SpriteBatcherOpenGL3 :public LDL_ISpriteBatcher
 {
 public:
-	SpriteBatcherImplOpenGL3(LDL_ITexture* texture, size_t count);
+	LDL_SpriteBatcherOpenGL3(LDL_ITexture* texture, size_t count);
 	void Draw(const LDL_Vec2u& dstPos, const LDL_Vec2u& dstSize, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize);
 	void Clear();
 	size_t TextureId();

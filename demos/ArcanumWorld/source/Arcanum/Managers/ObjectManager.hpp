@@ -7,8 +7,8 @@
 #define Arcanum_Managers_ObjectManager_hpp
 
 #include <Arcanum/Objects/Tile.hpp>
-#include <Arcanum/Allocators/ObjectAllocator.hpp>
 #include <Arcanum/Managers/SpriteManager.hpp>
+#include <Arcanum/Allocators/ObjectAllocator.hpp>
 
 namespace Arcanum
 {

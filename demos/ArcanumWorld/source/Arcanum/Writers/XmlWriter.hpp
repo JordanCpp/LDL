@@ -24,7 +24,7 @@ namespace Arcanum
 		void Node(const std::string& name, intmax_t data);
 	private:
 		std::ofstream _file;
-		LDL_Convert  _convert;
+		LDL_Convert   _convert;
 	};
 }
 

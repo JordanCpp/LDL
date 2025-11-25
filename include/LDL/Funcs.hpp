@@ -6,7 +6,6 @@
 #ifndef LDL_Funcs_hpp
 #define LDL_Funcs_hpp
 
-#include <math.h>
 #include <LDL/Mat4.hpp>
 #include <LDL/Vec3.hpp>
 
@@ -29,7 +28,7 @@ LDL_Mat4<T> LDL_Rotate(LDL_Mat4<T>& m, T angle, const LDL_Vec3<T>& axis)
 	T y = axis.y;
 	T z = axis.z;
 
-	T len = (T)sqrt(x * x + y * y + z * z);
+	T len = (T)LDL_sqrt(x * x + y * y + z * z);
 
 	T s, c, t,
 		a00, a01, a02, a03,
@@ -48,8 +47,8 @@ LDL_Mat4<T> LDL_Rotate(LDL_Mat4<T>& m, T angle, const LDL_Vec3<T>& axis)
 		z *= len;
 	}
 
-	s = (T)sin(angle);
-	c = (T)cos(angle);
+	s = (T)LDL_sin(angle);
+	c = (T)LDL_cos(angle);
 	t = 1 - c;
 
 	a00 = m._values[0]; a01 = m._values[1]; a02 = m._values[2];  a03 = m._values[3];
@@ -110,7 +109,7 @@ LDL_Mat4<T> LDL_Scale(LDL_Mat4<T>& m, const LDL_Vec3<T>& s)
 template<class T>
 LDL_Mat4<T> LDL_Perspective(T fovy, T aspect, T zNear, T zFar)
 {
-	T f = 1 / (T)tan(fovy * (3.14159265358979323846 / 360.0f));
+	T f = 1 / (T)LDL_tan(fovy * (3.14159265358979323846 / 360.0f));
 
 	LDL_Mat4<T> result;
 
@@ -176,7 +175,7 @@ LDL_Mat4<T> LDL_LookAt(const LDL_Vec3<T>& eye, const LDL_Vec3<T>& center, const 
 	z2 = eyez - centerz;
 
 	// normalize (no check needed for 0 because of early return)
-	len = 1 / (T)sqrt(z0 * z0 + z1 * z1 + z2 * z2);
+	len = 1 / (T)LDL_sqrt(z0 * z0 + z1 * z1 + z2 * z2);
 	z0 *= len;
 	z1 *= len;
 	z2 *= len;
@@ -185,7 +184,7 @@ LDL_Mat4<T> LDL_LookAt(const LDL_Vec3<T>& eye, const LDL_Vec3<T>& center, const 
 	x0 = upy * z2 - upz * z1;
 	x1 = upz * z0 - upx * z2;
 	x2 = upx * z1 - upy * z0;
-	len = (T)sqrt(x0 * x0 + x1 * x1 + x2 * x2);
+	len = (T)LDL_sqrt(x0 * x0 + x1 * x1 + x2 * x2);
 	if (!len) {
 		x0 = 0;
 		x1 = 0;
@@ -203,7 +202,7 @@ LDL_Mat4<T> LDL_LookAt(const LDL_Vec3<T>& eye, const LDL_Vec3<T>& center, const 
 	y1 = z2 * x0 - z0 * x2;
 	y2 = z0 * x1 - z1 * x0;
 
-	len = (T)sqrt(y0 * y0 + y1 * y1 + y2 * y2);
+	len = (T)LDL_sqrt(y0 * y0 + y1 * y1 + y2 * y2);
 	if (!len) {
 		y0 = 0;
 		y1 = 0;
@@ -270,7 +269,7 @@ LDL_Mat4<T> LDL_Frustum(T left, T right, T bottom, T top, T zNear, T zFar)
 template<class T>
 LDL_Vec3<T> LDL_Normalize(const LDL_Vec3<T>& v)
 {
-	T length = sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
+	T length = LDL_sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
 
 	LDL_Vec3<T> result;
 

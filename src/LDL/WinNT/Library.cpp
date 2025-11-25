@@ -7,39 +7,54 @@
 #include <LDL/Format.hpp>
 #include <LDL/WinNT/Library.hpp>
 
-LDL_Library::LDL_Library(const char* path) :
-    _module(NULL)
+bool LDL_Library::Open(const char* path)
 {
     _module = LoadLibrary(path);
 
     if (_module == NULL)
     {
         LDL_Formatter formatter;
-        LDL_ASSERT_DETAIL(_module != NULL, formatter.Format("LoadLibrary failed: %s", path));
+        _result.Message(formatter.Format("LoadLibrary failed: %s", path));
+
+        return false;
     }
+
+    return true;
+}
+
+LDL_Library::LDL_Library(LDL_Result& result) :
+    _module(NULL),
+    _result(result)
+{
 }
 
 LDL_Library::~LDL_Library()
 {
-    LDL_ASSERT(_module != NULL);
-
-    FreeLibrary(_module);
+    if (_module != NULL)
+    {
+        FreeLibrary(_module);
+    }
 }
 
 LDL_VoidFuncPtr LDL_Library::Function(const char* name)
 {
-    LDL_VoidFuncPtr result = (LDL_VoidFuncPtr)GetProcAddress(_module, name);
+    LDL_VoidFuncPtr result = NULL;
 
-    if (result == NULL)
+    if (_module)
     {
-        LDL_Formatter formatter;
-        LDL_ASSERT_DETAIL(_module != NULL, formatter.Format("GetProcAddress failed: %s", name));
+        result = (LDL_VoidFuncPtr)GetProcAddress(_module, name);
+
+        if (result == NULL)
+        {
+            LDL_Formatter formatter;
+            _result.Message(formatter.Format("GetProcAddress failed: %s", name));
+        }
     }
 
     return result;
 }
 
-LDL_ILibrary* LDL_CreateLibrary(const char* name)
+LDL_ILibrary* LDL_CreateLibrary(LDL_Result& result)
 {
-    return new LDL_Library(name);
+    return new LDL_Library(result);
 }

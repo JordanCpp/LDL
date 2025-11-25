@@ -3,10 +3,36 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+#include <math.h>
 #include <stdlib.h>
 #include <string.h>
 #include <LDL/StdFuncs.hpp>
 #include <LDL/MemMngr.hpp>
+
+int LDL_abs(int x)
+{
+	return abs(x);
+}
+
+double LDL_sin(double x)
+{
+	return sin(x);
+}
+
+double LDL_cos(double x)
+{
+	return cos(x);
+}
+
+double LDL_sqrt(double x)
+{
+	return sqrt(x);
+}
+
+double LDL_tan(double x)
+{
+	return tan(x);
+}
 
 void* LDL_malloc(size_t bytes)
 {
@@ -16,11 +42,6 @@ void* LDL_malloc(size_t bytes)
 void LDL_free(void* ptr)
 {
 	LDL_MemoryManager::Instance().GetFree()(ptr);
-}
-
-int LDL_abs(int x)
-{
-	return abs(x);
 }
 
 size_t LDL_strlcpy(char* dst, const char* src, size_t size)

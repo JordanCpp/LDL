@@ -9,20 +9,20 @@ using namespace Arcanum;
 
 size_t Msg::Number()
 {
-	return _Number;
+	return _number;
 }
 
 void Msg::Number(size_t value)
 {
-	_Number = value;
+	_number = value;
 }
 
 const std::string& Msg::Content()
 {
-	return _Content;
+	return _content;
 }
 
 void Msg::Content(const std::string& value)
 {
-	_Content = value;
+	_content = value;
 }

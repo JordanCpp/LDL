@@ -5,10 +5,12 @@
 
 #include <LDL/WinNT/GLFuncs.hpp>
 
-OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path) :
+OpenGLFunctionsImpl::OpenGLFunctionsImpl(LDL_Result& result, const char* path) :
     _library(NULL)
 {
-    _library = LDL_CreateLibrary(path);
+    _library = LDL_CreateLibrary(result);
+
+    _library->Open(path);
 }
 
 LDL_VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)

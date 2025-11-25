@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_OpenGL1_TexGL1_hpp
-#define LDL_Graphics_OpenGL1_TexGL1_hpp
+#ifndef LDL_Renders_GL1_TexGL1_hpp
+#define LDL_Renders_GL1_TexGL1_hpp
 
 #include <LDL/Texture.hpp>
 #include <LDL/Context.hpp>
@@ -25,7 +25,7 @@ public:
 	size_t Id();
 private:
 	LDL_RenderContext* _context;
-	size_t         _id;
+	size_t             _id;
 	LDL_Vec2u          _size;
 	LDL_Vec2u          _quad;
 };

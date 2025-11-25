@@ -3,10 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_OpenGL1_RenderImpl_hpp
-#define LDL_Graphics_OpenGL1_RenderImpl_hpp
+#ifndef LDL_Renders_GL1_RndrGL1_hpp
+#define LDL_Renders_GL1_RndrGL1_hpp
 
-#include <LDL/Mat4.hpp>
+#include <LDL/Mat4f.hpp>
 #include <LDL/Window.hpp>
 #include <LDL/Texture.hpp>
 #include <LDL/Batcher.hpp>
@@ -16,10 +16,10 @@
 #include <LDL/Renders/GL1/TexGL1.hpp>
 #include <LDL/Renders/GL1/BufGL1.hpp>
 
-class RenderImplOpenGL1 : public LDL_IRender
+class LDL_RenderOpenGL1 : public LDL_IRender
 {
 public:
-	RenderImplOpenGL1(LDL_Result& result, LDL_RenderContext* renderContextImpl, LDL_IWindow* window);
+	LDL_RenderOpenGL1(LDL_Result& result, LDL_RenderContext* renderContextImpl, LDL_IWindow* window);
 	void Buffer(uint8_t* dst);
 	void Begin();
 	void End();
@@ -40,15 +40,15 @@ public:
 	void Draw(LDL_ITexture* image, const LDL_Vec2u& dstPos, const LDL_Vec2u& dstSize, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize);
 	void Draw(LDL_ISpriteBatcher* textureBatcher);
 private:
-	LDL_Result& _result;
-	LDL_IWindow* _window;
-	ScreenOpenGL1      _screen;
-	LDL_Color         _color;
-	LDL_RenderContext* _context;
-	RenderBuffer       _renderBuffer;
+	LDL_Result&         _result;
+	LDL_IWindow*        _window;
+	LDL_ScreenOpenGL1   _screen;
+	LDL_Color           _color;
+	LDL_RenderContext*  _context;
+	LDL_RenderBuffer    _renderBuffer;
 public:
-	Mat4f              _projection;
-	Mat4f              _modelView;
+	LDL_Mat4f           _projection;
+	LDL_Mat4f           _modelView;
 };
 
 #endif    

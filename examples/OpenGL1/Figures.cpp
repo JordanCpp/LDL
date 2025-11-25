@@ -39,9 +39,9 @@ int main()
 
 	LDL_Result result;
 	LDL_RenderContext renderContext(LDL_RenderMode::OpenGL1);
-	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, 0);
+	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, LDL_WindowMode::Fixed);
 
-	OpenGLLoader loader(result);
+	LDL_OpenGLLoader loader(result);
 	loader.Init(1, 1);
 
 	LDL_Event report;

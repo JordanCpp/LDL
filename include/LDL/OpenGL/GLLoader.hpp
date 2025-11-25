@@ -7,14 +7,13 @@
 #define LDL_GLLoader_hpp
 
 #include <LDL/Types.hpp>
-#include <LDL/Result.hpp>
 #include <LDL/OpenGL/GLFuncs.hpp>
 
-class LDL_LIBRARY OpenGLLoader
+class LDL_LIBRARY LDL_OpenGLLoader
 {
 public:
-	OpenGLLoader(LDL_Result& result);
-	~OpenGLLoader();
+	LDL_OpenGLLoader(LDL_Result& result);
+	~LDL_OpenGLLoader();
 	bool Init(size_t major, size_t minor);
 	bool Equal(size_t major, size_t minor);
 	size_t Major();
@@ -40,9 +39,9 @@ public:
 	void Init_4_6();
 private:
 	LDL_Result&         _result;
-	OpenGLFunctions _functions;
-	size_t          _major;
-	size_t          _minor;
+	LDL_OpenGLFunctions _functions;
+	size_t              _major;
+	size_t              _minor;
 };
 
 #endif   

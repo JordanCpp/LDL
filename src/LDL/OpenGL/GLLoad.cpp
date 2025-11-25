@@ -7,18 +7,19 @@
 #include <LDL/OpenGL/GL4_6.hpp>
 #include <LDL/OpenGL/GLLoader.hpp>
 
-OpenGLLoader::OpenGLLoader(LDL_Result& result) :
+LDL_OpenGLLoader::LDL_OpenGLLoader(LDL_Result& result) :
 	_result(result),
+	_functions(_result),
 	_major(0),
 	_minor(0)
 {
 }
 
-OpenGLLoader::~OpenGLLoader()
+LDL_OpenGLLoader::~LDL_OpenGLLoader()
 {
 }
 
-bool OpenGLLoader::Init(size_t major, size_t minor)
+bool LDL_OpenGLLoader::Init(size_t major, size_t minor)
 {
 	_major = major;
 	_minor = minor;
@@ -280,22 +281,22 @@ bool OpenGLLoader::Init(size_t major, size_t minor)
 	return true;
 }
 
-bool OpenGLLoader::Equal(size_t major, size_t minor)
+bool LDL_OpenGLLoader::Equal(size_t major, size_t minor)
 {
 	return Major() == major && Minor() == minor;
 }
 
-size_t OpenGLLoader::Major()
+size_t LDL_OpenGLLoader::Major()
 {
 	return _major;
 }
 
-size_t OpenGLLoader::Minor()
+size_t LDL_OpenGLLoader::Minor()
 {
 	return _minor;
 }
 
-void OpenGLLoader::Init_1_0()
+void LDL_OpenGLLoader::Init_1_0()
 {
 	glCullFace = (PFNGLCULLFACEPROC)_functions.Function("glCullFace");
 	glFrontFace = (PFNGLFRONTFACEPROC)_functions.Function("glFrontFace");
@@ -605,7 +606,7 @@ void OpenGLLoader::Init_1_0()
 	glTranslatef = (PFNGLTRANSLATEFPROC)_functions.Function("glTranslatef");
 }
 
-void OpenGLLoader::Init_1_1()
+void LDL_OpenGLLoader::Init_1_1()
 {
 	glDrawArrays = (PFNGLDRAWARRAYSPROC)_functions.Function("glDrawArrays");
 	glDrawElements = (PFNGLDRAWELEMENTSPROC)_functions.Function("glDrawElements");
@@ -639,7 +640,7 @@ void OpenGLLoader::Init_1_1()
 	glPushClientAttrib = (PFNGLPUSHCLIENTATTRIBPROC)_functions.Function("glPushClientAttrib");
 }
 
-void OpenGLLoader::Init_1_2()
+void LDL_OpenGLLoader::Init_1_2()
 {
 	glDrawRangeElements = (PFNGLDRAWRANGEELEMENTSPROC)_functions.Function("glDrawRangeElements");
 	glTexImage3D = (PFNGLTEXIMAGE3DPROC)_functions.Function("glTexImage3D");
@@ -647,7 +648,7 @@ void OpenGLLoader::Init_1_2()
 	glCopyTexSubImage3D = (PFNGLCOPYTEXSUBIMAGE3DPROC)_functions.Function("glCopyTexSubImage3D");
 }
 
-void OpenGLLoader::Init_1_3()
+void LDL_OpenGLLoader::Init_1_3()
 {
 	glActiveTexture = (PFNGLACTIVETEXTUREPROC)_functions.Function("glActiveTexture");
 	glSampleCoverage = (PFNGLSAMPLECOVERAGEPROC)_functions.Function("glSampleCoverage");
@@ -697,7 +698,7 @@ void OpenGLLoader::Init_1_3()
 	glMultTransposeMatrixd = (PFNGLMULTTRANSPOSEMATRIXDPROC)_functions.Function("glMultTransposeMatrixd");
 }
 
-void OpenGLLoader::Init_1_4()
+void LDL_OpenGLLoader::Init_1_4()
 {
 	glBlendFuncSeparate = (PFNGLBLENDFUNCSEPARATEPROC)_functions.Function("glBlendFuncSeparate");
 	glMultiDrawArrays = (PFNGLMULTIDRAWARRAYSPROC)_functions.Function("glMultiDrawArrays");
@@ -748,7 +749,7 @@ void OpenGLLoader::Init_1_4()
 	glBlendEquation = (PFNGLBLENDEQUATIONPROC)_functions.Function("glBlendEquation");
 }
 
-void OpenGLLoader::Init_1_5()
+void LDL_OpenGLLoader::Init_1_5()
 {
 	glGenQueries = (PFNGLGENQUERIESPROC)_functions.Function("glGenQueries");
 	glDeleteQueries = (PFNGLDELETEQUERIESPROC)_functions.Function("glDeleteQueries");
@@ -771,7 +772,7 @@ void OpenGLLoader::Init_1_5()
 	glGetBufferPointerv = (PFNGLGETBUFFERPOINTERVPROC)_functions.Function("glGetBufferPointerv");
 }
 
-void OpenGLLoader::Init_2_0()
+void LDL_OpenGLLoader::Init_2_0()
 {
 	glBlendEquationSeparate = (PFNGLBLENDEQUATIONSEPARATEPROC)_functions.Function("glBlendEquationSeparate");
 	glDrawBuffers = (PFNGLDRAWBUFFERSPROC)_functions.Function("glDrawBuffers");
@@ -868,7 +869,7 @@ void OpenGLLoader::Init_2_0()
 	glVertexAttribPointer = (PFNGLVERTEXATTRIBPOINTERPROC)_functions.Function("glVertexAttribPointer");
 }
 
-void OpenGLLoader::Init_2_1()
+void LDL_OpenGLLoader::Init_2_1()
 {
 	glUniformMatrix2x3fv = (PFNGLUNIFORMMATRIX2X3FVPROC)_functions.Function("glUniformMatrix2x3fv");
 	glUniformMatrix3x2fv = (PFNGLUNIFORMMATRIX3X2FVPROC)_functions.Function("glUniformMatrix3x2fv");
@@ -878,7 +879,7 @@ void OpenGLLoader::Init_2_1()
 	glUniformMatrix4x3fv = (PFNGLUNIFORMMATRIX4X3FVPROC)_functions.Function("glUniformMatrix4x3fv");
 }
 
-void OpenGLLoader::Init_3_0()
+void LDL_OpenGLLoader::Init_3_0()
 {
 	glColorMaski = (PFNGLCOLORMASKIPROC)_functions.Function("glColorMaski");
 	glGetBooleani_v = (PFNGLGETBOOLEANI_VPROC)_functions.Function("glGetBooleani_v");
@@ -966,7 +967,7 @@ void OpenGLLoader::Init_3_0()
 	glIsVertexArray = (PFNGLISVERTEXARRAYPROC)_functions.Function("glIsVertexArray");
 }
 
-void OpenGLLoader::Init_3_1()
+void LDL_OpenGLLoader::Init_3_1()
 {
 	glDrawArraysInstanced = (PFNGLDRAWARRAYSINSTANCEDPROC)_functions.Function("glDrawArraysInstanced");
 	glDrawElementsInstanced = (PFNGLDRAWELEMENTSINSTANCEDPROC)_functions.Function("glDrawElementsInstanced");
@@ -982,7 +983,7 @@ void OpenGLLoader::Init_3_1()
 	glUniformBlockBinding = (PFNGLUNIFORMBLOCKBINDINGPROC)_functions.Function("glUniformBlockBinding");
 }
 
-void OpenGLLoader::Init_3_2()
+void LDL_OpenGLLoader::Init_3_2()
 {
 	glDrawElementsBaseVertex = (PFNGLDRAWELEMENTSBASEVERTEXPROC)_functions.Function("glDrawElementsBaseVertex");
 	glDrawRangeElementsBaseVertex = (PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC)_functions.Function("glDrawRangeElementsBaseVertex");
@@ -1005,7 +1006,7 @@ void OpenGLLoader::Init_3_2()
 	glSampleMaski = (PFNGLSAMPLEMASKIPROC)_functions.Function("glSampleMaski");
 }
 
-void OpenGLLoader::Init_3_3()
+void LDL_OpenGLLoader::Init_3_3()
 {
 	glBindFragDataLocationIndexed = (PFNGLBINDFRAGDATALOCATIONINDEXEDPROC)_functions.Function("glBindFragDataLocationIndexed");
 	glGetFragDataIndex = (PFNGLGETFRAGDATAINDEXPROC)_functions.Function("glGetFragDataIndex");
@@ -1067,7 +1068,7 @@ void OpenGLLoader::Init_3_3()
 	glSecondaryColorP3uiv = (PFNGLSECONDARYCOLORP3UIVPROC)_functions.Function("glSecondaryColorP3uiv");
 }
 
-void OpenGLLoader::Init_4_0()
+void LDL_OpenGLLoader::Init_4_0()
 {
 	glMinSampleShading = (PFNGLMINSAMPLESHADINGPROC)_functions.Function("glMinSampleShading");
 	glBlendEquationi = (PFNGLBLENDEQUATIONIPROC)_functions.Function("glBlendEquationi");
@@ -1117,7 +1118,7 @@ void OpenGLLoader::Init_4_0()
 	glGetQueryIndexediv = (PFNGLGETQUERYINDEXEDIVPROC)_functions.Function("glGetQueryIndexediv");
 }
 
-void OpenGLLoader::Init_4_1()
+void LDL_OpenGLLoader::Init_4_1()
 {
 	glReleaseShaderCompiler = (PFNGLRELEASESHADERCOMPILERPROC)_functions.Function("glReleaseShaderCompiler");
 	glShaderBinary = (PFNGLSHADERBINARYPROC)_functions.Function("glShaderBinary");
@@ -1209,7 +1210,7 @@ void OpenGLLoader::Init_4_1()
 	glGetDoublei_v = (PFNGLGETDOUBLEI_VPROC)_functions.Function("glGetDoublei_v");
 }
 
-void OpenGLLoader::Init_4_2()
+void LDL_OpenGLLoader::Init_4_2()
 {
 	glDrawArraysInstancedBaseInstance = (PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC)_functions.Function("glDrawArraysInstancedBaseInstance");
 	glDrawElementsInstancedBaseInstance = (PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEPROC)_functions.Function("glDrawElementsInstancedBaseInstance");
@@ -1225,7 +1226,7 @@ void OpenGLLoader::Init_4_2()
 	glDrawTransformFeedbackStreamInstanced = (PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC)_functions.Function("glDrawTransformFeedbackStreamInstanced");
 }
 
-void OpenGLLoader::Init_4_3()
+void LDL_OpenGLLoader::Init_4_3()
 {
 	glClearBufferData = (PFNGLCLEARBUFFERDATAPROC)_functions.Function("glClearBufferData");
 	glClearBufferSubData = (PFNGLCLEARBUFFERSUBDATAPROC)_functions.Function("glClearBufferSubData");
@@ -1272,7 +1273,7 @@ void OpenGLLoader::Init_4_3()
 	glGetObjectPtrLabel = (PFNGLGETOBJECTPTRLABELPROC)_functions.Function("glGetObjectPtrLabel");
 }
 
-void OpenGLLoader::Init_4_4()
+void LDL_OpenGLLoader::Init_4_4()
 {
 	glBufferStorage = (PFNGLBUFFERSTORAGEPROC)_functions.Function("glBufferStorage");
 	glClearTexImage = (PFNGLCLEARTEXIMAGEPROC)_functions.Function("glClearTexImage");
@@ -1286,7 +1287,7 @@ void OpenGLLoader::Init_4_4()
 
 }
 
-void OpenGLLoader::Init_4_5()
+void LDL_OpenGLLoader::Init_4_5()
 {
 	glClipControl = (PFNGLCLIPCONTROLPROC)_functions.Function("glClipControl");
 	glCreateTransformFeedbacks = (PFNGLCREATETRANSFORMFEEDBACKSPROC)_functions.Function("glCreateTransformFeedbacks");
@@ -1412,7 +1413,7 @@ void OpenGLLoader::Init_4_5()
 	glTextureBarrier = (PFNGLTEXTUREBARRIERPROC)_functions.Function("glTextureBarrier");
 }
 
-void OpenGLLoader::Init_4_6()
+void LDL_OpenGLLoader::Init_4_6()
 {
 	glSpecializeShader = (PFNGLSPECIALIZESHADERPROC)_functions.Function("glSpecializeShader");
 	glMultiDrawArraysIndirectCount = (PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC)_functions.Function("glMultiDrawArraysIndirectCount");

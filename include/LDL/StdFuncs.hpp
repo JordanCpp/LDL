@@ -10,10 +10,17 @@
 #include <LDL/Types.hpp>
 
 LDL_LIBRARY int LDL_abs(int x);
+LDL_LIBRARY double LDL_sin(double x);
+LDL_LIBRARY double LDL_cos(double x);
+LDL_LIBRARY double LDL_sqrt(double x);
+LDL_LIBRARY double LDL_tan(double x);
+
 LDL_LIBRARY void* LDL_malloc(size_t bytes);
 LDL_LIBRARY void LDL_free(void* ptr);
+
 LDL_LIBRARY size_t LDL_strlcpy(char* dst, const char* src, size_t size);
 LDL_LIBRARY size_t LDL_strlen(const char* src);
+
 LDL_LIBRARY void* LDL_memcpy(void* dst, const void* src, size_t size);
 LDL_LIBRARY void* LDL_memset(void* ptr, int value, size_t num);
 

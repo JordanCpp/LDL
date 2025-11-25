@@ -10,14 +10,14 @@
 
 class OpenGLFunctionsImpl;
 
-class LDL_LIBRARY OpenGLFunctions
+class LDL_LIBRARY LDL_OpenGLFunctions
 {
 public:
-	OpenGLFunctions();
+	LDL_OpenGLFunctions(LDL_Result& result);
+	~LDL_OpenGLFunctions();
 	LDL_VoidFuncPtr Function(const char* name);
-
 private:
-	OpenGLFunctionsImpl* _FunctionsImpl;
+	OpenGLFunctionsImpl* _functionsImpl;
 };
 
 #endif

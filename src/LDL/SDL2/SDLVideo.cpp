@@ -9,9 +9,7 @@
 
 SDL_Window* SDL_CreateWindow(const char* title, int x, int y, int w, int h, Uint32 flags)
 {
-	void* memory = SDL_malloc(sizeof(SDL_Window));
-
-	SDL_Window* result = new(memory) SDL_Window(App().GetResult(), title, x, y, w, h, flags);
+	SDL_Window* result = new SDL_Window(App().GetResult(), title, x, y, w, h, flags);
 
 	App().Append(result);
 
@@ -20,6 +18,5 @@ SDL_Window* SDL_CreateWindow(const char* title, int x, int y, int w, int h, Uint
 
 void SDL_DestroyWindow(SDL_Window* window)
 {
-	window->~SDL_Window();
-	SDL_free(window);
+	delete window;
 }

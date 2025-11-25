@@ -7,7 +7,7 @@
 #define LDL_Shared_APIs_GLUT_glutApplication_hpp
 
 #include <LDL/Window.hpp>
-#include <LDL/GLUT/glutMemory.hpp>
+#include <LDL/GLUT/glutMem.hpp>
 
 #if defined(_WIN32)
     #undef CreateWindow

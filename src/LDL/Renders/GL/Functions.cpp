@@ -13,12 +13,20 @@
     #include <LDL/Linux/GLFuncs.hpp>
 #endif
 
-OpenGLFunctions::OpenGLFunctions() :
-    _FunctionsImpl(new OpenGLFunctionsImpl("opengl32"))
+LDL_OpenGLFunctions::LDL_OpenGLFunctions(LDL_Result& result) :
+    _functionsImpl(new OpenGLFunctionsImpl(result, "opengl32"))
 {
 }
 
-LDL_VoidFuncPtr OpenGLFunctions::Function(const char* name)
+LDL_OpenGLFunctions::~LDL_OpenGLFunctions()
 {
-    return _FunctionsImpl->Function(name);
+    if (_functionsImpl)
+    {
+        delete _functionsImpl;
+    }
+}
+
+LDL_VoidFuncPtr LDL_OpenGLFunctions::Function(const char* name)
+{
+    return _functionsImpl->Function(name);
 }

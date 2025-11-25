@@ -4,17 +4,17 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/New.hpp>
-#include <LDL/StdFuncs.hpp>
-#include <LDL/OpenGL/GLLoader.hpp>
-#include <LDL/GLUT/glutApplication.hpp>
 #include <LDL/Window.hpp>
+#include <LDL/StdFuncs.hpp>
+#include <LDL/GLUT/glutApp.hpp>
+#include <LDL/OpenGL/GLLoader.hpp>
 
 glutApplication::glutApplication() :
 	_window(NULL),
 	_displayFunc(NULL),
 	_reshapeFunc(NULL)
 {
-	OpenGLLoader loader(_result);
+	LDL_OpenGLLoader loader(_result);
 	loader.Init(1, 1);
 }
 

@@ -32,7 +32,7 @@ namespace Arcanum
 	private:
 		size_t       _render;
 		size_t       _fps;
-		LDL_Vec2u   _size;
+		LDL_Vec2u    _size;
 		std::string  _path;
 		std::string  _title;
 		std::string  _datFiles;

@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL2_SDL_Window_hpp
-#define LDL_APIs_SDL2_SDL_Window_hpp
+#ifndef LDL_SDL2_SDLWin_hpp
+#define LDL_SDL2_SDLWin_hpp
 
 #include <LDL/Result.hpp>
 #include <LDL/Window.hpp>
@@ -12,13 +12,15 @@
 
 struct SDL_Window
 {
+public:
 	SDL_Window(LDL_Result& result, const char* title, int x, int y, int w, int h, Uint32 flags);
 	~SDL_Window();
 	LDL_IWindow* GetWindow();
 	LDL_RenderContext& GetRenderContext();
+private:
 	LDL_Result&       _result;
 	LDL_RenderContext _context;
-	LDL_IWindow*   _window;
+	LDL_IWindow*      _window;
 };
 
 #endif

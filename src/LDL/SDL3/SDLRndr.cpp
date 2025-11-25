@@ -3,11 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/SDL3/SDLApp.hpp>
-#include <LDL/SDL3/SDLRndr.hpp>
-#include <LDL/SDL3/SDLTex.hpp>
 #include <LDL/Render.hpp>
-#include <LDL/Texture.hpp>
+#include <LDL/SDL3/SDLApp.hpp>
+#include <LDL/SDL3/SDLTex.hpp>
+#include <LDL/SDL3/SDLRndr.hpp>
 
 SDL_Renderer::SDL_Renderer(SDL_Window* window, const char* name) :
 	_render(LDL_CreateRender(App().GetResult(), window->GetRenderContext(), window->GetWindow())),

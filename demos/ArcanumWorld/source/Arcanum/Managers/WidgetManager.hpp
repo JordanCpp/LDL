@@ -20,7 +20,7 @@ namespace Arcanum
 		Button* GetButton(const LDL_Vec2u& pos, const LDL_Vec2u& size);
 		Form* GetForm();
 	private:
-		LDL_IRender*    _render;
+		LDL_IRender*         _render;
 		std::vector<Widget*> _widgets;
 	};
 }

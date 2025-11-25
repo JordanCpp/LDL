@@ -3,13 +3,11 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL_SDL_Memory_hpp
-#define LDL_APIs_SDL_SDL_Memory_hpp
+#include <stdlib.h>
+#include <LDL/MemMngr.hpp>
+#include <LDL/GLUT/glutMem.hpp>
 
-class SDL_Memory
+glutMemory::glutMemory()
 {
-public:
-	SDL_Memory();
-};
-
-#endif
+	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+}

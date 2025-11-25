@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Graphics_Software_TextureBatcherImpl_hpp
-#define LDL_Graphics_Software_TextureBatcherImpl_hpp
+#ifndef LDL_Renders_Soft_BtchSoft_hpp
+#define LDL_Renders_Soft_BtchSoft_hpp
 
 #include <LDL/Batcher.hpp>
 

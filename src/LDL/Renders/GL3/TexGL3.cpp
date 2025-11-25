@@ -8,7 +8,7 @@
 #include <LDL/Renders/GL/Util.hpp>
 #include <LDL/Renders/GL3/TexGL3.hpp>
 
-TextureImplOpenGL3::TextureImplOpenGL3(LDL_RenderContext* renderContextImpl, size_t pixelFormat, const LDL_Vec2u& size, uint8_t* pixels) :
+LDL_TextureOpenGL3::LDL_TextureOpenGL3(LDL_RenderContext* renderContextImpl, size_t pixelFormat, const LDL_Vec2u& size, uint8_t* pixels) :
 	_context(renderContextImpl),
 	_id(0)
 {
@@ -39,7 +39,7 @@ TextureImplOpenGL3::TextureImplOpenGL3(LDL_RenderContext* renderContextImpl, siz
 	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_size.x, (GLsizei)_size.y, 0, format, GL_UNSIGNED_BYTE, pixels));
 }
 
-TextureImplOpenGL3::TextureImplOpenGL3(LDL_RenderContext* renderContextImpl, size_t pixelFormat, const LDL_Vec2u& size) :
+LDL_TextureOpenGL3::LDL_TextureOpenGL3(LDL_RenderContext* renderContextImpl, size_t pixelFormat, const LDL_Vec2u& size) :
 	_context(renderContextImpl),
 	_id(0)
 {
@@ -47,27 +47,27 @@ TextureImplOpenGL3::TextureImplOpenGL3(LDL_RenderContext* renderContextImpl, siz
 	LDL_UNUSED(pixelFormat);
 }
 
-TextureImplOpenGL3::~TextureImplOpenGL3()
+LDL_TextureOpenGL3::~LDL_TextureOpenGL3()
 {
 	GL_CHECK(glDeleteTextures(1, (GLuint*)&_id));
 }
 
-const LDL_Vec2u& TextureImplOpenGL3::Size()
+const LDL_Vec2u& LDL_TextureOpenGL3::Size()
 {
 	return _size;
 }
 
-const LDL_Vec2u& TextureImplOpenGL3::Quad()
+const LDL_Vec2u& LDL_TextureOpenGL3::Quad()
 {
 	return _quad;
 }
 
-size_t TextureImplOpenGL3::Id()
+size_t LDL_TextureOpenGL3::Id()
 {
 	return _id;
 }
 
-void TextureImplOpenGL3::Copy(const LDL_Vec2u& dstPos, const LDL_Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel)
+void LDL_TextureOpenGL3::Copy(const LDL_Vec2u& dstPos, const LDL_Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel)
 {
 	GLint format = 0;
 
@@ -79,7 +79,7 @@ void TextureImplOpenGL3::Copy(const LDL_Vec2u& dstPos, const LDL_Vec2u& srcSize,
 	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)dstPos.x, (GLint)dstPos.y, (GLsizei)srcSize.x, (GLsizei)srcSize.y, format, GL_UNSIGNED_BYTE, pixels));
 }
 
-void TextureImplOpenGL3::Copy(const LDL_Vec2u& dstPos, LDL_Surface* surface, const LDL_Vec2u& srcSize)
+void LDL_TextureOpenGL3::Copy(const LDL_Vec2u& dstPos, LDL_Surface* surface, const LDL_Vec2u& srcSize)
 {
 	Copy(dstPos, srcSize, surface->Pixels(), surface->BytesPerPixel());
 }

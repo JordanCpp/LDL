@@ -7,7 +7,7 @@
 #include <LDL/Renders/GL/Util.hpp>
 #include <LDL/Renders/GL1/ScrnGL1.hpp>
 
-ScreenOpenGL1::ScreenOpenGL1(const LDL_Vec2u& size) :
+LDL_ScreenOpenGL1::LDL_ScreenOpenGL1(const LDL_Vec2u& size) :
 	_size(size),
 	_screen(0),
 	_maxTextureSize(MaxTextureSize()),
@@ -32,7 +32,7 @@ ScreenOpenGL1::ScreenOpenGL1(const LDL_Vec2u& size) :
 	}
 }
 
-ScreenOpenGL1::~ScreenOpenGL1()
+LDL_ScreenOpenGL1::~LDL_ScreenOpenGL1()
 {
 	if (IsMaxTextureSize(_size, _maxTextureSize))
 	{
@@ -40,7 +40,7 @@ ScreenOpenGL1::~ScreenOpenGL1()
 	}
 }
 
-void ScreenOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& pos, const LDL_Vec2u& size)
+void LDL_ScreenOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& pos, const LDL_Vec2u& size)
 {
 	if (IsMaxTextureSize(_size, _maxTextureSize))
 	{
@@ -52,12 +52,12 @@ void ScreenOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& pos, const LDL_Vec
 	}
 }
 
-void ScreenOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& pos)
+void LDL_ScreenOpenGL1::Draw(LDL_Surface* image, const LDL_Vec2u& pos)
 {
 	Draw(image, pos, image->Size());
 }
 
-void ScreenOpenGL1::DrawTexture(LDL_Surface* image, const LDL_Vec2u& pos, const LDL_Vec2u& size)
+void LDL_ScreenOpenGL1::DrawTexture(LDL_Surface* image, const LDL_Vec2u& pos, const LDL_Vec2u& size)
 {
 	GL_CHECK(glEnable(GL_TEXTURE_2D));
 
@@ -81,7 +81,7 @@ void ScreenOpenGL1::DrawTexture(LDL_Surface* image, const LDL_Vec2u& pos, const 
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }
 
-void ScreenOpenGL1::DrawPixels(LDL_Surface* image, const LDL_Vec2u& pos, const LDL_Vec2u& size)
+void LDL_ScreenOpenGL1::DrawPixels(LDL_Surface* image, const LDL_Vec2u& pos, const LDL_Vec2u& size)
 {
 	LDL_UNUSED(size);
 

@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/GLUT/glutApplication.hpp>
-#include <LDL/GLUT/glutFunctions.hpp>
+#include <LDL/GLUT/glutApp.hpp>
+#include <LDL/GLUT/glutFunc.hpp>
 
 void glutInit(int* argc, char** argv)
 {

@@ -5,7 +5,7 @@
 
 #include <LDL/Renders/GL3/LineGL3.hpp>
 
-LinePainter::LinePainter(ShaderLoader* shaderLoader) :
+LDL_LinePainterOpenGL3::LDL_LinePainterOpenGL3(LDL_ShaderLoaderOpenGL3* shaderLoader) :
     _shaderLoader(shaderLoader)
 {
     _shaderLoader->Load("LDL_Shaders/OpenGL3/LinePainter.vs");
@@ -47,14 +47,14 @@ LinePainter::LinePainter(ShaderLoader* shaderLoader) :
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }
-LinePainter::~LinePainter()
+LDL_LinePainterOpenGL3::~LDL_LinePainterOpenGL3()
 {
     glDeleteVertexArrays(1, &_vertexArraysObject);
     glDeleteBuffers(1, &_vertexBufferObject);
     glDeleteProgram(_shaderProgram);
 }
 
-void LinePainter::Draw(Mat4f proj, Vec3f start, Vec3f end, Vec3f color)
+void LDL_LinePainterOpenGL3::Draw(LDL_Mat4f proj, LDL_Vec3f start, LDL_Vec3f end, LDL_Vec3f color)
 {
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBufferObject);
 

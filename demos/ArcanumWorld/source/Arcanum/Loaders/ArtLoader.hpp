@@ -6,8 +6,8 @@
 #ifndef Arcanum_Loaders_ArtLoader_hpp
 #define Arcanum_Loaders_ArtLoader_hpp
 
-#include <Arcanum/Formats/Art.hpp>
 #include <LDL/Vec2.hpp>
+#include <Arcanum/Formats/Art.hpp>
 #include <Arcanum/Readers/MemoryReader.hpp>
 
 namespace Arcanum
@@ -24,9 +24,9 @@ namespace Arcanum
 		void Frame(size_t index);
 	private:
 		ArtFile              _file;
-		LDL_Vec2u           _size;
-		LDL_Vec2u           _offset;
-		LDL_Vec2u           _delta;
+		LDL_Vec2u            _size;
+		LDL_Vec2u            _offset;
+		LDL_Vec2u            _delta;
 		std::vector<uint8_t> _pixels;
 	};
 }

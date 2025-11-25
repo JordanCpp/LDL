@@ -6,21 +6,21 @@
 #include <LDL/Renders/GL/Util.hpp>
 #include <LDL/Renders/GL1/BufGL1.hpp>
 
-RenderBuffer::RenderBuffer()
+LDL_RenderBuffer::LDL_RenderBuffer()
 {
 	_elements.reserve(1024 * 8);
 }
 
-void RenderBuffer::Reset()
+void LDL_RenderBuffer::Reset()
 {
 	_elements.clear();
 }
 
-void RenderBuffer::Texture(const LDL_Vec2u& dstPos, const LDL_Vec2u& dstSize, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize, size_t textureId, size_t textureQuad)
+void LDL_RenderBuffer::Texture(const LDL_Vec2u& dstPos, const LDL_Vec2u& dstSize, const LDL_Vec2u& srcPos, const LDL_Vec2u& srcSize, size_t textureId, size_t textureQuad)
 {
-	RenderElement element;
+	LDL_RenderElement element;
 
-	element.type                       = RenderElement::IsTexture;
+	element.type                       = LDL_RenderElement::IsTexture;
 	element.textureElement.dstPosX     = (uint16_t)dstPos.x;
 	element.textureElement.dstPosY     = (uint16_t)dstPos.y;
 	element.textureElement.dstSizeX    = (uint16_t)dstSize.x;
@@ -35,11 +35,11 @@ void RenderBuffer::Texture(const LDL_Vec2u& dstPos, const LDL_Vec2u& dstSize, co
 	_elements.push_back(element);
 }
 
-void RenderBuffer::Line(const LDL_Vec2u& first, const LDL_Vec2u& last, const LDL_Color& color)
+void LDL_RenderBuffer::Line(const LDL_Vec2u& first, const LDL_Vec2u& last, const LDL_Color& color)
 {
-	RenderElement element;
+	LDL_RenderElement element;
 
-	element.type               = RenderElement::IsLine;
+	element.type               = LDL_RenderElement::IsLine;
 	element.lineElement.r      = color.r;
 	element.lineElement.g      = color.g;
 	element.lineElement.b      = color.b;
@@ -51,11 +51,11 @@ void RenderBuffer::Line(const LDL_Vec2u& first, const LDL_Vec2u& last, const LDL
 	_elements.push_back(element);
 }
 
-void RenderBuffer::Fill(const LDL_Vec2u& pos, const LDL_Vec2u& size, const LDL_Color& color)
+void LDL_RenderBuffer::Fill(const LDL_Vec2u& pos, const LDL_Vec2u& size, const LDL_Color& color)
 {
-	RenderElement element;
+	LDL_RenderElement element;
 
-	element.type              = RenderElement::IsFill;
+	element.type              = LDL_RenderElement::IsFill;
 	element.fillElement.r     = color.r;
 	element.fillElement.g     = color.g;
 	element.fillElement.b     = color.b;
@@ -67,11 +67,11 @@ void RenderBuffer::Fill(const LDL_Vec2u& pos, const LDL_Vec2u& size, const LDL_C
 	_elements.push_back(element);
 }
 
-void RenderBuffer::TextureBatcher(size_t textureId, size_t count, Quad* quads)
+void LDL_RenderBuffer::TextureBatcher(size_t textureId, size_t count, Quad* quads)
 {
-	RenderElement element;
+	LDL_RenderElement element;
 
-	element.type                          = RenderElement::IsTextureBatcher;
+	element.type                          = LDL_RenderElement::IsTextureBatcher;
 	element.textureBatcherElement.texture = textureId;
 	element.textureBatcherElement.count   = count;
 	element.textureBatcherElement.quads   = quads;
@@ -79,11 +79,11 @@ void RenderBuffer::TextureBatcher(size_t textureId, size_t count, Quad* quads)
 	_elements.push_back(element);
 }
 
-void RenderBuffer::Clear(const LDL_Color& color)
+void LDL_RenderBuffer::Clear(const LDL_Color& color)
 {
-	RenderElement element;
+	LDL_RenderElement element;
 
-	element.type           = RenderElement::IsClear;
+	element.type           = LDL_RenderElement::IsClear;
 	element.clearElement.r = color.r;
 	element.clearElement.g = color.g;
 	element.clearElement.b = color.b;
@@ -91,24 +91,24 @@ void RenderBuffer::Clear(const LDL_Color& color)
 	_elements.push_back(element);
 }
 
-void RenderBuffer::Draw()
+void LDL_RenderBuffer::Draw()
 {
 	for (size_t i = 0; i < _elements.size(); i++)
 	{
-		if (_elements[i].type == RenderElement::IsTexture)
+		if (_elements[i].type == LDL_RenderElement::IsTexture)
 			Draw(_elements[i].textureElement);
-		else if (_elements[i].type == RenderElement::IsLine)
+		else if (_elements[i].type == LDL_RenderElement::IsLine)
 			Draw(_elements[i].lineElement);
-		else if (_elements[i].type == RenderElement::IsFill)
+		else if (_elements[i].type == LDL_RenderElement::IsFill)
 			Draw(_elements[i].fillElement);
-		else if (_elements[i].type == RenderElement::IsClear)
+		else if (_elements[i].type == LDL_RenderElement::IsClear)
 			Draw(_elements[i].clearElement);
-		else if (_elements[i].type == RenderElement::IsTextureBatcher)
+		else if (_elements[i].type == LDL_RenderElement::IsTextureBatcher)
 			Draw(_elements[i].textureBatcherElement);
 	}
 }
 
-void RenderBuffer::Draw(LDL_TextureElement& src)
+void LDL_RenderBuffer::Draw(LDL_TextureElement& src)
 {
 	GL_CHECK(glEnable(GL_TEXTURE_2D));
 	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)src.textureId));
@@ -131,7 +131,7 @@ void RenderBuffer::Draw(LDL_TextureElement& src)
 	GL_CHECK(glDisable(GL_TEXTURE_2D));
 }
 
-void RenderBuffer::Draw(LDL_LineElement& src)
+void LDL_RenderBuffer::Draw(LDL_LineElement& src)
 {
 	GLclampf r;
 	GLclampf g;
@@ -146,7 +146,7 @@ void RenderBuffer::Draw(LDL_LineElement& src)
 	glEnd();
 }
 
-void RenderBuffer::Draw(FillElement& src)
+void LDL_RenderBuffer::Draw(LDL_FillElement& src)
 {
 	GLclampf r;
 	GLclampf g;
@@ -168,7 +168,7 @@ void RenderBuffer::Draw(FillElement& src)
 	glEnd();
 }
 
-void RenderBuffer::Draw(ClearElement& src)
+void LDL_RenderBuffer::Draw(LDL_ClearElement& src)
 {
 	GLclampf r;
 	GLclampf g;
@@ -180,7 +180,7 @@ void RenderBuffer::Draw(ClearElement& src)
 	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
-void RenderBuffer::Draw(TextureBatcherElement& src)
+void LDL_RenderBuffer::Draw(LDL_TextureBatcherElement& src)
 {
 	GL_CHECK(glEnable(GL_TEXTURE_2D));
 	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)src.texture));
