@@ -63,7 +63,7 @@ bool MesReader::Next()
 	return true;
 }
 
-const std::string& MesReader::Result()
+const std::string& MesReader::LDL_Result()
 {
 	return _result;
 }

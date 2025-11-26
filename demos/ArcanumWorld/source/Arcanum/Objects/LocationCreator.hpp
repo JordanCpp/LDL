@@ -15,9 +15,9 @@ namespace Arcanum
 	{
 	public:
 		LocationCreator(LocationData* locationData, ObjectManager* objectManager);
-		void Reset(const LDL::Vec2u& size);
+		void Reset(const LDL_Vec2u& size);
 		void NewTile(size_t index, const std::string& path);
-		Scenery* NewScenery(const LDL::Vec2u& pos, const std::string& path);
+		Scenery* NewScenery(const LDL_Vec2u& pos, const std::string& path);
 	private:
 		LocationData*  _locationData;
 		ObjectManager* _objectManager;

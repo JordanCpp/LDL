@@ -6,9 +6,9 @@
 #ifndef Arcanum_Managers_ScriptManager_hpp
 #define Arcanum_Managers_ScriptManager_hpp
 
-#include <Arcanum/Objects/CritterScript.hpp>
 #include <string>
 #include <vector>
+#include <Arcanum/Objects/CritterScript.hpp>
 
 namespace Arcanum
 {

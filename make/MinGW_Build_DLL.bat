@@ -1,31 +1,16 @@
 
 call "C:\iso\mingw\codeblocks-8.02mingw-setup\MinGW\mingwvars.bat"
 
-g++ -fno-rtti -fno-exceptions -Wall -Wextra -pedantic -O2 -s -static -shared -o LDL_MinGW.dll -DLDL_SHARED_LIBRARY ^
-..\source\LDL\APIs\OpenGL\*.cpp ^
-..\source\LDL\APIs\SDL3\*.cpp ^
-..\source\LDL\Shared\Core\*.cpp ^
-..\source\LDL\Shared\Events\*.cpp ^
-..\source\LDL\Shared\Graphics\*.cpp ^
-..\source\LDL\Shared\Input\*.cpp ^
-..\source\LDL\Shared\Loaders\*.cpp ^
-..\source\LDL\Shared\Math\*.cpp ^
-..\source\LDL\Shared\std\*.cpp ^
-..\source\LDL\Shared\Time\*.cpp ^
-..\source\LDL\Shared\Graphics\Base\*.cpp ^
-..\source\LDL\Shared\Graphics\Creators\*.cpp ^
-..\source\LDL\Shared\Graphics\Renders\Software\*.cpp ^
-..\source\LDL\Shared\Graphics\Renders\OpenGL\*.cpp ^
-..\source\LDL\Shared\Graphics\Renders\OpenGL1\*.cpp ^
-..\source\LDL\Shared\Graphics\Renders\OpenGL3\*.cpp ^
-..\source\LDL\Shared\Graphics\Utils\*.cpp ^
-..\source\LDL\Platforms\Windows\*.cpp ^
-..\source\LDL\Platforms\Windows\Core\*.cpp ^
-..\source\LDL\Platforms\Windows\Graphics\*.cpp ^
-..\source\LDL\Platforms\Windows\Input\*.cpp ^
-..\source\LDL\Platforms\Windows\Time\Ticks.cpp ^
+g++ -fno-rtti -fno-exceptions -Wall -Wextra -pedantic -O2 -s -static -shared -o LDL_MinGW.dll -DLDL_WINDOWS_NT -DLDL_SHARED_LIBRARY ^
+..\src\LDL\OpenGL\*.cpp ^
+..\src\LDL\WinNT\*.cpp ^
+..\src\LDL\*.cpp ^
+..\src\LDL\Renders\Soft\*.cpp ^
+..\src\LDL\Renders\GL\*.cpp ^
+..\src\LDL\Renders\GL1\*.cpp ^
+..\src\LDL\Renders\GL3\*.cpp ^
 -I..\include\ ^
--I..\source\ ^
+-I..\src\ ^
 -lgdi32 ^
 -lopengl32 ^
 -lwinmm ^

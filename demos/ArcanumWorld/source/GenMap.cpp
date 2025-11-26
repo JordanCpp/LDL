@@ -7,10 +7,9 @@
 #include <LDL/LDL.hpp>
 #include <Arcanum/Writers/XmlWriter.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
-void NewScenery(XmlWriter& writer, const Vec2u& pos, const std::string& path)
+void NewScenery(XmlWriter& writer, const LDL_Vec2u& pos, const std::string& path)
 {
 	writer.TagBegin("Scenery");
 	writer.Node("X", pos.x);
@@ -25,7 +24,7 @@ int main()
 
 	writer.Reset("data/maps/Test.xml");
 
-	LDL::Vec2u size(15, 15);
+	LDL_Vec2u size(15, 15);
 
 	writer.TagBegin("Info");
 	writer.Node("Width", size.x);
@@ -46,9 +45,9 @@ int main()
 
 	writer.TagBegin("Sceneries");
 
-	NewScenery(writer, Vec2u(3, 7), "savanna_tree02.ART");
-	NewScenery(writer, Vec2u(6, 5), "engine.ART");
-	NewScenery(writer, Vec2u(0, 0), "ArmorDisplay2.ART");
+	NewScenery(writer, LDL_Vec2u(3, 7), "savanna_tree02.ART");
+	NewScenery(writer, LDL_Vec2u(6, 5), "engine.ART");
+	NewScenery(writer, LDL_Vec2u(0, 0), "ArmorDisplay2.ART");
 
 	writer.TagEnd("Sceneries");
 

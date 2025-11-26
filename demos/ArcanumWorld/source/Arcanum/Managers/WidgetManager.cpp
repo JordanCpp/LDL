@@ -5,10 +5,9 @@
 
 #include <Arcanum/Managers/WidgetManager.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
-WidgetManager::WidgetManager(Render& render) :
+WidgetManager::WidgetManager(LDL_IRender* render) :
 	_render(render)
 {
 }
@@ -21,7 +20,7 @@ WidgetManager::~WidgetManager()
 	}
 }
 
-Button* WidgetManager::GetButton(const Vec2u& pos, const Vec2u& size)
+Button* WidgetManager::GetButton(const LDL_Vec2u& pos, const LDL_Vec2u& size)
 {
 	Button* result = new Button(_render, pos, size);
 
@@ -32,7 +31,7 @@ Button* WidgetManager::GetButton(const Vec2u& pos, const Vec2u& size)
 
 Form* WidgetManager::GetForm()
 {
-	Form* result = new Form(_render, Vec2u(0,0), _render.Size());
+	Form* result = new Form(_render, LDL_Vec2u(0,0), _render->Size());
 
 	_widgets.push_back(result);
 

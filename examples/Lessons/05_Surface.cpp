@@ -7,81 +7,101 @@
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
 
-using namespace LDL;
-
-void ErrorShow(Result& result)
+void ErrorShow(LDL_Result& result)
 {
 	printf("LDL error: %s", result.Message());
 }
 
+LDL_IWindow* window = NULL;
+LDL_IRender* render = NULL;
+
+void CleanUp()
+{
+	if (render != NULL)
+	{
+		delete render;
+	}
+
+	if (window != NULL)
+	{
+		delete window;
+	}
+}
+
 int main()
 {
-	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
-	Result result;
-	RenderContext renderContext;
+	LDL_Result result;
+	LDL_RenderContext renderContext;
 
-	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__);
+	window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, LDL_WindowMode::Fixed);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
+		CleanUp();
 		return -1;
 	}
 
-	Render render(result, renderContext, &window);
+	render = LDL_CreateRender(result, renderContext, window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
+		CleanUp();
 		return -1;
 	}
 
-	Event report;
+	LDL_Event report;
 
-	FpsCounter fpsCounter;
-	Convert convert;
+	LDL_FpsCounter fpsCounter;
+	LDL_Convert convert;
 
-	BmpLoader bmpLoader(result);
+	LDL_BmpLoader bmpLoader(result);
 
 	if (!bmpLoader.Load("data/NeHe.bmp"))
 	{
 		ErrorShow(result);
+		CleanUp();
 		return -1;
 	}
 
-	Surface surface(bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
+	LDL_Surface surface(bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
 
-	while (window.Running() || result.Ok())
+	while (window->Running() || result.Ok())
 	{
 		fpsCounter.Start();
 
-		while (window.GetEvent(report))
+		while (window->GetEvent(report))
 		{
 			if (report.Type == IsQuit)
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 		}
 
-		render.Begin();
+		render->Begin();
 
-		render.SetColor(Color(0, 162, 232));
-		render.Clear();
+		render->SetColor(LDL_Color(0, 162, 232));
+		render->Clear();
 
-		render.Draw(&surface, Vec2u(0, 0));
+		render->Draw(&surface, LDL_Vec2u(0, 0));
 
-		render.End();
+		render->End();
 
 		if (fpsCounter.Calc())
 		{
-			window.Title(convert.ToString(fpsCounter.Fps()));
+			window->Title(convert.ToString(fpsCounter.Fps()));
 		}
 	}
 
 	if (!result.Ok())
 	{
 		ErrorShow(result);
+		CleanUp();
 		return -1;
 	}
+
+	CleanUp();
 
 	return 0;
 }

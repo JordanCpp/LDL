@@ -3,18 +3,20 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_LDL_hpp
-#define LDL_LDL_hpp
+#ifndef LDL_hpp
+#define LDL_hpp
 
-#include <LDL/Time/FpsLimiter.hpp>
-#include <LDL/Graphics/Window.hpp>
-#include <LDL/Graphics/Render.hpp>
-#include <LDL/Time/FpsCounter.hpp>
-#include <LDL/Core/Convert.hpp>
-#include <LDL/Core/Assert.hpp>
-#include <LDL/Core/MemoryManager.hpp>
-#include <LDL/Math/Random.hpp>
-#include <LDL/Loaders/BmpLoader.hpp>
-#include <LDL/Graphics/PixelPainter.hpp>
+#include <LDL/Convert.hpp>
+#include <LDL/Assert.hpp>
+#include <LDL/MemMngr.hpp>
+#include <LDL/Window.hpp>
+#include <LDL/Render.hpp>
+#include <LDL/PixPaint.hpp>
+#include <LDL/Texture.hpp>
+#include <LDL/BmpLoad.hpp>
+#include <LDL/FpsLimit.hpp>
+#include <LDL/FpsCount.hpp>
+#include <LDL/Random.hpp>
+#include <LDL/StrView.hpp>
 
 #endif

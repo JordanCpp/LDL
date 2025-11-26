@@ -5,15 +5,14 @@
 
 #include <Arcanum/Objects/MapObject.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
-const Vec2u& MapObject::Pos()
+const LDL_Vec2u& MapObject::Pos()
 {
 	return _pos;
 }
 
-void MapObject::Pos(const Vec2u& pos)
+void MapObject::Pos(const LDL_Vec2u& pos)
 {
 	_pos = pos;
 }

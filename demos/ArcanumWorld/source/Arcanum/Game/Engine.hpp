@@ -36,20 +36,20 @@ namespace Arcanum
 		void Update();
 		void Run();
 	private:
-		LDL::Result        _result;
+		LDL_Result         _result;
 		CommandLineParser* _commandLineParser;
 		XmlReader          _xmlReader;
 		Settings*          _settings;
-		LDL::RenderContext _renderContext;
+		LDL_RenderContext  _renderContext;
 		PathManager        _pathManager;
 		FileManager        _fileManager;
 		ObjectAllocator    _objectAllocator;
 		std::string        _title;
-		LDL::Window        _window;
-		LDL::Render        _render;
-		LDL::FpsCounter    _fpsCounter;
-		LDL::Convert       _convert;
-		LDL::FpsLimiter    _fpsLimiter;
+		LDL_IWindow*       _window;
+		LDL_IRender*       _render;
+		LDL_FpsCounter     _fpsCounter;
+		LDL_Convert        _convert;
+		LDL_FpsLimiter     _fpsLimiter;
 		ArtLoader          _artLoader;
 		SpriteManager      _spriteManager;
 		ByteReader         _byteReader;

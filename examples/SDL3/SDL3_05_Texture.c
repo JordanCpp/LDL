@@ -4,7 +4,7 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <stdio.h>
-#include <LDL/APIs/SDL3/SDL.h>
+#include <LDL/SDL3/SDL.h>
 
 int main()
 {

@@ -5,7 +5,6 @@
 
 #include <Arcanum/Objects/LocationCreator.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
 LocationCreator::LocationCreator(LocationData* locationData, ObjectManager* objectManager) :
@@ -14,7 +13,7 @@ LocationCreator::LocationCreator(LocationData* locationData, ObjectManager* obje
 {
 }
 
-void LocationCreator::Reset(const Vec2u& size)
+void LocationCreator::Reset(const LDL_Vec2u& size)
 {
 	_locationData->Reset(size);
 }
@@ -24,7 +23,7 @@ void LocationCreator::NewTile(size_t index, const std::string& path)
 	_objectManager->NewTile(_locationData->TileObjects()[index], path);
 }
 
-Scenery* LocationCreator::NewScenery(const Vec2u& pos, const std::string& path)
+Scenery* LocationCreator::NewScenery(const LDL_Vec2u& pos, const std::string& path)
 {
 	Scenery* result = _objectManager->NewScenery(path);
 

@@ -7,75 +7,102 @@
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
 
-using namespace LDL;
-
-void ErrorShow(Result& result)
+void ErrorShow(LDL_Result& result)
 {
 	printf("LDL error: %s", result.Message());
 }
 
-uint32_t CartToIsoX(const Vec2u& pt)
+uint32_t CartToIsoX(const LDL_Vec2u& pt)
 {
 	return pt.x - pt.y;
 }
 
-uint32_t CartToIsoY(const Vec2u& pt)
+uint32_t CartToIsoY(const LDL_Vec2u& pt)
 {
 	return (pt.x + pt.y) / 2;
 }
 
+LDL_IWindow* window = NULL;
+LDL_IRender* render = NULL;
+LDL_ITexture* image = NULL;
+
+void CleanUp()
+{
+	if (image != NULL)
+	{
+		delete image;
+	}
+
+	if (render != NULL)
+	{
+		delete render;
+	}
+
+	if (window != NULL)
+	{
+		delete window;
+	}
+}
+
 int main()
 {
-	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
-	Result result;
-	RenderContext renderContext;
+	LDL_Result result;
+	LDL_RenderContext renderContext;
 
-	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__);
+	window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, LDL_WindowMode::Fixed);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
+		CleanUp();
 		return -1;
 	}
 
-	Render render(result, renderContext, &window);
+	render = LDL_CreateRender(result, renderContext, window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
+		CleanUp();
 		return -1;
 	}
 
-	Event report;
+	LDL_Event report;
 
-	BmpLoader bmpLoader(result);
+	LDL_BmpLoader bmpLoader(result);
 
-	bmpLoader.Load("data/SeasonsTiles.bmp");
+	if (!bmpLoader.Load("data/SeasonsTiles.bmp"))
+	{
+		ErrorShow(result);
+		CleanUp();
+		return -1;
+	}
 
-	Surface surface(bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
+	LDL_Surface surface(bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
 
-	surface.ColorKey(Color(255, 255, 255));
+	surface.ColorKey(LDL_Color(255, 255, 255));
+	
+	image = LDL_CreateTexture(&renderContext,  &surface);
 
-	Texture image(&renderContext,  &surface);
+	LDL_FpsCounter fpsCounter;
+	LDL_Convert    convert;
+	LDL_FpsLimiter fpsLimiter;
 
-	FpsCounter fpsCounter;
-	Convert    convert;
-	FpsLimiter fpsLimiter;
-
-	Vec2u start    = Vec2u(550, 0);
-	Vec2u mapSize  = Vec2u(9, 9);
-	Vec2u tileSize = Vec2u(128, 64);
+	LDL_Vec2u start    = LDL_Vec2u(550, 0);
+	LDL_Vec2u mapSize  = LDL_Vec2u(9, 9);
+	LDL_Vec2u tileSize = LDL_Vec2u(128, 64);
 
 	uint32_t dx   = 0;
 	uint32_t dy   = 0;
 	uint32_t step = tileSize.x / 2;
 
-	Vector<uint32_t> tilesX;
-	Vector<uint32_t> tilesY;
+	LDL_PodVector<uint32_t> tilesX;
+	LDL_PodVector<uint32_t> tilesY;
 
 	tilesX.resize(mapSize.x * mapSize.y);
 	tilesY.resize(mapSize.x * mapSize.y);
 
-	Random random;
+	LDL_Random random;
 
 	for (uint32_t i = 0; i < mapSize.x * mapSize.y; i++)
 	{
@@ -83,15 +110,15 @@ int main()
 		tilesY[i] = random.Range(0, 5);
 	}
 
-	while (window.Running())
+	while (window->Running())
 	{
 		fpsLimiter.Mark();
 
 		fpsCounter.Start();
 
-		while (window.GetEvent(report))
+		while (window->GetEvent(report))
 		{
-			if (report.IsKeyPressed(KeyboardKey::Q))
+			if (report.IsKeyPressed(LDL_KeyboardKey::Q))
 			{
 				for (uint32_t i = 0; i < mapSize.x * mapSize.y; i++)
 				{
@@ -100,36 +127,36 @@ int main()
 				}
 			}
 
-			if (report.IsKeyPressed(KeyboardKey::W))
+			if (report.IsKeyPressed(LDL_KeyboardKey::W))
 			{
 				dy -= step;
 			}
 
-			if (report.IsKeyPressed(KeyboardKey::S))
+			if (report.IsKeyPressed(LDL_KeyboardKey::S))
 			{
 				dy += step;;
 			}
 
-			if (report.IsKeyPressed(KeyboardKey::A))
+			if (report.IsKeyPressed(LDL_KeyboardKey::A))
 			{
 				dx -= step;;
 			}
 
-			if (report.IsKeyPressed(KeyboardKey::D))
+			if (report.IsKeyPressed(LDL_KeyboardKey::D))
 			{
 				dx += step;;
 			}
 
 			if (report.Type == IsQuit)
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 		}
 
-		render.Begin();
+		render->Begin();
 
-		render.SetColor(Color(0, 162, 232));
-		render.Clear();
+		render->SetColor(LDL_Color(0, 162, 232));
+		render->Clear();
 
 		uint32_t j = 0;
 
@@ -140,28 +167,30 @@ int main()
 				uint32_t x = cols * tileSize.x / 2;
 				uint32_t y = rows * tileSize.y;
 
-				uint32_t isoX = CartToIsoX(Vec2u(x, y));
-				uint32_t isoY = CartToIsoY(Vec2u(x, y));
+				uint32_t isoX = CartToIsoX(LDL_Vec2u(x, y));
+				uint32_t isoY = CartToIsoY(LDL_Vec2u(x, y));
 
-				Vec2u pt = Vec2u(isoX, isoY);
+				LDL_Vec2u pt = LDL_Vec2u(isoX, isoY);
 
 				uint32_t tx = tileSize.x * tilesX[j];
 				uint32_t ty = tileSize.y * tilesY[j];
 				j++;
 
-				render.Draw(&image, Vec2u(start.x + pt.x + dx, start.y + pt.y + dy), Vec2u(tx, ty), tileSize);
+				render->Draw(image, LDL_Vec2u(start.x + pt.x + dx, start.y + pt.y + dy), LDL_Vec2u(tx, ty), tileSize);
 			}
 		}
 
-		render.End();
+		render->End();
 
 		fpsLimiter.Throttle();
 
 		if (fpsCounter.Calc())
 		{
-			window.Title(convert.ToString(fpsCounter.Fps()));
+			window->Title(convert.ToString(fpsCounter.Fps()));
 		}
 	}
+
+	CleanUp();
 
 	return 0;
 }

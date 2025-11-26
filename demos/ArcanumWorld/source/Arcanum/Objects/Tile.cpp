@@ -5,7 +5,6 @@
 
 #include <Arcanum/Objects/Tile.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
 Tile::Tile() :
@@ -13,12 +12,12 @@ Tile::Tile() :
 {
 }
 
-const Vec2u& Tile::Pos()
+const LDL_Vec2u& Tile::Pos()
 {
 	return _mapObject.Pos();
 }
 
-void Tile::Pos(const Vec2u& pos)
+void Tile::Pos(const LDL_Vec2u& pos)
 {
 	_mapObject.Pos(pos);
 }

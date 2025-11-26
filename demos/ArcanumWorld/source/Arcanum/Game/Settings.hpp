@@ -7,7 +7,7 @@
 #define Arcanum_Game_Settings_hpp
 
 #include <string>
-#include <LDL/Math/Vec2u.hpp>
+#include <LDL/Vec2u.hpp>
 
 namespace Arcanum
 {
@@ -19,8 +19,8 @@ namespace Arcanum
 		void Path(const std::string& path);
 		const std::string& Title();
 		void Title(const std::string& title);
-		const LDL::Vec2u& Size();
-		void Size(const LDL::Vec2u& size);
+		const LDL_Vec2u& Size();
+		void Size(const LDL_Vec2u& size);
 		size_t Fps();
 		void Fps(size_t fps);
 		size_t Render();
@@ -32,7 +32,7 @@ namespace Arcanum
 	private:
 		size_t       _render;
 		size_t       _fps;
-		LDL::Vec2u   _size;
+		LDL_Vec2u    _size;
 		std::string  _path;
 		std::string  _title;
 		std::string  _datFiles;

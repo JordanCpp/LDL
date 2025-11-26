@@ -6,17 +6,17 @@
 #ifndef Arcanum_Objects_MapObject_hpp
 #define Arcanum_Objects_MapObject_hpp
 
-#include <LDL/Math/Vec2u.hpp>
+#include <LDL/Vec2u.hpp>
 
 namespace Arcanum
 {
 	class MapObject
 	{
 	public:
-		const LDL::Vec2u& Pos();
-		void Pos(const LDL::Vec2u& pos);
+		const LDL_Vec2u& Pos();
+		void Pos(const LDL_Vec2u& pos);
 	private:
-		LDL::Vec2u _pos;
+		LDL_Vec2u _pos;
 	};
 }
 

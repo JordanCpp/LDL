@@ -3,9 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <Arcanum/Readers/XmlReader.hpp>
 #include <stdlib.h>
 #include <iostream>
+#include <Arcanum/Readers/XmlReader.hpp>
 
 using namespace Arcanum;
 

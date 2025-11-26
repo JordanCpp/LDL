@@ -3,11 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+#include <LDL/Enums.hpp>
+#include <LDL/Render.hpp>
 #include <Arcanum/Game/Engine.hpp>
-#include <LDL/Enums/KeyboardKey.hpp>
-#include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
 Engine::Engine(CommandLineParser* commandLineParser, Settings* settings) :
@@ -16,14 +15,14 @@ Engine::Engine(CommandLineParser* commandLineParser, Settings* settings) :
 	_renderContext(settings->Render()),
 	_pathManager(settings->Path()),
 	_fileManager(&_pathManager),
-	_window(_result, _renderContext, Vec2u(0,0), _settings->Size(), _settings->Title().c_str(), WindowMode::Fixed),
-	_render(_result, _renderContext, &_window),
+	_window(LDL_CreateWindow(_result, _renderContext, LDL_Vec2u(0,0), _settings->Size(), _settings->Title().c_str(), LDL_WindowMode::Fixed)),
+	_render(LDL_CreateRender(  _result, _renderContext, _window)),
 	_fpsLimiter(_settings->Fps()),
 	_spriteManager(&_renderContext, &_fileManager, &_artLoader, &_pathManager),
-	_locationPainter(&_render, &_locationData),
+	_locationPainter(_render, &_locationData),
 	_widgetManager(_render),
 	_gameMenu(_render),
-	_camera(Vec2u(400, 100), _render.Size()),
+	_camera(LDL_Vec2u(400, 100), _render->Size()),
 	_objectManager(_objectAllocator, _spriteManager),
 	_locationCreator(&_locationData, &_objectManager),
 	_location(&_locationData, &_locationCreator, &_locationPainter),
@@ -38,7 +37,7 @@ void Engine::ShowFps()
 	if (_fpsCounter.Calc())
 	{
 		_title = _settings->Title() + " Fps: " + _convert.ToString(_fpsCounter.Fps());
-		_window.Title(_title.c_str());
+		_window->Title(_title.c_str());
 	}
 }
 
@@ -52,31 +51,31 @@ void Engine::Update()
 
 void Engine::Run()
 {
-	Event report = { 0 };
+	LDL_Event report = { 0 };
 
-	while (_window.Running())
+	while (_window->Running())
 	{
 		_fpsLimiter.Mark();
 		_fpsCounter.Start();
 
-		while (_window.GetEvent(report))
+		while (_window->GetEvent(report))
 		{
-			if (report.Type == IsQuit || report.IsKeyPressed(KeyboardKey::Escape))
+			if (report.Type == IsQuit || report.IsKeyPressed(LDL_KeyboardKey::Escape))
 			{
-				_window.StopEvent();
+				_window->StopEvent();
 			}
 		}
 
-		_render.Begin();
+		_render->Begin();
 
-		_render.SetColor(Color(0, 0, 0));
-		_render.Clear();
+		_render->SetColor(LDL_Color(0, 0, 0));
+		_render->Clear();
 
 		_location.Draw(_camera.Pos());
 
 		_gameMenu.Draw();
 
-		_render.End();
+		_render->End();
 
 		_camera.Handle(report);
 
@@ -84,6 +83,6 @@ void Engine::Run()
 
 		ShowFps();
 
-		_window.PollEvents();
+		_window->PollEvents();
 	}
 }

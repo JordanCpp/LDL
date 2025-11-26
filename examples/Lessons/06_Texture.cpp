@@ -7,70 +7,100 @@
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
 
-using namespace LDL;
-
-void ErrorShow(Result& result)
+void ErrorShow(LDL_Result& result)
 {
 	printf("LDL error: %s", result.Message());
 }
 
+LDL_IWindow* window = NULL;
+LDL_IRender* render = NULL;
+LDL_ITexture* image = NULL;
+
+void CleanUp()
+{
+	if (image != NULL)
+	{
+		delete image;
+	}
+
+	if (render != NULL)
+	{
+		delete render;
+	}
+
+	if (window != NULL)
+	{
+		delete window;
+	}
+}
+
 int main()
 {
-	MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
-	Result result;
-	RenderContext renderContext;
+	LDL_Result result;
+	LDL_RenderContext renderContext;
 
-	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__);
+	window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, LDL_WindowMode::Fixed);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
+		CleanUp();
 		return -1;
 	}
 
-	Render render(result, renderContext, &window);
+	render = LDL_CreateRender(result, renderContext, window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
+		CleanUp();
 		return -1;
 	}
 
-	Event report;
+	LDL_Event report;
 
-	BmpLoader bmpLoader(result);
+	LDL_BmpLoader bmpLoader(result);
 
-	bmpLoader.Load("data/trehmachtovyiy-korabl-kartina-maslom-60x50_512x.bmp");
-	Texture image(&renderContext, bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
+	if (!bmpLoader.Load("data/trehmachtovyiy-korabl-kartina-maslom-60x50_512x.bmp"))
+	{
+		ErrorShow(result);
+		CleanUp();
+		return -1;
+	}
 
-	FpsCounter fpsCounter;
-	Convert convert;
+	image = LDL_CreateTexture(&renderContext, bmpLoader.Format(), bmpLoader.Size(), bmpLoader.Pixels());
 
-	while (window.Running())
+	LDL_FpsCounter fpsCounter;
+	LDL_Convert    convert;
+
+	while (window->Running())
 	{
 		fpsCounter.Start();
 
-		while (window.GetEvent(report))
+		while (window->GetEvent(report))
 		{
 			if (report.Type == IsQuit)
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 		}
 
-		render.Begin();
+		render->Begin();
 
-		render.SetColor(Color(0, 162, 232));
-		render.Clear();
+		render->SetColor(LDL_Color(0, 162, 232));
+		render->Clear();
 
-		render.Draw(&image, Vec2u(0, 0), window.Size(), Vec2u(0, 0), image.Size());
+		render->Draw(image, LDL_Vec2u(0, 0), window->Size(), LDL_Vec2u(0, 0), image->Size());
 
-		render.End();
+		render->End();
 
 		if (fpsCounter.Calc())
 		{
-			window.Title(convert.ToString(fpsCounter.Fps()));
+			window->Title(convert.ToString(fpsCounter.Fps()));
 		}
 	}
+
+	CleanUp();
 
 	return 0;
 }

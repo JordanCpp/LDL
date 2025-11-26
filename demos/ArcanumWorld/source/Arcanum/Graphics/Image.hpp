@@ -6,23 +6,22 @@
 #ifndef Arcanum_Graphics_Image_hpp
 #define Arcanum_Graphics_Image_hpp
 
-#include <LDL/Graphics/Texture.hpp>
-#include <LDL/Graphics/RenderContext.hpp>
-#include <LDL/Math/Vec2.hpp>
+#include <LDL/Texture.hpp>
+#include <LDL/Context.hpp>
 
 namespace Arcanum
 {
 	class Image
 	{
 	public:
-		Image(LDL::RenderContext* renderContext, const LDL::Vec2u& size, uint8_t* pixels, const LDL::Vec2u& offset, const LDL::Vec2u& delta);
-		LDL::Texture* GetTexture();
-		const LDL::Vec2u& Offset();
-		const LDL::Vec2u& Delta();
+		Image(LDL_RenderContext* renderContext, const LDL_Vec2u& size, uint8_t* pixels, const LDL_Vec2u& offset, const LDL_Vec2u& delta);
+		LDL_ITexture* GetTexture();
+		const LDL_Vec2u& Offset();
+		const LDL_Vec2u& Delta();
 	private:
-		LDL::Texture _texture;
-		LDL::Vec2u   _offset;
-		LDL::Vec2u   _delta;
+		LDL_ITexture* _texture;
+	    LDL_Vec2u     _offset;
+	    LDL_Vec2u     _delta;
 	};
 }
 

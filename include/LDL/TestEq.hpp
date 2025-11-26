@@ -1,0 +1,16 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
+#ifndef LDL_TestEq_hpp
+#define LDL_TestEq_hpp
+
+#include <LDL/Config.hpp>
+#include <LDL/Types.hpp>
+
+void LDL_LIBRARY LDL_TestEqual(bool condition, const char* description, const char* function, const char* file, int line);
+
+#define LDL_TEST_EQUAL(x) LDL_TestEqual(x, #x, "__FUNCTION__", __FILE__, __LINE__)
+
+#endif    

@@ -1,0 +1,35 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
+#ifndef LDL_APIs_SDL2_SDL_stdinc_h
+#define LDL_APIs_SDL2_SDL_stdinc_h
+
+#include <LDL/Types.hpp>
+#include <LDL/SDL2/config.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif 
+
+typedef int8_t  Sint8;
+typedef uint8_t Uint8;
+
+typedef int16_t  Sint16;
+typedef uint16_t Uint16;
+
+typedef int32_t  Sint32;
+typedef uint32_t Uint32;
+
+typedef int64_t  Sint64;
+typedef uint64_t Uint64;
+
+extern SDL_DECLSPEC void* SDLCALL SDL_malloc(size_t size);
+extern SDL_DECLSPEC void  SDLCALL SDL_free(void* mem);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

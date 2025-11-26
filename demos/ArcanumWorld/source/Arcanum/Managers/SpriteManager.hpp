@@ -18,7 +18,7 @@ namespace Arcanum
 	class SpriteManager
 	{
 	public:
-		SpriteManager(LDL::RenderContext* renderContext, FileManager* fileManager, ArtLoader* artLoader, PathManager* pathManager);
+		SpriteManager(LDL_RenderContext* renderContext, FileManager* fileManager, ArtLoader* artLoader, PathManager* pathManager);
 		~SpriteManager();
 		Sprite* GetSprite(const std::string& dir, const std::string& file);
 		Sprite* GetScenery(const std::string& fileName);
@@ -26,11 +26,11 @@ namespace Arcanum
 		Sprite* GetInterface(const std::string& fileName);
 	private:
 		typedef std::map<std::string, Sprite*> container;
-		LDL::RenderContext* _renderContext;
-		FileManager* _fileManager;
-		ArtLoader*   _artLoader;
-		PathManager* _pathManager;
-		container    _sprites;
+		LDL_RenderContext* _renderContext;
+		FileManager*       _fileManager;
+		ArtLoader*         _artLoader;
+		PathManager*       _pathManager;
+		container          _sprites;
 	};
 }
 

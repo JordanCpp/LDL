@@ -5,10 +5,9 @@
 
 #include <Arcanum/Widgets/Widget.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
-Widget::Widget(Render& render, const Vec2u& pos, const Vec2u& size) :
+Widget::Widget(LDL_IRender* render, const LDL_Vec2u& pos, const LDL_Vec2u& size) :
 	_render(render),
 	_area(pos, size)
 {
@@ -18,17 +17,17 @@ Widget::~Widget()
 {
 }
 
-const Vec2u Widget::Pos()
+const LDL_Vec2u Widget::Pos()
 {
 	return _area.Pos();
 }
 
-const Vec2u Widget::Size()
+const LDL_Vec2u Widget::Size()
 {
 	return _area.Size();
 }
 
-Render& Widget::GetRender()
+LDL_IRender* Widget::GetRender()
 {
 	return _render;
 }

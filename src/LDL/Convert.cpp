@@ -1,0 +1,93 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
+#include <LDL/Convert.hpp>
+#include <LDL/StdFuncs.hpp>
+#include <LDL/Types.hpp>
+
+LDL_Convert::LDL_Convert()
+{
+    LDL_memset(&_buffer, 0, sizeof(_buffer));
+}
+
+const char* LDL_Convert::ToString(intmax_t num, uint8_t base)
+{
+    if (base < 2 || base > 36)
+    {
+        _buffer[0] = '\0';
+
+        return _buffer;
+    }
+
+    if (num == INT_MIN && base == 10)
+    {
+        const char* min_str = "-9223372036854775808";
+        
+        size_t len = LDL_strlen(min_str);
+        
+        LDL_memcpy(_buffer, min_str, len + 1);
+
+        return _buffer;
+    }
+
+    int i           = 0;
+    bool isNegative = false;
+    uintmax_t number;
+
+    if (num < 0 && base == 10)
+    {
+        isNegative = true;
+        number = (uintmax_t)(-num);
+    }
+    else
+    {
+        number = (uintmax_t)num;
+    }
+
+    if (number == 0)
+    {
+        _buffer[i++] = '0';
+    }
+    else
+    {
+        while (number != 0)
+        {
+            uintmax_t rem = number % base;
+            _buffer[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
+            number = number / base;
+        }
+    }
+
+    if (isNegative)
+    {
+        _buffer[i++] = '-';
+    }
+
+    _buffer[i] = '\0';
+
+    Reverse(_buffer, i);
+
+    return _buffer;
+}
+
+void LDL_Convert::Swap(char& t1, char& t2)
+{
+    char tmp = t1;
+    t1 = t2;
+    t2 = tmp;
+}
+
+void LDL_Convert::Reverse(char* str, size_t length)
+{
+    size_t start = 0;
+    size_t end = length - 1;
+
+    while (start < end)
+    {
+        Swap(*(str + start), *(str + end));
+        start++;
+        end--;
+    }
+}

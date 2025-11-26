@@ -7,7 +7,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
-#include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
+#include <LDL/OpenGL/GL1_2.hpp>
 
 void Identity()
 {
@@ -38,7 +38,7 @@ int closedCell;
 void GameNew()
 {
 	srand((uint32_t)time(NULL));
-	LDL::LDL_memset(map, 0, sizeof(map));
+	LDL_memset(map, 0, sizeof(map));
 
 	mines = 20;
 	closedCell = mapW * mapH;
@@ -103,7 +103,7 @@ void GameShow()
 	}
 }
 
-void Display()
+void LDL_Display()
 {
 	Identity();
 
@@ -115,51 +115,51 @@ void Display()
 
 int main()
 {
-	LDL::MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
-	LDL::Result result;
-	LDL::RenderContext renderContext(LDL::RenderMode::OpenGL1);
+	LDL_Result result;
+	LDL_RenderContext renderContext(LDL_RenderMode::OpenGL1);
 
-	LDL::Window window(result, renderContext, LDL::Vec2u(0, 0), LDL::Vec2u(800, 600), "Window!");
-	LDL::Render render(result, renderContext, &window);
+	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, 0);
+	LDL_IRender* render = LDL_CreateRender(result, renderContext, window);
 
-	LDL::Event report;
+	LDL_Event report;
 
-	LDL::FpsCounter fpsCounter;
-	LDL::Convert convert;
-	LDL::FpsLimiter fpsLimiter;
+	LDL_FpsCounter fpsCounter;
+	LDL_Convert convert;
+	LDL_FpsLimiter fpsLimiter;
 
 	GameNew();
 
-	while (window.Running())
+	while (window->Running())
 	{
 		fpsLimiter.Mark();
 		fpsCounter.Start();
 
-		while (window.GetEvent(report))
+		while (window->GetEvent(report))
 		{
-			if (report.Type == LDL::IsQuit)
+			if (report.Type == IsQuit)
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 
-			if (report.IsKeyPressed(LDL::KeyboardKey::Escape))
+			if (report.IsKeyPressed(LDL_KeyboardKey::Escape))
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 		}
 
-		render.Begin();
+		render->Begin();
 
-		Display();
+		LDL_Display();
 
-		render.End();
+		render->End();
 
 		fpsLimiter.Throttle();
 
 		if (fpsCounter.Calc())
 		{
-			window.Title(convert.ToString(fpsCounter.Fps()));
+			window->Title(convert.ToString(fpsCounter.Fps()));
 		}
 	}
 

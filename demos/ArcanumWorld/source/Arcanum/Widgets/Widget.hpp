@@ -6,24 +6,24 @@
 #ifndef Arcanum_Widgets_Widget_hpp
 #define Arcanum_Widgets_Widget_hpp
 
-#include <LDL/Graphics/Render.hpp>
-#include <LDL/Math/Rectu.hpp>
-#include <LDL/Math/Vec2.hpp>
+#include <LDL/Render.hpp>
+#include <LDL/Rectu.hpp>
+#include <LDL/Vec2.hpp>
 
 namespace Arcanum
 {
     class Widget
     {
     public:
-        Widget(LDL::Render& render, const LDL::Vec2u& pos, const LDL::Vec2u& size);
+        Widget(LDL_IRender* render, const LDL_Vec2u& pos, const LDL_Vec2u& size);
         virtual ~Widget();
-        const LDL::Vec2u Pos();
-        const LDL::Vec2u Size();
-        LDL::Render& GetRender();
+        const LDL_Vec2u Pos();
+        const LDL_Vec2u Size();
+        LDL_IRender* GetRender();
         virtual void Draw() = 0;
     private:
-        LDL::Render& _render;
-        LDL::Rectu   _area;
+        LDL_IRender* _render;
+        LDL_Rectu    _area;
     };
 }
 

@@ -18,7 +18,7 @@ namespace Arcanum
 		void Close();
 		char NextChar();
 		bool Next();
-		const std::string& Result();
+		const std::string& LDL_Result();
 		bool Eof();
 	private:
 		std::fstream _file;

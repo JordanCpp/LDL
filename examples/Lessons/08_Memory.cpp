@@ -7,8 +7,6 @@
 #include <stdlib.h>
 #include <LDL/LDL.hpp>
 
-using namespace LDL;
-
 static int totalCount = 0;
 static int totalBytes = 0;
 
@@ -25,64 +23,84 @@ void CustomFree(void* ptr)
 	free(ptr);
 }
 
-void ErrorShow(Result& result)
+void ErrorShow(LDL_Result& result)
 {
 	printf("LDL error: %s", result.Message());
 }
 
+LDL_IWindow* window = NULL;
+LDL_IRender* render = NULL;
+
+void CleanUp()
+{
+	if (render != NULL)
+	{
+		delete render;
+	}
+
+	if (window != NULL)
+	{
+		delete window;
+	}
+}
+
 int main()
 {
-	MemoryManager::Instance().Functions(CustomMalloc, NULL, NULL, CustomFree);
+	LDL_MemoryManager::Instance().Functions(CustomMalloc, NULL, NULL, CustomFree);
 
-	Result result;
-	RenderContext renderContext;
+	LDL_Result result;
+	LDL_RenderContext renderContext;
 
-	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), __FILE__);
+	window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, LDL_WindowMode::Fixed);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
+		CleanUp();
 		return -1;
 	}
 
-	Render render(result, renderContext, &window);
+	render = LDL_CreateRender(result, renderContext, window);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
+		CleanUp();
 		return -1;
 	}
 
-	Event report;
+	LDL_Event report;
 
-	FpsCounter fpsCounter;
-	Convert    convert;
-	FpsLimiter fpsLimiter;
+	LDL_FpsCounter fpsCounter;
+	LDL_Convert    convert;
+	LDL_FpsLimiter fpsLimiter;
 
-	while (window.Running())
+	while (window->Running())
 	{
 		fpsLimiter.Mark();
 
 		fpsCounter.Start();
 
-		while (window.GetEvent(report))
+		while (window->GetEvent(report))
 		{
 			if (report.Type == IsQuit)
 			{
-				window.StopEvent();
+				window->StopEvent();
 			}
 		}
 
-		render.Begin();
-		render.End();
+		render->Begin();
+		render->End();
 
 		fpsLimiter.Throttle();
 
 		if (fpsCounter.Calc())
 		{
-			window.Title(convert.ToString(fpsCounter.Fps()));
+			window->Title(convert.ToString(fpsCounter.Fps()));
 		}
 
 		printf("Allocation count: %d allocation bytes %d\n", totalCount, totalBytes);
 	}
+
+	CleanUp();
 
 	return 0;
 }

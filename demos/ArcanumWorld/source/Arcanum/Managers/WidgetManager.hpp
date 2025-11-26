@@ -15,12 +15,12 @@ namespace Arcanum
 	class WidgetManager
 	{
 	public:
-		WidgetManager(LDL::Render& render);
+		WidgetManager(LDL_IRender* render);
 		~WidgetManager();
-		Button* GetButton(const LDL::Vec2u& pos, const LDL::Vec2u& size);
+		Button* GetButton(const LDL_Vec2u& pos, const LDL_Vec2u& size);
 		Form* GetForm();
 	private:
-		LDL::Render&         _render;
+		LDL_IRender*         _render;
 		std::vector<Widget*> _widgets;
 	};
 }

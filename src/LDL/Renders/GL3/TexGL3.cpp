@@ -1,0 +1,85 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
+#include <LDL/Assert.hpp>
+#include <LDL/OpenGL/GL1_1.hpp>
+#include <LDL/Renders/GL/Util.hpp>
+#include <LDL/Renders/GL3/TexGL3.hpp>
+
+LDL_TextureOpenGL3::LDL_TextureOpenGL3(LDL_RenderContext* renderContextImpl, size_t pixelFormat, const LDL_Vec2u& size, uint8_t* pixels) :
+	_context(renderContextImpl),
+	_id(0)
+{
+	LDL_ASSERT(size.x > 0);
+	LDL_ASSERT(size.y > 0);
+	LDL_ASSERT(pixels != NULL);
+
+	_size = size;
+
+	GL_CHECK(glGenTextures(1, (GLuint*)&_id));
+	GL_CHECK(glBindTexture(GL_TEXTURE_2D, (GLuint)_id));
+
+	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+	GL_CHECK(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+
+	GLint format = 0;
+	uint8_t bpp  = LDL_BytesPerPixelFromPixelFormat(pixelFormat);
+
+	if (bpp == 3)
+	{
+		format = GL_RGB;
+	}
+	else
+	{
+		format = GL_RGBA;
+	}
+
+	GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, format, (GLsizei)_size.x, (GLsizei)_size.y, 0, format, GL_UNSIGNED_BYTE, pixels));
+}
+
+LDL_TextureOpenGL3::LDL_TextureOpenGL3(LDL_RenderContext* renderContextImpl, size_t pixelFormat, const LDL_Vec2u& size) :
+	_context(renderContextImpl),
+	_id(0)
+{
+	LDL_UNUSED(size);
+	LDL_UNUSED(pixelFormat);
+}
+
+LDL_TextureOpenGL3::~LDL_TextureOpenGL3()
+{
+	GL_CHECK(glDeleteTextures(1, (GLuint*)&_id));
+}
+
+const LDL_Vec2u& LDL_TextureOpenGL3::Size()
+{
+	return _size;
+}
+
+const LDL_Vec2u& LDL_TextureOpenGL3::Quad()
+{
+	return _quad;
+}
+
+size_t LDL_TextureOpenGL3::Id()
+{
+	return _id;
+}
+
+void LDL_TextureOpenGL3::Copy(const LDL_Vec2u& dstPos, const LDL_Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel)
+{
+	GLint format = 0;
+
+	if (bytesPerPixel == 3)
+		format = GL_RGB;
+	else
+		format = GL_RGBA;
+
+	GL_CHECK(glTexSubImage2D(GL_TEXTURE_2D, 0, (GLint)dstPos.x, (GLint)dstPos.y, (GLsizei)srcSize.x, (GLsizei)srcSize.y, format, GL_UNSIGNED_BYTE, pixels));
+}
+
+void LDL_TextureOpenGL3::Copy(const LDL_Vec2u& dstPos, LDL_Surface* surface, const LDL_Vec2u& srcSize)
+{
+	Copy(dstPos, srcSize, surface->Pixels(), surface->BytesPerPixel());
+}

@@ -18,8 +18,8 @@ namespace Arcanum
 	{
 	public:
 		void Init(CritterScript* script);
-		const LDL::Vec2u& Pos();
-		void Pos(const LDL::Vec2u& pos);
+		const LDL_Vec2u& Pos();
+		void Pos(const LDL_Vec2u& pos);
 	private:
 		CritterScript* _script;
 		MapObject      _mapObject;

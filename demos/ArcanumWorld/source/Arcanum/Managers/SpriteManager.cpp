@@ -5,10 +5,9 @@
 
 #include <Arcanum/Managers/SpriteManager.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
-SpriteManager::SpriteManager(RenderContext* renderContext, FileManager* fileManager, ArtLoader* artLoader, PathManager* pathManager) :
+SpriteManager::SpriteManager(LDL_RenderContext* renderContext, FileManager* fileManager, ArtLoader* artLoader, PathManager* pathManager) :
     _renderContext(renderContext),
     _fileManager(fileManager),
     _artLoader(artLoader),

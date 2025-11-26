@@ -18,11 +18,11 @@ namespace Arcanum
 	{
 	public:
 		LocationData();
-		void Reset(const LDL::Vec2u& size);
+		void Reset(const LDL_Vec2u& size);
 		void CalculateTiles();
 		size_t Index(size_t x, size_t y);
-		size_t Index(const LDL::Vec2u& pos);
-		const LDL::Vec2u& Size();
+		size_t Index(const LDL_Vec2u& pos);
+		const LDL_Vec2u& Size();
 
 		std::vector<Tile>& TileObjects();
 
@@ -37,13 +37,13 @@ namespace Arcanum
 
 		std::vector<CritterScript*>& CritterScripts();
 
-		Scenery* GetScenery(const LDL::Vec2u& pos);
-		Tile* GetTile(const LDL::Vec2u& pos);
+		Scenery* GetScenery(const LDL_Vec2u& pos);
+		Tile* GetTile(const LDL_Vec2u& pos);
 
 		void Append(Scenery* object);
 	private:
 		Isometric                   _isometric;
-		LDL::Vec2u                  _size;
+		LDL_Vec2u                  _size;
 		std::vector<Tile>           _tileObjects;
 		std::vector<Scenery*>       _sceneryObjects;
 		std::vector<Scenery*>       _sceneryTiles;

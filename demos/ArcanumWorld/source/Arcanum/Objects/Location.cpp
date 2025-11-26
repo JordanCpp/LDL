@@ -5,7 +5,6 @@
 
 #include <Arcanum/Objects/Location.hpp>
 
-using namespace LDL;
 using namespace Arcanum;
 
 Location::Location(LocationData* locationData, LocationCreator* locationCreator, LocationPainter* locationPainter) :
@@ -15,18 +14,18 @@ Location::Location(LocationData* locationData, LocationCreator* locationCreator,
 {
 }
 
-void Location::Draw(const Vec2u& start)
+void Location::Draw(const LDL_Vec2u& start)
 {
 	_locationPainter->DrawTiles(start);
 	_locationPainter->DrawSceneries(start);
 }
 
-Scenery* Location::NewScenery(const Vec2u& pos, const std::string& path)
+Scenery* Location::NewScenery(const LDL_Vec2u& pos, const std::string& path)
 {
 	return _locationCreator->NewScenery(pos, path);
 }
 
-Tile* Location::NewTile(const Vec2u& pos, const std::string& path)
+Tile* Location::NewTile(const LDL_Vec2u& pos, const std::string& path)
 {
 	size_t index = _locationData->Index(pos);
 
