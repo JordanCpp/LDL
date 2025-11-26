@@ -3,20 +3,19 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Stream.hpp>
 #include <LDL/BmpLoad.hpp>
 
 #pragma pack(push, 1)
-typedef struct
+struct BMPFileHeader
 {
     uint16_t file_type;
     uint32_t file_size;
     uint16_t reserved1;
     uint16_t reserved2;
     uint32_t offset_data;
-} BMPFileHeader;
+};
 
-typedef struct
+struct BMPInfoHeader
 {
     uint32_t size;
     int32_t  width;
@@ -29,23 +28,31 @@ typedef struct
     int32_t  y_pixels_per_meter;
     uint32_t colors_used;
     uint32_t colors_important;
-} BMPInfoHeader;
+};
 #pragma pack(pop) 
 
 LDL_BmpLoader::LDL_BmpLoader(LDL_Result& result) :
     _bpp(0),
     _pixelFormat(LDL_PixelFormat::UNKNOWN),
-	_result(result)
+	_result(result),
+    _stream(NULL)
 {
+    _stream = LDL_CreateFileStream(_result);
+}
+
+LDL_BmpLoader::~LDL_BmpLoader()
+{
+    if (_stream)
+    {
+        delete _stream;
+    }
 }
 
 bool LDL_BmpLoader::Load(const char* path)
 {
-    LDL_FileStream file(_result);
+    _stream->Open(path, LDL_IFileStream::ModeRead);
 
-    file.Open(path, LDL_FileStream::OpenModeRead);
-
-    if (!file.IsOpen())
+    if (!_stream->IsOpen())
     {
         _result.Message(_formatter.Format("Can't open file: %s\n", path));
         return false;
@@ -54,8 +61,8 @@ bool LDL_BmpLoader::Load(const char* path)
     BMPFileHeader file_header;
     BMPInfoHeader info_header;
 
-    file.Read(&file_header, sizeof(BMPFileHeader));
-    file.Read(&info_header, sizeof(BMPInfoHeader));
+    _stream->Read(&file_header, sizeof(BMPFileHeader));
+    _stream->Read(&info_header, sizeof(BMPInfoHeader));
 
     if (file_header.file_type != 0x4D42)
     {
@@ -88,11 +95,11 @@ bool LDL_BmpLoader::Load(const char* path)
 
     _pixels.resize(pixel_data_size);
 
-    file.Seek(file_header.offset_data);
+    _stream->Seek(file_header.offset_data);
 
     for (int y = _size.y - 1; y >= 0; --y)
     {
-        if (file.Read(_pixels.data() + y * row_stride, row_stride) != row_stride)
+        if (_stream->Read(_pixels.data() + y * row_stride, row_stride) != row_stride)
         {
             _result.Message(_formatter.Format("Failed to read pixel data: %s\n", path));
             return false;

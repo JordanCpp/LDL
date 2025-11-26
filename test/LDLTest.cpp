@@ -171,6 +171,10 @@ void Vec2Test()
 	LDL_TEST_EQUAL(vec2.y == 75);
 }
 
+/****************************************************************************************************************************
+													       PixelPainter
+****************************************************************************************************************************/
+
 void PixelPainterClearRGB24Test()
 {
 	const LDL_Vec2u size  = LDL_Vec2u(640, 480);
@@ -249,7 +253,11 @@ void PixelPainterClearBGRA32Test()
 	}
 }
 
-void LDL_MutableStringViewTest()
+/****************************************************************************************************************************
+														   StringView
+****************************************************************************************************************************/
+
+void LDL_StringViewTest()
 {
 	const size_t sizeBuffer = 256;
 
@@ -258,6 +266,92 @@ void LDL_MutableStringViewTest()
 
 	stringView.assign("Hello");
 	stringView.append("World!");
+}
+
+/****************************************************************************************************************************
+														   FileStream
+****************************************************************************************************************************/
+
+void LDL_FileStreamTest()
+{
+	LDL_Result result;
+	LDL_IFileStream* fileStream = LDL_CreateFileStream(result);
+	LDL_TEST_EQUAL(fileStream  != NULL);
+	LDL_TEST_EQUAL(result.Ok() == true);
+
+	LDL_TEST_EQUAL(fileStream->Open("TestFiles/SeasonsTiles.bmp", LDL_IFileStream::ModeRead) == true);
+	LDL_TEST_EQUAL(fileStream->IsOpen() == true);
+	LDL_TEST_EQUAL(result.Ok()          == true);
+
+	uint8_t buffer[1024];
+	LDL_TEST_EQUAL(fileStream->Read(&buffer, sizeof(1024)) == sizeof(1024));
+	LDL_TEST_EQUAL(result.Ok() == true);
+
+	fileStream->Close();
+	LDL_TEST_EQUAL(result.Ok()          == true);
+	LDL_TEST_EQUAL(fileStream->IsOpen() == false);
+
+	if (fileStream)
+	{
+		delete fileStream;
+	}
+}
+
+/****************************************************************************************************************************
+														   BmpLoader
+****************************************************************************************************************************/
+
+void LDL_BmpLoaderTest()
+{
+	LDL_Result result;
+	LDL_BmpLoader bmpLoader(result);
+	LDL_TEST_EQUAL(result.Ok() == true);
+
+	LDL_TEST_EQUAL(bmpLoader.Load("TestFiles/SeasonsTiles.bmp") == true);
+	LDL_TEST_EQUAL(bmpLoader.Pixels() != NULL);
+	LDL_TEST_EQUAL(bmpLoader.Size().x == 1024);
+	LDL_TEST_EQUAL(bmpLoader.Size().y == 768);
+	LDL_TEST_EQUAL(bmpLoader.Bpp()    == 3);
+}
+
+void LDL_RenderTest()
+{
+	LDL_Result result;
+	LDL_RenderContext renderContext;
+	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(640, 480), __FILE__, LDL_WindowMode::Fixed);
+	LDL_IRender* render = LDL_CreateRender(result, renderContext, window);
+	LDL_TEST_EQUAL(result.Ok() == true);
+
+	for (size_t i = 0; i < 1000; i++)
+	{
+		render->Begin();
+		LDL_TEST_EQUAL(result.Ok() == true);
+
+		render->SetColor(LDL_Color(1, 2, 3));
+		render->Pixel(LDL_Vec2u(0, 0));
+		LDL_TEST_EQUAL(result.Ok() == true);
+
+		render->SetColor(LDL_Color(4, 5, 6));
+		render->Line(LDL_Vec2u(0, 0), LDL_Vec2u(640, 480));
+		LDL_TEST_EQUAL(result.Ok() == true);
+
+		render->SetColor(LDL_Color(7, 8, 9));
+		render->Fill(LDL_Vec2u(0, 0), LDL_Vec2u(640, 480));
+		LDL_TEST_EQUAL(result.Ok() == true);
+
+		render->End();
+		LDL_TEST_EQUAL(result.Ok() == true);
+	}
+
+	if (render)
+	{
+		delete render;
+	}
+
+	if (window)
+	{
+		delete window;
+	}
 }
 
 int main()
@@ -286,7 +380,13 @@ int main()
 	PixelPainterClearRGBA32Test();
 	PixelPainterClearBGRA32Test();
 
-	LDL_MutableStringViewTest();
+	LDL_StringViewTest();
+
+	LDL_FileStreamTest();
+
+	LDL_BmpLoaderTest();
+
+	LDL_RenderTest();
 
 	return 0;
 }

@@ -3,23 +3,23 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Stream.hpp>
+#include <LDL/FStream.hpp>
 #include <LDL/WinNT/Windows.hpp>
-#include <LDL/WinNT/FStreamI.hpp>
+#include <LDL/WinNT/FStream.hpp>
 
-FileStreamImpl::FileStreamImpl(LDL_Result& result) :
+LDL_FileStream::LDL_FileStream(LDL_Result& result) :
+    _isOpen(false),
     _result(result),
-	_isOpen(false),
 	_handle(INVALID_HANDLE_VALUE)
 {
 }
 
-FileStreamImpl::~FileStreamImpl()
+LDL_FileStream::~LDL_FileStream()
 {
 	Close();
 }
 
-bool FileStreamImpl::Open(const char* path, size_t mode)
+bool LDL_FileStream::Open(const char* path, size_t mode)
 {
     Close();
 
@@ -27,25 +27,25 @@ bool FileStreamImpl::Open(const char* path, size_t mode)
     DWORD disp   = 0;
     DWORD flags  = FILE_ATTRIBUTE_NORMAL;
 
-    if (mode & OpenModeRead)
+    if (mode & ModeRead)
     {
         access |= GENERIC_READ;
     }
 
-    if (mode & OpenModeWrite)
+    if (mode & ModeWrite)
     {
         access |= GENERIC_WRITE;
     }
 
-    if (mode & OpenModeAppend)
+    if (mode & ModeAppend)
     {
         disp = OPEN_ALWAYS;
     }
-    else if (mode & OpenModeCreate)
+    else if (mode & ModeCreate)
     {
         disp = CREATE_ALWAYS;
     }
-    else if (mode & OpenModeWrite)
+    else if (mode & ModeWrite)
     {
         disp = OPEN_EXISTING;
     }
@@ -58,7 +58,7 @@ bool FileStreamImpl::Open(const char* path, size_t mode)
 
     _isOpen = (_handle != INVALID_HANDLE_VALUE);
 
-    if (_isOpen && (mode & OpenModeAppend))
+    if (_isOpen && (mode & ModeAppend))
     {
         SetFilePointer(_handle, 0, NULL, FILE_END);
     }
@@ -66,7 +66,7 @@ bool FileStreamImpl::Open(const char* path, size_t mode)
     return _isOpen;
 }
 
-void FileStreamImpl::Close()
+void LDL_FileStream::Close()
 {
     if (_isOpen)
     {
@@ -80,12 +80,12 @@ void FileStreamImpl::Close()
     }
 }
 
-bool FileStreamImpl::IsOpen() const
+bool LDL_FileStream::IsOpen() const
 {
     return _isOpen;
 }
 
-size_t FileStreamImpl::Read(void* buffer, size_t size)
+size_t LDL_FileStream::Read(void* buffer, size_t size)
 {
     if (!_isOpen || !buffer || size == 0) 
     {
@@ -98,7 +98,7 @@ size_t FileStreamImpl::Read(void* buffer, size_t size)
     return result ? (size_t)(bytes) : 0;
 }
 
-size_t FileStreamImpl::Write(const void* buffer, size_t size)
+size_t LDL_FileStream::Write(const void* buffer, size_t size)
 {
     if (!_isOpen || !buffer || size == 0) 
     {
@@ -111,28 +111,28 @@ size_t FileStreamImpl::Write(const void* buffer, size_t size)
     return result ? (size_t)(bytes) : 0;
 }
 
-bool FileStreamImpl::Flush()
+bool LDL_FileStream::Flush()
 {
     if (!_isOpen) return false;
 
     return FlushFileBuffers(_handle) != 0;
 }
 
-bool FileStreamImpl::Seek(size_t pos)
+bool LDL_FileStream::Seek(size_t pos)
 {
     if (!_isOpen) return false;
 
     return SetFilePointer(_handle, (LONG)(pos), 0, FILE_BEGIN) != INVALID_SET_FILE_POINTER;
 }
 
-size_t FileStreamImpl::Tell() const
+size_t LDL_FileStream::Tell() const
 {
     if (!_isOpen) return 0;
 
     return SetFilePointer(_handle, 0, 0, FILE_CURRENT);
 }
 
-size_t FileStreamImpl::Size() const
+size_t LDL_FileStream::Size() const
 {
     if (!_isOpen)
     {
@@ -155,4 +155,9 @@ size_t FileStreamImpl::Size() const
     fileSize.LowPart  = lowPart;
 
     return (size_t)(fileSize.QuadPart);
+}
+
+LDL_IFileStream* LDL_CreateFileStream(LDL_Result& result)
+{
+    return new LDL_FileStream(result);
 }

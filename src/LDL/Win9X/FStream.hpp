@@ -6,22 +6,15 @@
 #ifndef LDL_Win9X_FStreamI_hpp
 #define LDL_Win9X_FStreamI_hpp
 
-#include <LDL/Win9X/WinError.hpp>
+#include <LDL/FStream.hpp>
 #include <LDL/Win9X/Windows.hpp>
+#include <LDL/Win9X/WinError.hpp>
 
-class FileStreamImpl
+class LDL_FileStream : public LDL_IFileStream
 {
 public:
-	enum
-	{
-		OpenModeRead = 1,
-		OpenModeWrite = 2,
-		OpenModeAppend = 4,
-		OpenModeCreate = 8
-	};
-
-	FileStreamImpl(LDL_Result& result);
-	~FileStreamImpl();
+	LDL_FileStream(LDL_Result& result);
+	~LDL_FileStream();
 	bool Open(const char* path, size_t mode);
 	void Close();
 	bool IsOpen() const;
@@ -32,9 +25,9 @@ public:
 	size_t Tell() const;
 	size_t Size() const;
 private:
+	bool        _isOpen;
 	LDL_Result& _result;
-	bool    _isOpen;
-	HANDLE  _handle;
+	HANDLE      _handle;
 };
 
 #endif

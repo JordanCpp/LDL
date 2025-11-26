@@ -3,72 +3,66 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/New.hpp>
-#include <LDL/Stream.hpp>
-
-#if defined(LDL_WINDOWS_NT)
-    #include <LDL/WinNT/FStreamI.hpp>
-#elif defined(LDL_WINDOWS_9X)
-    #include <LDL/Win9X/FStreamI.hpp>
-#elif defined(__unix__)
-    #include <LDL/Linux/FStreamI.hpp>
-#else
-    #include <LDL/Null/FStreamI.hpp>
-#endif
+#include <LDL/Null/FStream.hpp>
 
 LDL_FileStream::LDL_FileStream(LDL_Result& result) :
-    _impl(new(_memory) FileStreamImpl(result))
+    _result(result),
+	_isOpen(false)
 {
 }
 
 LDL_FileStream::~LDL_FileStream()
 {
-    _impl->Close();
-    
-    //_impl->~FileStreamImpl();
+	Close();
 }
 
 bool LDL_FileStream::Open(const char* path, size_t mode)
 {
-    return _impl->Open(path, mode);
+    Close();
+
+    return _isOpen;
 }
 
 void LDL_FileStream::Close()
 {
-    _impl->Close();
 }
 
 bool LDL_FileStream::IsOpen() const
 {
-    return _impl->IsOpen();
+    return _isOpen;
 }
 
 size_t LDL_FileStream::Read(void* buffer, size_t size)
 {
-    return _impl->Read(buffer, size);
+    return 0;
 }
 
 size_t LDL_FileStream::Write(const void* buffer, size_t size)
 {
-    return _impl->Write(buffer, size);
+    return 0;
 }
 
 bool LDL_FileStream::Flush()
 {
-    return _impl->Flush();
+    return false;
 }
 
 bool LDL_FileStream::Seek(size_t pos)
 {
-    return _impl->Seek(pos);
+    return false;
 }
 
 size_t LDL_FileStream::Tell() const
 {
-    return _impl->Tell();
+    return 0;
 }
 
 size_t LDL_FileStream::Size() const
 {
-    return _impl->Size();
+    return 0;
+}
+
+LDL_IFileStream* LDL_CreateFileStream(LDL_Result& result)
+{
+    return new LDL_FileStream(result);
 }

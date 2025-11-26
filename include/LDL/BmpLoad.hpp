@@ -11,11 +11,13 @@
 #include <LDL/Result.hpp>
 #include <LDL/PixFrmt.hpp>
 #include <LDL/Format.hpp>
+#include <LDL/FStream.hpp>
 
 class LDL_LIBRARY LDL_BmpLoader
 {
 public:
 	LDL_BmpLoader(LDL_Result& result);
+	~LDL_BmpLoader();
 	bool Load(const char* path);
 	const LDL_Vec2u& Size();
 	uint8_t Bpp();
@@ -28,6 +30,7 @@ private:
 	LDL_Vec2u              _size;
 	LDL_PodVector<uint8_t> _pixels;
 	LDL_Formatter          _formatter;
+	LDL_IFileStream*       _stream;
 };
 
 #endif

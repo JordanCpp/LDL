@@ -5,16 +5,12 @@
 
 #include <LDL/Null/GLFuncs.hpp>
 
-OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path)
+OpenGLFunctionsImpl::OpenGLFunctionsImpl(LDL_Result& result, const char* path) :
+    _result(result)
 {
 }
 
 LDL_VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)
 {
     return NULL;
-}
-
-bool OpenGLFunctionsImpl::IsValid(LDL_VoidFuncPtr ptr)
-{
-    return true;
 }
