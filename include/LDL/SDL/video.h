@@ -67,8 +67,6 @@ typedef struct SDL_Surface
 	void*            pixels;
 } SDL_Surface;
 
-typedef struct SDL_Surface SDL_Surface;
-
 #define SDL_ANYFORMAT	(0x10000000)  /**< Allow any video depth/pixel-format */
 #define SDL_HWPALETTE	(0x20000000)  /**< Surface has exclusive palette */
 #define SDL_DOUBLEBUF	(0x40000000)  /**< Set up double-buffered video mode */

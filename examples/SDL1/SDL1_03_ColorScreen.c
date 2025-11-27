@@ -13,14 +13,15 @@ void ErrorShow(const char* error)
 
 void ColorScreen(SDL_Surface* surface, Uint8 r, Uint8 g, Uint8 b)
 {
+    size_t i   = 0;
     size_t bpp = surface->format->BytesPerPixel;
 
     if (bpp == 3 || bpp == 4)
     {
-        size_t total = surface->w * surface->h * bpp;
+        size_t total  = surface->w * surface->h * bpp;
         Uint8* pixels = surface->pixels;
 
-        for (size_t i = 0; i < total; i += bpp)
+        for (i = 0; i < total; i += bpp)
         {
             pixels[i + 0] = r;
             pixels[i + 1] = g;

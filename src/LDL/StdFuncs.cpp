@@ -39,6 +39,11 @@ void* LDL_malloc(size_t bytes)
 	return LDL_MemoryManager::Instance().GetMalloc()(bytes);
 }
 
+void* LDL_realloc(void* block, size_t bytes)
+{
+	return realloc(block, bytes);
+}
+
 void LDL_free(void* ptr)
 {
 	LDL_MemoryManager::Instance().GetFree()(ptr);

@@ -1,0 +1,120 @@
+
+Z:\make>bcc32 -w-8072 -O2 -tWD -e"LDL_BC5.dll" -I..\include\ -I..\src\ /DLDL_SHA
+RED_LIBRARY /DLDL_WINDOWS_9X ..\src\LDL\OpenGL\*.cpp ..\src\LDL\Win9X\*.cpp ..\s
+rc\LDL\*.cpp ..\src\LDL\Renders\Soft\*.cpp ..\src\LDL\Renders\GL\*.cpp ..\src\LD
+L\Renders\GL1\*.cpp ..\src\LDL\Renders\GL3\*.cpp gdi32.lib opengl32.lib winmm.li
+b   user32.lib
+Borland C++ 5.2 for Win32 Copyright (c) 1993, 1997 Borland International
+..\src\ldl\opengl\gl1_0.cpp:
+..\src\ldl\opengl\gl1_1.cpp:
+..\src\ldl\opengl\gl1_2.cpp:
+..\src\ldl\opengl\gl1_3.cpp:
+..\src\ldl\opengl\gl1_4.cpp:
+..\src\ldl\opengl\gl1_5.cpp:
+..\src\ldl\opengl\gl2_0.cpp:
+..\src\ldl\opengl\gl2_1.cpp:
+..\src\ldl\opengl\gl3_0.cpp:
+..\src\ldl\opengl\gl3_1.cpp:
+..\src\ldl\opengl\gl3_2.cpp:
+..\src\ldl\opengl\gl3_3.cpp:
+..\src\ldl\opengl\gl4_0.cpp:
+..\src\ldl\opengl\gl4_1.cpp:
+..\src\ldl\opengl\gl4_2.cpp:
+..\src\ldl\opengl\gl4_3.cpp:
+..\src\ldl\opengl\gl4_4.cpp:
+..\src\ldl\opengl\gl4_5.cpp:
+..\src\ldl\opengl\gl4_6.cpp:
+..\src\ldl\opengl\glload.cpp:
+..\src\ldl\opengl\glload10.cpp:
+..\src\ldl\opengl\glload11.cpp:
+..\src\ldl\opengl\glload12.cpp:
+..\src\ldl\opengl\glload13.cpp:
+..\src\ldl\opengl\glload14.cpp:
+..\src\ldl\opengl\glload15.cpp:
+..\src\ldl\opengl\glload20.cpp:
+..\src\ldl\opengl\glload21.cpp:
+..\src\ldl\opengl\glload30.cpp:
+..\src\ldl\opengl\glload31.cpp:
+..\src\ldl\opengl\glload32.cpp:
+..\src\ldl\opengl\glload33.cpp:
+..\src\ldl\opengl\glload40.cpp:
+..\src\ldl\opengl\glload41.cpp:
+..\src\ldl\opengl\glload42.cpp:
+..\src\ldl\opengl\glload43.cpp:
+..\src\ldl\opengl\glload44.cpp:
+..\src\ldl\opengl\glload45.cpp:
+..\src\ldl\opengl\glload46.cpp:
+..\src\ldl\win9x\display.cpp:
+Warning ..\include\LDL/PVector.hpp 52: Functions containing for are not expanded
+ inline in template LDL_PodVector<T>
+Warning ..\include\LDL/PVector.hpp 83: Functions containing for are not expanded
+ inline in template LDL_PodVector<T>
+Warning ..\include\LDL/PVector.hpp 112: Functions containing for are not expande
+d inline in template LDL_PodVector<T>
+Warning ..\include\LDL/PVector.hpp 129: Functions containing while are not expan
+ded inline in template LDL_PodVector<T>
+Warning ..\include\LDL/PVector.hpp 52: Functions containing for are not expanded
+ inline in template LDL_PodVector<LDL_VideoMode>
+Warning ..\include\LDL/PVector.hpp 83: Functions containing for are not expanded
+ inline in template LDL_PodVector<LDL_VideoMode>
+Warning ..\include\LDL/PVector.hpp 112: Functions containing for are not expande
+d inline in template LDL_PodVector<LDL_VideoMode>
+Warning ..\include\LDL/PVector.hpp 129: Functions containing while are not expan
+ded inline in template LDL_PodVector<LDL_VideoMode>
+..\src\ldl\win9x\fstream.cpp:
+Warning ..\src\ldl\win9x\fstream.cpp 25: 'disp' is assigned a value that is neve
+r used in function LDL_FileStream::Open(const char *,unsigned int)
+Error ..\src\ldl\win9x\fstream.cpp 152: 'HighPart' is not a member of '_ULARGE_I
+NTEGER' in function LDL_FileStream::Size() const
+Error ..\src\ldl\win9x\fstream.cpp 153: 'LowPart' is not a member of '_ULARGE_IN
+TEGER' in function LDL_FileStream::Size() const
+Warning ..\src\ldl\win9x\fstream.cpp 156: 'highPart' is assigned a value that is
+ never used in function LDL_FileStream::Size() const
+*** 2 errors in Compile ***
+..\src\ldl\win9x\glfuncs.cpp:
+..\src\ldl\win9x\kmapper.cpp:
+Warning ..\include\LDL/PVector.hpp 52: Functions containing for are not expanded
+ inline in template LDL_PodVector<T>
+Warning ..\include\LDL/PVector.hpp 83: Functions containing for are not expanded
+ inline in template LDL_PodVector<T>
+Warning ..\include\LDL/PVector.hpp 112: Functions containing for are not expande
+d inline in template LDL_PodVector<T>
+Warning ..\include\LDL/PVector.hpp 129: Functions containing while are not expan
+ded inline in template LDL_PodVector<T>
+Warning ..\include\LDL/PVector.hpp 52: Functions containing for are not expanded
+ inline in template LDL_PodVector<LDL_KeyMap>
+Warning ..\include\LDL/PVector.hpp 83: Functions containing for are not expanded
+ inline in template LDL_PodVector<LDL_KeyMap>
+Warning ..\include\LDL/PVector.hpp 112: Functions containing for are not expande
+d inline in template LDL_PodVector<LDL_KeyMap>
+Warning ..\include\LDL/PVector.hpp 129: Functions containing while are not expan
+ded inline in template LDL_PodVector<LDL_KeyMap>
+..\src\ldl\win9x\library.cpp:
+..\src\ldl\win9x\mainwin.cpp:
+Warning ..\include\LDL/PVector.hpp 52: Functions containing for are not expanded
+ inline in template LDL_PodVector<T>
+Warning ..\include\LDL/PVector.hpp 83: Functions containing for are not expanded
+ inline in template LDL_PodVector<T>
+Warning ..\include\LDL/PVector.hpp 112: Functions containing for are not expande
+d inline in template LDL_PodVector<T>
+Warning ..\include\LDL/PVector.hpp 129: Functions containing while are not expan
+ded inline in template LDL_PodVector<T>
+Warning ..\include\LDL/PVector.hpp 52: Functions containing for are not expanded
+ inline in template LDL_PodVector<LDL_Event>
+Warning ..\include\LDL/PVector.hpp 83: Functions containing for are not expanded
+ inline in template LDL_PodVector<LDL_Event>
+Warning ..\include\LDL/PVector.hpp 112: Functions containing for are not expande
+d inline in template LDL_PodVector<LDL_Event>
+Warning ..\include\LDL/PVector.hpp 129: Functions containing while are not expan
+ded inline in template LDL_PodVector<LDL_Event>
+Warning ..\include\LDL/PVector.hpp 52: Functions containing for are not expanded
+ inline in template LDL_PodVector<LDL_KeyMap>
+Warning ..\include\LDL/PVector.hpp 83: Functions containing for are not expanded
+ inline in template LDL_PodVector<LDL_KeyMap>
+Warning ..\include\LDL/PVector.hpp 112: Functions containing for are not expande
+d inline in template LDL_PodVector<LDL_KeyMap>
+Warning ..\include\LDL/PVector.hpp 129: Functions containing while are not expan
+ded inline in template LDL_PodVector<LDL_KeyMap>
+..\src\ldl\win9x\mouse.cpp:
+..\src\ldl\win9x\ticks.cpp:
+..\src\ldl\win9x\winerror.cpp

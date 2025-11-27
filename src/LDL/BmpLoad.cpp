@@ -29,7 +29,7 @@ struct BMPInfoHeader
     uint32_t colors_used;
     uint32_t colors_important;
 };
-#pragma pack(pop) 
+#pragma pack(pop)
 
 LDL_BmpLoader::LDL_BmpLoader(LDL_Result& result) :
     _bpp(0),

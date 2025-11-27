@@ -331,7 +331,8 @@ target_link_libraries(${PROJECT_NAME} LDL)
 *   GCC 3+
 *   Visual C++ 4.0+
 *   Open Watcom V2
-*   Borland C++ 6.0+
+*   Borland C++ 5.0+ (Windows)
+*   Turbo C++ 3.0+ (Dos) 
 
 ---
 

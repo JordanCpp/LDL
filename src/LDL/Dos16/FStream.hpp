@@ -3,24 +3,16 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_Dos16_FStreamI_hpp
-#define LDL_Dos16_FStreamI_hpp
+#ifndef LDL_Dos16_FStream_hpp
+#define LDL_Dos16_FStream_hpp
 
-#include <LDL/Result.hpp>
+#include <LDL/FStream.hpp>
 
-class FileStreamImpl
+class LDL_FileStream : public LDL_IFileStream
 {
 public:
-	enum
-	{
-		OpenModeRead = 1,
-		OpenModeWrite = 2,
-		OpenModeAppend = 4,
-		OpenModeCreate = 8
-	};
-
-	FileStreamImpl(LDL_Result& result);
-	~FileStreamImpl();
+	LDL_FileStream(LDL_Result& result);
+	~LDL_FileStream();
 	bool Open(const char* path, size_t mode);
 	void Close();
 	bool IsOpen() const;
@@ -31,8 +23,8 @@ public:
 	size_t Tell() const;
 	size_t Size() const;
 private:
-	LDL_Result& _result;
 	bool        _isOpen;
+	LDL_Result& _result;
 };
 
 #endif

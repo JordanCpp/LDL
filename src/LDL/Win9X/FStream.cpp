@@ -149,8 +149,8 @@ size_t LDL_FileStream::Size() const
     }
 
     ULARGE_INTEGER fileSize;
-    fileSize.HighPart = highPart;
-    fileSize.LowPart  = lowPart;
+    fileSize.u.HighPart = highPart;
+    fileSize.u.LowPart  = lowPart;
 
     return (size_t)(fileSize.QuadPart);
 }

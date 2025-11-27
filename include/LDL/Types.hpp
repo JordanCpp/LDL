@@ -11,12 +11,16 @@
 
 #if (_MSC_VER >= 1900)
     #include <stdbool.h>
-#else
-    #if (_MSC_VER <= 1200) && (!__cplusplus)
-        #define bool  char
-        #define true  1
-        #define false 0
-    #endif
+#endif
+
+#if (_MSC_VER == 1000)
+    typedef int bool;
+    #define true  1
+    #define false 0
+#elif (_MSC_VER <= 1200) && (!__cplusplus)
+    #define bool  char
+    #define true  1
+    #define false 0
 #endif
 
 #if defined(__TURBOC__)

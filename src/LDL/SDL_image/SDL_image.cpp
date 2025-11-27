@@ -3,8 +3,13 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+#include <LDL/StdFuncs.hpp>
+#define STBI_MALLOC(sz)        LDL_malloc(sz)
+#define STBI_REALLOC(p, newsz) LDL_realloc(p, newsz)
+#define STBI_FREE(p)           LDL_free(p)
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
+
 #include <LDL/SDL/SDL_image.h>
 #include <LDL/SDL/video.h>
 #include <LDL/SDL/error.h>

@@ -284,7 +284,7 @@ void LDL_FileStreamTest()
 	LDL_TEST_EQUAL(result.Ok()          == true);
 
 	uint8_t buffer[1024];
-	LDL_TEST_EQUAL(fileStream->Read(&buffer, sizeof(1024)) == sizeof(1024));
+	LDL_TEST_EQUAL(fileStream->Read(&buffer, sizeof(buffer)) == sizeof(buffer));
 	LDL_TEST_EQUAL(result.Ok() == true);
 
 	fileStream->Close();
