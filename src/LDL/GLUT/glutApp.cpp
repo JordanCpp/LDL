@@ -12,10 +12,11 @@
 glutApplication::glutApplication() :
 	_window(NULL),
 	_displayFunc(NULL),
-	_reshapeFunc(NULL)
+	_reshapeFunc(NULL),
+	_context(LDL_RenderMode::OpenGL1)
 {
 	LDL_OpenGLLoader loader(_result);
-	loader.Init(1, 1);
+	loader.Init(1, 2);
 }
 
 glutApplication::~glutApplication()
@@ -49,9 +50,7 @@ void glutApplication::InitWindowSize(const LDL_Vec2u& size)
 
 int glutApplication::CreateWindow(const char* title)
 {
-	LDL_RenderContext renderContext(LDL_RenderMode::OpenGL1);
-
-	_window = LDL_CreateWindow(_result, renderContext, _pos, _size, title, 0);
+	_window = LDL_CreateWindow(_result, _context, _pos, _size, title, LDL_WindowMode::Resized);
 
 	return 0;
 }

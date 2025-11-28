@@ -3,12 +3,18 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_GLUT_config_h
-#define LDL_GLUT_config_h
+#ifndef LDL_GLFW3_glfwWin_hpp
+#define LDL_GLFW3_glfwWin_hpp
 
-#include <LDL/Config.hpp>
+#include <LDL/Window.hpp>
+#include <LDL/GLFW3/glfwMntr.hpp>
 
-#define GLUT_DECLSPEC LDL_LIBRARY
-#define GLUTCALL
+struct GLFWwindow
+{
+public:
+private:
+	LDL_IWindow* _window;
+	LDL_Result   _result;
+};
 
 #endif

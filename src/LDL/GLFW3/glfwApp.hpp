@@ -3,14 +3,20 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_GLUT_glutMem_hpp
-#define LDL_GLUT_glutMem_hpp
+#ifndef LDL_GLFW3_glfwApp_hpp
+#define LDL_GLFW3_glfwApp_hpp
 
-class glutMemory
+#include <LDL/GLFW3/glfw3.h>
+#include <LDL/Window.hpp>
+
+class glfwApplication
 {
 public:
-	glutMemory();
+	glfwApplication();
+	~glfwApplication();
 private:
+	LDL_IWindow* _window;
+	LDL_Result   _result;
 };
 
 #endif

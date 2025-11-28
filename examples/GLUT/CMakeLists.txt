@@ -1,3 +1,3 @@
 
-add_executable(GLUT_HelloWorld "GLUT_HelloWorld.c")
-target_link_libraries(GLUT_HelloWorld LDL_GLUT)
+add_executable(gltHello "gltHello.c")
+target_link_libraries(gltHello LDL_GLUT)

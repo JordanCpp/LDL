@@ -3,12 +3,13 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_GLUT_config_h
-#define LDL_GLUT_config_h
+#ifndef LDL_GLAUX_config_h
+#define LDL_GLAUX_config_h
 
 #include <LDL/Config.hpp>
+#include <LDL/OpenGL/GLTypes.hpp>
 
-#define GLUT_DECLSPEC LDL_LIBRARY
-#define GLUTCALL
+#define GLAUX_DECLSPEC LDL_LIBRARY
+#define GLAUXCALL
 
 #endif

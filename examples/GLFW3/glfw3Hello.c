@@ -3,12 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_GLUT_config_h
-#define LDL_GLUT_config_h
+#include <LDL/GLFW3/glfw3.h>
 
-#include <LDL/Config.hpp>
-
-#define GLUT_DECLSPEC LDL_LIBRARY
-#define GLUTCALL
-
-#endif
+int main(int argc, char* argv[])
+{
+    return 0;
+}

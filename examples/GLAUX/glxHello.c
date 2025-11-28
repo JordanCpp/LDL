@@ -3,10 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/GLUT/glut.h>
-#include <LDL/OpenGL/GL1_2.hpp>
+#include <LDL/GLAUX/glaux.h>
 
-void Reshape(int width, int height)
+void Reshape(GLsizei width, GLsizei height)
 {
     glViewport(0, 0, width, height);
 
@@ -31,14 +30,13 @@ void Draw(void)
     glEnd();
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char** argv)
 {
-    glutInit(&argc, argv);
-    glutInitWindowSize(800, 600);
-    glutCreateWindow("Hello World");
-    glutDisplayFunc(Draw);
-    glutReshapeFunc(Reshape);
-    glutMainLoop();
+    auxInitDisplayMode(AUX_SINGLE | AUX_RGB);
+    auxInitPosition(0, 0, 640, 480);
+    auxInitWindow(__FILE__);
+    auxReshapeFunc(Reshape);
+    auxMainLoop(Draw);
 
     return 0;
 }

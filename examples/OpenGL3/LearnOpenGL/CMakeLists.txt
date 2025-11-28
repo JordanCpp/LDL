@@ -1,0 +1,15 @@
+
+add_executable(OpenGL3_WindowClear "OpenGL3_WindowClear.cpp")
+target_link_libraries(OpenGL3_WindowClear LDL)
+
+add_executable(OpenGL3_HelloTriangle "OpenGL3_HelloTriangle.cpp")
+target_link_libraries(OpenGL3_HelloTriangle LDL)
+
+add_executable(OpenGL3_HelloTriangleIndexed "OpenGL3_HelloTriangleIndexed.cpp")
+target_link_libraries(OpenGL3_HelloTriangleIndexed LDL)
+
+add_executable(OpenGL3_HelloTriangleExercise1 "OpenGL3_HelloTriangleExercise1.cpp")
+target_link_libraries(OpenGL3_HelloTriangleExercise1 LDL)
+
+add_executable(OpenGL3_ShadersUniform "OpenGL3_ShadersUniform.cpp")
+target_link_libraries(OpenGL3_ShadersUniform LDL)

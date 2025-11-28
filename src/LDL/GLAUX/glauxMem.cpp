@@ -3,12 +3,11 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_GLUT_config_h
-#define LDL_GLUT_config_h
+#include <stdlib.h>
+#include <LDL/MemMngr.hpp>
+#include <LDL/GLAUX/glauxMem.hpp>
 
-#include <LDL/Config.hpp>
-
-#define GLUT_DECLSPEC LDL_LIBRARY
-#define GLUTCALL
-
-#endif
+glauxMemory::glauxMemory()
+{
+	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
+}

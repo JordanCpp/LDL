@@ -3,12 +3,13 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_GLUT_config_h
-#define LDL_GLUT_config_h
+#ifndef LDL_GLFW3_glfwMntr_hpp
+#define LDL_GLFW3_glfwMntr_hpp
 
-#include <LDL/Config.hpp>
-
-#define GLUT_DECLSPEC LDL_LIBRARY
-#define GLUTCALL
+struct GLFWmonitor
+{
+public:
+private:
+};
 
 #endif

@@ -1,8 +1,11 @@
 
 add_subdirectory("BeginEnd")
+add_subdirectory("GLAUX")
+add_subdirectory("GLFW3")
 add_subdirectory("GLUT")
 add_subdirectory("Lessons")
 add_subdirectory("OpenGL1")
+add_subdirectory("OpenGL3")
 add_subdirectory("SDL1")
 add_subdirectory("SDL2")
 add_subdirectory("SDL3")
