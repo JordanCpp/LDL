@@ -30,7 +30,7 @@ int main()
 	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
 	LDL_Result        result;
-	LDL_RenderContext context(LDL_RenderMode::OpenGL1);
+	LDL_RenderContext context(LDL_RenderMode::OpenGL3);
 	LDL_IWindow*      window = LDL_CreateWindow(result, context, LDL_Vec2u(0, 0), WindowSize, __FILE__, LDL_WindowMode::Resized);
 
 	LDL_OpenGLLoader loader(result);
