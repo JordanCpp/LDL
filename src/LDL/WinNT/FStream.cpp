@@ -27,40 +27,58 @@ bool LDL_FileStream::Open(const char* path, size_t mode)
     DWORD disp   = 0;
     DWORD flags  = FILE_ATTRIBUTE_NORMAL;
 
-    if (mode & ModeRead)
+    if (mode & ModeRead) 
     {
         access |= GENERIC_READ;
     }
 
-    if (mode & ModeWrite)
+    if (mode & ModeWrite) 
     {
         access |= GENERIC_WRITE;
     }
 
-    if (mode & ModeAppend)
+    if ((mode & ModeWrite) && (mode & ModeRead)) 
     {
-        disp = OPEN_ALWAYS;
+        if (mode & ModeCreate) 
+        {
+            disp = CREATE_ALWAYS;
+        }
+        else if (mode & ModeAppend) 
+        {
+            disp = OPEN_ALWAYS;
+        }
+        else 
+        {
+            disp = OPEN_EXISTING;
+        }
     }
-    else if (mode & ModeCreate)
+    else if (mode & ModeWrite) 
     {
-        disp = CREATE_ALWAYS;
+        if (mode & ModeCreate) 
+        {
+            disp = CREATE_ALWAYS;
+        }
+        else if (mode & ModeAppend)
+        {
+            disp = OPEN_ALWAYS;
+        }
+        else 
+        {
+            disp = OPEN_EXISTING;
+        }
     }
-    else if (mode & ModeWrite)
-    {
-        disp = OPEN_EXISTING;
-    }
-    else
+    else 
     {
         disp = OPEN_EXISTING;
     }
 
-    _handle = CreateFile(path, access, 0, NULL, disp, flags, NULL);
-
+    _handle = CreateFileA(path, access, FILE_SHARE_READ, NULL, disp, flags, NULL);
     _isOpen = (_handle != INVALID_HANDLE_VALUE);
 
-    if (_isOpen && (mode & ModeAppend))
+    if (!_isOpen) 
     {
-        SetFilePointer(_handle, 0, NULL, FILE_END);
+        WindowError error;
+        _result.Message(error.GetErrorMessage());
     }
 
     return _isOpen;
@@ -82,7 +100,7 @@ void LDL_FileStream::Close()
 
 bool LDL_FileStream::IsOpen() const
 {
-    return _isOpen;
+    return _isOpen && (_handle != INVALID_HANDLE_VALUE);
 }
 
 size_t LDL_FileStream::Read(void* buffer, size_t size)
@@ -122,39 +140,64 @@ bool LDL_FileStream::Seek(size_t pos)
 {
     if (!_isOpen) return false;
 
-    return SetFilePointer(_handle, (LONG)(pos), 0, FILE_BEGIN) != INVALID_SET_FILE_POINTER;
+#ifdef _WIN64
+    LONG high = (LONG)(pos >> 32);
+    LONG low  = (LONG)(pos & 0xFFFFFFFF);
+#else
+    LONG high = 0;
+    LONG low  = (LONG)pos;
+#endif
+
+    DWORD result = SetFilePointer(_handle, low, &high, FILE_BEGIN);
+
+    return (result != INVALID_SET_FILE_POINTER) || (GetLastError() == NO_ERROR);
 }
 
 size_t LDL_FileStream::Tell() const
 {
     if (!_isOpen) return 0;
 
-    return SetFilePointer(_handle, 0, 0, FILE_CURRENT);
-}
+    LONG  high = 0;
+    DWORD low  = SetFilePointer(_handle, 0, &high, FILE_CURRENT);
 
-size_t LDL_FileStream::Size() const
-{
-    if (!_isOpen)
+    if (low == INVALID_SET_FILE_POINTER && GetLastError() != NO_ERROR)
     {
         return 0;
     }
 
-    DWORD highPart = 0;
-    DWORD lowPart  = 0;
-
-    if (GetFileSize(_handle, &lowPart) == INVALID_FILE_SIZE)
+#ifdef _WIN64
+    return ((size_t)high << 32) | low;
+#else
+    if (high != 0) 
     {
-        if (GetLastError() != 0)
-        {
-            return 0;
-        }
+        return 0xFFFFFFFF;
     }
 
-    ULARGE_INTEGER fileSize;
-    fileSize.HighPart = highPart;
-    fileSize.LowPart  = lowPart;
+    return low;
+#endif
+}
 
-    return (size_t)(fileSize.QuadPart);
+size_t LDL_FileStream::Size() const
+{
+    if (!_isOpen) return 0;
+
+    DWORD high = 0;
+    DWORD low = GetFileSize(_handle, &high);
+
+    if (low == INVALID_FILE_SIZE && GetLastError() != NO_ERROR)
+    {
+        return 0;
+    }
+
+#ifdef _WIN64
+    return ((size_t)high << 32) | low;
+#else
+    if (high != 0) 
+    {
+        return 0xFFFFFFFF;
+    }
+    return low;
+#endif
 }
 
 LDL_IFileStream* LDL_CreateFileStream(LDL_Result& result)
