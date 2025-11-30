@@ -7,10 +7,9 @@
 #define LDL_Linux_MainWin_hpp
 
 #include <LDL/Enums.hpp>
-#include <LDL/Eventer.hpp>
-#include <LDL/OpenGL/GL1_1.hpp>
-#include <LDL/Linux/GLX.hpp>
 #include <LDL/BaseWin.hpp>
+#include <LDL/Eventer.hpp>
+#include <LDL/Linux/GLX.hpp>
 
 class LDL_MainWindow
 {

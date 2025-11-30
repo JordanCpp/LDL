@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <LDL/Assert.hpp>
 #include <LDL/Linux/WinGL1.hpp>
+#include <LDL/OpenGL/GLTypes.hpp>
 
 LDL_WindowOpenGL1::LDL_WindowOpenGL1(LDL_Result& result, const LDL_Vec2u &pos, const LDL_Vec2u &size, const char* title, size_t mode) : 
     _result(result),
@@ -53,7 +54,7 @@ LDL_WindowOpenGL1::LDL_WindowOpenGL1(LDL_Result& result, const LDL_Vec2u &pos, c
 
     XSelectInput(_Window._Display, _Window._Window, _Window._EventMask);
 
-    _Context = glXCreateContext(_Window._Display, _Visual, NULL, GL_TRUE);
+    _Context = glXCreateContext(_Window._Display, _Visual, NULL, 1);
 
     glXMakeCurrent(_Window._Display, _Window._Window, _Context);
 
