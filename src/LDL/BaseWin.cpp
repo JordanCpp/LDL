@@ -20,6 +20,11 @@ const LDL_Vec2u& LDL_BaseWindow::Pos()
     return _pos;
 }
 
+void LDL_BaseWindow::Pos(const LDL_Vec2u& pos)
+{
+    _pos = pos;
+}
+
 const LDL_Vec2u& LDL_BaseWindow::Size()
 {
     return _size;

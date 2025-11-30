@@ -32,21 +32,21 @@ public:
 	HWND GetHwnd();
 	HDC GetHdc();
 private:
-	LDL_UtfConverter    _utfConverter;
 	uint8_t ConvertKey(size_t key);
 	static LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam);
 	LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
-	LDL_KeyMapper       _keyMapper;
-	WindowError     _windowError;
-	LDL_BaseWindow      _baseWindow;
-	LDL_Result& _result;
-	LDL_Eventer         _eventer;
-	WNDCLASSEXW     _windowClass;
-	HINSTANCE       _instance;
-	MSG             _msg;
-	ATOM            _atom;
-	HWND            _hwnd;
-	HDC             _hdc;
+	LDL_UtfConverter  _utfConverter;
+	LDL_KeyMapper     _keyMapper;
+	WindowError       _windowError;
+	LDL_BaseWindow    _baseWindow;
+	LDL_Result&       _result;
+	LDL_Eventer       _eventer;
+	WNDCLASSEXW       _windowClass;
+	HINSTANCE         _instance;
+	MSG               _msg;
+	ATOM              _atom;
+	HWND              _hwnd;
+	HDC               _hdc;
 };
 
-#endif   
+#endif

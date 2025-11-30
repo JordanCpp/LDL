@@ -33,6 +33,7 @@ LRESULT CALLBACK LDL_MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LPa
         break;
 
     case WM_DESTROY:
+        PostQuitMessage(0);
         event.Type = IsQuit;
         _eventer.Push(event);
         break;
@@ -178,16 +179,16 @@ LRESULT CALLBACK LDL_MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam,
 
 LDL_MainWindow::LDL_MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
     _baseWindow(pos, size, title, mode),
-    _result(result)
+    _result(result),
+    _instance(NULL),
+    _atom(INVALID_ATOM),
+    _hwnd(NULL),
+    _hdc(NULL)
 {
     timeBeginPeriod(timePeriod);
 
     LDL_memset(&_windowClass, 0, sizeof(WNDCLASSEXW));
-    LDL_memset(&_instance, 0, sizeof(HINSTANCE));
     LDL_memset(&_msg, 0, sizeof(MSG));
-    LDL_memset(&_atom, 0, sizeof(ATOM));
-    LDL_memset(&_hwnd, 0, sizeof(HWND));
-    LDL_memset(&_hdc, 0, sizeof(HDC));
 
     _instance = GetModuleHandle(NULL);
     if (_instance == NULL)
@@ -243,7 +244,18 @@ LDL_MainWindow::LDL_MainWindow(LDL_Result& result, const LDL_Vec2u& pos, const L
 
     if (_baseWindow.IsCentered())
     {
+        int screenWidth  = GetSystemMetrics(SM_CXSCREEN);
+        int screenHeight = GetSystemMetrics(SM_CYSCREEN);
 
+        int windowWidth  = rect.right  - rect.left;
+        int windowHeight = rect.bottom - rect.top;
+
+        rect.left   = (screenWidth  - windowWidth)  / 2;
+        rect.top    = (screenHeight - windowHeight) / 2;
+        rect.right  = rect.left + windowWidth;
+        rect.bottom = rect.top  + windowHeight;
+
+        _baseWindow.Pos(LDL_Vec2u(rect.left, rect.top));
     }
 
     _hwnd = CreateWindowW(AppName, L"", style, (int)_baseWindow.Pos().x, (int)_baseWindow.Pos().y, rect.right - rect.left, rect.bottom - rect.top, 0, 0, _instance, 0);
@@ -280,8 +292,15 @@ LDL_MainWindow::~LDL_MainWindow()
 {
     timeEndPeriod(timePeriod);
 
-    UnregisterClassW(AppName, _instance);
-    ReleaseDC(_hwnd, _hdc);
+    if (_hwnd && _hdc)
+    {
+        ReleaseDC(_hwnd, _hdc);
+    }
+
+    if (_atom != INVALID_ATOM && _instance != NULL)
+    {
+        UnregisterClassW(AppName, _instance);
+    }
 }
 
 bool LDL_MainWindow::Running()
@@ -314,17 +333,20 @@ bool LDL_MainWindow::GetEvent(LDL_Event& event)
 
 bool LDL_MainWindow::WaitEvent(LDL_Event& event)
 {
-    if (_eventer.Running())
+    if (!_eventer.Running())
     {
-        if (GetMessageW(&_msg, _hwnd, 0, 0) == -1)
-        {
-        }
-        else
+        return false;
+    }
+
+    if (GetMessageW(&_msg, NULL, 0, 0) > 0)
+    {
+        TranslateMessage(&_msg);
+        DispatchMessageW(&_msg);
+
+        if (!_eventer.Empty())
         {
             _eventer.Pop(event);
-
-            TranslateMessage(&_msg);
-            DispatchMessageW(&_msg);
+            return true;
         }
     }
 

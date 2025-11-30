@@ -28,6 +28,8 @@ void CleanUp()
 	}
 }
 
+size_t style = LDL_WindowMode::Centered | LDL_WindowMode::Fixed;
+
 int main()
 {
 	LDL_Random rnd;
@@ -39,7 +41,7 @@ int main()
 
 	LDL_Vec2u windowSize = LDL_Vec2u(800, 600);
 
-	window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, LDL_WindowMode::Fixed);
+	window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, style);
 	if (!result.Ok())
 	{
 		ErrorShow(result);
