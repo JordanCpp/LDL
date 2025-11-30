@@ -6,81 +6,118 @@
 #ifndef LDL_RingBuf_hpp
 #define LDL_RingBuf_hpp
 
-#include <LDL/StdFuncs.hpp>
 #include <LDL/PVector.hpp>
 
 template<class T>
 class LDL_RingBuffer
 {
 public:
-	enum
-	{
-		COUNT = 1024
-	};
-	LDL_RingBuffer() :
-		_head(COUNT - 1),
-		_tail(0),
-		_length(0),
-		_capacity(COUNT)
-	{
-		_content.resize(COUNT);
-	}
+    LDL_RingBuffer(size_t capacity = 1024) :
+        _head(capacity > 0 ? capacity - 1 : 0),
+        _tail(0),
+        _length(0),
+        _capacity(capacity)
+    {
+        if (capacity > 0)
+        {
+            _content.resize(capacity);
+        }
+    }
 
-	bool empty()
-	{
-		return _length == 0;
-	}
+    bool empty() const
+    {
+        return _length == 0;
+    }
 
-	bool full()
-	{
-		return _length == _capacity;
-	}
+    bool full() const
+    {
+        return _length == _capacity;
+    }
 
-	size_t next(size_t pos)
-	{
-		return (pos + 1) % _capacity;
-	}
+    size_t size() const
+    {
+        return _length;
+    }
 
-	bool dequeue(T& element)
-	{
-		if (!empty())
-		{
-			element = _content[_tail];
-			_tail = next(_tail);
-			_length--;
+    size_t capacity() const
+    {
+        return _capacity;
+    }
 
-			return true;
-		}
+    size_t next(size_t pos) const
+    {
+        return (pos + 1) % _capacity;
+    }
 
-		return false;
-	}
+    bool dequeue(T& element)
+    {
+        if (!empty())
+        {
+            element = _content[_tail];
+            _tail = next(_tail);
+            _length--;
 
-	void enqueue(const T& element)
-	{
-		_head = next(_head);
-		_content[_head] = element;
+            return true;
+        }
 
-		if (full())
-		{
-			_tail = next(_tail);
-		}
-		else
-		{
-			_length++;
-		}
-	}
+        return false;
+    }
 
-	T* front()
-	{
-		return empty() ? NULL : &_content[_tail];
-	}
+    void enqueue(const T& element)
+    {
+        if (_capacity == 0)
+        {
+            return;
+        }
+
+        _head = next(_head);
+        _content[_head] = element;
+
+        if (full())
+        {
+            _tail = next(_tail);
+        }
+        else
+        {
+            _length++;
+        }
+    }
+
+    T* front()
+    {
+        return empty() ? NULL : &_content[_tail];
+    }
+
+    const T* front() const
+    {
+        return empty() ? NULL : &_content[_tail];
+    }
+
+    bool peek(T& element) const
+    {
+        if (!empty())
+        {
+            element = _content[_tail];
+
+            return true;
+        }
+
+        return false;
+    }
+
+    void clear()
+    {
+        _head = _capacity > 0 ? _capacity - 1 : 0;
+        _tail = 0;
+        _length = 0;
+    }
 
 private:
-	LDL_PodVector<T> _content;
-	size_t           _head;
-	size_t           _tail;
-	size_t           _length;
-	size_t           _capacity;
+    LDL_PodVector<T> _content;
+    size_t           _head;
+    size_t           _tail;
+    size_t           _length;
+    size_t           _capacity;
 };
 
 #endif
