@@ -18,7 +18,8 @@ public:
 	LDL_Formatter();
 	void Clear();
 	char* Data();
-	char* Format(const char* format, ...);
+	const char* Data() const;
+	const char* Format(const char* format, ...);
 private:
 	char _buffer[Max];
 };

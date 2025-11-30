@@ -23,7 +23,12 @@ char* LDL_Formatter::Data()
 	return _buffer;
 }
 
-char* LDL_Formatter::Format(const char* format, ...)
+const char* LDL_Formatter::Data() const
+{
+	return _buffer;
+}
+
+const char* LDL_Formatter::Format(const char* format, ...)
 {
 	va_list args;
 	va_start(args, format);
