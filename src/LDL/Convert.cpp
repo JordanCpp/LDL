@@ -9,7 +9,7 @@
 
 LDL_Convert::LDL_Convert()
 {
-    LDL_memset(&_buffer, 0, sizeof(_buffer));
+    LDL_memset(_buffer, 0, sizeof(_buffer));
 }
 
 const char* LDL_Convert::ToString(intmax_t num, uint8_t base)
@@ -17,24 +17,26 @@ const char* LDL_Convert::ToString(intmax_t num, uint8_t base)
     if (base < 2 || base > 36)
     {
         _buffer[0] = '\0';
-
         return _buffer;
     }
 
-    if (num == INT_MIN && base == 10)
-    {
-        const char* min_str = "-9223372036854775808";
-        
-        size_t len = LDL_strlen(min_str);
-        
-        LDL_memcpy(_buffer, min_str, len + 1);
-
-        return _buffer;
-    }
-
-    int i           = 0;
+    int i = 0;
     bool isNegative = false;
     uintmax_t number;
+
+    const intmax_t min_value = (intmax_t)1 << (sizeof(intmax_t) * 8 - 1);
+    if (num == min_value && base == 10)
+    {
+        if (sizeof(intmax_t) == 8)
+        {
+            LDL_memcpy(_buffer, "-9223372036854775808", 21);
+        }
+        else
+        {
+            LDL_memcpy(_buffer, "-2147483648", 12);
+        }
+        return _buffer;
+    }
 
     if (num < 0 && base == 10)
     {
@@ -52,42 +54,34 @@ const char* LDL_Convert::ToString(intmax_t num, uint8_t base)
     }
     else
     {
-        while (number != 0)
+        while (number != 0 && i < (int)(sizeof(_buffer) - 2))
         {
             uintmax_t rem = number % base;
-            _buffer[i++] = (rem > 9) ? (rem - 10) + 'a' : rem + '0';
+            _buffer[i++] = (char)((rem > 9) ? (rem - 10) + 'a' : rem + '0');
             number = number / base;
         }
     }
 
-    if (isNegative)
+    if (isNegative && i < (int)(sizeof(_buffer) - 1))
     {
         _buffer[i++] = '-';
     }
 
     _buffer[i] = '\0';
 
-    Reverse(_buffer, i);
+    if (i > 1)
+    {
+        size_t start = 0;
+        size_t end = i - 1;
+        while (start < end)
+        {
+            char temp = _buffer[start];
+            _buffer[start] = _buffer[end];
+            _buffer[end] = temp;
+            start++;
+            end--;
+        }
+    }
 
     return _buffer;
-}
-
-void LDL_Convert::Swap(char& t1, char& t2)
-{
-    char tmp = t1;
-    t1 = t2;
-    t2 = tmp;
-}
-
-void LDL_Convert::Reverse(char* str, size_t length)
-{
-    size_t start = 0;
-    size_t end = length - 1;
-
-    while (start < end)
-    {
-        Swap(*(str + start), *(str + end));
-        start++;
-        end--;
-    }
 }
