@@ -25,6 +25,8 @@ public:
 private:
 	bool        _isOpen;
 	LDL_Result& _result;
+	int         _fd;
+	size_t      _mode;
 };
 
 #endif
