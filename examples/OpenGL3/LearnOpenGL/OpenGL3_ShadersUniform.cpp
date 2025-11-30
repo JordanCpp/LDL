@@ -26,6 +26,7 @@ const char* fragmentShaderSource = "#version 330 core\n"
 "}\n\0";
 
 const LDL_Vec2u WindowSize = LDL_Vec2u(800, 600);
+const size_t style = LDL_WindowMode::Centered | LDL_WindowMode::Resized;
 
 int main()
 {
@@ -33,7 +34,7 @@ int main()
 
 	LDL_Result        result;
 	LDL_RenderContext context(LDL_RenderMode::OpenGL3);
-	LDL_IWindow*      window = LDL_CreateWindow(result, context, LDL_Vec2u(0, 0), WindowSize, __FILE__, LDL_WindowMode::Resized);
+	LDL_IWindow*      window = LDL_CreateWindow(result, context, LDL_Vec2u(0, 0), WindowSize, __FILE__, style);
 
 	LDL_OpenGLLoader loader(result);
 	loader.Init(3, 3);

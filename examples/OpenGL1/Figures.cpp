@@ -17,7 +17,7 @@ void Identity()
 	glLoadIdentity();
 }
 
-void LDL_Display()
+void Display()
 {
 	Identity();
 
@@ -33,13 +33,15 @@ void LDL_Display()
 	glEnd();
 }
 
+const size_t style = LDL_WindowMode::Centered | LDL_WindowMode::Resized;
+
 int main()
 {
 	LDL_MemoryManager::Instance().Functions(malloc, NULL, NULL, free);
 
 	LDL_Result result;
 	LDL_RenderContext renderContext(LDL_RenderMode::OpenGL1);
-	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, LDL_WindowMode::Fixed);
+	LDL_IWindow* window = LDL_CreateWindow(result, renderContext, LDL_Vec2u(0, 0), LDL_Vec2u(800, 600), __FILE__, style);
 
 	LDL_OpenGLLoader loader(result);
 	loader.Init(1, 1);
@@ -57,16 +59,23 @@ int main()
 
 		while (window->GetEvent(report))
 		{
+			if (report.Type == IsResize)
+			{
+				glViewport(0, 0, (GLsizei)report.Resize.Width, (GLsizei)report.Resize.Height);
+			}
+
 			if (report.Type == IsQuit)
 			{
 				window->StopEvent();
 			}
 
 			if (report.IsKeyPressed(LDL_KeyboardKey::Escape))
+			{
 				window->StopEvent();
+			}
 		}
 
-		LDL_Display();
+		Display();
 
 		window->Present();
 
