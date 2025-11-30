@@ -6,11 +6,12 @@
 #include <LDL/Eventer.hpp>
 
 LDL_Eventer::LDL_Eventer() :
-	_running(true)
+	_running(true),
+    _queue(MaxEvents)
 {
 }
 
-bool LDL_Eventer::Empty()
+bool LDL_Eventer::Empty() const
 {
     return _queue.empty();
 }
@@ -32,7 +33,7 @@ bool LDL_Eventer::Pop(LDL_Event& event)
     return false;
 }
 
-bool LDL_Eventer::Running()
+bool LDL_Eventer::Running() const
 {
 	return _running;
 }

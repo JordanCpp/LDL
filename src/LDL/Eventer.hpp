@@ -14,13 +14,13 @@ class LDL_LIBRARY LDL_Eventer
 public:
 	enum
 	{
-		Max = 128
+		MaxEvents = 128
 	};
 	LDL_Eventer();
-	bool Empty();
+	bool Empty() const;
 	void Push(LDL_Event& event);
 	bool Pop(LDL_Event& event);
-	bool Running();
+	bool Running() const;
 	void Stop();
 private:
 	bool                      _running;
