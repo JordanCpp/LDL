@@ -15,8 +15,6 @@ LDL_WindowOpenGL1::LDL_WindowOpenGL1(LDL_Result& result, const LDL_Vec2u& pos, c
 
     LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
 
-    WindowError windowError;
-
     pfd.nSize      = sizeof(pfd);
     pfd.nVersion   = 1;
     pfd.dwFlags    = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
@@ -28,12 +26,23 @@ LDL_WindowOpenGL1::LDL_WindowOpenGL1(LDL_Result& result, const LDL_Vec2u& pos, c
     int format = ChoosePixelFormat(_window.GetHdc(), &pfd);
     if (format == 0)
     {
+        WindowError windowError;
         _result.Message(windowError.GetErrorMessage());
+        return;
+    }
+
+    PIXELFORMATDESCRIPTOR chosenPfd;
+    DescribePixelFormat(_window.GetHdc(), format, sizeof(chosenPfd), &chosenPfd);
+
+    if (!(chosenPfd.dwFlags & PFD_SUPPORT_OPENGL))
+    {
+        _result.Message("OpenGL not supported by selected pixel format");
         return;
     }
 
     if (!SetPixelFormat(_window.GetHdc(), format, &pfd))
     {
+        WindowError windowError;
         _result.Message(windowError.GetErrorMessage());
         return;
     }
@@ -41,12 +50,14 @@ LDL_WindowOpenGL1::LDL_WindowOpenGL1(LDL_Result& result, const LDL_Vec2u& pos, c
     _hglrc = wglCreateContext(_window.GetHdc());
     if (_hglrc == NULL)
     {
+        WindowError windowError;
         _result.Message(windowError.GetErrorMessage());
         return;
     }
 
     if (!wglMakeCurrent(_window.GetHdc(), _hglrc))
     {
+        WindowError windowError;
         _result.Message(windowError.GetErrorMessage());
         return;
     }
@@ -54,8 +65,12 @@ LDL_WindowOpenGL1::LDL_WindowOpenGL1(LDL_Result& result, const LDL_Vec2u& pos, c
 
 LDL_WindowOpenGL1::~LDL_WindowOpenGL1()
 {
-    wglMakeCurrent(NULL, NULL);
-    wglDeleteContext(_hglrc);
+    if (_hglrc != NULL)
+    {
+        wglMakeCurrent(NULL, NULL);
+        wglDeleteContext(_hglrc);
+        _hglrc = NULL;
+    }
 }
 
 bool LDL_WindowOpenGL1::Running()
