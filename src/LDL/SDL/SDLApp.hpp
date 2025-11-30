@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL_SDL_Application_hpp
-#define LDL_APIs_SDL_SDL_Application_hpp
+#ifndef LDL_SDL_SDLApp_hpp
+#define LDL_SDL_SDLApp_hpp
 
 #include <LDL/Result.hpp>
 #include <LDL/Render.hpp>

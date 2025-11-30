@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_APIs_SDL3_SDL_Surface_hpp
-#define LDL_APIs_SDL3_SDL_Surface_hpp
+#ifndef LDL_SD3_SDLSurf_hpp
+#define LDL_SDL_SDLSurf_hpp
 
 #include <LDL/SDL/video.h>
 #include <LDL/Surface.hpp>
