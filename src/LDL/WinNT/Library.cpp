@@ -9,13 +9,24 @@
 
 bool LDL_Library::Open(const char* path)
 {
+    if (path == NULL || path[0] == '\0')
+    {
+        _result.Message("Invalid library path: null or empty");
+        return false;
+    }
+
+    if (_module != NULL)
+    {
+        _result.Message("Library already loaded");
+        return false;
+    }
+
     _module = LoadLibrary(path);
 
     if (_module == NULL)
     {
         LDL_Formatter formatter;
         _result.Message(formatter.Format("LoadLibrary failed: %s", path));
-
         return false;
     }
 
@@ -39,6 +50,18 @@ LDL_Library::~LDL_Library()
 LDL_VoidFuncPtr LDL_Library::Function(const char* name)
 {
     LDL_VoidFuncPtr result = NULL;
+
+    if (_module == NULL)
+    {
+        _result.Message("Library not loaded");
+        return NULL;
+    }
+
+    if (name == NULL || name[0] == '\0')
+    {
+        _result.Message("Invalid function name");
+        return NULL;
+    }
 
     if (_module)
     {

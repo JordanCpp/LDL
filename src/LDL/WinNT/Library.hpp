@@ -18,8 +18,8 @@ public:
 	bool Open(const char* path);
 	LDL_VoidFuncPtr Function(const char* name);
 private:
-	HMODULE    _module;
-	LDL_Result _result;
+	HMODULE     _module;
+	LDL_Result& _result;
 };
 
 #endif    
