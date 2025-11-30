@@ -6,6 +6,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <string.h>
 #include <sys/stat.h>
 #include <LDL/StdFuncs.hpp>
 #include <LDL/Linux/FStream.hpp>
@@ -70,12 +71,6 @@ bool LDL_FileStream::Open(const char* path, size_t mode)
         return false;
     }
 
-    struct stat fileStat;
-    if (fstat(_fd, &fileStat) == 0)
-    {
-        _fileSize = fileStat.st_size;
-    }
-
     _mode   = mode;
     _isOpen = true;
 
@@ -92,7 +87,6 @@ void LDL_FileStream::Close()
     }
 
     _isOpen   = false;
-    _fileSize = 0;
     _mode     = 0;
 }
 
