@@ -7,10 +7,12 @@
 #include <LDL/Linux/GLX.hpp>
 #include <LDL/Linux/GLFuncs.hpp>
 
-OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path) :
+OpenGLFunctionsImpl::OpenGLFunctionsImpl(LDL_Result& result, const char* path) :
     _Library(NULL)
 {
-    _Library = LDL_CreateLibrary(path);
+    _Library = LDL_CreateLibrary(result);
+
+    _Library->Open(path);
 }
 
 LDL_VoidFuncPtr OpenGLFunctionsImpl::Function(const char* name)

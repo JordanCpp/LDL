@@ -11,9 +11,8 @@
 class OpenGLFunctionsImpl
 {
 public:
-	OpenGLFunctionsImpl(const char* path);
+	OpenGLFunctionsImpl(LDL_Result& result, const char* path);
 	LDL_VoidFuncPtr Function(const char* name);
-
 private:
 	LDL_ILibrary* _Library;
 };

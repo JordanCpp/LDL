@@ -7,9 +7,9 @@
 #include <LDL/Types.hpp>
 #include <LDL/Linux/Library.hpp>
 
-LDL_Library::LDL_Library(const char *path)
+LDL_Library::LDL_Library(LDL_Result& result) :
+    _Library(NULL)
 {
-    _Library = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
 }
 
 LDL_Library::~LDL_Library()
@@ -20,12 +20,19 @@ LDL_Library::~LDL_Library()
     }
 }
 
+bool LDL_Library::Open(const char* path)
+{
+    _Library = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
+
+    return (_Library != NULL);
+}
+
 LDL_VoidFuncPtr LDL_Library::Function(const char *name)
 {
     return (LDL_VoidFuncPtr)dlsym(_Library, name);
 }
 
-LDL_ILibrary* LDL_CreateLibrary(const char* name)
+LDL_ILibrary* LDL_CreateLibrary(LDL_Result& result)
 {
-    return new LDL_Library(name);
+    return new LDL_Library(result);
 }

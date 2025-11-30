@@ -11,8 +11,9 @@
 	class LDL_Library : public LDL_ILibrary
 	{
 	public:
-		LDL_Library(const char *path);
+		LDL_Library(LDL_Result& result);
 		~LDL_Library();
+		bool Open(const char* path);
 		LDL_VoidFuncPtr Function(const char *name);
 	private:
 		void* _Library;
