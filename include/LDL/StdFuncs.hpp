@@ -20,6 +20,7 @@ LDL_LIBRARY void* LDL_realloc(void* block, size_t bytes);
 LDL_LIBRARY void  LDL_free(void* ptr);
 
 LDL_LIBRARY size_t LDL_strlcpy(char* dst, const char* src, size_t size);
+LDL_LIBRARY size_t LDL_strlcat(char* dst, const char* src, size_t dstsize);
 LDL_LIBRARY size_t LDL_strlen(const char* src);
 
 LDL_LIBRARY void* LDL_memcpy(void* dst, const void* src, size_t size);

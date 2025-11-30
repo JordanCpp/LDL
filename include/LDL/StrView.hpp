@@ -14,7 +14,7 @@ class LDL_LIBRARY LDL_StringView
 public:
 	LDL_StringView(char* data, size_t capacity);
 	void clear();
-	const char* c_str();
+	const char* c_str() const;
 	void assign(const char* src);
 	void append(const char* src);
 private:

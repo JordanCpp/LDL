@@ -56,30 +56,60 @@ size_t LDL_strlcpy(char* dst, const char* src, size_t size)
 		return 0;
 	}
 
-	size_t srcLength = 0;
+	size_t srcLen = 0;
 
-	while (src[srcLength] != '\0')
+	while (src[srcLen] != '\0')
 	{
-		srcLength++;
+		srcLen++;
 	}
 
 	if (size > 1)
 	{
-		size_t copyLength = (srcLength < size - 1) ? srcLength : size - 1;
+		size_t copyLen = (srcLen < size - 1) ? srcLen : size - 1;
 
-		for (size_t i = 0; i < copyLength; ++i)
+		for (size_t i = 0; i < copyLen; ++i)
 		{
 			dst[i] = src[i];
 		}
 
-		dst[copyLength] = '\0';
+		dst[copyLen] = '\0';
 	}
 	else
 	{
 		dst[0] = '\0';
 	}
 
-	return srcLength;
+	return srcLen;
+}
+
+size_t LDL_strlcat(char* dst, const char* src, size_t dstSize)
+{
+	if (dst == NULL || src == NULL || dstSize == 0)
+	{
+		return 0;
+	}
+
+	size_t dstLen = LDL_strlen(dst);
+
+	if (dstLen >= dstSize)
+	{
+		return dstSize + LDL_strlen(src);
+	}
+
+	size_t remaining = dstSize - dstLen - 1;
+
+	size_t srcLen  = LDL_strlen(src);
+	size_t copyLen = srcLen;
+
+	if (copyLen > remaining)
+	{
+		copyLen = remaining;
+	}
+
+	LDL_memcpy(dst + dstLen, src, copyLen);
+	dst[dstLen + copyLen] = '\0';
+
+	return dstLen + srcLen;
 }
 
 size_t LDL_strlen(const char* src)

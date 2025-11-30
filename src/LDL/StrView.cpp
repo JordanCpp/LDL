@@ -19,7 +19,7 @@ void LDL_StringView::clear()
 	_position = 0;
 }
 
-const char* LDL_StringView::c_str()
+const char* LDL_StringView::c_str() const
 {
 	return _data;
 }
@@ -37,11 +37,7 @@ void LDL_StringView::assign(const char* src)
 
 void LDL_StringView::append(const char* src)
 {
-	size_t length = LDL_strlen(src);
+	LDL_strlcat(_data, src, _capacity);
 
-	if (length + _position + 1 < _capacity)
-	{
-		LDL_strlcpy(_data + _position, src, _capacity);
-		_position += length;
-	}
+	size_t length = LDL_strlen(src);
 }

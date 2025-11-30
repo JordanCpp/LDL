@@ -15,7 +15,12 @@ LDL_BaseWindow::LDL_BaseWindow(const LDL_Vec2u& pos, const LDL_Vec2u& size, cons
     _title.assign(title);
 }
 
-const LDL_Vec2u& LDL_BaseWindow::Pos()
+bool LDL_BaseWindow::HasMode(size_t mode) const
+{
+    return (_mode & mode) != 0;
+}
+
+const LDL_Vec2u& LDL_BaseWindow::Pos() const
 {
     return _pos;
 }
@@ -25,7 +30,7 @@ void LDL_BaseWindow::Pos(const LDL_Vec2u& pos)
     _pos = pos;
 }
 
-const LDL_Vec2u& LDL_BaseWindow::Size()
+const LDL_Vec2u& LDL_BaseWindow::Size() const
 {
     return _size;
 }
@@ -35,7 +40,7 @@ void LDL_BaseWindow::Size(const LDL_Vec2u& size)
     _size = size;
 }
 
-const char* LDL_BaseWindow::Title()
+const char* LDL_BaseWindow::Title() const
 {
     return _title.c_str();
 }
@@ -45,32 +50,32 @@ void LDL_BaseWindow::Title(const char* source)
     _title.assign(source);
 }
 
-bool LDL_BaseWindow::IsFullScreen()
+bool LDL_BaseWindow::IsFullScreen() const
 {
-    return (_mode & LDL_WindowMode::FullScreen) != 0;
+    return HasMode(LDL_WindowMode::FullScreen);
 }
 
-bool LDL_BaseWindow::IsResized()
+bool LDL_BaseWindow::IsResized() const
 {
-    return (_mode & LDL_WindowMode::Resized) != 0;
+    return HasMode(LDL_WindowMode::Resized);
 }
 
-bool LDL_BaseWindow::IsFixed()
+bool LDL_BaseWindow::IsFixed() const
 {
-    return (_mode & LDL_WindowMode::Fixed) != 0;
+    return HasMode(LDL_WindowMode::Fixed);
 }
 
-bool LDL_BaseWindow::IsMinimized()
+bool LDL_BaseWindow::IsMinimized() const
 {
-    return (_mode & LDL_WindowMode::Minimized) != 0;
+    return HasMode(LDL_WindowMode::Minimized);
 }
 
-bool LDL_BaseWindow::IsMaximized()
+bool LDL_BaseWindow::IsMaximized() const
 {
-    return (_mode & LDL_WindowMode::Maximized) != 0;
+    return HasMode(LDL_WindowMode::Maximized);
 }
 
-bool LDL_BaseWindow::IsCentered()
+bool LDL_BaseWindow::IsCentered() const
 {
-    return (_mode & LDL_WindowMode::Centered) != 0;
+    return HasMode(LDL_WindowMode::Centered);
 }
