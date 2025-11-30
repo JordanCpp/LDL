@@ -21,8 +21,8 @@ public:
 	void Clear();
 private:
 	bool           _ok;
-	char           _bufferMessage[LDL_ErrorMax];
 	LDL_StringView _message;
+	char           _bufferMessage[LDL_ErrorMax];
 };
 
 #endif
