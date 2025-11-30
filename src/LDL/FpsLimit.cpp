@@ -19,6 +19,11 @@ void LDL_FpsLimiter::Mark()
 
 void LDL_FpsLimiter::Throttle() const
 {
+	if (_fps == 0)
+	{
+		return;
+	}
+
 	size_t frameTimeMs = 1000 / _fps;
 	size_t elapsed     = LDL_Ticks() - _startTime;
 
