@@ -26,9 +26,9 @@ public:
 	const LDL_Vec2u& Pos();
 	void* NativeHandle();
 private:
-	LDL_Result& _result;
-	LDL_MainWindow   _mainWindow;
-	HGLRC        _hglrc;
+	LDL_Result&     _result;
+	HGLRC           _hglrc;
+	LDL_MainWindow  _mainWindow;
 };
 
 #endif  
