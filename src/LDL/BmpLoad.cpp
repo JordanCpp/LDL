@@ -58,11 +58,33 @@ bool LDL_BmpLoader::Load(const char* path)
         return false;
     }
 
+    if (!_stream->IsOpen())
+    {
+        _result.Message(_formatter.Format("File stream not open: %s", path));
+        return false;
+    }
+
+    size_t fileSize = _stream->Size();
+    if (fileSize < sizeof(BMPFileHeader) + sizeof(BMPInfoHeader))
+    {
+        _result.Message(_formatter.Format("File too small to be a valid BMP: %s", path));
+        return false;
+    }
+
     BMPFileHeader file_header;
     BMPInfoHeader info_header;
 
-    _stream->Read(&file_header, sizeof(BMPFileHeader));
-    _stream->Read(&info_header, sizeof(BMPInfoHeader));
+    if (_stream->Read(&file_header, sizeof(BMPFileHeader)) != sizeof(BMPFileHeader))
+    {
+        _result.Message(_formatter.Format("Failed to read BMP file header: %s", path));
+        return false;
+    }
+
+    if (_stream->Read(&info_header, sizeof(BMPInfoHeader)) != sizeof(BMPInfoHeader))
+    {
+        _result.Message(_formatter.Format("Failed to read BMP info header: %s", path));
+        return false;
+    }
 
     if (file_header.file_type != 0x4D42)
     {
@@ -82,7 +104,16 @@ bool LDL_BmpLoader::Load(const char* path)
         return false;
     }
 
-    _size = LDL_Vec2u(info_header.width, info_header.height);
+    int32_t width  = info_header.width;
+    int32_t height = info_header.height;
+    bool isTopDown = height < 0;
+
+    if (isTopDown)
+    {
+        height = -height;
+    }
+
+    _size = LDL_Vec2u((size_t)width, (size_t)height);
     _bpp  = info_header.bit_count / 8;
 
     if (_bpp == 0)
@@ -97,12 +128,26 @@ bool LDL_BmpLoader::Load(const char* path)
 
     _stream->Seek(file_header.offset_data);
 
-    for (int y = _size.y - 1; y >= 0; --y)
+    if (isTopDown)
     {
-        if (_stream->Read(_pixels.data() + y * row_stride, row_stride) != row_stride)
+        for (size_t y = 0; y < _size.y; ++y)
         {
-            _result.Message(_formatter.Format("Failed to read pixel data: %s\n", path));
-            return false;
+            if (_stream->Read(_pixels.data() + y * row_stride, row_stride) != row_stride)
+            {
+                _result.Message(_formatter.Format("Failed to read pixel data: %s", path));
+                return false;
+            }
+        }
+    }
+    else
+    {
+        for (int y = _size.y - 1; y >= 0; --y)
+        {
+            if (_stream->Read(_pixels.data() + y * row_stride, row_stride) != row_stride)
+            {
+                _result.Message(_formatter.Format("Failed to read pixel data: %s", path));
+                return false;
+            }
         }
     }
 
