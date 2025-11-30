@@ -6,9 +6,8 @@
 #ifndef LDL_Linux_WinGL1_hpp
 #define LDL_Linux_WinGL1_hpp
 
-#include <LDL/Result.hpp>
-#include <LDL/Linux/GLX.hpp>
 #include <LDL/Window.hpp>
+#include <LDL/Linux/GLX.hpp>
 #include <LDL/Linux/MainWin.hpp>
 
 class LDL_WindowOpenGL1 : public LDL_IWindow

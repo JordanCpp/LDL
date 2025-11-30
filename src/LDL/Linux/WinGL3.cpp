@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <assert.h>
+#include <LDL/Assert.hpp>
 #include <LDL/Linux/WinGL3.hpp>
 
 LDL_WindowOpenGL3::LDL_WindowOpenGL3(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
@@ -17,8 +17,8 @@ LDL_WindowOpenGL3::~LDL_WindowOpenGL3()
 
 void LDL_WindowOpenGL3::Present(uint8_t* pixels, uint8_t bytesPerPixel)
 {
-    assert(pixels != NULL);
-    assert(bytesPerPixel == 1 || bytesPerPixel == 2 || bytesPerPixel == 3 || bytesPerPixel == 4);
+    LDL_ASSERT(pixels != NULL);
+    LDL_ASSERT(bytesPerPixel == 1 || bytesPerPixel == 2 || bytesPerPixel == 3 || bytesPerPixel == 4);
 }
 
 void LDL_WindowOpenGL3::Present()

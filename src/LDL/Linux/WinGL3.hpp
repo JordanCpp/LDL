@@ -6,7 +6,6 @@
 #ifndef LDL_Linux_WinGL3_hpp
 #define LDL_Linux_WinGL3_hpp
 
-#include <LDL/Result.hpp>
 #include <LDL/Window.hpp>
 #include <LDL/Linux/MainWin.hpp>
 
