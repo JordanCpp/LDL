@@ -18,72 +18,71 @@ private:
     size_t  _size;
     size_t  _capacity;
 
-    void* alloc(size_t bytes)
+    void Reallocate(size_t newCapacity)
     {
-        return LDL_malloc(bytes);
+        if (newCapacity <= _capacity)
+        {
+            return;
+        }
+
+        T* newData = (T*)LDL_malloc(newCapacity * sizeof(T));
+
+        if (_data != NULL && _size > 0)
+        {
+            LDL_memcpy(newData, _data, _size * sizeof(T));
+            LDL_free(_data);
+        }
+
+        _data     = newData;
+        _capacity = newCapacity;
     }
 
-    void dealloc(void* ptr)
+    void FreeMemory()
     {
-        LDL_free(ptr);
+        if (_data != NULL)
+        {
+            LDL_free(_data);
+            _data = NULL;
+        }
+
+        _size     = 0;
+        _capacity = 0;
     }
 
 public:
     LDL_PodVector() :
-        _data(0), _size(0), _capacity(0)
+        _data(NULL), _size(0), _capacity(0)
     {
     }
 
     ~LDL_PodVector()
     {
-        dealloc(_data);
+        FreeMemory();
     }
 
     LDL_PodVector(const LDL_PodVector& other) :
-        _data(0), _size(0), _capacity(0)
+        _data(NULL), _size(0), _capacity(0)
     {
-        if (other._size == 0)
+        if (other._size > 0)
         {
-            return;
+            Reallocate(other._size);
+            LDL_memcpy(_data, other._data, other._size * sizeof(T));
+            _size = other._size;
         }
-
-        reserve(other._size);
-
-        for (size_t i = 0; i < other._size; ++i)
-        {
-            new (&_data[i]) T(other._data[i]);
-        }
-
-        _size = other._size;
     }
 
     LDL_PodVector& operator=(const LDL_PodVector& other)
     {
-        if (this == &other)
+        if (this != &other)
         {
-            return *this;
-        }
-
-        if (_capacity < other._size)
-        {
-            dealloc(_data);
-
-            _data = 0;
-            _capacity = 0;
+            FreeMemory();
 
             if (other._size > 0)
             {
-                _data = (T*)alloc(other._size * sizeof(T));
-                _capacity = other._size;
+                Reallocate(other._size);
+                LDL_memcpy(_data, other._data, other._size * sizeof(T));
+                _size = other._size;
             }
-        }
-
-        _size = 0;
-
-        for (size_t j = 0; j < other._size; ++j)
-        {
-            new (&_data[j]) T(other._data[j]);
-            ++_size;
         }
 
         return *this;
@@ -93,44 +92,26 @@ public:
     {
         if (_size == _capacity)
         {
-            reserve(_capacity == 0 ? 1 : _capacity * 2);
+            size_t newCapacity = _capacity == 0 ? 1 : _capacity * 2;
+            Reallocate(newCapacity);
         }
 
-        new (&_data[_size]) T(element);
+        _data[_size] = element;
         ++_size;
     }
 
     void reserve(size_t count)
     {
-        if (count <= _capacity)
-        {
-            return;
-        }
-
-        T* new_data = (T*)alloc(count * sizeof(T));
-
-        for (size_t i = 0; i < _size; ++i)
-        {
-            new (&new_data[i]) T(_data[i]);
-        }
-
-        dealloc(_data);
-        _data = new_data;
-        _capacity = count;
+        Reallocate(count);
     }
 
     void resize(size_t count)
     {
         if (count > _capacity)
         {
-            reserve(count);
+            Reallocate(count);
         }
-
-        while (_size < count)
-        {
-            new (&_data[_size]) T();
-            ++_size;
-        }
+        _size = count;
     }
 
     void clear()
@@ -164,21 +145,25 @@ public:
 
     T& front()
     {
+        LDL_ASSERT(_size > 0);
         return _data[0];
     }
 
     const T& front() const
     {
+        LDL_ASSERT(_size > 0);
         return _data[0];
     }
 
     T& back()
     {
+        LDL_ASSERT(_size > 0);
         return _data[_size - 1];
     }
 
     const T& back() const
     {
+        LDL_ASSERT(_size > 0);
         return _data[_size - 1];
     }
 
