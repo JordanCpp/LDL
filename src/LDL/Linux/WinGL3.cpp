@@ -5,8 +5,10 @@
 
 #include <LDL/Assert.hpp>
 #include <LDL/Linux/WinGL3.hpp>
+#include <LDL/OpenGL/GLTypes.hpp>
 
 LDL_WindowOpenGL3::LDL_WindowOpenGL3(LDL_Result& result, const LDL_Vec2u& pos, const LDL_Vec2u& size, const char* title, size_t mode) :
+    _result(result),
     _Window(pos, size, title, mode)
 {
     GLint major = 0;

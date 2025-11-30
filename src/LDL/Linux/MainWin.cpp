@@ -280,6 +280,13 @@ void LDL_MainWindow::PollEvents()
 
         switch (event.type)
         {
+        case ConfigureNotify:
+            report.Type          = IsResize;
+            report.Resize.Width  = event.xconfigure.width;
+            report.Resize.Height = event.xconfigure.height;
+            _Eventer.Push(report);
+            break;
+
         case KeyPress:
             report.Type = IsKeyboard;
             report.Keyboard.State = LDL_ButtonState::Pressed;
