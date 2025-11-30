@@ -27,7 +27,10 @@ public:
 	const LDL_Vec2u& Pos();
 	void* NativeHandle();
 private:
-	LDL_MainWindow _Window;
+	LDL_Result&     _result;
+	LDL_MainWindow  _Window;
+	XVisualInfo*    _Visual;
+	GLXContext      _Context;
 };
 
 #endif
