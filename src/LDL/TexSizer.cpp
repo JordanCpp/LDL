@@ -5,19 +5,19 @@
 
 #include <LDL/TexSizer.hpp>
 
-const size_t _TextureCount = 13;
-const size_t _TextureSizes[_TextureCount] = {16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
+static const size_t _textureSizes[] = {16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
+static const size_t _textureCount   = sizeof(_textureSizes) / sizeof(_textureSizes[0]);
 
 size_t LDL_PotTextureSizer::Calc(const LDL_Vec2u& size)
 {
 	size_t w = size.x;
 	size_t h = size.y;
 
-	for (size_t i = 0; i < _TextureCount; i++)
+	for (size_t i = 0; i < _textureCount; i++)
 	{
-		if (w <= _TextureSizes[i] && h <= _TextureSizes[i])
+		if (w <= _textureSizes[i] && h <= _textureSizes[i])
 		{
-			return _TextureSizes[i];
+			return _textureSizes[i];
 		}
 	}
 
