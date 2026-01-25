@@ -5,7 +5,7 @@
 
 #include <LDL/Assert.hpp>
 #include <LDL/Format.hpp>
-#include <LDL/StrView.hpp>
+#include <LDL/StrModif.hpp>
 #include <LDL/StrTypes.hpp>
 #include <LDL/OpenGL/GL1_0.hpp>
 #include <LDL/Renders/GL/Util.hpp>
@@ -117,7 +117,7 @@ void Check(const char* file, int line, const char* expression)
     GLenum code = glGetError();
 
 	char errorBuffer[LDL_AssertMax];
-	LDL_StringView errorString(errorBuffer, sizeof(errorBuffer));
+	LDL_StringModif errorString(errorBuffer, sizeof(errorBuffer));
 
     if (code != GL_NO_ERROR)
     { 

@@ -74,7 +74,7 @@ void FormatterTest()
 
 	char buffer[limit];
 
-	LDL_StringView stringView(buffer, limit);
+	LDL_StringModif stringView(buffer, limit);
 
 	stringView.assign(formatter.Format(""));
 	LDL_TEST_EQUAL(strcmp(stringView.c_str(), "") == 0);
@@ -262,7 +262,7 @@ void LDL_StringViewTest()
 	const size_t sizeBuffer = 256;
 
 	char buffer[sizeBuffer];
-	LDL_StringView stringView(buffer, sizeBuffer);
+	LDL_StringModif stringView(buffer, sizeBuffer);
 
 	stringView.assign("Hello");
 	stringView.append("World!");

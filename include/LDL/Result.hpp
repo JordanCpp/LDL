@@ -7,7 +7,7 @@
 #define LDL_Result_hpp
 
 #include <LDL/Config.hpp>
-#include <LDL/StrView.hpp>
+#include <LDL/StrModif.hpp>
 #include <LDL/StrTypes.hpp>
 
 class LDL_LIBRARY LDL_Result
@@ -21,7 +21,7 @@ public:
 	void Clear();
 private:
 	bool           _ok;
-	LDL_StringView _message;
+	LDL_StringModif _message;
 	char           _bufferMessage[LDL_ErrorMax];
 };
 

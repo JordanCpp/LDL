@@ -7,7 +7,7 @@
 #define LDL_BaseWin_hpp
 
 #include <LDL/Vec2u.hpp>
-#include <LDL/StrView.hpp>
+#include <LDL/StrModif.hpp>
 #include <LDL/StrTypes.hpp>
 
 class LDL_LIBRARY LDL_BaseWindow
@@ -31,7 +31,7 @@ private:
 	size_t         _mode;
 	LDL_Vec2u      _pos;
 	LDL_Vec2u      _size;
-	LDL_StringView _title;
+	LDL_StringModif _title;
 	char           _bufferTitle[LDL_TitleMax];
 };
 

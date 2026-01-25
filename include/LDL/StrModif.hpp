@@ -9,10 +9,10 @@
 #include <LDL/Config.hpp>
 #include <LDL/Types.hpp>
 
-class LDL_LIBRARY LDL_StringView
+class LDL_LIBRARY LDL_StringModif
 {
 public:
-	LDL_StringView(char* data, size_t capacity);
+	LDL_StringModif(char* data, size_t capacity);
 	void clear();
 	const char* c_str() const;
 	void assign(const char* src);
