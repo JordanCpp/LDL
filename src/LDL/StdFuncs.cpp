@@ -3,7 +3,6 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <math.h>
 #include <stdlib.h>
 #include <string.h>
 #include <LDL/StdFuncs.hpp>
@@ -11,27 +10,94 @@
 
 int LDL_abs(int x)
 {
-	return abs(x);
+	return (x < 0) ? -x : x;
 }
 
 double LDL_sin(double x)
 {
-	return sin(x);
+	const double PI = 3.141592653589793;
+
+	x = x - ((long)(x / (2 * PI)) * (2 * PI));
+
+	if (x < 0)
+	{
+		x += 2 * PI;
+	}
+
+	bool negative = false;
+
+	if (x > PI) 
+	{
+		x -= PI;
+		negative = true;
+	}
+
+	double common = x * (PI - x);
+	double result = (16.0 * common) / (5.0 * PI * PI - 4.0 * common);
+
+	return negative ? -result : result;
 }
 
 double LDL_cos(double x)
 {
-	return cos(x);
+	const double PI     = 3.141592653589793;
+	const double PI_SQR = 9.869604401089358;
+
+	x = x - (double)((long)(x / (2.0 * PI))) * (2.0 * PI);
+
+	if (x > PI)
+	{
+		x -= 2.0 * PI;
+	}
+	if (x < -PI)
+	{
+		x += 2.0 * PI;
+	}
+
+	if (x < 0)
+	{
+		x = -x;
+	}
+
+	bool negative = false;
+
+	if (x > PI / 2.0) 
+	{
+		x = PI - x;
+		negative = true;
+	}
+
+	double x_sqr  = x * x;
+	double result = (PI_SQR - 4.0 * x_sqr) / (PI_SQR + x_sqr);
+
+	return negative ? -result : result;
 }
 
 double LDL_sqrt(double x)
 {
-	return sqrt(x);
+	if (x <= 0) return 0;
+
+	double res = x;
+
+	for (int i = 0; i < 10; i++)
+	{
+		res = 0.5 * (res + x / res);
+	}
+
+	return res;
 }
 
 double LDL_tan(double x)
 {
-	return tan(x);
+	double s = LDL_sin(x);
+	double c = LDL_cos(x);
+
+	if (c == 0.0)
+	{
+		return 0.0;
+	}
+
+	return s / c;
 }
 
 void* LDL_malloc(size_t bytes)
