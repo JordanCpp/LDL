@@ -33,11 +33,11 @@ GLfloat ctrlpoints[4][4][3] = {
 
 void initlights(void)
 {
-    GLfloat ambient[] = { 0.2, 0.2, 0.2, 1.0 };
-    GLfloat position[] = { 0.0, 0.0, 2.0, 1.0 };
-    GLfloat mat_diffuse[] = { 0.6, 0.6, 0.6, 1.0 };
-    GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-    GLfloat mat_shininess[] = { 50.0 };
+    GLfloat ambient[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+    GLfloat position[] = { 0.0f, 0.0f, 2.0f, 1.0f };
+    GLfloat mat_diffuse[] = { 0.6f, 0.6f, 0.6f, 1.0f };
+    GLfloat mat_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    GLfloat mat_shininess[] = { 50.0f };
     
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);

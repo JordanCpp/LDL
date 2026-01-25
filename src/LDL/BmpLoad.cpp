@@ -58,12 +58,6 @@ bool LDL_BmpLoader::Load(const char* path)
         return false;
     }
 
-    if (!_stream->IsOpen())
-    {
-        _result.Message(_formatter.Format("File stream not open: %s", path));
-        return false;
-    }
-
     size_t fileSize = _stream->Size();
     if (fileSize < sizeof(BMPFileHeader) + sizeof(BMPInfoHeader))
     {

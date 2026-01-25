@@ -41,11 +41,11 @@ void display(void)
     for (j = 0; j <= 8; j++) {
 	glBegin(GL_LINE_STRIP);
         for (i = 0; i <= 30; i++)
-	    glEvalCoord2f((GLfloat)i/30.0, (GLfloat)j/8.0);
+	    glEvalCoord2f((GLfloat)i/30.0f, (GLfloat)j/8.0f);
 	glEnd();
 	glBegin(GL_LINE_STRIP);
         for (i = 0; i <= 30; i++)
-	    glEvalCoord2f((GLfloat)j/8.0, (GLfloat)i/30.0);
+	    glEvalCoord2f((GLfloat)j/8.0f, (GLfloat)i/30.0f);
 	glEnd();
     }
     glPopMatrix ();

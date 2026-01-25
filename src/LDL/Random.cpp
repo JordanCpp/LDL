@@ -3,7 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <time.h>
+#include <LDL/Ticks.hpp>
 #include <LDL/Types.hpp>
 #include <LDL/Random.hpp>
 
@@ -17,7 +17,7 @@ static const float    FLOAT_NORMALIZER = 16777216.0f;  // 2^24
 
 LDL_Random::LDL_Random()
 {
-    Seed((size_t)(time(NULL)));
+    Seed(LDL_Ticks());
 }
 
 LDL_Random::LDL_Random(size_t seed)

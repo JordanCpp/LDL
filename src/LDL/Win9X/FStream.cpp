@@ -132,27 +132,25 @@ size_t LDL_FileStream::Tell() const
 
 size_t LDL_FileStream::Size() const
 {
-    if (!_isOpen)
+    if (!_isOpen) return 0;
+
+    DWORD high = 0;
+    DWORD low = GetFileSize(_handle, &high);
+
+    if (low == INVALID_FILE_SIZE && GetLastError() != NO_ERROR)
     {
         return 0;
     }
 
-    DWORD highPart = 0;
-    DWORD lowPart  = 0;
-
-    if (GetFileSize(_handle, &lowPart) == INVALID_FILE_SIZE)
+#ifdef _WIN64
+    return ((size_t)high << 32) | low;
+#else
+    if (high != 0)
     {
-        if (GetLastError() != 0)
-        {
-            return 0;
-        }
+        return 0xFFFFFFFF;
     }
-
-    ULARGE_INTEGER fileSize;
-    fileSize.u.HighPart = highPart;
-    fileSize.u.LowPart  = lowPart;
-
-    return (size_t)(fileSize.QuadPart);
+    return low;
+#endif
 }
 
 LDL_IFileStream* LDL_CreateFileStream(LDL_Result& result)
