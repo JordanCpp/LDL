@@ -101,9 +101,9 @@ void LDL_UtfConverter::encodeUTF8Char(uint32_t code_point, LDL_PodVector<char>& 
     }
     else 
     {
-        output.push_back(0xEF);
-        output.push_back(0xBF);
-        output.push_back(0xBD);
+        output.push_back((char)0xEF);
+        output.push_back((char)0xBF);
+        output.push_back((char)0xBD);
     }
 }
 

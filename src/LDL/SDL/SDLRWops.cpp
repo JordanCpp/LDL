@@ -86,12 +86,12 @@ int SDL_RWseek(SDL_RWops* context, int offset, int whence)
 
 int SDL_RWread(SDL_RWops* context, void* ptr, int size, int maxnum)
 {
-	return fread(ptr, size, maxnum, context->file);
+	return (int)fread(ptr, size, maxnum, context->file);
 }
 
 int SDL_RWwrite(struct SDL_RWops* context, const void* ptr, int size, int num)
 {
-	return fwrite(ptr, size, num, context->file);
+	return (int)fwrite(ptr, size, num, context->file);
 }
 
 int SDL_RWtell(SDL_RWops* context)
