@@ -14,7 +14,7 @@ LDL_RenderContext::~LDL_RenderContext()
 {
 }
 
-size_t LDL_RenderContext::Mode()
+size_t LDL_RenderContext::Mode() const
 {
     return _mode;
 }

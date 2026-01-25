@@ -15,12 +15,15 @@ public:
 	{
 		Max = 512
 	};
+
 	LDL_Formatter();
 	void Clear();
 	char* Data();
 	const char* Data() const;
 	const char* Format(const char* format, ...);
 private:
+	void LDL_Reverse(char* s, int len);
+	int LDL_itoa(int num, char* str);
 	char _buffer[Max];
 };
 

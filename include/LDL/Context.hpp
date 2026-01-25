@@ -15,7 +15,7 @@ class LDL_LIBRARY LDL_RenderContext
 public:
 	LDL_RenderContext(size_t mode = LDL_RenderMode::OpenGL1);
 	~LDL_RenderContext();
-	size_t Mode();
+	size_t Mode() const;
 private:
 	size_t _mode;
 };
