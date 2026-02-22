@@ -18,7 +18,6 @@ namespace LDL
 			{
 			public:
 				size_t Calc(const Math::Vec2u& size);
-			private:
 			};
 		}
 	}

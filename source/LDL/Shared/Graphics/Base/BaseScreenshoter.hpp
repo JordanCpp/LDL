@@ -6,8 +6,8 @@
 #ifndef LDL_Graphics_BaseScreenShotter_hpp
 #define LDL_Graphics_BaseScreenShotter_hpp
 
-#include <LDL/Core/Convert.hpp>
 #include <string>
+#include <LDL/Core/Convert.hpp>
 
 namespace LDL
 {

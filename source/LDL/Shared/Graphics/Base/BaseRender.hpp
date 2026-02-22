@@ -6,8 +6,8 @@
 #ifndef LDL_Graphics_BaseRender_hpp
 #define LDL_Graphics_BaseRender_hpp
 
-#include <LDL/Graphics/Color.hpp>
 #include <LDL/Math/Vec2.hpp>
+#include <LDL/Graphics/Color.hpp>
 
 namespace LDL
 {

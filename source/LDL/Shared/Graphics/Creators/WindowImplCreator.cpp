@@ -3,23 +3,22 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "WindowImplCreator.hpp"
+#include <LDL/Core/Assert.hpp>
+#include <LDL/Shared/Graphics/Creators/WindowImplCreator.hpp>
 
 #if defined(_WIN32)
-#include <LDL/Platforms/Windows/Graphics/WindowImplSoftware.hpp>
-#include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp>
-#include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL3.hpp>
-#include <LDL/Platforms/Windows/Graphics/WindowImplDirectDraw.hpp>
-#include <LDL/Platforms/Windows/Graphics/WindowImplGlide.hpp>
-#include <LDL/Platforms/Windows/Graphics/WindowImplDirect3D6.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplSoftware.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL3.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplDirectDraw.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplGlide.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplDirect3D6.hpp>
 #elif defined(__unix__)
-#include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
-#include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
-#include <LDL/Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
-#include <LDL/Platforms/Linux/Graphics/Glide/WindowImplGlide.hpp>
+    #include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
+    #include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
+    #include <LDL/Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
+    #include <LDL/Platforms/Linux/Graphics/Glide/WindowImplGlide.hpp>
 #endif
-
-#include <LDL/Core/Assert.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Enums;

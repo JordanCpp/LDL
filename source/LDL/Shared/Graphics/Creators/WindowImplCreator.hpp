@@ -6,11 +6,9 @@
 #ifndef LDL_Graphics_Creators_WindowImplCreator_hpp
 #define LDL_Graphics_Creators_WindowImplCreator_hpp
 
-#include <LDL/Platforms/WindowImpl.hpp>
 #include <LDL/Core/Result.hpp>
+#include <LDL/Platforms/WindowImpl.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
-#include <LDL/Math/Vec2.hpp>
-#include <string>
 
 namespace LDL
 {
@@ -22,7 +20,6 @@ namespace LDL
 			{
 			public:
 				WindowImpl* Create(Core::Result& result, RenderContext& renderContext, const Math::Vec2u& pos, const Math::Vec2u& size, const char* title, size_t mode);
-			private:
 			};
 		}
 	}

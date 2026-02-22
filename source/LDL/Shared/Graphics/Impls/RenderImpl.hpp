@@ -37,7 +37,6 @@ namespace LDL
 			virtual void Draw(Surface* image, const Math::Vec2u& dstPos, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize) = 0;
 			virtual void Draw(Surface* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize) = 0;
 			virtual void Draw(TextureBatcher* textureBatcher) = 0;
-		private:
 		};
 	}
 }

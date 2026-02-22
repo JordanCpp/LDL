@@ -7,7 +7,7 @@
 #define LDL_Graphics_Creators_RenderContext_hpp
 
 #include <LDL/Graphics/RenderContext.hpp>
-#include "../Impls/RenderContextImpl.hpp"
+#include <LDL/Shared/Graphics/Impls/RenderContextImpl.hpp>
 
 namespace LDL
 {
@@ -19,7 +19,6 @@ namespace LDL
 			{
 			public:
 				RenderContextImpl* Create(size_t mode);
-			private:
 			};
 		}
 	}

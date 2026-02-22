@@ -28,7 +28,6 @@ namespace LDL
 			virtual size_t UsedBytes() = 0;
 			virtual size_t Capacity() const = 0;
 			virtual void Reset() = 0;
-		private:
 		};
 	}
 }

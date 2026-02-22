@@ -7,7 +7,7 @@
 #define LDL_Graphics_Creators_TextureBatcherImplCreator_hpp
 
 #include <LDL/Graphics/TextureBatcher.hpp>
-#include "../Impls/TextureBatcherImpl.hpp"
+#include <LDL/Shared/Graphics/Impls/TextureBatcherImpl.hpp>
 
 namespace LDL
 {
@@ -19,7 +19,6 @@ namespace LDL
 			{
 			public:
 				TextureBatcherImpl* Create(RenderContext* renderContext, Texture* texture, size_t count);
-			private:
 			};
 		}
 	}

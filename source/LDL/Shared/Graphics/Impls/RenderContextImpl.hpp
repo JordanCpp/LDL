@@ -17,7 +17,6 @@ namespace LDL
 		public:
 			virtual ~RenderContextImpl() {};
 			virtual size_t Mode() = 0;
-		private:
 		};
 	}
 }

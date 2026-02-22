@@ -15,7 +15,6 @@ namespace LDL
 		public:
 			virtual ~ScreenShotterImpl() {};
 			virtual void Shot() = 0;
-		private:
 		};
 	}
 }

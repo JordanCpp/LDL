@@ -20,7 +20,6 @@ namespace LDL
 			virtual void Copy(const Math::Vec2u& dstPos, Surface* surface, const Math::Vec2u& srcSize) = 0;
 			virtual const Math::Vec2u& Size() = 0;
 			virtual const Math::Vec2u& Quad() = 0;
-		private:
 		};
 	}
 }

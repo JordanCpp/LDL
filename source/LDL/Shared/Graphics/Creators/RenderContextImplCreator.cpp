@@ -3,16 +3,14 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Enums/RenderMode.hpp>
-#include "RenderContextImplCreator.hpp"
-
-#include "../Renders/Software/RenderContextImplSoftware.hpp"
-#include "../Renders/OpenGL1/RenderContextImplOpenGL1.hpp"
-#include "../Renders/OpenGL3/RenderContextImplOpenGL3.hpp"
-#include "../Renders/Glide/RenderContextImplGlide.hpp"
-#include "../Renders/Direct3D6/RenderContextImplDirect3D6.hpp"
-
 #include <LDL/Core/Assert.hpp>
+#include <LDL/Enums/RenderMode.hpp>
+#include <LDL/Shared/Graphics/Creators/RenderContextImplCreator.hpp>
+#include <LDL/Shared/Graphics/Renders/Software/RenderContextImplSoftware.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL1/RenderContextImplOpenGL1.hpp>
+#include <LDL/Shared/Graphics/Renders/OpenGL3/RenderContextImplOpenGL3.hpp>
+#include <LDL/Shared/Graphics/Renders/Glide/RenderContextImplGlide.hpp>
+#include <LDL/Shared/Graphics/Renders/Direct3D6/RenderContextImplDirect3D6.hpp>
 
 using namespace LDL::Core;
 using namespace LDL::Enums;

@@ -20,7 +20,6 @@ namespace LDL
 			virtual const Math::Vec2u& Size() = 0;
 			virtual void Pos(const Math::Vec2u& pos) = 0;
 			virtual void Size(const Math::Vec2u& size) = 0;
-		private:
 		};
 	}
 }
