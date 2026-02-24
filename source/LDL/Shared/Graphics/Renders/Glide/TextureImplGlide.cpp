@@ -3,10 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "TextureImplGlide.hpp"
+#include <LDL/Shared/Graphics/Renders/Glide/TextureImplGlide.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 TextureImplGlide::TextureImplGlide(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
 	_renderContextImpl(renderContextImpl)

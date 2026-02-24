@@ -11,47 +11,45 @@
 
 namespace LDL
 {
-	namespace Allocators
-	{
-        template <typename T, size_t limit>
-        class ObjectPool
+    template <typename T, size_t limit>
+    class ObjectPool
+    {
+    private:
+        T       _objects[limit];
+        T*      _freeList[limit];
+        size_t  _freeCount;
+
+    public:
+        ObjectPool() : 
+            _freeCount(0)
         {
-        private:
-            T       _objects[limit];
-            T*      _freeList[limit];
-            size_t  _freeCount;
-
-        public:
-            ObjectPool() : _freeCount(0)
+            for (size_t i = 0; i < limit; i++)
             {
-                for (size_t i = 0; i < limit; i++)
-                {
-                    _freeList[i] = &_objects[i];
-                    _freeCount++;
-                }
+                _freeList[i] = &_objects[i];
+                _freeCount++;
+            }
+        }
+
+        T* New()
+        {
+            assert(_freeCount > 0);
+
+            if (_freeCount == 0)
+            {
+                return NULL;
             }
 
-            T* New()
-            {
-                assert(_freeCount > 0);
-                
-                if (_freeCount == 0)
-                {
-                    return NULL;
-                }
+            return _freeList[--_freeCount];
+        }
 
-                return _freeList[--_freeCount];
-            }
+        void Delete(T* ptr)
+        {
+            assert(ptr != NULL);
+            assert(_freeCount < limit);
 
-            void Delete(T* ptr)
-            {
-                assert(ptr != NULL);
-                assert(_freeCount < limit);
-
-                _freeList[_freeCount++] = ptr;
-            }
-        };
-	}
+            _freeList[_freeCount++] = ptr;
+        }
+    };
 }
 
 #endif  

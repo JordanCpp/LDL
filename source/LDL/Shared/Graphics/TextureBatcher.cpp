@@ -6,9 +6,7 @@
 #include <LDL/Graphics/TextureBatcher.hpp>
 #include <LDL/Shared/Graphics/Creators/TextureBatcherImplCreator.hpp>
 
-using namespace LDL::Math;
-using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
+using namespace LDL;
 
 TextureBatcher::TextureBatcher(RenderContext* renderContext, Texture* texture, size_t count)
 {

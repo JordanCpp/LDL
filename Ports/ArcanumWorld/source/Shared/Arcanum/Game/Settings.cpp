@@ -1,7 +1,7 @@
 #include <Arcanum/Game/Settings.hpp>
 
 using namespace Arcanum::Game;
-using namespace LDL::Math;
+using namespace LDL;
 
 Settings::Settings() : 
 	_fps(0)

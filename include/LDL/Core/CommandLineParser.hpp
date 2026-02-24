@@ -12,17 +12,14 @@
 
 namespace LDL
 {
-	namespace Core
+	class LDL_LIBRARY CommandLineParser
 	{
-		class LDL_LIBRARY CommandLineParser
-		{
-		public:
-			CommandLineParser(size_t argc, char* argv[]);
-			const std::vector<std::string>& Lines();
-		private:
-			std::vector<std::string> _lines;
-		};
-	}
+	public:
+		CommandLineParser(size_t argc, char* argv[]);
+		const std::vector<std::string>& Lines();
+	private:
+		std::vector<std::string> _lines;
+	};
 }
 
 #endif

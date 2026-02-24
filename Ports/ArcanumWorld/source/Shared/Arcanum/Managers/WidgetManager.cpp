@@ -1,7 +1,6 @@
 #include <Arcanum/Managers/WidgetManager.hpp>
 
-using namespace LDL::Math;
-using namespace LDL::Graphics;
+using namespace LDL;
 using namespace Arcanum::Managers;
 using namespace Arcanum::Widgets;
 

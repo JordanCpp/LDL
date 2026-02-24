@@ -11,17 +11,14 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class LDL_LIBRARY ImageResizer
 	{
-		class LDL_LIBRARY ImageResizer
-		{
-		public:
-			ImageResizer(const Math::Vec2u& size);
-			Surface* Resize(const Math::Vec2u& size, Surface* surface);
-		private:
-			Surface _surface;
-		};
-	}
+	public:
+		ImageResizer(const Vec2u& size);
+		Surface* Resize(const Vec2u& size, Surface* surface);
+	private:
+		Surface _surface;
+	};
 }
 
 #endif    

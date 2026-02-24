@@ -7,14 +7,11 @@
 #include "FontImpl.hpp"
 #include <LDL/Core/Assert.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Text;
-using namespace LDL::Math;
-using namespace LDL::Graphics;
+using namespace LDL;
 
 RasterizerImpl::RasterizerImpl(const Vec2u& bufferSize) :
-	_SymbolBuffer(Vec2u(100, 100), Vec2u(100, 100), 4),
-	_TextBuffer(bufferSize, bufferSize, 4)
+	_symbolBuffer(Vec2u(100, 100), Vec2u(100, 100), 4),
+	_textBuffer(bufferSize, bufferSize, 4)
 {
 }
 
@@ -24,7 +21,7 @@ RasterizerImpl::~RasterizerImpl()
 
 Surface* RasterizerImpl::Result()
 {
-	return &_TextBuffer;
+	return &_textBuffer;
 }
 
 bool RasterizerImpl::RenderText(const std::string& text, Font* font, const Color& color)
@@ -37,7 +34,7 @@ bool RasterizerImpl::RenderText(const std::string& text, Font* font, const Color
 	size_t posX = 0;
 	size_t posY = 0;
 
-	_PixelConverter.Fill(_TextBuffer.Pixels(), _TextBuffer.Size(), _TextBuffer.BytesPerPixel(), Color(255, 255, 255));
+	_pixelConverter.Fill(_textBuffer.Pixels(), _textBuffer.Size(), _textBuffer.BytesPerPixel(), Color(255, 255, 255));
 
 	for (size_t i = 0; i < text.size(); i++)
 	{
@@ -52,9 +49,9 @@ bool RasterizerImpl::RenderText(const std::string& text, Font* font, const Color
 
 		FT_Bitmap bitmap = face->glyph->bitmap;
 
-		_SymbolBuffer.Resize(Vec2u(bitmap.width, bitmap.rows));
+		_symbolBuffer.Resize(Vec2u(bitmap.width, bitmap.rows));
 
-		uint8_t* pixels = _SymbolBuffer.Pixels();
+		uint8_t* pixels = _symbolBuffer.Pixels();
 
 		for (size_t y = 0; y < bitmap.rows; y++)
 		{
@@ -77,7 +74,7 @@ bool RasterizerImpl::RenderText(const std::string& text, Font* font, const Color
 			}
 		}
 
-		_PixelCopier.Copy32(&_SymbolBuffer, &_TextBuffer, Vec2u(posX, 0));
+		_pixelCopier.Copy32(&_symbolBuffer, &_textBuffer, Vec2u(posX, 0));
 
 		posX += 35;
 	}

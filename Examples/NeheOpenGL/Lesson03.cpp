@@ -6,14 +6,7 @@
 #include <LDL/LDL.hpp>
 #include <LDL/APIs/OpenGL/GLU.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Enums;
-using namespace LDL::Events;
-using namespace LDL::Time;
-using namespace LDL::Core;
-using namespace LDL::Allocators;
-using namespace LDL::Loaders;
-using namespace LDL::Math;
+using namespace LDL;
 
 void ReSizeGLScene(GLsizei width, GLsizei height)		// Resize And Initialize The GL Window
 {
@@ -74,52 +67,51 @@ int DrawGLScene()									// Here's Where We Do All The Drawing
 int main()
 {
 	Result result;
-		RenderContext renderContext(RenderMode::OpenGL1);
+	RenderContext renderContext(RenderMode::OpenGL1);
 
-		Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
-		Render render(result, renderContext, &window);
+	Window window(result, renderContext, Vec2u(0, 0), Vec2u(800, 600), "Window!");
+	Render render(result, renderContext, &window);
 
-		Event report;
+	Event report;
 
-		FpsCounter fpsCounter;
-		Convert convert;
-		FpsLimiter fpsLimiter;
+	FpsCounter fpsCounter;
+	Convert convert;
+	FpsLimiter fpsLimiter;
 
-		InitGL();
+	InitGL();
 
-		while (window.Running())
+	while (window.Running())
+	{
+		fpsLimiter.Mark();
+		fpsCounter.Start();
+
+		while (window.GetEvent(report))
 		{
-			fpsLimiter.Mark();
-			fpsCounter.Start();
-
-			while (window.GetEvent(report))
+			if (report.Type == Event::IsQuit)
 			{
-				if (report.Type == IsQuit)
-				{
-					window.StopEvent();
-				}
-
-				if (report.IsKeyPressed(KeyboardKey::Escape))
-					window.StopEvent();
+				window.StopEvent();
 			}
 
-			render.Begin();
-
-			ReSizeGLScene((GLsizei)window.Size().x, (GLsizei)window.Size().y);
-			DrawGLScene();
-
-			render.End();
-
-			fpsLimiter.Throttle();
-
-			if (fpsCounter.Calc())
+			if (report.IsKeyPressed(KeyboardKey::Escape))
 			{
-				window.Title(convert.ToString(fpsCounter.Fps()));
-				
+				window.StopEvent();
 			}
-
-			
 		}
+
+		render.Begin();
+
+		ReSizeGLScene((GLsizei)window.Size().x, (GLsizei)window.Size().y);
+		DrawGLScene();
+
+		render.End();
+
+		fpsLimiter.Throttle();
+
+		if (fpsCounter.Calc())
+		{
+			window.Title(convert.ToString(fpsCounter.Fps()));
+		}
+	}
 
 	return 0;
 }

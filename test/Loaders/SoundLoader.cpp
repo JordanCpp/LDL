@@ -7,15 +7,14 @@
 #include <LDL/Loaders/SoundLoader.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 
-using namespace LDL::Allocators;
-using namespace LDL::Loaders;
+using namespace LDL;
 
 void Init()
 {
 	FixedLinear allocator(Allocator::Mb * 4);
 	SoundLoader loader(&allocator);
 
-	LDL_TEST_EQUAL(loader.Allocator() == &allocator);
+	LDL_TEST_EQUAL(loader.GetAllocator() == &allocator);
 	LDL_TEST_EQUAL(loader.Bytes()     == 0);
 	LDL_TEST_EQUAL(loader.Channels()  == 0);
 	LDL_TEST_EQUAL(loader.Rate()      == 0);

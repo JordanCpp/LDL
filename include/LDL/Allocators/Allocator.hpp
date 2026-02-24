@@ -10,26 +10,23 @@
 
 namespace LDL
 {
-	namespace Allocators
+	class Allocator
 	{
-		class Allocator
+	public:
+		enum
 		{
-		public:
-			enum
-			{
-				Kb = 1024,
-				Mb = Kb * 1024,
-				Gb = Mb * 1024
-			};
-			virtual ~Allocator() {}
-			virtual void* Allocate(size_t bytes) = 0;
-			virtual void* AllocateAligned(size_t bytes, size_t alignment) = 0;
-			virtual void Deallocate(void* ptr) = 0;
-			virtual size_t UsedBytes() = 0;
-			virtual size_t Capacity() const = 0;
-			virtual void Reset() = 0;
+			Kb = 1024,
+			Mb = Kb * 1024,
+			Gb = Mb * 1024
 		};
-	}
+		virtual ~Allocator() {}
+		virtual void* Allocate(size_t bytes) = 0;
+		virtual void* AllocateAligned(size_t bytes, size_t alignment) = 0;
+		virtual void Deallocate(void* ptr) = 0;
+		virtual size_t UsedBytes() = 0;
+		virtual size_t Capacity() const = 0;
+		virtual void Reset() = 0;
+	};
 }
 
 #endif    

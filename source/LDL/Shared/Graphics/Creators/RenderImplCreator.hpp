@@ -13,17 +13,11 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class RenderImplCreator
 	{
-		namespace Creators
-		{
-			class RenderImplCreator
-			{
-			public:
-				RenderImpl* Create(Core::Result& result, RenderContext& renderContext, Window* window);
-			};
-		}
-	}
+	public:
+		RenderImpl* Create(Result& result, RenderContext& renderContext, Window* window);
+	};
 }
 
 #endif    

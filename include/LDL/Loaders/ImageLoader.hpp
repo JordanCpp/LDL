@@ -9,34 +9,31 @@
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Graphics/Color.hpp>
 #include <LDL/Allocators/Allocator.hpp>
-#include <LDL/STL/inplace_strings.hpp>
+#include <LDL/STL/InplaceStrings.hpp>
 
 namespace LDL
 {
-	namespace Loaders
+	class LDL_LIBRARY ImageLoader
 	{
-		class LDL_LIBRARY ImageLoader
-		{
-		public:
-			ImageLoader(Allocators::Allocator* allocator);
-			~ImageLoader();
-			void Clear();
-			const Math::Vec2u& Size();
-			uint8_t BytesPerPixel();
-			uint8_t* Pixels();
-			void CopyIf(uint8_t* dstPixels, uint8_t* srcPixels, size_t bytes, const Graphics::Color& color, uint8_t alpha);
-			void Load(const char* path);
-			void Load(const Graphics::Color& color, const char* path);
-			void Load(uint8_t * data, size_t bytes);
-			void Load(const Graphics::Color& color, uint8_t* data, size_t bytes);
-		private:
-			AssertString           _assert;
-			Allocators::Allocator* _allocator;
-			Math::Vec2u            _size;
-			uint8_t                _bytesPerPixel;
-			uint8_t*               _pixels;
-		};
-	}
+	public:
+		ImageLoader(Allocator* allocator);
+		~ImageLoader();
+		void Clear();
+		const Vec2u& Size();
+		uint8_t BytesPerPixel();
+		uint8_t* Pixels();
+		void CopyIf(uint8_t* dstPixels, uint8_t* srcPixels, size_t bytes, const Color& color, uint8_t alpha);
+		void Load(const char* path);
+		void Load(const Color& color, const char* path);
+		void Load(uint8_t* data, size_t bytes);
+		void Load(const Color& color, uint8_t* data, size_t bytes);
+	private:
+		AssertString  _assert;
+		Allocator*    _allocator;
+		Vec2u         _size;
+		uint8_t       _bytesPerPixel;
+		uint8_t*      _pixels;
+	};
 }
 
 #endif     

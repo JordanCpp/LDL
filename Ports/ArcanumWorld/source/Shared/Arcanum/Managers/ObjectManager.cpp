@@ -1,6 +1,6 @@
 #include <Arcanum/Managers/ObjectManager.hpp>
 
-using namespace Arcanum::Allocators;
+using namespace Arcanum;
 using namespace Arcanum::Managers;
 using namespace Arcanum::Objects;
 

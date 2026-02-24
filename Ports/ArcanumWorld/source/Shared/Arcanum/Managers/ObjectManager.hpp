@@ -12,12 +12,12 @@ namespace Arcanum
 		class ObjectManager
 		{
 		public:
-			ObjectManager(Allocators::ObjectAllocator* objectAllocator, SpriteManager* spriteManager);
+			ObjectManager(ObjectAllocator* objectAllocator, SpriteManager* spriteManager);
 			Objects::Scenery* NewScenery(const std::string& name);
 			void NewTile(Objects::Tile& object, const std::string& name);
 		private:
-			Allocators::ObjectAllocator* _objectAllocator;
-			SpriteManager*               _spriteManager;
+			ObjectAllocator* _objectAllocator;
+			SpriteManager*   _spriteManager;
 		};
 	}
 }

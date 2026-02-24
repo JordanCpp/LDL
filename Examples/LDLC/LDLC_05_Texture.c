@@ -3,12 +3,7 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDLC/LDL_Render.h>
-#include <LDLC/LDL_FpsCounter.h>
-#include <LDLC/LDL_Convert.h>
-#include <LDLC/LDL_FixedLinear.h>
-#include <LDLC/LDL_ImageLoader.h>
-#include <LDLC/LDL_Texture.h>
+#include <LDLC/LDL.h>
 
 int main()
 {

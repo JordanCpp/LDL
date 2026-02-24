@@ -6,8 +6,7 @@
 #include "WindowImplSoftware.hpp"
 #include <assert.h>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 WindowImplSoftware::WindowImplSoftware(const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _Window(pos, size, title, mode)

@@ -7,29 +7,26 @@
 #define LDL_Graphics_Texture_hpp
 
 #include <LDL/Math/Vec2.hpp>
-#include <LDL/Graphics/RenderContext.hpp>
 #include <LDL/Graphics/Surface.hpp>
+#include <LDL/Graphics/RenderContext.hpp>
 
 namespace LDL
 {
-	namespace Graphics
-	{
-		class TextureImpl;
+	class TextureImpl;
 
-		class LDL_LIBRARY Texture
-		{
-		public:
-			Texture(RenderContext* renderContext, const Math::Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);
-			Texture(RenderContext* renderContext, const Math::Vec2u& size, uint8_t bytesPerPixel);
-			~Texture();
-			void Copy(const Math::Vec2u& dstPos, const Math::Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
-			void Copy(const Math::Vec2u& dstPos, Surface * surface, const Math::Vec2u& srcSize);
-			const Math::Vec2u& Size();
-			TextureImpl* GetTextureImpl();
-		private:
-			TextureImpl* _impl;
-		};
-	}
+	class LDL_LIBRARY Texture
+	{
+	public:
+		Texture(RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel);
+		Texture(RenderContext* renderContext, const Vec2u& size, uint8_t bytesPerPixel);
+		~Texture();
+		void Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel);
+		void Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& srcSize);
+		const Vec2u& Size();
+		TextureImpl* GetTextureImpl();
+	private:
+		TextureImpl* _impl;
+	};
 }
 
 #endif    

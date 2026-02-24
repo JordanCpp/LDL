@@ -6,8 +6,7 @@
 #include "RenderBufferOpenGL1.hpp"
 #include "../OpenGL/Util.hpp"
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 RenderBuffer::RenderBuffer()
 {

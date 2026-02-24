@@ -6,15 +6,15 @@
 #include <LDL/Core/Directory.hpp>
 
 #if defined(_WIN32)
-#include <LDL/Platforms/Windows/Core/DirectoryImpl.hpp>
+    #include <LDL/Platforms/Windows/Core/DirectoryImpl.hpp>
 #elif defined(__unix__)
-#include <LDL/Platforms/Linux/Core/DirectoryImpl.hpp>
+    #include <LDL/Platforms/Linux/Core/DirectoryImpl.hpp>
 #endif
 
-using namespace LDL::Core;
+using namespace LDL;
 
 Directory::Directory() :
-    _impl(new LDL::Core::DirectoryImpl())
+    _impl(new LDL::DirectoryImpl())
 {
 }
 
@@ -58,7 +58,7 @@ void Directory::Close()
     _impl->Close();
 }
 
-bool Directory::Next(LDL::Core::FileInfo& fileInfo)
+bool Directory::Next(FileInfo& fileInfo)
 {
     return _impl->Next(fileInfo);
 }

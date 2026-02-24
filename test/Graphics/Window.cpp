@@ -7,10 +7,7 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/Window.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Graphics;
-using namespace LDL::Allocators;
-using namespace LDL::Math;
+using namespace LDL;
 
 int main()
 {

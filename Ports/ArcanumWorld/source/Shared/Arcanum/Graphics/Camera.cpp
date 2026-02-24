@@ -1,9 +1,7 @@
 #include <Arcanum/Graphics/Camera.hpp>
 
 using namespace Arcanum::Graphics;
-using namespace LDL::Events;
-using namespace LDL::Enums;
-using namespace LDL::Math;
+using namespace LDL;
 
 Camera::Camera(const Vec2u& pos, const Vec2u& size) :
 	_step(25),

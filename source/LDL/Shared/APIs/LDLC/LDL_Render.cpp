@@ -1,11 +1,14 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <LDLC/LDL_Render.h>
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Shared/APIs/LDLC/LDL_RenderContext.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 struct LDL_Render
 {
@@ -58,7 +61,7 @@ void LDL_RenderClear(LDL_Render* render)
 
 void LDL_RenderSetColor(LDL_Render* render, uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
-	render->_render.Color(Color(r, g, b, a));
+	render->_render.SetColor(Color(r, g, b, a));
 }
 
 void LDL_RenderFill(LDL_Render* render, size_t x, size_t y, size_t w, size_t h)

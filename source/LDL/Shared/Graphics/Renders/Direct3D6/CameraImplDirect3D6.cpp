@@ -3,12 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "CameraImplDirect3D6.hpp"
-#include <LDL/Math/Vec3.hpp>
-#include <LDL/Math/Funcs.hpp>
+#include <LDL/Shared/Graphics/Renders/Direct3D6/CameraImplDirect3D6.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 CameraImplDirect3D6::CameraImplDirect3D6(RenderImpl* renderImpl, const Vec2u& pos, const Vec2u& size) :
 	_impl(renderImpl),
@@ -29,7 +26,6 @@ const Vec2u& CameraImplDirect3D6::Size()
 
 void CameraImplDirect3D6::Pos(const Vec2u& pos)
 {
-	//_RenderImpl->_ModelView = Translate(_RenderImpl->_ModelView, Vec3f((float)pos.x, (float)pos.y, 0.0f));
 }
 
 void CameraImplDirect3D6::Size(const Vec2u& size)

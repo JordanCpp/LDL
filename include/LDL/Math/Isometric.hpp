@@ -10,17 +10,14 @@
 
 namespace LDL
 {
-    namespace Math
+    class LDL_LIBRARY Isometric
     {
-        class LDL_LIBRARY Isometric
-        {
-        public:
-            const Vec2u& CartesianToIsometric(const Vec2u& pt);
-            const Vec2u& IsometricToCartesian(const Vec2u& pt);
-        private:
-            Vec2u _result;
-        };
-    }
+    public:
+        const Vec2u& CartesianToIsometric(const Vec2u& pt);
+        const Vec2u& IsometricToCartesian(const Vec2u& pt);
+    private:
+        Vec2u _result;
+    };
 }
 
 #endif

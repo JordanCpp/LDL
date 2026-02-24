@@ -1,10 +1,9 @@
 #include <Arcanum/Graphics/Image.hpp>
 
 using namespace Arcanum::Graphics;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
-Image::Image(LDL::Graphics::RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, const Vec2u& offset, const Vec2u& delta) :
+Image::Image(RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, const Vec2u& offset, const Vec2u& delta) :
 	_texture(renderContext, size, pixels, 4),
 	_offset(offset),
 	_delta(delta)

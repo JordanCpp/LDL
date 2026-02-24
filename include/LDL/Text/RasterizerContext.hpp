@@ -10,20 +10,17 @@
 
 namespace LDL
 {
-	namespace Text
-	{
-		class RasterizerContextImpl;
+	class RasterizerContextImpl;
 
-		class LDL_LIBRARY RasterizerContext
-		{
-		public:
-			RasterizerContext();
-			~RasterizerContext();
-			RasterizerContextImpl* GetRasterizerContextImpl();
-		private:
-			RasterizerContextImpl* _impl;
-		};
-	}
+	class LDL_LIBRARY RasterizerContext
+	{
+	public:
+		RasterizerContext();
+		~RasterizerContext();
+		RasterizerContextImpl* GetRasterizerContextImpl();
+	private:
+		RasterizerContextImpl* _impl;
+	};
 }
 
 #endif    

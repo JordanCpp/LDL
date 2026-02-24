@@ -3,17 +3,16 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "RenderImplSoftware.hpp"
+#include <LDL/Shared/Graphics/Renders/Software/RenderImplSoftware.hpp>
+#include <LDL/Shared/Graphics/Renders/Software/TextureImplSoftware.hpp>
 
 #if defined(_WIN32)
-#include <LDL/Platforms/Windows/Graphics/WindowImplSoftware.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplSoftware.hpp>
 #elif defined(__unix__)
-#include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
+    #include <LDL/Platforms/Linux/Graphics/Software/WindowImplSoftware.hpp>
 #endif
 
-using namespace LDL::Core;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 RenderImplSoftware::RenderImplSoftware(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
 	_result(result),
@@ -44,9 +43,9 @@ const Vec2u& RenderImplSoftware::Size()
 	return _window->Size();
 }
 
-const Color& RenderImplSoftware::Color()
+const Color& RenderImplSoftware::GetColor()
 {
-	return _pixelPainter.Color();
+	return _pixelPainter.GetColor();
 }
 
 void RenderImplSoftware::Clear()
@@ -54,9 +53,9 @@ void RenderImplSoftware::Clear()
 	_pixelPainter.Clear();
 }
 
-void RenderImplSoftware::Color(const LDL::Graphics::Color& color)
+void RenderImplSoftware::SetColor(const Color& color)
 {
-	_pixelPainter.Color(color);
+	_pixelPainter.SetColor(color);
 }
 
 void RenderImplSoftware::Pixel(const Vec2u& pos)

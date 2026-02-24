@@ -10,16 +10,13 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class TextureBatcherImpl
 	{
-		class TextureBatcherImpl
-		{
-		public:
-			virtual ~TextureBatcherImpl() {};
-			virtual void Draw(const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize) = 0;
-			virtual void Clear() = 0;
-		};
-	}
+	public:
+		virtual ~TextureBatcherImpl() {};
+		virtual void Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize) = 0;
+		virtual void Clear() = 0;
+	};
 }
 
 #endif    

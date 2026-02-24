@@ -7,11 +7,11 @@
 #define LDL_Platforms_Windows_hpp
 
 #ifdef NOMINMAX
-#include <windows.h>
+    #include <windows.h>
 #else
-#define NOMINMAX
-#include <windows.h>
-#undef NOMINMAX
+    #define NOMINMAX
+    #include <windows.h>
+    #undef NOMINMAX
 #endif
 
 #if !defined INVALID_ATOM

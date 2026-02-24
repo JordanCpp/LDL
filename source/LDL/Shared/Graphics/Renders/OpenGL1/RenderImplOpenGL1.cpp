@@ -10,14 +10,12 @@
 #include <LDL/Math/Funcs.hpp>
 
 #if defined(_WIN32)
-#include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp>
 #elif defined(__unix__)
-#include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
+    #include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
 #endif
 
-using namespace LDL::Core;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 RenderImplOpenGL1::RenderImplOpenGL1(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
 	_result(result),
@@ -31,7 +29,7 @@ RenderImplOpenGL1::RenderImplOpenGL1(Result& result, RenderContextImpl* renderCo
 	GL_CHECK(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 }
 
-void LDL::Graphics::RenderImplOpenGL1::Buffer(uint8_t* dst)
+void RenderImplOpenGL1::Buffer(uint8_t* dst)
 {
 	GL_CHECK(glReadPixels(0, 0, (GLsizei)_window->Size().x, (GLsizei)_window->Size().y, GL_RGBA, GL_UNSIGNED_BYTE, dst));
 }
@@ -65,7 +63,7 @@ const Vec2u& RenderImplOpenGL1::Size()
 	return _window->Size();
 }
 
-const Color& RenderImplOpenGL1::Color()
+const Color& RenderImplOpenGL1::GetColor()
 {
 	return _color;
 }
@@ -82,7 +80,7 @@ void RenderImplOpenGL1::Clear()
 	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
-void RenderImplOpenGL1::Color(const LDL::Graphics::Color& color)
+void RenderImplOpenGL1::SetColor(const Color& color)
 {
 	_color = color;
 }

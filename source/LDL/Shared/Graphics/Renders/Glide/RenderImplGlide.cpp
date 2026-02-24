@@ -3,20 +3,17 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "RenderImplGlide.hpp"
-#include "TextureImplGlide.hpp"
 #include <LDL/Core/Assert.hpp>
+#include <LDL/Shared/Graphics/Renders/Glide/RenderImplGlide.hpp>
 
 #if defined(_WIN32)
-#include <LDL/Platforms/Windows/Graphics/WindowImplGlide.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplGlide.hpp>
 #elif defined(__unix__)
-#include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
+    #include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
 #endif
 
-using namespace LDL::Core;
+using namespace LDL;
 using namespace LDL::Glide;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
 
 struct Vertex
 {
@@ -81,7 +78,7 @@ const Vec2u& RenderImplGlide::Size()
 	return _window->Size();
 }
 
-const Color& RenderImplGlide::Color()
+const Color& RenderImplGlide::GetColor()
 {
 	return _color;
 }
@@ -91,7 +88,7 @@ void RenderImplGlide::Clear()
 	grBufferClear(_color.toInt(), _color.a, 0);
 }
 
-void RenderImplGlide::Color(const LDL::Graphics::Color& color)
+void RenderImplGlide::SetColor(const Color& color)
 {
 	_color = color;
 }

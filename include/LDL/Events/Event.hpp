@@ -16,8 +16,9 @@
 
 namespace LDL
 {
-	namespace Events
+	class Event
 	{
+	public:
 		enum
 		{
 			IsQuit = 1,
@@ -30,41 +31,37 @@ namespace LDL
 			IsMouseScroll
 		};
 
-		class Event
+		union
 		{
-		public:
-			union
-			{
-				uint8_t Type;
-				LDL::Events::Quit        Quit;
-				LDL::Events::Mouse       Mouse;
-				LDL::Events::Resize      Resize;
-				LDL::Events::Keyboard    Keyboard;
-				LDL::Events::GainedFocus GainedFocus;
-				LDL::Events::LostFocus   LostFocus;
-			};
-
-			bool IsKeyPressed(uint8_t key)
-			{
-				return (Type == IsKeyboard && Keyboard.Key == key && Keyboard.State == Enums::ButtonState::Pressed);
-			}
-
-			bool IsKeyReleased(uint8_t key)
-			{
-				return (Type == IsKeyboard && Keyboard.Key == key && Keyboard.State == Enums::ButtonState::Released);
-			}
-
-			bool IsMousePressed(uint8_t key)
-			{
-				return (Type == IsMouseClick && Mouse.Button == key && Mouse.State == Enums::ButtonState::Pressed);
-			}
-
-			bool IsMouseReleased(uint8_t key)
-			{
-				return (Type == IsMouseClick && Mouse.Button == key && Mouse.State == Enums::ButtonState::Released);
-			}
+			uint8_t          Type;
+			LDL::Quit        Quit;
+			LDL::Mouse       Mouse;
+			LDL::Resize      Resize;
+			LDL::Keyboard    Keyboard;
+			LDL::GainedFocus GainedFocus;
+			LDL::LostFocus   LostFocus;
 		};
-	}
+
+		bool IsKeyPressed(uint8_t key)
+		{
+			return (Type == IsKeyboard && Keyboard.Key == key && Keyboard.State == ButtonState::Pressed);
+		}
+
+		bool IsKeyReleased(uint8_t key)
+		{
+			return (Type == IsKeyboard && Keyboard.Key == key && Keyboard.State == ButtonState::Released);
+		}
+
+		bool IsMousePressed(uint8_t key)
+		{
+			return (Type == IsMouseClick && Mouse.Button == key && Mouse.State == ButtonState::Pressed);
+		}
+
+		bool IsMouseReleased(uint8_t key)
+		{
+			return (Type == IsMouseClick && Mouse.Button == key && Mouse.State == ButtonState::Released);
+		}
+	};
 }
 
 #endif

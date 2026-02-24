@@ -35,29 +35,29 @@ namespace Arcanum
 		class Engine
 		{
 		public:
-			Engine(LDL::Core::CommandLineParser * commandLineParser, Settings* settings);
+			Engine(LDL::CommandLineParser * commandLineParser, Settings* settings);
 			void ShowFps();
 			void Draw();
 			void Update();
 			void Run();
 		private:
-			LDL::Core::Result _result;
-			LDL::Core::CommandLineParser* _CommandLineParser;
+			LDL::Result _result;
+			LDL::CommandLineParser* _CommandLineParser;
 			Readers::XmlReader _XmlReader;
 			Settings* _Settings;
-			LDL::Graphics::RenderContext _RenderContext;
+			LDL::RenderContext _RenderContext;
 			Managers::FileManager _FileManager;
-			LDL::Allocators::FixedLinear _OriginalAllocator;
-			Arcanum::Allocators::ObjectAllocator _ObjectAllocator;
+			LDL::FixedLinear _OriginalAllocator;
+			Arcanum::ObjectAllocator _ObjectAllocator;
 			Managers::PathManager _PathManager;
 			std::string _Title;
-			LDL::Allocators::FixedLinear _ImageAllocator;
-			LDL::Loaders::ImageLoader _ImageLoader;
-			LDL::Graphics::Window _Window;
-			LDL::Graphics::Render _Render;
-			LDL::Time::FpsCounter _FpsCounter;
-			LDL::Core::Convert _Convert;
-			LDL::Time::FpsLimiter _FpsLimiter;
+			LDL::FixedLinear _ImageAllocator;
+			LDL::ImageLoader _ImageLoader;
+			LDL::Window _Window;
+			LDL::Render _Render;
+			LDL::FpsCounter _FpsCounter;
+			LDL::Convert _Convert;
+			LDL::FpsLimiter _FpsLimiter;
 			Loaders::ArtLoader _ArtLoader;
 			Managers::SpriteManager _SpriteManager;
 			Readers::ByteReader _ByteReader;

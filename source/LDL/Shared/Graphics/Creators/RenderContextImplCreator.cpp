@@ -12,10 +12,7 @@
 #include <LDL/Shared/Graphics/Renders/Glide/RenderContextImplGlide.hpp>
 #include <LDL/Shared/Graphics/Renders/Direct3D6/RenderContextImplDirect3D6.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Enums;
-using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
+using namespace LDL;
 
 RenderContextImpl* RenderContextImplCreator::Create(size_t mode)
 {

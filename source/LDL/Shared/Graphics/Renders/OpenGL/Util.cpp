@@ -7,10 +7,9 @@
 #include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
 #include <LDL/Core/Convert.hpp>
 #include <LDL/Core/Assert.hpp>
-#include <LDL/STL/inplace_strings.hpp>
+#include <LDL/STL/InplaceStrings.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 const size_t TextureCount = 12;
 const size_t TextureSizes[TextureCount] = { 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
@@ -146,7 +145,7 @@ void Util::Check(const char* file, size_t line, const char* expression)
 			error = "Unknown error";
 		}
 
-		LDL::Core::Convert conv;
+		LDL::Convert conv;
 
 		AssertString assert = "OpenGL error: ";
 		assert += error.c_str();

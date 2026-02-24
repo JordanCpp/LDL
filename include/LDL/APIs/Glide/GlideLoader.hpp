@@ -14,7 +14,7 @@ namespace LDL
 			GlideLoader();
 			~GlideLoader();
 		private:
-			Core::Library _Glide;
+			Library _Glide;
 		};
 	}
 }

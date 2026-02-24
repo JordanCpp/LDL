@@ -7,9 +7,7 @@
 #include <LDL/Core/Library.hpp>
 #include <LDL/Platforms/Windows/Graphics/WindowImplDirectDraw.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Math;
-using namespace LDL::Graphics;
+using namespace LDL;
 
 WindowImplDirectDraw::WindowImplDirectDraw(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _directDraw(NULL),
@@ -26,7 +24,7 @@ WindowImplDirectDraw::WindowImplDirectDraw(Result& result, const Vec2u& pos, con
 
     DDSURFACEDESC ddsd;
 
-    LDL::memset(&ddsd, 0, sizeof(DDSURFACEDESC));
+    LDL_memset(&ddsd, 0, sizeof(DDSURFACEDESC));
 
     ddsd.dwSize = sizeof(ddsd);
     ddsd.dwFlags = DDSD_CAPS;
@@ -97,12 +95,12 @@ const Vec2u& WindowImplDirectDraw::Pos()
     return _window.Pos();
 }
 
-bool WindowImplDirectDraw::GetEvent(LDL::Events::Event& event)
+bool WindowImplDirectDraw::GetEvent(Event& event)
 {
     return _window.GetEvent(event);
 }
 
-bool WindowImplDirectDraw::WaitEvent(LDL::Events::Event& event)
+bool WindowImplDirectDraw::WaitEvent(Event& event)
 {
     return _window.WaitEvent(event);
 }

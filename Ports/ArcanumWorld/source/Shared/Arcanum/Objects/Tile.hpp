@@ -18,8 +18,8 @@ namespace Arcanum
 			};
 
 			Tile();
-			const LDL::Math::Vec2u& Pos();
-			void Pos(const LDL::Math::Vec2u& pos);
+			const LDL::Vec2u& Pos();
+			void Pos(const LDL::Vec2u& pos);
 			void Init(Graphics::Sprite* sprite);
 			Graphics::Sprite* Body();
 		private:

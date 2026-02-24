@@ -7,7 +7,7 @@
 #include <sstream>
 #include <cstring>
 
-using namespace Arcanum::Formats;
+using namespace Arcanum;
 using namespace Arcanum::Readers;
 
 bool ArtFrame::Inc()

@@ -11,18 +11,15 @@
 
 namespace LDL
 {
-	namespace Text
+	class LDL_LIBRARY RasterizerContextImpl
 	{
-		class LDL_LIBRARY RasterizerContextImpl
-		{
-		public:
-			RasterizerContextImpl();
-			~RasterizerContextImpl();
-			FT_Library GetLibrary();
-		private:
-			FT_Library _Library;
-		};
-	}
+	public:
+		RasterizerContextImpl();
+		~RasterizerContextImpl();
+		FT_Library GetLibrary();
+	private:
+		FT_Library _library;
+	};
 }
 
 #endif    

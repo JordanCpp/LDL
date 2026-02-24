@@ -7,8 +7,7 @@
 #include <LDL/Loaders/FontLoader.hpp>
 #include <LDL/Allocators/FixedLinear.hpp>
 
-using namespace LDL::Allocators;
-using namespace LDL::Loaders;
+using namespace LDL;
 
 const size_t bytes = Allocator::Mb * 1;
 

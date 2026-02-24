@@ -3,9 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "ScreenshoterImplSoftware.hpp"
+#include <LDL/Shared/Graphics/Renders/Software/ScreenshoterImplSoftware.hpp>
 
-using namespace LDL::Graphics;
+using namespace LDL;
 
 ScreenShotterImplSoftware::ScreenShotterImplSoftware(const std::string& path, const std::string& name, Render* render, Surface* image) :
 	_shortPath(path),

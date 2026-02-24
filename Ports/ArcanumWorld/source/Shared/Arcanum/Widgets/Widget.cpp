@@ -1,7 +1,6 @@
 #include <Arcanum/Widgets/Widget.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 using namespace Arcanum::Widgets;
 
 Widget::Widget(Render* render, const Vec2u& pos, const Vec2u& size) :

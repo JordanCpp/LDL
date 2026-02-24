@@ -1,9 +1,7 @@
 #include "Camera.hpp"
 #include <stdlib.h>
 
-using namespace LDL::Math;
-using namespace LDL::Enums;
-using namespace LDL::Events;
+using namespace LDL;
 using namespace LDL::Input;
 
 Camera::Camera(int width, int height, glm::vec3 position) :
@@ -104,7 +102,7 @@ void Camera::Inputs(Event& window)
 		// Prevents camera from jumping on the first click
 		if (firstClick)
 		{
-			mMouse.Pos(LDL::Math::Vec2u(width / 2, height / 2));
+			mMouse.Pos(LDL::Vec2u(width / 2, height / 2));
 			firstClick = false;
 		}
 
@@ -130,7 +128,7 @@ void Camera::Inputs(Event& window)
 		Orientation = glm::rotate(Orientation, glm::radians(-rotY), Up);
 
 		// Sets mouse cursor to the middle of the screen so that it doesn't end up roaming around
-		mMouse.Pos(LDL::Math::Vec2u(width / 2, height / 2));
+		mMouse.Pos(LDL::Vec2u(width / 2, height / 2));
 	}
 	else if (window.IsMouseReleased(MouseButton::Left))
 	{

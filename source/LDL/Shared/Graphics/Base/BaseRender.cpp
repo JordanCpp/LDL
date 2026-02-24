@@ -5,8 +5,7 @@
 
 #include <LDL/Shared/Graphics/Base/BaseRender.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 BaseRender::BaseRender(const Vec2u& size) :
 	_size(size)
@@ -18,12 +17,12 @@ const Vec2u& BaseRender::Size()
 	return _size;
 }
 
-const LDL::Graphics::Color& BaseRender::Color()
+const Color& BaseRender::GetColor()
 {
 	return _current;
 }
 
-void BaseRender::Color(const LDL::Graphics::Color& color)
+void BaseRender::SetColor(const Color& color)
 {
 	_current = color;
 }

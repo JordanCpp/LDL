@@ -8,6 +8,8 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <fstream>
 
+using namespace LDL;
+
 uint8_t* FileSize(const std::string& path, size_t* bytes)
 {
 	std::fstream file(path.c_str(), std::ios_base::in | std::ios::binary);
@@ -24,9 +26,6 @@ uint8_t* FileSize(const std::string& path, size_t* bytes)
 
 	return buffer;
 }
-
-using namespace LDL::Allocators;
-using namespace LDL::Loaders;
 
 const size_t bytes = Allocator::Mb * 4;
 

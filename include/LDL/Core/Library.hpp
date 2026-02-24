@@ -12,20 +12,17 @@ namespace LDL
 {
 	typedef void(*VoidFuncPtr)(void);
 
-	namespace Core
-	{
-		class LibraryImpl;
+	class LibraryImpl;
 
-		class LDL_LIBRARY Library
-		{
-		public:
-			Library(const char* path);
-			~Library();
-			VoidFuncPtr Function(const char* name);
-		private:
-			LibraryImpl* _impl;
-		};
-	}
+	class LDL_LIBRARY Library
+	{
+	public:
+		Library(const char* path);
+		~Library();
+		VoidFuncPtr Function(const char* name);
+	private:
+		LibraryImpl* _impl;
+	};
 }
 
 #endif    

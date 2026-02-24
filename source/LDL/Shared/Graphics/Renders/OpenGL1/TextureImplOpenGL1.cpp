@@ -9,8 +9,7 @@
 #include "../OpenGL/Util.hpp"
 #include <iostream>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 TextureImplOpenGL1::TextureImplOpenGL1(RenderContextImpl* renderContextImpl, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel) :
 	_renderContextImpl(renderContextImpl),

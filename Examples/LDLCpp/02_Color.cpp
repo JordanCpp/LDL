@@ -5,11 +5,7 @@
 
 #include <LDL/LDL.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Events;
-using namespace LDL::Time;
-using namespace LDL::Core;
-using namespace LDL::Math;
+using namespace LDL;
 
 int main()
 {
@@ -21,7 +17,7 @@ int main()
 
 	Event report;
 
-	render.Color(Color(0, 162, 232));
+	render.SetColor(Color(0, 162, 232));
 
 	FpsCounter fpsCounter;
 	Convert convert;
@@ -32,7 +28,7 @@ int main()
 
 		while (window.GetEvent(report))
 		{
-			if (report.Type == IsQuit)
+			if (report.Type == Event::IsQuit)
 			{
 				window.StopEvent();
 			}
@@ -49,8 +45,6 @@ int main()
 			window.Title(convert.ToString(fpsCounter.Fps()));
 			
 		}
-
-		
 	}
 
 	return 0;

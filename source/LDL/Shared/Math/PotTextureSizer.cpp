@@ -3,15 +3,12 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Shared/Graphics/Utils/PotTextureSizer.hpp>
-
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+#include <LDL/Shared/Math/PotTextureSizer.hpp>
 
 const size_t _TextureCount = 13;
 const size_t _TextureSizes[_TextureCount] = {16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
 
-size_t Utils::PotTextureSizer::Calc(const Vec2u& size)
+size_t LDL::PotTextureSizer::Calc(const Vec2u& size)
 {
 	size_t w = size.x;
 	size_t h = size.y;

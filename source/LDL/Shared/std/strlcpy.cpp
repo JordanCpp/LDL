@@ -5,7 +5,7 @@
 
 #include <LDL/std/string.hpp>
 
-size_t LDL::strlcpy(char* dst, const char* src, size_t size)
+size_t LDL::LDL_strlcpy(char* dst, const char* src, size_t size)
 {
 	if (!dst || !src || size == 0)
 	{
@@ -38,7 +38,7 @@ size_t LDL::strlcpy(char* dst, const char* src, size_t size)
 	return srcLength;
 }
 
-size_t LDL::strlen(const char* src)
+size_t LDL::LDL_strlen(const char* src)
 {
 	size_t i = 0;
 
@@ -50,7 +50,7 @@ size_t LDL::strlen(const char* src)
 	return i;
 }
 
-void* LDL::memcpy(void* dst, const void* src, size_t size)
+void* LDL::LDL_memcpy(void* dst, const void* src, size_t size)
 {
 	char* d = (char*)dst;
 	const char* s = (const char*)src;
@@ -63,7 +63,7 @@ void* LDL::memcpy(void* dst, const void* src, size_t size)
 	return dst;
 }
 
-void* LDL::memset(void* ptr, int value, size_t num)
+void* LDL::LDL_memset(void* ptr, int value, size_t num)
 {
 	if (!ptr || num == 0)
 	{

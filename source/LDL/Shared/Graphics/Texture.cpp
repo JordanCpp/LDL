@@ -6,9 +6,7 @@
 #include <LDL/Graphics/Texture.hpp>
 #include <LDL/Shared/Graphics/Creators/TextureImplCreator.hpp>
 
-using namespace LDL::Math;
-using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
+using namespace LDL;
 
 Texture::Texture(RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel)
 {

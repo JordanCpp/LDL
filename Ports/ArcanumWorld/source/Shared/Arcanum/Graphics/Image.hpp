@@ -12,14 +12,14 @@ namespace Arcanum
 		class Image
 		{
 		public:
-			Image(LDL::Graphics::RenderContext* renderContext, const LDL::Math::Vec2u& size, uint8_t* pixels, const LDL::Math::Vec2u& offset, const LDL::Math::Vec2u& delta);
-			LDL::Graphics::Texture* GetTexture();
-			const LDL::Math::Vec2u& Offset();
-			const LDL::Math::Vec2u& Delta();
+			Image(LDL::RenderContext* renderContext, const LDL::Vec2u& size, uint8_t* pixels, const LDL::Vec2u& offset, const LDL::Vec2u& delta);
+			LDL::Texture* GetTexture();
+			const LDL::Vec2u& Offset();
+			const LDL::Vec2u& Delta();
 		private:
-			LDL::Graphics::Texture _texture;
-			LDL::Math::Vec2u       _offset;
-			LDL::Math::Vec2u       _delta;
+			LDL::Texture      _texture;
+			LDL::Vec2u  _offset;
+			LDL::Vec2u  _delta;
 		};
 	}
 }

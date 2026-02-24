@@ -6,7 +6,7 @@
 #include <time.h>
 #include <LDL/Shared/Graphics/Base/BaseScreenshoter.hpp>
 
-using namespace LDL::Graphics;
+using namespace LDL;
 
 const std::string BaseScreenShotter::Prefix()
 {

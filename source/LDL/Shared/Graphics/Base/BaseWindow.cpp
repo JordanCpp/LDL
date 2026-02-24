@@ -5,8 +5,7 @@
 
 #include <LDL/Shared/Graphics/Base/BaseWindow.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 BaseWindow::BaseWindow(const Vec2u& pos, const Vec2u& size, const char* title):
     _pos(pos),

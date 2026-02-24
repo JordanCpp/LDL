@@ -6,10 +6,8 @@
 #include <LDL/Core/Assert.hpp>
 #include "WindowImplOpenGL1.hpp"
 
-using namespace LDL::Core;
+using namespace LDL;
 using namespace LDL::Events;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
 
 WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _result(result),
@@ -18,7 +16,7 @@ WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec
 {
     PIXELFORMATDESCRIPTOR pfd;
 
-    LDL::memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
+    LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
 
     _Window._hdc = GetDC(_Window._hwnd);
     LDL_ASSERT_DETAIL(_Window._hdc != NULL, "GetDC failed");

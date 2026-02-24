@@ -3,10 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Math/Random.hpp>
 #include <time.h>
+#include <LDL/Math/Random.hpp>
 
-using namespace LDL::Math;
+using namespace LDL;
 
 // LCG Parameters (from Numerical Recipes / glibc)
 static const size_t LCG_MULTIPLIER = 1664525UL;

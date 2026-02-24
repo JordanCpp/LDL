@@ -11,7 +11,7 @@ namespace Arcanum
         class Form : public Widget
         {
         public:
-            Form(LDL::Graphics::Render* render, const LDL::Math::Vec2u& pos, const LDL::Math::Vec2u& size);
+            Form(LDL::Render* render, const LDL::Vec2u& pos, const LDL::Vec2u& size);
             void Attach(Widget* widget);
             void Draw();
         private:

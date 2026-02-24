@@ -5,7 +5,7 @@
 
 #include <LDL/Core/FileInfo.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 
 const std::string& FileInfo::Name()
 {

@@ -10,46 +10,43 @@
 
 namespace LDL
 {
-	namespace Allocators
+	class LDL_LIBRARY SmallAllocator
 	{
-		class LDL_LIBRARY SmallAllocator
+	public:
+		enum
+		{
+			Buckets = 6,
+			Overflow = UINT_MAX
+		};
+
+		class Node
 		{
 		public:
-			enum
-			{
-				Buckets = 6,
-				Overflow = UINT_MAX
-			};
-
-			class Node
-			{
-			public:
-				Node* Next;
-				Node* Prev;
-				size_t Size;
-				void* Data;
-			};
-
-			class List
-			{
-			public:
-				Node* Head;
-				Node* Tail;
-			};
-
-			SmallAllocator(Allocators::Allocator* allocator);
-			size_t CalcBucket(size_t bytes);
-			void* Allocate(size_t bytes);
-			void Deallocate(void* ptr);
-			Node* ToNode(void* ptr);
-			size_t CalkSize(size_t bytes);
-		private:
-			void Append(List* list, Node* node);
-			void Remove(List* list, Node* node);
-			Allocators::Allocator* _Allocator;
-			List                   _Table[Buckets];
+			Node* Next;
+			Node* Prev;
+			size_t Size;
+			void* Data;
 		};
-	}
+
+		class List
+		{
+		public:
+			Node* Head;
+			Node* Tail;
+		};
+
+		SmallAllocator(Allocator* allocator);
+		size_t CalcBucket(size_t bytes);
+		void* Allocate(size_t bytes);
+		void Deallocate(void* ptr);
+		Node* ToNode(void* ptr);
+		size_t CalkSize(size_t bytes);
+	private:
+		void Append(List* list, Node* node);
+		void Remove(List* list, Node* node);
+		Allocator* _Allocator;
+		List       _Table[Buckets];
+	};
 }
 
 #endif  

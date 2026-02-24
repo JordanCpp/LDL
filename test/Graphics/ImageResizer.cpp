@@ -8,10 +8,7 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Graphics/ImageResizer.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Allocators;
-using namespace LDL::Loaders;
-using namespace LDL::Math;
+using namespace LDL;
 
 const size_t bytes = Allocator::Mb * 4;
 

@@ -17,49 +17,46 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class RenderImplDirect3D6 : public RenderImpl
 	{
-		class RenderImplDirect3D6: public RenderImpl
-		{
-		public:
-			void InitDirectDraw();
-			void InitSurfaces();
-			void InitDirect3D();
-			void InitViewport();
-			RenderImplDirect3D6(RenderContextImpl* renderContextImpl, Window* window);
-			void Buffer(uint8_t * dst);
-			void Begin();
-			void End();
-			const Math::Vec2u& Size();
-			const Graphics::Color& Color();
-			void Clear();
-			void Color(const Graphics::Color& color);
-			void Pixel(const Math::Vec2u& pos);
-			void Fill(const Math::Vec2u& pos, const Math::Vec2u& size);
-			void Line(const Math::Vec2u& pos1, const Math::Vec2u& pos2);
-			void Draw(Surface* image, const Math::Vec2u& pos);
-			void Draw(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size);
-			void Draw(Surface* image, const Math::Vec2u& dstPos, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Draw(Surface* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Draw(Texture* image, const Math::Vec2u& pos);
-			void Draw(Texture* image, const Math::Vec2u& pos, const Math::Vec2u& size);
-			void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Draw(TextureBatcher* textureBatcher);
-		private:
-			DirectX6::DirectX6Loader       _directX6Loader;
-			Window*                        _window;
-			Graphics::Color                _color;
-			RenderContextImpl*             _renderContextImpl;
-			DirectX6::LPDIRECTDRAW         g_pDD1;
-			DirectX6::LPDIRECTDRAW4        g_pDD4;
-			DirectX6::LPDIRECTDRAWSURFACE4 g_pddsPrimary;
-			DirectX6::LPDIRECTDRAWSURFACE4 g_pddsBackBuffer;
-			DirectX6::LPDIRECT3D3          g_pD3D;
-			DirectX6::LPDIRECT3DDEVICE3    g_pd3dDevice;
-			DirectX6::LPDIRECT3DVIEWPORT3  g_pvViewport;
-		};
-	}
+	public:
+		void InitDirectDraw();
+		void InitSurfaces();
+		void InitDirect3D();
+		void InitViewport();
+		RenderImplDirect3D6(RenderContextImpl* renderContextImpl, Window* window);
+		void Buffer(uint8_t* dst);
+		void Begin();
+		void End();
+		const Vec2u& Size();
+		const Color& GetColor();
+		void Clear();
+		void SetColor(const Color& color);
+		void Pixel(const Vec2u& pos);
+		void Fill(const Vec2u& pos, const Vec2u& size);
+		void Line(const Vec2u& pos1, const Vec2u& pos2);
+		void Draw(Surface* image, const Vec2u& pos);
+		void Draw(Surface* image, const Vec2u& pos, const Vec2u& size);
+		void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(Texture* image, const Vec2u& pos);
+		void Draw(Texture* image, const Vec2u& pos, const Vec2u& size);
+		void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(TextureBatcher* textureBatcher);
+	private:
+		DirectX6::DirectX6Loader       _directX6Loader;
+		Window*                        _window;
+		Color                          _color;
+		RenderContextImpl*             _renderContextImpl;
+		DirectX6::LPDIRECTDRAW         g_pDD1;
+		DirectX6::LPDIRECTDRAW4        g_pDD4;
+		DirectX6::LPDIRECTDRAWSURFACE4 g_pddsPrimary;
+		DirectX6::LPDIRECTDRAWSURFACE4 g_pddsBackBuffer;
+		DirectX6::LPDIRECT3D3          g_pD3D;
+		DirectX6::LPDIRECT3DDEVICE3    g_pd3dDevice;
+		DirectX6::LPDIRECT3DVIEWPORT3  g_pvViewport;
+	};
 }
 
 #endif    

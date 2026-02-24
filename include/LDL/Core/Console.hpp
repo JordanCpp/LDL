@@ -6,25 +6,22 @@
 #ifndef LDL_Core_Console_hpp
 #define LDL_Core_Console_hpp
 
-#include <LDL/Core/Types.hpp>
 #include <string>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {
-    namespace Core
-    {
-		class ConsoleImpl;
+	class ConsoleImpl;
 
-		class LDL_LIBRARY Console
-		{
-		public:
-			Console();
-			~Console();
-			void Write(const std::string& text);
-		private:
-			ConsoleImpl* _impl;
-		};
-    }
+	class LDL_LIBRARY Console
+	{
+	public:
+		Console();
+		~Console();
+		void Write(const std::string& text);
+	private:
+		ConsoleImpl* _impl;
+	};
 }
 
 #endif

@@ -6,21 +6,18 @@
 #ifndef LDL_Graphics_Software_RenderContextImpl_hpp
 #define LDL_Graphics_Software_RenderContextImpl_hpp
 
-#include "../../Impls/RenderContextImpl.hpp"
+#include <LDL/Shared/Graphics/Impls/RenderContextImpl.hpp>
 
 namespace LDL
 {
-	namespace Graphics
+	class RenderContextImplSoftware : public RenderContextImpl
 	{
-		class RenderContextImplSoftware : public RenderContextImpl
-		{
-		public:
-			RenderContextImplSoftware(size_t mode);
-			size_t Mode();
-		private:
-			size_t _mode;
-		};
-	}
+	public:
+		RenderContextImplSoftware(size_t mode);
+		size_t Mode();
+	private:
+		size_t _mode;
+	};
 }
 
-#endif    
+#endif

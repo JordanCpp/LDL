@@ -11,11 +11,7 @@
 #include <LDL/Shared/Graphics/Renders/OpenGL3/TextureImplOpenGL3.hpp>
 #include <LDL/Shared/Graphics/Renders/Glide/TextureImplGlide.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Enums;
-using namespace LDL::Math;
-using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
+using namespace LDL;
 
 TextureImpl* TextureImplCreator::Create(RenderContext* renderContext, const Vec2u& size, uint8_t* pixels, uint8_t bytesPerPixel)
 {

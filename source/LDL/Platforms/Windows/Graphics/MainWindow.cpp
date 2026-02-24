@@ -8,11 +8,7 @@
 #include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 #include <LDL/std/string.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Enums;
-using namespace LDL::Events;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 static const UINT timePeriod = 1;
 static const char AppName[]  = "MainWindow";
@@ -140,14 +136,14 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_MOUSEMOVE:
-        event.Type       = Events::IsMouseMove;
+        event.Type       = Event::IsMouseMove;
         event.Mouse.PosX = LOWORD(LParam);
         event.Mouse.PosY = HIWORD(LParam);
         _eventer.Push(event);
         break;
 
     case WM_LBUTTONDOWN:
-        event.Type         = Events::IsMouseClick;
+        event.Type         = Event::IsMouseClick;
         event.Mouse.State  = ButtonState::Pressed;
         event.Mouse.Button = MouseButton::Left;
         event.Mouse.PosX   = LOWORD(LParam);
@@ -156,7 +152,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_LBUTTONUP:
-        event.Type         = Events::IsMouseClick;
+        event.Type         = Event::IsMouseClick;
         event.Mouse.State  = ButtonState::Released;
         event.Mouse.Button = MouseButton::Left;
         event.Mouse.PosX   = LOWORD(LParam);
@@ -165,7 +161,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_RBUTTONDOWN:
-        event.Type         = Events::IsMouseClick;
+        event.Type         = Event::IsMouseClick;
         event.Mouse.State  = ButtonState::Pressed;
         event.Mouse.Button = MouseButton::Right;
         event.Mouse.PosX   = LOWORD(LParam);
@@ -174,7 +170,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_RBUTTONUP:
-        event.Type         = Events::IsMouseClick;
+        event.Type         = Event::IsMouseClick;
         event.Mouse.State  = ButtonState::Released;
         event.Mouse.Button = MouseButton::Right;
         event.Mouse.PosX   = LOWORD(LParam);
@@ -183,7 +179,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_MBUTTONDOWN:
-        event.Type         = Events::IsMouseClick;
+        event.Type         = Event::IsMouseClick;
         event.Mouse.State  = ButtonState::Pressed;
         event.Mouse.Button = MouseButton::Middle;
         event.Mouse.PosX   = LOWORD(LParam);
@@ -192,7 +188,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_MBUTTONUP:
-        event.Type         = Events::IsMouseClick;
+        event.Type         = Event::IsMouseClick;
         event.Mouse.State  = ButtonState::Released;
         event.Mouse.Button = MouseButton::Middle;
         event.Mouse.PosX   = LOWORD(LParam);
@@ -201,21 +197,21 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_SIZE:
-        event.Type          = Events::IsResize;
+        event.Type          = Event::IsResize;
         event.Resize.Width  = LOWORD(LParam);
         event.Resize.Height = HIWORD(LParam);
         _eventer.Push(event);
         break;
 
     case WM_CLOSE:
-        event.Type = Events::IsQuit;
+        event.Type = Event::IsQuit;
         _eventer.Push(event);
         PostQuitMessage(0);
         break;
 
     case WM_KEYDOWN:
     case WM_SYSKEYDOWN:
-        event.Type           = IsKeyboard;
+        event.Type           = Event::IsKeyboard;
         event.Keyboard.State = ButtonState::Pressed;
         event.Keyboard.Key   = ConvertKey(WParam);
         _eventer.Push(event);
@@ -223,24 +219,24 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
 
     case WM_KEYUP:
     case WM_SYSKEYUP:
-        event.Type           = IsKeyboard;
+        event.Type           = Event::IsKeyboard;
         event.Keyboard.State = ButtonState::Released;
         event.Keyboard.Key   = ConvertKey(WParam);
         _eventer.Push(event);
         break;
 
     case WM_SETFOCUS:
-        event.Type = IsGainedFocus;
+        event.Type = Event::IsGainedFocus;
         _eventer.Push(event);
         break;
 
     case WM_KILLFOCUS:
-        event.Type = IsLostFocus;
+        event.Type = Event::IsLostFocus;
         _eventer.Push(event);
         break;
 
     case WM_MOUSEWHEEL:
-        event.Type         = IsMouseScroll;
+        event.Type         = Event::IsMouseScroll;
         event.Mouse.Scroll = MouseScroll::Vertical;
         event.Mouse.Delta  = HIWORD(WParam);
         event.Mouse.PosX   = LOWORD(LParam);
@@ -249,7 +245,7 @@ LRESULT CALLBACK MainWindow::Handler(UINT Message, WPARAM WParam, LPARAM LParam)
         break;
 
     case WM_MOUSEHWHEEL:
-        event.Type         = IsMouseScroll;
+        event.Type         = Event::IsMouseScroll;
         event.Mouse.Scroll = MouseScroll::Horizontal;
         event.Mouse.Delta  = HIWORD(WParam);
         event.Mouse.PosX   = LOWORD(LParam);
@@ -279,18 +275,18 @@ LRESULT CALLBACK MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPA
     return result;
 }
 
-MainWindow::MainWindow(Core::Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
+MainWindow::MainWindow(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _baseWindow(pos, size, title),
     _result(result)
 {
     timeBeginPeriod(timePeriod);
 
-    LDL::memset(&_windowClass, 0, sizeof(WNDCLASS));
-    LDL::memset(&_instance, 0, sizeof(HINSTANCE));
-    LDL::memset(&_msg, 0, sizeof(MSG));
-    LDL::memset(&_atom, 0, sizeof(ATOM));
-    LDL::memset(&_hwnd, 0, sizeof(HWND));
-    LDL::memset(&_hdc, 0, sizeof(HDC));
+    LDL_memset(&_windowClass, 0, sizeof(WNDCLASS));
+    LDL_memset(&_instance, 0, sizeof(HINSTANCE));
+    LDL_memset(&_msg, 0, sizeof(MSG));
+    LDL_memset(&_atom, 0, sizeof(ATOM));
+    LDL_memset(&_hwnd, 0, sizeof(HWND));
+    LDL_memset(&_hdc, 0, sizeof(HDC));
 
     _instance = GetModuleHandle(NULL);
     if (_instance == NULL)

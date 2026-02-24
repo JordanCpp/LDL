@@ -1,8 +1,8 @@
 #include <Arcanum/Loaders/SettingsLoader.hpp>
 #include <Arcanum/Core/RuntimeError.hpp>
 
-using namespace LDL::Math;
-using namespace Arcanum::Core;
+using namespace LDL;
+using namespace Arcanum;
 using namespace Arcanum::Game;
 using namespace Arcanum::Loaders;
 using namespace Arcanum::Readers;

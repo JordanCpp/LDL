@@ -3,9 +3,18 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef std_fstream
-#define std_fstream
+#ifndef LDL_Graphics_Utils_PotTextureSizer_hpp
+#define LDL_Graphics_Utils_PotTextureSizer_hpp
 
-#include "fstream.hpp"
+#include <LDL/Math/Vec2.hpp>
+
+namespace LDL
+{
+	class PotTextureSizer
+	{
+	public:
+		size_t Calc(const Vec2u& size);
+	};
+}
 
 #endif

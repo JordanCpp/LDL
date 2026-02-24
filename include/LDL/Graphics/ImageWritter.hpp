@@ -6,20 +6,17 @@
 #ifndef LDL_Graphics_ImageWriter_hpp
 #define LDL_Graphics_ImageWriter_hpp
 
-#include <LDL/Math/Vec2.hpp>
 #include <string>
+#include <LDL/Math/Vec2.hpp>
 
 namespace LDL
 {
-	namespace Graphics
+	class LDL_LIBRARY ImageWriter
 	{
-		class LDL_LIBRARY ImageWriter
-		{
-		public:
-			void Save(const std::string& path, const Math::Vec2u& size, size_t bytesPerPixel, uint8_t* pixels);
-		private:
-		};
-	}
+	public:
+		void Save(const std::string& path, const Vec2u& size, size_t bytesPerPixel, uint8_t* pixels);
+	private:
+	};
 }
 
 #endif    

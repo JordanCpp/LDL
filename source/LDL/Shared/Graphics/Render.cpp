@@ -6,10 +6,7 @@
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Shared/Graphics/Creators/RenderImplCreator.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Math;
-using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
+using namespace LDL;
 
 Render::Render(Result& result, RenderContext& renderContext, Window* window)
 {
@@ -49,9 +46,9 @@ const Vec2u& Render::Size()
 	return _impl->Size();
 }
 
-const Color& Render::Color()
+const Color& Render::GetColor()
 {
-	return _impl->Color();
+	return _impl->GetColor();
 }
 
 void Render::Clear()
@@ -59,9 +56,9 @@ void Render::Clear()
 	_impl->Clear();
 }
 
-void Render::Color(const LDL::Graphics::Color& color)
+void Render::SetColor(const Color& color)
 {
-	_impl->Color(color);
+	_impl->SetColor(color);
 }
 
 void Render::Pixel(const Vec2u& pos)

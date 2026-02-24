@@ -7,7 +7,7 @@
 #include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
 #include "../OpenGL/Util.hpp"
 
-using namespace LDL::Graphics;
+using namespace LDL;
 
 ScreenShotterImplOpenGL3::ScreenShotterImplOpenGL3(const std::string& path, const std::string& name, Render* render, Surface* image) :
 	_shortPath(path),

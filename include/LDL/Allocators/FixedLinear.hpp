@@ -10,26 +10,23 @@
 
 namespace LDL
 {
-	namespace Allocators
+	class LDL_LIBRARY FixedLinear : public Allocator
 	{
-		class LDL_LIBRARY FixedLinear : public Allocator
-		{
-		public:
-			FixedLinear(size_t bytes, Allocator* allocator = NULL);
-			~FixedLinear();
-			void* Allocate(size_t bytes);
-			void* AllocateAligned(size_t bytes, size_t alignment);
-			void Deallocate(void* ptr);
-			void Reset();
-			size_t UsedBytes();
-			size_t Capacity() const;
-		private:
-			size_t     _capacity;
-			size_t     _position;
-			uint8_t*   _content;
-			Allocator* _allocator;
-		};
-	}
+	public:
+		FixedLinear(size_t bytes, Allocator* allocator = NULL);
+		~FixedLinear();
+		void* Allocate(size_t bytes);
+		void* AllocateAligned(size_t bytes, size_t alignment);
+		void Deallocate(void* ptr);
+		void Reset();
+		size_t UsedBytes();
+		size_t Capacity() const;
+	private:
+		size_t     _capacity;
+		size_t     _position;
+		uint8_t* _content;
+		Allocator* _allocator;
+	};
 }
 
 #endif  

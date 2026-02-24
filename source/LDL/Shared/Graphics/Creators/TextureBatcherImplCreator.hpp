@@ -11,17 +11,11 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class TextureBatcherImplCreator
 	{
-		namespace Creators
-		{
-			class TextureBatcherImplCreator
-			{
-			public:
-				TextureBatcherImpl* Create(RenderContext* renderContext, Texture* texture, size_t count);
-			};
-		}
-	}
+	public:
+		TextureBatcherImpl* Create(RenderContext* renderContext, Texture* texture, size_t count);
+	};
 }
 
 #endif    

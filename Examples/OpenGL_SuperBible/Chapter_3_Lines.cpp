@@ -9,12 +9,7 @@
 #include <LDL/LDL.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Events;
-using namespace LDL::Enums;
-using namespace LDL::Time;
-using namespace LDL::Core;
-using namespace LDL::Math;
+using namespace LDL;
 
 // Define a constant for the value of PI
 #define GL_PI 3.1415f
@@ -152,12 +147,12 @@ int main()
 
 		while (window.GetEvent(report))
 		{
-			if (report.Type == IsQuit)
+			if (report.Type == Event::IsQuit)
 			{
 				window.StopEvent();
 			}
 
-			if (report.Type == IsKeyboard && report.Keyboard.State == ButtonState::Pressed)
+			if (report.Type == Event::IsKeyboard && report.Keyboard.State == ButtonState::Pressed)
 			{
 				SpecialKeys(report.Keyboard.Key);
 			}

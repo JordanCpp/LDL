@@ -7,7 +7,7 @@
 #include <LDL/Core/Convert.hpp>
 #include <LDL/Core/Console.hpp>
 
-void LDL::Core::TestEqual(bool condition, const std::string& description, const std::string& function, const std::string& file, size_t line)
+void LDL::TestEqual(bool condition, const std::string& description, const std::string& function, const std::string& file, size_t line)
 {
 	if (!condition)
 	{

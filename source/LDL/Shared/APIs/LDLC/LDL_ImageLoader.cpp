@@ -1,9 +1,12 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <LDLC/LDL_ImageLoader.h>
 #include <LDL/Loaders/ImageLoader.hpp>
 
-using namespace LDL::Loaders;
-using namespace LDL::Graphics;
-using namespace LDL::Allocators;
+using namespace LDL;
 
 struct LDL_ImageLoader
 {

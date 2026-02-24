@@ -11,21 +11,18 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class ShaderLoader
 	{
-		class ShaderLoader
-		{
-		public:
-			ShaderLoader();
-			~ShaderLoader();
-			bool Load(const std::string& path);
-			const std::string& Result();
-		private:
-			std::fstream _file;
-			std::string  _result;
-			std::string  _line;
-		};
-	}
+	public:
+		ShaderLoader();
+		~ShaderLoader();
+		bool Load(const std::string& path);
+		const std::string& Result();
+	private:
+		std::fstream _file;
+		std::string  _result;
+		std::string  _line;
+	};
 }
 
 #endif    

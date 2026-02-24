@@ -8,15 +8,12 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class ScreenShotterImpl
 	{
-		class ScreenShotterImpl
-		{
-		public:
-			virtual ~ScreenShotterImpl() {};
-			virtual void Shot() = 0;
-		};
-	}
+	public:
+		virtual ~ScreenShotterImpl() {};
+		virtual void Shot() = 0;
+	};
 }
 
 #endif    

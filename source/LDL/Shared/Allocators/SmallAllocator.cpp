@@ -3,11 +3,11 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Allocators/SmallAllocator.hpp>
-#include <assert.h>
 #include <math.h>
+#include <assert.h>
+#include <LDL/Allocators/SmallAllocator.hpp>
 
-using namespace LDL::Allocators;
+using namespace LDL;
 
 SmallAllocator::SmallAllocator(Allocator* allocator) :
 	_Allocator(allocator)
@@ -79,7 +79,7 @@ void SmallAllocator::Deallocate(void* ptr)
 	Append(&_Table[bucket], node);
 }
 
-SmallAllocator::Node* LDL::Allocators::SmallAllocator::ToNode(void* ptr)
+SmallAllocator::Node* SmallAllocator::ToNode(void* ptr)
 {
 	assert(ptr != NULL);
 

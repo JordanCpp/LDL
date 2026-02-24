@@ -13,31 +13,28 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class WindowImplOpenGL3 : public WindowImpl
 	{
-		class WindowImplOpenGL3 : public WindowImpl
-		{
-		public:
-			WindowImplOpenGL3(Core::Result& result, const Math::Vec2u& pos, const Math::Vec2u& size, const char* title, size_t mode = LDL::Enums::WindowMode::Resized);
-			~WindowImplOpenGL3();
-			bool Running();
-			void PollEvents();
-			void Present();
-			bool GetEvent(LDL::Events::Event& event);
-			bool WaitEvent(LDL::Events::Event& event);
-			void StopEvent();
-			void Title(const char* title);
-			const char* Title();
-			const Math::Vec2u& Size();
-			const Math::Vec2u& Pos();
-			void* NativeHandle();
-		private:
-			Core::Result& _result;
-			MainWindow    _Window;
-			HGLRC         _HGLRC;
-			OpenGLLoader  _OpenGLLoader;
-		};
-	}
+	public:
+		WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode = WindowMode::Resized);
+		~WindowImplOpenGL3();
+		bool Running();
+		void PollEvents();
+		void Present();
+		bool GetEvent(Event& event);
+		bool WaitEvent(Event& event);
+		void StopEvent();
+		void Title(const char* title);
+		const char* Title();
+		const Vec2u& Size();
+		const Vec2u& Pos();
+		void* NativeHandle();
+	private:
+		Result&       _result;
+		MainWindow    _Window;
+		HGLRC         _HGLRC;
+		OpenGLLoader  _OpenGLLoader;
+	};
 }
 
 #endif  

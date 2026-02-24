@@ -3,12 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "TextureBatcherImplSoftware.hpp"
-#include "TextureImplSoftware.hpp"
-#include "../OpenGL/Util.hpp"
+#include <LDL/Shared/Graphics/Renders/Software/TextureImplSoftware.hpp>
+#include <LDL/Shared/Graphics/Renders/Software/TextureBatcherImplSoftware.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 TextureBatcherImplSoftware::TextureBatcherImplSoftware(Texture* texture, size_t count)
 {

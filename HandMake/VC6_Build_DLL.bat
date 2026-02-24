@@ -1,36 +1,35 @@
 
-call "C:\VC6\Microsoft Visual Studio\VC98\Bin\VCVARS32.BAT"
+call "C:\Program Files\Microsoft Visual Studio\VC98\Bin\VCVARS32.BAT"
 
-CL /O2 /FeLDL_VC6.dll -LD -GX /I..\include /I..\dependencies\freetype\include /DFT2_BUILD_LIBRARY /DLDL_SHARED_LIBRARY ^
-..\source\Shared\Allocators\*.cpp ^
-..\source\Shared\Core\*.cpp ^
-..\source\Shared\Events\*.cpp ^
-..\source\Shared\Time\*.cpp ^
-..\source\Shared\Audio\*.cpp ^
-..\source\Shared\Graphics\*.cpp ^
-..\source\Shared\Graphics\Base\*.cpp ^
-..\source\Shared\Graphics\Creators\*.cpp ^
-..\source\Shared\Graphics\Renders\Software\*.cpp ^
-..\source\Shared\Graphics\Renders\OpenGL\*.cpp ^
-..\source\Shared\Graphics\Renders\OpenGL1\*.cpp ^
-..\source\Shared\Graphics\Renders\OpenGL3\*.cpp ^
-..\source\Shared\Graphics\Renders\Glide\*.cpp ^
-..\source\Shared\Graphics\Renders\Direct3D6\*.cpp ^
-..\source\Shared\Graphics\Utils\*.cpp ^
-..\source\Shared\Loaders\*.cpp ^
-..\source\Shared\APIs\OpenGL\*.cpp ^
-..\source\Shared\APIs\DirectX\*.cpp ^
-..\source\Shared\APIs\Glide\*.cpp ^
-..\source\Shared\APIs\GLU\*.cpp ^
-..\source\Shared\APIs\GLUT\*.cpp ^
-..\source\Shared\APIs\LDLC\*.cpp ^
-..\source\Shared\Text\*.cpp ^
-..\source\Platforms\Windows\DirectX\*.cpp ^
-..\source\Platforms\Windows\Graphics\*.cpp ^
-..\source\Platforms\Windows\Time\Ticks.cpp ^
-..\source\Platforms\Windows\Core\*.cpp ^
-..\source\Platforms\Windows\Input\*.cpp ^
-..\source\Platforms\Windows\Audio\DirectSound8\*.cpp ^
+CL /O2 /FeLDL_VC6.dll -LD -GX /I..\include /I..\source /I..\dependencies\freetype\include /DFT2_BUILD_LIBRARY /DLDL_SHARED_LIBRARY ^
+..\source\LDL\Shared\Allocators\*.cpp ^
+..\source\LDL\Shared\Core\*.cpp ^
+..\source\LDL\Shared\Events\*.cpp ^
+..\source\LDL\Shared\Time\*.cpp ^
+..\source\LDL\Shared\Audio\*.cpp ^
+..\source\LDL\Shared\Graphics\*.cpp ^
+..\source\LDL\Shared\Graphics\Base\*.cpp ^
+..\source\LDL\Shared\Graphics\Creators\*.cpp ^
+..\source\LDL\Shared\Graphics\Renders\Software\*.cpp ^
+..\source\LDL\Shared\Graphics\Renders\OpenGL\*.cpp ^
+..\source\LDL\Shared\Graphics\Renders\OpenGL1\*.cpp ^
+..\source\LDL\Shared\Graphics\Renders\OpenGL3\*.cpp ^
+..\source\LDL\Shared\Graphics\Renders\Glide\*.cpp ^
+..\source\LDL\Shared\Graphics\Renders\Direct3D6\*.cpp ^
+..\source\LDL\Shared\Loaders\*.cpp ^
+..\source\LDL\Shared\APIs\OpenGL\*.cpp ^
+..\source\LDL\Shared\APIs\DirectX\*.cpp ^
+..\source\LDL\Shared\APIs\Glide\*.cpp ^
+..\source\LDL\Shared\APIs\GLU\*.cpp ^
+..\source\LDL\Shared\APIs\GLUT\*.cpp ^
+..\source\LDL\Shared\APIs\LDLC\*.cpp ^
+..\source\LDL\Shared\Text\*.cpp ^
+..\source\LDL\Platforms\Windows\DirectX\*.cpp ^
+..\source\LDL\Platforms\Windows\Graphics\*.cpp ^
+..\source\LDL\Platforms\Windows\Time\Ticks.cpp ^
+..\source\LDL\Platforms\Windows\Core\*.cpp ^
+..\source\LDL\Platforms\Windows\Input\*.cpp ^
+..\source\LDL\Platforms\Windows\Audio\DirectSound8\*.cpp ^
 ..\dependencies\freetype\src\sfnt\sfdriver.c ^
 ..\dependencies\freetype\src\sfnt\ttcmap.c ^
 ..\dependencies\freetype\src\sfnt\ttsbit.c ^

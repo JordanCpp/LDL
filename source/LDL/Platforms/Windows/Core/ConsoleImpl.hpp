@@ -6,22 +6,19 @@
 #ifndef LDL_Platforms_Windows_Core_ConsoleImpl_hpp
 #define LDL_Platforms_Windows_Core_ConsoleImpl_hpp
 
-#include <LDL/Platforms/Windows/Windows.hpp>
 #include <string>
+#include <LDL/Platforms/Windows/Windows.hpp>
 
 namespace LDL
 {
-	namespace Core
+	class ConsoleImpl
 	{
-		class ConsoleImpl
-		{
-		public:
-			ConsoleImpl();
-			void Write(const std::string& text);
-		private:
-			HANDLE _output;
-		};
-	}
+	public:
+		ConsoleImpl();
+		void Write(const std::string& text);
+	private:
+		HANDLE _output;
+	};
 }
 
 #endif    

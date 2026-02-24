@@ -7,8 +7,7 @@
 #include "TextureImplOpenGL1.hpp"
 #include "../OpenGL/Util.hpp"
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 TextureBatcherImplOpenGL1::TextureBatcherImplOpenGL1(Texture* texture, size_t count) :
 	_texture(((TextureImplOpenGL1*)texture->GetTextureImpl())->Id()),

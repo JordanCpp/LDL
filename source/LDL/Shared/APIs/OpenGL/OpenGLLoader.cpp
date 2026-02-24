@@ -5,7 +5,6 @@
 #include <LDL/Core/Terminate.hpp>
 
 using namespace LDL;
-using namespace LDL::Core;
 
 OpenGLLoader::OpenGLLoader() :
 	_Major(0),

@@ -12,14 +12,14 @@ namespace Arcanum
 		class Camera
 		{
 		public:
-			Camera(const LDL::Math::Vec2u& pos, const LDL::Math::Vec2u& size);
-			const LDL::Math::Vec2u& Pos();
-			const LDL::Math::Vec2u& Size();
-			void Move(const LDL::Math::Vec2u& pos);
-			void Handle(LDL::Events::Event& event);
+			Camera(const LDL::Vec2u& pos, const LDL::Vec2u& size);
+			const LDL::Vec2u& Pos();
+			const LDL::Vec2u& Size();
+			void Move(const LDL::Vec2u& pos);
+			void Handle(LDL::Event& event);
 		private:
-			uint32_t         _step;
-			LDL::Math::Rectu _area;
+			uint32_t   _step;
+			LDL::Rectu _area;
 		};
 	}
 }

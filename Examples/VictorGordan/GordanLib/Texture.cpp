@@ -1,6 +1,6 @@
 #include "Texture.h"
 
-using namespace LDL::Loaders;
+using namespace LDL;
 
 TextureGL::TextureGL(ImageLoader& loader, GLenum texType, GLenum slot, GLenum format, GLenum pixelType)
 {

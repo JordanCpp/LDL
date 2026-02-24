@@ -7,7 +7,7 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Allocators/SmallAllocator.hpp>
 
-using namespace LDL::Allocators;
+using namespace LDL;
 
 const size_t bytes = Allocator::Mb * 1;
 

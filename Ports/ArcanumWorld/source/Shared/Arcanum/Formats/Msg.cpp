@@ -1,6 +1,6 @@
 #include <Arcanum/Formats/Msg.hpp>
 
-using namespace Arcanum::Formats;
+using namespace Arcanum;
 
 size_t Msg::Number()
 {

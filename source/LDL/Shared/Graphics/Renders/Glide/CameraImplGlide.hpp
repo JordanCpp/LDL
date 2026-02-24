@@ -6,27 +6,24 @@
 #ifndef LDL_Graphics_Renders_Glide_CameraImplGlide_hpp
 #define LDL_Graphics_Renders_Glide_CameraImplGlide_hpp
 
-#include "RenderImplGlide.hpp"
-#include "../../Impls/CameraImpl.hpp"
+#include <LDL/Shared/Graphics/Impls/CameraImpl.hpp>
+#include <LDL/Shared/Graphics/Renders/Glide/RenderImplGlide.hpp>
 
 namespace LDL
 {
-	namespace Graphics
+	class CameraImplGlide : public CameraImpl
 	{
-		class CameraImplGlide : public CameraImpl
-		{
-		public:
-			CameraImplGlide(RenderImpl* renderImpl, const Math::Vec2u& pos, const Math::Vec2u& size);
-			const Math::Vec2u& Pos();
-			const Math::Vec2u& Size();
-			void Pos(const Math::Vec2u& pos);
-			void Size(const Math::Vec2u& size);
-		private:
-			RenderImpl* _renderImpl;
-			Math::Vec2u _pos;
-			Math::Vec2u _size;
-		};
-	}
+	public:
+		CameraImplGlide(RenderImpl* renderImpl, const Vec2u& pos, const Vec2u& size);
+		const Vec2u& Pos();
+		const Vec2u& Size();
+		void Pos(const Vec2u& pos);
+		void Size(const Vec2u& size);
+	private:
+		RenderImpl* _renderImpl;
+		Vec2u       _pos;
+		Vec2u       _size;
+	};
 }
 
 #endif   

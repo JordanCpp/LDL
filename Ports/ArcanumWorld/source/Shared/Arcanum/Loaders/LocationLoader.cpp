@@ -1,6 +1,6 @@
 #include <Arcanum/Loaders/LocationLoader.hpp>
 
-using namespace LDL::Math;
+using namespace LDL;
 using namespace Arcanum::Objects;
 using namespace Arcanum::Loaders;
 using namespace Arcanum::Readers;

@@ -46,9 +46,9 @@ namespace Arcanum
         public:
             bool Reset(const std::string& dir, const std::string& file, DatList& archiveList);
         private:
-            Core::PathNormalizer _pathNormalizer;
-            std::string          _fullPath;
-            std::fstream         _file;
+            PathNormalizer _pathNormalizer;
+            std::string    _fullPath;
+            std::fstream   _file;
         };
     }
 }

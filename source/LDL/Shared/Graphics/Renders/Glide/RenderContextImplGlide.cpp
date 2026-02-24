@@ -3,9 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "RenderContextImplGlide.hpp"
+#include <LDL/Shared/Graphics/Renders/Glide/RenderContextImplGlide.hpp>
 
-using namespace LDL::Graphics;
+using namespace LDL;
 
 RenderContextImplGlide::RenderContextImplGlide(size_t mode) :
 	_mode(mode)

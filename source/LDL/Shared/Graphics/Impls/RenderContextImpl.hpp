@@ -10,15 +10,12 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class RenderContextImpl
 	{
-		class RenderContextImpl
-		{
-		public:
-			virtual ~RenderContextImpl() {};
-			virtual size_t Mode() = 0;
-		};
-	}
+	public:
+		virtual ~RenderContextImpl() {};
+		virtual size_t Mode() = 0;
+	};
 }
 
 #endif    

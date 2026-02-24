@@ -3,13 +3,13 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Loaders/FontLoader.hpp>
-#include <LDL/Core/Assert.hpp>
 #include <stdio.h>
+#include <LDL/Core/Assert.hpp>
+#include <LDL/Loaders/FontLoader.hpp>
 
-using namespace LDL::Loaders;
+using namespace LDL;
 
-FontLoader::FontLoader(LDL::Allocators::Allocator* allocator) :
+FontLoader::FontLoader(Allocator* allocator) :
     _allocator(allocator),
 	_buffer(NULL)
 {

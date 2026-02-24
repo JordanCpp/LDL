@@ -1,6 +1,6 @@
 #include <Arcanum/Core/RuntimeError.hpp>
 
-using namespace Arcanum::Core;
+using namespace Arcanum;
 
 RuntimeError::RuntimeError(const std::string& message) :
 	_runtime_error(message)

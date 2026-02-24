@@ -6,16 +6,13 @@
 #include "WindowImplSoftware.hpp"
 #include <LDL/Core/Assert.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Events;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 WindowImplSoftware::WindowImplSoftware(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _result(result),
     _Window(_result, pos, size, title, mode)
 {
-    LDL::memset(&_BITMAPINFO, 0, sizeof(_BITMAPINFO));
+    LDL_memset(&_BITMAPINFO, 0, sizeof(_BITMAPINFO));
 }
 
 WindowImplSoftware::~WindowImplSoftware()

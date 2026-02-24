@@ -12,33 +12,30 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class RenderImpl
 	{
-		class RenderImpl
-		{
-		public:
-			virtual ~RenderImpl() {};
-			virtual void Buffer(uint8_t* dst) = 0;
-			virtual void Begin() = 0;
-			virtual void End() = 0;
-			virtual const Math::Vec2u& Size() = 0;
-			virtual const LDL::Graphics::Color& Color() = 0;
-			virtual void Clear() = 0;
-			virtual void Color(const LDL::Graphics::Color& color) = 0;
-			virtual void Pixel(const Math::Vec2u& pos) = 0;
-			virtual void Fill(const Math::Vec2u& pos, const Math::Vec2u& size) = 0;
-			virtual void Line(const Math::Vec2u& pos1, const Math::Vec2u& pos2) = 0;
-			virtual void Draw(Texture* image, const Math::Vec2u& pos) = 0;
-			virtual void Draw(Texture* image, const Math::Vec2u& pos, const Math::Vec2u& size) = 0;
-			virtual void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize) = 0;
-			virtual void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize) = 0;
-			virtual void Draw(Surface* image, const Math::Vec2u& pos) = 0;
-			virtual void Draw(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size) = 0;
-			virtual void Draw(Surface* image, const Math::Vec2u& dstPos, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize) = 0;
-			virtual void Draw(Surface* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize) = 0;
-			virtual void Draw(TextureBatcher* textureBatcher) = 0;
-		};
-	}
+	public:
+		virtual ~RenderImpl() {};
+		virtual void Buffer(uint8_t* dst) = 0;
+		virtual void Begin() = 0;
+		virtual void End() = 0;
+		virtual const Vec2u& Size() = 0;
+		virtual const Color& GetColor() = 0;
+		virtual void Clear() = 0;
+		virtual void SetColor(const Color& color) = 0;
+		virtual void Pixel(const Vec2u& pos) = 0;
+		virtual void Fill(const Vec2u& pos, const Vec2u& size) = 0;
+		virtual void Line(const Vec2u& pos1, const Vec2u& pos2) = 0;
+		virtual void Draw(Texture* image, const Vec2u& pos) = 0;
+		virtual void Draw(Texture* image, const Vec2u& pos, const Vec2u& size) = 0;
+		virtual void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize) = 0;
+		virtual void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize) = 0;
+		virtual void Draw(Surface* image, const Vec2u& pos) = 0;
+		virtual void Draw(Surface* image, const Vec2u& pos, const Vec2u& size) = 0;
+		virtual void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize) = 0;
+		virtual void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize) = 0;
+		virtual void Draw(TextureBatcher* textureBatcher) = 0;
+	};
 }
 
 #endif    

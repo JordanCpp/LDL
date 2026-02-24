@@ -12,29 +12,26 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class WindowImplDirect3D6 : public WindowImpl
 	{
-		class WindowImplDirect3D6 : public WindowImpl
-		{
-		public:
-			WindowImplDirect3D6(Core::Result& result, const Math::Vec2u& pos, const Math::Vec2u& size, const char* title, size_t mode = Enums::WindowMode::Resized);
-			~WindowImplDirect3D6();
-			bool Running();
-			void Present();
-			void PollEvents();
-			bool GetEvent(Events::Event& event);
-			bool WaitEvent(Events::Event& event);
-			void StopEvent();
-			void Title(const char* title);
-			const char* Title();
-			const Math::Vec2u& Size();
-			const Math::Vec2u& Pos();
-			void* NativeHandle();
-		private:
-			Core::Result& _result;
-			MainWindow    _Window;
-		};
-	}
+	public:
+		WindowImplDirect3D6(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode = WindowMode::Resized);
+		~WindowImplDirect3D6();
+		bool Running();
+		void Present();
+		void PollEvents();
+		bool GetEvent(Event& event);
+		bool WaitEvent(Event& event);
+		void StopEvent();
+		void Title(const char* title);
+		const char* Title();
+		const Vec2u& Size();
+		const Vec2u& Pos();
+		void* NativeHandle();
+	private:
+		Result& _result;
+		MainWindow  _Window;
+	};
 }
 
 #endif

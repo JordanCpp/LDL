@@ -2,7 +2,7 @@
 #include <Arcanum/Loaders/DatLoader.hpp>
 #include <zlib.h>
 
-using namespace Arcanum::Core;
+using namespace Arcanum;
 using namespace Arcanum::Loaders;
 using namespace Arcanum::Readers;
 

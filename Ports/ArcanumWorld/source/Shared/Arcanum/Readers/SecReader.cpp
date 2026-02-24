@@ -1,7 +1,7 @@
 #include <Arcanum/Readers/SecReader.hpp>
 
 using namespace Arcanum::Readers;
-using namespace Arcanum::Formats;
+using namespace Arcanum;
 
 SecReader::SecReader(ByteReader* byteReader) :
 	_byteReader(byteReader)

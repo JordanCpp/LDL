@@ -1,6 +1,6 @@
 #include <Arcanum/Objects/Critter.hpp>
 
-using namespace LDL::Math;
+using namespace LDL;
 using namespace Arcanum::Objects;
 
 void Critter::Init(CritterScript* script)

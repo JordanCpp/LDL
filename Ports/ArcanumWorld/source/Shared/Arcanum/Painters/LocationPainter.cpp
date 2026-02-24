@@ -1,7 +1,6 @@
 #include <Arcanum/Painters/LocationPainter.hpp>
 
-using namespace LDL::Math;
-using namespace LDL::Graphics;
+using namespace LDL;
 using namespace Arcanum::Painters;
 using namespace Arcanum::Objects;
 using namespace Arcanum::Graphics;

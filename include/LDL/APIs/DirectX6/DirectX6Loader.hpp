@@ -13,7 +13,7 @@ namespace LDL
 		public:
 			DirectX6Loader();
 		private:
-			Core::Library _ddraw;
+			Library _ddraw;
 		};
 	}
 }

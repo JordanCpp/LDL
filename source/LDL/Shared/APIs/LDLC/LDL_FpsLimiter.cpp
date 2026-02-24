@@ -1,7 +1,7 @@
 #include <LDLC/LDL_FpsLimiter.h>
 #include <LDL/Time/FpsLimiter.hpp>
 
-using namespace LDL::Time;
+using namespace LDL;
 
 struct LDL_FpsLimiter
 {

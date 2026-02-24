@@ -12,16 +12,13 @@
 
 namespace LDL
 {
-	namespace Events
+	class Keyboard
 	{
-		class Keyboard
-		{
-		public:
-			uint8_t Type;
-			uint8_t State;
-			uint8_t Key;
-		};
-	}
+	public:
+		uint8_t Type;
+		uint8_t State;
+		uint8_t Key;
+	};
 }
 
 #endif

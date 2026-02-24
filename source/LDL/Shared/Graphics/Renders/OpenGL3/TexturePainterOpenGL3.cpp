@@ -6,8 +6,7 @@
 #include "TexturePainterOpenGL3.hpp"
 #include "TextureImplOpenGL3.hpp"
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 TexturePainter::TexturePainter(ShaderLoader* shaderLoader) :
 	_shaderLoader(shaderLoader),

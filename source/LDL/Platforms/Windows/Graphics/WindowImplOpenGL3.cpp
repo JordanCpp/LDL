@@ -6,10 +6,8 @@
 #include "WindowImplOpenGL3.hpp"
 #include <LDL/Core/Assert.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Math;
+using namespace LDL;
 using namespace LDL::Events;
-using namespace LDL::Graphics;
 
 typedef HGLRC(WINAPI* PFNWGLCREATECONTEXT)(HDC);
 typedef BOOL (WINAPI* PFNWGLMAKECURRENT  )(HDC, HGLRC);
@@ -43,7 +41,7 @@ WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec
 
     PIXELFORMATDESCRIPTOR pfd;
 
-    LDL::memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
+    LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
 
     _Window._hdc = GetDC(_Window._hwnd);
 

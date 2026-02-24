@@ -5,16 +5,13 @@
 
 namespace Arcanum
 {
-	namespace Core
+	class PathNormalizer
 	{
-		class PathNormalizer
-		{
-		public:
-			void Normalize(char* path);
-			void Normalize(std::string& path);
-		private:
-		};
-	}
+	public:
+		void Normalize(char* path);
+		void Normalize(std::string& path);
+	private:
+	};
 }
 
 #endif

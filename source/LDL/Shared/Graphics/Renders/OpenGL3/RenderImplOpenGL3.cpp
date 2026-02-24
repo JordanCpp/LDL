@@ -9,14 +9,12 @@
 #include <LDL/Math/Funcs.hpp>
 
 #if defined(_WIN32)
-#include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL3.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL3.hpp>
 #elif defined(__unix__)
-#include <LDL/Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
+    #include <LDL/Platforms/Linux/Graphics/OpenGL3/WindowImplOpenGL3.hpp>
 #endif
 
-using namespace LDL::Core;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 RenderImplOpenGL3::RenderImplOpenGL3(Result& result, RenderContextImpl* renderContextImpl, Window* window) :
 	_result(result),
@@ -26,7 +24,7 @@ RenderImplOpenGL3::RenderImplOpenGL3(Result& result, RenderContextImpl* renderCo
 {
 }
 
-void LDL::Graphics::RenderImplOpenGL3::Buffer(uint8_t* dst)
+void RenderImplOpenGL3::Buffer(uint8_t* dst)
 {
 }
 
@@ -47,7 +45,7 @@ const Vec2u& RenderImplOpenGL3::Size()
 	return _window->Size();
 }
 
-const Color& RenderImplOpenGL3::Color()
+const Color& RenderImplOpenGL3::GetColor()
 {
 	return _color;
 }
@@ -64,7 +62,7 @@ void RenderImplOpenGL3::Clear()
 	GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
-void RenderImplOpenGL3::Color(const LDL::Graphics::Color& color)
+void RenderImplOpenGL3::SetColor(const Color& color)
 {
 	_color = color;
 }

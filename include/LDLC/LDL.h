@@ -10,5 +10,8 @@
 #include <LDLC/LDL_Render.h>
 #include <LDLC/LDL_Window.h>
 #include <LDLC/LDL_FpsCounter.h>
+#include <LDLC/LDL_Convert.h>
+#include <LDLC/LDL_ImageLoader.h>
+#include <LDLC/LDL_FixedLinear.h>
 
 #endif

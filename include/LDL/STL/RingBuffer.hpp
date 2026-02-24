@@ -3,24 +3,24 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_STL_ring_buffer_hpp
-#define LDL_STL_ring_buffer_hpp
+#ifndef LDL_STL_RingBuffer_hpp
+#define LDL_STL_RingBuffer_hpp
 
 #include <LDL/std/string.hpp>
 
 namespace LDL
 {
 	template<class T, size_t COUNT>
-	class ring_buffer
+	class RingBuffer
 	{
 	public:
-		ring_buffer() :
+		RingBuffer() :
 			_head(COUNT - 1),
 			_tail(0),
 			_length(0),
 			_capacity(COUNT)
 		{
-			LDL::memset(&_content, 0, sizeof(T) * COUNT);
+			LDL_memset(&_content, 0, sizeof(T) * COUNT);
 		}
 
 		bool empty()

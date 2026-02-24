@@ -3,59 +3,62 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef LDL_STL_inplace_string_hpp
-#define LDL_STL_inplace_string_hpp
+#ifndef LDL_STL_InplaceString_hpp
+#define LDL_STL_InplaceString_hpp
 
 #include <LDL/std/string.hpp>
 
 namespace LDL
 {
     template <size_t Max>
-    class inplace_string
+    class InplaceString
     {
-        enum { Null = Max - 1 };
+        enum 
+        { 
+            Null = Max - 1 
+        };
 
     public:
-        inplace_string()
+        InplaceString()
         {
             _buffer[0] = '\0';
         }
 
-        inplace_string(const char* str)
+        InplaceString(const char* str)
         {
             assign(str);
         }
 
-        inplace_string(const inplace_string& other)
+        InplaceString(const InplaceString& other)
         {
-            LDL::strlcpy(_buffer, Max, other._buffer);
+            LDL_strlcpy(_buffer, other._buffer, Max);
         }
 
-        inplace_string& operator=(const char* str)
+        InplaceString& operator=(const char* str)
         {
             assign(str);
 
             return *this;
         }
 
-        inplace_string& operator=(const inplace_string& other)
+        InplaceString& operator=(const InplaceString& other)
         {
             if (this != &other)
             {
-                LDL::strlcpy(_buffer, Max, other._buffer);
+                LDL_strlcpy(_buffer, other._buffer, Max);
             }
 
             return *this;
         }
 
-        inplace_string& operator+=(const char* str)
+        InplaceString& operator+=(const char* str)
         {
             append(str);
 
             return *this;
         }
 
-        inplace_string& operator+=(char c)
+        InplaceString& operator+=(char c)
         {
             append(c);
 
@@ -74,7 +77,7 @@ namespace LDL
 
         size_t size() const
         {
-            return LDL::strlen(_buffer);
+            return LDL_strlen(_buffer);
         }
 
         size_t length() const
@@ -154,18 +157,18 @@ namespace LDL
             return Null;
         }
 
-        friend inplace_string operator+(const inplace_string& lhs, const char* rhs)
+        friend InplaceString operator+(const InplaceString& lhs, const char* rhs)
         {
-            inplace_string result = lhs;
+            InplaceString result = lhs;
 
             result.append(rhs);
 
             return result;
         }
 
-        friend inplace_string operator+(const char* lhs, const inplace_string& rhs)
+        friend InplaceString operator+(const char* lhs, const InplaceString& rhs)
         {
-            inplace_string result;
+            InplaceString result;
 
             result.append(lhs);
             result.append(rhs._buffer);
@@ -173,18 +176,18 @@ namespace LDL
             return result;
         }
 
-        friend inplace_string operator+(const inplace_string& lhs, char rhs)
+        friend InplaceString operator+(const InplaceString& lhs, char rhs)
         {
-            inplace_string result = lhs;
+            InplaceString result = lhs;
 
             result.append(rhs);
 
             return result;
         }
 
-        friend inplace_string operator+(char lhs, const inplace_string& rhs)
+        friend InplaceString operator+(char lhs, const InplaceString& rhs)
         {
-            inplace_string result;
+            InplaceString result;
 
             result.append(&lhs, 1);
             result.append(rhs._buffer);

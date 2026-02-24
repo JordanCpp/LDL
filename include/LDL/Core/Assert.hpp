@@ -10,13 +10,10 @@
 
 namespace LDL
 {
-    namespace Core
-    {
-        LDL_LIBRARY void Assert(bool condition, const char* description, const char* detail, const char* file, size_t line);
-    }
+	LDL_LIBRARY void Assert(bool condition, const char* description, const char* detail, const char* file, size_t line);
 }
 
-#define LDL_ASSERT(x)            LDL::Core::Assert(x, #x, "", __FILE__, __LINE__)
-#define LDL_ASSERT_DETAIL(x, y)  LDL::Core::Assert(x, #x,  y, __FILE__, __LINE__)
+#define LDL_ASSERT(x)            LDL::Assert(x, #x, "", __FILE__, __LINE__)
+#define LDL_ASSERT_DETAIL(x, y)  LDL::Assert(x, #x,  y, __FILE__, __LINE__)
 
 #endif    

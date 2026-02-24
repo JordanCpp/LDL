@@ -10,20 +10,17 @@
 
 namespace LDL
 {
-	namespace Text
-	{
-		class FontImpl;
+	class FontImpl;
 
-		class LDL_LIBRARY Font
-		{
-		public:
-			Font(RasterizerContext* rasterizerContext,size_t fontSize, uint8_t* font, size_t size);
-			~Font();
-			FontImpl* GetFontImpl();
-		private:
-			FontImpl* _impl;
-		};
-	}
+	class LDL_LIBRARY Font
+	{
+	public:
+		Font(RasterizerContext* rasterizerContext, size_t fontSize, uint8_t* font, size_t size);
+		~Font();
+		FontImpl* GetFontImpl();
+	private:
+		FontImpl* _impl;
+	};
 }
 
 #endif    

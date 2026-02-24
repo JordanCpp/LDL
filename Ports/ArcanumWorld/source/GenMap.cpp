@@ -2,7 +2,7 @@
 #include <Arcanum/Writers/XmlWriter.hpp>
 #include <LDL/LDL.hpp>
 
-using namespace LDL::Math;
+using namespace LDL;
 using namespace Arcanum::Writers;
 
 
@@ -21,7 +21,7 @@ int main()
 
 	writer.Reset("data/maps/Test.xml");
 
-	LDL::Math::Vec2u size(15, 15);
+	LDL::Vec2u size(15, 15);
 
 	writer.TagBegin("Info");
 	writer.Node("Width", size.x);

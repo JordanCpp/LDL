@@ -5,15 +5,7 @@
 
 #include <LDL/LDL.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Graphics;
-using namespace LDL::Events;
-using namespace LDL::Time;
-using namespace LDL::Enums;
-using namespace LDL::Math;
-using namespace LDL::Audio;
-using namespace LDL::Allocators;
-using namespace LDL::Loaders;
+using namespace LDL;
 
 int main()
 {
@@ -34,7 +26,6 @@ int main()
 	FixedLinear allocator(Allocator::Mb * 128);
 	SoundLoader soundLoader(&allocator);
 
-	//soundLoader.LoadMp3("Arcanum.mp3");
 	soundLoader.LoadOgg("Data/1.ogg");
 
 	Sound sound(&audioContext, soundLoader.Channels(), soundLoader.Rate(), soundLoader.Samples(), soundLoader.Bytes());
@@ -46,7 +37,7 @@ int main()
 
 		while (window.GetEvent(report))
 		{
-			if (report.Type == IsQuit)
+			if (report.Type == Event::IsQuit)
 			{
 				window.StopEvent();
 			}
@@ -60,14 +51,12 @@ int main()
 
 		render.Begin();
 
-		render.Color(Color(0, 162, 232));
+		render.SetColor(Color(0, 162, 232));
 		render.Clear();
 
 		render.End();
 
 		fpsLimiter.Throttle();
-
-		
 	}
 
 	return 0;

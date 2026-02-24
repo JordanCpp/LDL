@@ -10,14 +10,11 @@
 
 namespace LDL
 {
-	namespace Events
+	class GainedFocus
 	{
-		class GainedFocus
-		{
-		public:
-			uint8_t Type;
-		};
-	}
+	public:
+		uint8_t Type;
+	};
 }
 
 #endif

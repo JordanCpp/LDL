@@ -11,17 +11,14 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class BaseScreenShotter
 	{
-		class LDL_LIBRARY BaseScreenShotter
-		{
-		public:
-			const std::string Prefix();
-		private:
-			std::string   _prefix;
-			Core::Convert _converter;
-		};
-	}
+	public:
+		const std::string Prefix();
+	private:
+		std::string  _prefix;
+		Convert      _converter;
+	};
 }
 
 #endif    

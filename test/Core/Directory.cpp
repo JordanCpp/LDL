@@ -6,7 +6,7 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Core/Directory.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 
 void Open()
 {

@@ -7,10 +7,7 @@
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Audio/Mixer.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Graphics;
-using namespace LDL::Audio;
-using namespace LDL::Math;
+using namespace LDL;
 
 int main()
 {

@@ -9,11 +9,9 @@
 #include <LDL/Platforms/WindowImpl.hpp>
 #include <LDL/Platforms/Windows/Audio/DirectSound8/AudioContextImpl.hpp>
 
-using namespace LDL::Audio;
-using namespace LDL::Core;
-using namespace LDL::Graphics;
+using namespace LDL;
 
-AudioContextImpl::AudioContextImpl(LDL::Graphics::Window* window, size_t rate, size_t bits, size_t channels) :
+AudioContextImpl::AudioContextImpl(Window* window, size_t rate, size_t bits, size_t channels) :
 	_rate(rate),
 	_bits(bits),
 	_channels(channels),
@@ -33,7 +31,7 @@ AudioContextImpl::AudioContextImpl(LDL::Graphics::Window* window, size_t rate, s
 	LDL_ASSERT_DETAIL(!FAILED(result), "SetCooperativeLevel failed");
 
 	DSBUFFERDESC bufferDesc;
-	LDL::memset(&bufferDesc, 0, sizeof(DSBUFFERDESC));
+	LDL_memset(&bufferDesc, 0, sizeof(DSBUFFERDESC));
 
 	bufferDesc.dwSize          = sizeof(DSBUFFERDESC);
 	bufferDesc.dwFlags         = DSBCAPS_PRIMARYBUFFER | DSBCAPS_CTRLVOLUME;
@@ -46,7 +44,7 @@ AudioContextImpl::AudioContextImpl(LDL::Graphics::Window* window, size_t rate, s
 	LDL_ASSERT_DETAIL(!FAILED(result), "CreateSoundBuffer failed");
 
 	WAVEFORMATEX waveFormat;
-	LDL::memset(&waveFormat, 0, sizeof(WAVEFORMATEX));
+	LDL_memset(&waveFormat, 0, sizeof(WAVEFORMATEX));
 
 	waveFormat.cbSize          = 0;
 	waveFormat.wFormatTag      = WAVE_FORMAT_PCM;

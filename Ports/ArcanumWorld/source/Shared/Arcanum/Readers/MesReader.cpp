@@ -1,7 +1,7 @@
 #include <Arcanum/Readers/MesReader.hpp>
 #include <Arcanum/Core/RuntimeError.hpp>
 
-using namespace Arcanum::Core;
+using namespace Arcanum;
 using namespace Arcanum::Readers;
 
 void MesReader::Reset(const std::string& path)

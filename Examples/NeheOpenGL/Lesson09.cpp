@@ -7,14 +7,7 @@
 #include <LDL/APIs/OpenGL/GLU.hpp>
 #include <stdlib.h>
 
-using namespace LDL::Graphics;
-using namespace LDL::Enums;
-using namespace LDL::Events;
-using namespace LDL::Time;
-using namespace LDL::Core;
-using namespace LDL::Allocators;
-using namespace LDL::Loaders;
-using namespace LDL::Math;
+using namespace LDL;
 
 bool twinkle = false;			// Twinkling Stars
 bool tp      = false;			// 'T' Key Pressed?
@@ -166,7 +159,7 @@ int main()
 
 			while (window.GetEvent(report))
 			{
-				if (report.Type == IsQuit)
+				if (report.Type == Event::IsQuit)
 				{
 					window.StopEvent();
 				}

@@ -7,14 +7,7 @@
 #include "GordanLib/VBO.h"
 #include "GordanLib/EBO.h"  
 
-using namespace LDL::Graphics;
-using namespace LDL::Enums;
-using namespace LDL::Events;
-using namespace LDL::Time;
-using namespace LDL::Core;
-using namespace LDL::Allocators;
-using namespace LDL::Loaders;
-using namespace LDL::Math;
+using namespace LDL;
 
 // Vertices coordinates
 GLfloat vertices[] =
@@ -83,7 +76,7 @@ int main()
 
 			while (window.GetEvent(report))
 			{
-				if (report.Type == IsQuit)
+				if (report.Type == Event::IsQuit)
 				{
 					window.StopEvent();
 				}

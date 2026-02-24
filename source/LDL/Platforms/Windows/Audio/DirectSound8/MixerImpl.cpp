@@ -7,8 +7,7 @@
 #include <LDL/Platforms/Windows/Audio/DirectSound8/MixerImpl.hpp>
 #include <LDL/Platforms/Windows/Audio/DirectSound8/SoundImpl.hpp>
 
-using namespace LDL::Audio;
-using namespace LDL::Core;
+using namespace LDL;
 
 MixerImpl::MixerImpl()
 {

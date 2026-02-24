@@ -22,7 +22,7 @@ public:
 	void Matrix(float FOVdeg, float nearPlane, float farPlane, Shader& shader, const char* uniform);
 	void Matrix(Shader& shader, const char* uniform);
 	// Handles camera inputs
-	void Inputs(LDL::Events::Event& window);
+	void Inputs(LDL::Event& window);
 
 	LDL::Input::Mouse mMouse;
 	// Stores the main vectors of the camera

@@ -8,10 +8,9 @@
 #include <LDL/Allocators/FixedLinear.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
-const size_t bytes = LDL::Allocators::Allocator::Mb * 4;
+const size_t bytes = Allocator::Mb * 4;
 
 void InitDefault()
 {
@@ -45,8 +44,8 @@ void InitCapacityDefault()
 
 void InitFrom()
 {
-	LDL::Allocators::FixedLinear allocator(bytes);
-	LDL::Loaders::ImageLoader loader(&allocator);
+	FixedLinear allocator(bytes);
+	ImageLoader loader(&allocator);
 
 	loader.Load("TestFiles/359500_600.jpg");
 
@@ -65,8 +64,8 @@ void InitFrom()
 
 void InitCapacityFrom()
 {
-	LDL::Allocators::FixedLinear allocator(bytes);
-	LDL::Loaders::ImageLoader loader(&allocator);
+	FixedLinear allocator(bytes);
+	ImageLoader loader(&allocator);
 
 	loader.Load("TestFiles/359500_600.jpg");
 

@@ -10,10 +10,7 @@
 
 namespace LDL
 {
-    namespace Core
-    {
-        LDL_LIBRARY void Terminate();
-    }
+	LDL_LIBRARY void Terminate();
 }
 
 #endif    

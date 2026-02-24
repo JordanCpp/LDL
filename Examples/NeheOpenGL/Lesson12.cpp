@@ -6,14 +6,7 @@
 #include <LDL/LDL.hpp>
 #include <LDL/APIs/OpenGL/GLU.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Enums;
-using namespace LDL::Events;
-using namespace LDL::Time;
-using namespace LDL::Core;
-using namespace LDL::Allocators;
-using namespace LDL::Loaders;
-using namespace LDL::Math;
+using namespace LDL;
 
 GLuint	texture[1];			// Storage For 1 Texture
 GLuint	box   = 0;			// Storage For The Box Display List
@@ -183,7 +176,7 @@ int main()
 
 			while (window.GetEvent(report))
 			{
-				if (report.Type == IsQuit)
+				if (report.Type == Event::IsQuit)
 				{
 					window.StopEvent();
 				}

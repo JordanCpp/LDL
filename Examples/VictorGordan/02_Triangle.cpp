@@ -2,14 +2,7 @@
 #include <LDL/LDL.hpp>
 #include <LDL/APIs/OpenGL/OpenGL3_3.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Enums;
-using namespace LDL::Events;
-using namespace LDL::Time;
-using namespace LDL::Core;
-using namespace LDL::Allocators;
-using namespace LDL::Loaders;
-using namespace LDL::Math;
+using namespace LDL;
 
 // Vertex Shader source code
 const char* vertexShaderSource = "#version 330 core\n"
@@ -109,7 +102,7 @@ int main()
 
 		while (window.GetEvent(report))
 		{
-			if (report.Type == IsQuit)
+			if (report.Type == Event::IsQuit)
 			{
 				window.StopEvent();
 			}

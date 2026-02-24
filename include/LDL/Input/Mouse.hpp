@@ -15,12 +15,12 @@ namespace LDL
 		class LDL_LIBRARY Mouse
 		{
 		public:
-			Math::Vec2u Pos();
-			void Pos(const Math::Vec2u& pos);
+			Vec2u Pos();
+			void Pos(const Vec2u& pos);
 			void Hide();
 			void Show();
 		private:
-			Math::Vec2u _pos;
+			Vec2u _pos;
 		};
 	}
 }

@@ -3,11 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Graphics/PixelCopier.hpp>
 #include <assert.h>
+#include <LDL/Graphics/PixelCopier.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 void PixelCopier::Copy(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos)
 {

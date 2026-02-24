@@ -5,8 +5,7 @@
 
 #include "LinePainterOpenGL3.hpp"
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 LinePainter::LinePainter(ShaderLoader* shaderLoader) :
     _shaderLoader(shaderLoader)

@@ -10,20 +10,17 @@
 
 namespace LDL
 {
-	namespace Audio
-	{
-		class SoundImpl;
+	class SoundImpl;
 
-		class LDL_LIBRARY Sound
-		{
-		public:
-			Sound(AudioContext* audioContext, size_t channels, size_t rate, size_t samples, uint8_t* bytes);
-			~Sound();
-			SoundImpl* GetSoundImpl();
-		private:
-			SoundImpl* _impl;
-		};
-	}
+	class LDL_LIBRARY Sound
+	{
+	public:
+		Sound(AudioContext* audioContext, size_t channels, size_t rate, size_t samples, uint8_t* bytes);
+		~Sound();
+		SoundImpl* GetSoundImpl();
+	private:
+		SoundImpl* _impl;
+	};
 }
 
 #endif  

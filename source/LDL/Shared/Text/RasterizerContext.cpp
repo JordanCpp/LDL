@@ -6,7 +6,7 @@
 #include <LDL/Text/RasterizerContext.hpp>
 #include "RasterizerContextImpl.hpp"
 
-using namespace LDL::Text;
+using namespace LDL;
 
 RasterizerContext::RasterizerContext() :
 	_impl(new RasterizerContextImpl)

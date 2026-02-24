@@ -5,7 +5,7 @@
 
 #include <LDL/Platforms/Windows/Core/DirectoryImpl.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 
 const char* DirectoryImpl::AllFiles()
 {

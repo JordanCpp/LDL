@@ -3,12 +3,9 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "CameraImplGlide.hpp"
-#include <LDL/Math/Vec3.hpp>
-#include <LDL/Math/Funcs.hpp>
+#include <LDL/Shared/Graphics/Renders/Glide/CameraImplGlide.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 CameraImplGlide::CameraImplGlide(RenderImpl* renderImpl, const Vec2u& pos, const Vec2u& size) :
 	_renderImpl(renderImpl),

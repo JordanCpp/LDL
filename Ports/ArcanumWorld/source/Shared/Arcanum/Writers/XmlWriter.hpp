@@ -20,8 +20,8 @@ namespace Arcanum
 			void Node(const std::string& name, const std::string& data);
 			void Node(const std::string& name, intmax_t data);
 		private:
-			std::ofstream      _file;
-			LDL::Core::Convert _convert;
+			std::ofstream  _file;
+			LDL::Convert   _convert;
 		};
 	}
 }

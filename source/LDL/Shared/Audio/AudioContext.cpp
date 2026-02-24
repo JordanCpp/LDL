@@ -6,13 +6,12 @@
 #include <LDL/Audio/AudioContext.hpp>
 
 #if defined(_WIN32)
-#include <LDL/Platforms/Windows/Audio/DirectSound8/AudioContextImpl.hpp>
+    #include <LDL/Platforms/Windows/Audio/DirectSound8/AudioContextImpl.hpp>
 #elif defined(__unix__)
-#include <LDL/Platforms/Linux/Audio/OpenAL/AudioContextImpl.hpp>
+    #include <LDL/Platforms/Linux/Audio/OpenAL/AudioContextImpl.hpp>
 #endif
 
-using namespace LDL::Audio;
-using namespace LDL::Graphics;
+using namespace LDL;
 
 AudioContext::AudioContext(Window* window, size_t rate, size_t bits, size_t channels) :
 	_impl(new AudioContextImpl(window, rate, bits, channels))

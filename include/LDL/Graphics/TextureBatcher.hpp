@@ -10,22 +10,19 @@
 
 namespace LDL
 {
-	namespace Graphics
-	{
-		class TextureBatcherImpl;
+	class TextureBatcherImpl;
 
-		class LDL_LIBRARY TextureBatcher
-		{
-		public:
-			TextureBatcher(RenderContext* renderContext, Texture* texture, size_t count);
-			~TextureBatcher();
-			TextureBatcherImpl* GetTextureBatcherImpl();
-			void Draw(const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Clear();
-		private:
-			TextureBatcherImpl* _impl;
-		};
-	}
+	class LDL_LIBRARY TextureBatcher
+	{
+	public:
+		TextureBatcher(RenderContext* renderContext, Texture* texture, size_t count);
+		~TextureBatcher();
+		TextureBatcherImpl* GetTextureBatcherImpl();
+		void Draw(const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Clear();
+	private:
+		TextureBatcherImpl* _impl;
+	};
 }
 
 #endif    

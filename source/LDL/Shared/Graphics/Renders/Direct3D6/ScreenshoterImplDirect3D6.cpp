@@ -5,7 +5,7 @@
 
 #include "ScreenshoterImplDirect3D6.hpp"
 
-using namespace LDL::Graphics;
+using namespace LDL;
 
 ScreenShotterImplDirect3D6::ScreenShotterImplDirect3D6(const std::string& path, const std::string& name, Render* render, Surface* image) :
 	_shortPath(path),

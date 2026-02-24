@@ -6,8 +6,7 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Graphics/PixelPainter.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 void InitDefault()
 {
@@ -20,9 +19,9 @@ void InitDefault()
 	LDL_TEST_EQUAL(painter.Size().y        == 0);
 	LDL_TEST_EQUAL(painter.BytesPerPixel() == 0);
 	LDL_TEST_EQUAL(painter.Pixels()        == NULL);
-	LDL_TEST_EQUAL(painter.Color().r       == 0);
-	LDL_TEST_EQUAL(painter.Color().g       == 0);
-	LDL_TEST_EQUAL(painter.Color().b       == 0);
+	LDL_TEST_EQUAL(painter.GetColor().r       == 0);
+	LDL_TEST_EQUAL(painter.GetColor().g       == 0);
+	LDL_TEST_EQUAL(painter.GetColor().b       == 0);
 }
 
 void InitValue()
@@ -38,9 +37,9 @@ void InitValue()
 	LDL_TEST_EQUAL(painter.Size().y        == 480);
 	LDL_TEST_EQUAL(painter.BytesPerPixel() == 4);
 	LDL_TEST_EQUAL(painter.Pixels()        != NULL);
-	LDL_TEST_EQUAL(painter.Color().r       == 0);
-	LDL_TEST_EQUAL(painter.Color().g       == 0);
-	LDL_TEST_EQUAL(painter.Color().b       == 0);
+	LDL_TEST_EQUAL(painter.GetColor().r       == 0);
+	LDL_TEST_EQUAL(painter.GetColor().g       == 0);
+	LDL_TEST_EQUAL(painter.GetColor().b       == 0);
 }
 
 void InitColor()
@@ -51,12 +50,12 @@ void InitColor()
 
 	painter.Bind(&surface);
 
-	painter.Color(LDL::Graphics::Color(1, 2, 3, 4));
+	painter.SetColor(Color(1, 2, 3, 4));
 
-	LDL_TEST_EQUAL(painter.Color().r == 1);
-	LDL_TEST_EQUAL(painter.Color().g == 2);
-	LDL_TEST_EQUAL(painter.Color().b == 3);
-	LDL_TEST_EQUAL(painter.Color().a == 4);
+	LDL_TEST_EQUAL(painter.GetColor().r == 1);
+	LDL_TEST_EQUAL(painter.GetColor().g == 2);
+	LDL_TEST_EQUAL(painter.GetColor().b == 3);
+	LDL_TEST_EQUAL(painter.GetColor().a == 4);
 }
 
 void Clear()
@@ -67,7 +66,7 @@ void Clear()
 
 	painter.Bind(&surface);
 
-	painter.Color(LDL::Graphics::Color(1, 2, 3, 4));
+	painter.SetColor(Color(1, 2, 3, 4));
 	painter.Clear();
 
 	for (size_t i = 0; i < painter.Size().x; i++)
@@ -90,10 +89,10 @@ void Fill()
 
 	painter.Bind(&surface);
 
-	painter.Color(LDL::Graphics::Color(0, 0, 0, 0));
+	painter.SetColor(Color(0, 0, 0, 0));
 	painter.Clear();
 
-	painter.Color(LDL::Graphics::Color(1, 2, 3, 4));
+	painter.SetColor(Color(1, 2, 3, 4));
 	painter.Fill(Vec2u(50, 50), Vec2u(320, 240));
 
 	for (size_t i = 50; i < 320; i++)
@@ -116,10 +115,10 @@ void Line()
 
 	painter.Bind(&surface);
 
-	painter.Color(LDL::Graphics::Color(0, 0, 0, 0));
+	painter.SetColor(Color(0, 0, 0, 0));
 	painter.Clear();
 
-	painter.Color(LDL::Graphics::Color(1, 2, 3, 4));
+	painter.SetColor(Color(1, 2, 3, 4));
 	painter.Line(Vec2u(0, 0), Vec2u(320, 0));
 
 	for (size_t i = 0; i < 320; i++)
@@ -139,10 +138,10 @@ void Pixel()
 
 	painter.Bind(&surface);
 
-	painter.Color(LDL::Graphics::Color(1, 2, 3, 4));
+	painter.SetColor(Color(1, 2, 3, 4));
 	painter.Clear();
 
-	painter.Color(LDL::Graphics::Color(5, 6, 7, 8));
+	painter.SetColor(Color(5, 6, 7, 8));
 	painter.Pixel(Vec2u(150, 300));
 
 	LDL_TEST_EQUAL(painter.GetPixel(Vec2u(150, 300)).r == 5);

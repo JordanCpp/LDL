@@ -1,8 +1,7 @@
 #include <Arcanum/Objects/LocationData.hpp>
 #include <Arcanum/Objects/LocationLimits.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 using namespace Arcanum::Objects;
 
 LocationData::LocationData()

@@ -5,14 +5,7 @@
 
 #include <LDL/LDL.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Events;
-using namespace LDL::Time;
-using namespace LDL::Core;
-using namespace LDL::Allocators;
-using namespace LDL::Loaders;
-using namespace LDL::Enums;
-using namespace LDL::Math;
+using namespace LDL;
 
 int main()
 {
@@ -66,7 +59,7 @@ int main()
 
 		while (window.GetEvent(report))
 		{
-			if (report.Type == IsQuit)
+			if (report.Type == Event::IsQuit)
 			{
 				window.StopEvent();
 			}
@@ -74,7 +67,7 @@ int main()
 
 		render.Begin();
 
-		render.Color(Color(0, 162, 232));
+		render.SetColor(Color(0, 162, 232));
 		render.Clear();
 
 		render.Draw(&image, window.Pos(), window.Size());
@@ -88,8 +81,6 @@ int main()
 			window.Title(convert.ToString(fpsCounter.Fps()));
 			
 		}
-
-		
 	}
 
 	return 0;

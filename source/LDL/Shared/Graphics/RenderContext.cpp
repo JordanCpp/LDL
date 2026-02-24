@@ -6,8 +6,7 @@
 #include <LDL/Graphics/RenderContext.hpp>
 #include <LDL/Shared/Graphics/Creators/RenderContextImplCreator.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
+using namespace LDL;
 
 RenderContext::RenderContext(size_t mode)
 {

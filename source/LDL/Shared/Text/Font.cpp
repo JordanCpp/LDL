@@ -6,7 +6,7 @@
 #include <LDL/Text/Font.hpp>
 #include "FontImpl.hpp"
 
-using namespace LDL::Text;
+using namespace LDL;
 
 Font::Font(RasterizerContext* rasterizerContext,size_t fontSize, uint8_t* font, size_t size) :
 	_impl(new FontImpl(rasterizerContext->GetRasterizerContextImpl(), fontSize, font, size))

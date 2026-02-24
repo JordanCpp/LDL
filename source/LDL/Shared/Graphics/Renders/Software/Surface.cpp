@@ -3,12 +3,11 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Graphics/Surface.hpp>
 #include <assert.h>
 #include <string.h>
+#include <LDL/Graphics/Surface.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 Surface::Surface(const Vec2u& size, uint8_t bytesPerPixel) :
 	_capacity(size),

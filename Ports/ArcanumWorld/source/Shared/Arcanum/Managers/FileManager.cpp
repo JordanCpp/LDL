@@ -1,7 +1,7 @@
 #include <Arcanum/Managers/FileManager.hpp>
 #include <LDL/Core/Directory.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 using namespace Arcanum::Managers;
 using namespace Arcanum::Readers;
 using namespace Arcanum::Loaders;

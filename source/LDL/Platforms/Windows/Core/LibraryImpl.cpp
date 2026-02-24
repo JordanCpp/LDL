@@ -7,7 +7,6 @@
 #include <LDL/Platforms/Windows/Core/LibraryImpl.hpp>
 
 using namespace LDL;
-using namespace LDL::Core;
 
 LibraryImpl::LibraryImpl(const char* path) :
     _module(NULL)

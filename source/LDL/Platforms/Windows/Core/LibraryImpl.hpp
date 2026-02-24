@@ -9,23 +9,20 @@
 #include <LDL/Core/Types.hpp>
 #include <LDL/Core/Library.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
-#include <LDL/STL/inplace_strings.hpp>
+#include <LDL/STL/InplaceStrings.hpp>
 
 namespace LDL
 {
-	namespace Core
+	class LibraryImpl
 	{
-		class LibraryImpl
-		{
-		public:
-			LibraryImpl(const char* path);
-			~LibraryImpl();
-			LDL::VoidFuncPtr Function(const char* name);
-		private:
-			AssertString _assert;
-			HMODULE      _module;
-		};
-	}
+	public:
+		LibraryImpl(const char* path);
+		~LibraryImpl();
+		LDL::VoidFuncPtr Function(const char* name);
+	private:
+		AssertString _assert;
+		HMODULE      _module;
+	};
 }
 
 #endif    

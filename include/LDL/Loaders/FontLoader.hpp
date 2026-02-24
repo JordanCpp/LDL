@@ -7,27 +7,24 @@
 #define LDL_Loaders_FontLoader_hpp
 
 #include <LDL/Allocators/Allocator.hpp>
-#include <LDL/STL/inplace_strings.hpp>
+#include <LDL/STL/InplaceStrings.hpp>
 
 namespace LDL
 {
-	namespace Loaders
+	class LDL_LIBRARY FontLoader
 	{
-		class LDL_LIBRARY FontLoader
-		{
-		public:
-			FontLoader(Allocators::Allocator* allocator);
-			~FontLoader();
-			void Clear();
-			void Load(const char* path);
-			uint8_t* Font();
-			size_t Size();
-		private:
-			AssertString           _assert;
-			Allocators::Allocator* _allocator;
-			uint8_t*               _buffer;
-		};
-	}
+	public:
+		FontLoader(Allocator* allocator);
+		~FontLoader();
+		void Clear();
+		void Load(const char* path);
+		uint8_t* Font();
+		size_t Size();
+	private:
+		AssertString  _assert;
+		Allocator* _allocator;
+		uint8_t* _buffer;
+	};
 }
 
 #endif     

@@ -11,20 +11,17 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class BaseRender
 	{
-		class LDL_LIBRARY BaseRender
-		{
-		public:
-			BaseRender(const Math::Vec2u& size);
-			const Math::Vec2u& Size();
-			const Graphics::Color& Color();
-			void Color(const Graphics::Color& color);
-		public:
-			Graphics::Color _current;
-			Math::Vec2u     _size;
-		};
-	}
+	public:
+		BaseRender(const Vec2u& size);
+		const Vec2u& Size();
+		const Color& GetColor();
+		void SetColor(const Color& color);
+	public:
+		Color  _current;
+		Vec2u  _size;
+	};
 }
 
 #endif    

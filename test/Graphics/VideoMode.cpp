@@ -6,8 +6,7 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Graphics/VideoMode.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 void Limit()
 {

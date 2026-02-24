@@ -6,12 +6,8 @@
 #include <LDL/LDL.hpp>
 #include <LDL/APIs/Glide/GlideLoader.hpp>
 
+using namespace LDL;
 using namespace LDL::Glide;
-using namespace LDL::Graphics;
-using namespace LDL::Events;
-using namespace LDL::Enums;
-using namespace LDL::Core;
-using namespace LDL::Math;
 
 int main()
 {
@@ -41,15 +37,13 @@ int main()
 
 			while (window.GetEvent(report))
 			{
-				if (report.Type == IsQuit)
+				if (report.Type == Event::IsQuit)
 				{
 					window.StopEvent();
 				}
 			}
 
 			grBufferSwap(1);
-
-			
 		}
 
 		grGlideShutdown();

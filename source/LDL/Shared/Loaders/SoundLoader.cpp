@@ -6,10 +6,11 @@
 #include <LDL/Loaders/SoundLoader.hpp>
 
 #if defined(__BORLANDC__)
-#include <malloc.h>
-#include <cstdlib>
-#define qsort std::qsort
+    #include <malloc.h>
+    #include <cstdlib>
+    #define qsort std::qsort
 #endif
+
 #include "../dependencies/stb/stb_vorbis.c"
 
 #define DR_WAV_IMPLEMENTATION
@@ -21,10 +22,9 @@
 #define DR_MP3_IMPLEMENTATION
 #include "../dependencies/dr_libs/dr_mp3.h"
 
-using namespace LDL::Loaders;
-using namespace LDL::Allocators;
+using namespace LDL;
 
-SoundLoader::SoundLoader(LDL::Allocators::Allocator* allocator) :
+SoundLoader::SoundLoader(Allocator* allocator) :
     _allocator(allocator),
     _channels(0),
     _rate(0),
@@ -118,7 +118,7 @@ bool SoundLoader::Load(const std::string& path)
     return LoadOgg(path);
 }
 
-Allocator* SoundLoader::Allocator()
+Allocator* SoundLoader::GetAllocator()
 {
     return _allocator;
 }

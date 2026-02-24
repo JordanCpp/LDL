@@ -3,11 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "TextureBatcherImplDirect3D6.hpp"
-#include "TextureImplDirect3D6.hpp"
+#include <LDL/Shared/Graphics/Renders/Direct3D6/TextureImplDirect3D6.hpp>
+#include <LDL/Shared/Graphics/Renders/Direct3D6/TextureBatcherImplDirect3D6.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 TextureBatcherImplDirect3D6::TextureBatcherImplDirect3D6(Texture* texture, size_t count)
 {

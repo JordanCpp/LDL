@@ -6,7 +6,7 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Allocators/Allocator.hpp>
 
-using namespace LDL::Allocators;
+using namespace LDL;
 
 void CheckSize()
 {

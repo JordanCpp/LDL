@@ -10,19 +10,15 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class PixelCopier
 	{
-		class PixelCopier
-		{
-		public:
-			void Copy(Surface* srcSurf, Surface* dstSurf, const Math::Vec2u& pos);
-			void Copy8(Surface* srcSurf, Surface* dstSurf, const Math::Vec2u& pos);
-			void Copy16(Surface* srcSurf, Surface* dstSurf, const Math::Vec2u& pos);
-			void Copy24(Surface* srcSurf, Surface* dstSurf, const Math::Vec2u& pos);
-			void Copy32(Surface* srcSurf, Surface* dstSurf, const Math::Vec2u& pos);
-		private:
-		};
-	}
+	public:
+		void Copy(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos);
+		void Copy8(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos);
+		void Copy16(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos);
+		void Copy24(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos);
+		void Copy32(Surface* srcSurf, Surface* dstSurf, const Vec2u& pos);
+	};
 }
 
 #endif 

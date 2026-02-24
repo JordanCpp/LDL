@@ -10,16 +10,13 @@
 
 namespace LDL
 {
-	namespace Events
+	class Resize
 	{
-		class Resize
-		{
-		public:
-			uint8_t Type;
-			size_t Width;
-			size_t Height;
-		};
-	}
+	public:
+		uint8_t Type;
+		size_t Width;
+		size_t Height;
+	};
 }
 
 #endif

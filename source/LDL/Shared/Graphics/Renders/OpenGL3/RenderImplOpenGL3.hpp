@@ -18,44 +18,41 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class RenderImplOpenGL3 : public RenderImpl
 	{
-		class RenderImplOpenGL3 : public RenderImpl
-		{
-		public:
-			RenderImplOpenGL3(Core::Result& result, RenderContextImpl* renderContextImpl, Window* window);
-			void Buffer(uint8_t * dst);
-			void Begin();
-			void End();
-			const Math::Vec2u& Size();
-			const Graphics::Color& Color();
-			void Clear();
-			void Color(const Graphics::Color& color);
-			void Pixel(const Math::Vec2u& pos);
-			void Fill(const Math::Vec2u& pos, const Math::Vec2u& size);
-			void Line(const Math::Vec2u& pos1, const Math::Vec2u& pos2);
-			void Draw(Texture* image, const Math::Vec2u& pos);
-			void Draw(Texture* image, const Math::Vec2u& pos, const Math::Vec2u& size);
-			void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Draw(Surface* image, const Math::Vec2u& pos);
-			void Draw(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size);
-			void Draw(Surface* image, const Math::Vec2u& dstPos, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Draw(Surface* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Draw(TextureBatcher* textureBatcher);
-		private:
-			Core::Result& _result;
-			Window*         _window;
-			Graphics::Color _color;
-			Math::Mat4f     _projection;
-			ShaderLoader    _shaderLoader;
-			LinePainter     _linePainter;
-			TexturePainter  _texturePainter;
-		public:
-			Math::Mat4f     _Projection;
-			Math::Mat4f     _ModelView;
-		};
-	}
+	public:
+		RenderImplOpenGL3(Result& result, RenderContextImpl* renderContextImpl, Window* window);
+		void Buffer(uint8_t* dst);
+		void Begin();
+		void End();
+		const Vec2u& Size();
+		const Color& GetColor();
+		void Clear();
+		void SetColor(const Color& color);
+		void Pixel(const Vec2u& pos);
+		void Fill(const Vec2u& pos, const Vec2u& size);
+		void Line(const Vec2u& pos1, const Vec2u& pos2);
+		void Draw(Texture* image, const Vec2u& pos);
+		void Draw(Texture* image, const Vec2u& pos, const Vec2u& size);
+		void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(Surface* image, const Vec2u& pos);
+		void Draw(Surface* image, const Vec2u& pos, const Vec2u& size);
+		void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(TextureBatcher* textureBatcher);
+	private:
+		Result&         _result;
+		Window*         _window;
+		Color           _color;
+		Mat4f     _projection;
+		ShaderLoader    _shaderLoader;
+		LinePainter     _linePainter;
+		TexturePainter  _texturePainter;
+	public:
+		Mat4f     _Projection;
+		Mat4f     _ModelView;
+	};
 }
 
 #endif    

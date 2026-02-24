@@ -1,7 +1,7 @@
 #include <Arcanum/Allocators/ObjectAllocator.hpp>
 
-using namespace LDL::Allocators;
-using namespace Arcanum::Allocators;
+using namespace LDL;
+using namespace Arcanum;
 using namespace Arcanum::Objects;
 
 Tile* ObjectAllocator::NewTile()

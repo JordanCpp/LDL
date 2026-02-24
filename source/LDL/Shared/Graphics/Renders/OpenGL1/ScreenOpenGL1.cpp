@@ -7,8 +7,7 @@
 #include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
 #include "../OpenGL/Util.hpp"
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 ScreenOpenGL1::ScreenOpenGL1(const Vec2u& size) :
 	_size(size),

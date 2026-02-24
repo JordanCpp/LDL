@@ -10,11 +10,8 @@
 
 namespace LDL
 {
-	namespace Time
-	{
-		LDL_LIBRARY size_t Ticks();
-		LDL_LIBRARY void Delay(size_t count);
-	}
+	LDL_LIBRARY size_t Ticks();
+	LDL_LIBRARY void Delay(size_t count);
 }
 
 #endif    

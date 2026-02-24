@@ -5,7 +5,7 @@
 
 #include <LDL/Allocators/FixedLinear.hpp>
 
-using namespace LDL::Allocators;
+using namespace LDL;
 
 FixedLinear::FixedLinear(size_t bytes, Allocator* allocator) :
 	_capacity(bytes),

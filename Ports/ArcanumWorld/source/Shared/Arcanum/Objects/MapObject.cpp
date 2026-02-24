@@ -1,6 +1,6 @@
 #include <Arcanum/Objects/MapObject.hpp>
 
-using namespace LDL::Math;
+using namespace LDL;
 using namespace Arcanum::Objects;
 
 const Vec2u& MapObject::Pos()

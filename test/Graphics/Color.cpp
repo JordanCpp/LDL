@@ -6,7 +6,7 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Graphics/Color.hpp>
 
-using namespace LDL::Graphics;
+using namespace LDL;
 
 void Default()
 {

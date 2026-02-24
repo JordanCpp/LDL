@@ -14,7 +14,7 @@ namespace LDL
 			DirectXLoader();
 			DirectX9::LPDIRECT3D9 GetDirect3D();
 		private:
-			Core::Library _Library_d3d9;
+			Library _Library_d3d9;
 		};
 	}
 }

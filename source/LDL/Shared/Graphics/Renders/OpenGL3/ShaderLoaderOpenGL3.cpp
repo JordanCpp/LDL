@@ -5,7 +5,7 @@
 
 #include "ShaderLoaderOpenGL3.hpp"
 
-using namespace LDL::Graphics;
+using namespace LDL;
 
 ShaderLoader::ShaderLoader()
 {

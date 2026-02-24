@@ -1,7 +1,6 @@
 #include <Arcanum/Forms/GameMenu.hpp>
 
-using namespace LDL::Math;
-using namespace LDL::Graphics;
+using namespace LDL;
 using namespace Arcanum::Forms;
 
 GameMenu::GameMenu(Render* render) :

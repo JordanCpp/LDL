@@ -1,12 +1,14 @@
+// Copyright 2023-present Evgeny Zoshchuk (JordanCpp).
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// https://www.boost.org/LICENSE_1_0.txt)
+
 #include <LDLC/LDL_Window.h>
 #include <LDL/Graphics/Window.hpp>
 #include <LDL/Shared/APIs/LDLC/LDL_RenderContext.hpp>
 #include <string.h>
 
-using namespace LDL::Core;
-using namespace LDL::Graphics;
-using namespace LDL::Events;
-using namespace LDL::Math;
+using namespace LDL;
 
 struct LDL_Window
 {
@@ -43,7 +45,7 @@ bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event)
 
 	bool result = window->_window.GetEvent(src);
 
-	memcpy(event, &src, sizeof(Event));
+	LDL_memcpy(event, &src, sizeof(Event));
 
 	return result;
 }
@@ -54,7 +56,7 @@ bool LDL_WindowWaitEvent(LDL_Window* window, LDL_Event* event)
 
 	bool result = window->_window.WaitEvent(src);
 
-	memcpy(event, &src, sizeof(Event));
+	LDL_memcpy(event, &src, sizeof(Event));
 
 	return result;
 }

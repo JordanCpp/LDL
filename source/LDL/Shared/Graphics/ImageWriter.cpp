@@ -9,8 +9,7 @@
 #undef __STDC_LIB_EXT1__
 #include "../dependencies/stb/stb_image_write.h"
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 void ImageWriter::Save(const std::string& path, const Vec2u& size, size_t bytesPerPixel, uint8_t* pixels)
 {

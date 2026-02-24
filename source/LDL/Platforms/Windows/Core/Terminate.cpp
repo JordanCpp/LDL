@@ -6,7 +6,7 @@
 #include <LDL/Core/Terminate.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
 
-void LDL::Core::Terminate()
+void LDL::Terminate()
 {
 	ExitProcess(0);
 }

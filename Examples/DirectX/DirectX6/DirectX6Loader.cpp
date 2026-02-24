@@ -3,23 +3,17 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+#include <time.h>
+#include <string.h>
 #include <LDL/LDL.hpp>
 #include <LDL/APIs/DirectX6/DirectX6Loader.hpp>
-#include <string.h>
-#include <time.h>
 
-using namespace LDL::Graphics;
-using namespace LDL::Enums;
-using namespace LDL::Events;
-using namespace LDL::Core;
-using namespace LDL::Allocators;
-using namespace LDL::Loaders;
-using namespace LDL::Math;
+using namespace LDL;
 using namespace LDL::DirectX6;
 
 void ZeroMemory(void* dst, size_t size)
 {
-	memset(dst, 0, size);
+	LDL_memset(dst, 0, size);
 }
 
 //-----------------------------------------------------------------------------
@@ -513,7 +507,7 @@ int main()
 	{
 		while (window.GetEvent(report))
 		{
-			if (report.Type == IsQuit)
+			if (report.Type == Event::IsQuit)
 			{
 				window.StopEvent();
 			}

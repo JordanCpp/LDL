@@ -6,7 +6,7 @@
 #include <LDL/Core/TestEqual.hpp>
 #include <LDL/Allocators/ObjectPool.hpp>
 
-using namespace LDL::Allocators;
+using namespace LDL;
 
 const size_t Count = 1024;
 

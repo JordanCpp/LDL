@@ -1,6 +1,6 @@
 #include <Arcanum/Managers/SpriteManager.hpp>
 
-using namespace LDL::Graphics;
+using namespace LDL;
 using namespace Arcanum::Managers;
 using namespace Arcanum::Graphics;
 using namespace Arcanum::Loaders;

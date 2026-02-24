@@ -9,18 +9,16 @@
 #include <LDL/Core/Assert.hpp>
 
 #if defined(_WIN32)
-#include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp>
-#include <LDL/Platforms/Windows/Graphics/WindowImplDirect3D6.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp>
+    #include <LDL/Platforms/Windows/Graphics/WindowImplDirect3D6.hpp>
 #elif defined(__unix__)
-#include "../DirectX.hpp"
-#include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
+    #include "../DirectX.hpp"
+    #include <LDL/Platforms/Linux/Graphics/OpenGL1/WindowImplOpenGL1.hpp>
 #endif
 
 #undef FAILED
 
-using namespace LDL::Core;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 using namespace LDL::DirectX6;
 
 void RenderImplDirect3D6::InitDirectDraw()
@@ -52,8 +50,8 @@ void RenderImplDirect3D6::InitSurfaces()
 
 	ddsd.dwFlags        = DDSD_WIDTH | DDSD_HEIGHT | DDSD_CAPS;
 	ddsd.ddsCaps.dwCaps = DDSCAPS_OFFSCREENPLAIN | DDSCAPS_3DDEVICE;
-	ddsd.dwWidth        = (DWORD)_window->Size().x;
-	ddsd.dwHeight       = (DWORD)_window->Size().y;
+	ddsd.dwWidth        = (LDL::DirectX6::DWORD)_window->Size().x;
+	ddsd.dwHeight       = (LDL::DirectX6::DWORD)_window->Size().y;
 
 	result = g_pDD4->CreateSurface(&ddsd, &g_pddsBackBuffer, NULL);
 	LDL_ASSERT_DETAIL(!FAILED(result), "CreateSurface failed");
@@ -90,8 +88,8 @@ void RenderImplDirect3D6::InitViewport()
 	D3DVIEWPORT2 vdData;
 	ZeroMemory(&vdData, sizeof(D3DVIEWPORT2));
 	vdData.dwSize       = sizeof(D3DVIEWPORT2);
-	vdData.dwWidth      = (DWORD)_window->Size().x;
-	vdData.dwHeight     = (DWORD)_window->Size().y;
+	vdData.dwWidth      = (LDL::DirectX6::DWORD)_window->Size().x;
+	vdData.dwHeight     = (LDL::DirectX6::DWORD)_window->Size().y;
 	vdData.dvClipX      = -1.0f;
 	vdData.dvClipWidth  = 2.0f;
 	vdData.dvClipY      = 1.0f;
@@ -145,7 +143,7 @@ const Vec2u& RenderImplDirect3D6::Size()
 	return _window->Size();
 }
 
-const Color& RenderImplDirect3D6::Color()
+const Color& RenderImplDirect3D6::GetColor()
 {
 	return _color;
 }
@@ -154,7 +152,7 @@ void RenderImplDirect3D6::Clear()
 {
 }
 
-void RenderImplDirect3D6::Color(const LDL::Graphics::Color& color)
+void RenderImplDirect3D6::SetColor(const Color& color)
 {
 	_color = color;
 }

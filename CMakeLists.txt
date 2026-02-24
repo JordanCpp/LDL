@@ -14,10 +14,6 @@ endif()
 set(LDL_STATIC_LIBRARY true)
 add_definitions(-DLDL_STATIC_LIBRARY)
 
-#include_directories("stdmin/include")
-#file(GLOB_RECURSE STDMIN_SOURCE "stdmin/source/*.cpp")
-#add_library(stdmin ${STDMIN_SOURCE})		
-
 include_directories("include")
 include_directories("source")
 

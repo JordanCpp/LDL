@@ -14,40 +14,37 @@
 
 namespace LDL
 {
-	namespace Graphics
-	{
-		class RenderImpl;
-		class Texture;
+	class RenderImpl;
+	class Texture;
 
-		class LDL_LIBRARY Render
-		{
-		public:
-			Render(Core::Result& result, RenderContext& renderContext, Window* window);
-			~Render();
-			RenderImpl* GetRenderImpl();
-			void Buffer(uint8_t* dst);
-			void Begin();
-			void End();
-			const Math::Vec2u& Size();
-			const Graphics::Color& Color();
-			void Clear();
-			void Color(const Graphics::Color& color);
-			void Pixel(const Math::Vec2u& pos);
-			void Fill(const Math::Vec2u& pos, const Math::Vec2u& size);
-			void Line(const Math::Vec2u& pos1, const Math::Vec2u& pos2);
-			void Draw(Texture* image, const Math::Vec2u& pos);
-			void Draw(Texture* image, const Math::Vec2u& pos, const Math::Vec2u& size);
-			void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Draw(Texture* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Draw(Surface* image, const Math::Vec2u& pos);
-			void Draw(Surface* image, const Math::Vec2u& pos, const Math::Vec2u& size);
-			void Draw(Surface* image, const Math::Vec2u& dstPos, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Draw(Surface* image, const Math::Vec2u& dstPos, const Math::Vec2u& dstSize, const Math::Vec2u& srcPos, const Math::Vec2u& srcSize);
-			void Draw(TextureBatcher* textureBatcher);
-		private:
-			RenderImpl* _impl;
-		};
-	}
+	class LDL_LIBRARY Render
+	{
+	public:
+		Render(Result& result, RenderContext& renderContext, Window* window);
+		~Render();
+		RenderImpl* GetRenderImpl();
+		void Buffer(uint8_t* dst);
+		void Begin();
+		void End();
+		const Vec2u& Size();
+		const Color& GetColor();
+		void Clear();
+		void SetColor(const Color& color);
+		void Pixel(const Vec2u& pos);
+		void Fill(const Vec2u& pos, const Vec2u& size);
+		void Line(const Vec2u& pos1, const Vec2u& pos2);
+		void Draw(Texture* image, const Vec2u& pos);
+		void Draw(Texture* image, const Vec2u& pos, const Vec2u& size);
+		void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(Texture* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(Surface* image, const Vec2u& pos);
+		void Draw(Surface* image, const Vec2u& pos, const Vec2u& size);
+		void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(Surface* image, const Vec2u& dstPos, const Vec2u& dstSize, const Vec2u& srcPos, const Vec2u& srcSize);
+		void Draw(TextureBatcher* textureBatcher);
+	private:
+		RenderImpl* _impl;
+	};
 }
 
-#endif 
+#endif

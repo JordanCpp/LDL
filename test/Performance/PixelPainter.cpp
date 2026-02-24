@@ -9,9 +9,7 @@
 #include <LDL/Graphics/Render.hpp>
 #include <LDL/Graphics/PixelPainter.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 int main()
 {
@@ -26,10 +24,10 @@ int main()
 
 		painter.Bind(&screen);
 
-		LDL::Events::Event report;
+		Event report;
 
-		LDL::Time::FpsCounter fpsCounter;
-		LDL::Core::Convert convert;
+		FpsCounter fpsCounter;
+		Convert convert;
 
 		while (window.GetEvent(report))
 		{
@@ -37,17 +35,17 @@ int main()
 
 			render.Begin();
 
-			painter.Color(Color(0, 162, 232));
+			painter.SetColor(Color(0, 162, 232));
 			painter.Clear();
 
-			painter.Color(Color(237, 28, 36));
+			painter.SetColor(Color(237, 28, 36));
 			painter.Line(Vec2u(0, 0), Vec2u(render.Size().x - 1, render.Size().y - 1));
 
 			render.Draw(&screen, Vec2u(0, 0));
 
 			render.End();
 
-			if (report.Type == LDL::Events::IsQuit)
+			if (report.Type == Event::IsQuit)
 			{
 				window.StopEvent();
 			} 

@@ -6,8 +6,7 @@
 #include <LDL/Graphics/Camera.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL1/CameraImplOpenGL1.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 Camera::Camera(Render* render, const Vec2u& pos, const Vec2u& size)
 {

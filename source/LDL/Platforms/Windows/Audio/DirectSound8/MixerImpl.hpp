@@ -11,18 +11,15 @@
 
 namespace LDL
 {
-	namespace Audio
+	class MixerImpl
 	{
-		class MixerImpl
-		{
-		public:
-			MixerImpl();
-			~MixerImpl();
-			void Play(Sound* sound);
-			void Stop(Sound* sound);
-		private:
-		};
-	}
+	public:
+		MixerImpl();
+		~MixerImpl();
+		void Play(Sound* sound);
+		void Stop(Sound* sound);
+	private:
+	};
 }
 
 #endif    

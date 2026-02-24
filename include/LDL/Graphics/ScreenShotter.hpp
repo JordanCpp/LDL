@@ -10,20 +10,17 @@
 
 namespace LDL
 {
-	namespace Graphics
-	{
-		class ScreenShotterImpl;
+	class ScreenShotterImpl;
 
-		class ScreenShotter
-		{
-		public:
-			ScreenShotter(const std::string& path, const std::string& name, Render* render, Surface* image);
-			~ScreenShotter();
-			void Shot();
-		private:
-			ScreenShotterImpl* _impl;
-		};
-	}
+	class ScreenShotter
+	{
+	public:
+		ScreenShotter(const std::string& path, const std::string& name, Render* render, Surface* image);
+		~ScreenShotter();
+		void Shot();
+	private:
+		ScreenShotterImpl* _impl;
+	};
 }
 
 #endif  

@@ -20,7 +20,7 @@ namespace LDL
 			VoidFuncPtr Function(const char* name);
 		private:
 			bool IsValid(LDL::VoidFuncPtr ptr);
-			Core::Library _library;
+			Library _library;
 		};
 	}
 }

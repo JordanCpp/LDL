@@ -6,7 +6,7 @@
 #include <LDL/Graphics/ScreenShotter.hpp>
 #include <LDL/Shared/Graphics/Renders/OpenGL1/ScreenshoterImplOpenGL1.hpp>
 
-using namespace LDL::Graphics;
+using namespace LDL;
 
 ScreenShotter::ScreenShotter(const std::string& path, const std::string& name, Render* render, Surface* image)
 {

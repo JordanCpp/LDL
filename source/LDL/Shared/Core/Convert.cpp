@@ -6,11 +6,11 @@
 #include <LDL/Core/Convert.hpp>
 #include <LDL/std/string.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 
 Convert::Convert()
 {
-    LDL::memset(&_buffer, 0, sizeof(_buffer));
+    LDL_memset(&_buffer, 0, sizeof(_buffer));
 }
 
 const char* Convert::ToString(intmax_t num, uint8_t base)
@@ -26,9 +26,9 @@ const char* Convert::ToString(intmax_t num, uint8_t base)
     {
         const char* min_str = "-9223372036854775808";
         
-        size_t len = strlen(min_str);
+        size_t len = LDL_strlen(min_str);
         
-        LDL::memcpy(_buffer, min_str, len + 1);
+        LDL_memcpy(_buffer, min_str, len + 1);
 
         return _buffer;
     }

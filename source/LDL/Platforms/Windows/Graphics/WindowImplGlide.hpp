@@ -12,29 +12,26 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class WindowImplGlide : public WindowImpl
 	{
-		class WindowImplGlide : public WindowImpl
-		{
-		public:
-			WindowImplGlide(Core::Result& result, const Math::Vec2u& pos, const Math::Vec2u& size, const char* title, size_t mode = LDL::Enums::WindowMode::Resized);
-			~WindowImplGlide();
-			bool Running();
-			void Present();
-			void PollEvents();
-			bool GetEvent(LDL::Events::Event& event);
-			bool WaitEvent(LDL::Events::Event& event);
-			void StopEvent();
-			void Title(const char* title);
-			const char* Title();
-			const Math::Vec2u& Size();
-			const Math::Vec2u& Pos();
-			void* NativeHandle();
-		private:
-			Core::Result& _result;
-			MainWindow    _Window;
-		};
-	}
+	public:
+		WindowImplGlide(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode = WindowMode::Resized);
+		~WindowImplGlide();
+		bool Running();
+		void Present();
+		void PollEvents();
+		bool GetEvent(Event& event);
+		bool WaitEvent(Event& event);
+		void StopEvent();
+		void Title(const char* title);
+		const char* Title();
+		const Vec2u& Size();
+		const Vec2u& Pos();
+		void* NativeHandle();
+	private:
+		Result& _result;
+		MainWindow  _Window;
+	};
 }
 
 #endif  

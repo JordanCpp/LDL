@@ -1,7 +1,6 @@
 #include <Arcanum/Objects/Scenery.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 using namespace Arcanum::Objects;
 using namespace Arcanum::Graphics;
 

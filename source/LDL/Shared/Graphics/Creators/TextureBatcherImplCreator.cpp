@@ -12,11 +12,7 @@
 #include <LDL/Shared/Graphics/Renders/OpenGL3/TextureBatcherImplOpenGL3.hpp>
 #include <LDL/Shared/Graphics/Renders/Glide/TextureBatcherImplGlide.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Enums;
-using namespace LDL::Math;
-using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
+using namespace LDL;
 
 TextureBatcherImpl* TextureBatcherImplCreator::Create(RenderContext* renderContext, Texture* texture, size_t count)
 {

@@ -8,8 +8,7 @@
 #define STB_IMAGE_RESIZE_IMPLEMENTATION
 #include "../dependencies/stb/stb_image_resize.h"
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 ImageResizer::ImageResizer(const Vec2u& size) :
 	_surface(size, 4)

@@ -5,17 +5,14 @@
 
 namespace Arcanum
 {
-	namespace Core
+	class RuntimeError
 	{
-		class RuntimeError
-		{
-		public:
-			RuntimeError(const std::string& message);
-			const char* what() const;
-		private:
-			std::runtime_error _runtime_error;
-		};
-	}
+	public:
+		RuntimeError(const std::string& message);
+		const char* what() const;
+	private:
+		std::runtime_error _runtime_error;
+	};
 }
 
 #endif

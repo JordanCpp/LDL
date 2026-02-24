@@ -17,11 +17,11 @@ namespace LDL
 		{
 		public:
 			Display();
-			const std::vector<Graphics::VideoMode>& Modes();
-			const Graphics::VideoMode& Current();
+			const std::vector<VideoMode>& Modes();
+			const VideoMode& Current();
 		private:
-			Graphics::VideoMode              _videoMode;
-			std::vector<Graphics::VideoMode> _videoModes;
+			VideoMode              _videoMode;
+			std::vector<VideoMode> _videoModes;
 		};
 	}
 }

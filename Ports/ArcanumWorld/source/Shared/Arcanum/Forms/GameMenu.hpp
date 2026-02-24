@@ -11,7 +11,7 @@ namespace Arcanum
 		class GameMenu: public Widgets::Form
 		{
 		public:
-			GameMenu(LDL::Graphics::Render* render);
+			GameMenu(LDL::Render* render);
 		private:
 			Widgets::Button _button;
 		};

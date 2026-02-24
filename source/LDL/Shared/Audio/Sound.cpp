@@ -11,7 +11,7 @@
 #include <LDL/Platforms/Linux/Audio/OpenAL/SoundImpl.hpp>
 #endif
 
-using namespace LDL::Audio;
+using namespace LDL;
 
 Sound::Sound(AudioContext* audioContext, size_t channels, size_t rate, size_t samples, uint8_t* bytes) :
 	_impl(new SoundImpl(audioContext, channels, rate, samples, bytes))

@@ -5,7 +5,7 @@
 
 #include <LDL/Core/CommandLineParser.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 
 CommandLineParser::CommandLineParser(size_t argc, char* argv[])
 {

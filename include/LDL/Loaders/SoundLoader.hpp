@@ -11,32 +11,29 @@
 
 namespace LDL
 {
-	namespace Loaders
+	class LDL_LIBRARY SoundLoader
 	{
-		class LDL_LIBRARY SoundLoader
-		{
-		public:
-			SoundLoader(Allocators::Allocator* allocator);
-			~SoundLoader();
-			void Clear();
-			bool LoadOgg(const std::string& path);
-			bool LoadWav(const std::string& path);
-			bool LoadMp3(const std::string& path);
-			bool LoadFlac(const std::string& path);
-			bool Load(const std::string& path);
-			Allocators::Allocator* Allocator();
-			size_t Channels();
-			size_t Rate();
-			size_t Samples();
-			uint8_t* Bytes();
-		private:
-			Allocators::Allocator* _allocator;
-			size_t                 _channels;
-			size_t                 _rate;
-			size_t                 _samples;
-			uint8_t*               _bytes;
-		};
-	}
+	public:
+		SoundLoader(Allocator* allocator);
+		~SoundLoader();
+		void Clear();
+		bool LoadOgg(const std::string& path);
+		bool LoadWav(const std::string& path);
+		bool LoadMp3(const std::string& path);
+		bool LoadFlac(const std::string& path);
+		bool Load(const std::string& path);
+		Allocator* GetAllocator();
+		size_t Channels();
+		size_t Rate();
+		size_t Samples();
+		uint8_t* Bytes();
+	private:
+		Allocator* _allocator;
+		size_t                 _channels;
+		size_t                 _rate;
+		size_t                 _samples;
+		uint8_t* _bytes;
+	};
 }
 
 #endif      

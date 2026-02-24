@@ -1,6 +1,6 @@
 #include <Arcanum/Objects/LocationCreator.hpp>
 
-using namespace LDL::Math;
+using namespace LDL;
 using namespace Arcanum::Objects;
 using namespace Arcanum::Managers;
 

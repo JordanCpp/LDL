@@ -4,14 +4,13 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Core/TestEqual.hpp>
-#include <LDL/Shared/Graphics/Utils/PotTextureSizer.hpp>
+#include <LDL/Shared/Math/PotTextureSizer.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 void Calc()
 {
-	Utils::PotTextureSizer sizer;
+	PotTextureSizer sizer;
 
 	LDL_TEST_EQUAL(sizer.Calc(Vec2u(100500, 100500)) == 0);
 

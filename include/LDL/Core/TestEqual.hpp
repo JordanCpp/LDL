@@ -11,12 +11,9 @@
 
 namespace LDL
 {
-	namespace Core
-	{
-		void LDL_LIBRARY TestEqual(bool condition, const std::string& description, const std::string& function, const std::string& file, size_t line);
-	}
+	void LDL_LIBRARY TestEqual(bool condition, const std::string& description, const std::string& function, const std::string& file, size_t line);
 }
 
-#define LDL_TEST_EQUAL(x) LDL::Core::TestEqual(x, #x, "__FUNCTION__", __FILE__, __LINE__)
+#define LDL_TEST_EQUAL(x) LDL::TestEqual(x, #x, "__FUNCTION__", __FILE__, __LINE__)
 
 #endif    

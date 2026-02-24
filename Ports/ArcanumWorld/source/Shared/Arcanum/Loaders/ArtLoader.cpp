@@ -1,9 +1,9 @@
 #include <Arcanum/Loaders/ArtLoader.hpp>
 
-using namespace LDL::Math;
+using namespace LDL;
 using namespace Arcanum::Loaders;
 using namespace Arcanum::Readers;
-using namespace Arcanum::Formats;
+using namespace Arcanum;
 
 void ArtLoader::Load(MemoryReader& memoryReader)
 {

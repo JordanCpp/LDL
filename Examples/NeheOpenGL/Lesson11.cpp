@@ -7,14 +7,7 @@
 #include <LDL/APIs/OpenGL/GLU.hpp>
 #include <math.h>
 
-using namespace LDL::Graphics;
-using namespace LDL::Enums;
-using namespace LDL::Events;
-using namespace LDL::Time;
-using namespace LDL::Core;
-using namespace LDL::Allocators;
-using namespace LDL::Loaders;
-using namespace LDL::Math;
+using namespace LDL;
 
 float points[45][45][3];    // The Array For The Points On The Grid Of Our "Wave"
 int wiggle_count = 0;		// Counter Used To Control How Fast Flag Waves
@@ -174,7 +167,7 @@ int main()
 
 			while (window.GetEvent(report))
 			{
-				if (report.Type == IsQuit)
+				if (report.Type == Event::IsQuit)
 				{
 					window.StopEvent();
 				}

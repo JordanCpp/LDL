@@ -10,21 +10,18 @@
 
 namespace LDL
 {
-	namespace Audio
-	{
-		class AudioContextImpl;
+	class AudioContextImpl;
 
-		class LDL_LIBRARY AudioContext
-		{
-		public:
-			AudioContext(Graphics::Window* window, size_t rate, size_t bits, size_t channels);
-			~AudioContext();
-			AudioContextImpl* GetAudioContextImpl();
-			void* Context();
-		private:
-			AudioContextImpl* _impl;
-		};
-	}
+	class LDL_LIBRARY AudioContext
+	{
+	public:
+		AudioContext(Window* window, size_t rate, size_t bits, size_t channels);
+		~AudioContext();
+		AudioContextImpl* GetAudioContextImpl();
+		void* Context();
+	private:
+		AudioContextImpl* _impl;
+	};
 }
 
 #endif  

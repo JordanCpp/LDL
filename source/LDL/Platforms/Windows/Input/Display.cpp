@@ -7,10 +7,8 @@
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 using namespace LDL::Input;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
 
 Display::Display()
 {

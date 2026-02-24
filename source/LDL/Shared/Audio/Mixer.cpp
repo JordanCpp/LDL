@@ -11,7 +11,7 @@
 #include <LDL/Platforms/Linux/Audio/OpenAL/MixerImpl.hpp>
 #endif
 
-using namespace LDL::Audio;
+using namespace LDL;
 
 Mixer::Mixer() :
 	_impl(new MixerImpl())

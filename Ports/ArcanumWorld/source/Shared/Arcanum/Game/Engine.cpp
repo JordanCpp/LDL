@@ -2,15 +2,7 @@
 #include <LDL/Enums/KeyboardKey.hpp>
 #include <LDL/APIs/OpenGL/OpenGL1_2.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Graphics;
-using namespace LDL::Math;
-using namespace LDL::Allocators;
-using namespace LDL::Enums;
-using namespace LDL::Loaders;
-using namespace LDL::Events;
-using namespace LDL::Time;
-
+using namespace LDL;
 using namespace Arcanum::Game;
 using namespace Arcanum::Objects;
 
@@ -69,7 +61,7 @@ void Engine::Run()
 
 		while (_Window.GetEvent(report))
 		{
-			if (report.Type == IsQuit || report.IsKeyPressed(KeyboardKey::Escape))
+			if (report.Type == Event::IsQuit || report.IsKeyPressed(KeyboardKey::Escape))
 			{
 				_Window.StopEvent();
 			}
@@ -77,7 +69,7 @@ void Engine::Run()
 
 		_Render.Begin();
 
-		_Render.Color(Color(0, 0, 0));
+		_Render.SetColor(Color(0, 0, 0));
 		_Render.Clear();
 
 		_Location.Draw(_Camera.Pos());

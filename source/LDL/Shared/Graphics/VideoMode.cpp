@@ -5,8 +5,7 @@
 
 #include <LDL/Graphics/VideoMode.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 VideoMode::VideoMode() :
 	_bitsPerPixel(0)

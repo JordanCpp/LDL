@@ -11,11 +11,7 @@
 #include <LDL/Shared/Graphics/Renders/OpenGL3/RenderImplOpenGL3.hpp>
 #include <LDL/Shared/Graphics/Renders/Glide/RenderImplGlide.hpp>
 
-using namespace LDL::Core;
-using namespace LDL::Enums;
-using namespace LDL::Math;
-using namespace LDL::Graphics;
-using namespace LDL::Graphics::Creators;
+using namespace LDL;
 
 RenderImpl* RenderImplCreator::Create(Result& result, RenderContext& renderContext, Window* window)
 {

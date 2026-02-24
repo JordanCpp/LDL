@@ -1,6 +1,6 @@
 #include <Arcanum/Core/PathNormalizer.hpp>
 
-using namespace Arcanum::Core;
+using namespace Arcanum;
 
 void PathNormalizer::Normalize(char* path)
 {

@@ -10,18 +10,15 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class TextureImpl
 	{
-		class TextureImpl
-		{
-		public:
-			virtual ~TextureImpl() {};
-			virtual void Copy(const Math::Vec2u& dstPos, const Math::Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel) = 0;
-			virtual void Copy(const Math::Vec2u& dstPos, Surface* surface, const Math::Vec2u& srcSize) = 0;
-			virtual const Math::Vec2u& Size() = 0;
-			virtual const Math::Vec2u& Quad() = 0;
-		};
-	}
+	public:
+		virtual ~TextureImpl() {};
+		virtual void Copy(const Vec2u& dstPos, const Vec2u& srcSize, uint8_t* pixels, uint8_t bytesPerPixel) = 0;
+		virtual void Copy(const Vec2u& dstPos, Surface* surface, const Vec2u& srcSize) = 0;
+		virtual const Vec2u& Size() = 0;
+		virtual const Vec2u& Quad() = 0;
+	};
 }
 
 #endif    

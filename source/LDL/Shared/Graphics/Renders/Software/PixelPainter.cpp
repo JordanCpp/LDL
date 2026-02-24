@@ -3,12 +3,11 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Graphics/PixelPainter.hpp>
 #include <assert.h>
 #include <stdlib.h>
+#include <LDL/Graphics/PixelPainter.hpp>
 
-using namespace LDL::Graphics;
-using namespace LDL::Math;
+using namespace LDL;
 
 PixelPainter::PixelPainter() :
 	_red(0),
@@ -49,12 +48,12 @@ uint8_t* PixelPainter::Pixels()
 	return _pixels;
 }
 
-const LDL::Graphics::Color& LDL::Graphics::PixelPainter::Color()
+const Color& PixelPainter::GetColor()
 {
 	return _color;
 }
 
-void LDL::Graphics::PixelPainter::Color(const LDL::Graphics::Color& color)
+void PixelPainter::SetColor(const Color& color)
 {
 	_color = color;
 
@@ -165,7 +164,7 @@ void PixelPainter::Pixel(const Vec2u& pos)
 	}
 }
 
-const LDL::Graphics::Color& PixelPainter::GetPixel(const Vec2u& pos)
+const Color& PixelPainter::GetPixel(const Vec2u& pos)
 {
 	size_t i = (_width * pos.y + pos.x) * _bytesPerPixel;
 
@@ -175,23 +174,23 @@ const LDL::Graphics::Color& PixelPainter::GetPixel(const Vec2u& pos)
 	{
 	case 4:
 #if defined(LDL_CONFIG_COLOR_BGRA)
-		_colorGetPixel = LDL::Graphics::Color(_pixels[i + 2], _pixels[i + 1], _pixels[i], _pixels[i + 3]);
+		_colorGetPixel = Color(_pixels[i + 2], _pixels[i + 1], _pixels[i], _pixels[i + 3]);
 #else
-		_colorGetPixel = LDL::Graphics::Color(_pixels[i], _pixels[i + 1], _pixels[i + 2], _pixels[i + 3]);
+		_colorGetPixel = Color(_pixels[i], _pixels[i + 1], _pixels[i + 2], _pixels[i + 3]);
 #endif
 		break;
 	case 3:
 #if defined(LDL_CONFIG_COLOR_BGRA)
-		_colorGetPixel = LDL::Graphics::Color(_pixels[i + 2], _pixels[i + 1], _pixels[i], 0);
+		_colorGetPixel = Color(_pixels[i + 2], _pixels[i + 1], _pixels[i], 0);
 #else
-		_colorGetPixel = LDL::Graphics::Color(_pixels[i], _pixels[i + 1], _pixels[i + 2], 0);
+		_colorGetPixel = Color(_pixels[i], _pixels[i + 1], _pixels[i + 2], 0);
 #endif
 		break;
 	case 2:
-		_colorGetPixel = LDL::Graphics::Color(_pixels[i], _pixels[i + 1], 0, 0);
+		_colorGetPixel = Color(_pixels[i], _pixels[i + 1], 0, 0);
 		break;
 	default:
-		_colorGetPixel = LDL::Graphics::Color(_pixels[i], 0, 0, 0);
+		_colorGetPixel = Color(_pixels[i], 0, 0, 0);
 	}
 
 	return _colorGetPixel;

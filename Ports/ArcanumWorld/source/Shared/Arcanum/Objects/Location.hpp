@@ -14,9 +14,9 @@ namespace Arcanum
 		{
 		public:
 			Location(LocationData* locationData, LocationCreator* locationCreator, Painters::LocationPainter* locationPainter);
-			void Draw(const LDL::Math::Vec2u& start);
-			Scenery* NewScenery(const LDL::Math::Vec2u& pos, const std::string& path);
-			Tile* NewTile(const LDL::Math::Vec2u& pos, const std::string& path);
+			void Draw(const LDL::Vec2u& start);
+			Scenery* NewScenery(const LDL::Vec2u& pos, const std::string& path);
+			Tile* NewTile(const LDL::Vec2u& pos, const std::string& path);
 		private:
 			LocationData* _LocationData;
 			LocationCreator* _LocationCreator;

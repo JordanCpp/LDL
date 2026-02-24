@@ -3,14 +3,17 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/Loaders/ImageLoader.hpp>
+#include <stdlib.h>
+#include <LDL/std/string.hpp>
 #include <LDL/Core/Assert.hpp>
-#include <string.h>
+#include <LDL/Loaders/ImageLoader.hpp>
 
-static LDL::Allocators::Allocator* stbImageAllocator;
+using namespace LDL;
 
-#define STBI_MALLOC(sz)                    stbImageAllocator->Allocate(sz);
-#define STBI_FREE(p)                       stbImageAllocator->Deallocate(p) 
+static LDL::Allocator* stbImageAllocator;
+
+#define STBI_MALLOC(sz)  stbImageAllocator->Allocate(sz);
+#define STBI_FREE(p)     stbImageAllocator->Deallocate(p) 
 
 void* ReallocateSized(void* ptr, size_t Oldbytes, size_t Newbytes)
 {
@@ -25,7 +28,7 @@ void* ReallocateSized(void* ptr, size_t Oldbytes, size_t Newbytes)
 		if (Oldbytes < Newbytes)
 		{
 			result = stbImageAllocator->Allocate(Newbytes);
-			memcpy(result, ptr, Oldbytes);
+			LDL_memcpy(result, ptr, Oldbytes);
 		}
 		else
 		{
@@ -43,11 +46,9 @@ void* ReallocateSized(void* ptr, size_t Oldbytes, size_t Newbytes)
 #define STBI_NO_SIMD
 #include "../../../dependencies/stb/stb_image.h"  
 
-using namespace LDL::Graphics;
-using namespace LDL::Loaders;
-using namespace LDL::Math;
+using namespace LDL;
 
-ImageLoader::ImageLoader(LDL::Allocators::Allocator* allocator) :
+ImageLoader::ImageLoader(Allocator* allocator) :
 	_allocator(allocator),
 	_bytesPerPixel(0),
 	_pixels(NULL)

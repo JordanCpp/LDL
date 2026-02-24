@@ -13,22 +13,19 @@
 
 namespace LDL
 {
-	namespace Text
-	{
-		class RasterizerImpl;
+	class RasterizerImpl;
 
-		class LDL_LIBRARY Rasterizer
-		{
-		public:
-			Rasterizer(const Math::Vec2u& bufferSize);
-			~Rasterizer();
-			RasterizerImpl* GetRasterizerImpl();
-			Graphics::Surface* Result();
-			bool RenderText(const std::string& text, Font* font, const Graphics::Color& color);
-		private:
-			RasterizerImpl* _impl;
-		};
-	}
+	class LDL_LIBRARY Rasterizer
+	{
+	public:
+		Rasterizer(const Vec2u& bufferSize);
+		~Rasterizer();
+		RasterizerImpl* GetRasterizerImpl();
+		Surface* Result();
+		bool RenderText(const std::string& text, Font* font, const Color& color);
+	private:
+		RasterizerImpl* _impl;
+	};
 }
 
 #endif    

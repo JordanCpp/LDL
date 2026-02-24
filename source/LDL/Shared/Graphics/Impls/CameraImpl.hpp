@@ -10,18 +10,15 @@
 
 namespace LDL
 {
-	namespace Graphics
+	class CameraImpl
 	{
-		class CameraImpl
-		{
-		public:
-			virtual ~CameraImpl() {}
-			virtual const Math::Vec2u& Pos() = 0;
-			virtual const Math::Vec2u& Size() = 0;
-			virtual void Pos(const Math::Vec2u& pos) = 0;
-			virtual void Size(const Math::Vec2u& size) = 0;
-		};
-	}
+	public:
+		virtual ~CameraImpl() {}
+		virtual const Vec2u& Pos() = 0;
+		virtual const Vec2u& Size() = 0;
+		virtual void Pos(const Vec2u& pos) = 0;
+		virtual void Size(const Vec2u& size) = 0;
+	};
 }
 
 #endif    

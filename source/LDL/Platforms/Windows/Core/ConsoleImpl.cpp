@@ -5,7 +5,7 @@
 
 #include <LDL/Platforms/Windows/Core/ConsoleImpl.hpp>
 
-using namespace LDL::Core;
+using namespace LDL;
 
 ConsoleImpl::ConsoleImpl()
 {

@@ -8,23 +8,20 @@
 
 namespace LDL
 {
-	namespace Enums
+	class RenderMode
 	{
-		class RenderMode
+	public:
+		enum
 		{
-		public:
-			enum
-			{
-				Software = 1,
-				OpenGL1,
-				OpenGL3,
-				DirectDraw,
-				Glide,
-				Direct3D6,
-				Max
-			};
+			Software = 1,
+			OpenGL1,
+			OpenGL3,
+			DirectDraw,
+			Glide,
+			Direct3D6,
+			Max
 		};
-	}
+	};
 }
 
 #endif
