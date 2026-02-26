@@ -14,7 +14,7 @@ SoundImpl::SoundImpl(AudioContext* audioContext, size_t channels, size_t rate, s
 	AudioContextImpl* impl = audioContext->GetAudioContextImpl();
 
 	WAVEFORMATEX waveFormat;
-	LDL_memset(&waveFormat, 0, sizeof(WAVEFORMATEX));
+	memset(&waveFormat, 0, sizeof(WAVEFORMATEX));
 
 	waveFormat.wFormatTag      = WAVE_FORMAT_PCM;
 	waveFormat.nSamplesPerSec  = (DWORD)impl->Rate();
@@ -25,7 +25,7 @@ SoundImpl::SoundImpl(AudioContext* audioContext, size_t channels, size_t rate, s
 	waveFormat.cbSize          = 0;
 
 	DSBUFFERDESC bufferDesc;
-	LDL_memset(&bufferDesc, 0, sizeof(DSBUFFERDESC));
+	memset(&bufferDesc, 0, sizeof(DSBUFFERDESC));
 
 	bufferDesc.dwSize          = sizeof(DSBUFFERDESC);
 	bufferDesc.dwFlags         = DSBCAPS_CTRLVOLUME;
@@ -51,7 +51,7 @@ SoundImpl::SoundImpl(AudioContext* audioContext, size_t channels, size_t rate, s
 	result = _secondaryBuffer->Lock(0, (DWORD)samples, (void**)&bufferPtr, (DWORD*)&bufferSize, NULL, 0, 0);
 	LDL_ASSERT_DETAIL(!FAILED(result), "Lock failed");
 
-	LDL_memcpy(bufferPtr, bytes, samples);
+	memcpy(bufferPtr, bytes, samples);
 
 	result = _secondaryBuffer->Unlock(bufferPtr, bufferSize, NULL, 0);
 	LDL_ASSERT_DETAIL(!FAILED(result), "Unlock failed");

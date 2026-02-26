@@ -6,7 +6,7 @@
 #ifndef LDL_Platforms_Windows_WinError_hpp
 #define LDL_Platforms_Windows_WinError_hpp
 
-#include <LDL/STL/InplaceStrings.hpp>
+#include <string>
 
 namespace LDL
 {
@@ -17,7 +17,7 @@ namespace LDL
 		void Clear();
 		const char* GetErrorMessage();
 	private:
-		ErrorString _buffer;
+		std::string _buffer;
 	};
 }
 

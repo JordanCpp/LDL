@@ -22,7 +22,7 @@ typedef HGLRC(WINAPI* PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareC
 #define WGL_CONTEXT_CORE_PROFILE_BIT_ARB          0x00000001
 #define WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB 0x00000002
 
-WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
+WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _result(result),
     _mainWindow(_result,pos, size, title, mode),
     _context(NULL)
@@ -40,7 +40,7 @@ WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec
 
     PIXELFORMATDESCRIPTOR pfd;
 
-    LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
+    memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
 
     _mainWindow._hdc = GetDC(_mainWindow._hwnd);
 
@@ -154,12 +154,12 @@ void WindowImplOpenGL3::StopEvent()
     _mainWindow.StopEvent();
 }
 
-const char* WindowImplOpenGL3::Title()
+const std::string& WindowImplOpenGL3::Title()
 {
     return _mainWindow.Title();
 }
 
-void WindowImplOpenGL3::Title(const char* title)
+void WindowImplOpenGL3::Title(const std::string& title)
 {
     _mainWindow.Title(title);
 }

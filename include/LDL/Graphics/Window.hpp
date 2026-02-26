@@ -20,15 +20,15 @@ namespace LDL
 	class LDL_LIBRARY Window
 	{
 	public:
-		Window(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode = WindowMode::Resized);
+		Window(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode = WindowMode::Resized);
 		~Window();
 		bool Running();
 		void PollEvents();
 		bool GetEvent(Event& event);
 		bool WaitEvent(Event& event);
 		void StopEvent();
-		void Title(const char* title);
-		const char* Title();
+		void Title(const std::string& title);
+		const std::string& Title();
 		const Vec2u& Size();
 		const Vec2u& Pos();
 		WindowImpl* GetWindowImpl();

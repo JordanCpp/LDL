@@ -18,15 +18,15 @@ namespace LDL
 	class MainWindow
 	{
 	public:
-		MainWindow(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode);
+		MainWindow(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode);
 		~MainWindow();
 		bool Running();
 		void PollEvents();
 		bool GetEvent(Event& event);
 		bool WaitEvent(Event& event);
 		void StopEvent();
-		void Title(const char* title);
-		const char* Title();
+		void Title(const std::string& title);
+		const std::string& Title();
 		const Vec2u& Size();
 		const Vec2u& Pos();
 	private:

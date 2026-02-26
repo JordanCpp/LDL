@@ -3,7 +3,6 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include <LDL/std/string.hpp>
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
 #include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
@@ -275,18 +274,18 @@ LRESULT CALLBACK MainWindow::WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPA
     return result;
 }
 
-MainWindow::MainWindow(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
+MainWindow::MainWindow(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _baseWindow(pos, size, title),
     _result(result)
 {
     timeBeginPeriod(timePeriod);
 
-    LDL_memset(&_windowClass, 0, sizeof(WNDCLASS));
-    LDL_memset(&_instance, 0, sizeof(HINSTANCE));
-    LDL_memset(&_msg, 0, sizeof(MSG));
-    LDL_memset(&_atom, 0, sizeof(ATOM));
-    LDL_memset(&_hwnd, 0, sizeof(HWND));
-    LDL_memset(&_hdc, 0, sizeof(HDC));
+    memset(&_windowClass, 0, sizeof(WNDCLASS));
+    memset(&_instance, 0, sizeof(HINSTANCE));
+    memset(&_msg, 0, sizeof(MSG));
+    memset(&_atom, 0, sizeof(ATOM));
+    memset(&_hwnd, 0, sizeof(HWND));
+    memset(&_hdc, 0, sizeof(HDC));
 
     _instance = GetModuleHandle(NULL);
     if (_instance == NULL)
@@ -426,14 +425,14 @@ void MainWindow::StopEvent()
     _eventer.Stop();
 }
 
-void MainWindow::Title(const char* title)
+void MainWindow::Title(const std::string& title)
 {
     _baseWindow.Title(title);
 
-    SetWindowText(_hwnd, _baseWindow.Title());
+    SetWindowText(_hwnd, _baseWindow.Title().c_str());
 }
 
-const char* MainWindow::Title()
+const std::string& MainWindow::Title()
 {
     return _baseWindow.Title();
 }

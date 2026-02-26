@@ -7,7 +7,6 @@
 #include <LDL/APIs/OpenGL/OpenGL1_0.hpp>
 #include <LDL/Core/Convert.hpp>
 #include <LDL/Core/Assert.hpp>
-#include <LDL/STL/InplaceStrings.hpp>
 
 using namespace LDL;
 
@@ -117,7 +116,7 @@ void Util::Check(const char* file, size_t line, const char* expression)
 {
     GLenum code = glGetError();
 
-	AssertString error;
+	std::string error;
 
     if (code != GL_NO_ERROR)
     { 
@@ -147,7 +146,7 @@ void Util::Check(const char* file, size_t line, const char* expression)
 
 		LDL::Convert conv;
 
-		AssertString assert = "OpenGL error: ";
+		std::string assert = "OpenGL error: ";
 		assert += error.c_str();
 		assert += " File: ";
 		assert += file;

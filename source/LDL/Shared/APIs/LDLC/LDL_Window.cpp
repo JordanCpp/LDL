@@ -45,7 +45,7 @@ bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event)
 
 	bool result = window->_window.GetEvent(src);
 
-	LDL_memcpy(event, &src, sizeof(Event));
+	memcpy(event, &src, sizeof(Event));
 
 	return result;
 }
@@ -56,7 +56,7 @@ bool LDL_WindowWaitEvent(LDL_Window* window, LDL_Event* event)
 
 	bool result = window->_window.WaitEvent(src);
 
-	LDL_memcpy(event, &src, sizeof(Event));
+	memcpy(event, &src, sizeof(Event));
 
 	return result;
 }
@@ -73,7 +73,7 @@ void LDL_WindowSetTitle(LDL_Window* window, const char* title)
 
 const char* LDL_WindowGetTitle(LDL_Window* window)
 {
-	return window->_window.Title();
+	return window->_window.Title().c_str();
 }
 
 size_t LDL_WindowGetPosX(LDL_Window* window)

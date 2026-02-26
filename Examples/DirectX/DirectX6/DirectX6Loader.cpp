@@ -13,7 +13,7 @@ using namespace LDL::DirectX6;
 
 void ZeroMemory(void* dst, size_t size)
 {
-	LDL_memset(dst, 0, size);
+	memset(dst, 0, size);
 }
 
 //-----------------------------------------------------------------------------

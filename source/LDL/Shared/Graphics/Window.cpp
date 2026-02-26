@@ -9,7 +9,7 @@
 
 using namespace LDL;
 
-Window::Window(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode)
+Window::Window(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode)
 {
 	WindowImplCreator creator;
 
@@ -46,12 +46,12 @@ void Window::StopEvent()
 	_impl->StopEvent();
 }
 
-void Window::Title(const char* title)
+void Window::Title(const std::string& title)
 {
 	_impl->Title(title);
 }
 
-const char* Window::Title()
+const std::string& Window::Title()
 {
 	return _impl->Title();
 }

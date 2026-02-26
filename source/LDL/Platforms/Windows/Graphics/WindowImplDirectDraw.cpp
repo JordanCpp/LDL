@@ -9,7 +9,7 @@
 
 using namespace LDL;
 
-WindowImplDirectDraw::WindowImplDirectDraw(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
+WindowImplDirectDraw::WindowImplDirectDraw(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _directDraw(NULL),
     _result(result),
     _window(_result, pos, size, title, mode)
@@ -24,7 +24,7 @@ WindowImplDirectDraw::WindowImplDirectDraw(Result& result, const Vec2u& pos, con
 
     DDSURFACEDESC ddsd;
 
-    LDL_memset(&ddsd, 0, sizeof(DDSURFACEDESC));
+    memset(&ddsd, 0, sizeof(DDSURFACEDESC));
 
     ddsd.dwSize = sizeof(ddsd);
     ddsd.dwFlags = DDSD_CAPS;
@@ -110,12 +110,12 @@ void WindowImplDirectDraw::StopEvent()
     _window.StopEvent();
 }
 
-const char* WindowImplDirectDraw::Title()
+const std::string& WindowImplDirectDraw::Title()
 {
     return _window.Title();
 }
 
-void WindowImplDirectDraw::Title(const char* title)
+void WindowImplDirectDraw::Title(const std::string& title)
 {
     _window.Title(title);
 }

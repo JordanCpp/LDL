@@ -7,7 +7,7 @@
 
 using namespace LDL;
 
-WindowImplGlide::WindowImplGlide(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
+WindowImplGlide::WindowImplGlide(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _result(result),
     _mainWindow(_result, pos, size, title, mode)
 {
@@ -58,12 +58,12 @@ void WindowImplGlide::StopEvent()
     _mainWindow.StopEvent();
 }
 
-const char* WindowImplGlide::Title()
+const std::string& WindowImplGlide::Title()
 {
     return _mainWindow.Title();
 }
 
-void WindowImplGlide::Title(const char* title)
+void WindowImplGlide::Title(const std::string& title)
 {
     _mainWindow.Title(title);
 }

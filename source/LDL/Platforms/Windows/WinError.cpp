@@ -37,7 +37,7 @@ const char* WindowError::GetErrorMessage()
         NULL,
         lastError,
         MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-        _buffer.data(),
+        &_buffer[0],
         (DWORD)_buffer.capacity() + 1,
         NULL
     );

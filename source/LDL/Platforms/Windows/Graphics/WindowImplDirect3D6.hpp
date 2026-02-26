@@ -7,7 +7,7 @@
 #define LDL_Platforms_Windows_Graphics_WindowImplDirect3D6_hpp
 
 #include <LDL/Graphics/Window.hpp>
-#include <LDL/Platforms/WindowImpl.hpp>
+#include <LDL/Shared/Graphics/Impls/WindowImpl.hpp>
 #include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 
 namespace LDL
@@ -15,7 +15,7 @@ namespace LDL
 	class WindowImplDirect3D6 : public WindowImpl
 	{
 	public:
-		WindowImplDirect3D6(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode = WindowMode::Resized);
+		WindowImplDirect3D6(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode = WindowMode::Resized);
 		~WindowImplDirect3D6();
 		bool Running();
 		void Present();
@@ -23,8 +23,8 @@ namespace LDL
 		bool GetEvent(Event& event);
 		bool WaitEvent(Event& event);
 		void StopEvent();
-		void Title(const char* title);
-		const char* Title();
+		void Title(const std::string& title);
+		const std::string& Title();
 		const Vec2u& Size();
 		const Vec2u& Pos();
 		void* NativeHandle();

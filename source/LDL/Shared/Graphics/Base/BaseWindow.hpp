@@ -6,25 +6,25 @@
 #ifndef LDL_Graphics_BaseWindow_hpp
 #define LDL_Graphics_BaseWindow_hpp
 
+#include <string>
 #include <LDL/Math/Vec2.hpp>
-#include <LDL/STL/InplaceStrings.hpp>
 
 namespace LDL
 {
 	class BaseWindow
 	{
 	public:
-		BaseWindow(const Vec2u& pos, const Vec2u& size, const char* title);
+		BaseWindow(const Vec2u& pos, const Vec2u& size, const std::string& title);
 		const Vec2u& Pos();
 		const Vec2u& Size();
 		void Size(const Vec2u& size);
-		const char* Title();
-		void Title(const char* source);
+		const std::string& Title();
+		void Title(const std::string& source);
 	private:
-		Vec2u _pos;
-		Vec2u _size;
-		Vec2u _view;
-		TitleString _title;
+		Vec2u       _pos;
+		Vec2u       _size;
+		Vec2u       _view;
+		std::string _title;
 	};
 }
 

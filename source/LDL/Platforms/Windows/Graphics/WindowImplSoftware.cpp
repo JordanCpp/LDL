@@ -8,11 +8,11 @@
 
 using namespace LDL;
 
-WindowImplSoftware::WindowImplSoftware(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
+WindowImplSoftware::WindowImplSoftware(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _result(result),
     _mainWindow(_result, pos, size, title, mode)
 {
-    LDL_memset(&_bitmapInfo, 0, sizeof(_bitmapInfo));
+    memset(&_bitmapInfo, 0, sizeof(_bitmapInfo));
 }
 
 WindowImplSoftware::~WindowImplSoftware()
@@ -74,12 +74,12 @@ void WindowImplSoftware::StopEvent()
     _mainWindow.StopEvent();
 }
 
-const char* WindowImplSoftware::Title()
+const std::string& WindowImplSoftware::Title()
 {
     return _mainWindow.Title();
 }
 
-void WindowImplSoftware::Title(const char* title)
+void WindowImplSoftware::Title(const std::string& title)
 {
     _mainWindow.Title(title);
 }

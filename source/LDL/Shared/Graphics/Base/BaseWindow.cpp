@@ -7,7 +7,7 @@
 
 using namespace LDL;
 
-BaseWindow::BaseWindow(const Vec2u& pos, const Vec2u& size, const char* title):
+BaseWindow::BaseWindow(const Vec2u& pos, const Vec2u& size, const std::string& title):
     _pos(pos),
     _size(size),
     _title(title)
@@ -29,12 +29,12 @@ void BaseWindow::Size(const Vec2u& size)
     _size = size;
 }
 
-const char* BaseWindow::Title()
+const std::string& BaseWindow::Title()
 {
     return _title.c_str();
 }
 
-void BaseWindow::Title(const char* source)
+void BaseWindow::Title(const std::string& source)
 {
     _title = source;
 }

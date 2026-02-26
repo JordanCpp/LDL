@@ -8,14 +8,14 @@
 
 using namespace LDL;
 
-WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
+WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _result(result),
     _context(NULL),
     _mainWindow(_result, pos, size, title, mode)
 {
     PIXELFORMATDESCRIPTOR pfd;
 
-    LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
+    memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
 
     _mainWindow._hdc = GetDC(_mainWindow._hwnd);
     LDL_ASSERT_DETAIL(_mainWindow._hdc != NULL, "GetDC failed");
@@ -102,12 +102,12 @@ void WindowImplOpenGL1::StopEvent()
     _mainWindow.StopEvent();
 }
 
-const char* WindowImplOpenGL1::Title()
+const std::string& WindowImplOpenGL1::Title()
 {
     return _mainWindow.Title();
 }
 
-void WindowImplOpenGL1::Title(const char* title)
+void WindowImplOpenGL1::Title(const std::string& title)
 {
     _mainWindow.Title(title);
 }

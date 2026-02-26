@@ -4,7 +4,6 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <stdlib.h>
-#include <LDL/std/string.hpp>
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Loaders/ImageLoader.hpp>
 
@@ -28,7 +27,7 @@ void* ReallocateSized(void* ptr, size_t Oldbytes, size_t Newbytes)
 		if (Oldbytes < Newbytes)
 		{
 			result = stbImageAllocator->Allocate(Newbytes);
-			LDL_memcpy(result, ptr, Oldbytes);
+			memcpy(result, ptr, Oldbytes);
 		}
 		else
 		{

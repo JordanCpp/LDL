@@ -6,7 +6,8 @@
 #ifndef LDL_Core_Result_hpp
 #define LDL_Core_Result_hpp
 
-#include <LDL/STL/InplaceStrings.hpp>
+#include <string>
+#include <LDL/Core/Types.hpp>
 
 namespace LDL
 {
@@ -15,11 +16,11 @@ namespace LDL
 	public:
 		Result();
 		bool Ok();
-		void Message(const char* message);
-		const char* Message();
+		void Message(const std::string& message);
+		const std::string& Message();
 	private:
 		bool        _ok;
-		ErrorString _message;
+		std::string _message;
 	};
 }
 

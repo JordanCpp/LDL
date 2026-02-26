@@ -6,9 +6,9 @@
 #ifndef LDL_Platforms_Windows_Core_LibraryImpl_hpp
 #define LDL_Platforms_Windows_Core_LibraryImpl_hpp
 
+#include <string>
 #include <LDL/Core/Types.hpp>
 #include <LDL/Core/Library.hpp>
-#include <LDL/STL/InplaceStrings.hpp>
 #include <LDL/Platforms/Windows/Windows.hpp>
 
 namespace LDL
@@ -20,7 +20,7 @@ namespace LDL
 		~LibraryImpl();
 		LDL::VoidFuncPtr Function(const char* name);
 	private:
-		AssertString _assert;
+		std::string  _assert;
 		HMODULE      _module;
 	};
 }

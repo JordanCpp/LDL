@@ -7,7 +7,7 @@
 
 using namespace LDL;
 
-WindowImplDirect3D6::WindowImplDirect3D6(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
+WindowImplDirect3D6::WindowImplDirect3D6(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode) :
     _result(result),
     _mainWindow(_result, pos, size, title, mode)
 {
@@ -58,12 +58,12 @@ void WindowImplDirect3D6::StopEvent()
     _mainWindow.StopEvent();
 }
 
-const char* WindowImplDirect3D6::Title()
+const std::string& WindowImplDirect3D6::Title()
 {
     return _mainWindow.Title();
 }
 
-void WindowImplDirect3D6::Title(const char* title)
+void WindowImplDirect3D6::Title(const std::string& title)
 {
     _mainWindow.Title(title);
 }

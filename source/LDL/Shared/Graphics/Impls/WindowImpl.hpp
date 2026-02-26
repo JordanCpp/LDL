@@ -6,6 +6,7 @@
 #ifndef LDL_Platforms_Windows_Graphics_WindowImpl_hpp
 #define LDL_Platforms_Windows_Graphics_WindowImpl_hpp
 
+#include <string>
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Events/Event.hpp>
 
@@ -21,8 +22,8 @@ namespace LDL
 		virtual bool GetEvent(Event& event) = 0;
 		virtual bool WaitEvent(Event& event) = 0;
 		virtual void StopEvent() = 0;
-		virtual void Title(const char* title) = 0;
-		virtual const char* Title() = 0;
+		virtual void Title(const std::string& title) = 0;
+		virtual const std::string& Title() = 0;
 		virtual const Vec2u& Size() = 0;
 		virtual const Vec2u& Pos() = 0;
 		virtual void* NativeHandle() = 0;

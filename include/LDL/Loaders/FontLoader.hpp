@@ -6,8 +6,8 @@
 #ifndef LDL_Loaders_FontLoader_hpp
 #define LDL_Loaders_FontLoader_hpp
 
+#include <string>
 #include <LDL/Allocators/Allocator.hpp>
-#include <LDL/STL/InplaceStrings.hpp>
 
 namespace LDL
 {
@@ -21,9 +21,9 @@ namespace LDL
 		uint8_t* Font();
 		size_t Size();
 	private:
-		AssertString  _assert;
-		Allocator* _allocator;
-		uint8_t* _buffer;
+		std::string  _assert;
+		Allocator*   _allocator;
+		uint8_t*     _buffer;
 	};
 }
 

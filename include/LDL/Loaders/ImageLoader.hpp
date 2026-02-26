@@ -6,10 +6,10 @@
 #ifndef LDL_Loaders_ImageLoader_hpp
 #define LDL_Loaders_ImageLoader_hpp
 
+#include <string>
 #include <LDL/Math/Vec2.hpp>
 #include <LDL/Graphics/Color.hpp>
 #include <LDL/Allocators/Allocator.hpp>
-#include <LDL/STL/InplaceStrings.hpp>
 
 namespace LDL
 {
@@ -28,11 +28,11 @@ namespace LDL
 		void Load(uint8_t* data, size_t bytes);
 		void Load(const Color& color, uint8_t* data, size_t bytes);
 	private:
-		AssertString  _assert;
-		Allocator*    _allocator;
-		Vec2u         _size;
-		uint8_t       _bytesPerPixel;
-		uint8_t*      _pixels;
+		std::string  _assert;
+		Allocator*   _allocator;
+		Vec2u        _size;
+		uint8_t      _bytesPerPixel;
+		uint8_t*     _pixels;
 	};
 }
 

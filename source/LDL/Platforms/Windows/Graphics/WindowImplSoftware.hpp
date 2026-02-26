@@ -6,7 +6,7 @@
 #ifndef LDL_Platforms_Windows_Graphics_Software_WindowImpl_hpp
 #define LDL_Platforms_Windows_Graphics_Software_WindowImpl_hpp
 
-#include <LDL/Platforms/WindowImpl.hpp>
+#include <LDL/Shared/Graphics/Impls/WindowImpl.hpp>
 #include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 
 namespace LDL
@@ -14,7 +14,7 @@ namespace LDL
 	class WindowImplSoftware : public WindowImpl
 	{
 	public:
-		WindowImplSoftware(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode = WindowMode::Resized);
+		WindowImplSoftware(Result& result, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode = WindowMode::Resized);
 		~WindowImplSoftware();
 		void Present(uint8_t* pixels, uint8_t bytesPerPixel);
 		void Present();
@@ -23,8 +23,8 @@ namespace LDL
 		bool GetEvent(Event& event);
 		bool WaitEvent(Event& event);
 		void StopEvent();
-		void Title(const char* title);
-		const char* Title();
+		void Title(const std::string& title);
+		const std::string& Title();
 		const Vec2u& Size();
 		const Vec2u& Pos();
 		void* NativeHandle();

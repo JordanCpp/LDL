@@ -7,15 +7,15 @@
 #define LDL_Graphics_Creators_WindowImplCreator_hpp
 
 #include <LDL/Core/Result.hpp>
-#include <LDL/Platforms/WindowImpl.hpp>
 #include <LDL/Graphics/RenderContext.hpp>
+#include <LDL/Shared/Graphics/Impls/WindowImpl.hpp>
 
 namespace LDL
 {
 	class WindowImplCreator
 	{
 	public:
-		WindowImpl* Create(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode);
+		WindowImpl* Create(Result& result, RenderContext& renderContext, const Vec2u& pos, const Vec2u& size, const std::string& title, size_t mode);
 	};
 }
 

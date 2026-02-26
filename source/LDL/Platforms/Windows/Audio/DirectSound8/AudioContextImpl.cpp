@@ -6,7 +6,7 @@
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Core/Library.hpp>
 #include <LDL/Graphics/Window.hpp>
-#include <LDL/Platforms/WindowImpl.hpp>
+#include <LDL/Shared/Graphics/Impls/WindowImpl.hpp>
 #include <LDL/Platforms/Windows/Audio/DirectSound8/AudioContextImpl.hpp>
 
 using namespace LDL;
@@ -31,7 +31,7 @@ AudioContextImpl::AudioContextImpl(Window* window, size_t rate, size_t bits, siz
 	LDL_ASSERT_DETAIL(!FAILED(result), "SetCooperativeLevel failed");
 
 	DSBUFFERDESC bufferDesc;
-	LDL_memset(&bufferDesc, 0, sizeof(DSBUFFERDESC));
+	memset(&bufferDesc, 0, sizeof(DSBUFFERDESC));
 
 	bufferDesc.dwSize          = sizeof(DSBUFFERDESC);
 	bufferDesc.dwFlags         = DSBCAPS_PRIMARYBUFFER | DSBCAPS_CTRLVOLUME;
@@ -44,7 +44,7 @@ AudioContextImpl::AudioContextImpl(Window* window, size_t rate, size_t bits, siz
 	LDL_ASSERT_DETAIL(!FAILED(result), "CreateSoundBuffer failed");
 
 	WAVEFORMATEX waveFormat;
-	LDL_memset(&waveFormat, 0, sizeof(WAVEFORMATEX));
+	memset(&waveFormat, 0, sizeof(WAVEFORMATEX));
 
 	waveFormat.cbSize          = 0;
 	waveFormat.wFormatTag      = WAVE_FORMAT_PCM;
