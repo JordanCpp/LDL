@@ -3,11 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
-#include "WindowImplOpenGL3.hpp"
 #include <LDL/Core/Assert.hpp>
+#include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL3.hpp>
 
 using namespace LDL;
-using namespace LDL::Events;
 
 typedef HGLRC(WINAPI* PFNWGLCREATECONTEXT)(HDC);
 typedef BOOL (WINAPI* PFNWGLMAKECURRENT  )(HDC, HGLRC);
@@ -25,8 +24,8 @@ typedef HGLRC(WINAPI* PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareC
 
 WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _result(result),
-    _Window(_result,pos, size, title, mode),
-    _HGLRC(NULL)
+    _mainWindow(_result,pos, size, title, mode),
+    _context(NULL)
 {
     PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = NULL;
 
@@ -43,9 +42,9 @@ WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec
 
     LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
 
-    _Window._hdc = GetDC(_Window._hwnd);
+    _mainWindow._hdc = GetDC(_mainWindow._hwnd);
 
-    if (_Window._hdc == NULL)
+    if (_mainWindow._hdc == NULL)
     {
         _result.Message("GetDC failed");
     }
@@ -57,21 +56,21 @@ WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec
     pfd.cColorBits = 32;
     pfd.cDepthBits = 24;
 
-    int format = ChoosePixelFormat(_Window._hdc, &pfd);
+    int format = ChoosePixelFormat(_mainWindow._hdc, &pfd);
     if (format == 0)
     {
         _result.Message("ChoosePixelFormat failed");
     }
 
-    if (!SetPixelFormat(_Window._hdc, format, &pfd))
+    if (!SetPixelFormat(_mainWindow._hdc, format, &pfd))
     {
         _result.Message("SetPixelFormat failed");
     }
 
-    _HGLRC = wglCreateContext(_Window._hdc);
-    if (_HGLRC == NULL) _result.Message("wglCreateContext failed");
+    _context = wglCreateContext(_mainWindow._hdc);
+    if (_context == NULL) _result.Message("wglCreateContext failed");
 
-    if (!wglMakeCurrent(_Window._hdc, _HGLRC))
+    if (!wglMakeCurrent(_mainWindow._hdc, _context))
     {
         _result.Message("wglMakeCurrent failed");
     }
@@ -87,85 +86,85 @@ WindowImplOpenGL3::WindowImplOpenGL3(Result& result, const Vec2u& pos, const Vec
         _result.Message("wglMakeCurrent failed");
     }
 
-    if (!wglDeleteContext(_HGLRC))
+    if (!wglDeleteContext(_context))
     {
         _result.Message("wglDeleteContext failed");
     }
 
-    _HGLRC = wglCreateContextAttribsARB(_Window._hdc, 0, attribs);
-    if (_HGLRC == NULL)
+    _context = wglCreateContextAttribsARB(_mainWindow._hdc, 0, attribs);
+    if (_context == NULL)
     {
         _result.Message("wglCreateContextAttribsARB failed");
     }
 
-    if (!wglMakeCurrent(_Window._hdc, _HGLRC))
+    if (!wglMakeCurrent(_mainWindow._hdc, _context))
     {
         _result.Message("wglMakeCurrent failed");
     }
 
-    _OpenGLLoader.Init(3, 3);
+    _loader.Init(3, 3);
 }
 
 WindowImplOpenGL3::~WindowImplOpenGL3()
 {
     wglMakeCurrent(NULL, NULL);
-    wglDeleteContext(_HGLRC);
+    wglDeleteContext(_context);
 
-    ReleaseDC(_Window._hwnd, _Window._hdc);
+    ReleaseDC(_mainWindow._hwnd, _mainWindow._hdc);
 }
 
 bool WindowImplOpenGL3::Running()
 {
-    return _Window.Running();
+    return _mainWindow.Running();
 }
 
 void WindowImplOpenGL3::PollEvents()
 {
-    _Window.PollEvents();
+    _mainWindow.PollEvents();
 }
 
 void WindowImplOpenGL3::Present()
 {
-    BOOL result = SwapBuffers(_Window._hdc);
+    BOOL result = SwapBuffers(_mainWindow._hdc);
     LDL_ASSERT_DETAIL(result, "SwapBuffers failed");
 }
 
 const Vec2u& WindowImplOpenGL3::Size()
 {
-    return _Window.Size();
+    return _mainWindow.Size();
 }
 
 const Vec2u& WindowImplOpenGL3::Pos()
 {
-    return _Window.Pos();
+    return _mainWindow.Pos();
 }
 
 bool WindowImplOpenGL3::GetEvent(Event& event)
 {
-    return _Window.GetEvent(event);
+    return _mainWindow.GetEvent(event);
 }
 
 bool WindowImplOpenGL3::WaitEvent(Event& event)
 {
-    return _Window.WaitEvent(event);
+    return _mainWindow.WaitEvent(event);
 }
 
 void WindowImplOpenGL3::StopEvent()
 {
-    _Window.StopEvent();
+    _mainWindow.StopEvent();
 }
 
 const char* WindowImplOpenGL3::Title()
 {
-    return _Window.Title();
+    return _mainWindow.Title();
 }
 
 void WindowImplOpenGL3::Title(const char* title)
 {
-    _Window.Title(title);
+    _mainWindow.Title(title);
 }
 
 void* WindowImplOpenGL3::NativeHandle()
 {
-    return _Window._hwnd;
+    return _mainWindow._hwnd;
 }

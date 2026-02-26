@@ -6,23 +6,22 @@
 #include <LDL/Platforms/Windows/Graphics/WindowImplDirect3D6.hpp>
 
 using namespace LDL;
-using namespace LDL::Events;
 
 WindowImplDirect3D6::WindowImplDirect3D6(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _result(result),
-    _Window(_result, pos, size, title, mode)
+    _mainWindow(_result, pos, size, title, mode)
 {
 }
 
 WindowImplDirect3D6::~WindowImplDirect3D6()
 {
     wglMakeCurrent(NULL, NULL);
-    ReleaseDC(_Window._hwnd, _Window._hdc);
+    ReleaseDC(_mainWindow._hwnd, _mainWindow._hdc);
 }
 
 bool WindowImplDirect3D6::Running()
 {
-    return _Window.Running();
+    return _mainWindow.Running();
 }
 
 void WindowImplDirect3D6::Present()
@@ -31,45 +30,45 @@ void WindowImplDirect3D6::Present()
 
 void WindowImplDirect3D6::PollEvents()
 {
-    _Window.PollEvents();
+    _mainWindow.PollEvents();
 }
 
 const Vec2u& WindowImplDirect3D6::Size()
 {
-    return _Window.Size();
+    return _mainWindow.Size();
 }
 
 const Vec2u& WindowImplDirect3D6::Pos()
 {
-    return _Window.Pos();
+    return _mainWindow.Pos();
 }
 
 bool WindowImplDirect3D6::GetEvent(Event& event)
 {
-    return _Window.GetEvent(event);
+    return _mainWindow.GetEvent(event);
 }
 
 bool WindowImplDirect3D6::WaitEvent(Event& event)
 {
-    return _Window.WaitEvent(event);
+    return _mainWindow.WaitEvent(event);
 }
 
 void WindowImplDirect3D6::StopEvent()
 {
-    _Window.StopEvent();
+    _mainWindow.StopEvent();
 }
 
 const char* WindowImplDirect3D6::Title()
 {
-    return _Window.Title();
+    return _mainWindow.Title();
 }
 
 void WindowImplDirect3D6::Title(const char* title)
 {
-    _Window.Title(title);
+    _mainWindow.Title(title);
 }
 
 void* WindowImplDirect3D6::NativeHandle()
 {
-    return _Window._hwnd;
+    return _mainWindow._hwnd;
 }

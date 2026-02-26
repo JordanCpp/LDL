@@ -3,10 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+#include <LDL/std/string.hpp>
 #include <LDL/Core/Assert.hpp>
 #include <LDL/Enums/KeyboardKey.hpp>
 #include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
-#include <LDL/std/string.hpp>
 
 using namespace LDL;
 

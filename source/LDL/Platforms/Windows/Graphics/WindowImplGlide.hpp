@@ -6,9 +6,9 @@
 #ifndef LDL_Platforms_Windows_Graphics_WindowImplGlide_hpp
 #define LDL_Platforms_Windows_Graphics_WindowImplGlide_hpp
 
-#include "MainWindow.hpp"
-#include "../../WindowImpl.hpp"
 #include <LDL/Graphics/Window.hpp>
+#include <LDL/Platforms/WindowImpl.hpp>
+#include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 
 namespace LDL
 {
@@ -29,8 +29,8 @@ namespace LDL
 		const Vec2u& Pos();
 		void* NativeHandle();
 	private:
-		Result& _result;
-		MainWindow  _Window;
+		Result&     _result;
+		MainWindow  _mainWindow;
 	};
 }
 

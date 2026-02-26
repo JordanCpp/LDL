@@ -8,8 +8,8 @@
 
 #include <LDL/Core/Types.hpp>
 #include <LDL/Core/Library.hpp>
-#include <LDL/Platforms/Windows/Windows.hpp>
 #include <LDL/STL/InplaceStrings.hpp>
+#include <LDL/Platforms/Windows/Windows.hpp>
 
 namespace LDL
 {

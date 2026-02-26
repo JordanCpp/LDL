@@ -30,11 +30,11 @@ namespace LDL
 		const Vec2u& Pos();
 		void* NativeHandle();
 	private:
-		IDirectDraw* _directDraw;
+		IDirectDraw*        _directDraw;
 		IDirectDrawSurface* _primary;
 		IDirectDrawSurface* _screen;
 		IDirectDrawClipper* _clipper;
-		Result& _result;
+		Result&             _result;
 		MainWindow          _window;
 	};
 }

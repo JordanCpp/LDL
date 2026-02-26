@@ -6,10 +6,10 @@
 #ifndef LDL_Platforms_Windows_Graphics_OpenGL1_WindowImpl_hpp
 #define LDL_Platforms_Windows_Graphics_OpenGL1_WindowImpl_hpp
 
-#include "MainWindow.hpp"
-#include "../../WindowImpl.hpp"
 #include <LDL/Graphics/Window.hpp>
+#include <LDL/Platforms/WindowImpl.hpp>
 #include <LDL/APIs/OpenGL/OpenGLLoader.hpp>
+#include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 
 namespace LDL
 {
@@ -30,10 +30,10 @@ namespace LDL
 		const Vec2u& Pos();
 		void* NativeHandle();
 	private:
-		Result& _result;
-		HGLRC         _HGLRC;
-		MainWindow    _Window;
-		OpenGLLoader  _OpenGLLoader;
+		Result&       _result;
+		HGLRC         _context;
+		MainWindow    _mainWindow;
+		OpenGLLoader  _loader;
 	};
 }
 

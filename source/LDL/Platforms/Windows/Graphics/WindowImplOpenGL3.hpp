@@ -7,9 +7,9 @@
 #define LDL_Platforms_Windows_Graphics_OpenGL3_WindowImpl_hpp
 
 #include <LDL/Graphics/Window.hpp>
+#include <LDL/Platforms/WindowImpl.hpp>
 #include <LDL/APIs/OpenGL/OpenGLLoader.hpp>
-#include "MainWindow.hpp"
-#include "../../WindowImpl.hpp"
+#include <LDL/Platforms/Windows/Graphics/MainWindow.hpp>
 
 namespace LDL
 {
@@ -31,9 +31,9 @@ namespace LDL
 		void* NativeHandle();
 	private:
 		Result&       _result;
-		MainWindow    _Window;
-		HGLRC         _HGLRC;
-		OpenGLLoader  _OpenGLLoader;
+		MainWindow    _mainWindow;
+		HGLRC         _context;
+		OpenGLLoader  _loader;
 	};
 }
 

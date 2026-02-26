@@ -3,10 +3,10 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // https://www.boost.org/LICENSE_1_0.txt)
 
+#include <LDL/Platforms/Windows/Windows.hpp>
 #include <LDL/Platforms/Windows/Graphics/OpenGLFunctionsImpl.hpp>
 
 using namespace LDL;
-using namespace LDL::Graphics;
 
 OpenGLFunctionsImpl::OpenGLFunctionsImpl(const char* path) :
     _library(path)

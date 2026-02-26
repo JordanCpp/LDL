@@ -6,12 +6,12 @@
 #ifndef LDL_Platforms_Windows_Graphics_MainWindow_hpp
 #define LDL_Platforms_Windows_Graphics_MainWindow_hpp
 
-#include <LDL/Platforms/Windows/Windows.hpp>
-#include <LDL/Shared/Graphics/Base/BaseWindow.hpp>
-#include <LDL/Shared/Events/Eventer.hpp>
-#include <LDL/Enums/WindowMode.hpp>
 #include <LDL/Core/Result.hpp>
+#include <LDL/Enums/WindowMode.hpp>
+#include <LDL/Shared/Events/Eventer.hpp>
+#include <LDL/Platforms/Windows/Windows.hpp>
 #include <LDL/Platforms/Windows/WinError.hpp>
+#include <LDL/Shared/Graphics/Base/BaseWindow.hpp>
 
 namespace LDL
 {
@@ -35,8 +35,8 @@ namespace LDL
 		LRESULT CALLBACK Handler(UINT Message, WPARAM WParam, LPARAM LParam);
 		WindowError     _windowError;
 		BaseWindow      _baseWindow;
-		Result& _result;
-		Events::Eventer _eventer;
+		Result&         _result;
+		Eventer         _eventer;
 		WNDCLASS        _windowClass;
 		HINSTANCE       _instance;
 		MSG             _msg;

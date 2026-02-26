@@ -4,22 +4,21 @@
 // https://www.boost.org/LICENSE_1_0.txt)
 
 #include <LDL/Core/Assert.hpp>
-#include "WindowImplOpenGL1.hpp"
+#include <LDL/Platforms/Windows/Graphics/WindowImplOpenGL1.hpp>
 
 using namespace LDL;
-using namespace LDL::Events;
 
 WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec2u& size, const char* title, size_t mode) :
     _result(result),
-    _HGLRC(NULL),
-    _Window(_result, pos, size, title, mode)
+    _context(NULL),
+    _mainWindow(_result, pos, size, title, mode)
 {
     PIXELFORMATDESCRIPTOR pfd;
 
     LDL_memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
 
-    _Window._hdc = GetDC(_Window._hwnd);
-    LDL_ASSERT_DETAIL(_Window._hdc != NULL, "GetDC failed");
+    _mainWindow._hdc = GetDC(_mainWindow._hwnd);
+    LDL_ASSERT_DETAIL(_mainWindow._hdc != NULL, "GetDC failed");
 
 
     pfd.nSize      = sizeof(pfd);
@@ -30,90 +29,90 @@ WindowImplOpenGL1::WindowImplOpenGL1(Result& result, const Vec2u& pos, const Vec
     pfd.cDepthBits = 16;
     pfd.iLayerType = PFD_MAIN_PLANE;
 
-    int format = ChoosePixelFormat(_Window._hdc, &pfd);
+    int format = ChoosePixelFormat(_mainWindow._hdc, &pfd);
     if (format != 0)
     {
         _result.Message("ChoosePixelFormat failed");
     }
 
-    if (!SetPixelFormat(_Window._hdc, format, &pfd))
+    if (!SetPixelFormat(_mainWindow._hdc, format, &pfd))
     {
         _result.Message("SetPixelFormat failed");
     }
 
-    _HGLRC = wglCreateContext(_Window._hdc);
-    if (_HGLRC != NULL)
+    _context = wglCreateContext(_mainWindow._hdc);
+    if (_context != NULL)
     {
         _result.Message("wglCreateContext failed");
     }
 
-    if (!wglMakeCurrent(_Window._hdc, _HGLRC))
+    if (!wglMakeCurrent(_mainWindow._hdc, _context))
     {
         _result.Message("wglMakeCurrent failed");
     }
 
-    _OpenGLLoader.Init(1, 1);
+    _loader.Init(1, 1);
 }
 
 WindowImplOpenGL1::~WindowImplOpenGL1()
 {
     wglMakeCurrent(NULL, NULL);
-    wglDeleteContext(_HGLRC);
+    wglDeleteContext(_context);
 
-    ReleaseDC(_Window._hwnd, _Window._hdc);
+    ReleaseDC(_mainWindow._hwnd, _mainWindow._hdc);
 }
 
 bool WindowImplOpenGL1::Running()
 {
-    return _Window.Running();
+    return _mainWindow.Running();
 }
 
 void WindowImplOpenGL1::Present()
 {
-    SwapBuffers(_Window._hdc);
+    SwapBuffers(_mainWindow._hdc);
 }
 
 void WindowImplOpenGL1::PollEvents()
 {
-    _Window.PollEvents();
+    _mainWindow.PollEvents();
 }
 
 const Vec2u& WindowImplOpenGL1::Size()
 {
-    return _Window.Size();
+    return _mainWindow.Size();
 }
 
 const Vec2u& WindowImplOpenGL1::Pos()
 {
-    return _Window.Pos();
+    return _mainWindow.Pos();
 }
 
 bool WindowImplOpenGL1::GetEvent(Event& event)
 {
-    return _Window.GetEvent(event);
+    return _mainWindow.GetEvent(event);
 }
 
 bool WindowImplOpenGL1::WaitEvent(Event& event)
 {
-    return _Window.WaitEvent(event);
+    return _mainWindow.WaitEvent(event);
 }
 
 void WindowImplOpenGL1::StopEvent()
 {
-    _Window.StopEvent();
+    _mainWindow.StopEvent();
 }
 
 const char* WindowImplOpenGL1::Title()
 {
-    return _Window.Title();
+    return _mainWindow.Title();
 }
 
 void WindowImplOpenGL1::Title(const char* title)
 {
-    _Window.Title(title);
+    _mainWindow.Title(title);
 }
 
 void* WindowImplOpenGL1::NativeHandle()
 {
-    return _Window._hwnd;
+    return _mainWindow._hwnd;
 }

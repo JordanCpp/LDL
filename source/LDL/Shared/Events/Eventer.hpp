@@ -11,26 +11,23 @@
 
 namespace LDL
 {
-	namespace Events
+	class LDL_LIBRARY Eventer
 	{
-		class LDL_LIBRARY Eventer
+	public:
+		enum
 		{
-		public:
-			enum
-			{
-				Max = 1024
-			};
-			Eventer();
-			bool Empty();
-			void Push(Event& event);
-			bool Pop(Event& event);
-			bool Running();
-			void Stop();
-		private:
-			bool                    _running;
-			RingBuffer<Event, Max> _queue;
+			Max = 1024
 		};
-	}
+		Eventer();
+		bool Empty();
+		void Push(Event& event);
+		bool Pop(Event& event);
+		bool Running();
+		void Stop();
+	private:
+		bool                    _running;
+		RingBuffer<Event, Max> _queue;
+	};
 }
 
 #endif

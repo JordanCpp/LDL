@@ -29,8 +29,8 @@ namespace LDL
 		const Vec2u& Pos();
 		void* NativeHandle();
 	private:
-		Result& _result;
-		MainWindow  _Window;
+		Result&     _result;
+		MainWindow  _mainWindow;
 	};
 }
 

@@ -24,7 +24,7 @@ namespace LDL
 		size_t _bits;
 		size_t _channels;
 	public:
-		IDirectSound8* _directSound;
+		IDirectSound8*      _directSound;
 		IDirectSoundBuffer* _primaryBuffer;
 	};
 }
