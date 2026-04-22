@@ -1,8 +1,8 @@
 ﻿# 🌉 LDL - Little Directmedia Layer  
 **Bridge Between Eras: Compatible Multimedia Layer**
 
-![License](https://shields.io)
-![C Standard](https://shields.io)
+[![License: LGPL v3](https://shields.io)](https://gnu.org)
+[![C Standard](https://shields.io)](https://wikipedia.org)
 
 LDL is not just a cross-platform library, but a **bridge between different development eras**. We provide compatible APIs for popular multimedia libraries, allowing modern code to run on legacy platforms and vice versa.
 
