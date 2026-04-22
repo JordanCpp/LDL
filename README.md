@@ -3,6 +3,8 @@
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPLv3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 [![C Standard](https://img.shields.io/badge/C-Standard%20C89%2FANSI%20C-blue.svg)](https://en.wikipedia.org/wiki/ANSI_C)
+[![Windows](https://img.shields.io/badge/Windows-✅%20Supported-0078D6?logo=windows)](https://www.microsoft.com/windows)
+[![Linux](https://img.shields.io/badge/Linux-🔄%20Porting%20in%20progress-yellow?logo=linux)](https://kernel.org)
 
 LDL is not just a cross-platform library, but a **bridge between different development eras**. We provide compatible APIs for popular multimedia libraries, allowing modern code to run on legacy platforms and vice versa.
 
