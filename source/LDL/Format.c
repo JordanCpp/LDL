@@ -1,0 +1,179 @@
+
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <LDL/Format.h>
+
+enum
+{
+	LDL_FormatterMax = 512
+};
+
+typedef struct LDL_Formatter
+{
+    char Buffer[LDL_FormatterMax];
+} LDL_Formatter;
+
+void LDL_FormatterClear(LDL_Formatter* formatter)
+{
+    memset(&formatter->Buffer, 0, LDL_FormatterMax);
+}
+
+LDL_Formatter* LDL_FormatterNew()
+{
+    LDL_Formatter* formatter = (LDL_Formatter*)malloc(sizeof(LDL_Formatter));
+
+    if (formatter)
+    {
+        LDL_FormatterClear(formatter);
+
+        return formatter;
+    }
+
+    return NULL;
+}
+
+void LDL_FormatterFree(LDL_Formatter* formatter)
+{
+    if (formatter)
+    {
+        free(formatter);
+    }
+}
+
+char* LDL_FormatterGetData(LDL_Formatter* formatter)
+{
+    return formatter->Buffer;
+}
+
+void LDL_FormatterReverse(char* s, int len)
+{
+    int i;
+    int j;
+    char temp;
+
+    for (i = 0, j = len - 1; i < j; i++, j--)
+    {
+        temp = s[i];
+        s[i] = s[j];
+        s[j] = temp;
+    }
+}
+
+int LDL_FormatterItoa(int num, char* str)
+{
+    int i = 0;
+    unsigned int n = (num < 0) ? (unsigned int)(-num) : (unsigned int)num;
+
+    if (num == 0)
+    {
+        str[i++] = '0';
+    }
+    else
+    {
+        while (n != 0)
+        {
+            str[i++] = (n % 10) + '0';
+            n /= 10;
+        }
+
+        if (num < 0) str[i++] = '-';
+    }
+
+    str[i] = '\0';
+
+    LDL_FormatterReverse(str, i);
+
+    return i;
+}
+
+const char* LDL_FormatterFormat(LDL_Formatter* formatter, const char* format, ...)
+{
+    va_list args;
+    char* dst;
+    char* end;
+    const char* src;
+    int n;
+    char* p;
+    char numBuf[12];
+
+    if (!format)
+    {
+        return formatter->Buffer;
+    }
+
+    va_start(args, format);
+
+    dst = formatter->Buffer;
+    end = formatter->Buffer + LDL_FormatterMax - 1;
+    src = format;
+
+    while (*src != '\0' && dst < end)
+    {
+        if (*src == '%')
+        {
+            src++;
+            switch (*src)
+            {
+            case 's':
+            {
+                char* s = va_arg(args, char*);
+
+                if (!s) s = "(null)";
+
+                while (*s && dst < end)
+                {
+                    *dst++ = *s++;
+                }
+
+                break;
+            }
+            case 'd':
+            {
+                n = va_arg(args, int);
+
+                LDL_FormatterItoa(n, numBuf);
+
+                p = numBuf;
+
+                while (*p && dst < end)
+                {
+                    *dst++ = *p++;
+                }
+
+                break;
+            }
+            case 'c':
+            {
+                *dst++ = (char)va_arg(args, int);
+
+                break;
+            }
+            case '%':
+            {
+                *dst++ = '%';
+
+                break;
+            }
+            default:
+            {
+                if (dst < end) *dst++ = '%';
+                if (dst < end) *dst++ = *src;
+
+                break;
+            }
+            }
+        }
+        else
+        {
+            *dst++ = *src;
+        }
+
+        src++;
+    }
+
+    *dst = '\0';
+    va_end(args);
+
+    return formatter->Buffer;
+}

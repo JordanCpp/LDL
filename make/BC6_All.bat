@@ -1,2 +1,0 @@
-
-call Build_All BC6_Build_DLL BC6_Build_EXE
