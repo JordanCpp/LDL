@@ -19,12 +19,18 @@ License for more details.
 
 void LDL_WindowErrorClear(LDL_WindowError* windowError)
 {
-	memset(windowError->Message, 0, LDL_WindowErrorMax);
+    if (windowError)
+    {
+        memset(windowError->Message, 0, LDL_WindowErrorMax);
+    }
 }
 
 void LDL_WindowErrorInit(LDL_WindowError* windowError)
 {
-	LDL_WindowErrorClear(windowError);
+    if (windowError)
+    {
+        LDL_WindowErrorClear(windowError);
+    }
 }
 
 const char* LDL_WindowErrorGetMessage(LDL_WindowError* windowError)

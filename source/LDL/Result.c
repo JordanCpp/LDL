@@ -97,12 +97,12 @@ const char* LDL_ResultGetMessage(LDL_Result* result)
 
 void LDL_ResultAddMessage(LDL_Result* result, const char* format, ...)
 {
-	if (result)
+	if (result && result->Formatter)
 	{
-		if (result->Formatter)
-		{
-			LDL_FormatterFormat(result->Formatter, format);
-		}
+		va_list args;
+		va_start(args, format);
+		LDL_FormatterFormat(result->Formatter, format, args);
+		va_end(args);
 
 		result->Ok = false;
 	}

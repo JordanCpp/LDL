@@ -17,10 +17,13 @@ License for more details.
 
 void LDL_EventQueueInit(LDL_EventQueue* eventQueue)
 {
-	eventQueue->Head     = 0;
-	eventQueue->Tail     = 0;
-	eventQueue->Length   = 0;
-	eventQueue->Capacity = LDL_EventQueueMax;
+    if (eventQueue)
+    {
+        eventQueue->Head     = 0;
+        eventQueue->Tail     = 0;
+        eventQueue->Length   = 0;
+        eventQueue->Capacity = LDL_EventQueueMax;
+    }
 }
 
 bool LDL_EventQueueEmpty(LDL_EventQueue* eventQueue)
@@ -50,11 +53,11 @@ size_t LDL_EventQueueNext(LDL_EventQueue* eventQueue, size_t pos)
 
 bool LDL_EventQueueDequeue(LDL_EventQueue* eventQueue, LDL_Event* element)
 {
-    if (!LDL_EventQueueEmpty(eventQueue))
+    if (eventQueue && element && !LDL_EventQueueEmpty(eventQueue))
     {
-		memcpy(element, &eventQueue->Content[eventQueue->Tail], sizeof(LDL_Event));
-		eventQueue->Tail = LDL_EventQueueNext(eventQueue, eventQueue->Tail);
-		eventQueue->Length--;
+        memcpy(element, &eventQueue->Content[eventQueue->Tail], sizeof(LDL_Event));
+        eventQueue->Tail = LDL_EventQueueNext(eventQueue, eventQueue->Tail);
+        eventQueue->Length--;
 
         return true;
     }
@@ -64,25 +67,28 @@ bool LDL_EventQueueDequeue(LDL_EventQueue* eventQueue, LDL_Event* element)
 
 void LDL_EventQueueEnqueue(LDL_EventQueue* eventQueue, const LDL_Event* element)
 {
-    if (LDL_EventQueueCapacity(eventQueue) == 0)
+    if (eventQueue && eventQueue->Capacity > 0)
     {
-        return;
-    }
+        memcpy(&eventQueue->Content[eventQueue->Head], element, sizeof(LDL_Event));
+        eventQueue->Head = LDL_EventQueueNext(eventQueue, eventQueue->Head);
 
-    eventQueue->Head = LDL_EventQueueNext(eventQueue, eventQueue->Head);
-    memcpy(&eventQueue->Content[eventQueue->Head], element, sizeof(LDL_Event));
-
-    if (LDL_EventQueueFull(eventQueue))
-    {
-        eventQueue->Tail = LDL_EventQueueNext(eventQueue, eventQueue->Tail);
-    }
-    else
-    {
-        eventQueue->Length++;
+        if (LDL_EventQueueFull(eventQueue))
+        {
+            eventQueue->Tail = LDL_EventQueueNext(eventQueue, eventQueue->Tail);
+        }
+        else
+        {
+            eventQueue->Length++;
+        }
     }
 }
 
 LDL_Event* LDL_EventQueueFront(LDL_EventQueue* eventQueue)
 {
-    return LDL_EventQueueEmpty(eventQueue) ? NULL : &eventQueue->Content[eventQueue->Tail];
+    if (eventQueue && !LDL_EventQueueEmpty(eventQueue))
+    {
+        return &eventQueue->Content[eventQueue->Tail];
+    }
+
+    return NULL;
 }

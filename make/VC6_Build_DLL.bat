@@ -12,7 +12,8 @@ opengl32.lib ^
 winmm.lib   ^
 user32.lib
 
-cl /O2 -FeOpenGL1_Rect.exe -GX /I..\include ..\examples\OpenGL1\OpenGL1_Rect.c /link LDL.lib glu32.lib opengl32.lib
+cl /O2 -FeOpenGL1_Animated3DTerrain.exe -GX /I..\include ..\examples\OpenGL1\OpenGL1_Animated3DTerrain.c /link LDL.lib glu32.lib opengl32.lib
+
 
 del *.obj
 

@@ -12,6 +12,7 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
+#include <LDL/Enums.h>
 #include <LDL/BaseWin.h>
 #include <LDL/StrSpan.h>
 
@@ -21,6 +22,7 @@ void LDL_BaseWindowInit(LDL_BaseWindow* baseWindow, LDL_Vec2i pos, LDL_Vec2i siz
 
 	if (baseWindow)
 	{
+		baseWindow->Mode = mode;
 		baseWindow->Pos  = pos;
 		baseWindow->Size = size;
 
@@ -31,7 +33,12 @@ void LDL_BaseWindowInit(LDL_BaseWindow* baseWindow, LDL_Vec2i pos, LDL_Vec2i siz
 
 bool LDL_BaseWindowHasMode(LDL_BaseWindow* baseWindow, size_t mode)
 {
-	return (baseWindow->Mode & mode) != 0;
+	if (baseWindow)
+	{
+		return (baseWindow->Mode & mode) != 0;
+	}
+
+	return false;
 }
 
 LDL_Vec2i LDL_BaseWindowGetPos(LDL_BaseWindow* baseWindow)
@@ -56,5 +63,52 @@ LDL_Vec2i LDL_BaseWindowGetSize(LDL_BaseWindow* baseWindow)
 
 const char* LDL_BaseWindowGetTitle(LDL_BaseWindow* baseWindow)
 {
-	return baseWindow->Title;
+	if (baseWindow)
+	{
+		return baseWindow->Title;
+	}
+
+	return NULL;
+}
+
+bool LDL_BaseWindowIsFullscreen(LDL_BaseWindow* baseWindow)
+{
+	if (baseWindow)
+		return (baseWindow->Mode & LDL_WindowModeFullScreen) != 0;
+	return 0;
+}
+
+bool LDL_BaseWindowIsResized(LDL_BaseWindow* baseWindow)
+{
+	if (baseWindow)
+		return (baseWindow->Mode & LDL_WindowModeResized) != 0;
+	return 0;
+}
+
+bool LDL_BaseWindowIsFixed(LDL_BaseWindow* baseWindow)
+{
+	if (baseWindow)
+		return (baseWindow->Mode & LDL_WindowModeFixed) != 0;
+	return 0;
+}
+
+bool LDL_BaseWindowIsMinimized(LDL_BaseWindow* baseWindow)
+{
+	if (baseWindow)
+		return (baseWindow->Mode & LDL_WindowModeMinimized) != 0;
+	return 0;
+}
+
+bool LDL_BaseWindowIsMaximized(LDL_BaseWindow* baseWindow)
+{
+	if (baseWindow)
+		return (baseWindow->Mode & LDL_WindowModeMaximized) != 0;
+	return 0;
+}
+
+bool LDL_BaseWindowIsCentered(LDL_BaseWindow* baseWindow)
+{
+	if (baseWindow)
+		return (baseWindow->Mode & LDL_WindowModeCentered) != 0;
+	return 0;
 }

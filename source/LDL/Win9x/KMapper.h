@@ -23,6 +23,6 @@ typedef struct LDL_KeyMapper
 } LDL_KeyMapper;
 
 void LDL_KeyMapperInit(LDL_KeyMapper* keyMapper);
-uint8_t LDL_KeyMapperConvertKey(LDL_KeyMapper* keyMapper, size_t key);
+uint8_t LDL_KeyMapperConvertKey(LDL_KeyMapper* keyMapper, uint32_t key);
 
 #endif

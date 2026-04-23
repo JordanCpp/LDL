@@ -21,136 +21,141 @@ LRESULT CALLBACK LDL_MainWindowHandler(LDL_MainWindow* mainWindow, UINT Message,
 {
     LDL_Event event;
 
-    memset(&event, 0, sizeof(event));
-
-    switch (Message)
+    if (mainWindow && mainWindow->Hwnd)
     {
-    case WM_PAINT:
-        break;
+        memset(&event, 0, sizeof(event));
 
-    case WM_DESTROY:
-        break;
+        switch (Message)
+        {
+        case WM_PAINT:
+            break;
 
-    case WM_MOUSEMOVE:
-        event.Type = LDL_EventIsMouseMove;
-        event.Mouse.PosX = LOWORD(LParam);
-        event.Mouse.PosY = HIWORD(LParam);
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        break;
+        case WM_DESTROY:
+            PostQuitMessage(0);
+            break;
 
-    case WM_LBUTTONDOWN:
-        event.Type = LDL_EventIsMouseClick;
-        event.Mouse.State = LDL_ButtonStatePressed;
-        event.Mouse.Button = LDL_MouseButtonLeft;
-        event.Mouse.PosX = LOWORD(LParam);
-        event.Mouse.PosY = HIWORD(LParam);
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        break;
+        case WM_MOUSEMOVE:
+            event.Type = LDL_EventIsMouseMove;
+            event.Mouse.PosX = LOWORD(LParam);
+            event.Mouse.PosY = HIWORD(LParam);
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
 
-    case WM_LBUTTONUP:
-        event.Type = LDL_EventIsMouseClick;
-        event.Mouse.State = LDL_ButtonStateReleased;
-        event.Mouse.Button = LDL_MouseButtonLeft;
-        event.Mouse.PosX = LOWORD(LParam);
-        event.Mouse.PosY = HIWORD(LParam);
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        break;
+        case WM_LBUTTONDOWN:
+            event.Type = LDL_EventIsMouseClick;
+            event.Mouse.State = LDL_ButtonStatePressed;
+            event.Mouse.Button = LDL_MouseButtonLeft;
+            event.Mouse.PosX = LOWORD(LParam);
+            event.Mouse.PosY = HIWORD(LParam);
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
 
-    case WM_RBUTTONDOWN:
-        event.Type = LDL_EventIsMouseClick;
-        event.Mouse.State = LDL_ButtonStatePressed;
-        event.Mouse.Button = LDL_MouseButtonRight;
-        event.Mouse.PosX = LOWORD(LParam);
-        event.Mouse.PosY = HIWORD(LParam);
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        break;
+        case WM_LBUTTONUP:
+            event.Type = LDL_EventIsMouseClick;
+            event.Mouse.State = LDL_ButtonStateReleased;
+            event.Mouse.Button = LDL_MouseButtonLeft;
+            event.Mouse.PosX = LOWORD(LParam);
+            event.Mouse.PosY = HIWORD(LParam);
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
 
-    case WM_RBUTTONUP:
-        event.Type = LDL_EventIsMouseClick;
-        event.Mouse.State = LDL_ButtonStateReleased;
-        event.Mouse.Button = LDL_MouseButtonRight;
-        event.Mouse.PosX = LOWORD(LParam);
-        event.Mouse.PosY = HIWORD(LParam);
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        break;
+        case WM_RBUTTONDOWN:
+            event.Type = LDL_EventIsMouseClick;
+            event.Mouse.State = LDL_ButtonStatePressed;
+            event.Mouse.Button = LDL_MouseButtonRight;
+            event.Mouse.PosX = LOWORD(LParam);
+            event.Mouse.PosY = HIWORD(LParam);
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
 
-    case WM_MBUTTONDOWN:
-        event.Type = LDL_EventIsMouseClick;
-        event.Mouse.State = LDL_ButtonStatePressed;
-        event.Mouse.Button = LDL_MouseButtonMiddle;
-        event.Mouse.PosX = LOWORD(LParam);
-        event.Mouse.PosY = HIWORD(LParam);
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        break;
+        case WM_RBUTTONUP:
+            event.Type = LDL_EventIsMouseClick;
+            event.Mouse.State = LDL_ButtonStateReleased;
+            event.Mouse.Button = LDL_MouseButtonRight;
+            event.Mouse.PosX = LOWORD(LParam);
+            event.Mouse.PosY = HIWORD(LParam);
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
 
-    case WM_MBUTTONUP:
-        event.Type = LDL_EventIsMouseClick;
-        event.Mouse.State = LDL_ButtonStateReleased;
-        event.Mouse.Button = LDL_MouseButtonMiddle;
-        event.Mouse.PosX = LOWORD(LParam);
-        event.Mouse.PosY = HIWORD(LParam);
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        break;
+        case WM_MBUTTONDOWN:
+            event.Type = LDL_EventIsMouseClick;
+            event.Mouse.State = LDL_ButtonStatePressed;
+            event.Mouse.Button = LDL_MouseButtonMiddle;
+            event.Mouse.PosX = LOWORD(LParam);
+            event.Mouse.PosY = HIWORD(LParam);
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
 
-    case WM_SIZE:
-        event.Type = LDL_EventIsResize;
-        event.Resize.Width = LOWORD(LParam);
-        event.Resize.Height = HIWORD(LParam);
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        break;
+        case WM_MBUTTONUP:
+            event.Type = LDL_EventIsMouseClick;
+            event.Mouse.State = LDL_ButtonStateReleased;
+            event.Mouse.Button = LDL_MouseButtonMiddle;
+            event.Mouse.PosX = LOWORD(LParam);
+            event.Mouse.PosY = HIWORD(LParam);
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
 
-    case WM_CLOSE:
-        event.Type = LDL_EventIsQuit;
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        PostQuitMessage(0);
-        break;
+        case WM_SIZE:
+            event.Type = LDL_EventIsResize;
+            event.Resize.Width = LOWORD(LParam);
+            event.Resize.Height = HIWORD(LParam);
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
 
-    case WM_KEYDOWN:
-    case WM_SYSKEYDOWN:
-        event.Type = LDL_EventIsKeyboard;
-        event.Keyboard.State = LDL_ButtonStatePressed;
-        event.Keyboard.Key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, WParam);
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        break;
+        case WM_CLOSE:
+            event.Type = LDL_EventIsQuit;
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
 
-    case WM_KEYUP:
-    case WM_SYSKEYUP:
-        event.Type = LDL_EventIsKeyboard;
-        event.Keyboard.State = LDL_ButtonStateReleased;
-        event.Keyboard.Key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, WParam);
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        break;
+        case WM_KEYDOWN:
+        case WM_SYSKEYDOWN:
+            event.Type = LDL_EventIsKeyboard;
+            event.Keyboard.State = LDL_ButtonStatePressed;
+            event.Keyboard.Key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, WParam);
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
 
-    case WM_SETFOCUS:
-        event.Type = LDL_EventIsGainedFocus;
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        break;
+        case WM_KEYUP:
+        case WM_SYSKEYUP:
+            event.Type = LDL_EventIsKeyboard;
+            event.Keyboard.State = LDL_ButtonStateReleased;
+            event.Keyboard.Key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, WParam);
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
 
-    case WM_KILLFOCUS:
-        event.Type = LDL_EventIsLostFocus;
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        break;
+        case WM_SETFOCUS:
+            event.Type = LDL_EventIsGainedFocus;
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
 
-    case WM_MOUSEWHEEL:
-        event.Type = LDL_EventIsMouseScroll;
-        event.Mouse.Scroll = LDL_MouseScrollVertical;
-        event.Mouse.Delta = HIWORD(WParam);
-        event.Mouse.PosX = LOWORD(LParam);
-        event.Mouse.PosY = HIWORD(LParam);
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        break;
+        case WM_KILLFOCUS:
+            event.Type = LDL_EventIsLostFocus;
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
 
-    case WM_MOUSEHWHEEL:
-        event.Type = LDL_EventIsMouseScroll;
-        event.Mouse.Scroll = LDL_MouseScrollHorizontal;
-        event.Mouse.Delta = HIWORD(WParam);
-        event.Mouse.PosX = LOWORD(LParam);
-        event.Mouse.PosY = HIWORD(LParam);
-        LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
-        break;
+        case WM_MOUSEWHEEL:
+            event.Type = LDL_EventIsMouseScroll;
+            event.Mouse.Scroll = LDL_MouseScrollVertical;
+            event.Mouse.Delta = GET_WHEEL_DELTA_WPARAM(WParam);
+            event.Mouse.PosX = LOWORD(LParam);
+            event.Mouse.PosY = HIWORD(LParam);
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
+
+        case WM_MOUSEHWHEEL:
+            event.Type = LDL_EventIsMouseScroll;
+            event.Mouse.Scroll = LDL_MouseScrollHorizontal;
+            event.Mouse.Delta = GET_WHEEL_DELTA_WPARAM(WParam);
+            event.Mouse.PosX = LOWORD(LParam);
+            event.Mouse.PosY = HIWORD(LParam);
+            LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
+            break;
+        }
+
+        return DefWindowProcA(mainWindow->Hwnd, Message, WParam, LParam);
     }
 
-    return DefWindowProcA(mainWindow->Hwnd, Message, WParam, LParam);
+    return 0;
 }
 
 LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam)
@@ -181,6 +186,7 @@ void LDL_MainWindowInit(LDL_MainWindow* mainWindow, LDL_Result* result, LDL_Vec2
     DWORD     style;
     int       posX;
     int       posY;
+    int showCmd = SW_SHOW;
 
 #ifdef _WIN64
     LONG_PTR setWindow;
@@ -188,113 +194,182 @@ void LDL_MainWindowInit(LDL_MainWindow* mainWindow, LDL_Result* result, LDL_Vec2
     LONG     setWindow;
 #endif 
 
-    LDL_KeyMapperInit(&mainWindow->KeyMapper);
-    LDL_EventHandlerInit(&mainWindow->EventHandler);
-
-	LDL_BaseWindowInit(&mainWindow->BaseWindow, pos, size, title, mode);
-
-    instance = GetModuleHandleA(NULL);
-    if (instance == NULL)
+    if (mainWindow && result)
     {
-        LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&mainWindow->WindowError));
-        return;
-    }
+        LDL_WindowErrorInit(&mainWindow->WindowError);
+        LDL_KeyMapperInit(&mainWindow->KeyMapper);
+        LDL_EventHandlerInit(&mainWindow->EventHandler);
+        LDL_BaseWindowInit(&mainWindow->BaseWindow, pos, size, title, mode);
 
-    memset(&windowClass, 0, sizeof(windowClass));
+        instance = GetModuleHandleA(NULL);
+        if (instance == NULL)
+        {
+            LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&mainWindow->WindowError));
+            return;
+        }
 
-    windowClass.hInstance     = instance;
-    windowClass.lpszClassName = AppName;
-    windowClass.lpfnWndProc   = WndProc;
-    windowClass.style         = CS_HREDRAW | CS_VREDRAW;
-    windowClass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-    windowClass.hIcon         = LoadIconA(NULL, IDI_APPLICATION);
-    windowClass.hCursor       = LoadCursorA(NULL, IDC_ARROW);
+        memset(&windowClass, 0, sizeof(windowClass));
 
-    atom = RegisterClassA(&windowClass);
-    if (atom == INVALID_ATOM)
-    {
-        LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&mainWindow->WindowError));
-        return;
-    }
+        windowClass.hInstance = instance;
+        windowClass.lpszClassName = AppName;
+        windowClass.lpfnWndProc = WndProc;
+        windowClass.style = CS_HREDRAW | CS_VREDRAW;
+        windowClass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+        windowClass.hIcon = LoadIconA(NULL, IDI_APPLICATION);
+        windowClass.hCursor = LoadCursorA(NULL, IDC_ARROW);
 
-    rect.left   = LDL_BaseWindowGetPos(&mainWindow->BaseWindow).x;
-    rect.top    = LDL_BaseWindowGetPos(&mainWindow->BaseWindow).y;
-    rect.right  = LDL_BaseWindowGetSize(&mainWindow->BaseWindow).x;
-    rect.bottom = LDL_BaseWindowGetSize(&mainWindow->BaseWindow).y;
+        atom = RegisterClassA(&windowClass);
+        if (atom == INVALID_ATOM)
+        {
+            LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&mainWindow->WindowError));
+            return;
+        }
 
-    style = WS_OVERLAPPEDWINDOW;
+        rect.left = LDL_BaseWindowGetPos(&mainWindow->BaseWindow).x;
+        rect.top = LDL_BaseWindowGetPos(&mainWindow->BaseWindow).y;
+        rect.right = LDL_BaseWindowGetSize(&mainWindow->BaseWindow).x;
+        rect.bottom = LDL_BaseWindowGetSize(&mainWindow->BaseWindow).y;
 
-    adjust = AdjustWindowRect(&rect, style, FALSE);
-    if (!adjust)
-    {
-        LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&mainWindow->WindowError));
-        return;
-    }
+        if (mode & LDL_WindowModeFullScreen)
+        {
+            style = WS_POPUP;
+        }
+        else if (mode & LDL_WindowModeFixed)
+        {
+            style = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX;
+        }
+        else
+        {
+            style = WS_OVERLAPPEDWINDOW;
+        }
 
-    posX = LDL_BaseWindowGetPos(&mainWindow->BaseWindow).x;
-    posY = LDL_BaseWindowGetPos(&mainWindow->BaseWindow).y;
+        if (mode & LDL_WindowModeMinimized)
+        {
+            showCmd = SW_SHOWMINIMIZED;
+        }
+        else if (mode & LDL_WindowModeMaximized)
+        {
+            showCmd = SW_SHOWMAXIMIZED;
+        }
+        else
+        {
+            showCmd = SW_SHOWNORMAL;
+        }
 
-    mainWindow->Hwnd = CreateWindowA(AppName, "", style, posX, posY, rect.right - rect.left, rect.bottom - rect.top, 0, 0, instance, 0);
-    if (mainWindow->Hwnd == NULL)
-    {
-        LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&mainWindow->WindowError));
-        return;
-    }
+        adjust = AdjustWindowRect(&rect, style, FALSE);
+        if (!adjust)
+        {
+            LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&mainWindow->WindowError));
+            return;
+        }
+
+        if (mode & LDL_WindowModeCentered)
+        {
+            posX = CW_USEDEFAULT;
+            posY = CW_USEDEFAULT;
+        }
+        else
+        {
+            posX = LDL_BaseWindowGetPos(&mainWindow->BaseWindow).x;
+            posY = LDL_BaseWindowGetPos(&mainWindow->BaseWindow).y;
+        }
+
+        mainWindow->Hwnd = CreateWindowA(AppName, LDL_BaseWindowGetTitle(&mainWindow->BaseWindow), style, posX, posY, rect.right - rect.left, rect.bottom - rect.top, 0, 0, instance, 0);
+        if (mainWindow->Hwnd == NULL)
+        {
+            LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&mainWindow->WindowError));
+            return;
+        }
 
 #ifdef _WIN64
-    setWindow = SetWindowLongPtrA(mainWindow->Hwnd, GWLP_USERDATA, (LONG_PTR)mainWindow);
+        setWindow = SetWindowLongPtrA(mainWindow->Hwnd, GWLP_USERDATA, (LONG_PTR)mainWindow);
 #elif _WIN32
-    setWindow = SetWindowLongA(mainWindow->Hwnd, GWL_USERDATA, (LONG)mainWindow);
+        setWindow = SetWindowLongA(mainWindow->Hwnd, GWL_USERDATA, (LONG)mainWindow);
 #endif  
 
-    if (setWindow == 0 && GetLastError() != 0)
-    {
-        LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&mainWindow->WindowError));
-        return;
-    }
+        if (setWindow == 0 && GetLastError() != 0)
+        {
+            LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&mainWindow->WindowError));
+            return;
+        }
 
-    ShowWindow(mainWindow->Hwnd, SW_SHOW);
+        ShowWindow(mainWindow->Hwnd, showCmd);
+    }
 }
 
 void LDL_MainWindowDeinit(LDL_MainWindow* mainWindow)
 {
+    if (mainWindow)
+    {
+        if (mainWindow->Hwnd)
+        {
+            DestroyWindow(mainWindow->Hwnd);
+            mainWindow->Hwnd = NULL;
+        }
+
+        while (!LDL_EventHandlerEmpty(&mainWindow->EventHandler))
+        {
+            LDL_Event event;
+            LDL_EventHandlerPop(&mainWindow->EventHandler, &event);
+        }
+    }
 }
 
 LDL_Vec2i LDL_MainWindowGetPos(LDL_MainWindow* mainWindow)
 {
-	return LDL_BaseWindowGetPos(&mainWindow->BaseWindow);
+    if (mainWindow)
+    {
+        return LDL_BaseWindowGetPos(&mainWindow->BaseWindow);
+    }
+
+    return LDL_GetVec2i(0, 0);
 }
 
 LDL_Vec2i LDL_MainWindowGetSize(LDL_MainWindow* mainWindow)
 {
-    return LDL_BaseWindowGetSize(&mainWindow->BaseWindow);
+    if (mainWindow)
+    {
+        return LDL_BaseWindowGetSize(&mainWindow->BaseWindow);
+    }
+
+    return LDL_GetVec2i(0, 0);
 }
 
 const char* LDL_MainWindowGetTitle(LDL_MainWindow* mainWindow)
 {
-    return LDL_BaseWindowGetTitle(&mainWindow->BaseWindow);
+    if (mainWindow)
+    {
+        return LDL_BaseWindowGetTitle(&mainWindow->BaseWindow);
+    }
+
+    return NULL;
 }
+
 
 void LDL_MainWindowPollEvents(LDL_MainWindow* mainWindow)
 {
     MSG msg;
 
-    while (PeekMessageA(&msg, mainWindow->Hwnd, 0, 0, PM_REMOVE))
+    if (mainWindow && mainWindow->Hwnd)
     {
-        TranslateMessage(&msg);
-        DispatchMessageA(&msg);
+        while (PeekMessageA(&msg, mainWindow->Hwnd, 0, 0, PM_REMOVE))
+        {
+            TranslateMessage(&msg);
+            DispatchMessageA(&msg);
+        }
     }
 }
 
 bool LDL_MainWindowGetEvent(LDL_MainWindow* mainWindow, LDL_Event* event)
 {
-    LDL_MainWindowPollEvents(mainWindow);
-
-    if (!LDL_EventHandlerEmpty(&mainWindow->EventHandler))
+    if (mainWindow && event)
     {
-        LDL_EventHandlerPop(&mainWindow->EventHandler, event);
+        LDL_MainWindowPollEvents(mainWindow);
 
-        return true;
+        if (!LDL_EventHandlerEmpty(&mainWindow->EventHandler))
+        {
+            return LDL_EventHandlerPop(&mainWindow->EventHandler, event);
+        }
     }
 
     return false;
@@ -302,10 +377,18 @@ bool LDL_MainWindowGetEvent(LDL_MainWindow* mainWindow, LDL_Event* event)
 
 void LDL_MainWindowStopEvent(LDL_MainWindow* mainWindow)
 {
-    LDL_EventHandlerStop(&mainWindow->EventHandler);
+    if (mainWindow)
+    {
+        LDL_EventHandlerStop(&mainWindow->EventHandler);
+    }
 }
 
 bool LDL_MainWindowIsRunning(LDL_MainWindow* mainWindow)
 {
-    return LDL_EventHandlerRunning(&mainWindow->EventHandler);
+    if (mainWindow)
+    {
+        return LDL_EventHandlerRunning(&mainWindow->EventHandler);
+    }
+
+    return false;
 }

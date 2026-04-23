@@ -29,7 +29,7 @@ typedef struct LDL_Formatter
 
 void LDL_FormatterClear(LDL_Formatter* formatter)
 {
-    memset(&formatter->Buffer, 0, LDL_FormatterMax);
+    memset(formatter->Buffer, 0, LDL_FormatterMax);
 }
 
 LDL_Formatter* LDL_FormatterNew()
@@ -56,7 +56,7 @@ void LDL_FormatterFree(LDL_Formatter* formatter)
 
 char* LDL_FormatterGetData(LDL_Formatter* formatter)
 {
-    return formatter->Buffer;
+    return formatter ? formatter->Buffer : NULL;
 }
 
 void LDL_FormatterReverse(char* s, int len)
@@ -76,7 +76,16 @@ void LDL_FormatterReverse(char* s, int len)
 int LDL_FormatterItoa(int num, char* str)
 {
     int i = 0;
-    unsigned int n = (num < 0) ? (unsigned int)(-num) : (unsigned int)num;
+    unsigned int n;
+
+    if (num < 0)
+    {
+        n = (unsigned int)(-(num + 1)) + 1;
+    }
+    else
+    {
+        n = (unsigned int)num;
+    }
 
     if (num == 0)
     {

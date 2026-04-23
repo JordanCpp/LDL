@@ -19,34 +19,38 @@ void LDL_KeyMappingInit(LDL_KeyMapping* keyMapping)
 {
 	size_t i;
 
-	for (i = 0; i < LDL_KeyMappingMax; i++)
+	if (keyMapping)
 	{
-		LDL_KeyMapInit(&keyMapping->Table[i], 0, 0);
-	}
+		for (i = 0; i < LDL_KeyMappingMax; i++)
+		{
+			LDL_KeyMapInit(&keyMapping->Table[i], 0, 0);
+		}
 
-	keyMapping->Current = 0;
+		keyMapping->Current = 0;
+	}
 }
 
 void LDL_KeyMappingAdd(LDL_KeyMapping* keyMapping, uint32_t code, uint8_t key)
 {
-	if (keyMapping->Current < LDL_KeyMappingMax)
+	if (keyMapping && keyMapping->Current < LDL_KeyMappingMax)
 	{
-		keyMapping->Table[keyMapping->Current].Key  = key;
-		keyMapping->Table[keyMapping->Current].Code = code;
-
+		LDL_KeyMapInit(&keyMapping->Table[keyMapping->Current], code, key);
 		keyMapping->Current++;
 	}
 }
 
-uint8_t LDL_KeyMappingFindKey(LDL_KeyMapping* keyMapping, size_t key)
+uint8_t LDL_KeyMappingFindKey(LDL_KeyMapping* keyMapping, uint32_t scanCode)
 {
 	size_t i;
 
-	for (i = 0; i < keyMapping->Current; i++)
+	if (keyMapping)
 	{
-		if (keyMapping->Table[i].Code == key)
+		for (i = 0; i < keyMapping->Current; i++)
 		{
-			return keyMapping->Table[i].Key;
+			if (keyMapping->Table[i].Code == scanCode)
+			{
+				return keyMapping->Table[i].Key;
+			}
 		}
 	}
 

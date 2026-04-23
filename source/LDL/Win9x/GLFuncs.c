@@ -34,12 +34,9 @@ void LDL_OpenGLFunctionsInit(LDL_OpenGLFunctions* openGLFunctions, LDL_Result* r
 
 void LDL_OpenGLFunctionsDeinit(LDL_OpenGLFunctions* openGLFunctions)
 {
-	if (openGLFunctions)
+	if (openGLFunctions && openGLFunctions->Library)
 	{
-		if (openGLFunctions->Library)
-		{
-			LDL_LibraryFree(openGLFunctions->Library);
-		}
+		LDL_LibraryFree(openGLFunctions->Library);
 	}
 }
 
@@ -50,11 +47,16 @@ bool IsValid(LDL_VoidFuncPtr ptr)
 
 LDL_VoidFuncPtr LDL_OpenGLFunctionsGetFunction(LDL_OpenGLFunctions* openGLFunctions, const char* name)
 {
-	LDL_VoidFuncPtr result = (LDL_VoidFuncPtr)wglGetProcAddress(name);
+	LDL_VoidFuncPtr result = NULL;
 
-	if (IsValid(result))
+	if (openGLFunctions)
 	{
-		result = LDL_LibraryGetFunction(openGLFunctions->Library, name);
+		result = (LDL_VoidFuncPtr)wglGetProcAddress(name);
+
+		if (IsValid(result))
+		{
+			result = LDL_LibraryGetFunction(openGLFunctions->Library, name);
+		}
 	}
 
 	return result;

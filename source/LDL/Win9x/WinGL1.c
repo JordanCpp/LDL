@@ -20,90 +20,134 @@ void LDL_WindowOpenGL1Init(LDL_WindowOpenGL1* window, LDL_Result* result, LDL_Ve
     LDL_WindowError windowError;
     int format;
 
-	window->Result        = result;
-    window->DeviceContext = NULL;
-	window->OpenGLContext = NULL;
-
-	LDL_MainWindowInit(&window->MainWindow, result, pos, size, title, mode);
-    LDL_WindowErrorInit(&windowError);
-    memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
-
-    window->DeviceContext = GetDC(window->MainWindow.Hwnd);
-    if (window->DeviceContext == NULL)
+    if (window && result)
     {
-        LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&windowError));
-        return;
-    }
+        LDL_WindowErrorInit(&windowError);
 
-    pfd.nSize      = sizeof(pfd);
-    pfd.nVersion   = 1;
-    pfd.dwFlags    = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-    pfd.iPixelType = PFD_TYPE_RGBA;
-    pfd.cColorBits = 24;
-    pfd.cDepthBits = 16;
-    pfd.iLayerType = PFD_MAIN_PLANE;
+        window->Result = result;
+        window->DeviceContext = NULL;
+        window->OpenGLContext = NULL;
 
-    format = ChoosePixelFormat(window->DeviceContext, &pfd);
-    if (format == 0)
-    {
-        LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&windowError));
-        return;
-    }
+        LDL_MainWindowInit(&window->MainWindow, result, pos, size, title, mode);
 
-    if (!SetPixelFormat(window->DeviceContext, format, &pfd))
-    {
-        LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&windowError));
-        return;
-    }
+        memset(&pfd, 0, sizeof(PIXELFORMATDESCRIPTOR));
 
-    window->OpenGLContext = wglCreateContext(window->DeviceContext);
-    if (window->OpenGLContext == NULL)
-    {
-        LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&windowError));
-        return;
-    }
+        window->DeviceContext = GetDC(window->MainWindow.Hwnd);
+        if (window->DeviceContext == NULL)
+        {
+            LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&windowError));
+            return;
+        }
 
-    if (!wglMakeCurrent(window->DeviceContext, window->OpenGLContext))
-    {
-        LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&windowError));
-        return;
+        pfd.nSize = sizeof(pfd);
+        pfd.nVersion = 1;
+        pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+        pfd.iPixelType = PFD_TYPE_RGBA;
+        pfd.cColorBits = 24;
+        pfd.cDepthBits = 16;
+        pfd.iLayerType = PFD_MAIN_PLANE;
+
+        format = ChoosePixelFormat(window->DeviceContext, &pfd);
+        if (format == 0)
+        {
+            LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&windowError));
+            return;
+        }
+
+        if (!SetPixelFormat(window->DeviceContext, format, &pfd))
+        {
+            LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&windowError));
+            return;
+        }
+
+        window->OpenGLContext = wglCreateContext(window->DeviceContext);
+        if (window->OpenGLContext == NULL)
+        {
+            LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&windowError));
+            return;
+        }
+
+        if (!wglMakeCurrent(window->DeviceContext, window->OpenGLContext))
+        {
+            LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&windowError));
+            return;
+        }
     }
 }
 
 void LDL_WindowOpenGL1Deinit(LDL_WindowOpenGL1* window)
 {
-    wglMakeCurrent(NULL, NULL);
-    wglDeleteContext(window->OpenGLContext);
+    if (window)
+    {
+        if (window->OpenGLContext)
+        {
+            wglMakeCurrent(NULL, NULL);
+            wglDeleteContext(window->OpenGLContext);
+            window->OpenGLContext = NULL;
+        }
 
-	LDL_MainWindowDeinit(&window->MainWindow);
+        if (window->DeviceContext)
+        {
+            ReleaseDC(window->MainWindow.Hwnd, window->DeviceContext);
+            window->DeviceContext = NULL;
+        }
+
+        LDL_MainWindowDeinit(&window->MainWindow);
+    }
 }
 
 LDL_Vec2i LDL_WindowOpenGL1GetPos(LDL_WindowOpenGL1* window)
 {
-	return LDL_MainWindowGetPos(&window->MainWindow);
+    if (window)
+    {
+        return LDL_MainWindowGetPos(&window->MainWindow);
+    }
+
+    return LDL_GetVec2i(0, 0);
 }
 
 LDL_Vec2i LDL_WindowOpenGL1GetSize(LDL_WindowOpenGL1* window)
 {
-    return LDL_MainWindowGetSize(&window->MainWindow);
+    if (window)
+    {
+        return LDL_MainWindowGetSize(&window->MainWindow);
+    }
+
+    return LDL_GetVec2i(0, 0);
 }
 
 bool LDL_WindowOpenGL1GetEvent(LDL_WindowOpenGL1* window, LDL_Event* event)
 {
-	return LDL_MainWindowGetEvent(&window->MainWindow, event);
+    if (window && event)
+    {
+        return LDL_MainWindowGetEvent(&window->MainWindow, event);
+    }
+
+    return false;
 }
 
 void LDL_WindowOpenGL1Present(LDL_WindowOpenGL1* window)
 {
-    SwapBuffers(window->DeviceContext);
+    if (window)
+    {
+        SwapBuffers(window->DeviceContext);
+    }
 }
 
 void LDL_WindowOpenGL1StopEvent(LDL_WindowOpenGL1* window)
 {
-	LDL_MainWindowStopEvent(&window->MainWindow);
+    if (window)
+    {
+        LDL_MainWindowStopEvent(&window->MainWindow);
+    }
 }
 
 bool LDL_WindowOpenGL1IsRunning(LDL_WindowOpenGL1* window)
 {
-	return LDL_MainWindowIsRunning(&window->MainWindow);
+    if (window)
+    {
+        return LDL_MainWindowIsRunning(&window->MainWindow);
+    }
+
+    return false;
 }

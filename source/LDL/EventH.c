@@ -16,28 +16,36 @@ License for more details.
 
 void LDL_EventHandlerInit(LDL_EventHandler* eventHandler)
 {
-    LDL_EventQueueInit(&eventHandler->Queue);
-
-    eventHandler->Running = true;
+    if (eventHandler)
+    {
+        LDL_EventQueueInit(&eventHandler->Queue);
+        eventHandler->Running = true;
+    }
 }
 
 bool LDL_EventHandlerEmpty(LDL_EventHandler* eventHandler)
 {
-    return LDL_EventQueueEmpty(&eventHandler->Queue);
+    if (eventHandler)
+    {
+        return LDL_EventQueueEmpty(&eventHandler->Queue);
+    }
+
+    return true;
 }
 
 void LDL_EventHandlerPush(LDL_EventHandler* eventHandler, const LDL_Event* event)
 {
-    LDL_EventQueueEnqueue(&eventHandler->Queue, event);
+    if (eventHandler && event)
+    {
+        LDL_EventQueueEnqueue(&eventHandler->Queue, event);
+    }
 }
 
 bool LDL_EventHandlerPop(LDL_EventHandler* eventHandler, LDL_Event* event)
 {
-    if (!LDL_EventHandlerEmpty(eventHandler))
+    if (eventHandler && event && !LDL_EventHandlerEmpty(eventHandler))
     {
-        LDL_EventQueueDequeue(&eventHandler->Queue, event);
-
-        return true;
+        return LDL_EventQueueDequeue(&eventHandler->Queue, event);
     }
 
     return false;
@@ -45,10 +53,18 @@ bool LDL_EventHandlerPop(LDL_EventHandler* eventHandler, LDL_Event* event)
 
 bool LDL_EventHandlerRunning(LDL_EventHandler* eventHandler)
 {
-    return eventHandler->Running;
+    if (eventHandler)
+    {
+        return eventHandler->Running;
+    }
+
+    return false;
 }
 
 void LDL_EventHandlerStop(LDL_EventHandler* eventHandler)
 {
-    eventHandler->Running = false;
+    if (eventHandler)
+    {
+        eventHandler->Running = false;
+    }
 }

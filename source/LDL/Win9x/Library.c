@@ -12,6 +12,7 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
+#include <stdlib.h>
 #include <LDL/Library.h>
 #include <LDL/Win9x/WinX.h>
 
@@ -51,25 +52,31 @@ void LDL_LibraryFree(LDL_Library* library)
 
 bool LDL_LibraryOpen(LDL_Library* library, const char* path)
 {
-	LDL_LibraryClose(library);
-
-	library->Module = LoadLibrary(path);
-
-	if (library->Module == NULL)
+	if (library)
 	{
-		LDL_ResultAddMessage(library->Result, "Load library failed: %s\n", path);
+		LDL_LibraryClose(library);
 
-		return false;
+		library->Module = LoadLibraryA(path);
+
+		if (library->Module == NULL && library->Result)
+		{
+			LDL_ResultAddMessage(library->Result, "Load library failed: %s\n", path);
+
+			return false;
+		}
+
+		return true;
 	}
 
-	return true;
+	return false;
 }
 
 void LDL_LibraryClose(LDL_Library* library)
 {
-	if (library->Module != NULL)
+	if (library && library->Module != NULL)
 	{
 		FreeLibrary(library->Module);
+		library->Module = NULL;
 	}
 }
 
@@ -83,7 +90,7 @@ LDL_VoidFuncPtr LDL_LibraryGetFunction(LDL_Library* library, const char* name)
 		{
 			result = (LDL_VoidFuncPtr)GetProcAddress(library->Module, name);
 
-			if (result == NULL)
+			if (result == NULL && library->Result)
 			{
 				LDL_ResultAddMessage(library->Result, "GetProcAddress failed: %s\n", name);
 			}

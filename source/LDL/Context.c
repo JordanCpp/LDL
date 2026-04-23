@@ -44,5 +44,10 @@ void LDL_ContextFree(LDL_Context* context)
 
 size_t LDL_ContextGet(LDL_Context* context)
 {
-	return context->Mode;
+	if (context)
+	{
+		return context->Mode;
+	}
+
+	return 0;
 }

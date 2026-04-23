@@ -16,16 +16,29 @@ License for more details.
 
 void LDL_KeyMapInit(LDL_KeyMap* keyMap, uint32_t code, uint8_t key)
 {
-	keyMap->Code = code;
-	keyMap->Key  = key;
+	if (keyMap)
+	{
+		keyMap->Code = code;
+		keyMap->Key  = key;
+	}
 }
 
 uint8_t LDL_KeyMapGetKey(LDL_KeyMap* keyMap)
 {
-	return keyMap->Key;
+	if (keyMap)
+	{
+		return keyMap->Key;
+	}
+
+	return 0;
 }
 
-uint8_t LDL_KeyMapGetCode(LDL_KeyMap* keyMap)
+uint32_t LDL_KeyMapGetCode(LDL_KeyMap* keyMap)
 {
-	return keyMap->Code;
+	if (keyMap)
+	{
+		return keyMap->Code;
+	}
+
+	return 0;
 }

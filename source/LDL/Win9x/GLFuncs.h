@@ -16,7 +16,6 @@ License for more details.
 #define LDL_Win9x_GLFuncs_H
 
 #include <LDL/Library.h>
-#include <LDL/Win9x/GLFuncs.h>
 
 typedef struct LDL_OpenGLFunctions
 {
