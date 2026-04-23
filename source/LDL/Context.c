@@ -12,14 +12,37 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#ifndef LDL_H
-#define LDL_H
-
+#include <stdlib.h>
 #include <LDL/Context.h>
-#include <LDL/Result.h>
-#include <LDL/Window.h>
-#include <LDL/Library.h>
-#include <LDL/Format.h>
-#include <LDL/Ticks.h>
 
-#endif
+typedef struct LDL_Context
+{
+	size_t Mode;
+} LDL_Context;
+
+LDL_Context* LDL_ContextNew(size_t mode)
+{
+	LDL_Context* context = (LDL_Context*)malloc(sizeof(LDL_Context));
+
+	if (context)
+	{
+		context->Mode = mode;
+
+		return context;
+	}
+
+	return NULL;
+}
+
+void LDL_ContextFree(LDL_Context* context)
+{
+	if (context)
+	{
+		free(context);
+	}
+}
+
+size_t LDL_ContextGet(LDL_Context* context)
+{
+	return context->Mode;
+}

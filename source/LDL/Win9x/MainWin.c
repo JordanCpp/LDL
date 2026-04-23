@@ -265,6 +265,16 @@ LDL_Vec2i LDL_MainWindowGetPos(LDL_MainWindow* mainWindow)
 	return LDL_BaseWindowGetPos(&mainWindow->BaseWindow);
 }
 
+LDL_Vec2i LDL_MainWindowGetSize(LDL_MainWindow* mainWindow)
+{
+    return LDL_BaseWindowGetSize(&mainWindow->BaseWindow);
+}
+
+const char* LDL_MainWindowGetTitle(LDL_MainWindow* mainWindow)
+{
+    return LDL_BaseWindowGetTitle(&mainWindow->BaseWindow);
+}
+
 void LDL_MainWindowPollEvents(LDL_MainWindow* mainWindow)
 {
     MSG msg;
@@ -278,15 +288,14 @@ void LDL_MainWindowPollEvents(LDL_MainWindow* mainWindow)
 
 bool LDL_MainWindowGetEvent(LDL_MainWindow* mainWindow, LDL_Event* event)
 {
-    
+    LDL_MainWindowPollEvents(mainWindow);
+
     if (!LDL_EventHandlerEmpty(&mainWindow->EventHandler))
     {
         LDL_EventHandlerPop(&mainWindow->EventHandler, event);
 
         return true;
     }
-
-    LDL_MainWindowPollEvents(mainWindow);
 
     return false;
 }

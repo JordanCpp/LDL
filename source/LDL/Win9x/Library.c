@@ -51,6 +51,8 @@ void LDL_LibraryFree(LDL_Library* library)
 
 bool LDL_LibraryOpen(LDL_Library* library, const char* path)
 {
+	LDL_LibraryClose(library);
+
 	library->Module = LoadLibrary(path);
 
 	if (library->Module == NULL)
@@ -75,13 +77,16 @@ LDL_VoidFuncPtr LDL_LibraryGetFunction(LDL_Library* library, const char* name)
 {
 	LDL_VoidFuncPtr result = NULL;
 
-	if (library->Module)
+	if (library)
 	{
-		result = (LDL_VoidFuncPtr)GetProcAddress(library->Module, name);
-
-		if (result == NULL)
+		if (library->Module)
 		{
-			LDL_ResultAddMessage(library->Result, "GetProcAddress failed: %s\n", name);
+			result = (LDL_VoidFuncPtr)GetProcAddress(library->Module, name);
+
+			if (result == NULL)
+			{
+				LDL_ResultAddMessage(library->Result, "GetProcAddress failed: %s\n", name);
+			}
 		}
 	}
 

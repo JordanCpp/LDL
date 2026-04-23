@@ -82,7 +82,7 @@ void LDL_EventQueueEnqueue(LDL_EventQueue* eventQueue, const LDL_Event* element)
     }
 }
 
-LDL_Event* LDL_EventQueuefront(LDL_EventQueue* eventQueue)
+LDL_Event* LDL_EventQueueFront(LDL_EventQueue* eventQueue)
 {
     return LDL_EventQueueEmpty(eventQueue) ? NULL : &eventQueue->Content[eventQueue->Tail];
 }

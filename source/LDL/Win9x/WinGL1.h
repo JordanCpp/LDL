@@ -29,6 +29,7 @@ void LDL_WindowOpenGL1Init(LDL_WindowOpenGL1* window, LDL_Result* result, LDL_Ve
 void LDL_WindowOpenGL1Deinit(LDL_WindowOpenGL1* window);
 
 LDL_Vec2i LDL_WindowOpenGL1GetPos(LDL_WindowOpenGL1* window);
+LDL_Vec2i LDL_WindowOpenGL1GetSize(LDL_WindowOpenGL1* window);
 
 bool LDL_WindowOpenGL1GetEvent(LDL_WindowOpenGL1* window, LDL_Event* event);
 void LDL_WindowOpenGL1StopEvent(LDL_WindowOpenGL1* window);

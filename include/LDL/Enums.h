@@ -58,10 +58,10 @@ enum
 
 enum
 {
-	LDL_RenderModeSoftware = 1,
-	LDL_RenderModeOpenGL1,
-	LDL_RenderModeOpenGL3,
-	LDL_RenderModeMax
+	LDL_ContextSoftware = 1,
+	LDL_ContextOpenGL1,
+	LDL_ContextOpenGL3,
+	LDL_ContextMax
 };
 
 enum

@@ -42,7 +42,7 @@ uint8_t LDL_KeyMappingFindKey(LDL_KeyMapping* keyMapping, size_t key)
 {
 	size_t i;
 
-	for (i = 0; i < LDL_KeyMappingMax; i++)
+	for (i = 0; i < keyMapping->Current; i++)
 	{
 		if (keyMapping->Table[i].Code == key)
 		{

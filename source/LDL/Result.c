@@ -27,7 +27,10 @@ typedef struct LDL_Result
 
 void LDL_ResultReset(LDL_Result* result)
 {
-	result->Ok = true;
+	if (result)
+	{
+		result->Ok = true;
+	}
 }
 
 LDL_Result* LDL_ResultNew()
@@ -61,18 +64,35 @@ void LDL_ResultFree(LDL_Result* result)
 
 bool LDL_ResultIsOk(LDL_Result* result)
 {
-	return result->Ok == true;
+	if (result)
+	{
+		return result->Ok == true;
+	}
+
+	return false;
 }
 
 bool LDL_ResultIsFail(LDL_Result* result)
 {
-	return result->Ok == false;
+	if (result)
+	{
+		return result->Ok == false;
+	}
+
+	return true;
 }
 
 const char* LDL_ResultGetMessage(LDL_Result* result)
 {
-	
-	return LDL_FormatterGetData(result->Formatter);
+	if (result)
+	{
+		if (result->Formatter)
+		{
+			return LDL_FormatterGetData(result->Formatter);
+		}
+	}
+
+	return NULL;
 }
 
 void LDL_ResultAddMessage(LDL_Result* result, const char* format, ...)

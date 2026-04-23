@@ -83,6 +83,11 @@ LDL_Vec2i LDL_WindowOpenGL1GetPos(LDL_WindowOpenGL1* window)
 	return LDL_MainWindowGetPos(&window->MainWindow);
 }
 
+LDL_Vec2i LDL_WindowOpenGL1GetSize(LDL_WindowOpenGL1* window)
+{
+    return LDL_MainWindowGetSize(&window->MainWindow);
+}
+
 bool LDL_WindowOpenGL1GetEvent(LDL_WindowOpenGL1* window, LDL_Event* event)
 {
 	return LDL_MainWindowGetEvent(&window->MainWindow, event);

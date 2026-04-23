@@ -19,16 +19,25 @@ License for more details.
 typedef struct LDL_Window
 {
 	LDL_Result*       Result;
+	LDL_Context*      Context;
 	LDL_WindowOpenGL1 WindowOpenGL1;
 } LDL_Window;
 
-LDL_Window* LDL_WindowNew(LDL_Result* result, LDL_Vec2i pos, LDL_Vec2i size, const char* title, size_t mode)
+LDL_Window* LDL_WindowNew(LDL_Result* result, LDL_Context* context, LDL_Vec2i pos, LDL_Vec2i size, const char* title, size_t mode)
 {
 	LDL_Window* window = (LDL_Window*)malloc(sizeof(LDL_Window));
 
 	if (window)
 	{
-		LDL_WindowOpenGL1Init(&window->WindowOpenGL1, result, pos, size, title, mode);
+		window->Context = context;
+		window->Result  = result;
+
+		switch (LDL_ContextGet(window->Context))
+		{
+		case LDL_ContextOpenGL1:
+			LDL_WindowOpenGL1Init(&window->WindowOpenGL1, result, pos, size, title, mode);
+			break;
+		};
 
 		return window;
 	}
@@ -40,7 +49,12 @@ void LDL_WindowFree(LDL_Window* window)
 {
 	if (window)
 	{
-		LDL_WindowOpenGL1Deinit(&window->WindowOpenGL1);
+		switch (LDL_ContextGet(window->Context))
+		{
+		case LDL_ContextOpenGL1:
+			LDL_WindowOpenGL1Deinit(&window->WindowOpenGL1);
+		};
+
 		free(window);
 	}
 }
@@ -52,15 +66,29 @@ bool LDL_WindowIsRunning(LDL_Window* window)
 
 void LDL_WindowStopEvent(LDL_Window* window)
 {
-	LDL_WindowOpenGL1StopEvent(&window->WindowOpenGL1);
+	switch (LDL_ContextGet(window->Context))
+	{
+	case LDL_ContextOpenGL1:
+		LDL_WindowOpenGL1StopEvent(&window->WindowOpenGL1);
+	};
 }
 
 bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event)
 {
-	return LDL_WindowOpenGL1GetEvent(&window->WindowOpenGL1, event);;
+	switch (LDL_ContextGet(window->Context))
+	{
+	case LDL_ContextOpenGL1:
+		return LDL_WindowOpenGL1GetEvent(&window->WindowOpenGL1, event);
+	default:
+		return false;
+	};
 }
 
 void LDL_WindowPresent(LDL_Window* window)
 {
-	LDL_WindowOpenGL1Present(&window->WindowOpenGL1);
+	switch (LDL_ContextGet(window->Context))
+	{
+	case LDL_ContextOpenGL1:
+		LDL_WindowOpenGL1Present(&window->WindowOpenGL1);
+	};
 }

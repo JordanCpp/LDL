@@ -12,8 +12,8 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#include <LDL/Win9x/GLFuncs.h>
 #include <LDL/Win9x/WinX.h>
+#include <LDL/Win9x/GLFuncs.h>
 
 void LDL_OpenGLFunctionsInit(LDL_OpenGLFunctions* openGLFunctions, LDL_Result* result)
 {
@@ -40,8 +40,6 @@ void LDL_OpenGLFunctionsDeinit(LDL_OpenGLFunctions* openGLFunctions)
 		{
 			LDL_LibraryFree(openGLFunctions->Library);
 		}
-
-		free(openGLFunctions);
 	}
 }
 

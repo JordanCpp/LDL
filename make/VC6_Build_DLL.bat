@@ -12,8 +12,7 @@ opengl32.lib ^
 winmm.lib   ^
 user32.lib
 
-cl /O2 -Femain.exe   -GX /I..\include ../main.c    /link LDL.lib glu32.lib opengl32.lib
-cl /O2 -FeGLMain.exe -GX /I..\include ../GLMain.c /link LDL.lib glu32.lib opengl32.lib
+cl /O2 -FeOpenGL1_Rect.exe -GX /I..\include ..\examples\OpenGL1\OpenGL1_Rect.c /link LDL.lib glu32.lib opengl32.lib
 
 del *.obj
 

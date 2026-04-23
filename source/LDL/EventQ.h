@@ -40,6 +40,6 @@ size_t LDL_EventQueueCapacity(LDL_EventQueue* eventQueue);
 size_t LDL_EventQueueNext(LDL_EventQueue* eventQueue, size_t pos);
 bool LDL_EventQueueDequeue(LDL_EventQueue* eventQueue, LDL_Event* element);
 void LDL_EventQueueEnqueue(LDL_EventQueue* eventQueue, const LDL_Event* element);
-LDL_Event* LDL_EventQueuefront(LDL_EventQueue* eventQueue);
+LDL_Event* LDL_EventQueueFront(LDL_EventQueue* eventQueue);
 
 #endif

@@ -16,8 +16,8 @@ License for more details.
 #define LDL_Win9x_MainWin_H
 
 #include <LDL/Result.h>
-#include <LDL/BaseWin.h>
 #include <LDL/EventH.h>
+#include <LDL/BaseWin.h>
 #include <LDL/Win9x/WinX.h>
 #include <LDL/Win9x/KMapper.h>
 #include <LDL/Win9x/WinError.h>
@@ -35,6 +35,9 @@ void LDL_MainWindowInit(LDL_MainWindow* mainWindow, LDL_Result* result, LDL_Vec2
 void LDL_MainWindowDeinit(LDL_MainWindow* mainWindow);
 
 LDL_Vec2i LDL_MainWindowGetPos(LDL_MainWindow* mainWindow);
+LDL_Vec2i LDL_MainWindowGetSize(LDL_MainWindow* mainWindow);
+const char* LDL_MainWindowGetTitle(LDL_MainWindow* mainWindow);
+
 void LDL_MainWindowPollEvents(LDL_MainWindow* mainWindow);
 bool LDL_MainWindowGetEvent(LDL_MainWindow* mainWindow, LDL_Event* event);
 void LDL_MainWindowStopEvent(LDL_MainWindow* mainWindow);

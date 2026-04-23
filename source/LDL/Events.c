@@ -16,21 +16,40 @@ License for more details.
 
 bool LDL_EventIsKeyPressed(LDL_Event* event, uint8_t key)
 {
-	return (event->Type == LDL_EventIsKeyboard && event->Keyboard.Key == key && event->Keyboard.State == LDL_ButtonStatePressed);
+	if (event)
+	{
+		return (event->Type == LDL_EventIsKeyboard && event->Keyboard.Key == key && event->Keyboard.State == LDL_ButtonStatePressed);
+	}
+
+	return false;
 }
 
 bool LDL_EventIsKeyReleased(LDL_Event* event, uint8_t key)
 {
-	return (event->Type == LDL_EventIsKeyboard && event->Keyboard.Key == key && event->Keyboard.State == LDL_ButtonStateReleased);
+	if (event)
+	{
+		return (event->Type == LDL_EventIsKeyboard && event->Keyboard.Key == key && event->Keyboard.State == LDL_ButtonStateReleased);
+	}
 
+	return false;
 }
 
 bool LDL_EventIsMousePressed(LDL_Event* event, uint8_t key)
 {
-	return (event->Type == LDL_EventIsMouseClick && event->Mouse.Button == key && event->Mouse.State == LDL_ButtonStatePressed);
+	if (event)
+	{
+		return (event->Type == LDL_EventIsMouseClick && event->Mouse.Button == key && event->Mouse.State == LDL_ButtonStatePressed);
+	}
+
+	return false;
 }
 
 bool LDL_EventIsMouseReleased(LDL_Event* event, uint8_t key)
 {
-	return (event->Type == LDL_EventIsMouseClick && event->Mouse.Button == key && event->Mouse.State == LDL_ButtonStateReleased);
+	if (event)
+	{
+		return (event->Type == LDL_EventIsMouseClick && event->Mouse.Button == key && event->Mouse.State == LDL_ButtonStateReleased);
+	}
+
+	return false;
 }

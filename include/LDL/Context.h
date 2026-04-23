@@ -12,28 +12,21 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#ifndef LDL_Window_H
-#define LDL_Window_H
+#ifndef LDL_Context_H
+#define LDL_Context_H
 
-#include <LDL/Result.h>
-#include <LDL/Vec2i.h>
-#include <LDL/Events.h>
-#include <LDL/Context.h>
+#include <LDL/Config.h>
+#include <LDL/Types.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef struct LDL_Window LDL_Window;
+typedef struct LDL_Context LDL_Context;
 
-LDL_LIBRARY LDL_Window* LDL_WindowNew(LDL_Result* result, LDL_Context* context, LDL_Vec2i pos, LDL_Vec2i size, const char* title, size_t mode);
-LDL_LIBRARY void LDL_WindowFree(LDL_Window* window);
-
-LDL_LIBRARY bool LDL_WindowIsRunning(LDL_Window* window);
-LDL_LIBRARY void LDL_WindowStopEvent(LDL_Window* window);
-LDL_LIBRARY bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event);
-
-LDL_LIBRARY void LDL_WindowPresent(LDL_Window* window);
+LDL_LIBRARY LDL_Context* LDL_ContextNew(size_t mode);
+LDL_LIBRARY void LDL_ContextFree(LDL_Context* context);
+LDL_LIBRARY size_t LDL_ContextGet(LDL_Context* context);
 
 #ifdef __cplusplus
 }

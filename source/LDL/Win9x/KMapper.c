@@ -12,12 +12,14 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#include <LDL/Win9x/KMapper.h>
-#include <LDL/Win9x/WinX.h>
 #include <LDL/Enums.h>
+#include <LDL/Win9x/WinX.h>
+#include <LDL/Win9x/KMapper.h>
 
 void LDL_KeyMapperInit(LDL_KeyMapper* keyMapper)
 {
+    LDL_KeyMappingInit(&keyMapper->Mapping);
+
     LDL_KeyMappingAdd(&keyMapper->Mapping,VK_LWIN, LDL_KeyLSystem);
     LDL_KeyMappingAdd(&keyMapper->Mapping,VK_RWIN, LDL_KeyRSystem);
     LDL_KeyMappingAdd(&keyMapper->Mapping,VK_APPS, LDL_KeyMenu);

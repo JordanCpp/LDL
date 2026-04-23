@@ -1,3 +1,16 @@
+/*
+Copyright(C) 2026 Evgeny Zoshchuk (JordanCpp)
+
+This library is free software; you can redistribute it and /or modify it
+under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation; either version 3 of the License, or
+(at your option) any later version.
+
+This library is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
+License for more details.
+*/
 
 #include <stdio.h>
 #include <LDL/LDL.h>
@@ -31,13 +44,15 @@ void Display()
 
 int main()
 {
-	LDL_Result* result;
-	LDL_Window* window;
-	LDL_Event   event;
+	LDL_Result*       result;
+	LDL_Context*      context;
+	LDL_Window*       window;
+	LDL_Event         event;
 	LDL_OpenGLLoader* loader;
 
-	result = LDL_ResultNew();
-	window = LDL_WindowNew(result, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "", 0);
+	result  = LDL_ResultNew();
+	context = LDL_ContextNew(LDL_ContextOpenGL1);
+	window  = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "", 0);
 
 	if (LDL_ResultIsOk(result))
 	{
@@ -63,9 +78,10 @@ int main()
 			LDL_WindowPresent(window);
 		}
 
-		LDL_ResultFree(result);
-		LDL_WindowFree(window);
 		LDL_OpenGLLoaderFree(loader);
+		LDL_ContextFree(context);
+		LDL_WindowFree(window);
+		LDL_ResultFree(result);
 	}
 
 	if (LDL_ResultIsFail(result))
