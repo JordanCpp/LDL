@@ -15,7 +15,7 @@ add_definitions(-DLDL_STATIC_LIBRARY)
 include_directories("include")
 include_directories("source")
 
-file(GLOB SHARED_SOURCE 
+set(SHARED_SOURCE 
     "source/LDL/BaseWin.c"
     "source/LDL/Context.c"
     "source/LDL/EventH.c"
@@ -28,7 +28,7 @@ file(GLOB SHARED_SOURCE
     "source/LDL/StrSpan.c"
     "source/LDL/Vec2i.c")
 
-file(GLOB OPENGL_SOURCE 
+set(OPENGL_SOURCE 
     "source/LDL/OpenGL/GLLoad.c"
     "source/LDL/OpenGL/GL1_0.c"
     "source/LDL/OpenGL/GL1_1.c"
@@ -51,7 +51,7 @@ file(GLOB OPENGL_SOURCE
     "source/LDL/OpenGL/GL4_6.c")
 
 if (WIN32)
-    file(GLOB PLATFORM_SOURCE 
+    set(PLATFORM_SOURCE 
     "source/LDL/Win9x/GLFuncs.c"
     "source/LDL/Win9x/KMapper.c"
     "source/LDL/Win9x/Library.c"
@@ -61,7 +61,7 @@ if (WIN32)
     "source/LDL/Win9x/WinError.c"
     "source/LDL/Win9x/WinGL1.c")
 elseif(UNIX AND NOT APPLE)
-    file(GLOB PLATFORM_SOURCE)
+    set(PLATFORM_SOURCE)
 endif()
 
 file(GLOB SOURCE ${SHARED_SOURCE} ${OPENGL_SOURCE} ${PLATFORM_SOURCE})
