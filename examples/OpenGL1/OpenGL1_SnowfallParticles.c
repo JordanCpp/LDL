@@ -51,12 +51,13 @@ void Perspective(double fovY, double aspect, double zNear, double zFar)
 
 void Resize(int width, int height)
 {
+    float aspect = (float)width / (float)height;
+
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    float aspect = (float)width / (float)height;
     Perspective(45.0, aspect, 0.1, 100.0);
 
     glMatrixMode(GL_MODELVIEW);
@@ -139,6 +140,8 @@ void DrawParticles(void)
 
 void DrawGround(void)
 {
+    int i;
+
     /* Simple ground plane */
     glBegin(GL_QUADS);
     glColor3f(0.2f, 0.2f, 0.3f);
@@ -151,13 +154,15 @@ void DrawGround(void)
     /* Grid on ground */
     glColor3f(0.3f, 0.3f, 0.4f);
     glBegin(GL_LINES);
-    for (int i = -10; i <= 10; i++)
+
+    for (i = -10; i <= 10; i++)
     {
         glVertex3f((float)i, -1.9f, -4.0f);
         glVertex3f((float)i, -1.9f, 4.0f);
         glVertex3f(-10.0f, -1.9f, (float)i);
         glVertex3f(10.0f, -1.9f, (float)i);
     }
+
     glEnd();
 }
 
@@ -188,8 +193,7 @@ int main(void)
 
     result = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600),
-        "LDL - Snowfall Particles (OpenGL 1.2)", 0);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL - Snowfall Particles (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
@@ -205,14 +209,14 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
 
-                if (event.Type == LDL_EventIsResize)
+                if (event.u.Type == LDL_EventIsResize)
                 {
-                    Resize((int)event.Resize.Width, (int)event.Resize.Height);
+                    Resize((int)event.u.Resize.Width, (int)event.u.Resize.Height);
                 }
             }
 

@@ -43,12 +43,13 @@ void Perspective(double fovY, double aspect, double zNear, double zFar)
 
 void Resize(int width, int height)
 {
+    float aspect = (float)width / (float)height;
+
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    float aspect = (float)width / (float)height;
     Perspective(45.0, aspect, 0.1, 100.0);
 
     glMatrixMode(GL_MODELVIEW);
@@ -126,21 +127,27 @@ void DrawAxes(void)
 
 void DrawGrid(void)
 {
+    int i;
+
     glColor3f(0.3f, 0.3f, 0.3f);
     glBegin(GL_LINES);
-    for (int i = -5; i <= 5; i++)
+
+    for (i = -5; i <= 5; i++)
     {
         glVertex3f((float)i, -1.0f, -5.0f);
         glVertex3f((float)i, -1.0f, 5.0f);
         glVertex3f(-5.0f, -1.0f, (float)i);
         glVertex3f(5.0f, -1.0f, (float)i);
     }
+
     glEnd();
 }
 
 void DrawInfo(int width, int height)
 {
-    char buffer[64];
+    int barWidth = (int)(fps * 4.0f);
+    int distBar = (int)((cameraDistance - 3.0f) / 7.0f * (width - 20));
+    int mouseBar = (int)((float)mouseX / (float)width * (width - 20));
 
     /* Switch to 2D mode for overlay */
     glMatrixMode(GL_PROJECTION);
@@ -165,7 +172,6 @@ void DrawInfo(int width, int height)
     glEnd();
 
     /* Use colored bars to represent information */
-    int barWidth = (int)(fps * 4.0f);
     if (barWidth > width - 20) barWidth = width - 20;
 
     glBegin(GL_QUADS);
@@ -177,7 +183,7 @@ void DrawInfo(int width, int height)
     glVertex2f(10.0f, 35.0f);
 
     /* Camera distance bar */
-    int distBar = (int)((cameraDistance - 3.0f) / 7.0f * (width - 20));
+    
     glColor3f(1.0f, 1.0f, 0.2f);
     glVertex2f(10.0f, 45.0f);
     glVertex2f((float)(10 + distBar), 45.0f);
@@ -185,7 +191,7 @@ void DrawInfo(int width, int height)
     glVertex2f(10.0f, 60.0f);
 
     /* Mouse position bar */
-    int mouseBar = (int)((float)mouseX / (float)width * (width - 20));
+    
     glColor3f(0.2f, 0.5f, 1.0f);
     glVertex2f(10.0f, 70.0f);
     glVertex2f((float)(10 + mouseBar), 70.0f);
@@ -230,8 +236,7 @@ int main(void)
 
     result = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height),
-        "LDL - Interactive 3D Cube (OpenGL 1.2)", 0);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height), "LDL - Interactive 3D Cube (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
@@ -247,31 +252,31 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
 
-                if (event.Type == LDL_EventIsResize)
+                if (event.u.Type == LDL_EventIsResize)
                 {
-                    width = (int)event.Resize.Width;
-                    height = (int)event.Resize.Height;
+                    width = (int)event.u.Resize.Width;
+                    height = (int)event.u.Resize.Height;
                     Resize(width, height);
                 }
 
                 /* Mouse wheel */
-                if (event.Type == LDL_EventIsMouseScroll)
+                if (event.u.Type == LDL_EventIsMouseScroll)
                 {
-                    cameraDistance -= (float)event.Mouse.Delta / 100.0f;
+                    cameraDistance -= (float)event.u.Mouse.Delta / 100.0f;
                     if (cameraDistance < 3.0f) cameraDistance = 3.0f;
                     if (cameraDistance > 10.0f) cameraDistance = 10.0f;
                 }
 
                 /* Mouse position */
-                if (event.Type == LDL_EventIsMouseMove)
+                if (event.u.Type == LDL_EventIsMouseMove)
                 {
-                    mouseX = (int)event.Mouse.PosX;
-                    mouseY = (int)event.Mouse.PosY;
+                    mouseX = (int)event.u.Mouse.PosX;
+                    mouseY = (int)event.u.Mouse.PosY;
                 }
 
                 /* Mouse button */

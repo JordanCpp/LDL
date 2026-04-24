@@ -59,12 +59,13 @@ if (WIN32)
     "source/LDL/Win9x/Ticks.c"
     "source/LDL/Win9x/Window.c"
     "source/LDL/Win9x/WinError.c"
-    "source/LDL/Win9x/WinGL1.c")
+    "source/LDL/Win9x/WinGL1.c"
+    "source/LDL/Win9x/WinGL3.c")
 elseif(UNIX AND NOT APPLE)
     set(PLATFORM_SOURCE)
 endif()
 
-file(GLOB SOURCE ${SHARED_SOURCE} ${OPENGL_SOURCE} ${PLATFORM_SOURCE})
+set(SOURCE ${SHARED_SOURCE} ${OPENGL_SOURCE} ${PLATFORM_SOURCE})
 
 add_library(LDL ${SOURCE})
 

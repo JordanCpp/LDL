@@ -12,8 +12,9 @@ or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
 License for more details.
 */
 
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <LDL/LDL.h>
 #include <LDL/OpenGL/GL1_2.h>
 #include <LDL/OpenGL/GLLoad.h>
@@ -49,12 +50,13 @@ void Perspective(double fovY, double aspect, double zNear, double zFar)
 
 void Resize(int width, int height)
 {
+    float aspect = (float)width / (float)height;
+
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    float aspect = (float)width / (float)height;
     Perspective(60.0, aspect, 0.1, 50.0);
 
     glMatrixMode(GL_MODELVIEW);
@@ -122,10 +124,12 @@ void UpdateWaveEquation(void)
 
 void UpdateWater(size_t delta)
 {
+    int step;
     int updateSteps = (int)(delta / 16);
+
     if (updateSteps > 3) updateSteps = 3;
 
-    for (int step = 0; step < updateSteps; step++)
+    for (step = 0; step < updateSteps; step++)
     {
         UpdateWaveEquation();
     }
@@ -188,6 +192,8 @@ void DrawWater(void)
 
 void DrawWaterFloor(void)
 {
+    int i;
+
     /* Sandy bottom */
     glBegin(GL_QUADS);
     glColor3f(0.6f, 0.5f, 0.3f);
@@ -200,13 +206,15 @@ void DrawWaterFloor(void)
     /* Grid on bottom */
     glColor3f(0.4f, 0.3f, 0.2f);
     glBegin(GL_LINES);
-    for (int i = -5; i <= 5; i++)
+
+    for (i = -5; i <= 5; i++)
     {
         glVertex3f((float)i, -0.79f, -5.0f);
         glVertex3f((float)i, -0.79f, 5.0f);
         glVertex3f(-5.0f, -0.79f, (float)i);
         glVertex3f(5.0f, -0.79f, (float)i);
     }
+
     glEnd();
 }
 
@@ -252,6 +260,8 @@ void DrawSkybox(void)
 
 void DrawInfo(int width, int height)
 {
+    int fpsBar = (int)(fps);
+
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
@@ -273,7 +283,6 @@ void DrawInfo(int width, int height)
     glEnd();
 
     /* FPS bar */
-    int fpsBar = (int)(fps);
     if (fpsBar > 210) fpsBar = 210;
 
     glBegin(GL_QUADS);
@@ -338,8 +347,7 @@ int main(void)
 
     result = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height),
-        "LDL - Water Wave Simulation (OpenGL 1.2)", 0);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height), "LDL - Water Wave Simulation (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
@@ -360,7 +368,7 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
@@ -375,17 +383,17 @@ int main(void)
                     InitWater();
                 }
 
-                if (event.Type == LDL_EventIsMouseScroll)
+                if (event.u.Type == LDL_EventIsMouseScroll)
                 {
-                    cameraDistance -= (float)event.Mouse.Delta / 100.0f;
+                    cameraDistance -= (float)event.u.Mouse.Delta / 100.0f;
                     if (cameraDistance < 3.0f) cameraDistance = 3.0f;
                     if (cameraDistance > 15.0f) cameraDistance = 15.0f;
                 }
 
-                if (event.Type == LDL_EventIsResize)
+                if (event.u.Type == LDL_EventIsResize)
                 {
-                    width = (int)event.Resize.Width;
-                    height = (int)event.Resize.Height;
+                    width = (int)event.u.Resize.Width;
+                    height = (int)event.u.Resize.Height;
                     Resize(width, height);
                 }
             }

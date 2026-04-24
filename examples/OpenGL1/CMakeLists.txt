@@ -41,17 +41,8 @@ target_link_libraries(OpenGL1_TargetShooter LDL)
 add_executable(OpenGL1_3DAtomModel "OpenGL1_3DAtomModel.c")
 target_link_libraries(OpenGL1_3DAtomModel LDL)
 
-add_executable(OpenGL1_FractalTree "OpenGL1_FractalTree.c")
-target_link_libraries(OpenGL1_FractalTree LDL)
-
-add_executable(OpenGL1_3DAnalogClock "OpenGL1_3DAnalogClock.c")
-target_link_libraries(OpenGL1_3DAnalogClock LDL)
-
 add_executable(OpenGL1_FireworksShow "OpenGL1_FireworksShow.c")
 target_link_libraries(OpenGL1_FireworksShow LDL)
 
 add_executable(OpenGL1_TerrainFlight "OpenGL1_TerrainFlight.c")
 target_link_libraries(OpenGL1_TerrainFlight LDL)
-
-add_executable(OpenGL1_SolarSystemInteractive "OpenGL1_SolarSystemInteractive.c")
-target_link_libraries(OpenGL1_SolarSystemInteractive LDL)

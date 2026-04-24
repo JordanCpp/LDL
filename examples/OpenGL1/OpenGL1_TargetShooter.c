@@ -69,6 +69,8 @@ void Perspective(double fovY, double aspect, double zNear, double zFar)
 
 void Resize(int width, int height)
 {
+    float aspect = (float)width / (float)height;
+
     centerX = width / 2;
     centerY = height / 2;
 
@@ -77,7 +79,6 @@ void Resize(int width, int height)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    float aspect = (float)width / (float)height;
     Perspective(75.0, aspect, 0.01, 100.0);
 
     glMatrixMode(GL_MODELVIEW);
@@ -141,6 +142,7 @@ void UpdateTargets(size_t delta)
 {
     int i;
     float seconds = (float)delta / 1000.0f;
+    float speed;
 
     for (i = 0; i < TARGET_COUNT; i++)
     {
@@ -156,7 +158,7 @@ void UpdateTargets(size_t delta)
             if (targets[i].z < -15.0f) { targets[i].z = -15.0f; targets[i].speedZ = -targets[i].speedZ; }
 
             /* Color flash based on speed */
-            float speed = sqrt(targets[i].speedX * targets[i].speedX + targets[i].speedZ * targets[i].speedZ);
+            speed = sqrt(targets[i].speedX * targets[i].speedX + targets[i].speedZ * targets[i].speedZ);
             targets[i].r = 0.8f + speed * 0.3f;
         }
     }
@@ -164,7 +166,7 @@ void UpdateTargets(size_t delta)
 
 void UpdateShots(size_t delta)
 {
-    int i, j;
+    int i, j, k;
     float seconds = (float)delta / 1000.0f;
     float dx, dz, dist;
 
@@ -208,17 +210,17 @@ void UpdateShots(size_t delta)
     }
 
     /* Respawn inactive targets */
-    for (i = 0; i < TARGET_COUNT; i++)
+    for (k = 0; k < TARGET_COUNT; k++)
     {
-        if (!targets[i].active)
+        if (!targets[k].active)
         {
-            targets[i].active = 1;
-            targets[i].x = (float)(rand() % 120 - 60) / 10.0f;
-            targets[i].z = (float)(rand() % 60 - 30) / 10.0f - 5.0f;
-            targets[i].speedX = (float)(rand() % 40 - 20) / 20.0f;
-            targets[i].speedZ = (float)(rand() % 40 - 20) / 20.0f;
-            targets[i].r = 1.0f;
-            targets[i].g = 0.2f + (float)(rand() % 80) / 100.0f;
+            targets[k].active = 1;
+            targets[k].x = (float)(rand() % 120 - 60) / 10.0f;
+            targets[k].z = (float)(rand() % 60 - 30) / 10.0f - 5.0f;
+            targets[k].speedX = (float)(rand() % 40 - 20) / 20.0f;
+            targets[k].speedZ = (float)(rand() % 40 - 20) / 20.0f;
+            targets[k].r = 1.0f;
+            targets[k].g = 0.2f + (float)(rand() % 80) / 100.0f;
         }
     }
 }
@@ -285,6 +287,9 @@ void DrawShot(Shot* s)
 
 void DrawGround(void)
 {
+    int i;
+    int j;
+
     glBegin(GL_QUADS);
     glColor3f(0.2f, 0.2f, 0.2f);
     glVertex3f(-12.0f, -0.2f, -20.0f);
@@ -296,21 +301,28 @@ void DrawGround(void)
     /* Grid */
     glColor3f(0.4f, 0.4f, 0.4f);
     glBegin(GL_LINES);
-    for (int i = -10; i <= 10; i++)
+
+    for (i = -10; i <= 10; i++)
     {
         glVertex3f((float)i, -0.19f, -15.0f);
         glVertex3f((float)i, -0.19f, 8.0f);
     }
-    for (int i = -15; i <= 8; i++)
+
+    for (j = -15; j <= 8; j++)
     {
-        glVertex3f(-10.0f, -0.19f, (float)i);
-        glVertex3f(10.0f, -0.19f, (float)i);
+        glVertex3f(-10.0f, -0.19f, (float)j);
+        glVertex3f(10.0f, -0.19f, (float)j);
     }
+
     glEnd();
 }
 
 void DrawCrosshair(int width, int height)
 {
+    int ammoBar = (ammo * 80) / 50;
+    int scoreBar = (score * 100) / 50;
+    int fpsBar = (int)(fps);
+
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
@@ -353,7 +365,7 @@ void DrawCrosshair(int width, int height)
     glVertex2f((float)width - 10.0f, 40.0f);
     glVertex2f((float)width - 100.0f, 40.0f);
 
-    int ammoBar = (ammo * 80) / 50;
+
     glColor3f(1.0f, 0.8f, 0.0f);
     glVertex2f((float)width - 95.0f, 15.0f);
     glVertex2f((float)width - 95.0f + (float)ammoBar, 15.0f);
@@ -369,7 +381,7 @@ void DrawCrosshair(int width, int height)
     glVertex2f(120.0f, 40.0f);
     glVertex2f(10.0f, 40.0f);
 
-    int scoreBar = (score * 100) / 50;
+
     if (scoreBar > 100) scoreBar = 100;
     glColor3f(0.2f, 1.0f, 0.2f);
     glVertex2f(15.0f, 15.0f);
@@ -379,7 +391,7 @@ void DrawCrosshair(int width, int height)
     glEnd();
 
     /* FPS */
-    int fpsBar = (int)(fps);
+
     if (fpsBar > 100) fpsBar = 100;
     glBegin(GL_QUADS);
     glColor3f(0.0f, 0.0f, 0.0f);
@@ -429,11 +441,11 @@ int main(void)
     int               height = 600;
     size_t            currentTime;
     size_t            delta;
+    int i;
 
     result = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height),
-        "LDL - Target Shooter (OpenGL 1.2)", 0);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height), "LDL - Target Shooter (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
@@ -454,7 +466,7 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
@@ -475,10 +487,10 @@ int main(void)
                     }
                 }
 
-                if (event.Type == LDL_EventIsMouseMove && mouseControl)
+                if (event.u.Type == LDL_EventIsMouseMove && mouseControl)
                 {
-                    mouseX = (int)event.Mouse.PosX;
-                    mouseY = (int)event.Mouse.PosY;
+                    mouseX = (int)event.u.Mouse.PosX;
+                    mouseY = (int)event.u.Mouse.PosY;
 
                     playerAngle += ((float)mouseX - (float)centerX) * 0.2f;
 
@@ -486,10 +498,10 @@ int main(void)
                     if (playerAngle < 0.0f) playerAngle += 360.0f;
                 }
 
-                if (event.Type == LDL_EventIsResize)
+                if (event.u.Type == LDL_EventIsResize)
                 {
-                    width = (int)event.Resize.Width;
-                    height = (int)event.Resize.Height;
+                    width = (int)event.u.Resize.Width;
+                    height = (int)event.u.Resize.Height;
                     Resize(width, height);
                 }
             }
@@ -520,13 +532,13 @@ int main(void)
 
             DrawGround();
 
-            for (int i = 0; i < TARGET_COUNT; i++)
+            for (i = 0; i < TARGET_COUNT; i++)
             {
                 if (targets[i].active)
                     DrawTarget(&targets[i]);
             }
 
-            for (int i = 0; i < MAX_SHOTS; i++)
+            for (i = 0; i < MAX_SHOTS; i++)
             {
                 if (shots[i].active)
                     DrawShot(&shots[i]);

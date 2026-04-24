@@ -76,7 +76,7 @@ typedef struct LDL_Event
 		LDL_EventKeyboard    Keyboard;
 		LDL_EventGainedFocus GainedFocus;
 		LDL_EventLostFocus   LostFocus;
-	};
+	} u;
 } LDL_Event;
 
 LDL_LIBRARY bool LDL_EventIsKeyPressed(LDL_Event* event, uint8_t key);

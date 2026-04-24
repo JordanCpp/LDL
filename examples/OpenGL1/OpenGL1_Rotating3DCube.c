@@ -40,13 +40,14 @@ void Perspective(double fovY, double aspect, double zNear, double zFar)
 
 void Resize(int width, int height)
 {
+    /* Perspective projection */
+    float aspect = (float)width / (float)height;
+
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    /* Perspective projection */
-    float aspect = (float)width / (float)height;
     Perspective(45.0, aspect, 0.1, 100.0);
 
     glMatrixMode(GL_MODELVIEW);
@@ -165,8 +166,7 @@ int main(void)
 
     result = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600),
-        "LDL - Rotating 3D Cube (OpenGL 1.2)", 0);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL - Rotating 3D Cube (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
@@ -182,14 +182,14 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
 
-                if (event.Type == LDL_EventIsResize)
+                if (event.u.Type == LDL_EventIsResize)
                 {
-                    Resize((int)event.Resize.Width, (int)event.Resize.Height);
+                    Resize((int)event.u.Resize.Width, (int)event.u.Resize.Height);
                 }
             }
 

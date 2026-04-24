@@ -40,13 +40,14 @@ void Perspective(double fovY, double aspect, double zNear, double zFar)
 
 void Resize(int width, int height)
 {
+    float aspect = (float)width / (float)height;
+
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
     /* Perspective projection */
-    float aspect = (float)width / (float)height;
     Perspective(45.0, aspect, 0.1, 100.0);
 
     glMatrixMode(GL_MODELVIEW);
@@ -156,6 +157,8 @@ void UpdateAnimation(size_t delta)
 
 void Display(void)
 {
+    float lightPos[] = { 2.0f, 2.0f, 3.0f, 1.0f };
+
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -173,7 +176,6 @@ void Display(void)
     glEnable(GL_LIGHT0);
 
     /* Set light position */
-    float lightPos[] = { 2.0f, 2.0f, 3.0f, 1.0f };
     glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
 
     /* Draw torus */
@@ -191,11 +193,13 @@ int main(void)
     LDL_OpenGLLoader* loader;
     size_t            currentTime;
     size_t            delta;
+    float matSpecular[] = { 0.5f, 0.5f, 0.5f, 1.0f };
+    float matShininess[] = { 50.0f };
+    float ambientLight[] = { 0.2f, 0.2f, 0.2f, 1.0f };
 
     result = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600),
-        "LDL - Rotating Colorful Torus (OpenGL 1.2)", 0);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL - Rotating Colorful Torus (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
@@ -206,13 +210,10 @@ int main(void)
         glEnable(GL_NORMALIZE);
 
         /* Set material properties */
-        float matSpecular[] = { 0.5f, 0.5f, 0.5f, 1.0f };
-        float matShininess[] = { 50.0f };
         glMaterialfv(GL_FRONT, GL_SPECULAR, matSpecular);
         glMaterialfv(GL_FRONT, GL_SHININESS, matShininess);
 
         /* Set ambient light */
-        float ambientLight[] = { 0.2f, 0.2f, 0.2f, 1.0f };
         glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
 
         lastTime = LDL_Ticks();
@@ -222,14 +223,14 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
 
-                if (event.Type == LDL_EventIsResize)
+                if (event.u.Type == LDL_EventIsResize)
                 {
-                    Resize((int)event.Resize.Width, (int)event.Resize.Height);
+                    Resize((int)event.u.Resize.Width, (int)event.u.Resize.Height);
                 }
             }
 

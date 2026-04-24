@@ -15,19 +15,21 @@ License for more details.
 #include <stdlib.h>
 #include <LDL/Window.h>
 #include <LDL/Win9x/WinGL1.h>
+#include <LDL/Win9x/WinGL3.h>
 
 typedef struct LDL_Window
 {
 	LDL_Result*       Result;
 	LDL_Context*      Context;
 	LDL_WindowOpenGL1 WindowOpenGL1;
+	LDL_WindowOpenGL3 WindowOpenGL3;
 } LDL_Window;
 
 LDL_Window* LDL_WindowNew(LDL_Result* result, LDL_Context* context, LDL_Vec2i pos, LDL_Vec2i size, const char* title, size_t mode)
 {
 	LDL_Window* window = (LDL_Window*)malloc(sizeof(LDL_Window));
 
-	if (window)
+	if (window && result && context)
 	{
 		window->Context = context;
 		window->Result  = result;
@@ -36,6 +38,9 @@ LDL_Window* LDL_WindowNew(LDL_Result* result, LDL_Context* context, LDL_Vec2i po
 		{
 		case LDL_ContextOpenGL1:
 			LDL_WindowOpenGL1Init(&window->WindowOpenGL1, result, pos, size, title, mode);
+			break;
+		case LDL_ContextOpenGL3:
+			LDL_WindowOpenGL3Init(&window->WindowOpenGL3, result, pos, size, title, mode);
 			break;
 		};
 
@@ -49,11 +54,18 @@ void LDL_WindowFree(LDL_Window* window)
 {
 	if (window)
 	{
-		switch (LDL_ContextGet(window->Context))
+		if (window->Context)
 		{
-		case LDL_ContextOpenGL1:
-			LDL_WindowOpenGL1Deinit(&window->WindowOpenGL1);
-		};
+			switch (LDL_ContextGet(window->Context))
+			{
+			case LDL_ContextOpenGL1:
+				LDL_WindowOpenGL1Deinit(&window->WindowOpenGL1);
+				break;
+			case LDL_ContextOpenGL3:
+				LDL_WindowOpenGL3Deinit(&window->WindowOpenGL3);
+				break;
+			};
+		}
 
 		free(window);
 	}
@@ -61,34 +73,68 @@ void LDL_WindowFree(LDL_Window* window)
 
 bool LDL_WindowIsRunning(LDL_Window* window)
 {
-	return LDL_WindowOpenGL1IsRunning(&window->WindowOpenGL1);
+	if (window && window->Context)
+	{
+		switch (LDL_ContextGet(window->Context))
+		{
+		case LDL_ContextOpenGL1:
+			return LDL_WindowOpenGL1IsRunning(&window->WindowOpenGL1);
+			break;
+		case LDL_ContextOpenGL3:
+			return LDL_WindowOpenGL3IsRunning(&window->WindowOpenGL3);
+			break;
+		};
+	}
+
+	return false;
 }
 
 void LDL_WindowStopEvent(LDL_Window* window)
 {
-	switch (LDL_ContextGet(window->Context))
+	if (window && window->Context)
 	{
-	case LDL_ContextOpenGL1:
-		LDL_WindowOpenGL1StopEvent(&window->WindowOpenGL1);
-	};
+		switch (LDL_ContextGet(window->Context))
+		{
+		case LDL_ContextOpenGL1:
+			LDL_WindowOpenGL1StopEvent(&window->WindowOpenGL1);
+			break;
+		case LDL_ContextOpenGL3:
+			LDL_WindowOpenGL3StopEvent(&window->WindowOpenGL3);
+			break;
+		};
+	}
 }
 
 bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event)
 {
-	switch (LDL_ContextGet(window->Context))
+	if (window && window->Context && event)
 	{
-	case LDL_ContextOpenGL1:
-		return LDL_WindowOpenGL1GetEvent(&window->WindowOpenGL1, event);
-	default:
-		return false;
-	};
+		switch (LDL_ContextGet(window->Context))
+		{
+		case LDL_ContextOpenGL1:
+			return LDL_WindowOpenGL1GetEvent(&window->WindowOpenGL1, event);
+			break;
+		case LDL_ContextOpenGL3:
+			return LDL_WindowOpenGL3GetEvent(&window->WindowOpenGL3, event);
+			break;
+		};
+	}
+
+	return false;
 }
 
 void LDL_WindowPresent(LDL_Window* window)
 {
-	switch (LDL_ContextGet(window->Context))
+	if (window && window->Context)
 	{
-	case LDL_ContextOpenGL1:
-		LDL_WindowOpenGL1Present(&window->WindowOpenGL1);
-	};
+		switch (LDL_ContextGet(window->Context))
+		{
+		case LDL_ContextOpenGL1:
+			LDL_WindowOpenGL1Present(&window->WindowOpenGL1);
+			break;
+		case LDL_ContextOpenGL3:
+			LDL_WindowOpenGL3Present(&window->WindowOpenGL3);
+			break;
+		};
+	}
 }

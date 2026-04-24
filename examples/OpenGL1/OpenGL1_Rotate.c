@@ -37,6 +37,8 @@ void Identity(void)
 
 void Resize(int width, int height)
 {
+    float aspect;
+
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
     glMatrixMode(GL_PROJECTION);
@@ -44,7 +46,7 @@ void Resize(int width, int height)
 
     /* Keep aspect ratio */
     if (height == 0) height = 1;
-    float aspect = (float)width / (float)height;
+    aspect = (float)width / (float)height;
 
     if (width <= height)
         glOrtho(-1.0, 1.0, -1.0 / aspect, 1.0 / aspect, -1.0, 1.0);
@@ -108,7 +110,7 @@ int main(void)
 
     result = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL - Rotating Colored Quad (OpenGL 1.2)", 0);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL - Rotating Colored Quad (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
@@ -122,14 +124,14 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
 
-                if (event.Type == LDL_EventIsResize)
+                if (event.u.Type == LDL_EventIsResize)
                 {
-                    Resize((int)event.Resize.Width, (int)event.Resize.Height);
+                    Resize((int)event.u.Resize.Width, (int)event.u.Resize.Height);
                 }
             }
 

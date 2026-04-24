@@ -65,12 +65,13 @@ void Perspective(double fovY, double aspect, double zNear, double zFar)
 
 void Resize(int width, int height)
 {
+    float aspect = (float)width / (float)height;
+
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    float aspect = (float)width / (float)height;
     Perspective(45.0, aspect, 0.1, 100.0);
 
     glMatrixMode(GL_MODELVIEW);
@@ -140,14 +141,20 @@ void DrawSun(void)
 
 void DrawOrbit(float radius)
 {
+    int i;
+    float angle;
+    float x;
+    float z;
+
     glColor3f(0.3f, 0.3f, 0.4f);
     glBegin(GL_LINE_LOOP);
 
-    for (int i = 0; i <= 360; i += 10)
+    for (i = 0; i <= 360; i += 10)
     {
-        float angle = i * M_PI / 180.0f;
-        float x = radius * cos(angle);
-        float z = radius * sin(angle);
+        angle = i * M_PI / 180.0f;
+        x     = radius * cos(angle);
+        z     = radius * sin(angle);
+
         glVertex3f(x, 0.0f, z);
     }
 
@@ -156,6 +163,11 @@ void DrawOrbit(float radius)
 
 void DrawPlanet(Planet* p)
 {
+    int i;
+    float angle;
+    float x;
+    float z;
+
     glPushMatrix();
     glRotatef(p->angle, 0.0f, 1.0f, 0.0f);
     glTranslatef(p->distance, 0.0f, 0.0f);
@@ -171,13 +183,16 @@ void DrawPlanet(Planet* p)
     {
         glBegin(GL_LINE_LOOP);
         glColor3f(0.8f, 0.7f, 0.5f);
-        for (int i = 0; i <= 360; i += 20)
+
+        for (i = 0; i <= 360; i += 20)
         {
-            float angle = i * M_PI / 180.0f;
-            float x = (p->radius + 0.12f) * cos(angle);
-            float z = (p->radius + 0.12f) * sin(angle);
+            angle = i * M_PI / 180.0f;
+            x = (p->radius + 0.12f) * cos(angle);
+            z = (p->radius + 0.12f) * sin(angle);
+
             glVertex3f(x, 0.05f, z);
         }
+
         glEnd();
     }
 
@@ -206,6 +221,11 @@ void UpdatePlanets(size_t delta)
 
 void DrawStars(void)
 {
+    int i;
+    float x;
+    float y;
+    float brightness;
+
     glDisable(GL_DEPTH_TEST);
 
     glMatrixMode(GL_PROJECTION);
@@ -220,12 +240,12 @@ void DrawStars(void)
     glBegin(GL_POINTS);
     glColor3f(1.0f, 1.0f, 1.0f);
 
-    for (int i = 0; i < 500; i++)
+    for (i = 0; i < 500; i++)
     {
         /* Use deterministic positions so stars don't move */
-        float x = (float)((i * 131071) % 10000) / 10000.0f;
-        float y = (float)((i * 524287) % 10000) / 10000.0f;
-        float brightness = 0.5f + ((i * 2999) % 100) / 100.0f;
+        x = (float)((i * 131071) % 10000) / 10000.0f;
+        y = (float)((i * 524287) % 10000) / 10000.0f;
+        brightness = 0.5f + ((i * 2999) % 100) / 100.0f;
 
         glColor3f(brightness, brightness, brightness);
         glVertex2f(x, y);
@@ -245,6 +265,7 @@ void DrawInfo(void)
 {
     int width = 800;
     int height = 600;
+    int fpsBar = (int)(fps * 2.0f);
 
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
@@ -258,7 +279,6 @@ void DrawInfo(void)
     glDisable(GL_DEPTH_TEST);
 
     /* FPS bar */
-    int fpsBar = (int)(fps * 2.0f);
     if (fpsBar > 190) fpsBar = 190;
 
     glBegin(GL_QUADS);
@@ -331,8 +351,7 @@ int main(void)
 
     result = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height),
-        "LDL - Solar System (OpenGL 1.2)", 0);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height), "LDL - Solar System (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
@@ -350,7 +369,7 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
@@ -360,17 +379,17 @@ int main(void)
                     cameraRotate = !cameraRotate;
                 }
 
-                if (event.Type == LDL_EventIsMouseScroll)
+                if (event.u.Type == LDL_EventIsMouseScroll)
                 {
-                    cameraDistance -= (float)event.Mouse.Delta / 100.0f;
+                    cameraDistance -= (float)event.u.Mouse.Delta / 100.0f;
                     if (cameraDistance < 5.0f) cameraDistance = 5.0f;
                     if (cameraDistance > 25.0f) cameraDistance = 25.0f;
                 }
 
-                if (event.Type == LDL_EventIsResize)
+                if (event.u.Type == LDL_EventIsResize)
                 {
-                    width = (int)event.Resize.Width;
-                    height = (int)event.Resize.Height;
+                    width = (int)event.u.Resize.Width;
+                    height = (int)event.u.Resize.Height;
                     Resize(width, height);
                 }
             }

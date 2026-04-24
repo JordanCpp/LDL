@@ -25,6 +25,13 @@ typedef struct LDL_OpenGLLoader
 	LDL_OpenGLFunctions Functions;
 } LDL_OpenGLLoader;
 
+typedef struct LDL_VersionOpenGLLoader
+{
+	size_t              Major;
+	size_t              Minor;
+	void(*Loader)(LDL_OpenGLLoader*);
+} LDL_VersionOpenGLLoader;
+
 void LDL_OpenGLLoader_1_0(LDL_OpenGLLoader* loader)
 {
 	glCullFace = (PFNGLCULLFACEPROC)LDL_OpenGLFunctionsGetFunction(&loader->Functions,"glCullFace");
@@ -1151,16 +1158,45 @@ void LDL_OpenGLLoader_4_6(LDL_OpenGLLoader* loader)
 
 LDL_OpenGLLoader* LDL_OpenGLLoaderNew(LDL_Result* result, size_t major, size_t minor)
 {
+	size_t i;
 	LDL_OpenGLLoader* loader = (LDL_OpenGLLoader*)malloc(sizeof(LDL_OpenGLLoader));
+	LDL_VersionOpenGLLoader versions[] =
+	{
+		{1, 0, LDL_OpenGLLoader_1_0},
+		{1, 1, LDL_OpenGLLoader_1_1},
+		{1, 2, LDL_OpenGLLoader_1_2},
+		{1, 3, LDL_OpenGLLoader_1_3},
+		{1, 4, LDL_OpenGLLoader_1_4},
+		{1, 5, LDL_OpenGLLoader_1_5},
+		{2, 0, LDL_OpenGLLoader_2_0},
+		{2, 1, LDL_OpenGLLoader_2_1},
+		{3, 0, LDL_OpenGLLoader_3_0},
+		{3, 1, LDL_OpenGLLoader_3_1},
+		{3, 2, LDL_OpenGLLoader_3_2},
+		{3, 3, LDL_OpenGLLoader_3_3},
+		{3, 3, LDL_OpenGLLoader_3_3},
+		{4, 0, LDL_OpenGLLoader_4_0},
+		{4, 1, LDL_OpenGLLoader_4_1},
+		{4, 2, LDL_OpenGLLoader_4_2},
+		{4, 3, LDL_OpenGLLoader_4_3},
+		{4, 4, LDL_OpenGLLoader_4_4},
+		{4, 5, LDL_OpenGLLoader_4_5},
+		{4, 6, LDL_OpenGLLoader_4_6},
+		{0, 0, NULL},
+	};
 
 	if (loader)
 	{
 		loader->Result = result;
 		LDL_OpenGLFunctionsInit(&loader->Functions, result);
 
-		LDL_OpenGLLoader_1_0(loader);
-		LDL_OpenGLLoader_1_1(loader);
-		LDL_OpenGLLoader_1_2(loader);
+		for (i = 0; versions[i].Loader != NULL; i++)
+		{
+			if ((versions[i].Major <= major) && (versions[i].Minor <= minor))
+			{
+				versions[i].Loader(loader);
+			}
+		}
 
 		return loader;
 	}

@@ -67,12 +67,13 @@ void Perspective(double fovY, double aspect, double zNear, double zFar)
 
 void Resize(int width, int height)
 {
+    float aspect = (float)width / (float)height;
+
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    float aspect = (float)width / (float)height;
     Perspective(75.0, aspect, 0.01, 100.0);
 
     glMatrixMode(GL_MODELVIEW);
@@ -192,6 +193,8 @@ void DrawMaze(void)
 
 void DrawFloor(void)
 {
+    int i;
+
     glBegin(GL_QUADS);
     glColor3f(0.3f, 0.3f, 0.4f);
     glVertex3f(-7.5f, -0.01f, -7.5f);
@@ -203,13 +206,15 @@ void DrawFloor(void)
     /* Grid on floor */
     glColor3f(0.5f, 0.5f, 0.6f);
     glBegin(GL_LINES);
-    for (int i = -7; i <= 7; i++)
+
+    for (i = -7; i <= 7; i++)
     {
         glVertex3f((float)i, -0.005f, -7.5f);
         glVertex3f((float)i, -0.005f, 7.5f);
         glVertex3f(-7.5f, -0.005f, (float)i);
         glVertex3f(7.5f, -0.005f, (float)i);
     }
+
     glEnd();
 }
 
@@ -280,8 +285,7 @@ int main(void)
 
     result = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height),
-        "LDL - First Person Maze (OpenGL 1.2)", 0);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height), "LDL - First Person Maze (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
@@ -298,7 +302,7 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
@@ -321,10 +325,10 @@ int main(void)
                 if (LDL_EventIsKeyReleased(&event, LDL_KeyD))
                     turnRight = 0;
 
-                if (event.Type == LDL_EventIsResize)
+                if (event.u.Type == LDL_EventIsResize)
                 {
-                    width = (int)event.Resize.Width;
-                    height = (int)event.Resize.Height;
+                    width = (int)event.u.Resize.Width;
+                    height = (int)event.u.Resize.Height;
                     Resize(width, height);
                 }
             }

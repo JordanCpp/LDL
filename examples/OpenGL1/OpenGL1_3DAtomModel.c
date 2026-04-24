@@ -12,8 +12,9 @@ or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
 License for more details.
 */
 
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <LDL/LDL.h>
 #include <LDL/OpenGL/GL1_2.h>
 #include <LDL/OpenGL/GLLoad.h>
@@ -62,12 +63,13 @@ void Perspective(double fovY, double aspect, double zNear, double zFar)
 
 void Resize(int width, int height)
 {
+    float aspect = (float)width / (float)height;
+
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    float aspect = (float)width / (float)height;
     Perspective(45.0, aspect, 0.1, 100.0);
 
     glMatrixMode(GL_MODELVIEW);
@@ -187,14 +189,22 @@ void DrawNucleus(void)
 
 void DrawElectronTrajectory(float radius)
 {
+    int i;
+    float angle;
+    float x;
+    float y;
+    float z;
+
     glColor3f(0.3f, 0.3f, 0.5f);
+
     glBegin(GL_LINE_LOOP);
 
-    for (int i = 0; i <= 360; i += 15)
+    for (i = 0; i <= 360; i += 15)
     {
-        float angle = i * M_PI / 180.0f;
-        float x = radius * cos(angle);
-        float z = radius * sin(angle);
+        angle = i * M_PI / 180.0f;
+        x = radius * cos(angle);
+        z = radius * sin(angle);
+
         glVertex3f(x, 0.0f, z);
     }
 
@@ -202,24 +212,30 @@ void DrawElectronTrajectory(float radius)
 
     /* Second orbit at angle */
     glBegin(GL_LINE_LOOP);
-    for (int i = 0; i <= 360; i += 15)
+
+    for (i = 0; i <= 360; i += 15)
     {
-        float angle = i * M_PI / 180.0f;
-        float x = radius * cos(angle);
-        float y = radius * sin(angle);
+        angle = i * M_PI / 180.0f;
+        x = radius * cos(angle);
+        y = radius * sin(angle);
+
         glVertex3f(x, y, 0.0f);
     }
+
     glEnd();
 
     /* Third orbit */
     glBegin(GL_LINE_LOOP);
-    for (int i = 0; i <= 360; i += 15)
+
+    for (i = 0; i <= 360; i += 15)
     {
-        float angle = i * M_PI / 180.0f;
-        float y = radius * cos(angle);
-        float z = radius * sin(angle);
+        angle = i * M_PI / 180.0f;
+        y = radius * cos(angle);
+        z = radius * sin(angle);
+
         glVertex3f(0.0f, y, z);
     }
+
     glEnd();
 }
 
@@ -295,6 +311,7 @@ void DrawInfo(void)
 {
     int width = 800;
     int height = 600;
+    int fpsBar = (int)(fps * 2.0f);
 
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
@@ -317,7 +334,6 @@ void DrawInfo(void)
     glEnd();
 
     /* FPS bar */
-    int fpsBar = (int)(fps * 2.0f);
     if (fpsBar > 210) fpsBar = 210;
 
     glBegin(GL_QUADS);
@@ -393,8 +409,7 @@ int main(void)
 
     result = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height),
-        "LDL - 3D Atom Model (OpenGL 1.2)", 0);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height), "LDL - 3D Atom Model (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
@@ -415,15 +430,15 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
 
-                if (event.Type == LDL_EventIsResize)
+                if (event.u.Type == LDL_EventIsResize)
                 {
-                    width = (int)event.Resize.Width;
-                    height = (int)event.Resize.Height;
+                    width = (int)event.u.Resize.Width;
+                    height = (int)event.u.Resize.Height;
                     Resize(width, height);
                 }
             }

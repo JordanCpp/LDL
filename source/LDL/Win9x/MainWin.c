@@ -35,119 +35,119 @@ LRESULT CALLBACK LDL_MainWindowHandler(LDL_MainWindow* mainWindow, UINT Message,
             break;
 
         case WM_MOUSEMOVE:
-            event.Type = LDL_EventIsMouseMove;
-            event.Mouse.PosX = LOWORD(LParam);
-            event.Mouse.PosY = HIWORD(LParam);
+            event.u.Type = LDL_EventIsMouseMove;
+            event.u.Mouse.PosX = LOWORD(LParam);
+            event.u.Mouse.PosY = HIWORD(LParam);
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
         case WM_LBUTTONDOWN:
-            event.Type = LDL_EventIsMouseClick;
-            event.Mouse.State = LDL_ButtonStatePressed;
-            event.Mouse.Button = LDL_MouseButtonLeft;
-            event.Mouse.PosX = LOWORD(LParam);
-            event.Mouse.PosY = HIWORD(LParam);
+            event.u.Type = LDL_EventIsMouseClick;
+            event.u.Mouse.State = LDL_ButtonStatePressed;
+            event.u.Mouse.Button = LDL_MouseButtonLeft;
+            event.u.Mouse.PosX = LOWORD(LParam);
+            event.u.Mouse.PosY = HIWORD(LParam);
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
         case WM_LBUTTONUP:
-            event.Type = LDL_EventIsMouseClick;
-            event.Mouse.State = LDL_ButtonStateReleased;
-            event.Mouse.Button = LDL_MouseButtonLeft;
-            event.Mouse.PosX = LOWORD(LParam);
-            event.Mouse.PosY = HIWORD(LParam);
+            event.u.Type = LDL_EventIsMouseClick;
+            event.u.Mouse.State = LDL_ButtonStateReleased;
+            event.u.Mouse.Button = LDL_MouseButtonLeft;
+            event.u.Mouse.PosX = LOWORD(LParam);
+            event.u.Mouse.PosY = HIWORD(LParam);
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
         case WM_RBUTTONDOWN:
-            event.Type = LDL_EventIsMouseClick;
-            event.Mouse.State = LDL_ButtonStatePressed;
-            event.Mouse.Button = LDL_MouseButtonRight;
-            event.Mouse.PosX = LOWORD(LParam);
-            event.Mouse.PosY = HIWORD(LParam);
+            event.u.Type = LDL_EventIsMouseClick;
+            event.u.Mouse.State = LDL_ButtonStatePressed;
+            event.u.Mouse.Button = LDL_MouseButtonRight;
+            event.u.Mouse.PosX = LOWORD(LParam);
+            event.u.Mouse.PosY = HIWORD(LParam);
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
         case WM_RBUTTONUP:
-            event.Type = LDL_EventIsMouseClick;
-            event.Mouse.State = LDL_ButtonStateReleased;
-            event.Mouse.Button = LDL_MouseButtonRight;
-            event.Mouse.PosX = LOWORD(LParam);
-            event.Mouse.PosY = HIWORD(LParam);
+            event.u.Type = LDL_EventIsMouseClick;
+            event.u.Mouse.State = LDL_ButtonStateReleased;
+            event.u.Mouse.Button = LDL_MouseButtonRight;
+            event.u.Mouse.PosX = LOWORD(LParam);
+            event.u.Mouse.PosY = HIWORD(LParam);
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
         case WM_MBUTTONDOWN:
-            event.Type = LDL_EventIsMouseClick;
-            event.Mouse.State = LDL_ButtonStatePressed;
-            event.Mouse.Button = LDL_MouseButtonMiddle;
-            event.Mouse.PosX = LOWORD(LParam);
-            event.Mouse.PosY = HIWORD(LParam);
+            event.u.Type = LDL_EventIsMouseClick;
+            event.u.Mouse.State = LDL_ButtonStatePressed;
+            event.u.Mouse.Button = LDL_MouseButtonMiddle;
+            event.u.Mouse.PosX = LOWORD(LParam);
+            event.u.Mouse.PosY = HIWORD(LParam);
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
         case WM_MBUTTONUP:
-            event.Type = LDL_EventIsMouseClick;
-            event.Mouse.State = LDL_ButtonStateReleased;
-            event.Mouse.Button = LDL_MouseButtonMiddle;
-            event.Mouse.PosX = LOWORD(LParam);
-            event.Mouse.PosY = HIWORD(LParam);
+            event.u.Type = LDL_EventIsMouseClick;
+            event.u.Mouse.State = LDL_ButtonStateReleased;
+            event.u.Mouse.Button = LDL_MouseButtonMiddle;
+            event.u.Mouse.PosX = LOWORD(LParam);
+            event.u.Mouse.PosY = HIWORD(LParam);
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
         case WM_SIZE:
-            event.Type = LDL_EventIsResize;
-            event.Resize.Width = LOWORD(LParam);
-            event.Resize.Height = HIWORD(LParam);
+            event.u.Type = LDL_EventIsResize;
+            event.u.Resize.Width = LOWORD(LParam);
+            event.u.Resize.Height = HIWORD(LParam);
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
         case WM_CLOSE:
-            event.Type = LDL_EventIsQuit;
+            event.u.Type = LDL_EventIsQuit;
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
         case WM_KEYDOWN:
         case WM_SYSKEYDOWN:
-            event.Type = LDL_EventIsKeyboard;
-            event.Keyboard.State = LDL_ButtonStatePressed;
-            event.Keyboard.Key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, WParam);
+            event.u.Type = LDL_EventIsKeyboard;
+            event.u.Keyboard.State = LDL_ButtonStatePressed;
+            event.u.Keyboard.Key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, WParam);
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
         case WM_KEYUP:
         case WM_SYSKEYUP:
-            event.Type = LDL_EventIsKeyboard;
-            event.Keyboard.State = LDL_ButtonStateReleased;
-            event.Keyboard.Key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, WParam);
+            event.u.Type = LDL_EventIsKeyboard;
+            event.u.Keyboard.State = LDL_ButtonStateReleased;
+            event.u.Keyboard.Key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, WParam);
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
         case WM_SETFOCUS:
-            event.Type = LDL_EventIsGainedFocus;
+            event.u.Type = LDL_EventIsGainedFocus;
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
         case WM_KILLFOCUS:
-            event.Type = LDL_EventIsLostFocus;
+            event.u.Type = LDL_EventIsLostFocus;
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
         case WM_MOUSEWHEEL:
-            event.Type = LDL_EventIsMouseScroll;
-            event.Mouse.Scroll = LDL_MouseScrollVertical;
-            event.Mouse.Delta = GET_WHEEL_DELTA_WPARAM(WParam);
-            event.Mouse.PosX = LOWORD(LParam);
-            event.Mouse.PosY = HIWORD(LParam);
+            event.u.Type = LDL_EventIsMouseScroll;
+            event.u.Mouse.Scroll = LDL_MouseScrollVertical;
+            event.u.Mouse.Delta = GET_WHEEL_DELTA_WPARAM(WParam);
+            event.u.Mouse.PosX = LOWORD(LParam);
+            event.u.Mouse.PosY = HIWORD(LParam);
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
         case WM_MOUSEHWHEEL:
-            event.Type = LDL_EventIsMouseScroll;
-            event.Mouse.Scroll = LDL_MouseScrollHorizontal;
-            event.Mouse.Delta = GET_WHEEL_DELTA_WPARAM(WParam);
-            event.Mouse.PosX = LOWORD(LParam);
-            event.Mouse.PosY = HIWORD(LParam);
+            event.u.Type = LDL_EventIsMouseScroll;
+            event.u.Mouse.Scroll = LDL_MouseScrollHorizontal;
+            event.u.Mouse.Delta = GET_WHEEL_DELTA_WPARAM(WParam);
+            event.u.Mouse.PosX = LOWORD(LParam);
+            event.u.Mouse.PosY = HIWORD(LParam);
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
         }

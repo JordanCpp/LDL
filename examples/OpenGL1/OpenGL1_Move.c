@@ -36,6 +36,8 @@ void Identity(void)
 
 void Resize(int width, int height)
 {
+    float aspect = (float)width / (float)height;
+
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
     glMatrixMode(GL_PROJECTION);
@@ -43,8 +45,7 @@ void Resize(int width, int height)
 
     /* Keep aspect ratio: world coordinates from -10 to 10 horizontally */
     if (height == 0) height = 1;
-    float aspect = (float)width / (float)height;
-
+   
     glOrtho(-10.0, 10.0, -10.0 / aspect, 10.0 / aspect, -1.0, 1.0);
 
     glMatrixMode(GL_MODELVIEW);
@@ -93,15 +94,19 @@ void DrawPlayer(void)
 
 void DrawGrid(void)
 {
+    int i;
+
     glColor3f(0.3f, 0.3f, 0.3f);
     glBegin(GL_LINES);
-    for (int i = -9; i <= 9; i++)
+
+    for (i = -9; i <= 9; i++)
     {
         glVertex2f((float)i, -7.0f);
         glVertex2f((float)i, 7.0f);
         glVertex2f(-9.0f, (float)i);
         glVertex2f(9.0f, (float)i);
     }
+
     glEnd();
 }
 
@@ -139,8 +144,7 @@ int main(void)
 
     result = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600),
-        "LDL - Move Player with WASD/Arrows (OpenGL 1.2)", 0);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL - Move Player with WASD/Arrows (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
@@ -153,7 +157,7 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
@@ -176,9 +180,9 @@ int main(void)
                 if (LDL_EventIsKeyReleased(&event, LDL_KeyD) || LDL_EventIsKeyReleased(&event, LDL_KeyRight))
                     rightPressed = 0;
 
-                if (event.Type == LDL_EventIsResize)
+                if (event.u.Type == LDL_EventIsResize)
                 {
-                    Resize((int)event.Resize.Width, (int)event.Resize.Height);
+                    Resize((int)event.u.Resize.Width, (int)event.u.Resize.Height);
                 }
             }
 

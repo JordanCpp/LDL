@@ -62,12 +62,13 @@ void Perspective(double fovY, double aspect, double zNear, double zFar)
 
 void Resize(int width, int height)
 {
+    float aspect = (float)width / (float)height;
+
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    float aspect = (float)width / (float)height;
     Perspective(50.0, aspect, 0.1, 50.0);
 
     glMatrixMode(GL_MODELVIEW);
@@ -178,6 +179,8 @@ void UpdateParticles(float deltaSec)
 
 void DrawRocket(void)
 {
+    float flameSize = 0.08f + (float)(rand() % 30) / 300.0f;
+
     if (!rocketActive) return;
 
     glPushMatrix();
@@ -231,7 +234,6 @@ void DrawRocket(void)
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
-    float flameSize = 0.08f + (float)(rand() % 30) / 300.0f;
     glBegin(GL_TRIANGLES);
     glColor4f(1.0f, 0.5f, 0.0f, 0.8f);
     glVertex3f(-0.04f, 0.0f, -0.04f);
@@ -259,6 +261,12 @@ void DrawRocket(void)
 void DrawParticles(void)
 {
     int i;
+    int a;
+    float alpha;
+    float size;
+    float angle;
+    float px;
+    float py;
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
@@ -267,8 +275,8 @@ void DrawParticles(void)
     {
         if (!particles[i].active) continue;
 
-        float alpha = particles[i].life * 0.8f;
-        float size = 0.08f * (1.0f - particles[i].life * 0.5f);
+        alpha = particles[i].life * 0.8f;
+        size = 0.08f * (1.0f - particles[i].life * 0.5f);
 
         glPushMatrix();
         glTranslatef(particles[i].x, particles[i].y, particles[i].z);
@@ -277,13 +285,16 @@ void DrawParticles(void)
 
         glBegin(GL_TRIANGLE_FAN);
         glVertex3f(0.0f, 0.0f, 0.0f);
-        for (int a = 0; a <= 360; a += 30)
+
+        for (a = 0; a <= 360; a += 30)
         {
-            float angle = a * M_PI / 180.0f;
-            float px = size * cos(angle);
-            float py = size * sin(angle);
+            angle = a * M_PI / 180.0f;
+            px    = size * cos(angle);
+            py    = size * sin(angle);
+
             glVertex3f(px, py, 0.0f);
         }
+
         glEnd();
 
         glPopMatrix();
@@ -294,6 +305,8 @@ void DrawParticles(void)
 
 void DrawGround(void)
 {
+    int i;
+
     /* Ground plane */
     glBegin(GL_QUADS);
     glColor3f(0.08f, 0.12f, 0.08f);
@@ -306,7 +319,7 @@ void DrawGround(void)
     /* Grid */
     glColor3f(0.15f, 0.2f, 0.15f);
     glBegin(GL_LINES);
-    for (int i = -10; i <= 10; i++)
+    for (i = -10; i <= 10; i++)
     {
         glVertex3f((float)i, -2.15f, -10.0f);
         glVertex3f((float)i, -2.15f, 10.0f);
@@ -318,16 +331,20 @@ void DrawGround(void)
 
 void DrawCityLights(void)
 {
+    int i;
+    int j;
+    float brightness;
+
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
-    for (int i = -8; i <= 8; i += 2)
+    for (i = -8; i <= 8; i += 2)
     {
-        for (int j = -8; j <= 8; j += 2)
+        for (j = -8; j <= 8; j += 2)
         {
             if (abs(i) < 3 && abs(j) < 3) continue;
 
-            float brightness = 0.3f + (float)(rand() % 70) / 100.0f;
+            brightness = 0.3f + (float)(rand() % 70) / 100.0f;
             glPushMatrix();
             glTranslatef((float)i, -2.1f, (float)j);
             glColor4f(1.0f, 0.8f, 0.4f, brightness * 0.5f);
@@ -346,8 +363,12 @@ void DrawCityLights(void)
 
 void DrawInfo(void)
 {
+    int i;
     int width = 800;
     int height = 600;
+    int fpsBar = (int)(fps * 2.0f);
+    int activeCount = 0;
+    int activeBar;
 
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
@@ -370,15 +391,13 @@ void DrawInfo(void)
     glEnd();
 
     /* FPS bar */
-    int fpsBar = (int)(fps * 2.0f);
     if (fpsBar > 230) fpsBar = 230;
 
     /* Count active particles */
-    int activeCount = 0;
-    for (int i = 0; i < MAX_PARTICLES; i++)
+    for (i = 0; i < MAX_PARTICLES; i++)
         if (particles[i].active) activeCount++;
 
-    int activeBar = activeCount / 4;
+    activeBar = activeCount / 4;
     if (activeBar > 230) activeBar = 230;
 
     glBegin(GL_QUADS);
@@ -458,8 +477,7 @@ int main(void)
 
     result = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height),
-        "LDL - Fireworks Show (OpenGL 1.2)", 0);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height), "LDL - Fireworks Show (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
@@ -481,7 +499,7 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
@@ -494,17 +512,17 @@ int main(void)
                     Explode(rocketX, 3.0f + (float)(rand() % 40) / 10.0f, rocketZ);
                 }
 
-                if (event.Type == LDL_EventIsMouseScroll)
+                if (event.u.Type == LDL_EventIsMouseScroll)
                 {
-                    cameraDistance -= (float)event.Mouse.Delta / 60.0f;
+                    cameraDistance -= (float)event.u.Mouse.Delta / 60.0f;
                     if (cameraDistance < 8.0f) cameraDistance = 8.0f;
                     if (cameraDistance > 22.0f) cameraDistance = 22.0f;
                 }
 
-                if (event.Type == LDL_EventIsResize)
+                if (event.u.Type == LDL_EventIsResize)
                 {
-                    width = (int)event.Resize.Width;
-                    height = (int)event.Resize.Height;
+                    width = (int)event.u.Resize.Width;
+                    height = (int)event.u.Resize.Height;
                     Resize(width, height);
                 }
             }

@@ -43,23 +43,24 @@ void Perspective(double fovY, double aspect, double zNear, double zFar)
 
 void Resize(int width, int height)
 {
+    float aspect = (float)width / (float)height;
+
     glViewport(0, 0, (GLsizei)width, (GLsizei)height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    float aspect = (float)width / (float)height;
+
     Perspective(70.0, aspect, 0.1, 50.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
 
-void LookAt(float eyeX, float eyeY, float eyeZ,
-    float centerX, float centerY, float centerZ,
-    float upX, float upY, float upZ)
+void LookAt(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ)
 {
     float forwardX, forwardY, forwardZ;
     float sideX, sideY, sideZ;
     float upVectorX, upVectorY, upVectorZ;
     float length;
+    float mat[16];
 
     forwardX = centerX - eyeX;
     forwardY = centerY - eyeY;
@@ -93,7 +94,7 @@ void LookAt(float eyeX, float eyeY, float eyeZ,
     upVectorY = sideZ * forwardX - sideX * forwardZ;
     upVectorZ = sideX * forwardY - sideY * forwardX;
 
-    float mat[16];
+
     mat[0] = sideX;
     mat[1] = upVectorY;
     mat[2] = -forwardX;
@@ -120,13 +121,14 @@ void LookAt(float eyeX, float eyeY, float eyeZ,
 
 void GenerateHeightmap(void)
 {
-    int x, z;
+    int x, z, fx, fz;
+
     for (x = 0; x < MAP_SIZE; x++)
     {
         for (z = 0; z < MAP_SIZE; z++)
         {
-            float fx = (float)x / MAP_SIZE * 8.0f;
-            float fz = (float)z / MAP_SIZE * 8.0f;
+            fx = (float)x / MAP_SIZE * 8.0f;
+            fz = (float)z / MAP_SIZE * 8.0f;
             heightmap[x][z] = sin(fx * 1.2f) * cos(fz * 1.2f) * 1.2f;
         }
     }
@@ -164,15 +166,19 @@ void DrawTerrain(void)
 
 void DrawGrid(void)
 {
+    int i;
+
     glColor3f(0.15f, 0.25f, 0.1f);
     glBegin(GL_LINES);
-    for (int i = -MAP_SIZE / 2; i <= MAP_SIZE / 2; i += 2)
+
+    for (i = -MAP_SIZE / 2; i <= MAP_SIZE / 2; i += 2)
     {
         glVertex3f((float)i, -0.1f, (float)(-MAP_SIZE / 2));
         glVertex3f((float)i, -0.1f, (float)(MAP_SIZE / 2));
         glVertex3f((float)(-MAP_SIZE / 2), -0.1f, (float)i);
         glVertex3f((float)(MAP_SIZE / 2), -0.1f, (float)i);
     }
+
     glEnd();
 }
 
@@ -207,6 +213,11 @@ void DrawFPS(void)
 {
     int width = 800;
     int height = 600;
+    int f = (int)fps;
+    int digits[3] = { f / 100, (f / 10) % 10, f % 10 };
+    int i;
+    int val;
+
 
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
@@ -226,13 +237,13 @@ void DrawFPS(void)
     glVertex2f(0.0f, 20.0f);
     glEnd();
 
-    int f = (int)fps;
-    int digits[3] = { f / 100, (f / 10) % 10, f % 10 };
-    for (int i = 0; i < 3; i++)
+    for (i = 0; i < 3; i++)
     {
-        int val = digits[i];
+        val = digits[i];
+
         if (val < 0) val = 0;
         if (val > 9) val = 9;
+
         glBegin(GL_QUADS);
         glColor3f(0.0f, 1.0f, 0.0f);
         glVertex2f(10.0f + i * 15.0f, 5.0f);
@@ -272,11 +283,14 @@ int main(void)
     int               height = 600;
     size_t            currentTime, delta;
     float             timeAccum = 0.0f;
+    float rad;
+    float camX;
+    float camZ;
+    float camY;
 
     result = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height),
-        "Terrain Flight", 0);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height), "LDL - Terrain Flight (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
@@ -294,10 +308,10 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                     LDL_WindowStopEvent(window);
-                if (event.Type == LDL_EventIsResize)
-                    Resize((int)event.Resize.Width, (int)event.Resize.Height);
+                if (event.u.Type == LDL_EventIsResize)
+                    Resize((int)event.u.Resize.Width, (int)event.u.Resize.Height);
             }
 
             currentTime = LDL_Ticks();
@@ -323,10 +337,10 @@ int main(void)
             glLoadIdentity();
 
             /* Плавные координаты камеры */
-            float rad = cameraAngle * M_PI / 180.0f;
-            float camX = sin(rad) * cameraDistance;
-            float camZ = cos(rad) * cameraDistance;
-            float camY = 4.0f + sin(rad * 0.5f) * 1.5f;
+            rad = cameraAngle * M_PI / 180.0f;
+            camX = sin(rad) * cameraDistance;
+            camZ = cos(rad) * cameraDistance;
+            camY = 4.0f + sin(rad * 0.5f) * 1.5f;
 
             /* Камера смотрит на центр */
             LookAt(camX, camY, camZ, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f);
