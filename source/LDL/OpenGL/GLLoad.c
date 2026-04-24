@@ -1174,7 +1174,6 @@ LDL_OpenGLLoader* LDL_OpenGLLoaderNew(LDL_Result* result, size_t major, size_t m
 		{3, 1, LDL_OpenGLLoader_3_1},
 		{3, 2, LDL_OpenGLLoader_3_2},
 		{3, 3, LDL_OpenGLLoader_3_3},
-		{3, 3, LDL_OpenGLLoader_3_3},
 		{4, 0, LDL_OpenGLLoader_4_0},
 		{4, 1, LDL_OpenGLLoader_4_1},
 		{4, 2, LDL_OpenGLLoader_4_2},
@@ -1192,7 +1191,7 @@ LDL_OpenGLLoader* LDL_OpenGLLoaderNew(LDL_Result* result, size_t major, size_t m
 
 		for (i = 0; versions[i].Loader != NULL; i++)
 		{
-			if ((versions[i].Major <= major) && (versions[i].Minor <= minor))
+			if ((versions[i].Major < major) || (versions[i].Major == major && versions[i].Minor <= minor))
 			{
 				versions[i].Loader(loader);
 			}
