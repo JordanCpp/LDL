@@ -47,6 +47,11 @@ LDL_Window* LDL_WindowNew(LDL_Result* result, LDL_Context* context, LDL_Vec2i po
 		return window;
 	}
 
+	if (window)
+	{
+		free(window);
+	}
+
 	return NULL;
 }
 
