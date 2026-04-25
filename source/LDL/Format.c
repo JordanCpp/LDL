@@ -109,30 +109,24 @@ int LDL_FormatterItoa(int num, char* str)
     return i;
 }
 
-const char* LDL_FormatterFormat(LDL_Formatter* formatter, const char* format, ...)
+const char* LDL_FormatterVFormat(LDL_Formatter* formatter, const char* format, va_list args) 
 {
-    va_list args;
-    char* dst;
-    char* end;
+    char* dst, * end, * p;
     const char* src;
-    int n;
-    char* p;
-    char numBuf[12];
+    char numBuf[32];
 
-    if (!format)
+    if (!formatter || !format)
     {
-        return formatter->Buffer;
+        return (formatter ? formatter->Buffer : NULL);
     }
-
-    va_start(args, format);
 
     dst = formatter->Buffer;
     end = formatter->Buffer + LDL_FormatterMax - 1;
     src = format;
 
-    while (*src != '\0' && dst < end)
+    while (*src != '\0' && dst < end) 
     {
-        if (*src == '%')
+        if (*src == '%') 
         {
             src++;
             switch (*src)
@@ -140,53 +134,36 @@ const char* LDL_FormatterFormat(LDL_Formatter* formatter, const char* format, ..
             case 's':
             {
                 char* s = va_arg(args, char*);
-
                 if (!s) s = "(null)";
-
-                while (*s && dst < end)
-                {
-                    *dst++ = *s++;
-                }
-
+                while (*s && dst < end) *dst++ = *s++;
                 break;
             }
-            case 'd':
+            case 'd': 
             {
-                n = va_arg(args, int);
-
-                LDL_FormatterItoa(n, numBuf);
-
+                LDL_FormatterItoa(va_arg(args, int), numBuf);
                 p = numBuf;
-
-                while (*p && dst < end)
-                {
-                    *dst++ = *p++;
-                }
-
+                while (*p && dst < end) *dst++ = *p++;
                 break;
             }
             case 'c':
             {
-                *dst++ = (char)va_arg(args, int);
-
+                if (dst < end) *dst++ = (char)va_arg(args, int);
                 break;
             }
-            case '%':
+            case '%': 
             {
                 *dst++ = '%';
-
                 break;
             }
-            default:
+            default: 
             {
                 if (dst < end) *dst++ = '%';
                 if (dst < end) *dst++ = *src;
-
                 break;
             }
             }
         }
-        else
+        else 
         {
             *dst++ = *src;
         }
@@ -195,7 +172,17 @@ const char* LDL_FormatterFormat(LDL_Formatter* formatter, const char* format, ..
     }
 
     *dst = '\0';
-    va_end(args);
 
     return formatter->Buffer;
+}
+
+const char* LDL_FormatterFormat(LDL_Formatter* formatter, const char* format, ...) {
+    va_list args;
+    const char* res;
+
+    va_start(args, format);
+    res = LDL_FormatterVFormat(formatter, format, args);
+    va_end(args);
+
+    return res;
 }
