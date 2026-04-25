@@ -74,41 +74,59 @@ const char* LDL_BaseWindowGetTitle(LDL_BaseWindow* baseWindow)
 bool LDL_BaseWindowIsFullscreen(LDL_BaseWindow* baseWindow)
 {
 	if (baseWindow)
+	{
 		return (baseWindow->Mode & LDL_WindowModeFullScreen) != 0;
-	return 0;
+	}
+	
+	return false;
 }
 
 bool LDL_BaseWindowIsResized(LDL_BaseWindow* baseWindow)
 {
 	if (baseWindow)
+	{
 		return (baseWindow->Mode & LDL_WindowModeResized) != 0;
-	return 0;
+	}
+	
+	return false;
 }
 
 bool LDL_BaseWindowIsFixed(LDL_BaseWindow* baseWindow)
 {
 	if (baseWindow)
+	{
 		return (baseWindow->Mode & LDL_WindowModeFixed) != 0;
-	return 0;
+	}
+	
+	return false;
 }
 
 bool LDL_BaseWindowIsMinimized(LDL_BaseWindow* baseWindow)
 {
 	if (baseWindow)
+	{
 		return (baseWindow->Mode & LDL_WindowModeMinimized) != 0;
-	return 0;
+	}
+	
+	return false;
 }
 
 bool LDL_BaseWindowIsMaximized(LDL_BaseWindow* baseWindow)
 {
 	if (baseWindow)
+	{
 		return (baseWindow->Mode & LDL_WindowModeMaximized) != 0;
-	return 0;
+	}
+	
+	return false;
 }
 
 bool LDL_BaseWindowIsCentered(LDL_BaseWindow* baseWindow)
 {
 	if (baseWindow)
+	{
 		return (baseWindow->Mode & LDL_WindowModeCentered) != 0;
-	return 0;
+	}
+	
+	return false;
 }
