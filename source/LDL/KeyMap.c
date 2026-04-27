@@ -30,7 +30,7 @@ uint8_t LDL_KeyMapGetKey(LDL_KeyMap* keyMap)
 		return keyMap->Key;
 	}
 
-	return 0;
+	return LDL_KeyUnknown;
 }
 
 uint32_t LDL_KeyMapGetCode(LDL_KeyMap* keyMap)
@@ -40,5 +40,5 @@ uint32_t LDL_KeyMapGetCode(LDL_KeyMap* keyMap)
 		return keyMap->Code;
 	}
 
-	return 0;
+	return LDL_KeyUnknown;
 }

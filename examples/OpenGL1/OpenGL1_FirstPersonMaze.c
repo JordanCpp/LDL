@@ -108,8 +108,8 @@ void UpdateMovement(size_t delta)
 
     if (moveForward)
     {
-        newX = playerX + sin(playerAngle * M_PI / 180.0f) * move;
-        newZ = playerZ + cos(playerAngle * M_PI / 180.0f) * move;
+        newX = playerX + (float)sin(playerAngle * (float)M_PI / 180.0f) * move;
+        newZ = playerZ + (float)cos(playerAngle * (float)M_PI / 180.0f) * move;
 
         if (!CheckCollision(newX, newZ))
         {
@@ -120,8 +120,8 @@ void UpdateMovement(size_t delta)
 
     if (moveBack)
     {
-        newX = playerX - sin(playerAngle * M_PI / 180.0f) * move;
-        newZ = playerZ - cos(playerAngle * M_PI / 180.0f) * move;
+        newX = playerX - (float)sin(playerAngle * (float)M_PI / 180.0f) * move;
+        newZ = playerZ - (float)cos(playerAngle * (float)M_PI / 180.0f) * move;
 
         if (!CheckCollision(newX, newZ))
         {

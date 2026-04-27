@@ -30,6 +30,8 @@ cl /O2 -FeOpenGL1_WaterWaveSimulation.exe -GX /I..\include ..\examples\OpenGL1\O
 cl /O2 -FeOpenGL1_3DAtomModel.exe -GX /I..\include ..\examples\OpenGL1\OpenGL1_3DAtomModel.c /link LDL.lib opengl32.lib
 
 cl /O2 -FeOpenGL3_Rect.exe -GX /I..\include ..\examples\OpenGL3\OpenGL3_Rect.c /link LDL.lib opengl32.lib
+cl /O2 -FeOpenGL3_RotatingCube.exe -GX /I..\include ..\examples\OpenGL3\OpenGL3_RotatingCube.c /link LDL.lib opengl32.lib
+cl /O2 -FeOpenGL3_Triangle.exe -GX /I..\include ..\examples\OpenGL3\OpenGL3_Triangle.c /link LDL.lib opengl32.lib
 
 del *.obj
 

@@ -127,8 +127,8 @@ void FireShot(void)
             shots[i].x = 0.0f;
             shots[i].y = 0.2f;
             shots[i].z = 0.0f;
-            shots[i].vx = sin(playerAngle * M_PI / 180.0f) * 12.0f;
-            shots[i].vz = cos(playerAngle * M_PI / 180.0f) * 12.0f;
+            shots[i].vx = (float)sin(playerAngle * M_PI / 180.0f) * 12.0f;
+            shots[i].vz = (float)cos(playerAngle * M_PI / 180.0f) * 12.0f;
             shots[i].vy = (float)(rand() % 20 - 10) / 50.0f;
             shots[i].active = 1;
             shots[i].life = 2.0f;
@@ -158,7 +158,7 @@ void UpdateTargets(size_t delta)
             if (targets[i].z < -15.0f) { targets[i].z = -15.0f; targets[i].speedZ = -targets[i].speedZ; }
 
             /* Color flash based on speed */
-            speed = sqrt(targets[i].speedX * targets[i].speedX + targets[i].speedZ * targets[i].speedZ);
+            speed = (float)sqrt(targets[i].speedX * targets[i].speedX + targets[i].speedZ * targets[i].speedZ);
             targets[i].r = 0.8f + speed * 0.3f;
         }
     }
@@ -186,7 +186,7 @@ void UpdateShots(size_t delta)
                 {
                     dx = shots[i].x - targets[j].x;
                     dz = shots[i].z - targets[j].z;
-                    dist = sqrt(dx * dx + dz * dz);
+                    dist = (float)sqrt(dx * dx + dz * dz);
 
                     if (dist < targets[j].radius)
                     {

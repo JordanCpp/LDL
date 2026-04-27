@@ -66,7 +66,7 @@ void LookAt(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, fl
     forwardY = centerY - eyeY;
     forwardZ = centerZ - eyeZ;
 
-    length = sqrt(forwardX * forwardX + forwardY * forwardY + forwardZ * forwardZ);
+    length = (float)sqrt(forwardX * forwardX + forwardY * forwardY + forwardZ * forwardZ);
     if (length != 0.0f)
     {
         forwardX /= length;
@@ -82,7 +82,7 @@ void LookAt(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, fl
     sideY = forwardZ * upVectorX - forwardX * upVectorZ;
     sideZ = forwardX * upVectorY - forwardY * upVectorX;
 
-    length = sqrt(sideX * sideX + sideY * sideY + sideZ * sideZ);
+    length = (float)sqrt(sideX * sideX + sideY * sideY + sideZ * sideZ);
     if (length != 0.0f)
     {
         sideX /= length;
@@ -127,9 +127,10 @@ void GenerateHeightmap(void)
     {
         for (z = 0; z < MAP_SIZE; z++)
         {
-            fx = (float)x / MAP_SIZE * 8.0f;
-            fz = (float)z / MAP_SIZE * 8.0f;
-            heightmap[x][z] = sin(fx * 1.2f) * cos(fz * 1.2f) * 1.2f;
+            fx = (int)((float)x / (float)MAP_SIZE * 8.0f);
+            fz = (int)((float)z / (float)MAP_SIZE * 8.0f);
+
+            heightmap[x][z] = (float)sin((float)fx * 1.2f) * (float)cos((float)fz * 1.2f) * 1.2f;
         }
     }
 }
@@ -142,6 +143,7 @@ void DrawTerrain(void)
     for (x = 0; x < MAP_SIZE - 1; x++)
     {
         glBegin(GL_TRIANGLE_STRIP);
+
         for (z = 0; z < MAP_SIZE; z++)
         {
             h = heightmap[x][z];
@@ -160,6 +162,7 @@ void DrawTerrain(void)
                 (float)(z - MAP_SIZE / 2) * MAP_STEP
             );
         }
+
         glEnd();
     }
 }
@@ -232,8 +235,8 @@ void DrawFPS(void)
     glBegin(GL_QUADS);
     glColor3f(0.0f, 0.0f, 0.0f);
     glVertex2f(0.0f, 0.0f);
-    glVertex2f(width, 0.0f);
-    glVertex2f(width, 20.0f);
+    glVertex2f((float)width, 0.0f);
+    glVertex2f((float)width, 20.0f);
     glVertex2f(0.0f, 20.0f);
     glEnd();
 
@@ -337,10 +340,10 @@ int main(void)
             glLoadIdentity();
 
             /* Плавные координаты камеры */
-            rad = cameraAngle * M_PI / 180.0f;
-            camX = sin(rad) * cameraDistance;
-            camZ = cos(rad) * cameraDistance;
-            camY = 4.0f + sin(rad * 0.5f) * 1.5f;
+            rad = cameraAngle * (float)M_PI / 180.0f;
+            camX = (float)sin(rad) * cameraDistance;
+            camZ = (float)cos(rad) * cameraDistance;
+            camY = 4.0f + (float)sin(rad * 0.5f) * 1.5f;
 
             /* Камера смотрит на центр */
             LookAt(camX, camY, camZ, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f);

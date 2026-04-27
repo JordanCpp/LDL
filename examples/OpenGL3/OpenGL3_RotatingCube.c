@@ -111,12 +111,10 @@ static unsigned int indices[] = {
 };
 
 static GLuint VAO, VBO, EBO, ShaderProgram;
-static float angle = 0.0f;
 static size_t lastTime = 0;
 
 /* Matrices for rotation/projection */
 static float model[16];
-static float view[16];
 static float projection[16];
 
 void MatrixIdentity(float* m)
@@ -128,9 +126,9 @@ void MatrixIdentity(float* m)
 
 void MatrixRotateY(float* m, float angle)
 {
-    float rad = angle * M_PI / 180.0f;
-    float c = cos(rad);
-    float s = sin(rad);
+    float rad = angle * (float)M_PI / 180.0f;
+    float c = (float)cos(rad);
+    float s = (float)sin(rad);
 
     MatrixIdentity(m);
     m[0] = c;  m[2] = s;
@@ -139,9 +137,9 @@ void MatrixRotateY(float* m, float angle)
 
 void MatrixRotateX(float* m, float angle)
 {
-    float rad = angle * M_PI / 180.0f;
-    float c = cos(rad);
-    float s = sin(rad);
+    float rad = angle * (float)M_PI / 180.0f;
+    float c = (float)cos(rad);
+    float s = (float)sin(rad);
 
     MatrixIdentity(m);
     m[5] = c;  m[6] = s;
@@ -166,19 +164,19 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
     f[0] = centerX - eyeX;
     f[1] = centerY - eyeY;
     f[2] = centerZ - eyeZ;
-    flen = sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
+    flen = (float)sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
     if (flen != 0.0f) { f[0] /= flen; f[1] /= flen; f[2] /= flen; }
 
     s[0] = f[1] * upZ - f[2] * upY;
     s[1] = f[2] * upX - f[0] * upZ;
     s[2] = f[0] * upY - f[1] * upX;
-    slen = sqrt(s[0] * s[0] + s[1] * s[1] + s[2] * s[2]);
+    slen = (float)sqrt(s[0] * s[0] + s[1] * s[1] + s[2] * s[2]);
     if (slen != 0.0f) { s[0] /= slen; s[1] /= slen; s[2] /= slen; }
 
     u[0] = s[1] * f[2] - s[2] * f[1];
     u[1] = s[2] * f[0] - s[0] * f[2];
     u[2] = s[0] * f[1] - s[1] * f[0];
-    ulen = sqrt(u[0] * u[0] + u[1] * u[1] + u[2] * u[2]);
+    ulen = (float)sqrt(u[0] * u[0] + u[1] * u[1] + u[2] * u[2]);
     if (ulen != 0.0f) { u[0] /= ulen; u[1] /= ulen; u[2] /= ulen; }
 
     m[0] = s[0]; m[1] = u[0]; m[2] = -f[0]; m[3] = 0.0f;
@@ -190,17 +188,17 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
     m[15] = 1.0f;
 }
 
-void MatrixPerspective(float* m, float fov, float aspect, float near, float far)
+void MatrixPerspective(float* m, float fov, float aspect, float nearValue, float farValue)
 {
-    float tanHalfFov = tan(fov / 360.0f * M_PI);
+    float tanHalfFov = (float)tan(fov / 360.0f * M_PI);
     int i;
 
     for (i = 0; i < 16; i++) m[i] = 0.0f;
     m[0] = 1.0f / (aspect * tanHalfFov);
     m[5] = 1.0f / tanHalfFov;
-    m[10] = -(far + near) / (far - near);
+    m[10] = -(farValue + nearValue) / (farValue - nearValue);
     m[11] = -1.0f;
-    m[14] = -(2.0f * far * near) / (far - near);
+    m[14] = -(2.0f * farValue * nearValue) / (farValue - nearValue);
 }
 
 void MatrixMultiply(float* result, float* a, float* b)
@@ -298,6 +296,8 @@ void InitOpenGL(void)
     glEnable(GL_DEPTH_TEST);
 }
 
+static float angle = 0.0f;
+
 void UpdateAnimation(size_t delta)
 {
     float seconds = (float)delta / 1000.0f;
@@ -308,7 +308,7 @@ void UpdateAnimation(size_t delta)
 void Render(int width, int height)
 {
     float aspect = (float)width / (float)height;
-    float rotY[16], rotX[16], temp[16];
+    float rotY[16], rotX[16];
     float viewMat[16];
     int modelLoc, viewLoc, projLoc;
     int lightPosLoc, viewPosLoc, lightColorLoc, objectColorLoc;

@@ -12,15 +12,15 @@ or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
 License for more details.
 */
 
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <LDL/LDL.h>
 #include <LDL/OpenGL/GL1_2.h>
 #include <LDL/OpenGL/GLLoad.h>
 
 #ifndef M_PI
-#define M_PI 3.14159265358979323846
+    #define M_PI 3.14159265358979323846
 #endif
 
 #define MAX_PARTICLES 1000
@@ -77,16 +77,16 @@ void Resize(int width, int height)
 
 void InitParticle(Particle* p, float x, float y, float z, float r, float g, float b)
 {
-    float angle1 = (float)(rand() % 360) * M_PI / 180.0f;
-    float angle2 = (float)(rand() % 360) * M_PI / 180.0f;
+    float angle1 = (float)(rand() % 360) * (float)M_PI / 180.0f;
+    float angle2 = (float)(rand() % 360) * (float)M_PI / 180.0f;
     float speed = 2.5f + (float)(rand() % 150) / 100.0f;
 
     p->x = x;
     p->y = y;
     p->z = z;
-    p->vx = sin(angle1) * cos(angle2) * speed;
-    p->vy = sin(angle2) * speed + 2.0f;
-    p->vz = cos(angle1) * cos(angle2) * speed;
+    p->vx = (float)sin(angle1) * (float)cos(angle2) * speed;
+    p->vy = (float)sin(angle2) * speed + 2.0f;
+    p->vz = (float)cos(angle1) * (float)cos(angle2) * speed;
     p->r = r;
     p->g = g;
     p->b = b;
@@ -288,9 +288,9 @@ void DrawParticles(void)
 
         for (a = 0; a <= 360; a += 30)
         {
-            angle = a * M_PI / 180.0f;
-            px    = size * cos(angle);
-            py    = size * sin(angle);
+            angle = (float)a * (float)M_PI / 180.0f;
+            px    = size * (float)cos(angle);
+            py    = size * (float)sin(angle);
 
             glVertex3f(px, py, 0.0f);
         }

@@ -55,7 +55,7 @@ void Perspective(double fovY, double aspect, double zNear, double zFar)
 {
     double fH, fW;
 
-    fH = tan(fovY / 360.0 * M_PI) * zNear;
+    fH = (float)tan(fovY / 360.0 * M_PI) * zNear;
     fW = fH * aspect;
 
     glFrustum(-fW, fW, -fH, fH, zNear, zFar);
@@ -118,30 +118,30 @@ void DrawSphere(float radius, float r, float g, float b, int stacks, int slices)
 
     for (i = 0; i <= stacks; i++)
     {
-        phi = (float)i / (float)stacks * M_PI;
+        phi = (float)i / (float)stacks * (float)M_PI;
 
         glBegin(GL_TRIANGLE_STRIP);
 
         for (j = 0; j <= slices; j++)
         {
-            theta = (float)j / (float)slices * 2.0f * M_PI;
+            theta = (float)j / (float)slices * 2.0f * (float)M_PI;
 
-            x = radius * sin(phi) * cos(theta);
-            y = radius * cos(phi);
-            z = radius * sin(phi) * sin(theta);
+            x = radius * (float)sin(phi) * (float)cos(theta);
+            y = radius * (float)cos(phi);
+            z = radius * (float)sin(phi) * (float)sin(theta);
 
             glColor3f(r, g, b);
             glVertex3f(x, y, z);
 
-            phi = (float)(i + 1) / (float)stacks * M_PI;
-            x = radius * sin(phi) * cos(theta);
-            y = radius * cos(phi);
-            z = radius * sin(phi) * sin(theta);
+            phi = (float)(i + 1) / (float)stacks * (float)M_PI;
+            x = radius * (float)sin(phi) * (float)cos(theta);
+            y = radius * (float)cos(phi);
+            z = radius * (float)sin(phi) * (float)sin(theta);
 
             glColor3f(r * 0.8f, g * 0.8f, b * 0.8f);
             glVertex3f(x, y, z);
 
-            phi = (float)i / (float)stacks * M_PI;
+            phi = (float)i / (float)stacks * (float)M_PI;
         }
 
         glEnd();
@@ -161,10 +161,10 @@ void DrawNucleus(void)
     /* Protons (red) */
     for (i = 0; i < PROTON_COUNT; i++)
     {
-        angle = protonAngles[i] * M_PI / 180.0f;
-        x = radius * cos(angle) * sin(angle * 2.0f);
-        y = radius * sin(angle) * sin(angle * 1.5f);
-        z = radius * cos(angle * 1.7f);
+        angle = protonAngles[i] * (float)M_PI / 180.0f;
+        x = radius * (float)cos(angle) * (float)sin(angle * 2.0f);
+        y = radius * (float)sin(angle) * (float)sin(angle * 1.5f);
+        z = radius * (float)cos(angle * 1.7f);
 
         glPushMatrix();
         glTranslatef(x, y, z);
@@ -175,10 +175,10 @@ void DrawNucleus(void)
     /* Neutrons (blue) */
     for (i = 0; i < NEUTRON_COUNT; i++)
     {
-        angle = neutronAngles[i] * M_PI / 180.0f;
-        x = radius * cos(angle + 2.0f) * cos(angle);
-        y = radius * sin(angle * 1.3f);
-        z = radius * sin(angle + 1.0f) * cos(angle * 0.8f);
+        angle = neutronAngles[i] * (float)M_PI / 180.0f;
+        x = radius * (float)cos(angle + 2.0f) * (float)cos(angle);
+        y = radius * (float)sin(angle * 1.3f);
+        z = radius * (float)sin(angle + 1.0f) * (float)cos(angle * 0.8f);
 
         glPushMatrix();
         glTranslatef(x, y, z);
@@ -201,9 +201,9 @@ void DrawElectronTrajectory(float radius)
 
     for (i = 0; i <= 360; i += 15)
     {
-        angle = i * M_PI / 180.0f;
-        x = radius * cos(angle);
-        z = radius * sin(angle);
+        angle = (float)i * (float)M_PI / 180.0f;
+        x = radius * (float)cos(angle);
+        z = radius * (float)sin(angle);
 
         glVertex3f(x, 0.0f, z);
     }
@@ -215,9 +215,9 @@ void DrawElectronTrajectory(float radius)
 
     for (i = 0; i <= 360; i += 15)
     {
-        angle = i * M_PI / 180.0f;
-        x = radius * cos(angle);
-        y = radius * sin(angle);
+        angle = (float)i * (float)M_PI / 180.0f;
+        x = radius * (float)cos(angle);
+        y = radius * (float)sin(angle);
 
         glVertex3f(x, y, 0.0f);
     }
@@ -229,9 +229,9 @@ void DrawElectronTrajectory(float radius)
 
     for (i = 0; i <= 360; i += 15)
     {
-        angle = i * M_PI / 180.0f;
-        y = radius * cos(angle);
-        z = radius * sin(angle);
+        angle = i * (float)M_PI / 180.0f;
+        y = radius * (float)cos(angle);
+        z = radius * (float)sin(angle);
 
         glVertex3f(0.0f, y, z);
     }
@@ -249,13 +249,13 @@ void DrawElectrons(void)
         Electron* e = &electrons[i];
 
         /* Position in 3D using spherical coordinates */
-        x = e->radius * sin(e->angleX * M_PI / 180.0f) * cos(e->angleY * M_PI / 180.0f);
-        y = e->radius * sin(e->angleX * M_PI / 180.0f) * sin(e->angleY * M_PI / 180.0f);
-        z = e->radius * cos(e->angleX * M_PI / 180.0f);
+        x = e->radius * (float)sin(e->angleX * M_PI / 180.0f) * (float)cos(e->angleY * M_PI / 180.0f);
+        y = e->radius * (float)sin(e->angleX * M_PI / 180.0f) * (float)sin(e->angleY * M_PI / 180.0f);
+        z = e->radius * (float)cos(e->angleX * M_PI / 180.0f);
 
         /* Add second harmonic */
-        x += e->radius * 0.3f * sin(e->angleZ * M_PI / 180.0f);
-        z += e->radius * 0.3f * cos(e->angleZ * M_PI / 180.0f);
+        x += e->radius * 0.3f * (float)sin(e->angleZ * M_PI / 180.0f);
+        z += e->radius * 0.3f * (float)cos(e->angleZ * M_PI / 180.0f);
 
         glPushMatrix();
         glTranslatef(x, y, z);

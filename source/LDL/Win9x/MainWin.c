@@ -111,7 +111,7 @@ LRESULT CALLBACK LDL_MainWindowHandler(LDL_MainWindow* mainWindow, UINT Message,
         case WM_SYSKEYDOWN:
             event.u.Type = LDL_EventIsKeyboard;
             event.u.Keyboard.State = LDL_ButtonStatePressed;
-            event.u.Keyboard.Key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, WParam);
+            event.u.Keyboard.Key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, (uint32_t)WParam);
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 
@@ -119,7 +119,7 @@ LRESULT CALLBACK LDL_MainWindowHandler(LDL_MainWindow* mainWindow, UINT Message,
         case WM_SYSKEYUP:
             event.u.Type = LDL_EventIsKeyboard;
             event.u.Keyboard.State = LDL_ButtonStateReleased;
-            event.u.Keyboard.Key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, WParam);
+            event.u.Keyboard.Key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, (uint32_t)WParam);
             LDL_EventHandlerPush(&mainWindow->EventHandler, &event);
             break;
 

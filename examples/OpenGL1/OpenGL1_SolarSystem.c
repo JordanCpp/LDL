@@ -88,32 +88,32 @@ void DrawSphere(float radius, float r, float g, float b)
 
     for (i = 0; i <= stacks; i++)
     {
-        phi = (float)i / (float)stacks * M_PI;
+        phi = (float)i / (float)stacks * (float)M_PI;
 
         glBegin(GL_TRIANGLE_STRIP);
 
         for (j = 0; j <= slices; j++)
         {
-            theta = (float)j / (float)slices * 2.0f * M_PI;
+            theta = (float)j / (float)slices * 2.0f * (float)M_PI;
 
             /* First vertex */
-            x = radius * sin(phi) * cos(theta);
-            y = radius * cos(phi);
-            z = radius * sin(phi) * sin(theta);
+            x = radius * (float)sin(phi) * (float)cos(theta);
+            y = radius * (float)cos(phi);
+            z = radius * (float)sin(phi) * (float)sin(theta);
 
             glColor3f(r, g, b);
             glVertex3f(x, y, z);
 
             /* Second vertex */
-            phi = (float)(i + 1) / (float)stacks * M_PI;
-            x = radius * sin(phi) * cos(theta);
-            y = radius * cos(phi);
-            z = radius * sin(phi) * sin(theta);
+            phi = (float)(i + 1) / (float)stacks * (float)M_PI;
+            x = radius * (float)sin(phi) * (float)cos(theta);
+            y = radius * (float)cos(phi);
+            z = radius * (float)sin(phi) * (float)sin(theta);
 
             glColor3f(r * 0.9f, g * 0.9f, b * 0.9f);
             glVertex3f(x, y, z);
 
-            phi = (float)i / (float)stacks * M_PI;
+            phi = (float)i / (float)stacks * (float)M_PI;
         }
 
         glEnd();
@@ -151,9 +151,9 @@ void DrawOrbit(float radius)
 
     for (i = 0; i <= 360; i += 10)
     {
-        angle = i * M_PI / 180.0f;
-        x     = radius * cos(angle);
-        z     = radius * sin(angle);
+        angle = (float)i * (float)M_PI / 180.0f;
+        x     = radius * (float)cos(angle);
+        z     = radius * (float)sin(angle);
 
         glVertex3f(x, 0.0f, z);
     }
@@ -186,9 +186,9 @@ void DrawPlanet(Planet* p)
 
         for (i = 0; i <= 360; i += 20)
         {
-            angle = i * M_PI / 180.0f;
-            x = (p->radius + 0.12f) * cos(angle);
-            z = (p->radius + 0.12f) * sin(angle);
+            angle = i * (float)M_PI / 180.0f;
+            x = (p->radius + 0.12f) * (float)cos(angle);
+            z = (p->radius + 0.12f) * (float)sin(angle);
 
             glVertex3f(x, 0.05f, z);
         }

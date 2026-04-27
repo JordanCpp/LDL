@@ -59,7 +59,7 @@ void HSVtoRGB(float h, float s, float v, float* r, float* g, float* b)
     int i;
     float f, p, q, t;
 
-    h = fmod(h, 360.0f);
+    h = (float)fmod(h, 360.0f);
     if (h < 0) h += 360.0f;
 
     s /= 100.0f;
@@ -99,45 +99,45 @@ void DrawTorus(float radius, float tubeRadius, int rings, int sides)
 
     for (i = 0; i <= rings; i++)
     {
-        phi = (float)i / (float)rings * 2.0f * M_PI;
+        phi = (float)i / (float)rings * 2.0f * (float)M_PI;
 
         glBegin(GL_QUAD_STRIP);
 
         for (j = 0; j <= sides; j++)
         {
-            theta = (float)j / (float)sides * 2.0f * M_PI;
+            theta = (float)j / (float)sides * 2.0f * (float)M_PI;
 
             /* First vertex */
-            x = (radius + tubeRadius * cos(theta)) * cos(phi);
-            y = (radius + tubeRadius * cos(theta)) * sin(phi);
-            z = tubeRadius * sin(theta);
+            x = (radius + tubeRadius * (float)cos(theta)) * (float)cos(phi);
+            y = (radius + tubeRadius * (float)cos(theta)) * (float)sin(phi);
+            z = tubeRadius * (float)sin(theta);
 
-            nx = cos(phi) * cos(theta);
-            ny = sin(phi) * cos(theta);
-            nz = sin(theta);
+            nx = (float)cos(phi) * (float)cos(theta);
+            ny = (float)sin(phi) * (float)cos(theta);
+            nz = (float)sin(theta);
 
             /* Color based on position and hue */
-            HSVtoRGB(colorHue + phi * 180.0f / M_PI, 80.0f, 100.0f, &r, &g, &b);
+            HSVtoRGB(colorHue + phi * 180.0f / (float)M_PI, 80.0f, 100.0f, &r, &g, &b);
             glColor3f(r, g, b);
             glNormal3f(nx, ny, nz);
             glVertex3f(x, y, z);
 
             /* Second vertex - next ring */
-            phi = (float)(i + 1) / (float)rings * 2.0f * M_PI;
-            x = (radius + tubeRadius * cos(theta)) * cos(phi);
-            y = (radius + tubeRadius * cos(theta)) * sin(phi);
-            z = tubeRadius * sin(theta);
+            phi = (float)(i + 1) / (float)rings * 2.0f * (float)M_PI;
+            x = (radius + tubeRadius * (float)cos(theta)) * (float)cos(phi);
+            y = (radius + tubeRadius * (float)cos(theta)) * (float)sin(phi);
+            z = tubeRadius * (float)sin(theta);
 
-            nx = cos(phi) * cos(theta);
-            ny = sin(phi) * cos(theta);
-            nz = sin(theta);
+            nx = (float)cos(phi) * (float)cos(theta);
+            ny = (float)sin(phi) * (float)cos(theta);
+            nz = (float)sin(theta);
 
-            HSVtoRGB(colorHue + phi * 180.0f / M_PI, 80.0f, 100.0f, &r, &g, &b);
+            HSVtoRGB(colorHue + phi * 180.0f / (float)M_PI, 80.0f, 100.0f, &r, &g, &b);
             glColor3f(r, g, b);
             glNormal3f(nx, ny, nz);
             glVertex3f(x, y, z);
 
-            phi = (float)i / (float)rings * 2.0f * M_PI;
+            phi = (float)i / (float)rings * 2.0f * (float)M_PI;
         }
 
         glEnd();

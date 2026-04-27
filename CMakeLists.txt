@@ -62,7 +62,15 @@ if (WIN32)
     "source/LDL/Win9x/WinGL1.c"
     "source/LDL/Win9x/WinGL3.c")
 elseif(UNIX AND NOT APPLE)
-    set(PLATFORM_SOURCE)
+    set(PLATFORM_SOURCE 
+    "source/LDL/Linux/GLFuncs.c"
+    "source/LDL/Linux/KMapper.c"
+    "source/LDL/Linux/Library.c"
+    "source/LDL/Linux/MainWin.c"
+    "source/LDL/Linux/Ticks.c"
+    "source/LDL/Linux/Window.c"
+    "source/LDL/Linux/WinGL1.c"
+    "source/LDL/Linux/WinGL3.c")
 endif()
 
 set(SOURCE ${SHARED_SOURCE} ${OPENGL_SOURCE} ${PLATFORM_SOURCE})
@@ -70,7 +78,7 @@ set(SOURCE ${SHARED_SOURCE} ${OPENGL_SOURCE} ${PLATFORM_SOURCE})
 add_library(LDL ${SOURCE})
 
 if (WIN32)
-    target_link_libraries(LDL winmm opengl32)
+    target_link_libraries(LDL winmm opengl32 gdi32 user32)
 elseif (UNIX AND NOT APPLE)
     target_link_libraries(LDL X11 GL dl)
 endif()

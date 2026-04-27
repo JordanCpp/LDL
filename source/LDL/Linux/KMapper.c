@@ -12,20 +12,23 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#ifndef LDL_KeyMap_H
-#define LDL_KeyMap_H
-
 #include <LDL/Enums.h>
-#include <LDL/Types.h>
+#include <LDL/Linux/KMapper.h>
 
-typedef struct LDL_KeyMap
+void LDL_KeyMapperInit(LDL_KeyMapper* keyMapper)
 {
-	uint8_t  Key;
-	uint32_t Code;
-} LDL_KeyMap;
+    if (keyMapper)
+    {
+        LDL_KeyMappingInit(&keyMapper->Mapping);
+    }
+}
 
-void LDL_KeyMapInit(LDL_KeyMap* keyMap, uint32_t code, uint8_t key);
-uint8_t LDL_KeyMapGetKey(LDL_KeyMap* keyMap);
-uint32_t LDL_KeyMapGetCode(LDL_KeyMap* keyMap);
+uint8_t LDL_KeyMapperConvertKey(LDL_KeyMapper* keyMapper, uint32_t key)
+{
+    if (keyMapper)
+    {
+        return LDL_KeyMappingFindKey(&keyMapper->Mapping, key);
+    }
 
-#endif
+    return LDL_KeyUnknown;
+}

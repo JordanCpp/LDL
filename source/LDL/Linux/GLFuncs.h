@@ -12,20 +12,19 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#ifndef LDL_KeyMap_H
-#define LDL_KeyMap_H
+#ifndef LDL_Linux_GLFuncs_H
+#define LDL_Linux_GLFuncs_H
 
-#include <LDL/Enums.h>
-#include <LDL/Types.h>
+#include <LDL/Library.h>
 
-typedef struct LDL_KeyMap
+typedef struct LDL_OpenGLFunctions
 {
-	uint8_t  Key;
-	uint32_t Code;
-} LDL_KeyMap;
+	LDL_Result*  Result;
+	LDL_Library* Library;
+} LDL_OpenGLFunctions;
 
-void LDL_KeyMapInit(LDL_KeyMap* keyMap, uint32_t code, uint8_t key);
-uint8_t LDL_KeyMapGetKey(LDL_KeyMap* keyMap);
-uint32_t LDL_KeyMapGetCode(LDL_KeyMap* keyMap);
+LDL_LIBRARY void LDL_OpenGLFunctionsInit(LDL_OpenGLFunctions* openGLFunctions, LDL_Result* result);
+LDL_LIBRARY void LDL_OpenGLFunctionsDeinit(LDL_OpenGLFunctions* openGLFunctions);
+LDL_LIBRARY LDL_VoidFuncPtr LDL_OpenGLFunctionsGetFunction(LDL_OpenGLFunctions* openGLFunctions, const char* name);
 
 #endif

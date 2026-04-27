@@ -12,20 +12,25 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#ifndef LDL_KeyMap_H
-#define LDL_KeyMap_H
+#include <unistd.h>
+#include <sys/time.h> 
+#include <LDL/Ticks.h>
 
-#include <LDL/Enums.h>
-#include <LDL/Types.h>
-
-typedef struct LDL_KeyMap
+size_t LDL_Ticks()
 {
-	uint8_t  Key;
-	uint32_t Code;
-} LDL_KeyMap;
+	struct timeval tv;
 
-void LDL_KeyMapInit(LDL_KeyMap* keyMap, uint32_t code, uint8_t key);
-uint8_t LDL_KeyMapGetKey(LDL_KeyMap* keyMap);
-uint32_t LDL_KeyMapGetCode(LDL_KeyMap* keyMap);
+	gettimeofday(&tv, NULL);
 
-#endif
+	return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+}
+
+void LDL_Delay(size_t count)
+{
+	if (count >= 1000)
+	{
+		sleep(count / 1000);
+	}
+
+	usleep((count % 1000) * 1000);
+}

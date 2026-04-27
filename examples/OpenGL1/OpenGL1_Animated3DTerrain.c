@@ -72,10 +72,10 @@ void UpdateHeights(float time)
 
             /* Multiple sine waves for realistic terrain */
             heights[x][z] =
-                sin(fx * 1.2f + time) * cos(fz * 1.0f + time * 0.7f) * 0.6f +
-                sin(fx * 2.5f - time * 1.3f) * 0.3f +
-                cos(fz * 2.0f + time * 0.9f) * 0.3f +
-                sin((fx * 0.5f + fz * 0.5f) * 1.5f + time * 0.5f) * 0.2f;
+                (float)sin(fx * 1.2f + time) * (float)cos(fz * 1.0f + time * 0.7f) * 0.6f +
+                (float)sin(fx * 2.5f - time * 1.3f) * 0.3f +
+                (float)cos(fz * 2.0f + time * 0.9f) * 0.3f +
+                (float)sin((fx * 0.5f + fz * 0.5f) * 1.5f + time * 0.5f) * 0.2f;
         }
     }
 }
