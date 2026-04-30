@@ -15,6 +15,15 @@ License for more details.
 #include <LDL/BaseWin.h>
 #include <LDL/Linux/MainWin.h>
 
+static KeySym LDL_GetKeySym(Display* display, KeyCode keycode)
+{
+#if defined(XlibSpecificationRelease) && XlibSpecificationRelease >= 6
+    return XkbKeycodeToKeysym(display, keycode, 0, 0);
+#else
+    return XKeycodeToKeysym(display, keycode, 0);
+#endif
+}
+
 const size_t eventMask =
     StructureNotifyMask | PointerMotionMask | ButtonMotionMask | ButtonPressMask | ButtonReleaseMask | KeyPressMask | KeyReleaseMask;
 
@@ -140,7 +149,7 @@ void LDL_MainWindowPollEvents(LDL_MainWindow *mainWindow)
             case KeyPress:
                 report.Type = LDL_EventIsKeyboard;
                 report.u.Keyboard.State = LDL_ButtonStatePressed;
-                code = XKeycodeToKeysym(mainWindow->Display, event.xkey.keycode, 0);
+                code = LDL_GetKeySym(mainWindow->Display, event.xkey.keycode, 0);
                 key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, code);
                 report.u.Keyboard.Key = key;
                 LDL_EventHandlerPush(&mainWindow->EventHandler, &report);
@@ -149,7 +158,7 @@ void LDL_MainWindowPollEvents(LDL_MainWindow *mainWindow)
             case KeyRelease:
                 report.Type = LDL_EventIsKeyboard;
                 report.u.Keyboard.State = LDL_ButtonStateReleased;
-                code = XKeycodeToKeysym(mainWindow->Display, event.xkey.keycode, 0);
+                code = LDL_GetKeySym(mainWindow->Display, event.xkey.keycode, 0);
                 key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, code);
                 report.u.Keyboard.Key = key;
                 LDL_EventHandlerPush(&mainWindow->EventHandler, &report);
