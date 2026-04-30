@@ -33,6 +33,9 @@ LDL_LIBRARY bool LDL_WindowIsRunning(LDL_Window* window);
 LDL_LIBRARY void LDL_WindowStopEvent(LDL_Window* window);
 LDL_LIBRARY bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event);
 
+LDL_LIBRARY const char* LDL_WindowGetTitle(LDL_Window* window);
+LDL_LIBRARY void LDL_WindowSetTitle(LDL_Window* window, const char* title);
+
 LDL_LIBRARY void LDL_WindowPresent(LDL_Window* window);
 
 #ifdef __cplusplus

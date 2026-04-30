@@ -38,7 +38,9 @@ void LDL_MainWindowDeinit(LDL_MainWindow* mainWindow);
 
 LDL_Vec2i LDL_MainWindowGetPos(LDL_MainWindow* mainWindow);
 LDL_Vec2i LDL_MainWindowGetSize(LDL_MainWindow* mainWindow);
+
 const char* LDL_MainWindowGetTitle(LDL_MainWindow* mainWindow);
+void LDL_MainWindowSetTitle(LDL_MainWindow* mainWindow, const char* title);
 
 void LDL_MainWindowPollEvents(LDL_MainWindow* mainWindow);
 bool LDL_MainWindowGetEvent(LDL_MainWindow* mainWindow, LDL_Event* event);

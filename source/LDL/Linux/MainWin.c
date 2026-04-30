@@ -16,14 +16,9 @@ License for more details.
 #include <LDL/Linux/MainWin.h>
 
 const size_t eventMask =
-PointerMotionMask
-| ButtonMotionMask
-| ButtonPressMask
-| ButtonReleaseMask
-| KeyPressMask
-| KeyReleaseMask;
+    StructureNotifyMask | PointerMotionMask | ButtonMotionMask | ButtonPressMask | ButtonReleaseMask | KeyPressMask | KeyReleaseMask;
 
-void LDL_MainWindowInit(LDL_MainWindow* mainWindow, LDL_Result* result, LDL_Vec2i pos, LDL_Vec2i size, const char* title, size_t mode)
+void LDL_MainWindowInit(LDL_MainWindow *mainWindow, LDL_Result *result, LDL_Vec2i pos, LDL_Vec2i size, const char *title, size_t mode)
 {
     if (mainWindow && result)
     {
@@ -31,14 +26,27 @@ void LDL_MainWindowInit(LDL_MainWindow* mainWindow, LDL_Result* result, LDL_Vec2
         LDL_EventHandlerInit(&mainWindow->EventHandler);
         LDL_BaseWindowInit(&mainWindow->BaseWindow, pos, size, title, mode);
 
+        mainWindow->EventMask = eventMask;
+
         mainWindow->Display = XOpenDisplay(NULL);
+        if (!mainWindow->Display)
+        {
+            LDL_ResultAddMessage(result, "Error: XOpenDisplay\n");
+            return;
+        }
 
         mainWindow->Screen = DefaultScreen(mainWindow->Display);
+
         mainWindow->Root = RootWindow(mainWindow->Display, mainWindow->Screen);
+        if (mainWindow->Root == None)
+        {
+            LDL_ResultAddMessage(result, "Error: RootWindow\n");
+            return;
+        }
     }
 }
 
-void LDL_MainWindowDeinit(LDL_MainWindow* mainWindow)
+void LDL_MainWindowDeinit(LDL_MainWindow *mainWindow)
 {
     if (mainWindow)
     {
@@ -55,7 +63,7 @@ void LDL_MainWindowDeinit(LDL_MainWindow* mainWindow)
     }
 }
 
-LDL_Vec2i LDL_MainWindowGetPos(LDL_MainWindow* mainWindow)
+LDL_Vec2i LDL_MainWindowGetPos(LDL_MainWindow *mainWindow)
 {
     if (mainWindow)
     {
@@ -65,7 +73,7 @@ LDL_Vec2i LDL_MainWindowGetPos(LDL_MainWindow* mainWindow)
     return LDL_GetVec2i(0, 0);
 }
 
-LDL_Vec2i LDL_MainWindowGetSize(LDL_MainWindow* mainWindow)
+LDL_Vec2i LDL_MainWindowGetSize(LDL_MainWindow *mainWindow)
 {
     if (mainWindow)
     {
@@ -75,7 +83,7 @@ LDL_Vec2i LDL_MainWindowGetSize(LDL_MainWindow* mainWindow)
     return LDL_GetVec2i(0, 0);
 }
 
-const char* LDL_MainWindowGetTitle(LDL_MainWindow* mainWindow)
+const char *LDL_MainWindowGetTitle(LDL_MainWindow *mainWindow)
 {
     if (mainWindow)
     {
@@ -85,12 +93,98 @@ const char* LDL_MainWindowGetTitle(LDL_MainWindow* mainWindow)
     return NULL;
 }
 
-
-void LDL_MainWindowPollEvents(LDL_MainWindow* mainWindow)
+void LDL_MainWindowSetTitle(LDL_MainWindow *mainWindow, const char *title)
 {
+    if (mainWindow)
+    {
+        LDL_BaseWindowSetTitle(&mainWindow->BaseWindow, title);
+
+        if (mainWindow->Display && mainWindow->Window)
+        {
+            XStoreName(mainWindow->Display, mainWindow->Window, LDL_BaseWindowGetTitle(&mainWindow->BaseWindow));
+        }
+    }
 }
 
-bool LDL_MainWindowGetEvent(LDL_MainWindow* mainWindow, LDL_Event* event)
+void LDL_MainWindowPollEvents(LDL_MainWindow *mainWindow)
+{
+    XEvent event;
+    LDL_Event report;
+    size_t button;
+    size_t key;
+    size_t code;
+
+    if (mainWindow && mainWindow->Display)
+    {
+        while (XPending(mainWindow->Display))
+        {
+            XNextEvent(mainWindow->Display, &event);
+
+            switch (event.type)
+            {
+
+            case ConfigureNotify:
+                report.u.Type = LDL_EventIsResize;
+                report.u.Resize.Width = event.xconfigure.width;
+                report.u.Resize.Height = event.xconfigure.height;
+                LDL_EventHandlerPush(&mainWindow->EventHandler, &report);
+                break;
+
+            case MotionNotify:
+                report.u.Type = LDL_EventIsMouseMove;
+                report.u.Mouse.PosX = event.xmotion.x;
+                report.u.Mouse.PosY = event.xmotion.y;
+                LDL_EventHandlerPush(&mainWindow->EventHandler, &report);
+                break;
+
+            case KeyPress:
+                report.u.Type = LDL_EventIsKeyboard;
+                report.u.Keyboard.State = LDL_ButtonStatePressed;
+                code = XKeycodeToKeysym(mainWindow->Display, event.xkey.keycode, 0);
+                key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, code);
+                report.u.Keyboard.Key = key;
+                LDL_EventHandlerPush(&mainWindow->EventHandler, &report);
+                break;
+
+            case KeyRelease:
+                report.u.Type = LDL_EventIsKeyboard;
+                report.u.Keyboard.State = LDL_ButtonStateReleased;
+                code = XKeycodeToKeysym(mainWindow->Display, event.xkey.keycode, 0);
+                key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, code);
+                report.u.Keyboard.Key = key;
+                LDL_EventHandlerPush(&mainWindow->EventHandler, &report);
+                break;
+
+            case ButtonPress:
+                report.u.Type = LDL_EventIsMouseClick;
+                report.u.Mouse.State = LDL_ButtonStatePressed;
+
+                button = 0;
+
+                switch (event.xbutton.button)
+                {
+                case 1:
+                    button = LDL_MouseButtonLeft;
+                    break;
+                case 2:
+                    button = LDL_MouseButtonRight;
+                    break;
+                case 3:
+                    button = LDL_MouseButtonMiddle;
+                    break;
+                }
+
+                report.u.Mouse.Button = button;
+                report.u.Mouse.PosX = event.xbutton.x;
+                report.u.Mouse.PosY = event.xbutton.y;
+                LDL_EventHandlerPush(&mainWindow->EventHandler, &report);
+                break;
+            }
+        }
+    }
+}
+
+bool LDL_MainWindowGetEvent(LDL_MainWindow *mainWindow, LDL_Event *event)
 {
     if (mainWindow && event)
     {
@@ -105,7 +199,7 @@ bool LDL_MainWindowGetEvent(LDL_MainWindow* mainWindow, LDL_Event* event)
     return false;
 }
 
-void LDL_MainWindowStopEvent(LDL_MainWindow* mainWindow)
+void LDL_MainWindowStopEvent(LDL_MainWindow *mainWindow)
 {
     if (mainWindow)
     {
@@ -113,7 +207,7 @@ void LDL_MainWindowStopEvent(LDL_MainWindow* mainWindow)
     }
 }
 
-bool LDL_MainWindowIsRunning(LDL_MainWindow* mainWindow)
+bool LDL_MainWindowIsRunning(LDL_MainWindow *mainWindow)
 {
     if (mainWindow)
     {

@@ -12,6 +12,7 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
+#include <LDL/Linux/GLX.h>
 #include <LDL/Linux/GLFuncs.h>
 
 void LDL_OpenGLFunctionsInit(LDL_OpenGLFunctions* openGLFunctions, LDL_Result* result)
@@ -20,14 +21,6 @@ void LDL_OpenGLFunctionsInit(LDL_OpenGLFunctions* openGLFunctions, LDL_Result* r
 	{
 		openGLFunctions->Result  = result;
 		openGLFunctions->Library = LDL_LibraryNew(result);
-
-		if (LDL_ResultIsOk(result))
-		{
-			if (!LDL_LibraryOpen(openGLFunctions->Library, "OpenGL32.dll"))
-			{
-				LDL_OpenGLFunctionsDeinit(openGLFunctions);
-			}
-		}
 	}
 }
 
@@ -39,14 +32,9 @@ void LDL_OpenGLFunctionsDeinit(LDL_OpenGLFunctions* openGLFunctions)
 	}
 }
 
-bool IsValid(LDL_VoidFuncPtr ptr)
-{
-	return (ptr == 0 || (ptr == (LDL_VoidFuncPtr)0x1) || (ptr == (LDL_VoidFuncPtr)0x2) || (ptr == (LDL_VoidFuncPtr)0x3) || (ptr == (LDL_VoidFuncPtr)-1));
-}
-
 LDL_VoidFuncPtr LDL_OpenGLFunctionsGetFunction(LDL_OpenGLFunctions* openGLFunctions, const char* name)
 {
-	LDL_VoidFuncPtr result = NULL;
+	LDL_VoidFuncPtr result = glXGetProcAddress((const GLubyte*)name);;
 
 	return result;
 }

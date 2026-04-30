@@ -12,8 +12,8 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 #include <LDL/LDL.h>
 #include <LDL/OpenGL/GL1_2.h>
 #include <LDL/OpenGL/GLLoad.h>

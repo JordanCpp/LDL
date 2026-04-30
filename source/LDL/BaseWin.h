@@ -34,9 +34,12 @@ typedef struct LDL_BaseWindow
 void LDL_BaseWindowInit(LDL_BaseWindow* baseWindow, LDL_Vec2i pos, LDL_Vec2i size, const char* title, size_t mode);
 
 bool LDL_BaseWindowHasMode(LDL_BaseWindow* baseWindow, size_t mode);
+
 LDL_Vec2i LDL_BaseWindowGetPos(LDL_BaseWindow* baseWindow);
 LDL_Vec2i LDL_BaseWindowGetSize(LDL_BaseWindow* baseWindow);
+
 const char* LDL_BaseWindowGetTitle(LDL_BaseWindow* baseWindow);
+void LDL_BaseWindowSetTitle(LDL_BaseWindow* baseWindow, const char* title);
 
 bool LDL_BaseWindowIsFullscreen(LDL_BaseWindow* baseWindow);
 bool LDL_BaseWindowIsResized(LDL_BaseWindow* baseWindow);

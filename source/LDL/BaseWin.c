@@ -71,6 +71,17 @@ const char* LDL_BaseWindowGetTitle(LDL_BaseWindow* baseWindow)
 	return NULL;
 }
 
+void LDL_BaseWindowSetTitle(LDL_BaseWindow* baseWindow, const char* title)
+{
+	LDL_StringSpan strTitle;
+
+	if (baseWindow)
+	{
+		strTitle = LDL_GetStringSpan(baseWindow->Title, LDL_BaseWindowTitleMax);
+		LDL_StringSpanCopy(&strTitle, title);
+	}
+}
+
 bool LDL_BaseWindowIsFullscreen(LDL_BaseWindow* baseWindow)
 {
 	if (baseWindow)

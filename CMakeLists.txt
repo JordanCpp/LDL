@@ -9,6 +9,12 @@ if (MSVC)
     add_compile_options("/analyze")
 endif()
 
+if(UNIX AND NOT APPLE)
+    find_package(X11 REQUIRED)
+    link_libraries(${X11_LIBRARIES})
+    include_directories(${X11_INCLUDE_DIR})
+endif()
+
 set(LDL_STATIC_LIBRARY true)
 add_definitions(-DLDL_STATIC_LIBRARY)
 
@@ -69,8 +75,7 @@ elseif(UNIX AND NOT APPLE)
     "source/LDL/Linux/MainWin.c"
     "source/LDL/Linux/Ticks.c"
     "source/LDL/Linux/Window.c"
-    "source/LDL/Linux/WinGL1.c"
-    "source/LDL/Linux/WinGL3.c")
+    "source/LDL/Linux/WinGL.c")
 endif()
 
 set(SOURCE ${SHARED_SOURCE} ${OPENGL_SOURCE} ${PLATFORM_SOURCE})
@@ -80,7 +85,7 @@ add_library(LDL ${SOURCE})
 if (WIN32)
     target_link_libraries(LDL winmm opengl32 gdi32 user32)
 elseif (UNIX AND NOT APPLE)
-    target_link_libraries(LDL X11 GL dl)
+    target_link_libraries(LDL X11 GL dl m)
 endif()
 
 add_subdirectory("examples")
