@@ -1,6 +1,11 @@
 
 cmake_minimum_required(VERSION 3.12)
 
+# Fix library and include paths for BSD systems.
+if(CMAKE_SYSTEM_NAME MATCHES "BSD")
+    list(APPEND CMAKE_PREFIX_PATH "/usr/local")
+endif()
+
 project(LDL)
 
 if (MSVC)
