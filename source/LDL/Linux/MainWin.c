@@ -124,21 +124,21 @@ void LDL_MainWindowPollEvents(LDL_MainWindow *mainWindow)
             {
 
             case ConfigureNotify:
-                report.u.Type = LDL_EventIsResize;
+                report.Type = LDL_EventIsResize;
                 report.u.Resize.Width = event.xconfigure.width;
                 report.u.Resize.Height = event.xconfigure.height;
                 LDL_EventHandlerPush(&mainWindow->EventHandler, &report);
                 break;
 
             case MotionNotify:
-                report.u.Type = LDL_EventIsMouseMove;
+                report.Type = LDL_EventIsMouseMove;
                 report.u.Mouse.PosX = event.xmotion.x;
                 report.u.Mouse.PosY = event.xmotion.y;
                 LDL_EventHandlerPush(&mainWindow->EventHandler, &report);
                 break;
 
             case KeyPress:
-                report.u.Type = LDL_EventIsKeyboard;
+                report.Type = LDL_EventIsKeyboard;
                 report.u.Keyboard.State = LDL_ButtonStatePressed;
                 code = XKeycodeToKeysym(mainWindow->Display, event.xkey.keycode, 0);
                 key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, code);
@@ -147,7 +147,7 @@ void LDL_MainWindowPollEvents(LDL_MainWindow *mainWindow)
                 break;
 
             case KeyRelease:
-                report.u.Type = LDL_EventIsKeyboard;
+                report.Type = LDL_EventIsKeyboard;
                 report.u.Keyboard.State = LDL_ButtonStateReleased;
                 code = XKeycodeToKeysym(mainWindow->Display, event.xkey.keycode, 0);
                 key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, code);
@@ -156,7 +156,7 @@ void LDL_MainWindowPollEvents(LDL_MainWindow *mainWindow)
                 break;
 
             case ButtonPress:
-                report.u.Type = LDL_EventIsMouseClick;
+                report.Type = LDL_EventIsMouseClick;
                 report.u.Mouse.State = LDL_ButtonStatePressed;
 
                 button = 0;
