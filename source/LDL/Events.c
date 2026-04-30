@@ -18,7 +18,7 @@ bool LDL_EventIsKeyPressed(LDL_Event* event, uint8_t key)
 {
 	if (event)
 	{
-		return (event->u.Type == LDL_EventIsKeyboard && event->u.Keyboard.Key == key && event->u.Keyboard.State == LDL_ButtonStatePressed);
+		return (event->Type == LDL_EventIsKeyboard && event->u.Keyboard.Key == key && event->u.Keyboard.State == LDL_ButtonStatePressed);
 	}
 
 	return false;
@@ -28,7 +28,7 @@ bool LDL_EventIsKeyReleased(LDL_Event* event, uint8_t key)
 {
 	if (event)
 	{
-		return (event->u.Type == LDL_EventIsKeyboard && event->u.Keyboard.Key == key && event->u.Keyboard.State == LDL_ButtonStateReleased);
+		return (event->Type == LDL_EventIsKeyboard && event->u.Keyboard.Key == key && event->u.Keyboard.State == LDL_ButtonStateReleased);
 	}
 
 	return false;
@@ -38,7 +38,7 @@ bool LDL_EventIsMousePressed(LDL_Event* event, uint8_t key)
 {
 	if (event)
 	{
-		return (event->u.Type == LDL_EventIsMouseClick && event->u.Mouse.Button == key && event->u.Mouse.State == LDL_ButtonStatePressed);
+		return (event->Type == LDL_EventIsMouseClick && event->u.Mouse.Button == key && event->u.Mouse.State == LDL_ButtonStatePressed);
 	}
 
 	return false;
@@ -48,7 +48,7 @@ bool LDL_EventIsMouseReleased(LDL_Event* event, uint8_t key)
 {
 	if (event)
 	{
-		return (event->u.Type == LDL_EventIsMouseClick && event->u.Mouse.Button == key && event->u.Mouse.State == LDL_ButtonStateReleased);
+		return (event->Type == LDL_EventIsMouseClick && event->u.Mouse.Button == key && event->u.Mouse.State == LDL_ButtonStateReleased);
 	}
 
 	return false;

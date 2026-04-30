@@ -156,12 +156,12 @@ int main(void)
                 {
                     while (LDL_WindowGetEvent(window, &event))
                     {
-                        if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                        if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                         {
                             LDL_WindowStopEvent(window);
                         }
 
-                        if (event.u.Type == LDL_EventIsResize)
+                        if (event.Type == LDL_EventIsResize)
                         {
                             glViewport(0, 0, (GLsizei)event.u.Resize.Width, (GLsizei)event.u.Resize.Height);
                         }

@@ -157,7 +157,7 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
@@ -180,7 +180,7 @@ int main(void)
                 if (LDL_EventIsKeyReleased(&event, LDL_KeyD) || LDL_EventIsKeyReleased(&event, LDL_KeyRight))
                     rightPressed = 0;
 
-                if (event.u.Type == LDL_EventIsResize)
+                if (event.Type == LDL_EventIsResize)
                 {
                     Resize((int)event.u.Resize.Width, (int)event.u.Resize.Height);
                 }

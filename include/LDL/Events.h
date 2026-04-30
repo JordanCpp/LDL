@@ -30,7 +30,6 @@ typedef struct LDL_EventGainedFocus
 
 typedef struct LDL_EventKeyboard
 {
-	uint8_t Type;
 	uint8_t State;
 	uint8_t Key;
 } LDL_EventKeyboard;
@@ -42,7 +41,6 @@ typedef struct LDL_EventLostFocus
 
 typedef struct LDL_EventMouse
 {
-	uint8_t Type;
 	size_t  PosX;
 	size_t  PosY;
 	size_t  PosRelX;
@@ -60,16 +58,16 @@ typedef struct LDL_EventQuit
 
 typedef struct LDL_EventResize
 {
-	uint8_t Type;
 	size_t Width;
 	size_t Height;
 } LDL_EventResize;
 
 typedef struct LDL_Event
 {
+	uint8_t Type;
+
 	union
 	{
-		uint8_t              Type;
 		LDL_EventQuit        Quit;
 		LDL_EventMouse       Mouse;
 		LDL_EventResize      Resize;

@@ -368,7 +368,7 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
@@ -383,14 +383,14 @@ int main(void)
                     InitWater();
                 }
 
-                if (event.u.Type == LDL_EventIsMouseScroll)
+                if (event.Type == LDL_EventIsMouseScroll)
                 {
                     cameraDistance -= (float)event.u.Mouse.Delta / 100.0f;
                     if (cameraDistance < 3.0f) cameraDistance = 3.0f;
                     if (cameraDistance > 15.0f) cameraDistance = 15.0f;
                 }
 
-                if (event.u.Type == LDL_EventIsResize)
+                if (event.Type == LDL_EventIsResize)
                 {
                     width = (int)event.u.Resize.Width;
                     height = (int)event.u.Resize.Height;

@@ -466,7 +466,7 @@ int main(void)
         {
             while (LDL_WindowGetEvent(window, &event))
             {
-                if (event.u.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
                 {
                     LDL_WindowStopEvent(window);
                 }
@@ -487,7 +487,7 @@ int main(void)
                     }
                 }
 
-                if (event.u.Type == LDL_EventIsMouseMove && mouseControl)
+                if (event.Type == LDL_EventIsMouseMove && mouseControl)
                 {
                     mouseX = (int)event.u.Mouse.PosX;
                     mouseY = (int)event.u.Mouse.PosY;
@@ -498,7 +498,7 @@ int main(void)
                     if (playerAngle < 0.0f) playerAngle += 360.0f;
                 }
 
-                if (event.u.Type == LDL_EventIsResize)
+                if (event.Type == LDL_EventIsResize)
                 {
                     width = (int)event.u.Resize.Width;
                     height = (int)event.u.Resize.Height;
