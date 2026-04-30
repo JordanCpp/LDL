@@ -149,7 +149,7 @@ void LDL_MainWindowPollEvents(LDL_MainWindow *mainWindow)
             case KeyPress:
                 report.Type = LDL_EventIsKeyboard;
                 report.u.Keyboard.State = LDL_ButtonStatePressed;
-                code = LDL_GetKeySym(mainWindow->Display, event.xkey.keycode, 0);
+                code = LDL_GetKeySym(mainWindow->Display, event.xkey.keycode);
                 key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, code);
                 report.u.Keyboard.Key = key;
                 LDL_EventHandlerPush(&mainWindow->EventHandler, &report);
@@ -158,7 +158,7 @@ void LDL_MainWindowPollEvents(LDL_MainWindow *mainWindow)
             case KeyRelease:
                 report.Type = LDL_EventIsKeyboard;
                 report.u.Keyboard.State = LDL_ButtonStateReleased;
-                code = LDL_GetKeySym(mainWindow->Display, event.xkey.keycode, 0);
+                code = LDL_GetKeySym(mainWindow->Display, event.xkey.keycode);
                 key = LDL_KeyMapperConvertKey(&mainWindow->KeyMapper, code);
                 report.u.Keyboard.Key = key;
                 LDL_EventHandlerPush(&mainWindow->EventHandler, &report);
