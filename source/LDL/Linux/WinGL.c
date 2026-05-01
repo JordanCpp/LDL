@@ -88,6 +88,8 @@ void LDL_WindowOpenGLInit(LDL_WindowOpenGL *window, LDL_Result *result, LDL_Vec2
         return;
     }
 
+    LDL_WindowOpenGLSetTitle(window, LDL_WindowOpenGLGetTitle(window));
+
     XClearWindow(window->MainWindow.Display, window->MainWindow.Window);
     XMapRaised(window->MainWindow.Display, window->MainWindow.Window);
 }
