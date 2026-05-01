@@ -132,8 +132,7 @@ int main(void)
 
     result = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL3);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600),
-        "LDL - Red Triangle (OpenGL 3.3)", LDL_WindowModeResized);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL - Red Triangle (OpenGL 3.3)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
