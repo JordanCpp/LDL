@@ -117,6 +117,24 @@ Seeking to comprehend the very spirit of each era and the people who shaped it.
 
 ---
 
+## 🛠️ Build & Install
+
+### Linux / FreeBSD
+
+```bash
+# Install dependencies
+sudo apt-get install libx11-dev libgl1-mesa-dev   # Debian/Ubuntu
+# or for FreeBSD:
+# sudo pkg install xorg libglvnd
+
+# Clone and build
+git clone https://github.com/JordanCpp/LDL.git
+cd LDL
+cmake -B build
+cmake --build build
+
+---
+
 ## 🤝 Contributing
 
 We welcome contributions! Whether it's:
