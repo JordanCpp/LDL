@@ -143,4 +143,53 @@ Please feel free to open issues and pull requests.
 
 ---
 
+## Screenshots
+
+### OpenGL 1.2 Examples
+
+| | | |
+|:-:|:-:|:-:|
+| ![3D Atom Model](Screenshots/OpenGL1_3DAtomModel.jpg) | ![Animated 3D Terrain](Screenshots/OpenGL1_Animated3DTerrain.jpg) | ![Falling Particles](Screenshots/OpenGL1_FallingParticles.jpg) |
+| *3D Atom Model* | *Animated 3D Terrain* | *Falling Particles* |
+| ![Fireworks Show](Screenshots/OpenGL1_FireworksShow.jpg) | ![First Person Maze](Screenshots/OpenGL1_FirstPersonMaze.jpg) | ![Interactive 3D Cube](Screenshots/OpenGL1_Interactive3DCube.jpg) |
+| *Fireworks Show* | *First Person Maze* | *Interactive 3D Cube* |
+| ![Move](Screenshots/OpenGL1_Move.jpg) | ![Rotate](Screenshots/OpenGL1_Rotate.jpg) | ![Rotating 3D Cube](Screenshots/OpenGL1_Rotating3DCube.jpg) |
+| *Move* | *Rotate* | *Rotating 3D Cube* |
+| ![Rotating Colorful Torus](Screenshots/OpenGL1_RotatingColorfulTorus.jpg) | ![Snowfall Particles](Screenshots/OpenGL1_SnowfallParticles.jpg) | ![Solar System](Screenshots/OpenGL1_SolarSystem.jpg) |
+| *Rotating Colorful Torus* | *Snowfall Particles* | *Solar System* |
+| ![Terrain Flight](Screenshots/OpenGL1_TerrainFlight.jpg) | ![Water Wave Simulation](Screenshots/OpenGL1_WaterWaveSimulation.jpg) | |
+| *Terrain Flight* | *Water Wave Simulation* | |
+
+---
+
+### OpenGL 2.1 Examples
+
+| | | |
+|:-:|:-:|:-:|
+| ![Shader Cube](Screenshots/OpenGL2_ShaderCube.jpg) | ![Solar System](Screenshots/OpenGL2_SolarSystem.jpg) | ![Textured Terrain](Screenshots/OpenGL2_TexturedTerrain.jpg) |
+| *Shader Cube* | *Solar System* | *Textured Terrain* |
+
+---
+
+### OpenGL 3.3 Examples
+
+| | | |
+|:-:|:-:|:-:|
+| ![Animated Water Surface](Screenshots/OpenGL3_AnimatedWaterSurface.jpg) | ![Planet With Moon](Screenshots/OpenGL3_PlanetWithMoon.jpg) | ![Rotating Cube](Screenshots/OpenGL3_RotatingCube.jpg) |
+| *Animated Water Surface* | *Planet With Moon* | *Rotating Cube* |
+| ![Textured Sphere](Screenshots/OpenGL3_TexturedSphere.jpg) | | |
+| *Textured Sphere* | | |
+
+---
+
+### Legend
+
+| Icon | Meaning |
+|------|---------|
+| 🟢 OpenGL 1.2 | Immediate mode, fixed pipeline, retro style |
+| 🔵 OpenGL 2.1 | VBO, shaders, modern pipeline foundations |
+| 🔴 OpenGL 3.3 | Core profile, VAO, advanced shaders |
+
+---
+
 **LDL - One Foundation, Many Interfaces. Built to Last.** 🚀
