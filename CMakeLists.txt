@@ -2,13 +2,15 @@ cmake_minimum_required(VERSION 3.12)
 
 project(LDL)
 
-option(LDL_BUILD_LIBRARY_STATIC "Enable building static library" OFF)
+option(LDL_BUILD_LIBRARY_STATIC "Enable building static library" ON)
 option(LDL_BUILD_LIBRARY_SHARED "Enable building shared library" OFF)
 
 option(LDL_BUILD_EXAMPLES "Enable building examples" OFF)
 option(LDL_BUILD_EXAMPLES_OPENGL1 "Enable building examples for OpenGL 1" ON)
 option(LDL_BUILD_EXAMPLES_OPENGL2 "Enable building examples for OpenGL 2" ON)
 option(LDL_BUILD_EXAMPLES_OPENGL3 "Enable building examples for OpenGL 3" ON)
+
+option(LDL_ENABLE_INSTALL "Enable install target for library" OFF)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/lib)
@@ -46,5 +48,9 @@ if(UNIX AND NOT APPLE)
     find_package(OpenGL REQUIRED)
 endif()
 
+include_directories(${LDL_ROOT_FOLDER}/include)
+
 add_subdirectory("source")
 add_subdirectory("examples")
+
+include(InstallLDL)

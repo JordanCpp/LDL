@@ -181,11 +181,9 @@ endif()
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/LDL${LDL_VERSION_SHORT}>
+        $<BUILD_INTERFACE:${LDL_ROOT_FOLDER}/include/LDL>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/LDL>
 )
-target_include_directories(${PROJECT_NAME} PUBLIC ${LDL_ROOT_FOLDER}/include)
-target_include_directories(${PROJECT_NAME} PUBLIC ${LDL_ROOT_FOLDER}/include/LDL)
 target_include_directories(${PROJECT_NAME} PRIVATE ${LDL_ROOT_FOLDER}/source)
 target_include_directories(${PROJECT_NAME} PRIVATE ${LDL_ROOT_FOLDER}/source/LDL)
 if(WIN32)
