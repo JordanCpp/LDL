@@ -121,9 +121,9 @@ void GenerateIsland(void)
 
         for (j = 0; j < sectors; j++)
         {
-            float angle = (float)j / (float)sectors * 2.0f * M_PI;
-            float x = r * cos(angle);
-            float z = r * sin(angle);
+            float angle = (float)j / (float)sectors * 2.0f * (float)M_PI;
+            float x = r * (float)cos(angle);
+            float z = r * (float)sin(angle);
 
             vertices[vIndex++] = x;
             vertices[vIndex++] = y;
@@ -134,9 +134,9 @@ void GenerateIsland(void)
     /* Bottom ring (ground) */
     for (j = 0; j < sectors; j++)
     {
-        float angle = (float)j / (float)sectors * 2.0f * M_PI;
-        float x = radius * cos(angle);
-        float z = radius * sin(angle);
+        float angle = (float)j / (float)sectors * 2.0f * (float)M_PI;
+        float x = radius * (float)cos(angle);
+        float z = radius * (float)sin(angle);
 
         vertices[vIndex++] = x;
         vertices[vIndex++] = -0.2f;
@@ -310,10 +310,10 @@ void DrawWater(float time)
 
             /* Wave calculation */
             waveHeight = WATER_HEIGHT;
-            waveHeight += sin(fx * 1.8f + time * 3.0f) * 0.08f;
-            waveHeight += cos(fz * 1.6f + time * 2.5f) * 0.08f;
-            waveHeight += sin((fx + fz) * 2.2f + time * 4.0f) * 0.05f;
-            waveHeight += sin(fx * 3.5f - time * 5.0f) * 0.04f;
+            waveHeight += (float)sin(fx * 1.8f + time * 3.0f) * 0.08f;
+            waveHeight += (float)cos(fz * 1.6f + time * 2.5f) * 0.08f;
+            waveHeight += (float)sin((fx + fz) * 2.2f + time * 4.0f) * 0.05f;
+            waveHeight += (float)sin(fx * 3.5f - time * 5.0f) * 0.04f;
 
             /* Color based on wave height */
             float brightness = 0.5f + waveHeight * 1.0f;
@@ -333,10 +333,10 @@ void DrawWater(float time)
             glVertex3f(fx, waveHeight, fz);
 
             float waveHeight2 = WATER_HEIGHT;
-            waveHeight2 += sin(fx2 * 1.8f + time * 3.0f) * 0.08f;
-            waveHeight2 += cos(fz2 * 1.6f + time * 2.5f) * 0.08f;
-            waveHeight2 += sin((fx2 + fz2) * 2.2f + time * 4.0f) * 0.05f;
-            waveHeight2 += sin(fx2 * 3.5f - time * 5.0f) * 0.04f;
+            waveHeight2 += (float)sin(fx2 * 1.8f + time * 3.0f) * 0.08f;
+            waveHeight2 += (float)cos(fz2 * 1.6f + time * 2.5f) * 0.08f;
+            waveHeight2 += (float)sin((fx2 + fz2) * 2.2f + time * 4.0f) * 0.05f;
+            waveHeight2 += (float)sin(fx2 * 3.5f - time * 5.0f) * 0.04f;
 
             float brightness2 = 0.5f + waveHeight2 * 1.0f;
             float r2 = 0.2f;
@@ -374,9 +374,9 @@ void DrawReflection(float time, float eyeY)
 /* Draw sun */
 void DrawSun(float time)
 {
-    float sunX = 3.0f * sin(time * 0.5f);
+    float sunX = 3.0f * (float)sin(time * 0.5f);
     float sunY = 3.0f;
-    float sunZ = 3.0f * cos(time * 0.5f);
+    float sunZ = 3.0f * (float)cos(time * 0.5f);
 
     glDisable(GL_DEPTH_TEST);
 
@@ -394,8 +394,8 @@ void DrawSun(float time)
         glVertex3f(0.0f, 0.0f, 0.0f);
         for (int a = 0; a <= 360; a += 30)
         {
-            float rad = a * M_PI / 180.0f;
-            glVertex3f(size * cos(rad), size * sin(rad), 0.0f);
+            float rad = a * (float)M_PI / 180.0f;
+            glVertex3f(size * (float)cos(rad), size * (float)sin(rad), 0.0f);
         }
         glEnd();
     }
@@ -416,13 +416,13 @@ void MatrixLookAt(float eyeX, float eyeY, float eyeZ,
     f[0] = centerX - eyeX;
     f[1] = centerY - eyeY;
     f[2] = centerZ - eyeZ;
-    len = sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
+    len = (float)sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
     if (len != 0.0f) { f[0] /= len; f[1] /= len; f[2] /= len; }
 
     s[0] = f[1] * upZ - f[2] * upY;
     s[1] = f[2] * upX - f[0] * upZ;
     s[2] = f[0] * upY - f[1] * upX;
-    len = sqrt(s[0] * s[0] + s[1] * s[1] + s[2] * s[2]);
+    len = (float)sqrt(s[0] * s[0] + s[1] * s[1] + s[2] * s[2]);
     if (len != 0.0f) { s[0] /= len; s[1] /= len; s[2] /= len; }
 
     u[0] = s[1] * f[2] - s[2] * f[1];
@@ -443,7 +443,7 @@ void MatrixLookAt(float eyeX, float eyeY, float eyeZ,
 void MatrixPerspective(float fov, float aspect, float near, float far)
 {
     float m[16];
-    float tanHalfFov = tan(fov / 360.0f * M_PI);
+    float tanHalfFov = (float)tan(fov / 360.0f * (float)M_PI);
     int i;
 
     for (i = 0; i < 16; i++) m[i] = 0.0f;
@@ -487,8 +487,8 @@ void Render(int width, int height)
     glLoadIdentity();
 
     /* Camera (rotating around island) */
-    float camX = sin(cameraAngle) * cameraDist;
-    float camZ = cos(cameraAngle) * cameraDist;
+    float camX = (float)sin(cameraAngle) * cameraDist;
+    float camZ = (float)cos(cameraAngle) * cameraDist;
     MatrixLookAt(camX, 2.0f, camZ, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
     /* Draw skybox first */

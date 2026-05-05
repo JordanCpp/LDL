@@ -104,15 +104,15 @@ void GenerateSphere(float radius, int sectors, int stacks)
     /* Generate vertices */
     for (i = 0; i <= stacks; i++)
     {
-        float phi = (float)i / (float)stacks * M_PI;
-        float sinPhi = sin(phi);
-        float cosPhi = cos(phi);
+        float phi = (float)i / (float)stacks * (float)M_PI;
+        float sinPhi = (float)sin(phi);
+        float cosPhi = (float)cos(phi);
 
         for (j = 0; j <= sectors; j++)
         {
-            float theta = (float)j / (float)sectors * 2.0f * M_PI;
-            float sinTheta = sin(theta);
-            float cosTheta = cos(theta);
+            float theta = (float)j / (float)sectors * 2.0f * (float)M_PI;
+            float sinTheta = (float)sin(theta);
+            float cosTheta = (float)cos(theta);
 
             x = radius * sinPhi * cosTheta;
             y = radius * cosPhi;
@@ -121,7 +121,7 @@ void GenerateSphere(float radius, int sectors, int stacks)
             nx = x;
             ny = y;
             nz = z;
-            length = sqrt(nx * nx + ny * ny + nz * nz);
+            length = (float)sqrt(nx * nx + ny * ny + nz * nz);
             if (length != 0.0f)
             {
                 nx /= length;
@@ -251,7 +251,6 @@ void DrawSphere(float x, float y, float z, float r, float g, float b)
 {
     float model[16];
     int modelLoc, colorLoc, lightPosLoc, viewPosLoc;
-    float view[16], projection[16];
     int i;
 
     /* Model matrix */
@@ -312,8 +311,8 @@ void UpdateSpheres(size_t delta)
     }
 
     /* Move light */
-    lightX = 2.0f * sin(cameraAngle);
-    lightZ = 2.0f * cos(cameraAngle);
+    lightX = 2.0f * (float)sin(cameraAngle);
+    lightZ = 2.0f * (float)cos(cameraAngle);
 }
 
 void InitOpenGL(void)
@@ -341,12 +340,12 @@ void Render(int width, int height)
     view[0] = 1.0f; view[5] = 1.0f; view[10] = 1.0f; view[15] = 1.0f;
 
     /* Simple look from rotating point */
-    float camX = sin(cameraAngle) * 6.0f;
-    float camZ = cos(cameraAngle) * 6.0f;
+    float camX = (float)sin(cameraAngle) * 6.0f;
+    float camZ = (float)cos(cameraAngle) * 6.0f;
     float camY = 2.5f;
 
     float forward[3] = { -camX, -camY, -camZ };
-    float len = sqrt(forward[0] * forward[0] + forward[1] * forward[1] + forward[2] * forward[2]);
+    float len = (float)sqrt(forward[0] * forward[0] + forward[1] * forward[1] + forward[2] * forward[2]);
     if (len != 0.0f) { forward[0] /= len; forward[1] /= len; forward[2] /= len; }
 
     float right[3];
@@ -354,7 +353,7 @@ void Render(int width, int height)
     right[0] = forward[1] * up[2] - forward[2] * up[1];
     right[1] = forward[2] * up[0] - forward[0] * up[2];
     right[2] = forward[0] * up[1] - forward[1] * up[0];
-    len = sqrt(right[0] * right[0] + right[1] * right[1] + right[2] * right[2]);
+    len = (float)sqrt(right[0] * right[0] + right[1] * right[1] + right[2] * right[2]);
     if (len != 0.0f) { right[0] /= len; right[1] /= len; right[2] /= len; }
 
     float realUp[3];
@@ -371,7 +370,7 @@ void Render(int width, int height)
 
     /* Projection matrix */
     for (i = 0; i < 16; i++) projection[i] = 0.0f;
-    float tanHalfFov = tan(45.0f / 360.0f * M_PI);
+    float tanHalfFov = (float)tan(45.0f / 360.0f * M_PI);
     projection[0] = 1.0f / (aspect * tanHalfFov);
     projection[5] = 1.0f / tanHalfFov;
     projection[10] = -(10.1f) / (9.9f);

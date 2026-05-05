@@ -125,15 +125,15 @@ void GenerateTorus(float radius, float tubeRadius, int rings, int sides)
 
     for (i = 0; i <= rings; i++)
     {
-        float phi = (float)i / (float)rings * 2.0f * M_PI;
-        float cosPhi = cos(phi);
-        float sinPhi = sin(phi);
+        float phi = (float)i / (float)rings * 2.0f * (float)M_PI;
+        float cosPhi = (float)cos(phi);
+        float sinPhi = (float)sin(phi);
 
         for (j = 0; j <= sides; j++)
         {
-            float theta = (float)j / (float)sides * 2.0f * M_PI;
-            float cosTheta = cos(theta);
-            float sinTheta = sin(theta);
+            float theta = (float)j / (float)sides * 2.0f * (float)M_PI;
+            float cosTheta = (float)cos(theta);
+            float sinTheta = (float)sin(theta);
 
             float x = (radius + tubeRadius * cosTheta) * cosPhi;
             float y = (radius + tubeRadius * cosTheta) * sinPhi;
@@ -143,9 +143,9 @@ void GenerateTorus(float radius, float tubeRadius, int rings, int sides)
             float ny = sinPhi * cosTheta;
             float nz = sinTheta;
 
-            float r = 0.5f + 0.5f * sin(phi + theta);
-            float g = 0.5f + 0.5f * sin(phi + theta + 2.0f);
-            float b = 0.5f + 0.5f * sin(phi + theta + 4.0f);
+            float r = 0.5f + 0.5f * (float)sin(phi + theta);
+            float g = 0.5f + 0.5f * (float)sin(phi + theta + 2.0f);
+            float b = 0.5f + 0.5f * (float)sin(phi + theta + 4.0f);
 
             vertices[vIndex++] = x;
             vertices[vIndex++] = y;
@@ -375,8 +375,8 @@ void MatrixIdentity(float* m)
 
 void MatrixRotateY(float* m, float angleDeg)
 {
-    float rad = angleDeg * M_PI / 180.0f;
-    float c = cos(rad), s = sin(rad);
+    float rad = angleDeg * (float)M_PI / 180.0f;
+    float c = (float)cos(rad), s = (float)sin(rad);
     MatrixIdentity(m);
     m[0] = c; m[2] = s;
     m[8] = -s; m[10] = c;
@@ -384,8 +384,8 @@ void MatrixRotateY(float* m, float angleDeg)
 
 void MatrixRotateX(float* m, float angleDeg)
 {
-    float rad = angleDeg * M_PI / 180.0f;
-    float c = cos(rad), s = sin(rad);
+    float rad = angleDeg * (float)M_PI / 180.0f;
+    float c = (float)cos(rad), s = (float)sin(rad);
     MatrixIdentity(m);
     m[5] = c; m[6] = s;
     m[9] = -s; m[10] = c;
@@ -393,8 +393,8 @@ void MatrixRotateX(float* m, float angleDeg)
 
 void MatrixRotateZ(float* m, float angleDeg)
 {
-    float rad = angleDeg * M_PI / 180.0f;
-    float c = cos(rad), s = sin(rad);
+    float rad = angleDeg * (float)M_PI / 180.0f;
+    float c = (float)cos(rad), s = (float)sin(rad);
     MatrixIdentity(m);
     m[0] = c; m[1] = -s;
     m[4] = s; m[5] = c;
@@ -422,13 +422,13 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
     f[0] = centerX - eyeX;
     f[1] = centerY - eyeY;
     f[2] = centerZ - eyeZ;
-    len = sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
+    len = (float)sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
     if (len != 0.0f) { f[0] /= len; f[1] /= len; f[2] /= len; }
 
     s[0] = f[1] * upZ - f[2] * upY;
     s[1] = f[2] * upX - f[0] * upZ;
     s[2] = f[0] * upY - f[1] * upX;
-    len = sqrt(s[0] * s[0] + s[1] * s[1] + s[2] * s[2]);
+    len = (float)sqrt(s[0] * s[0] + s[1] * s[1] + s[2] * s[2]);
     if (len != 0.0f) { s[0] /= len; s[1] /= len; s[2] /= len; }
 
     u[0] = s[1] * f[2] - s[2] * f[1];
@@ -446,7 +446,7 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
 
 void MatrixPerspective(float* m, float fov, float aspect, float near, float far)
 {
-    float tanHalfFov = tan(fov / 360.0f * M_PI);
+    float tanHalfFov = (float)tan(fov / 360.0f * M_PI);
     int i;
     for (i = 0; i < 16; i++) m[i] = 0.0f;
     m[0] = 1.0f / (aspect * tanHalfFov);
@@ -486,8 +486,8 @@ void Render(int width, int height)
 
     /* Draw Torus */
     MatrixRotateY(rotY, angle);
-    MatrixRotateX(rotX, sin(angle * 1.5f) * 30.0f);
-    MatrixRotateZ(rotZ, cos(angle * 0.8f) * 20.0f);
+    MatrixRotateX(rotX, (float)sin(angle * 1.5f) * 30.0f);
+    MatrixRotateZ(rotZ, (float)cos(angle * 0.8f) * 20.0f);
     MatrixMultiply(temp, rotY, rotX);
     MatrixMultiply(model, temp, rotZ);
 
@@ -520,9 +520,9 @@ void UpdateAnimation(size_t delta)
     if (angle >= 360.0f) angle -= 360.0f;
 
     /* Center of torus (0,0,0) + dancing offset */
-    float cx = sin(angle * 1.5f) * 0.2f;
-    float cy = cos(angle * 0.8f) * 0.2f;
-    float cz = sin(angle) * 0.1f;
+    float cx = (float)sin(angle * 1.5f) * 0.2f;
+    float cy = (float)cos(angle * 0.8f) * 0.2f;
+    float cz = (float)sin(angle) * 0.1f;
 
     UpdateParticles(delta, cx, cy + 0.2f, cz);
     UpdateParticleBuffer();
