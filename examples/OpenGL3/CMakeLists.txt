@@ -1,4 +1,3 @@
-
 add_executable(OpenGL3_ParticleSystem "OpenGL3_ParticleSystem.c")
 target_link_libraries(OpenGL3_ParticleSystem LDL)
 
