@@ -119,18 +119,57 @@ Seeking to comprehend the very spirit of each era and the people who shaped it.
 
 ## 🛠️ Build & Install
 
-### Linux / FreeBSD
+# Installation Guide for LDL
 
+This guide explains how to build and install the LDL library using CMake.
+
+## Prerequisites
+
+Ensure you have the following installed:
+- CMake 3.12 or higher
+- A C++ compiler (GCC, Clang, or MSVC)
+- Development libraries for X11 and OpenGL (on Linux)
+
+## Build Options
+
+You can customize the build using the following CMake options:
+
+| Option | Description | Default |
+| :--- | :--- | :--- |
+| `LDL_BUILD_LIBRARY_STATIC` | Build LDL as a static library (.a / .lib) | `ON` |
+| `LDL_BUILD_LIBRARY_SHARED` | Build LDL as a shared library (.so / .dll) | `OFF` |
+| `LDL_BUILD_EXAMPLES`       | Enable building example projects | `OFF` |
+| `LDL_ENABLE_INSTALL`       | Enable the install target | `OFF` |
+
+## Quick Start (Terminal)
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/JordanCpp/LDL.git
+   cd LDL
+   ```
+
+2. **Configure the project:**
+   Use the `-B` flag to create a build directory and `-D` to set options. For example, to build a static library with examples:
+   ```bash
+   cmake -B build -DLDL_BUILD_LIBRARY_STATIC=ON -DLDL_BUILD_EXAMPLES=ON
+   ```
+
+3. **Build the project:**
+   ```bash
+   cmake --build build
+   ```
+
+4. **Install (Optional):**
+   If you enabled `LDL_ENABLE_INSTALL`, run:
+   ```bash
+   sudo cmake --install build
+   ```
+
+## Example: Building with Specific OpenGL Versions
+If you want to build specific examples, you can toggle them:
 ```bash
-# Install dependencies
-sudo apt-get install libx11-dev libgl1-mesa-dev   # Debian/Ubuntu
-# or for FreeBSD:
-# sudo pkg install xorg libglvnd
-
-# Clone and build
-git clone https://github.com/JordanCpp/LDL.git
-cd LDL
-cmake -B build
+cmake -B build -DLDL_BUILD_EXAMPLES=ON -DLDL_BUILD_EXAMPLES_OPENGL3=ON
 cmake --build build
 ```
 

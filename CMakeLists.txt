@@ -53,4 +53,4 @@ include_directories(${LDL_ROOT_FOLDER}/include)
 add_subdirectory("source")
 add_subdirectory("examples")
 
-include(InstallLDL)
+include(InstallLdl)
