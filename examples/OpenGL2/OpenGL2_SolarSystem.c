@@ -79,15 +79,15 @@ void GenerateSphere(float radius, int sectors, int stacks)
 
     for (i = 0; i <= stacks; i++)
     {
-        float phi = (float)i / (float)stacks * M_PI;
-        float sinPhi = sin(phi);
-        float cosPhi = cos(phi);
+        float phi = (float)i / (float)stacks * (float)M_PI;
+        float sinPhi = (float)sin(phi);
+        float cosPhi = (float)cos(phi);
 
         for (j = 0; j <= sectors; j++)
         {
-            float theta = (float)j / (float)sectors * 2.0f * M_PI;
-            float sinTheta = sin(theta);
-            float cosTheta = cos(theta);
+            float theta = (float)j / (float)sectors * 2.0f * (float)M_PI;
+            float sinTheta = (float)sin(theta);
+            float cosTheta = (float)cos(theta);
 
             float x = radius * sinPhi * cosTheta;
             float y = radius * cosPhi;
@@ -167,16 +167,16 @@ void SpawnParticle(void)
     {
         if (!particles[i].active)
         {
-            float angle1 = (float)(rand() % 360) * M_PI / 180.0f;
-            float angle2 = (float)(rand() % 360) * M_PI / 180.0f;
+            float angle1 = (float)(rand() % 360) * (float)M_PI / 180.0f;
+            float angle2 = (float)(rand() % 360) * (float)M_PI / 180.0f;
             float speed = 1.5f + (float)(rand() % 100) / 100.0f;
 
             particles[i].x = 0.0f;
             particles[i].y = 0.0f;
             particles[i].z = 0.0f;
-            particles[i].vx = sin(angle1) * cos(angle2) * speed;
-            particles[i].vy = sin(angle2) * speed;
-            particles[i].vz = cos(angle1) * cos(angle2) * speed;
+            particles[i].vx = (float)sin(angle1) * (float)cos(angle2) * speed;
+            particles[i].vy = (float)sin(angle2) * speed;
+            particles[i].vz = (float)cos(angle1) * (float)cos(angle2) * speed;
             particles[i].r = 1.0f;
             particles[i].g = 0.5f + (float)(rand() % 50) / 100.0f;
             particles[i].b = 0.2f;
@@ -319,13 +319,13 @@ void MatrixLookAt(float eyeX, float eyeY, float eyeZ,
     f[0] = centerX - eyeX;
     f[1] = centerY - eyeY;
     f[2] = centerZ - eyeZ;
-    len = sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
+    len = (float)sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
     if (len != 0.0f) { f[0] /= len; f[1] /= len; f[2] /= len; }
 
     s[0] = f[1] * upZ - f[2] * upY;
     s[1] = f[2] * upX - f[0] * upZ;
     s[2] = f[0] * upY - f[1] * upX;
-    len = sqrt(s[0] * s[0] + s[1] * s[1] + s[2] * s[2]);
+    len = (float)sqrt(s[0] * s[0] + s[1] * s[1] + s[2] * s[2]);
     if (len != 0.0f) { s[0] /= len; s[1] /= len; s[2] /= len; }
 
     u[0] = s[1] * f[2] - s[2] * f[1];
@@ -346,7 +346,7 @@ void MatrixLookAt(float eyeX, float eyeY, float eyeZ,
 void MatrixPerspective(float fov, float aspect, float near, float far)
 {
     float m[16];
-    float tanHalfFov = tan(fov / 360.0f * M_PI);
+    float tanHalfFov = (float)tan(fov / 360.0f * M_PI);
     int i;
 
     for (i = 0; i < 16; i++) m[i] = 0.0f;
@@ -366,9 +366,9 @@ void DrawOrbit(float radius)
     glBegin(GL_LINE_LOOP);
     for (int i = 0; i <= 360; i += 15)
     {
-        float rad = i * M_PI / 180.0f;
-        float x = radius * cos(rad);
-        float z = radius * sin(rad);
+        float rad = i * (float)M_PI / 180.0f;
+        float x = radius * (float)cos(rad);
+        float z = radius * (float)sin(rad);
         glVertex3f(x, 0.0f, z);
     }
     glEnd();
@@ -408,8 +408,8 @@ void Render(int width, int height)
     glLoadIdentity();
 
     /* Camera */
-    float camX = sin(cameraAngle) * cameraDist;
-    float camZ = cos(cameraAngle) * cameraDist;
+    float camX = (float)sin(cameraAngle) * cameraDist;
+    float camZ = (float)cos(cameraAngle) * cameraDist;
     MatrixLookAt(camX, 3.0f, camZ, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
     /* Draw orbits */
@@ -427,9 +427,9 @@ void Render(int width, int height)
     /* Draw planets */
     for (i = 0; i < PLANET_COUNT; i++)
     {
-        float rad = planets[i].angle * M_PI / 180.0f;
-        float x = planets[i].distance * sin(rad);
-        float z = planets[i].distance * cos(rad);
+        float rad = planets[i].angle * (float)M_PI / 180.0f;
+        float x = planets[i].distance * (float)sin(rad);
+        float z = planets[i].distance * (float)cos(rad);
 
         glPushMatrix();
         glTranslatef(x, 0.0f, z);

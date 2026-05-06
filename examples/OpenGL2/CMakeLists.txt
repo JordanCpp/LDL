@@ -1,4 +1,3 @@
-
 add_executable(OpenGL2_ShaderCube "OpenGL2_ShaderCube.c")
 target_link_libraries(OpenGL2_ShaderCube LDL)
 

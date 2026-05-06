@@ -95,16 +95,16 @@ void GenerateSphere(GLuint* vao, GLuint* vbo, GLuint* ebo, int* indexCount, floa
     /* Generate vertices */
     for (i = 0; i <= stacks; i++)
     {
-        float phi = (float)i / (float)stacks * M_PI;
-        float sinPhi = sin(phi);
-        float cosPhi = cos(phi);
+        float phi = (float)i / (float)stacks * (float)M_PI;
+        float sinPhi = (float)sin(phi);
+        float cosPhi = (float)cos(phi);
         float v = 1.0f - (float)i / (float)stacks;
 
         for (j = 0; j <= sectors; j++)
         {
-            float theta = (float)j / (float)sectors * 2.0f * M_PI;
-            float sinTheta = sin(theta);
-            float cosTheta = cos(theta);
+            float theta = (float)j / (float)sectors * 2.0f * (float)M_PI;
+            float sinTheta = (float)sin(theta);
+            float cosTheta = (float)cos(theta);
             float u = (float)j / (float)sectors;
 
             float x = radius * sinPhi * cosTheta;
@@ -194,7 +194,7 @@ void CreatePlanetTexture(GLuint* textureID)
         {
             float fx = (float)x / width * 2.0f - 1.0f;
             float fy = (float)y / height * 2.0f - 1.0f;
-            float dist = sqrt(fx * fx + fy * fy);
+            float dist = (float)sqrt(fx * fx + fy * fy);
             int r, g, b;
 
             if (dist < 0.5f)
@@ -320,8 +320,8 @@ void MatrixIdentity(float* m)
 
 void MatrixRotateY(float* m, float angleDeg)
 {
-    float rad = angleDeg * M_PI / 180.0f;
-    float c = cos(rad), s = sin(rad);
+    float rad = angleDeg * (float)M_PI / 180.0f;
+    float c = (float)cos(rad), s = (float)sin(rad);
     MatrixIdentity(m);
     m[0] = c; m[2] = s;
     m[8] = -s; m[10] = c;
@@ -365,13 +365,13 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
     f[0] = centerX - eyeX;
     f[1] = centerY - eyeY;
     f[2] = centerZ - eyeZ;
-    len = sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
+    len = (float)sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
     if (len != 0.0f) { f[0] /= len; f[1] /= len; f[2] /= len; }
 
     s[0] = f[1] * upZ - f[2] * upY;
     s[1] = f[2] * upX - f[0] * upZ;
     s[2] = f[0] * upY - f[1] * upX;
-    len = sqrt(s[0] * s[0] + s[1] * s[1] + s[2] * s[2]);
+    len = (float)sqrt(s[0] * s[0] + s[1] * s[1] + s[2] * s[2]);
     if (len != 0.0f) { s[0] /= len; s[1] /= len; s[2] /= len; }
 
     u[0] = s[1] * f[2] - s[2] * f[1];
@@ -389,7 +389,7 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
 
 void MatrixPerspective(float* m, float fov, float aspect, float near, float far)
 {
-    float tanHalfFov = tan(fov / 360.0f * M_PI);
+    float tanHalfFov = (float)tan(fov / 360.0f * (float)M_PI);
     int i;
     for (i = 0; i < 16; i++) m[i] = 0.0f;
     m[0] = 1.0f / (aspect * tanHalfFov);
@@ -429,7 +429,7 @@ void DrawSphere(GLuint vao, int indexCount, GLuint textureID, float r, float g, 
 void Render(int width, int height)
 {
     float model[16], view[16], projection[16];
-    float rot[16], trans[16], scale[16], temp[16];
+    float rot[16], trans[16], scale[16];
     int modelLoc, viewLoc, projLoc;
     int lightPosLoc, viewPosLoc;
     float aspect = (float)width / (float)height;
@@ -439,8 +439,8 @@ void Render(int width, int height)
     glViewport(0, 0, width, height);
 
     /* View matrix (rotating camera) */
-    float camX = sin(cameraAngle) * 4.0f;
-    float camZ = cos(cameraAngle) * 4.0f;
+    float camX = (float)sin(cameraAngle) * 4.0f;
+    float camZ = (float)cos(cameraAngle) * 4.0f;
     MatrixLookAt(view, camX, 1.5f, camZ, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
     /* Projection matrix */
@@ -468,8 +468,8 @@ void Render(int width, int height)
 
     /* Draw moon orbiting */
     float moonOrbitAngle = moonAngle;
-    float moonX = 1.5f * sin(moonOrbitAngle);
-    float moonZ = 1.5f * cos(moonOrbitAngle);
+    float moonX = 1.5f * (float)sin(moonOrbitAngle);
+    float moonZ = 1.5f * (float)cos(moonOrbitAngle);
 
     MatrixTranslate(trans, moonX, 0.2f, moonZ);
     MatrixRotateY(rot, -moonAngle);

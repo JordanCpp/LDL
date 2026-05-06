@@ -1,0 +1,28 @@
+@PACKAGE_INIT@
+
+include(${CMAKE_CURRENT_LIST_DIR}/LDLTargets.cmake)
+if(TARGET LDL::LDL)
+    add_library(LDL::Library ALIAS LDL::LDL)
+endif()
+
+if(NOT LDL_FIND_COMPONENTS)
+    set(LDL_FIND_COMPONENTS Library)
+    foreach(component IN LISTS LDL_FIND_COMPONENTS)
+        set(LDL_FIND_REQUIRED_${component} TRUE)
+        message(STATUS "Found LDL::${component}")
+    endforeach()
+endif()
+
+foreach(component IN ITEMS ${LDL_FIND_COMPONENTS})
+    if(NOT TARGET LDL::${component})
+        set(LDL_${component}_FOUND FALSE)
+        if(LDL_FIND_REQUIRED_${component})
+            message(FATAL_ERROR "Could NOT find LDL::${component}")
+        endif()
+    else()
+        set(LDL_${component}_FOUND TRUE)
+        message(STATUS "Found LDL::${component}")
+    endif()
+endforeach()
+
+set(LDL_FOUND TRUE)

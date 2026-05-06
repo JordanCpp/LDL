@@ -1,0 +1,11 @@
+prefix=${pcfiledir}/../..
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: LDL
+Description: Little Directmedia Layer. Bridge Between Eras: Compatible Multimedia Layer
+Version: @LDL_RELEASE@
+Requires:
+Libs: -L${libdir} -lLDL
+Cflags: -I${includedir}/LDL

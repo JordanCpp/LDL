@@ -235,13 +235,13 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
     f[0] = centerX - eyeX;
     f[1] = centerY - eyeY;
     f[2] = centerZ - eyeZ;
-    len = sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
+    len = (float)sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
     if (len != 0.0f) { f[0] /= len; f[1] /= len; f[2] /= len; }
 
     s[0] = f[1] * upZ - f[2] * upY;
     s[1] = f[2] * upX - f[0] * upZ;
     s[2] = f[0] * upY - f[1] * upX;
-    len = sqrt(s[0] * s[0] + s[1] * s[1] + s[2] * s[2]);
+    len = (float)sqrt(s[0] * s[0] + s[1] * s[1] + s[2] * s[2]);
     if (len != 0.0f) { s[0] /= len; s[1] /= len; s[2] /= len; }
 
     u[0] = s[1] * f[2] - s[2] * f[1];
@@ -259,7 +259,7 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
 
 void MatrixPerspective(float* m, float fov, float aspect, float near, float far)
 {
-    float tanHalfFov = tan(fov / 360.0f * M_PI);
+    float tanHalfFov = (float)tan(fov / 360.0f * M_PI);
     int i;
     for (i = 0; i < 16; i++) m[i] = 0.0f;
     m[0] = 1.0f / (aspect * tanHalfFov);
@@ -296,8 +296,8 @@ void Render(int width, int height)
     MatrixIdentity(model);
 
     /* View matrix (rotating around water) */
-    float camX = sin(cameraAngle) * cameraDist;
-    float camZ = cos(cameraAngle) * cameraDist;
+    float camX = (float)sin(cameraAngle) * cameraDist;
+    float camZ = (float)cos(cameraAngle) * cameraDist;
     MatrixLookAt(view, camX, cameraHeight, camZ, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
     /* Projection matrix */

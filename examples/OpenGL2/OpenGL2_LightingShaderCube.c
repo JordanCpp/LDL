@@ -112,8 +112,8 @@ void MatrixIdentity(float* m)
 
 void MatrixRotateY(float* m, float angleDeg)
 {
-    float rad = angleDeg * M_PI / 180.0f;
-    float c = cos(rad), s = sin(rad);
+    float rad = angleDeg * (float)M_PI / 180.0f;
+    float c = (float)cos(rad), s = (float)sin(rad);
     MatrixIdentity(m);
     m[0] = c; m[2] = s;
     m[8] = -s; m[10] = c;
@@ -121,8 +121,8 @@ void MatrixRotateY(float* m, float angleDeg)
 
 void MatrixRotateX(float* m, float angleDeg)
 {
-    float rad = angleDeg * M_PI / 180.0f;
-    float c = cos(rad), s = sin(rad);
+    float rad = angleDeg * (float)M_PI / 180.0f;
+    float c = (float)cos(rad), s = (float)sin(rad);
     MatrixIdentity(m);
     m[5] = c; m[6] = s;
     m[9] = -s; m[10] = c;
@@ -150,13 +150,13 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
     f[0] = centerX - eyeX;
     f[1] = centerY - eyeY;
     f[2] = centerZ - eyeZ;
-    len = sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
+    len = (float)sqrt(f[0] * f[0] + f[1] * f[1] + f[2] * f[2]);
     if (len != 0.0f) { f[0] /= len; f[1] /= len; f[2] /= len; }
 
     s[0] = f[1] * upZ - f[2] * upY;
     s[1] = f[2] * upX - f[0] * upZ;
     s[2] = f[0] * upY - f[1] * upX;
-    len = sqrt(s[0] * s[0] + s[1] * s[1] + s[2] * s[2]);
+    len = (float)sqrt(s[0] * s[0] + s[1] * s[1] + s[2] * s[2]);
     if (len != 0.0f) { s[0] /= len; s[1] /= len; s[2] /= len; }
 
     u[0] = s[1] * f[2] - s[2] * f[1];
@@ -174,7 +174,7 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
 
 void MatrixPerspective(float* m, float fov, float aspect, float near, float far)
 {
-    float tanHalfFov = tan(fov / 360.0f * M_PI);
+    float tanHalfFov = (float)tan(fov / 360.0f * M_PI);
     int i;
     for (i = 0; i < 16; i++) m[i] = 0.0f;
     m[0] = 1.0f / (aspect * tanHalfFov);
@@ -290,8 +290,8 @@ void Render(int width, int height)
     MatrixLookAt(view, 2.5f, 2.0f, 4.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
     MatrixPerspective(projection, 45.0f, aspect, 0.1f, 100.0f);
 
-    lightX = 2.0f * sin(lightAngle);
-    lightZ = 2.0f * cos(lightAngle);
+    lightX = 2.0f * (float)sin(lightAngle);
+    lightZ = 2.0f * (float)cos(lightAngle);
 
     glUseProgram(shaderProgram);
 

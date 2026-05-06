@@ -1,4 +1,9 @@
-
-add_subdirectory("OpenGL1")
-add_subdirectory("OpenGL2")
-add_subdirectory("OpenGL3")
+if(LDL_BUILD_EXAMPLES AND LDL_BUILD_EXAMPLES_OPENGL1)
+    add_subdirectory("OpenGL1")
+endif()
+if(LDL_BUILD_EXAMPLES AND LDL_BUILD_EXAMPLES_OPENGL2)
+    add_subdirectory("OpenGL2")
+endif()
+if(LDL_BUILD_EXAMPLES AND LDL_BUILD_EXAMPLES_OPENGL3)
+    add_subdirectory("OpenGL3")
+endif()
