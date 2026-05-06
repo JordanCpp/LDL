@@ -1,0 +1,93 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: "Build library"
+
+on:
+    push:
+        branches:
+            - "**"
+        paths:
+            - ".github/workflows/**"
+            - "cmake/**"
+            - "examples/**"
+            - "include/**"
+            - "source/**"
+            - "**/CMakeLists.txt"
+    pull_request:
+        branches:
+            - "**"
+        paths:
+            - ".github/workflows/**"
+            - "cmake/**"
+            - "examples/**"
+            - "include/**"
+            - "source/**"
+            - "**/CMakeLists.txt"
+
+defaults:
+    run:
+        shell: pwsh
+
+jobs:
+    build-library:
+        name: "Build library"
+
+        strategy:
+            matrix:
+                system:
+                    - windows-2022
+                    - ubuntu-22.04
+                config:
+                    - Debug
+                    - Release
+
+        runs-on: ${{ matrix.system }}
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6
+              with:
+                  fetch-depth: 0
+
+            - name: Setup Ninja
+              uses: imesense/gha-setup-ninja@v0.2
+              with:
+                  version: "latest"
+
+            - name: Setup dependencies
+              if: ${{ runner.os == 'Linux' }}
+              run: |
+                  sudo apt update
+                  sudo apt install -y `
+                      libgl-dev
+
+            - name: Configure project
+              run: |
+                  cmake `
+                      -S ${{ github.workspace }} `
+                      -B ${{ github.workspace }}/build `
+                      -G "Ninja Multi-Config" `
+                      -D LDL_BUILD_LIBRARY_STATIC=ON `
+                      -D LDL_BUILD_LIBRARY_SHARED=OFF `
+                      -D LDL_BUILD_EXAMPLES=ON `
+                      -D LDL_ENABLE_INSTALL=ON
+
+            - name: Build project
+              run: |
+                  cmake `
+                      --build ${{ github.workspace }}/build `
+                      --config ${{ matrix.config }}
+
+            - name: Install project
+              run: |
+                  cmake `
+                      --install ${{ github.workspace }}/build `
+                      --config ${{ matrix.config }} `
+                      --prefix ${{ github.workspace }}/build/install
+
+            - name: Upload library
+              uses: actions/upload-artifact@v4
+              with:
+                  name: ${{ github.event.repository.name }}-${{ matrix.system }}-${{ matrix.config }}-${{ github.sha }}
+                  path: |
+                      ${{ github.workspace }}/build/install
