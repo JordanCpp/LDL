@@ -1,5 +1,5 @@
 project(LDL
-    LANGUAGES C
+    LANGUAGES C OBJC
     VERSION ${LDL_VERSION}
 )
 
@@ -126,6 +126,22 @@ elseif(UNIX AND NOT APPLE)
         ${LDL_ROOT_FOLDER}/source/LDL/Linux/Window.c
         ${LDL_ROOT_FOLDER}/source/LDL/Linux/WinGL.c
     )
+elseif(APPLE)
+    set(LDL_INCLUDES_PLATFORM
+        ${LDL_ROOT_FOLDER}/source/LDL/macOS/GLFuncs.h
+        ${LDL_ROOT_FOLDER}/source/LDL/macOS/KMapper.h
+        ${LDL_ROOT_FOLDER}/source/LDL/macOS/MainWin.h
+        ${LDL_ROOT_FOLDER}/source/LDL/macOS/WinGL.h
+    )
+    set(LDL_SOURCES_PLATFORM
+        ${LDL_ROOT_FOLDER}/source/LDL/macOS/GLFuncs.c
+        ${LDL_ROOT_FOLDER}/source/LDL/macOS/KMapper.c
+        ${LDL_ROOT_FOLDER}/source/LDL/macOS/Library.c
+        ${LDL_ROOT_FOLDER}/source/LDL/macOS/MainWin.m
+        ${LDL_ROOT_FOLDER}/source/LDL/macOS/Ticks.c
+        ${LDL_ROOT_FOLDER}/source/LDL/macOS/Window.m
+        ${LDL_ROOT_FOLDER}/source/LDL/macOS/WinGL.m
+    )
 endif()
 
 source_group("Api" FILES ${LDL_INCLUDES_API})
@@ -177,6 +193,11 @@ elseif(UNIX AND NOT APPLE)
             INSTALL_RPATH "$ORIGIN"
             BUILD_WITH_INSTALL_RPATH TRUE
     )
+elseif(APPLE)
+    set_target_properties(${PROJECT_NAME}
+        PROPERTIES
+            OUTPUT_NAME LDL${LDL_VERSION}
+    )
 endif()
 
 target_include_directories(${PROJECT_NAME}
@@ -190,10 +211,16 @@ if(WIN32)
     target_include_directories(${PROJECT_NAME} PRIVATE ${LDL_ROOT_FOLDER}/source/LDL/Win9x)
 elseif(UNIX AND NOT APPLE)
     target_include_directories(${PROJECT_NAME} PRIVATE ${LDL_ROOT_FOLDER}/source/LDL/Linux)
+elseif(APPLE)
+    target_include_directories(${PROJECT_NAME} PRIVATE ${LDL_ROOT_FOLDER}/source/LDL/macOS)
 endif()
 
 target_compile_options(${PROJECT_NAME} PUBLIC ${LDL_BUILD_FLAGS})
 target_compile_definitions(${PROJECT_NAME} PUBLIC ${LDL_BUILD_DEFINES})
+
+if(APPLE)
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wno-deprecated-declarations)
+endif()
 
 if(WIN32)
     target_link_libraries(${PROJECT_NAME} PUBLIC winmm gdi32 user32 opengl32)
@@ -202,4 +229,9 @@ elseif(UNIX AND NOT APPLE)
     target_link_libraries(${PROJECT_NAME} PUBLIC LibDl::Library)
     target_link_libraries(${PROJECT_NAME} PUBLIC X11::Library)
     target_link_libraries(${PROJECT_NAME} PUBLIC OpenGL::Library)
+elseif(APPLE)
+    target_link_libraries(${PROJECT_NAME} PUBLIC ${COCOA_FRAMEWORK})
+    target_link_libraries(${PROJECT_NAME} PUBLIC ${IOKIT_FRAMEWORK})
+    target_link_libraries(${PROJECT_NAME} PUBLIC ${COREVIDEO_FRAMEWORK})
+    target_link_libraries(${PROJECT_NAME} PUBLIC OpenGL::GL)
 endif()
