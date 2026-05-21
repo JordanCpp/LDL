@@ -1,5 +1,6 @@
 /*
 Copyright(C) 2026 Evgeny Zoshchuk (JordanCpp)
+Copyright(C) 2026 AslanD (Ztry8)
 
 This library is free software; you can redistribute it and /or modify it
 under the terms of the GNU Lesser General Public License as published by
@@ -30,6 +31,7 @@ LDL_LIBRARY bool LDL_ResultIsOk(LDL_Result* result);
 LDL_LIBRARY bool LDL_ResultIsFail(LDL_Result* result);
 LDL_LIBRARY const char* LDL_ResultGetMessage(LDL_Result* result);
 LDL_LIBRARY void LDL_ResultAddMessage(LDL_Result* result, const char* format, ...);
+LDL_LIBRARY void LDL_ResultReset(LDL_Result* result);
 
 #ifdef __cplusplus
 }
