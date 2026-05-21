@@ -139,7 +139,7 @@ elseif(APPLE)
         ${LDL_ROOT_FOLDER}/source/LDL/macOS/Library.c
         ${LDL_ROOT_FOLDER}/source/LDL/macOS/MainWin.m
         ${LDL_ROOT_FOLDER}/source/LDL/macOS/Ticks.c
-        ${LDL_ROOT_FOLDER}/source/LDL/macOS/Window.m
+        ${LDL_ROOT_FOLDER}/source/LDL/macOS/Window.c
         ${LDL_ROOT_FOLDER}/source/LDL/macOS/WinGL.m
     )
 endif()
