@@ -1,5 +1,5 @@
 project(LDL
-    LANGUAGES C OBJC
+    LANGUAGES C
     VERSION ${LDL_VERSION}
 )
 
@@ -127,6 +127,7 @@ elseif(UNIX AND NOT APPLE)
         ${LDL_ROOT_FOLDER}/source/LDL/Linux/WinGL.c
     )
 elseif(APPLE)
+    enable_language(OBJC)
     set(LDL_INCLUDES_PLATFORM
         ${LDL_ROOT_FOLDER}/source/LDL/macOS/GLFuncs.h
         ${LDL_ROOT_FOLDER}/source/LDL/macOS/KMapper.h
