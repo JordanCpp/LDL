@@ -1,5 +1,6 @@
 /*
 Copyright(C) 2026 Evgeny Zoshchuk (JordanCpp)
+Copyright(C) 2026 AslanD (Ztry8)
 
 This library is free software; you can redistribute it and /or modify it
 under the terms of the GNU Lesser General Public License as published by
@@ -1197,6 +1198,7 @@ LDL_OpenGLLoader* LDL_OpenGLLoaderNew(LDL_Result* result, size_t major, size_t m
 			}
 		}
 
+		LDL_ResultReset(result);
 		return loader;
 	}
 

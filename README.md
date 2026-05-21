@@ -7,6 +7,7 @@
 [![Windows](https://img.shields.io/badge/Windows-✅%20Supported-0078D6?logo=windows)](https://www.microsoft.com/windows)
 [![Linux](https://img.shields.io/badge/Linux-✅%20Supported-0078D6?logo=linux)](https://kernel.org)
 [![FreeBSD](https://img.shields.io/badge/FreeBSD-✅%20Supported-0078D6?logo=freebsd)](https://freebsd.org)
+[![macOS](https://img.shields.io/badge/macOS-✅%20Supported-000000?logo=apple)](https://www.apple.com/macos/)
 
 LDL is not just a cross-platform library, but a **bridge between different development eras**. We provide compatible APIs for popular multimedia libraries, allowing modern code to run on legacy platforms and vice versa.
 
@@ -84,13 +85,18 @@ Seeking to comprehend the very spirit of each era and the people who shaped it.
 | **Windows** | 95, 98, ME, 2000, XP, Vista, 7, 8, 10, 11 | ✅ Full support |
 | **Linux** | Kernel 2.0+ (1996–present) | ✅ Full support |
 | **FreeBSD** | 3.0+ (1998–present) | ✅ Full support |
+| **macOS** | 10.12-10.15, 11-26 (2016-present) | ✅ Full support* |
+| **OS X** | 10.8–10.11 (2012–2015) | ✅ Full support |
+| **Mac OS X** | 10.6, 10.7 (2009-2011) | ✅ Full support |
+
+> *Note: due to [Apple's policy](https://developer.apple.com/documentation/scenekit/scnview/openglcontext), macOS does not support OpenGL 4.1+ 
 
 ---
 
 ### Retro & Modern
 
-- **Classic systems:** Windows 95/98/ME, old Linux kernels, legacy FreeBSD
-- **Modern systems:** Windows 10/11, modern Linux distributions, latest FreeBSD
+- **Classic systems:** Windows 95/98/ME, old Linux kernels, legacy FreeBSD, OSX
+- **Modern systems:** Windows 10/11, modern Linux distributions, latest FreeBSD, macOS
 
 ---
 
@@ -101,6 +107,7 @@ Seeking to comprehend the very spirit of each era and the people who shaped it.
 | Windows | MSVC 6.0–2022, MinGW, Borland C++ 5.5, OpenWatcom |
 | Linux | GCC 2.95–14, Clang 3.0–18 |
 | FreeBSD | GCC (system default), Clang |
+| macOS | Apple clang version 14.0.0 |
 
 ---
 
