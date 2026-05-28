@@ -8,6 +8,7 @@
 [![Linux](https://img.shields.io/badge/Linux-✅%20Supported-0078D6?logo=linux)](https://kernel.org)
 [![FreeBSD](https://img.shields.io/badge/FreeBSD-✅%20Supported-0078D6?logo=freebsd)](https://freebsd.org)
 [![macOS](https://img.shields.io/badge/macOS-✅%20Supported-000000?logo=apple)](https://www.apple.com/macos/)
+[![Web](https://img.shields.io/badge/Web-✅%20Supported-0078D6?logo=webassembly)](https://emscripten.org)
 
 LDL is not just a cross-platform library, but a **bridge between different development eras**. We provide compatible APIs for popular multimedia libraries, allowing modern code to run on legacy platforms and vice versa.
 
@@ -88,6 +89,7 @@ Seeking to comprehend the very spirit of each era and the people who shaped it.
 | **macOS** | 10.12-10.15, 11-26 (2016-present) | ✅ Full support* |
 | **OS X** | 10.8–10.11 (2012–2015) | ✅ Full support |
 | **Mac OS X** | 10.6, 10.7 (2009-2011) | ✅ Full support |
+| **Web** | Emscripten 3.0+ (2022–present) | ✅ Full support |
 
 > *Note: due to [Apple's policy](https://developer.apple.com/documentation/scenekit/scnview/openglcontext), macOS does not support OpenGL 4.1+ 
 
@@ -96,7 +98,7 @@ Seeking to comprehend the very spirit of each era and the people who shaped it.
 ### Retro & Modern
 
 - **Classic systems:** Windows 95/98/ME, old Linux kernels, legacy FreeBSD, OSX
-- **Modern systems:** Windows 10/11, modern Linux distributions, latest FreeBSD, macOS
+- **Modern systems:** Windows 10/11, modern Linux distributions, latest FreeBSD, macOS, Web (Emscripten)
 
 ---
 
@@ -108,6 +110,7 @@ Seeking to comprehend the very spirit of each era and the people who shaped it.
 | Linux | GCC 2.95–14, Clang 3.0–18 |
 | FreeBSD | GCC (system default), Clang |
 | macOS | Apple clang version 14.0.0 |
+| Web | Emscripten (emcc) |
 
 ---
 
@@ -147,6 +150,7 @@ You can customize the build using the following CMake options:
 | `LDL_BUILD_LIBRARY_SHARED` | Build LDL as a shared library (.so / .dll) | `OFF` |
 | `LDL_BUILD_EXAMPLES`       | Enable building example projects | `OFF` |
 | `LDL_ENABLE_INSTALL`       | Enable the install target | `OFF` |
+| `LDL_BUILD_EMSCRIPTEN` | Build for web via Emscripten (WASM + HTML5) | `OFF` |
 
 ## Quick Start (Terminal)
 
