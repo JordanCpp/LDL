@@ -128,6 +128,22 @@ bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event)
 	return false;
 }
 
+LDL_Vec2i LDL_WindowGetSize(LDL_Window* window)
+{
+	if (window && window->Context)
+	{
+		switch (LDL_ContextGet(window->Context))
+		{
+		case LDL_ContextOpenGL1:
+			return LDL_WindowOpenGL1GetSize(&window->WindowOpenGL1);
+		case LDL_ContextOpenGL3:
+			return LDL_WindowOpenGL3GetSize(&window->WindowOpenGL3);
+		};
+	}
+
+	return LDL_GetVec2i(0, 0);
+}
+
 void LDL_WindowPresent(LDL_Window* window)
 {
 	if (window && window->Context)

@@ -12,16 +12,27 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#ifndef LDL_H
-#define LDL_H
+#include <LDL/PixFrmt.h>
 
-#include <LDL/Context.h>
-#include <LDL/Result.h>
-#include <LDL/Render.h>
-#include <LDL/Library.h>
-#include <LDL/Format.h>
-#include <LDL/Ticks.h>
-#include <LDL/BmpLoad.h>
-#include <LDL/Texture.h>
+uint8_t LDL_BytesPerPixelFromPixelFormat(size_t pixelFormat)
+{
+	uint8_t bytesPerPixel = LDL_PixelFormatUnknown;
 
-#endif
+	switch (pixelFormat)
+	{
+	case LDL_PixelFormatRGB24:
+		bytesPerPixel = 3;
+		break;
+	case LDL_PixelFormatBGR24:
+		bytesPerPixel = 3;
+		break;
+	case LDL_PixelFormatRGBA32:
+		bytesPerPixel = 4;
+		break;
+	case LDL_PixelFormatBGRA32:
+		bytesPerPixel = 4;
+		break;
+	}
+
+	return bytesPerPixel;
+}

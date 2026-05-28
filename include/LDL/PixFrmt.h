@@ -12,16 +12,29 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#ifndef LDL_H
-#define LDL_H
+#ifndef LDL_PixFrmt_H
+#define LDL_PixFrmt_H
 
-#include <LDL/Context.h>
-#include <LDL/Result.h>
-#include <LDL/Render.h>
-#include <LDL/Library.h>
-#include <LDL/Format.h>
-#include <LDL/Ticks.h>
-#include <LDL/BmpLoad.h>
-#include <LDL/Texture.h>
+#include <LDL/Types.h>
+#include <LDL/Config.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+enum
+{
+    LDL_PixelFormatUnknown,
+    LDL_PixelFormatRGBA32,
+    LDL_PixelFormatBGRA32,
+    LDL_PixelFormatRGB24,
+    LDL_PixelFormatBGR24
+};
+
+uint8_t LDL_BytesPerPixelFromPixelFormat(size_t pixelFormat);
+
+#ifdef __cplusplus
+}
+#endif 
 
 #endif
