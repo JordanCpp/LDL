@@ -122,7 +122,7 @@ LDL_Vec2i LDL_WindowGetSize(LDL_Window* window)
 		{
 		case LDL_ContextOpenGL1:
 		case LDL_ContextOpenGL3:
-			return LDL_WindowOpenGLGetSize(&window->WindowOpenGL1);
+			return LDL_WindowOpenGLGetSize(&window->WindowOpenGL);
 		};
 	}
 
