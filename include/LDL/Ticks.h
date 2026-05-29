@@ -18,7 +18,15 @@ License for more details.
 #include <LDL/Config.h>
 #include <LDL/Types.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 LDL_LIBRARY size_t LDL_Ticks();
 LDL_LIBRARY void LDL_Delay(size_t count);
+
+#ifdef __cplusplus
+}
+#endif 
 
 #endif
