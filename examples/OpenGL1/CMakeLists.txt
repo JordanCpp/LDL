@@ -1,54 +1,28 @@
 
-add_executable(OpenGL1_RectColor "OpenGL1_RectColor.c")
-target_link_libraries(OpenGL1_RectColor LDL)
+set(LDL_EXAMPLES
+    "OpenGL1_Animated3DTerrain"
+    "OpenGL1_FallingParticles"
+    "OpenGL1_FireworksShow"
+    "OpenGL1_FirstPersonMaze"
+    "OpenGL1_Interactive3DCube"
+    "OpenGL1_Move"
+    "OpenGL1_RectColor"
+    "OpenGL1_RectTexture"
+    "OpenGL1_Rotate"
+    "OpenGL1_RotatingColorfulTorus"
+    "OpenGL1_Rotating3DCube"
+    "OpenGL1_SnowfallParticles"
+    "OpenGL1_SolarSystem"
+    "OpenGL1_TargetShooter"
+    "OpenGL1_TerrainFlight"
+    "OpenGL1_WaterWaveSimulation"
+    "OpenGL1_3DAtomModel"
+)
 
-add_executable(OpenGL1_Rotate "OpenGL1_Rotate.c")
-target_link_libraries(OpenGL1_Rotate LDL)
-
-add_executable(OpenGL1_Move "OpenGL1_Move.c")
-target_link_libraries(OpenGL1_Move LDL)
-
-add_executable(OpenGL1_FallingParticles "OpenGL1_FallingParticles.c")
-target_link_libraries(OpenGL1_FallingParticles LDL)
-
-add_executable(OpenGL1_Rotating3DCube "OpenGL1_Rotating3DCube.c")
-target_link_libraries(OpenGL1_Rotating3DCube LDL)
-
-add_executable(OpenGL1_RotatingColorfulTorus "OpenGL1_RotatingColorfulTorus.c")
-target_link_libraries(OpenGL1_RotatingColorfulTorus LDL)
-
-add_executable(OpenGL1_SnowfallParticles "OpenGL1_SnowfallParticles.c")
-target_link_libraries(OpenGL1_SnowfallParticles LDL)
-
-add_executable(OpenGL1_Interactive3DCube "OpenGL1_Interactive3DCube.c")
-target_link_libraries(OpenGL1_Interactive3DCube LDL)
-
-add_executable(OpenGL1_Animated3DTerrain "OpenGL1_Animated3DTerrain.c")
-target_link_libraries(OpenGL1_Animated3DTerrain LDL)
-
-add_executable(OpenGL1_FirstPersonMaze "OpenGL1_FirstPersonMaze.c")
-target_link_libraries(OpenGL1_FirstPersonMaze LDL)
-
-add_executable(OpenGL1_SolarSystem "OpenGL1_SolarSystem.c")
-target_link_libraries(OpenGL1_SolarSystem LDL)
-
-add_executable(OpenGL1_WaterWaveSimulation "OpenGL1_WaterWaveSimulation.c")
-target_link_libraries(OpenGL1_WaterWaveSimulation LDL)
-
-add_executable(OpenGL1_TargetShooter "OpenGL1_TargetShooter.c")
-target_link_libraries(OpenGL1_TargetShooter LDL)
-
-add_executable(OpenGL1_3DAtomModel "OpenGL1_3DAtomModel.c")
-target_link_libraries(OpenGL1_3DAtomModel LDL)
-
-add_executable(OpenGL1_FireworksShow "OpenGL1_FireworksShow.c")
-target_link_libraries(OpenGL1_FireworksShow LDL)
-
-add_executable(OpenGL1_TerrainFlight "OpenGL1_TerrainFlight.c")
-target_link_libraries(OpenGL1_TerrainFlight LDL)
-
-add_executable(OpenGL1_RectTexture "OpenGL1_RectTexture.c")
-target_link_libraries(OpenGL1_RectTexture LDL)
+foreach(EXE_NAME ${LDL_EXAMPLES})
+    add_executable(${EXE_NAME} ${EXE_NAME}.c)
+    target_link_libraries(${EXE_NAME} LDL)
+endforeach()
 
 file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/LDL_24_256.bmp" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
 file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/LDL_24_256.bmp" DESTINATION "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")

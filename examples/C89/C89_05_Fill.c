@@ -10,25 +10,17 @@
 
 int main(void)
 {
-    LDL_Result*    result;
-    LDL_Context*   context;
-    LDL_Window*    window;
-    LDL_Render*    render;
-    LDL_Event      event;
-    LDL_BmpLoader* loader;
-    LDL_Texture*   texture;
-    LDL_Vec2i      pos;
+    LDL_Result*  result = NULL;
+    LDL_Context* context = NULL;
+    LDL_Window*  window = NULL;
+    LDL_Render*  render = NULL;
+    LDL_Event    event;
+    LDL_Vec2i    size;
 
     result  = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window  = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL 06 - Texture", LDL_WindowModeResized);
+    window  = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 05 - Fill", LDL_WindowModeResized);
     render  = LDL_RenderNew(result, context, window);
-    loader  = LDL_BmpLoaderNew(result);
-
-    if (LDL_BmpLoaderLoadFromFile(loader, "LDL_24_256.bmp"))
-    {
-        texture = LDL_TextureNewFromPixels(context, LDL_BmpLoaderGetPixelFormat(loader), LDL_BmpLoaderGetSize(loader), LDL_BmpLoaderGetPixels(loader));
-    }
 
     if (LDL_ResultIsOk(result))
     {
@@ -42,28 +34,28 @@ int main(void)
                 }
             }
 
-            LDL_RenderSetColor(render, LDL_ColorRgb(255, 127, 39));
+            LDL_RenderSetColor(render, LDL_ColorRgb(0, 162, 232));
             LDL_RenderClear(render);
 
             LDL_RenderBegin(render);
 
-            pos = LDL_GetVec2i(0, 0);
-            LDL_RenderDraw(render, texture, &pos, NULL, NULL, NULL);
+            LDL_RenderSetColor(render, LDL_ColorRgb(237, 28, 36));
+            LDL_RenderFill2i(render, LDL_GetVec2i(0, 0), LDL_GetVec2i(800 / 2, 600 / 2));
 
             LDL_RenderEnd(render);
         }
     }
 
-    LDL_TextureFree(texture);
-    LDL_BmpLoaderFree(loader);
-    LDL_ContextFree(context);
+    LDL_RenderFree(render);
     LDL_WindowFree(window);
-    LDL_ResultFree(result);
+    LDL_ContextFree(context);
 
     if (LDL_ResultIsFail(result))
     {
         printf("LDL result error: %s\n", LDL_ResultGetMessage(result));
     }
+
+    LDL_ResultFree(result);
 
     return 0;
 }

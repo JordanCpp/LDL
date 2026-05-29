@@ -10,15 +10,15 @@
 
 int main(void)
 {
-    LDL_Result*  result;
-    LDL_Context* context;
-    LDL_Window*  window;
-    LDL_Render*  render;
+    LDL_Result*  result = NULL;
+    LDL_Context* context = NULL;
+    LDL_Window*  window = NULL;
+    LDL_Render*  render = NULL;
     LDL_Event    event;
 
     result  = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window  = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL 02 - Render", LDL_WindowModeResized);
+    window  = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 03 - Clear", LDL_WindowModeResized);
     render  = LDL_RenderNew(result, context, window);
 
     if (LDL_ResultIsOk(result))
@@ -33,19 +33,24 @@ int main(void)
                 }
             }
 
+            LDL_RenderSetColor(render, LDL_ColorRgb(0, 162, 232));
+            LDL_RenderClear(render);
+
             LDL_RenderBegin(render);
             LDL_RenderEnd(render);
         }
     }
 
-    LDL_ContextFree(context);
+    LDL_RenderFree(render);
     LDL_WindowFree(window);
-    LDL_ResultFree(result);
+    LDL_ContextFree(context);
 
     if (LDL_ResultIsFail(result))
     {
         printf("LDL result error: %s\n", LDL_ResultGetMessage(result));
     }
+
+    LDL_ResultFree(result);
 
     return 0;
 }

@@ -13,7 +13,7 @@
       "variables": [
         {
           "name": "LDL_BUILD_EXAMPLES",
-          "value": "True",
+          "value": "False",
           "type": "BOOL"
         }
       ]
@@ -45,7 +45,14 @@
       "cmakeCommandArgs": "",
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
-      "inheritEnvironments": [ "msvc_x86" ]
+      "inheritEnvironments": [ "msvc_x86" ],
+      "variables": [
+        {
+          "name": "LDL_BUILD_EXAMPLES",
+          "value": "False",
+          "type": "BOOL"
+        }
+      ]
     },
     {
       "name": "x64-Release",
@@ -56,7 +63,19 @@
       "cmakeCommandArgs": "",
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
-      "inheritEnvironments": [ "msvc_x64_x64" ]
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "variables": [
+        {
+          "name": "LDL_BUILD_EXAMPLES_CPP98",
+          "value": "True",
+          "type": "BOOL"
+        },
+        {
+          "name": "LDL_BUILD_EXAMPLES",
+          "value": "False",
+          "type": "BOOL"
+        }
+      ]
     }
   ]
 }
