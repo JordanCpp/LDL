@@ -1,3 +1,6 @@
+
+add_subdirectory("API")
+
 if(LDL_BUILD_EXAMPLES AND LDL_BUILD_EXAMPLES_OPENGL1)
     add_subdirectory("OpenGL1")
 endif()

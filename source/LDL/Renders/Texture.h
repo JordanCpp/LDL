@@ -12,16 +12,17 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#ifndef LDL_H
-#define LDL_H
+#ifndef LDL_Render_Texture_H
+#define LDL_Render_Texture_H
 
-#include <LDL/Context.h>
-#include <LDL/Result.h>
-#include <LDL/Render.h>
-#include <LDL/Library.h>
-#include <LDL/Format.h>
-#include <LDL/Ticks.h>
-#include <LDL/BmpLoad.h>
 #include <LDL/Texture.h>
+#include <LDL/Context.h>
+#include <LDL/Renders/GL1/TexGL1.h>
+
+typedef struct LDL_Texture
+{
+	LDL_Context*        Context;
+	LDL_TextureOpenGL1* TextureOpenGL1;
+} LDL_Texture;
 
 #endif

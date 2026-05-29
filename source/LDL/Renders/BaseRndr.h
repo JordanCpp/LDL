@@ -12,16 +12,18 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#ifndef LDL_H
-#define LDL_H
+#ifndef LDL_BaseRndr_H
+#define LDL_BaseRndr_H
 
-#include <LDL/Context.h>
-#include <LDL/Result.h>
-#include <LDL/Render.h>
-#include <LDL/Library.h>
-#include <LDL/Format.h>
-#include <LDL/Ticks.h>
-#include <LDL/BmpLoad.h>
-#include <LDL/Texture.h>
+#include <LDL/Color.h>
+
+typedef struct LDL_BaseRender
+{
+	LDL_Color Color;
+} LDL_BaseRender;
+
+void LDL_BaseRenderInit(LDL_BaseRender* baseRender, LDL_Color color);
+LDL_Color LDL_BaseRenderGetColor(LDL_BaseRender* baseRender);
+void LDL_BaseRenderSetColor(LDL_BaseRender* baseRender, LDL_Color color);
 
 #endif

@@ -12,16 +12,29 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#ifndef LDL_H
-#define LDL_H
+#ifndef LDL_Color_H
+#define LDL_Color_H
 
-#include <LDL/Context.h>
-#include <LDL/Result.h>
-#include <LDL/Render.h>
-#include <LDL/Library.h>
-#include <LDL/Format.h>
-#include <LDL/Ticks.h>
-#include <LDL/BmpLoad.h>
-#include <LDL/Texture.h>
+#include <LDL/Types.h>
+#include <LDL/Config.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+typedef struct LDL_Color
+{
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
+	uint8_t a;
+} LDL_Color;
+
+LDL_LIBRARY LDL_Color LDL_ColorRgb(uint8_t r, uint8_t g, uint8_t b);
+LDL_LIBRARY LDL_Color LDL_ColorRgba(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
+
+#ifdef __cplusplus
+}
+#endif 
 
 #endif

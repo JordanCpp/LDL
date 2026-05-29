@@ -1,5 +1,6 @@
-add_executable(OpenGL1_Rect "OpenGL1_Rect.c")
-target_link_libraries(OpenGL1_Rect LDL)
+
+add_executable(OpenGL1_RectColor "OpenGL1_RectColor.c")
+target_link_libraries(OpenGL1_RectColor LDL)
 
 add_executable(OpenGL1_Rotate "OpenGL1_Rotate.c")
 target_link_libraries(OpenGL1_Rotate LDL)
@@ -45,3 +46,9 @@ target_link_libraries(OpenGL1_FireworksShow LDL)
 
 add_executable(OpenGL1_TerrainFlight "OpenGL1_TerrainFlight.c")
 target_link_libraries(OpenGL1_TerrainFlight LDL)
+
+add_executable(OpenGL1_RectTexture "OpenGL1_RectTexture.c")
+target_link_libraries(OpenGL1_RectTexture LDL)
+
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/LDL_24_256.bmp" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/LDL_24_256.bmp" DESTINATION "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")

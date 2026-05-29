@@ -7,6 +7,8 @@ set(CMAKE_C_STANDARD 90)
 set(CMAKE_C_STANDARD_REQUIRED 90)
 
 set(LDL_INCLUDES_API
+    ${LDL_ROOT_FOLDER}/include/LDL/BmpLoad.h
+    ${LDL_ROOT_FOLDER}/include/LDL/Color.h
     ${LDL_ROOT_FOLDER}/include/LDL/Config.h
     ${LDL_ROOT_FOLDER}/include/LDL/Context.h
     ${LDL_ROOT_FOLDER}/include/LDL/Enums.h
@@ -14,12 +16,17 @@ set(LDL_INCLUDES_API
     ${LDL_ROOT_FOLDER}/include/LDL/Format.h
     ${LDL_ROOT_FOLDER}/include/LDL/LDL.h
     ${LDL_ROOT_FOLDER}/include/LDL/Library.h
+    ${LDL_ROOT_FOLDER}/include/LDL/Mat4f.h
+    ${LDL_ROOT_FOLDER}/include/LDL/PixFrmt.h
+    ${LDL_ROOT_FOLDER}/include/LDL/Render.h
     ${LDL_ROOT_FOLDER}/include/LDL/Result.h
+    ${LDL_ROOT_FOLDER}/include/LDL/Texture.h
     ${LDL_ROOT_FOLDER}/include/LDL/Ticks.h
     ${LDL_ROOT_FOLDER}/include/LDL/Types.h
     ${LDL_ROOT_FOLDER}/include/LDL/Vec2i.h
     ${LDL_ROOT_FOLDER}/include/LDL/Window.h
 )
+
 set(LDL_INCLUDES_API_OPENGL
     ${LDL_ROOT_FOLDER}/include/LDL/OpenGL/GL1_0.h
     ${LDL_ROOT_FOLDER}/include/LDL/OpenGL/GL1_1.h
@@ -53,8 +60,10 @@ set(LDL_INCLUDES_COMMON
     ${LDL_ROOT_FOLDER}/source/LDL/Mapping.h
     ${LDL_ROOT_FOLDER}/source/LDL/StrSpan.h
 )
+
 set(LDL_SOURCES_COMMON
     ${LDL_ROOT_FOLDER}/source/LDL/BaseWin.c
+    ${LDL_ROOT_FOLDER}/source/LDL/BmpLoad.c
     ${LDL_ROOT_FOLDER}/source/LDL/Context.c
     ${LDL_ROOT_FOLDER}/source/LDL/EventH.c
     ${LDL_ROOT_FOLDER}/source/LDL/EventQ.c
@@ -62,10 +71,12 @@ set(LDL_SOURCES_COMMON
     ${LDL_ROOT_FOLDER}/source/LDL/Format.c
     ${LDL_ROOT_FOLDER}/source/LDL/KeyMap.c
     ${LDL_ROOT_FOLDER}/source/LDL/Mapping.c
+    ${LDL_ROOT_FOLDER}/source/LDL/PixFrmt.c
     ${LDL_ROOT_FOLDER}/source/LDL/Result.c
     ${LDL_ROOT_FOLDER}/source/LDL/StrSpan.c
     ${LDL_ROOT_FOLDER}/source/LDL/Vec2i.c
 )
+
 set(LDL_SOURCES_OPENGL
     ${LDL_ROOT_FOLDER}/source/LDL/OpenGL/GLLoad.c
     ${LDL_ROOT_FOLDER}/source/LDL/OpenGL/GL1_0.c
@@ -88,6 +99,26 @@ set(LDL_SOURCES_OPENGL
     ${LDL_ROOT_FOLDER}/source/LDL/OpenGL/GL4_5.c
     ${LDL_ROOT_FOLDER}/source/LDL/OpenGL/GL4_6.c
 )
+
+set(LDL_INCLUDES_RENDERS
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/GLUtils.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL1/RndrGL1.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL1/TexGL1.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/BaseRndr.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Texture.h
+)
+
+set(LDL_SOURCES_RENDERS
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/GLUtils.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL1/RndrGL1.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL1/TexGL1.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/BaseRndr.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Color.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Mat4f.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Render.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Texture.c
+)
+
 if(WIN32)
     set(LDL_INCLUDES_PLATFORM
         ${LDL_ROOT_FOLDER}/source/LDL/Win9x/GLFuncs.h
@@ -162,6 +193,8 @@ if(LDL_BUILD_LIBRARY_STATIC)
         ${LDL_SOURCES_OPENGL}
         ${LDL_INCLUDES_PLATFORM}
         ${LDL_SOURCES_PLATFORM}
+        ${LDL_SOURCES_RENDERS}
+        ${LDL_INCLUDES_RENDERS}
     )
 elseif(LDL_BUILD_LIBRARY_SHARED)
     add_library(${PROJECT_NAME} SHARED
@@ -172,6 +205,8 @@ elseif(LDL_BUILD_LIBRARY_SHARED)
         ${LDL_SOURCES_OPENGL}
         ${LDL_INCLUDES_PLATFORM}
         ${LDL_SOURCES_PLATFORM}
+        ${LDL_SOURCES_RENDERS}
+        ${LDL_INCLUDES_RENDERS}
     )
 endif()
 
