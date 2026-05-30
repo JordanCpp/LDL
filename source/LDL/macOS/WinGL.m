@@ -125,7 +125,7 @@ void LDL_WindowOpenGLInit(LDL_WindowOpenGL* window, LDL_Result* result,
         return;
 
     NSOpenGLPixelFormatAttribute profile =
-        (mode == LDL_ContextOpenGL3)
+        (mode == LDL_ContextOpenGLModern)
             ? NSOpenGLProfileVersion3_2Core
             : NSOpenGLProfileVersionLegacy;
 

@@ -36,10 +36,10 @@ LDL_Window* LDL_WindowNew(LDL_Result* result, LDL_Context* context, LDL_Vec2i po
 
 		switch (LDL_ContextGet(window->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			LDL_WindowOpenGL1Init(&window->WindowOpenGL1, result, pos, size, title, mode);
 			break;
-		case LDL_ContextOpenGL3:
+		case LDL_ContextOpenGLModern:
 			LDL_WindowOpenGL3Init(&window->WindowOpenGL3, result, pos, size, title, mode);
 			break;
 		};
@@ -63,10 +63,10 @@ void LDL_WindowFree(LDL_Window* window)
 		{
 			switch (LDL_ContextGet(window->Context))
 			{
-			case LDL_ContextOpenGL1:
+			case LDL_ContextOpenGLLegacy:
 				LDL_WindowOpenGL1Deinit(&window->WindowOpenGL1);
 				break;
-			case LDL_ContextOpenGL3:
+			case LDL_ContextOpenGLModern:
 				LDL_WindowOpenGL3Deinit(&window->WindowOpenGL3);
 				break;
 			};
@@ -82,10 +82,10 @@ bool LDL_WindowIsRunning(LDL_Window* window)
 	{
 		switch (LDL_ContextGet(window->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			return LDL_WindowOpenGL1IsRunning(&window->WindowOpenGL1);
 			break;
-		case LDL_ContextOpenGL3:
+		case LDL_ContextOpenGLModern:
 			return LDL_WindowOpenGL3IsRunning(&window->WindowOpenGL3);
 			break;
 		};
@@ -100,10 +100,10 @@ void LDL_WindowStopEvent(LDL_Window* window)
 	{
 		switch (LDL_ContextGet(window->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			LDL_WindowOpenGL1StopEvent(&window->WindowOpenGL1);
 			break;
-		case LDL_ContextOpenGL3:
+		case LDL_ContextOpenGLModern:
 			LDL_WindowOpenGL3StopEvent(&window->WindowOpenGL3);
 			break;
 		};
@@ -116,10 +116,10 @@ bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event)
 	{
 		switch (LDL_ContextGet(window->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			return LDL_WindowOpenGL1GetEvent(&window->WindowOpenGL1, event);
 			break;
-		case LDL_ContextOpenGL3:
+		case LDL_ContextOpenGLModern:
 			return LDL_WindowOpenGL3GetEvent(&window->WindowOpenGL3, event);
 			break;
 		};
@@ -134,9 +134,9 @@ LDL_Vec2i LDL_WindowGetSize(LDL_Window* window)
 	{
 		switch (LDL_ContextGet(window->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			return LDL_WindowOpenGL1GetSize(&window->WindowOpenGL1);
-		case LDL_ContextOpenGL3:
+		case LDL_ContextOpenGLModern:
 			return LDL_WindowOpenGL3GetSize(&window->WindowOpenGL3);
 		};
 	}
@@ -150,10 +150,10 @@ void LDL_WindowPresent(LDL_Window* window)
 	{
 		switch (LDL_ContextGet(window->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			LDL_WindowOpenGL1Present(&window->WindowOpenGL1);
 			break;
-		case LDL_ContextOpenGL3:
+		case LDL_ContextOpenGLModern:
 			LDL_WindowOpenGL3Present(&window->WindowOpenGL3);
 			break;
 		};

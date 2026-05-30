@@ -445,7 +445,7 @@ int main(void)
     size_t            currentTime, delta;
 
     result = LDL_ResultNew();
-    context = LDL_ContextNew(LDL_ContextOpenGL1);
+    context = LDL_ContextNew(LDL_ContextOpenGLLegacy);
     window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height), "LDL - Textured Terrain (OpenGL 2.1)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))

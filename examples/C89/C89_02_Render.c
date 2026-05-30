@@ -17,7 +17,7 @@ int main(void)
     LDL_Event    event;
 
     result  = LDL_ResultNew();
-    context = LDL_ContextNew(LDL_ContextOpenGL1);
+    context = LDL_ContextNew(LDL_ContextOpenGLLegacy);
     window  = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 02 - Render", LDL_WindowModeResized);
     render  = LDL_RenderNew(result, context, window);
 

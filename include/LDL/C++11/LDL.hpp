@@ -70,7 +70,7 @@ namespace LDL
     {
     public:
         inline Context() :
-            _context(LDL_ContextNew(LDL_ContextOpenGL1), LDL_ContextFree)
+            _context(LDL_ContextNew(LDL_ContextOpenGLLegacy), LDL_ContextFree)
         {
             if (!_context) 
             { 
