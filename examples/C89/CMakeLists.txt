@@ -1,0 +1,19 @@
+
+set(LDL_EXAMPLES
+    "C89_01_Window"
+    "C89_02_Render"
+    "C89_03_Clear"
+    "C89_04_Line"
+    "C89_05_Fill"
+    "C89_06_Texture"
+    "C89_07_InitLegacyGL"
+    "C89_08_InitModernGL"
+)
+
+foreach(EXE_NAME ${LDL_EXAMPLES})
+    add_executable(${EXE_NAME} ${EXE_NAME}.c)
+    target_link_libraries(${EXE_NAME} LDL)
+endforeach()
+
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/LDL_24_256.bmp" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/LDL_24_256.bmp" DESTINATION "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")

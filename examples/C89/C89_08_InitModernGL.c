@@ -7,17 +7,20 @@
 
 #include <stdio.h>
 #include <LDL/LDL.h>
+#include <LDL/OpenGL/GLLoad.h>
 
 int main(void)
 {
-    LDL_Result*  result;
-    LDL_Context* context;
-    LDL_Window*  window;
-    LDL_Event    event;
+    LDL_Result* result = NULL;
+    LDL_Context* context = NULL;
+    LDL_Window* window = NULL;
+    LDL_OpenGLLoader* loader = NULL;
+    LDL_Event event;
 
     result  = LDL_ResultNew();
     context = LDL_ContextNew(LDL_ContextOpenGL1);
-    window  = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL 01 - Window", LDL_WindowModeResized);
+    window  = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 08 - Init modern GL", LDL_WindowModeResized);
+    loader  = LDL_OpenGLLoaderNew(result, 3, 0);
 
     if (LDL_ResultIsOk(result))
     {
@@ -35,14 +38,16 @@ int main(void)
         }
     }
 
-    LDL_ContextFree(context);
+    LDL_OpenGLLoaderFree(loader);
     LDL_WindowFree(window);
-    LDL_ResultFree(result);
+    LDL_ContextFree(context);
 
     if (LDL_ResultIsFail(result))
     {
         printf("LDL result error: %s\n", LDL_ResultGetMessage(result));
     }
+
+    LDL_ResultFree(result);
 
     return 0;
 }
