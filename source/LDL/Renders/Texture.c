@@ -31,7 +31,7 @@ LDL_Texture* LDL_TextureNewFromPixels(LDL_Context* context, size_t pixelFormat, 
 
 			switch (LDL_ContextGet(context))
 			{
-			case LDL_ContextOpenGL1:
+			case LDL_ContextOpenGLLegacy:
 				texture->TextureOpenGL1 = LDL_TextureOpenGL1NewFromPixels(pixelFormat, size, pixels);
 				return texture;
 			}
@@ -55,7 +55,7 @@ LDL_Texture* LDL_TextureNewFromSize(LDL_Context* context, size_t pixelFormat, LD
 
 			switch (LDL_ContextGet(context))
 			{
-			case LDL_ContextOpenGL1:
+			case LDL_ContextOpenGLLegacy:
 				texture->TextureOpenGL1 = LDL_TextureOpenGL1NewFromSize(pixelFormat, size);
 				return texture;
 			}
@@ -73,7 +73,7 @@ void LDL_TextureFree(LDL_Texture* texture)
 		{
 			switch (LDL_ContextGet(texture->Context))
 			{
-			case LDL_ContextOpenGL1:
+			case LDL_ContextOpenGLLegacy:
 				LDL_TextureOpenGL1Free(texture->TextureOpenGL1);
 				break;
 			}
@@ -89,7 +89,7 @@ LDL_Vec2i LDL_TextureGetSize(LDL_Texture* texture)
 		{
 			switch (LDL_ContextGet(texture->Context))
 			{
-			case LDL_ContextOpenGL1:
+			case LDL_ContextOpenGLLegacy:
 				return LDL_TextureOpenGL1GetSize(texture->TextureOpenGL1);
 			}
 		}

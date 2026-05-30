@@ -68,7 +68,7 @@ namespace LDL
 		inline Context() :
 			_context(NULL)
 		{
-			_context = LDL_ContextNew(LDL_ContextOpenGL1);
+			_context = LDL_ContextNew(LDL_ContextOpenGLLegacy);
 		}
 
 		inline ~Context()

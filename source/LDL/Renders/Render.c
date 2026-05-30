@@ -40,7 +40,7 @@ LDL_Render* LDL_RenderNew(LDL_Result* result, LDL_Context* context, LDL_Window* 
 
 			switch (LDL_ContextGet(render->Context))
 			{
-			case LDL_ContextOpenGL1:
+			case LDL_ContextOpenGLLegacy:
 				LDL_RenderOpenGL1Init(&render->RenderOpenGL1, result, window);
 				break;
 			};
@@ -58,7 +58,7 @@ void LDL_RenderFree(LDL_Render* render)
 	{
 		switch (LDL_ContextGet(render->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			LDL_RenderOpenGL1Deinit(&render->RenderOpenGL1);
 			break;
 		};
@@ -73,7 +73,7 @@ LDL_Color LDL_RenderGetColor(LDL_Render* render)
 	{
 		switch (LDL_ContextGet(render->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			return LDL_RenderOpenGL1GetColor(&render->RenderOpenGL1);
 		};
 	}
@@ -87,7 +87,7 @@ void LDL_RenderSetColor(LDL_Render* render, LDL_Color color)
 	{
 		switch (LDL_ContextGet(render->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			LDL_RenderOpenGL1SetColor(&render->RenderOpenGL1, color);
 			break;
 		};
@@ -100,7 +100,7 @@ void LDL_RenderClear(LDL_Render* render)
 	{
 		switch (LDL_ContextGet(render->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			LDL_RenderOpenGL1Clear(&render->RenderOpenGL1);
 			break;
 		};
@@ -113,7 +113,7 @@ void LDL_RenderLine2i(LDL_Render* render, LDL_Vec2i first, LDL_Vec2i last)
 	{
 		switch (LDL_ContextGet(render->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			LDL_RenderOpenGL1Line2i(&render->RenderOpenGL1, first, last);
 			break;
 		};	
@@ -126,7 +126,7 @@ void LDL_RenderFill2i(LDL_Render* render, LDL_Vec2i first, LDL_Vec2i last)
 	{
 		switch (LDL_ContextGet(render->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			LDL_RenderOpenGL1Fill2i(&render->RenderOpenGL1, first, last);
 			break;
 		};
@@ -139,7 +139,7 @@ void LDL_RenderBegin(LDL_Render* render)
 	{
 		switch (LDL_ContextGet(render->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			LDL_RenderOpenGL1Begin(&render->RenderOpenGL1);
 			break;
 		};
@@ -152,7 +152,7 @@ void LDL_RenderEnd(LDL_Render* render)
 	{
 		switch (LDL_ContextGet(render->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			LDL_RenderOpenGL1End(&render->RenderOpenGL1);
 			break;
 		};
@@ -165,7 +165,7 @@ void LDL_RenderDraw(LDL_Render* render, LDL_Texture* texture, LDL_Vec2i* dstPos,
 	{
 		switch (LDL_ContextGet(render->Context))
 		{
-		case LDL_ContextOpenGL1:
+		case LDL_ContextOpenGLLegacy:
 			LDL_RenderOpenGL1Draw(&render->RenderOpenGL1, texture->TextureOpenGL1, dstPos, dstSize, srcPos, srcSize);
 			break;
 		};

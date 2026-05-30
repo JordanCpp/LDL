@@ -343,7 +343,7 @@ int main(void)
     int               i;
 
     result = LDL_ResultNew();
-    context = LDL_ContextNew(LDL_ContextOpenGL1);
+    context = LDL_ContextNew(LDL_ContextOpenGLLegacy);
     window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height), "LDL - Solar System (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
