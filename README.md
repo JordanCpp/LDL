@@ -11,6 +11,10 @@
 
 LDL is not just a cross-platform library, but a **bridge between different development eras**. We provide compatible APIs for popular multimedia libraries, allowing modern code to run on legacy platforms and vice versa.
 
+---
+
+<details>
+<summary><b>The Philosophy of the LDL Library (Click to expand)</b></summary>
 🕰️ The Human Story Behind the Code
 "I am passionate about studying the history of IT. For me, it's not merely about computers and programs, but about the remarkable human endeavor behind them."
 
@@ -59,6 +63,7 @@ My fascination stems from understanding not what was built, but how and by whom.
 Seeking to comprehend the very spirit of each era and the people who shaped it.
 
 "We stand on the shoulders of giants whose names we often forget, but whose work continues to shape our world every day."
+</details>
 
 ---
 
