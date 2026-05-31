@@ -444,16 +444,16 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
     m[15] = 1.0f;
 }
 
-void MatrixPerspective(float* m, float fov, float aspect, float near, float far)
+void MatrixPerspective(float* m, float fov, float aspect, float nearV, float farV)
 {
     float tanHalfFov = (float)tan(fov / 360.0f * M_PI);
     int i;
     for (i = 0; i < 16; i++) m[i] = 0.0f;
     m[0] = 1.0f / (aspect * tanHalfFov);
     m[5] = 1.0f / tanHalfFov;
-    m[10] = -(far + near) / (far - near);
+    m[10] = -(farV + nearV) / (farV - nearV);
     m[11] = -1.0f;
-    m[14] = -(2.0f * far * near) / (far - near);
+    m[14] = -(2.0f * farV * nearV) / (farV - nearV);
 }
 
 /* Initialize OpenGL */
@@ -515,14 +515,17 @@ void Render(int width, int height)
 /* Update */
 void UpdateAnimation(size_t delta)
 {
+    float cx;
+    float cy;
+    float cz;
     float seconds = (float)delta / 1000.0f;
     angle += TORUS_SPEED * seconds;
     if (angle >= 360.0f) angle -= 360.0f;
 
     /* Center of torus (0,0,0) + dancing offset */
-    float cx = (float)sin(angle * 1.5f) * 0.2f;
-    float cy = (float)cos(angle * 0.8f) * 0.2f;
-    float cz = (float)sin(angle) * 0.1f;
+    cx = (float)sin(angle * 1.5f) * 0.2f;
+    cy = (float)cos(angle * 0.8f) * 0.2f;
+    cz = (float)sin(angle) * 0.1f;
 
     UpdateParticles(delta, cx, cy + 0.2f, cz);
     UpdateParticleBuffer();

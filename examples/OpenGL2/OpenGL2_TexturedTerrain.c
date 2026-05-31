@@ -336,16 +336,16 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
     m[15] = 1.0f;
 }
 
-void MatrixPerspective(float* m, float fov, float aspect, float near, float far)
+void MatrixPerspective(float* m, float fov, float aspect, float nearV, float farV)
 {
     float tanHalfFov = (float)tan(fov / 360.0f * M_PI);
     int i;
     for (i = 0; i < 16; i++) m[i] = 0.0f;
     m[0] = 1.0f / (aspect * tanHalfFov);
     m[5] = 1.0f / tanHalfFov;
-    m[10] = -(far + near) / (far - near);
+    m[10] = -(farV + nearV) / (farV - nearV);
     m[11] = -1.0f;
-    m[14] = -(2.0f * far * near) / (far - near);
+    m[14] = -(2.0f * farV * nearV) / (farV- nearV);
 }
 
 void Resize(int width, int height)
@@ -370,14 +370,16 @@ void Render(int width, int height)
     float aspect = (float)width / (float)height;
     float timeValue = (float)LDL_Ticks() / 1000.0f;
     float camY = 1.5f;
+    float camX;
+    float camZ;
 
     glClearColor(0.5f, 0.6f, 0.7f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     MatrixIdentity(model);
 
-    float camX = (float)sin(angle) * cameraDist;
-    float camZ = (float)cos(angle) * cameraDist;
+    camX = (float)sin(angle) * cameraDist;
+    camZ = (float)cos(angle) * cameraDist;
     MatrixLookAt(view, camX, camY, camZ, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
     MatrixPerspective(projection, 60.0f, aspect, 0.1f, 30.0f);
 

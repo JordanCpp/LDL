@@ -387,16 +387,16 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
     m[15] = 1.0f;
 }
 
-void MatrixPerspective(float* m, float fov, float aspect, float near, float far)
+void MatrixPerspective(float* m, float fov, float aspect, float nearV, float farV)
 {
     float tanHalfFov = (float)tan(fov / 360.0f * (float)M_PI);
     int i;
     for (i = 0; i < 16; i++) m[i] = 0.0f;
     m[0] = 1.0f / (aspect * tanHalfFov);
     m[5] = 1.0f / tanHalfFov;
-    m[10] = -(far + near) / (far - near);
+    m[10] = -(farV + nearV) / (farV - nearV);
     m[11] = -1.0f;
-    m[14] = -(2.0f * far * near) / (far - near);
+    m[14] = -(2.0f * farV * nearV) / (farV - nearV);
 }
 
 /* Initialize OpenGL */
@@ -433,14 +433,19 @@ void Render(int width, int height)
     int modelLoc, viewLoc, projLoc;
     int lightPosLoc, viewPosLoc;
     float aspect = (float)width / (float)height;
+    float camX;
+    float camZ;
+    float moonOrbitAngle;
+    float moonX;
+    float moonZ;
 
     glClearColor(0.0f, 0.0f, 0.05f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glViewport(0, 0, width, height);
 
     /* View matrix (rotating camera) */
-    float camX = (float)sin(cameraAngle) * 4.0f;
-    float camZ = (float)cos(cameraAngle) * 4.0f;
+    camX = (float)sin(cameraAngle) * 4.0f;
+    camZ = (float)cos(cameraAngle) * 4.0f;
     MatrixLookAt(view, camX, 1.5f, camZ, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
     /* Projection matrix */
@@ -467,9 +472,9 @@ void Render(int width, int height)
     DrawSphere(sphereVAO, sphereIndexCount, planetTexture, 1.0f, 1.0f, 1.0f);
 
     /* Draw moon orbiting */
-    float moonOrbitAngle = moonAngle;
-    float moonX = 1.5f * (float)sin(moonOrbitAngle);
-    float moonZ = 1.5f * (float)cos(moonOrbitAngle);
+    moonOrbitAngle = moonAngle;
+    moonX = 1.5f * (float)sin(moonOrbitAngle);
+    moonZ = 1.5f * (float)cos(moonOrbitAngle);
 
     MatrixTranslate(trans, moonX, 0.2f, moonZ);
     MatrixRotateY(rot, -moonAngle);

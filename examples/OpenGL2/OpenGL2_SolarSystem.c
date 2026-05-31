@@ -343,7 +343,7 @@ void MatrixLookAt(float eyeX, float eyeY, float eyeZ,
     glMultMatrixf(m);
 }
 
-void MatrixPerspective(float fov, float aspect, float near, float far)
+void MatrixPerspective(float fov, float aspect, float nearV, float farV)
 {
     float m[16];
     float tanHalfFov = (float)tan(fov / 360.0f * M_PI);
@@ -352,9 +352,9 @@ void MatrixPerspective(float fov, float aspect, float near, float far)
     for (i = 0; i < 16; i++) m[i] = 0.0f;
     m[0] = 1.0f / (aspect * tanHalfFov);
     m[5] = 1.0f / tanHalfFov;
-    m[10] = -(far + near) / (far - near);
+    m[10] = -(farV + nearV) / (farV - nearV);
     m[11] = -1.0f;
-    m[14] = -(2.0f * far * near) / (far - near);
+    m[14] = -(2.0f * farV * nearV) / (farV - nearV);
 
     glMultMatrixf(m);
 }
@@ -362,13 +362,18 @@ void MatrixPerspective(float fov, float aspect, float near, float far)
 /* Draw orbit circle */
 void DrawOrbit(float radius)
 {
+    int i;
+    float x;
+    float z;
+    float rad;
+
     glColor3f(0.3f, 0.3f, 0.4f);
     glBegin(GL_LINE_LOOP);
-    for (int i = 0; i <= 360; i += 15)
+    for (i = 0; i <= 360; i += 15)
     {
-        float rad = i * (float)M_PI / 180.0f;
-        float x = radius * (float)cos(rad);
-        float z = radius * (float)sin(rad);
+        rad = i * (float)M_PI / 180.0f;
+        x = radius * (float)cos(rad);
+        z = radius * (float)sin(rad);
         glVertex3f(x, 0.0f, z);
     }
     glEnd();
@@ -396,6 +401,8 @@ void Render(int width, int height)
 {
     int i;
     float aspect = (float)width / (float)height;
+    float camX;
+    float camZ;
 
     glClearColor(0.0f, 0.0f, 0.05f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -408,8 +415,8 @@ void Render(int width, int height)
     glLoadIdentity();
 
     /* Camera */
-    float camX = (float)sin(cameraAngle) * cameraDist;
-    float camZ = (float)cos(cameraAngle) * cameraDist;
+    camX = (float)sin(cameraAngle) * cameraDist;
+    camZ = (float)cos(cameraAngle) * cameraDist;
     MatrixLookAt(camX, 3.0f, camZ, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
     /* Draw orbits */

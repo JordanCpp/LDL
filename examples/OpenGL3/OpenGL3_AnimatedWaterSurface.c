@@ -257,16 +257,16 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
     m[15] = 1.0f;
 }
 
-void MatrixPerspective(float* m, float fov, float aspect, float near, float far)
+void MatrixPerspective(float* m, float fov, float aspect, float nearV, float farV)
 {
     float tanHalfFov = (float)tan(fov / 360.0f * M_PI);
     int i;
     for (i = 0; i < 16; i++) m[i] = 0.0f;
     m[0] = 1.0f / (aspect * tanHalfFov);
     m[5] = 1.0f / tanHalfFov;
-    m[10] = -(far + near) / (far - near);
+    m[10] = -(farV + nearV) / (farV - nearV);
     m[11] = -1.0f;
-    m[14] = -(2.0f * far * near) / (far - near);
+    m[14] = -(2.0f * farV * nearV) / (farV - nearV);
 }
 
 /* Initialize OpenGL */
@@ -287,6 +287,8 @@ void Render(int width, int height)
     float model[16], view[16], projection[16];
     int modelLoc, viewLoc, projLoc, timeLoc, viewPosLoc;
     float aspect = (float)width / (float)height;
+    float camX;
+    float camZ;
 
     glClearColor(0.02f, 0.03f, 0.05f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -296,8 +298,8 @@ void Render(int width, int height)
     MatrixIdentity(model);
 
     /* View matrix (rotating around water) */
-    float camX = (float)sin(cameraAngle) * cameraDist;
-    float camZ = (float)cos(cameraAngle) * cameraDist;
+    camX = (float)sin(cameraAngle) * cameraDist;
+    camZ = (float)cos(cameraAngle) * cameraDist;
     MatrixLookAt(view, camX, cameraHeight, camZ, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
     /* Projection matrix */

@@ -299,16 +299,16 @@ void MatrixLookAt(float* m, float eyeX, float eyeY, float eyeZ,
     m[15] = 1.0f;
 }
 
-void MatrixPerspective(float* m, float fov, float aspect, float near, float far)
+void MatrixPerspective(float* m, float fov, float aspect, float nearV, float farV)
 {
     float tanHalfFov = (float)tan(fov / 360.0f * (float)M_PI);
     int i;
     for (i = 0; i < 16; i++) m[i] = 0.0f;
     m[0] = 1.0f / (aspect * tanHalfFov);
     m[5] = 1.0f / tanHalfFov;
-    m[10] = -(far + near) / (far - near);
+    m[10] = -(farV + nearV) / (farV - nearV);
     m[11] = -1.0f;
-    m[14] = -(2.0f * far * near) / (far - near);
+    m[14] = -(2.0f * farV * nearV) / (farV - nearV);
 }
 
 void MatrixRotateY(float* m, float angleDeg)
@@ -338,6 +338,8 @@ void Render(int width, int height)
     float rot[16];
     int viewLoc, projLoc;
     float aspect = (float)width / (float)height;
+    float eyeX;
+    float eyeZ;
 
     glClearColor(0.05f, 0.05f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -345,8 +347,8 @@ void Render(int width, int height)
 
     /* View matrix (rotating camera) */
     MatrixRotateY(rot, cameraAngle);
-    float eyeX = (float)sin(cameraAngle * (float)M_PI / 180.0f) * cameraDist;
-    float eyeZ = (float)cos(cameraAngle * (float)M_PI / 180.0f) * cameraDist;
+    eyeX = (float)sin(cameraAngle * (float)M_PI / 180.0f) * cameraDist;
+    eyeZ = (float)cos(cameraAngle * (float)M_PI / 180.0f) * cameraDist;
     MatrixLookAt(view, eyeX, 2.0f, eyeZ, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
     /* Projection matrix */

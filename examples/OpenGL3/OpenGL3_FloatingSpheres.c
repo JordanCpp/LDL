@@ -330,6 +330,15 @@ void Render(int width, int height)
     float view[16], projection[16];
     int viewLoc, projLoc;
     float aspect = (float)width / (float)height;
+    float camX;
+    float camZ;
+    float camY;
+    float forward[3];
+    float len;
+    float right[3];
+    float up[3];
+    float realUp[3];
+    float tanHalfFov;
 
     glClearColor(0.05f, 0.05f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -340,23 +349,28 @@ void Render(int width, int height)
     view[0] = 1.0f; view[5] = 1.0f; view[10] = 1.0f; view[15] = 1.0f;
 
     /* Simple look from rotating point */
-    float camX = (float)sin(cameraAngle) * 6.0f;
-    float camZ = (float)cos(cameraAngle) * 6.0f;
-    float camY = 2.5f;
+    camX = (float)sin(cameraAngle) * 6.0f;
+    camZ = (float)cos(cameraAngle) * 6.0f;
+    camY = 2.5f;
 
-    float forward[3] = { -camX, -camY, -camZ };
-    float len = (float)sqrt(forward[0] * forward[0] + forward[1] * forward[1] + forward[2] * forward[2]);
+    forward[0] = -camX;
+    forward[1] = -camY;
+    forward[2] = -camZ;
+
+    len = (float)sqrt(forward[0] * forward[0] + forward[1] * forward[1] + forward[2] * forward[2]);
     if (len != 0.0f) { forward[0] /= len; forward[1] /= len; forward[2] /= len; }
 
-    float right[3];
-    float up[3] = { 0.0f, 1.0f, 0.0f };
+    right[3];
+    up[0] = 0.0f;
+    up[1] = 1.0f;
+    up[2] = 0.0f;
+
     right[0] = forward[1] * up[2] - forward[2] * up[1];
     right[1] = forward[2] * up[0] - forward[0] * up[2];
     right[2] = forward[0] * up[1] - forward[1] * up[0];
     len = (float)sqrt(right[0] * right[0] + right[1] * right[1] + right[2] * right[2]);
     if (len != 0.0f) { right[0] /= len; right[1] /= len; right[2] /= len; }
 
-    float realUp[3];
     realUp[0] = right[1] * forward[2] - right[2] * forward[1];
     realUp[1] = right[2] * forward[0] - right[0] * forward[2];
     realUp[2] = right[0] * forward[1] - right[1] * forward[0];
@@ -370,7 +384,7 @@ void Render(int width, int height)
 
     /* Projection matrix */
     for (i = 0; i < 16; i++) projection[i] = 0.0f;
-    float tanHalfFov = (float)tan(45.0f / 360.0f * M_PI);
+    tanHalfFov = (float)tan(45.0f / 360.0f * M_PI);
     projection[0] = 1.0f / (aspect * tanHalfFov);
     projection[5] = 1.0f / tanHalfFov;
     projection[10] = -(10.1f) / (9.9f);
