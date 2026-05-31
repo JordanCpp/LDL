@@ -107,6 +107,17 @@ void GenerateIsland(void)
     float height = 1.2f;
     int rings = 20;
     int sectors = 20;
+    float r;
+    float y;
+    float angle;
+    float x;
+    float z;
+    int vertexCount;
+    int next;
+    int currentRing;
+    int nextRing;
+    int lastRingStart;
+    int bottomStart;
 
     /* Center top */
     vertices[vIndex++] = 0.0f;
@@ -116,14 +127,14 @@ void GenerateIsland(void)
     /* Rings */
     for (i = 1; i <= rings; i++)
     {
-        float r = radius * (float)i / (float)rings;
-        float y = height * (1.0f - (float)i / (float)rings);
+        r = radius * (float)i / (float)rings;
+        y = height * (1.0f - (float)i / (float)rings);
 
         for (j = 0; j < sectors; j++)
         {
-            float angle = (float)j / (float)sectors * 2.0f * (float)M_PI;
-            float x = r * (float)cos(angle);
-            float z = r * (float)sin(angle);
+            angle = (float)j / (float)sectors * 2.0f * (float)M_PI;
+            x = r * (float)cos(angle);
+            z = r * (float)sin(angle);
 
             vertices[vIndex++] = x;
             vertices[vIndex++] = y;
@@ -134,9 +145,9 @@ void GenerateIsland(void)
     /* Bottom ring (ground) */
     for (j = 0; j < sectors; j++)
     {
-        float angle = (float)j / (float)sectors * 2.0f * (float)M_PI;
-        float x = radius * (float)cos(angle);
-        float z = radius * (float)sin(angle);
+        angle = (float)j / (float)sectors * 2.0f * (float)M_PI;
+        x = radius * (float)cos(angle);
+        z = radius * (float)sin(angle);
 
         vertices[vIndex++] = x;
         vertices[vIndex++] = -0.2f;
@@ -144,12 +155,12 @@ void GenerateIsland(void)
     }
 
     /* Indices for triangles */
-    int vertexCount = 1 + rings * sectors + sectors;
+    vertexCount = 1 + rings * sectors + sectors;
 
     /* Top to first ring */
     for (j = 0; j < sectors; j++)
     {
-        int next = (j + 1) % sectors;
+        next = (j + 1) % sectors;
         indices[iIndex++] = 0;
         indices[iIndex++] = 1 + j;
         indices[iIndex++] = 1 + next;
@@ -160,9 +171,9 @@ void GenerateIsland(void)
     {
         for (j = 0; j < sectors; j++)
         {
-            int next = (j + 1) % sectors;
-            int currentRing = 1 + i * sectors + j;
-            int nextRing = 1 + (i + 1) * sectors + j;
+            next = (j + 1) % sectors;
+            currentRing = 1 + i * sectors + j;
+            nextRing = 1 + (i + 1) * sectors + j;
 
             indices[iIndex++] = currentRing;
             indices[iIndex++] = nextRing;
@@ -175,8 +186,8 @@ void GenerateIsland(void)
     }
 
     /* Last ring to bottom */
-    int lastRingStart = 1 + (rings - 1) * sectors;
-    int bottomStart = 1 + rings * sectors;
+    lastRingStart = 1 + (rings - 1) * sectors;
+    bottomStart = 1 + rings * sectors;
 
     for (j = 0; j < sectors; j++)
     {
@@ -293,6 +304,20 @@ void DrawWater(float time)
 {
     int x, z;
     float waveHeight;
+    float fx;
+    float fz;
+    float fx2;
+    float fz2;
+    float brightness;
+    float r;
+    float g;
+    float b;
+    float alpha;
+    float waveHeight2;
+    float brightness2;
+    float r2;
+    float g2;
+    float b2;
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -303,10 +328,10 @@ void DrawWater(float time)
 
         for (x = 0; x < GRID_SIZE; x++)
         {
-            float fx = ((float)x - GRID_SIZE / 2.0f) * GRID_STEP;
-            float fz = ((float)z - GRID_SIZE / 2.0f) * GRID_STEP;
-            float fx2 = ((float)x - GRID_SIZE / 2.0f) * GRID_STEP;
-            float fz2 = ((float)(z + 1) - GRID_SIZE / 2.0f) * GRID_STEP;
+            fx = ((float)x - GRID_SIZE / 2.0f) * GRID_STEP;
+            fz = ((float)z - GRID_SIZE / 2.0f) * GRID_STEP;
+            fx2 = ((float)x - GRID_SIZE / 2.0f) * GRID_STEP;
+            fz2 = ((float)(z + 1) - GRID_SIZE / 2.0f) * GRID_STEP;
 
             /* Wave calculation */
             waveHeight = WATER_HEIGHT;
@@ -316,11 +341,11 @@ void DrawWater(float time)
             waveHeight += (float)sin(fx * 3.5f - time * 5.0f) * 0.04f;
 
             /* Color based on wave height */
-            float brightness = 0.5f + waveHeight * 1.0f;
-            float r = 0.2f;
-            float g = 0.5f + waveHeight * 0.5f;
-            float b = 0.8f + waveHeight * 0.2f;
-            float alpha = 0.85f;
+            brightness = 0.5f + waveHeight * 1.0f;
+            r = 0.2f;
+            g = 0.5f + waveHeight * 0.5f;
+            b = 0.8f + waveHeight * 0.2f;
+            alpha = 0.85f;
 
             if (waveHeight > WATER_HEIGHT + 0.1f)
             {
@@ -332,16 +357,16 @@ void DrawWater(float time)
             glColor4f(r, g, b, alpha);
             glVertex3f(fx, waveHeight, fz);
 
-            float waveHeight2 = WATER_HEIGHT;
+            waveHeight2 = WATER_HEIGHT;
             waveHeight2 += (float)sin(fx2 * 1.8f + time * 3.0f) * 0.08f;
             waveHeight2 += (float)cos(fz2 * 1.6f + time * 2.5f) * 0.08f;
             waveHeight2 += (float)sin((fx2 + fz2) * 2.2f + time * 4.0f) * 0.05f;
             waveHeight2 += (float)sin(fx2 * 3.5f - time * 5.0f) * 0.04f;
 
-            float brightness2 = 0.5f + waveHeight2 * 1.0f;
-            float r2 = 0.2f;
-            float g2 = 0.5f + waveHeight2 * 0.5f;
-            float b2 = 0.8f + waveHeight2 * 0.2f;
+            brightness2 = 0.5f + waveHeight2 * 1.0f;
+            r2 = 0.2f;
+            g2 = 0.5f + waveHeight2 * 0.5f;
+            b2 = 0.8f + waveHeight2 * 0.2f;
 
             if (waveHeight2 > WATER_HEIGHT + 0.1f)
             {
@@ -374,6 +399,11 @@ void DrawReflection(float time, float eyeY)
 /* Draw sun */
 void DrawSun(float time)
 {
+    int i;
+    int a;
+    float rad;
+    float size;
+    float alpha;
     float sunX = 3.0f * (float)sin(time * 0.5f);
     float sunY = 3.0f;
     float sunZ = 3.0f * (float)cos(time * 0.5f);
@@ -384,17 +414,17 @@ void DrawSun(float time)
     glTranslatef(sunX, sunY, sunZ);
 
     /* Sun glow */
-    for (int i = 0; i < 3; i++)
+    for (i = 0; i < 3; i++)
     {
-        float size = 0.3f + i * 0.1f;
-        float alpha = 0.3f - i * 0.1f;
+        size = 0.3f + i * 0.1f;
+        alpha = 0.3f - i * 0.1f;
         glColor4f(1.0f, 0.8f, 0.2f, alpha);
 
         glBegin(GL_TRIANGLE_FAN);
         glVertex3f(0.0f, 0.0f, 0.0f);
-        for (int a = 0; a <= 360; a += 30)
+        for (a = 0; a <= 360; a += 30)
         {
-            float rad = a * (float)M_PI / 180.0f;
+            rad = a * (float)M_PI / 180.0f;
             glVertex3f(size * (float)cos(rad), size * (float)sin(rad), 0.0f);
         }
         glEnd();
@@ -440,7 +470,7 @@ void MatrixLookAt(float eyeX, float eyeY, float eyeZ,
     glMultMatrixf(m);
 }
 
-void MatrixPerspective(float fov, float aspect, float near, float far)
+void MatrixPerspective(float fov, float aspect, float nearV, float farV)
 {
     float m[16];
     float tanHalfFov = (float)tan(fov / 360.0f * (float)M_PI);
@@ -449,9 +479,9 @@ void MatrixPerspective(float fov, float aspect, float near, float far)
     for (i = 0; i < 16; i++) m[i] = 0.0f;
     m[0] = 1.0f / (aspect * tanHalfFov);
     m[5] = 1.0f / tanHalfFov;
-    m[10] = -(far + near) / (far - near);
+    m[10] = -(farV + nearV) / (farV - nearV);
     m[11] = -1.0f;
-    m[14] = -(2.0f * far * near) / (far - near);
+    m[14] = -(2.0f * farV * nearV) / (farV - nearV);
 
     glMultMatrixf(m);
 }
@@ -475,6 +505,8 @@ void InitOpenGL(void)
 void Render(int width, int height)
 {
     float aspect = (float)width / (float)height;
+    float camX;
+    float camZ;
 
     glClearColor(0.3f, 0.5f, 0.7f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -487,8 +519,8 @@ void Render(int width, int height)
     glLoadIdentity();
 
     /* Camera (rotating around island) */
-    float camX = (float)sin(cameraAngle) * cameraDist;
-    float camZ = (float)cos(cameraAngle) * cameraDist;
+    camX = (float)sin(cameraAngle) * cameraDist;
+    camZ = (float)cos(cameraAngle) * cameraDist;
     MatrixLookAt(camX, 2.0f, camZ, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
     /* Draw skybox first */

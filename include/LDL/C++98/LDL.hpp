@@ -377,7 +377,7 @@ namespace LDL
 
 	inline void Delay(size_t count)
 	{
-		return LDL_Delay(count);
+		LDL_Delay(count);
 	}
 }
 

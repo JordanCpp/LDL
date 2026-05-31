@@ -228,7 +228,7 @@ namespace LDL
             LDL_RenderClear(_render.get());
         }
 
-        inline void Line(const Vec2i& first, const const Vec2i& last)
+        inline void Line(const Vec2i& first, const Vec2i& last)
         { 
             LDL_RenderLine2i(_render.get(), first, last); 
         }
