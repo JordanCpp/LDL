@@ -47,8 +47,19 @@ int main(void)
 
             LDL_RenderBegin(render);
 
+            LDL_RenderSetLayer(render, 1);
             pos = LDL_GetVec2i(0, 0);
             LDL_RenderDraw(render, texture, &pos, NULL, NULL, NULL);
+
+            LDL_RenderSetLayer(render, 2);
+            pos = LDL_GetVec2i(100, 100);
+            LDL_RenderDraw(render, texture, &pos, NULL, NULL, NULL);
+
+            LDL_RenderSetLayer(render, 2);
+            pos = LDL_GetVec2i(100, 100);
+           
+            LDL_RenderSetColor(render, LDL_ColorRgb(255, 234, 39));
+            LDL_RenderFill2i(render, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600));
 
             LDL_RenderEnd(render);
         }

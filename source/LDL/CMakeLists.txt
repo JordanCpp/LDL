@@ -101,17 +101,23 @@ set(LDL_SOURCES_OPENGL
 )
 
 set(LDL_INCLUDES_RENDERS
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/BufferGL.h
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/GLUtils.h
-    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL1/RndrGL1.h
-    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL1/TexGL1.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/TexGL.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/RndrGL1.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/RndrGL2.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/RndrGL3.h
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/BaseRndr.h
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Texture.h
 )
 
 set(LDL_SOURCES_RENDERS
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/BufferGL.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/GLUtils.c
-    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL1/RndrGL1.c
-    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL1/TexGL1.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/TexGL.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/RndrGL1.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/RndrGL2.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/RndrGL3.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/BaseRndr.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Color.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Mat4f.c

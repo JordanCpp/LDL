@@ -20,9 +20,14 @@ License for more details.
 typedef struct LDL_BaseRender
 {
 	LDL_Color Color;
+	size_t    Layer;
 } LDL_BaseRender;
 
 void LDL_BaseRenderInit(LDL_BaseRender* baseRender, LDL_Color color);
+
+size_t LDL_BaseRenderGetLayer(LDL_BaseRender* baseRender);
+void LDL_BaseRenderSetLayer(LDL_BaseRender* baseRender, size_t layer);
+
 LDL_Color LDL_BaseRenderGetColor(LDL_BaseRender* baseRender);
 void LDL_BaseRenderSetColor(LDL_BaseRender* baseRender, LDL_Color color);
 

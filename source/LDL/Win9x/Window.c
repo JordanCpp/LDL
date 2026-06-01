@@ -37,6 +37,7 @@ LDL_Window* LDL_WindowNew(LDL_Result* result, LDL_Context* context, LDL_Vec2i po
 		switch (LDL_ContextGet(window->Context))
 		{
 		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
 			LDL_WindowOpenGL1Init(&window->WindowOpenGL1, result, pos, size, title, mode);
 			break;
 		case LDL_ContextOpenGLModern:
@@ -64,6 +65,7 @@ void LDL_WindowFree(LDL_Window* window)
 			switch (LDL_ContextGet(window->Context))
 			{
 			case LDL_ContextOpenGLLegacy:
+			case LDL_ContextOpenGLHybrid:
 				LDL_WindowOpenGL1Deinit(&window->WindowOpenGL1);
 				break;
 			case LDL_ContextOpenGLModern:
@@ -83,6 +85,7 @@ bool LDL_WindowIsRunning(LDL_Window* window)
 		switch (LDL_ContextGet(window->Context))
 		{
 		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
 			return LDL_WindowOpenGL1IsRunning(&window->WindowOpenGL1);
 			break;
 		case LDL_ContextOpenGLModern:
@@ -101,6 +104,7 @@ void LDL_WindowStopEvent(LDL_Window* window)
 		switch (LDL_ContextGet(window->Context))
 		{
 		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
 			LDL_WindowOpenGL1StopEvent(&window->WindowOpenGL1);
 			break;
 		case LDL_ContextOpenGLModern:
@@ -117,6 +121,7 @@ bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event)
 		switch (LDL_ContextGet(window->Context))
 		{
 		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
 			return LDL_WindowOpenGL1GetEvent(&window->WindowOpenGL1, event);
 			break;
 		case LDL_ContextOpenGLModern:
@@ -135,6 +140,7 @@ LDL_Vec2i LDL_WindowGetSize(LDL_Window* window)
 		switch (LDL_ContextGet(window->Context))
 		{
 		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
 			return LDL_WindowOpenGL1GetSize(&window->WindowOpenGL1);
 		case LDL_ContextOpenGLModern:
 			return LDL_WindowOpenGL3GetSize(&window->WindowOpenGL3);
@@ -151,6 +157,7 @@ void LDL_WindowPresent(LDL_Window* window)
 		switch (LDL_ContextGet(window->Context))
 		{
 		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
 			LDL_WindowOpenGL1Present(&window->WindowOpenGL1);
 			break;
 		case LDL_ContextOpenGLModern:

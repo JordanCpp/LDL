@@ -29,6 +29,9 @@ typedef struct LDL_Render LDL_Render;
 LDL_LIBRARY LDL_Render* LDL_RenderNew(LDL_Result* result, LDL_Context* context, LDL_Window* window);
 LDL_LIBRARY void LDL_RenderFree(LDL_Render* render);
 
+LDL_LIBRARY size_t LDL_RenderGetLayer(LDL_Render* render);
+LDL_LIBRARY void LDL_RenderSetLayer(LDL_Render* render, size_t layer);
+
 // Get and Set
 LDL_LIBRARY LDL_Color LDL_RenderGetColor(LDL_Render* render);
 LDL_LIBRARY void LDL_RenderSetColor(LDL_Render* render, LDL_Color color);
