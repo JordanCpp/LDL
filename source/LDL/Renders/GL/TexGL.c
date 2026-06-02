@@ -15,21 +15,21 @@ License for more details.
 #include <stdlib.h>
 #include <LDL/PixFrmt.h>
 #include <LDL/OpenGL/GL1_2.h>
+#include <LDL/Renders/GL/TexGL.h>
 #include <LDL/Renders/GL/GLUtils.h>
-#include <LDL/Renders/GL1/TexGL1.h>
 
 GLint BppToFormat(uint8_t bpp)
 {
 	return bpp == 3 ? GL_RGB : GL_RGBA;
 }
 
-LDL_TextureOpenGL1* LDL_TextureOpenGL1NewFromSize(size_t pixelFormat, LDL_Vec2i size)
+LDL_TextureOpenGL* LDL_TextureOpenGLNewFromSize(size_t pixelFormat, LDL_Vec2i size)
 {
 	GLint format = 0;
 	int quadSize;
 	uint8_t bpp = LDL_BytesPerPixelFromPixelFormat(pixelFormat);
 
-	LDL_TextureOpenGL1* texture = (LDL_TextureOpenGL1*)malloc(sizeof(LDL_TextureOpenGL1));
+	LDL_TextureOpenGL* texture = (LDL_TextureOpenGL*)malloc(sizeof(LDL_TextureOpenGL));
 
 	if (texture)
 	{
@@ -45,11 +45,11 @@ LDL_TextureOpenGL1* LDL_TextureOpenGL1NewFromSize(size_t pixelFormat, LDL_Vec2i 
 	return NULL;
 }
 
-LDL_TextureOpenGL1* LDL_TextureOpenGL1NewFromPixels(size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
+LDL_TextureOpenGL* LDL_TextureOpenGLNewFromPixels(size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
 {
 	GLint format = 0;
 	uint8_t bpp  = LDL_BytesPerPixelFromPixelFormat(pixelFormat);
-	LDL_TextureOpenGL1* texture = LDL_TextureOpenGL1NewFromSize(pixelFormat, size);
+	LDL_TextureOpenGL* texture = LDL_TextureOpenGLNewFromSize(pixelFormat, size);
 
 	if (texture)
 	{
@@ -60,7 +60,7 @@ LDL_TextureOpenGL1* LDL_TextureOpenGL1NewFromPixels(size_t pixelFormat, LDL_Vec2
 	return texture;
 }
 
-void LDL_TextureOpenGL1Free(LDL_TextureOpenGL1* texture)
+void LDL_TextureOpenGLFree(LDL_TextureOpenGL* texture)
 {
 	if (texture)
 	{
@@ -69,7 +69,7 @@ void LDL_TextureOpenGL1Free(LDL_TextureOpenGL1* texture)
 	}
 }
 
-LDL_Vec2i LDL_TextureOpenGL1GetSize(LDL_TextureOpenGL1* texture)
+LDL_Vec2i LDL_TextureOpenGLGetSize(LDL_TextureOpenGL* texture)
 {
 	if (texture)
 	{
@@ -79,7 +79,7 @@ LDL_Vec2i LDL_TextureOpenGL1GetSize(LDL_TextureOpenGL1* texture)
 	return LDL_GetVec2i(0, 0);
 }
 
-LDL_Vec2i LDL_TextureOpenGL1GetQuad(LDL_TextureOpenGL1* texture)
+LDL_Vec2i LDL_TextureOpenGLGetQuad(LDL_TextureOpenGL* texture)
 {
 	if (texture)
 	{

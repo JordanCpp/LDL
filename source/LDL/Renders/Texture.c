@@ -15,7 +15,7 @@ License for more details.
 #include <stdlib.h>
 #include <LDL/Texture.h>
 #include <LDL/Renders/Texture.h>
-#include <LDL/Renders/GL1/TexGL1.h>
+#include <LDL/Renders/GL/TexGL.h>
 
 LDL_Texture* LDL_TextureNewFromPixels(LDL_Context* context, size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
 {
@@ -32,7 +32,9 @@ LDL_Texture* LDL_TextureNewFromPixels(LDL_Context* context, size_t pixelFormat, 
 			switch (LDL_ContextGet(context))
 			{
 			case LDL_ContextOpenGLLegacy:
-				texture->TextureOpenGL1 = LDL_TextureOpenGL1NewFromPixels(pixelFormat, size, pixels);
+			case LDL_ContextOpenGLHybrid:
+			case LDL_ContextOpenGLModern:
+				texture->TextureOpenGL = LDL_TextureOpenGLNewFromPixels(pixelFormat, size, pixels);
 				return texture;
 			}
 		}
@@ -56,7 +58,9 @@ LDL_Texture* LDL_TextureNewFromSize(LDL_Context* context, size_t pixelFormat, LD
 			switch (LDL_ContextGet(context))
 			{
 			case LDL_ContextOpenGLLegacy:
-				texture->TextureOpenGL1 = LDL_TextureOpenGL1NewFromSize(pixelFormat, size);
+			case LDL_ContextOpenGLHybrid:
+			case LDL_ContextOpenGLModern:
+				texture->TextureOpenGL = LDL_TextureOpenGLNewFromSize(pixelFormat, size);
 				return texture;
 			}
 		}
@@ -74,7 +78,9 @@ void LDL_TextureFree(LDL_Texture* texture)
 			switch (LDL_ContextGet(texture->Context))
 			{
 			case LDL_ContextOpenGLLegacy:
-				LDL_TextureOpenGL1Free(texture->TextureOpenGL1);
+			case LDL_ContextOpenGLHybrid:
+			case LDL_ContextOpenGLModern:
+				LDL_TextureOpenGLFree(texture->TextureOpenGL);
 				break;
 			}
 		}
@@ -90,7 +96,9 @@ LDL_Vec2i LDL_TextureGetSize(LDL_Texture* texture)
 			switch (LDL_ContextGet(texture->Context))
 			{
 			case LDL_ContextOpenGLLegacy:
-				return LDL_TextureOpenGL1GetSize(texture->TextureOpenGL1);
+			case LDL_ContextOpenGLHybrid:
+			case LDL_ContextOpenGLModern:
+				return LDL_TextureOpenGLGetSize(texture->TextureOpenGL);
 			}
 		}
 	}

@@ -18,7 +18,26 @@ void LDL_BaseRenderInit(LDL_BaseRender* baseRender, LDL_Color color)
 {
 	if (baseRender)
 	{
+		baseRender->Layer = 0;
 		LDL_BaseRenderSetColor(baseRender, color);
+	}
+}
+
+size_t LDL_BaseRenderGetLayer(LDL_BaseRender* baseRender)
+{
+	if (baseRender)
+	{
+		return baseRender->Layer;
+	}
+
+	return 0;
+}
+
+void LDL_BaseRenderSetLayer(LDL_BaseRender* baseRender, size_t layer)
+{
+	if (baseRender)
+	{
+		baseRender->Layer = layer;
 	}
 }
 

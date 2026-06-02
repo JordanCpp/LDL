@@ -12,25 +12,25 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#ifndef LDL_Renders_GL1_TexGL1_H
-#define LDL_Renders_GL1_TexGL1_H
+#ifndef LDL_Renders_GL_TexGL_H
+#define LDL_Renders_GL_TexGL_H
 
 #include <LDL/Vec2i.h>
 #include <LDL/Context.h>
 #include <LDL/OpenGL/GLTypes.h>
 
-typedef struct LDL_TextureOpenGL1
+typedef struct LDL_TextureOpenGL
 {
 	GLuint       Id;
 	LDL_Vec2i    Size;
 	LDL_Vec2i    Quad;
-} LDL_TextureOpenGL1;
+} LDL_TextureOpenGL;
 
-LDL_TextureOpenGL1* LDL_TextureOpenGL1NewFromSize(size_t pixelFormat, LDL_Vec2i size);
-LDL_TextureOpenGL1* LDL_TextureOpenGL1NewFromPixels(size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels);
-void LDL_TextureOpenGL1Free(LDL_TextureOpenGL1* texture);
+LDL_TextureOpenGL* LDL_TextureOpenGLNewFromSize(size_t pixelFormat, LDL_Vec2i size);
+LDL_TextureOpenGL* LDL_TextureOpenGLNewFromPixels(size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels);
+void LDL_TextureOpenGLFree(LDL_TextureOpenGL* texture);
 
-LDL_Vec2i LDL_TextureOpenGL1GetSize(LDL_TextureOpenGL1* texture);
-LDL_Vec2i LDL_TextureOpenGL1GetQuad(LDL_TextureOpenGL1* texture);
+LDL_Vec2i LDL_TextureOpenGLGetSize(LDL_TextureOpenGL* texture);
+LDL_Vec2i LDL_TextureOpenGLGetQuad(LDL_TextureOpenGL* texture);
 
 #endif

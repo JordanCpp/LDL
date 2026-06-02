@@ -60,6 +60,7 @@ enum
 {
 	LDL_ContextSoftware = 1,
 	LDL_ContextOpenGLLegacy,
+	LDL_ContextOpenGLHybrid,
 	LDL_ContextOpenGLModern,
 	LDL_ContextMax
 };

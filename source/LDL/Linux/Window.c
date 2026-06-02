@@ -35,6 +35,7 @@ LDL_Window* LDL_WindowNew(LDL_Result* result, LDL_Context* context, LDL_Vec2i po
 		switch (LDL_ContextGet(window->Context))
 		{
 		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
 		case LDL_ContextOpenGLModern:
 			LDL_WindowOpenGLInit(&window->WindowOpenGL, result, pos, size, title, mode);
 			break;
@@ -60,6 +61,7 @@ void LDL_WindowFree(LDL_Window* window)
 			switch (LDL_ContextGet(window->Context))
 			{
 			case LDL_ContextOpenGLLegacy:
+			case LDL_ContextOpenGLHybrid:
 			case LDL_ContextOpenGLModern:
 				LDL_WindowOpenGLDeinit(&window->WindowOpenGL);
 				break;
@@ -77,6 +79,7 @@ bool LDL_WindowIsRunning(LDL_Window* window)
 		switch (LDL_ContextGet(window->Context))
 		{
 		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
 		case LDL_ContextOpenGLModern:
 			return LDL_WindowOpenGLIsRunning(&window->WindowOpenGL);
 		};
@@ -92,6 +95,7 @@ void LDL_WindowStopEvent(LDL_Window* window)
 		switch (LDL_ContextGet(window->Context))
 		{
 		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
 		case LDL_ContextOpenGLModern:
 			LDL_WindowOpenGLStopEvent(&window->WindowOpenGL);
 			break;
@@ -106,6 +110,7 @@ bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event)
 		switch (LDL_ContextGet(window->Context))
 		{
 		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
 		case LDL_ContextOpenGLModern:
 			return LDL_WindowOpenGLGetEvent(&window->WindowOpenGL, event);
 		};
@@ -121,6 +126,7 @@ LDL_Vec2i LDL_WindowGetSize(LDL_Window* window)
 		switch (LDL_ContextGet(window->Context))
 		{
 		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
 		case LDL_ContextOpenGLModern:
 			return LDL_WindowOpenGLGetSize(&window->WindowOpenGL);
 		};
@@ -136,6 +142,7 @@ const char* LDL_WindowGetTitle(LDL_Window* window)
 		switch (LDL_ContextGet(window->Context))
 		{
 		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
 		case LDL_ContextOpenGLModern:
 			return LDL_WindowOpenGLGetTitle(&window->WindowOpenGL);
 		};
@@ -149,6 +156,7 @@ void LDL_WindowSetTitle(LDL_Window* window, const char* title)
 		switch (LDL_ContextGet(window->Context))
 		{
 		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
 		case LDL_ContextOpenGLModern:
 			LDL_WindowOpenGLSetTitle(&window->WindowOpenGL, title);
 			break;
@@ -163,6 +171,7 @@ void LDL_WindowPresent(LDL_Window* window)
 		switch (LDL_ContextGet(window->Context))
 		{
 		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
 		case LDL_ContextOpenGLModern:
 			LDL_WindowOpenGLPresent(&window->WindowOpenGL);
 			break;

@@ -17,12 +17,12 @@ License for more details.
 
 #include <LDL/Texture.h>
 #include <LDL/Context.h>
-#include <LDL/Renders/GL1/TexGL1.h>
+#include <LDL/Renders/GL/TexGL.h>
 
 typedef struct LDL_Texture
 {
-	LDL_Context*        Context;
-	LDL_TextureOpenGL1* TextureOpenGL1;
+	LDL_Context*       Context;
+	LDL_TextureOpenGL* TextureOpenGL;
 } LDL_Texture;
 
 #endif
