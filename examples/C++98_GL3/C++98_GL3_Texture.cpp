@@ -91,7 +91,7 @@ GLuint LoadTexture(const char* path)
 int main()
 {
     LDL::Result  result;
-    LDL::Context context;
+    LDL::Context context(result);
     LDL::Event   event;
 
     LDL::Window  window = LDL::Window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL OpenGL Texture Example", LDL_WindowModeResized);

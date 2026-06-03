@@ -41,14 +41,14 @@ typedef struct LDL_EventLostFocus
 
 typedef struct LDL_EventMouse
 {
-	size_t  PosX;
-	size_t  PosY;
-	size_t  PosRelX;
-	size_t  PosRelY;
 	uint8_t State;
 	uint8_t Button;
-	size_t  Scroll;
-	size_t  Delta;
+	int32_t PosX;
+	int32_t PosY;
+	int32_t PosRelX;
+	int32_t PosRelY;
+	int32_t Scroll;
+	int32_t Delta;
 } LDL_EventMouse;
 
 typedef struct LDL_EventQuit
@@ -58,8 +58,8 @@ typedef struct LDL_EventQuit
 
 typedef struct LDL_EventResize
 {
-	size_t Width;
-	size_t Height;
+	uint32_t Width;
+	uint32_t Height;
 } LDL_EventResize;
 
 typedef struct LDL_Event

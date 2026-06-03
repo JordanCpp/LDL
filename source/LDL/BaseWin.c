@@ -61,6 +61,14 @@ LDL_Vec2i LDL_BaseWindowGetSize(LDL_BaseWindow* baseWindow)
 	return LDL_GetVec2i(0, 0);
 }
 
+void LDL_BaseWindowSetSize(LDL_BaseWindow* baseWindow, LDL_Vec2i size)
+{
+	if (baseWindow)
+	{
+		baseWindow->Size = size;
+	}
+}
+
 const char* LDL_BaseWindowGetTitle(LDL_BaseWindow* baseWindow)
 {
 	if (baseWindow)

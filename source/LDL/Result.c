@@ -19,11 +19,11 @@ License for more details.
 #include <LDL/Result.h>
 #include <LDL/Format.h>
 
-typedef struct LDL_Result
+struct LDL_Result
 {
 	bool Ok;
 	LDL_Formatter* Formatter;
-} LDL_Result;
+};
 
 void LDL_ResultReset(LDL_Result* result)
 {

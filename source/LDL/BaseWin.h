@@ -36,7 +36,9 @@ void LDL_BaseWindowInit(LDL_BaseWindow* baseWindow, LDL_Vec2i pos, LDL_Vec2i siz
 bool LDL_BaseWindowHasMode(LDL_BaseWindow* baseWindow, size_t mode);
 
 LDL_Vec2i LDL_BaseWindowGetPos(LDL_BaseWindow* baseWindow);
+
 LDL_Vec2i LDL_BaseWindowGetSize(LDL_BaseWindow* baseWindow);
+void LDL_BaseWindowSetSize(LDL_BaseWindow* baseWindow, LDL_Vec2i size);
 
 const char* LDL_BaseWindowGetTitle(LDL_BaseWindow* baseWindow);
 void LDL_BaseWindowSetTitle(LDL_BaseWindow* baseWindow, const char* title);

@@ -11,26 +11,23 @@
 int main()
 {
 	LDL::Result  result;
-	LDL::Context context;
+	LDL::Context context(result);
 	LDL::Event   event;
-	LDL::Window  window = LDL::Window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL C++98 lesson 02 - Render", LDL_WindowModeResized);
-	LDL::Render  render = LDL::Render(result, context, window);
+	LDL::Window  window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL C++98 lesson 02 - Render", LDL_WindowModeResized);
+	LDL::Render  render(result, context, window);
 
-	if (result.IsOk())
+	while (window.IsRunning() && result.IsOk())
 	{
-		while (window.IsRunning() && result.IsOk())
+		while (window.GetEvent(event))
 		{
-			while (window.GetEvent(event))
+			if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
 			{
-				if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
-				{
-					window.StopEvent();
-				}
+				window.StopEvent();
 			}
-
-			render.Begin();
-			render.End();
 		}
+
+		render.Begin();
+		render.End();
 	}
 
 	if (result.IsFail())

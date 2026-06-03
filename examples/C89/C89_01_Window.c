@@ -10,29 +10,26 @@
 
 int main(void)
 {
-    LDL_Result*  result = NULL;
+    LDL_Result* result = NULL;
     LDL_Context* context = NULL;
-    LDL_Window*  window = NULL;
-    LDL_Event    event;
+    LDL_Window* window = NULL;
+    LDL_Event event;
 
-    result  = LDL_ResultNew();
-    context = LDL_ContextNew(LDL_ContextOpenGLLegacy);
-    window  = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 01 - Window", LDL_WindowModeResized);
+    result = LDL_ResultNew();
+    context = LDL_ContextNew(result, LDL_ContextOpenGLLegacy);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 01 - Window", LDL_WindowModeResized);
 
-    if (LDL_ResultIsOk(result))
+    while (LDL_WindowIsRunning(window) && LDL_ResultIsOk(result))
     {
-        while (LDL_WindowIsRunning(window) && LDL_ResultIsOk(result))
+        while (LDL_WindowGetEvent(window, &event))
         {
-            while (LDL_WindowGetEvent(window, &event))
+            if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
-                {
-                    LDL_WindowStopEvent(window);
-                }
+                LDL_WindowStopEvent(window);
             }
-
-            LDL_WindowPresent(window);
         }
+
+        LDL_WindowPresent(window);
     }
 
     LDL_WindowFree(window);

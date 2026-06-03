@@ -24,8 +24,6 @@ License for more details.
 #include <LDL/Renders/GL/GLUtils.h>
 #include <LDL/Renders/GL/BufferGL.h>
 
-typedef struct LDL_TextureOpenGL LDL_TextureOpenGL;
-
 typedef struct LDL_RenderOpenGL1
 {
     LDL_Result*       Result;

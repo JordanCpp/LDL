@@ -22,10 +22,10 @@ enum
 	LDL_FormatterMax = 512
 };
 
-typedef struct LDL_Formatter
+struct LDL_Formatter
 {
     char Buffer[LDL_FormatterMax];
-} LDL_Formatter;
+};
 
 void LDL_FormatterClear(LDL_Formatter* formatter)
 {
@@ -176,7 +176,8 @@ const char* LDL_FormatterVFormat(LDL_Formatter* formatter, const char* format, v
     return formatter->Buffer;
 }
 
-const char* LDL_FormatterFormat(LDL_Formatter* formatter, const char* format, ...) {
+const char* LDL_FormatterFormat(LDL_Formatter* formatter, const char* format, ...) 
+{
     va_list args;
     const char* res;
 

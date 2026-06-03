@@ -16,9 +16,11 @@ License for more details.
 #define LDL_Texture_H
 
 #include <LDL/Vec2i.h>
+#include <LDL/Enums.h>
+#include <LDL/Result.h>
+#include <LDL/Palette.h>
 #include <LDL/Context.h>
 #include <LDL/PixFrmt.h>
-#include <LDL/Enums.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,8 +28,8 @@ extern "C" {
 
 typedef struct LDL_Texture LDL_Texture;
 
-LDL_LIBRARY LDL_Texture* LDL_TextureNewFromPixels(LDL_Context* context, size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels);
-LDL_LIBRARY LDL_Texture* LDL_TextureNewFromSize(LDL_Context* context, size_t pixelFormat, LDL_Vec2i size);
+LDL_LIBRARY LDL_Texture* LDL_TextureNewFromPixels(LDL_Result* result, LDL_Context* context, size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels);
+LDL_LIBRARY LDL_Texture* LDL_TextureNewFromSize(LDL_Result* result, LDL_Context* context, size_t pixelFormat, LDL_Vec2i size);
 LDL_LIBRARY void LDL_TextureFree(LDL_Texture* texture);
 
 LDL_LIBRARY LDL_Vec2i LDL_TextureGetSize(LDL_Texture* texture);

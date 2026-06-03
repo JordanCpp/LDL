@@ -49,7 +49,7 @@ GLuint CompileShader(LDL::Result& result, const char* source, GLenum type)
 int main()
 {
     LDL::Result  result;
-    LDL::Context context;
+    LDL::Context context(result);
     LDL::Event   event;
 
     LDL::Window       window = LDL::Window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL OpenGL 3 + GLM Example", LDL_WindowModeResized);

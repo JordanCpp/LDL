@@ -10,40 +10,36 @@
 
 int main(void)
 {
-    LDL_Result*  result = NULL;
-    LDL_Context* context = NULL;
-    LDL_Window*  window = NULL;
-    LDL_Render*  render = NULL;
-    LDL_Event    event;
-    LDL_Vec2i    size;
+    LDL_Result* result;
+    LDL_Context* context;
+    LDL_Window* window;
+    LDL_Render* render;
+    LDL_Event event;
 
-    result  = LDL_ResultNew();
-    context = LDL_ContextNew(LDL_ContextOpenGLLegacy);
-    window  = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 04 - Line", LDL_WindowModeResized);
-    render  = LDL_RenderNew(result, context, window);
+    result = LDL_ResultNew();
+    context = LDL_ContextNew(result, LDL_ContextOpenGLLegacy);
+    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 04 - Line", LDL_WindowModeResized);
+    render = LDL_RenderNew(result, context, window);
 
-    if (LDL_ResultIsOk(result))
+    while (LDL_WindowIsRunning(window) && LDL_ResultIsOk(result))
     {
-        while (LDL_WindowIsRunning(window) && LDL_ResultIsOk(result))
+        while (LDL_WindowGetEvent(window, &event))
         {
-            while (LDL_WindowGetEvent(window, &event))
+            if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
             {
-                if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
-                {
-                    LDL_WindowStopEvent(window);
-                }
+                LDL_WindowStopEvent(window);
             }
-
-            LDL_RenderSetColor(render, LDL_ColorRgb(0, 162, 232));
-            LDL_RenderClear(render);
-
-            LDL_RenderBegin(render);
-
-            LDL_RenderSetColor(render, LDL_ColorRgb(237, 28, 36));
-            LDL_RenderLine2i(render, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600));
-
-            LDL_RenderEnd(render);
         }
+
+        LDL_RenderSetColor(render, LDL_ColorRgb(0, 162, 232));
+        LDL_RenderClear(render);
+
+        LDL_RenderBegin(render);
+
+        LDL_RenderSetColor(render, LDL_ColorRgb(237, 28, 36));
+        LDL_RenderLine2i(render, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600));
+
+        LDL_RenderEnd(render);
     }
 
     LDL_RenderFree(render);

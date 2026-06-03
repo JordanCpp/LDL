@@ -20,9 +20,9 @@ enum
 	TextureCount = 12
 };
 
-const uint32_t TextureSizes[TextureCount] = { 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
+const int TextureSizes[TextureCount] = { 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536 };
 
-size_t MaxTextureSize()
+int MaxTextureSize()
 {
 	GLint result = 0;
 
@@ -44,12 +44,10 @@ bool IsMaxTextureSize(LDL_Vec2i resolutionSize, int textureSize)
 int SelectTextureSize(LDL_Vec2i size)
 {
 	size_t i;
-	size_t w = size.x;
-	size_t h = size.y;
 
 	for (i = 0; i < TextureCount; i++)
 	{
-		if (w <= TextureSizes[i] && h <= TextureSizes[i])
+		if (size.x <= TextureSizes[i] && size.y <= TextureSizes[i])
 		{
 			return TextureSizes[i];
 		}
@@ -58,7 +56,7 @@ int SelectTextureSize(LDL_Vec2i size)
 	return 0;
 }
 
-GLuint CreateTexture(GLsizei width, GLsizei height, GLint format)
+GLuint CreateTexture(GLsizei width, GLsizei height, GLenum format)
 {
 	GLuint result = 0;
 
@@ -68,7 +66,7 @@ GLuint CreateTexture(GLsizei width, GLsizei height, GLint format)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, NULL);
+	glTexImage2D(GL_TEXTURE_2D, 0, (GLint)format, width, height, 0, format, GL_UNSIGNED_BYTE, NULL);
 
 	return result;
 }
@@ -90,17 +88,17 @@ LDL_GLColor LDL_GLNormalize(LDL_Color color)
 	return clr;
 }
 
-void DrawQuad(LDL_Vec2i dstPos, LDL_Vec2i dstSize, LDL_Vec2i srcPos, LDL_Vec2i srcSize, size_t textureSize)
+void DrawQuad(LDL_Vec2i dstPos, LDL_Vec2i dstSize, LDL_Vec2i srcPos, LDL_Vec2i srcSize, int textureSize)
 {
 	float x1 = (float)(dstPos.x);
 	float y1 = (float)(dstPos.y);
 	float x2 = (float)(dstPos.x + dstSize.x);
 	float y2 = (float)(dstPos.y + dstSize.y);
 
-	float u1 = (float)(srcPos.x) / textureSize;
-	float v1 = (float)(srcPos.y) / textureSize;
-	float u2 = (float)(srcPos.x + srcSize.x) / textureSize;
-	float v2 = (float)(srcPos.y + srcSize.y) / textureSize;
+	float u1 = (float)(srcPos.x / textureSize);
+	float v1 = (float)(srcPos.y / textureSize);
+	float u2 = (float)((srcPos.x + srcSize.x) / textureSize);
+	float v2 = (float)((srcPos.y + srcSize.y) / textureSize);
 
 	glBegin(GL_QUADS);
 	glTexCoord2f(u1, v1); glVertex2f(x1, y1);

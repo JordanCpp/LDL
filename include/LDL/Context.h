@@ -15,8 +15,7 @@ License for more details.
 #ifndef LDL_Context_H
 #define LDL_Context_H
 
-#include <LDL/Config.h>
-#include <LDL/Types.h>
+#include <LDL/Result.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -24,7 +23,7 @@ extern "C" {
 
 typedef struct LDL_Context LDL_Context;
 
-LDL_LIBRARY LDL_Context* LDL_ContextNew(size_t mode);
+LDL_LIBRARY LDL_Context* LDL_ContextNew(LDL_Result* result, size_t mode);
 LDL_LIBRARY void LDL_ContextFree(LDL_Context* context);
 LDL_LIBRARY size_t LDL_ContextGet(LDL_Context* context);
 

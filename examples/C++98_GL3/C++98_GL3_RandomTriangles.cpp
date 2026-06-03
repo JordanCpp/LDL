@@ -119,7 +119,7 @@ int main()
     srand(static_cast<unsigned int>(time(NULL)));
 
     LDL::Result  result;
-    LDL::Context context;
+    LDL::Context context(result);
     LDL::Event   event;
 
     LDL::Window  window = LDL::Window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL Random Triangles", LDL_WindowModeResized);

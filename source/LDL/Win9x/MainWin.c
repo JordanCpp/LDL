@@ -27,6 +27,13 @@ LRESULT CALLBACK LDL_MainWindowHandler(LDL_MainWindow* mainWindow, UINT Message,
 
         switch (Message)
         {
+        case WM_NCDESTROY:
+#ifdef _WIN64
+            SetWindowLongPtrA(mainWindow->Hwnd, GWLP_USERDATA, 0);
+#elif _WIN32
+            SetWindowLongA(mainWindow->Hwnd, GWL_USERDATA, 0);
+#endif
+            break;
         case WM_PAINT:
             break;
 
@@ -178,7 +185,6 @@ LRESULT CALLBACK WndProc(HWND Hwnd, UINT Message, WPARAM WParam, LPARAM LParam)
 
 void LDL_MainWindowInit(LDL_MainWindow* mainWindow, LDL_Result* result, LDL_Vec2i pos, LDL_Vec2i size, const char* title, size_t mode)
 {
-	HINSTANCE instance;
     WNDCLASSA windowClass;
     ATOM      atom;
     RECT      rect;
@@ -201,8 +207,8 @@ void LDL_MainWindowInit(LDL_MainWindow* mainWindow, LDL_Result* result, LDL_Vec2
         LDL_EventHandlerInit(&mainWindow->EventHandler);
         LDL_BaseWindowInit(&mainWindow->BaseWindow, pos, size, title, mode);
 
-        instance = GetModuleHandleA(NULL);
-        if (instance == NULL)
+        mainWindow->Inst = GetModuleHandleA(NULL);
+        if (mainWindow->Inst == NULL)
         {
             LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&mainWindow->WindowError));
             return;
@@ -210,13 +216,13 @@ void LDL_MainWindowInit(LDL_MainWindow* mainWindow, LDL_Result* result, LDL_Vec2
 
         memset(&windowClass, 0, sizeof(windowClass));
 
-        windowClass.hInstance = instance;
+        windowClass.hInstance     = mainWindow->Inst;
         windowClass.lpszClassName = AppName;
-        windowClass.lpfnWndProc = WndProc;
-        windowClass.style = CS_HREDRAW | CS_VREDRAW;
+        windowClass.lpfnWndProc   = WndProc;
+        windowClass.style         = CS_HREDRAW | CS_VREDRAW;
         windowClass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-        windowClass.hIcon = LoadIconA(NULL, IDI_APPLICATION);
-        windowClass.hCursor = LoadCursorA(NULL, IDC_ARROW);
+        windowClass.hIcon         = LoadIconA(NULL, IDI_APPLICATION);
+        windowClass.hCursor       = LoadCursorA(NULL, IDC_ARROW);
 
         atom = RegisterClassA(&windowClass);
         if (atom == INVALID_ATOM)
@@ -225,9 +231,9 @@ void LDL_MainWindowInit(LDL_MainWindow* mainWindow, LDL_Result* result, LDL_Vec2
             return;
         }
 
-        rect.left = LDL_BaseWindowGetPos(&mainWindow->BaseWindow).x;
-        rect.top = LDL_BaseWindowGetPos(&mainWindow->BaseWindow).y;
-        rect.right = LDL_BaseWindowGetSize(&mainWindow->BaseWindow).x;
+        rect.left   = LDL_BaseWindowGetPos(&mainWindow->BaseWindow).x;
+        rect.top    = LDL_BaseWindowGetPos(&mainWindow->BaseWindow).y;
+        rect.right  = LDL_BaseWindowGetSize(&mainWindow->BaseWindow).x;
         rect.bottom = LDL_BaseWindowGetSize(&mainWindow->BaseWindow).y;
 
         if (mode & LDL_WindowModeFullScreen)
@@ -274,7 +280,7 @@ void LDL_MainWindowInit(LDL_MainWindow* mainWindow, LDL_Result* result, LDL_Vec2
             posY = LDL_BaseWindowGetPos(&mainWindow->BaseWindow).y;
         }
 
-        mainWindow->Hwnd = CreateWindowA(AppName, LDL_BaseWindowGetTitle(&mainWindow->BaseWindow), style, posX, posY, rect.right - rect.left, rect.bottom - rect.top, 0, 0, instance, 0);
+        mainWindow->Hwnd = CreateWindowA(AppName, LDL_BaseWindowGetTitle(&mainWindow->BaseWindow), style, posX, posY, rect.right - rect.left, rect.bottom - rect.top, 0, 0, mainWindow->Inst, 0);
         if (mainWindow->Hwnd == NULL)
         {
             LDL_ResultAddMessage(result, "%s\n", LDL_WindowErrorGetMessage(&mainWindow->WindowError));
@@ -304,7 +310,9 @@ void LDL_MainWindowDeinit(LDL_MainWindow* mainWindow)
         if (mainWindow->Hwnd)
         {
             DestroyWindow(mainWindow->Hwnd);
+            UnregisterClassA(AppName, mainWindow->Inst);
             mainWindow->Hwnd = NULL;
+            mainWindow->Inst = NULL;
         }
 
         while (!LDL_EventHandlerEmpty(&mainWindow->EventHandler))
@@ -327,8 +335,17 @@ LDL_Vec2i LDL_MainWindowGetPos(LDL_MainWindow* mainWindow)
 
 LDL_Vec2i LDL_MainWindowGetSize(LDL_MainWindow* mainWindow)
 {
+    RECT rect;
+
     if (mainWindow)
     {
+        memset(&rect, 0, sizeof(rect));
+
+        if (GetClientRect(mainWindow->Hwnd, &rect))
+        {
+            LDL_BaseWindowSetSize(&mainWindow->BaseWindow, LDL_GetVec2i(rect.right - rect.left, rect.bottom - rect.top));
+        }
+
         return LDL_BaseWindowGetSize(&mainWindow->BaseWindow);
     }
 
@@ -345,6 +362,15 @@ const char* LDL_MainWindowGetTitle(LDL_MainWindow* mainWindow)
     return NULL;
 }
 
+void LDL_MainWindowSetTitle(LDL_MainWindow* mainWindow, const char* title)
+{
+    if (mainWindow)
+    {
+        LDL_BaseWindowSetTitle(&mainWindow->BaseWindow, title);
+
+        SetWindowTextA(mainWindow->Hwnd, LDL_BaseWindowGetTitle(&mainWindow->BaseWindow));
+    }
+}
 
 void LDL_MainWindowPollEvents(LDL_MainWindow* mainWindow)
 {

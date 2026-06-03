@@ -13,23 +13,29 @@ License for more details.
 */
 
 #include <stdlib.h>
+#include <LDL/ErrorMsg.h>
 #include <LDL/PixFrmt.h>
 #include <LDL/OpenGL/GL1_2.h>
 #include <LDL/Renders/GL/TexGL.h>
 #include <LDL/Renders/GL/GLUtils.h>
 
-GLint BppToFormat(uint8_t bpp)
+GLenum BppToFormat(uint8_t bpp)
 {
 	return bpp == 3 ? GL_RGB : GL_RGBA;
 }
 
-LDL_TextureOpenGL* LDL_TextureOpenGLNewFromSize(size_t pixelFormat, LDL_Vec2i size)
+LDL_TextureOpenGL* LDL_TextureOpenGLNewFromSize(LDL_Result* result, size_t pixelFormat, LDL_Vec2i size)
 {
-	GLint format = 0;
+	GLenum format = 0;
 	int quadSize;
 	uint8_t bpp = LDL_BytesPerPixelFromPixelFormat(pixelFormat);
 
 	LDL_TextureOpenGL* texture = (LDL_TextureOpenGL*)malloc(sizeof(LDL_TextureOpenGL));
+	if (texture == NULL)
+	{
+		LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+		return NULL;
+	}
 
 	if (texture)
 	{
@@ -45,11 +51,11 @@ LDL_TextureOpenGL* LDL_TextureOpenGLNewFromSize(size_t pixelFormat, LDL_Vec2i si
 	return NULL;
 }
 
-LDL_TextureOpenGL* LDL_TextureOpenGLNewFromPixels(size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
+LDL_TextureOpenGL* LDL_TextureOpenGLNewFromPixels(LDL_Result* result, size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
 {
-	GLint format = 0;
+	GLenum format = 0;
 	uint8_t bpp  = LDL_BytesPerPixelFromPixelFormat(pixelFormat);
-	LDL_TextureOpenGL* texture = LDL_TextureOpenGLNewFromSize(pixelFormat, size);
+	LDL_TextureOpenGL* texture = LDL_TextureOpenGLNewFromSize(result, pixelFormat, size);
 
 	if (texture)
 	{

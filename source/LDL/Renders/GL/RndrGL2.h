@@ -22,14 +22,12 @@ License for more details.
 #include <LDL/Renders/GL/GLUtils.h>
 #include <LDL/Renders/GL/BufferGL.h>
 
-typedef struct LDL_TextureOpenGL LDL_TextureOpenGL;
-
 typedef struct LDL_ShaderProgram
 {
     GLuint program;
-    GLint  aPosition;
-    GLint  aTexCoord;
-    GLint  aColor;
+    GLuint aPosition;
+    GLuint aTexCoord;
+    GLuint aColor;
     GLint  uProjection;
     GLint  uModelView;
     GLint  uTexture;

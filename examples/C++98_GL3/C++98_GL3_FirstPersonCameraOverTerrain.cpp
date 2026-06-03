@@ -324,7 +324,7 @@ void createTerrain(std::vector<float>& vertices, std::vector<unsigned int>& indi
 int main()
 {
     LDL::Result  result;
-    LDL::Context context;
+    LDL::Context context(result);
     LDL::Event   event;
     LDL::Window  window = LDL::Window(result, context, LDL::Vec2i(100, 100), LDL::Vec2i(1024, 768),
         "LDL - First Person Camera over Terrain", LDL_WindowModeResized);

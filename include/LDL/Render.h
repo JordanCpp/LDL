@@ -17,31 +17,28 @@ License for more details.
 
 #include <LDL/Color.h>
 #include <LDL/Window.h>
+#include <LDL/Texture.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef struct LDL_Texture LDL_Texture;
 typedef struct LDL_Render LDL_Render;
 
-// New and Free
 LDL_LIBRARY LDL_Render* LDL_RenderNew(LDL_Result* result, LDL_Context* context, LDL_Window* window);
 LDL_LIBRARY void LDL_RenderFree(LDL_Render* render);
 
 LDL_LIBRARY size_t LDL_RenderGetLayer(LDL_Render* render);
 LDL_LIBRARY void LDL_RenderSetLayer(LDL_Render* render, size_t layer);
 
-// Get and Set
 LDL_LIBRARY LDL_Color LDL_RenderGetColor(LDL_Render* render);
 LDL_LIBRARY void LDL_RenderSetColor(LDL_Render* render, LDL_Color color);
 
-// Draw
 LDL_LIBRARY void LDL_RenderClear(LDL_Render* render);
 LDL_LIBRARY void LDL_RenderLine2i(LDL_Render* render, LDL_Vec2i first, LDL_Vec2i last);
 LDL_LIBRARY void LDL_RenderFill2i(LDL_Render* render, LDL_Vec2i first, LDL_Vec2i last);
 LDL_LIBRARY void LDL_RenderDraw(LDL_Render* render, LDL_Texture* texture, LDL_Vec2i* dstPos, LDL_Vec2i* dstSize, LDL_Vec2i* srcPos, LDL_Vec2i* srcSize);
-// Present
+
 LDL_LIBRARY void LDL_RenderBegin(LDL_Render* render);
 LDL_LIBRARY void LDL_RenderEnd(LDL_Render* render);
 

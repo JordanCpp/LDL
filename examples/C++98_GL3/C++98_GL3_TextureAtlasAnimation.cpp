@@ -176,7 +176,7 @@ void GenerateSpriteQuad(std::vector<float>& vertices,
 int main()
 {
     LDL::Result  result;
-    LDL::Context context;
+    LDL::Context context(result);
     LDL::Event   event;
     LDL::Window  window = LDL::Window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600),
         "LDL Example 06 - Texture Atlas Animation", LDL_WindowModeResized);

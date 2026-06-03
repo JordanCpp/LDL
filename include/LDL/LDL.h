@@ -23,5 +23,7 @@ License for more details.
 #include <LDL/Ticks.h>
 #include <LDL/BmpLoad.h>
 #include <LDL/Texture.h>
+#include <LDL/FpsLimit.h>
+#include <LDL/FpsCount.h>
 
 #endif

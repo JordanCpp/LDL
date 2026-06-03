@@ -13,17 +13,23 @@ License for more details.
 */
 
 #include <stdlib.h>
+#include <LDL/ErrorMsg.h>
 #include <LDL/Texture.h>
 #include <LDL/Renders/Texture.h>
 #include <LDL/Renders/GL/TexGL.h>
 
-LDL_Texture* LDL_TextureNewFromPixels(LDL_Context* context, size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
+LDL_Texture* LDL_TextureNewFromPixels(LDL_Result* result, LDL_Context* context, size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
 {
-	LDL_Texture* texture;
+	LDL_Texture* texture = NULL;
 
 	if (context)
 	{
 		texture = (LDL_Texture*)malloc(sizeof(LDL_Texture));
+		if (texture == NULL)
+		{
+			LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+			return NULL;
+		}
 
 		if (texture)
 		{
@@ -34,22 +40,32 @@ LDL_Texture* LDL_TextureNewFromPixels(LDL_Context* context, size_t pixelFormat, 
 			case LDL_ContextOpenGLLegacy:
 			case LDL_ContextOpenGLHybrid:
 			case LDL_ContextOpenGLModern:
-				texture->TextureOpenGL = LDL_TextureOpenGLNewFromPixels(pixelFormat, size, pixels);
+				texture->TextureOpenGL = LDL_TextureOpenGLNewFromPixels(result, pixelFormat, size, pixels);
 				return texture;
 			}
 		}
 	}
 
+	if (texture)
+	{
+		free(texture);
+	}
+
 	return NULL;
 }
 
-LDL_Texture* LDL_TextureNewFromSize(LDL_Context* context, size_t pixelFormat, LDL_Vec2i size)
+LDL_Texture* LDL_TextureNewFromSize(LDL_Result* result, LDL_Context* context, size_t pixelFormat, LDL_Vec2i size)
 {
-	LDL_Texture* texture;
+	LDL_Texture* texture = NULL;
 
 	if (context)
 	{
 		texture = (LDL_Texture*)malloc(sizeof(LDL_Texture));
+		if (texture == NULL)
+		{
+			LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+			return NULL;
+		}
 
 		if (texture)
 		{
@@ -60,10 +76,15 @@ LDL_Texture* LDL_TextureNewFromSize(LDL_Context* context, size_t pixelFormat, LD
 			case LDL_ContextOpenGLLegacy:
 			case LDL_ContextOpenGLHybrid:
 			case LDL_ContextOpenGLModern:
-				texture->TextureOpenGL = LDL_TextureOpenGLNewFromSize(pixelFormat, size);
+				texture->TextureOpenGL = LDL_TextureOpenGLNewFromSize(result, pixelFormat, size);
 				return texture;
 			}
 		}
+	}
+
+	if (texture)
+	{
+		free(texture);
 	}
 
 	return NULL;

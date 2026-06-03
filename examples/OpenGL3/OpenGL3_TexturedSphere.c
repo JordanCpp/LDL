@@ -385,7 +385,7 @@ int main(void)
     size_t            currentTime, delta;
 
     result = LDL_ResultNew();
-    context = LDL_ContextNew(LDL_ContextOpenGLModern);
+    context = LDL_ContextNew(result, LDL_ContextOpenGLModern);
     window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height),
         "LDL - Textured Sphere (OpenGL 3.3)", LDL_WindowModeResized);
 

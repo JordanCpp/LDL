@@ -15,6 +15,7 @@ License for more details.
 #include <stdio.h>
 #include <stdlib.h>
 #include <LDL/BmpLoad.h>
+#include <LDL/ErrorMsg.h>
 
 #pragma pack(push, 1)
 typedef struct BMPFileHeader 
@@ -42,7 +43,7 @@ typedef struct BMPInfoHeader
 } BMPInfoHeader;
 #pragma pack(pop)
 
-typedef struct LDL_BmpLoader 
+struct LDL_BmpLoader 
 {
     uint8_t     Bpp;
     uint8_t     Format;
@@ -50,15 +51,20 @@ typedef struct LDL_BmpLoader
     FILE*       File;
     LDL_Result* Result;
     LDL_Vec2i   Size;
-} LDL_BmpLoader;
+};
 
 LDL_BmpLoader* LDL_BmpLoaderNew(LDL_Result* result) 
 {
     LDL_BmpLoader* loader = (LDL_BmpLoader*)malloc(sizeof(LDL_BmpLoader));
 
+    if (result && loader == NULL)
+    {
+        LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+    }
+
     if (loader && result) 
     {
-        loader->File = NULL;
+        loader->File   = NULL;
         loader->Result = result;
 
         return loader;

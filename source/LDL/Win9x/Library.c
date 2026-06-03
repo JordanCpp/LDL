@@ -16,11 +16,11 @@ License for more details.
 #include <LDL/Library.h>
 #include <LDL/Win9x/WinX.h>
 
-typedef struct LDL_Library
+struct LDL_Library
 {
 	HMODULE     Module;
 	LDL_Result* Result;
-} LDL_Library;
+};
 
 LDL_Library* LDL_LibraryNew(LDL_Result* result)
 {

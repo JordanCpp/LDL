@@ -31,6 +31,9 @@ void LDL_WindowOpenGL1Deinit(LDL_WindowOpenGL1* window);
 LDL_Vec2i LDL_WindowOpenGL1GetPos(LDL_WindowOpenGL1* window);
 LDL_Vec2i LDL_WindowOpenGL1GetSize(LDL_WindowOpenGL1* window);
 
+const char* LDL_WindowOpenGL1GetTitle(LDL_WindowOpenGL1* window);
+void LDL_WindowOpenGL1SetTitle(LDL_WindowOpenGL1* window, const char* title);
+
 bool LDL_WindowOpenGL1GetEvent(LDL_WindowOpenGL1* window, LDL_Event* event);
 void LDL_WindowOpenGL1StopEvent(LDL_WindowOpenGL1* window);
 bool LDL_WindowOpenGL1IsRunning(LDL_WindowOpenGL1* window);
