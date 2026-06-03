@@ -14,9 +14,12 @@ set(LDL_INCLUDES_API
     ${LDL_ROOT_FOLDER}/include/LDL/Enums.h
     ${LDL_ROOT_FOLDER}/include/LDL/Events.h
     ${LDL_ROOT_FOLDER}/include/LDL/Format.h
+    ${LDL_ROOT_FOLDER}/include/LDL/FpsCount.h
+    ${LDL_ROOT_FOLDER}/include/LDL/FpsLimit.h
     ${LDL_ROOT_FOLDER}/include/LDL/LDL.h
     ${LDL_ROOT_FOLDER}/include/LDL/Library.h
     ${LDL_ROOT_FOLDER}/include/LDL/Mat4f.h
+    ${LDL_ROOT_FOLDER}/include/LDL/Palette.h
     ${LDL_ROOT_FOLDER}/include/LDL/PixFrmt.h
     ${LDL_ROOT_FOLDER}/include/LDL/Render.h
     ${LDL_ROOT_FOLDER}/include/LDL/Result.h
@@ -54,6 +57,7 @@ set(LDL_INCLUDES_API_OPENGL
 
 set(LDL_INCLUDES_COMMON
     ${LDL_ROOT_FOLDER}/source/LDL/BaseWin.h
+    ${LDL_ROOT_FOLDER}/source/LDL/ErrorMsg.h
     ${LDL_ROOT_FOLDER}/source/LDL/EventH.h
     ${LDL_ROOT_FOLDER}/source/LDL/EventQ.h
     ${LDL_ROOT_FOLDER}/source/LDL/KeyMap.h
@@ -63,15 +67,19 @@ set(LDL_INCLUDES_COMMON
 
 set(LDL_SOURCES_COMMON
     ${LDL_ROOT_FOLDER}/source/LDL/BaseWin.c
+    ${LDL_ROOT_FOLDER}/source/LDL/ErrorMsg.c
     ${LDL_ROOT_FOLDER}/source/LDL/BmpLoad.c
     ${LDL_ROOT_FOLDER}/source/LDL/Context.c
     ${LDL_ROOT_FOLDER}/source/LDL/EventH.c
     ${LDL_ROOT_FOLDER}/source/LDL/EventQ.c
     ${LDL_ROOT_FOLDER}/source/LDL/Events.c
     ${LDL_ROOT_FOLDER}/source/LDL/Format.c
+    ${LDL_ROOT_FOLDER}/source/LDL/FpsCount.c
+    ${LDL_ROOT_FOLDER}/source/LDL/FpsLimit.c
     ${LDL_ROOT_FOLDER}/source/LDL/KeyMap.c
     ${LDL_ROOT_FOLDER}/source/LDL/Mapping.c
     ${LDL_ROOT_FOLDER}/source/LDL/PixFrmt.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Palette.c
     ${LDL_ROOT_FOLDER}/source/LDL/Result.c
     ${LDL_ROOT_FOLDER}/source/LDL/StrSpan.c
     ${LDL_ROOT_FOLDER}/source/LDL/Vec2i.c

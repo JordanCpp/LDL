@@ -116,6 +116,24 @@ LDL_Vec2i LDL_WindowOpenGL1GetSize(LDL_WindowOpenGL1* window)
     return LDL_GetVec2i(0, 0);
 }
 
+const char* LDL_WindowOpenGL1GetTitle(LDL_WindowOpenGL1* window)
+{
+    if (window)
+    {
+        return LDL_MainWindowGetTitle(&window->MainWindow);
+    }
+
+    return NULL;
+}
+
+void LDL_WindowOpenGL1SetTitle(LDL_WindowOpenGL1* window, const char* title)
+{
+    if (window)
+    {
+        LDL_MainWindowSetTitle(&window->MainWindow, title);
+    }
+}
+
 bool LDL_WindowOpenGL1GetEvent(LDL_WindowOpenGL1* window, LDL_Event* event)
 {
     if (window && event)

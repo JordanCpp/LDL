@@ -11,32 +11,29 @@
 int main()
 {
 	LDL::Result result{};
-	LDL::Context context{};
+	LDL::Context context(result);
 	LDL::Event event{};
 
 	LDL::Window window(
-		result, 
-		context, 
+		result,
+		context,
 		{ 0, 0 },
 		{ 800, 600 },
-		"LDL C++11 lesson 01 - Window", 
+		"LDL C++11 lesson 01 - Window",
 		LDL_WindowModeResized
 	);
 
-	if (result.IsOk())
+	while (window.IsRunning() && result.IsOk())
 	{
-		while (window.IsRunning() && result.IsOk())
+		while (window.GetEvent(event))
 		{
-			while (window.GetEvent(event))
+			if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
 			{
-				if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
-				{
-					window.StopEvent();
-				}
+				window.StopEvent();
 			}
-
-			window.Present();
 		}
+
+		window.Present();
 	}
 
 	if (result.IsFail())

@@ -63,14 +63,48 @@ namespace LDL
     public:
     };
 
+    class Result
+    {
+    public:
+        inline Result() :
+            _result(LDL_ResultNew(), LDL_ResultFree)
+        {
+        }
+
+        inline bool IsOk() const
+        {
+            return LDL_ResultIsOk(_result.get());
+        }
+
+        inline bool IsFail() const
+        {
+            return LDL_ResultIsFail(_result.get());
+        }
+
+        inline const std::string& Message()
+        {
+            _message = LDL_ResultGetMessage(_result.get());
+            return _message;
+        }
+
+        inline LDL_Result* Impl() const
+        {
+            return _result.get();
+        }
+
+    private:
+        std::unique_ptr<LDL_Result, decltype(&LDL_ResultFree)> _result;
+        std::string _message;
+    };
+
     template<typename T, void (*Deleter)(T*)>
     using UniquePtr = std::unique_ptr<T, std::function<void(T*)>>;
 
     class Context
     {
     public:
-        inline Context() :
-            _context(LDL_ContextNew(LDL_ContextOpenGLLegacy), LDL_ContextFree)
+        inline Context(Result& result) :
+            _context(LDL_ContextNew(result.Impl(), LDL_ContextOpenGLLegacy), LDL_ContextFree)
         {
             if (!_context) 
             { 
@@ -88,40 +122,6 @@ namespace LDL
         }
     private:
         std::unique_ptr<LDL_Context, decltype(&LDL_ContextFree)> _context;
-    };
-
-    class Result
-    {
-    public:
-        inline Result() : 
-            _result(LDL_ResultNew(), LDL_ResultFree) 
-        {
-        }
-
-        inline bool IsOk() const
-        { 
-            return LDL_ResultIsOk(_result.get());
-        }
-
-        inline bool IsFail() const
-        { 
-            return LDL_ResultIsFail(_result.get()); 
-        }
-
-        inline const std::string& Message()
-        {
-            _message = LDL_ResultGetMessage(_result.get());
-            return _message;
-        }
-
-        inline LDL_Result* Impl() const 
-        { 
-            return _result.get();
-        }
-
-    private:
-        std::unique_ptr<LDL_Result, decltype(&LDL_ResultFree)> _result;
-        std::string _message;
     };
 
     class Window
@@ -170,13 +170,13 @@ namespace LDL
     class Texture
     {
     public:
-        inline Texture(Context& context, size_t pixelFormat, const Vec2i& size, uint8_t* pixels)
-            : _texture(LDL_TextureNewFromPixels(context.Impl(), pixelFormat, size, pixels), LDL_TextureFree)
+        inline Texture(Result& result, Context& context, size_t pixelFormat, const Vec2i& size, uint8_t* pixels)
+            : _texture(LDL_TextureNewFromPixels(result.Impl(), context.Impl(), pixelFormat, size, pixels), LDL_TextureFree)
         {
         }
 
-        inline Texture(Context& context, size_t pixelFormat, const Vec2i& size)
-            : _texture(LDL_TextureNewFromSize(context.Impl(), pixelFormat, size), LDL_TextureFree)
+        inline Texture(Result& result, Context& context, size_t pixelFormat, const Vec2i& size)
+            : _texture(LDL_TextureNewFromSize(result.Impl(), context.Impl(), pixelFormat, size), LDL_TextureFree)
         {
         }
 

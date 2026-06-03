@@ -19,10 +19,11 @@ License for more details.
 #include <LDL/Context.h>
 #include <LDL/Renders/GL/TexGL.h>
 
-typedef struct LDL_Texture
+struct LDL_Texture
 {
+	LDL_Result*        Result;
 	LDL_Context*       Context;
 	LDL_TextureOpenGL* TextureOpenGL;
-} LDL_Texture;
+};
 
 #endif

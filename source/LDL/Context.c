@@ -14,21 +14,29 @@ License for more details.
 
 #include <stdlib.h>
 #include <LDL/Context.h>
+#include <LDL/ErrorMsg.h>
 
-typedef struct LDL_Context
+struct LDL_Context
 {
 	size_t Mode;
-} LDL_Context;
+};
 
-LDL_Context* LDL_ContextNew(size_t mode)
+LDL_Context* LDL_ContextNew(LDL_Result* result, size_t mode)
 {
-	LDL_Context* context = (LDL_Context*)malloc(sizeof(LDL_Context));
-
-	if (context)
+	if (result)
 	{
-		context->Mode = mode;
+		LDL_Context* context = (LDL_Context*)malloc(sizeof(LDL_Context));
+		if (context == NULL)
+		{
+			LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+		}
 
-		return context;
+		if (context)
+		{
+			context->Mode = mode;
+
+			return context;
+		}
 	}
 
 	return NULL;

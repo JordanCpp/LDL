@@ -11,26 +11,23 @@
 
 int main()
 {
-	LDL::Result  result;
-	LDL::Context context;
-	LDL::Event   event;
-	LDL::Window  window = LDL::Window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL C++98 lesson 08 - Init modern GL", LDL_WindowModeResized);
-	LDL::OpenGLLoader loader = LDL::OpenGLLoader(result, 3, 0);
+	LDL::Result result;
+	LDL::Context context(result);
+	LDL::Event event;
+	LDL::Window window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL C++98 lesson 08 - Init modern GL", LDL_WindowModeResized);
+	LDL::OpenGLLoader loader(result, 3, 0);
 
-	if (result.IsOk())
+	while (window.IsRunning() && result.IsOk())
 	{
-		while (window.IsRunning() && result.IsOk())
+		while (window.GetEvent(event))
 		{
-			while (window.GetEvent(event))
+			if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
 			{
-				if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
-				{
-					window.StopEvent();
-				}
+				window.StopEvent();
 			}
-
-			window.Present();
 		}
+
+		window.Present();
 	}
 
 	if (result.IsFail())

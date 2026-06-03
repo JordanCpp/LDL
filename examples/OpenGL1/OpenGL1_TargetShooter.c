@@ -437,7 +437,7 @@ int main(void)
     int i;
 
     result = LDL_ResultNew();
-    context = LDL_ContextNew(LDL_ContextOpenGLLegacy);
+    context = LDL_ContextNew(result, LDL_ContextOpenGLLegacy);
     window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height), "LDL - Target Shooter (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))

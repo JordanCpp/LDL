@@ -67,7 +67,7 @@ void LDL_RenderOpenGL3Init(LDL_RenderOpenGL3* render, LDL_Result* result, LDL_Wi
     render->Window = window;
 
     LDL_BaseRenderInit(&render->BaseRender, LDL_ColorRgb(0, 0, 0));
-    LDL_BufferOpenGLInit(&render->Buffer);
+    LDL_BufferOpenGLInit(&render->Buffer, render->Result);
 
     LDL_Mat4fIdentity(&render->Projection);
     LDL_Mat4fIdentity(&render->ModelView);
@@ -96,19 +96,27 @@ void LDL_RenderOpenGL3Init(LDL_RenderOpenGL3* render, LDL_Result* result, LDL_Wi
     glBindVertexArray(render->VAO);
     glBindBuffer(GL_ARRAY_BUFFER, render->VBO);
 
+    /*
     // Layout description based on LDL_Vertex:
     // pos: 2f, uv: 2f, color: 4f = 8 floats total (stride = 8 * 4 bytes)
+    */
     stride = sizeof(LDL_Vertex);
 
+    /*
     // Attribute 0: Position (x, y)
+    */
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, stride, (void*)0);
 
+    /*
     // Attribute 1: TexCoords (u, v)
+    */
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, stride, (void*)(2 * sizeof(float)));
 
+    /*
     // Attribute 2: Color (r, g, b, a)
+    */
     glEnableVertexAttribArray(2);
     glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, stride, (void*)(4 * sizeof(float)));
 
@@ -209,9 +217,9 @@ void LDL_RenderOpenGL3End(LDL_RenderOpenGL3* render)
         {
             batch = &render->Buffer.Batches[i];
 
-            if (batch->textureId != 0)
+            if (batch->TextureId != 0)
             {
-                glBindTexture(GL_TEXTURE_2D, batch->textureId);
+                glBindTexture(GL_TEXTURE_2D, batch->TextureId);
                 glUniform1i(render->UseTexLoc, 1);
             }
             else
@@ -219,7 +227,7 @@ void LDL_RenderOpenGL3End(LDL_RenderOpenGL3* render)
                 glUniform1i(render->UseTexLoc, 0);
             }
 
-            glDrawArrays(GL_TRIANGLES, (GLint)batch->firstVertex, (GLsizei)batch->vertexCount);
+            glDrawArrays(GL_TRIANGLES, (GLint)batch->FirstVertex, (GLsizei)batch->VertexCount);
         }
 
         glBindVertexArray(0);

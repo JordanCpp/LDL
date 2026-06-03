@@ -13,6 +13,7 @@ License for more details.
 */
 
 #include <stdlib.h>
+#include <LDL/ErrorMsg.h>
 #include <LDL/Render.h>
 #include <LDL/Renders/Texture.h>
 #include <LDL/Renders/GL/TexGL.h>
@@ -20,7 +21,7 @@ License for more details.
 #include <LDL/Renders/GL/RndrGL2.h>
 #include <LDL/Renders/GL/RndrGL3.h>
 
-typedef struct LDL_Render
+struct LDL_Render
 {
 	LDL_Result*       Result;
 	LDL_Context*      Context;
@@ -28,13 +29,18 @@ typedef struct LDL_Render
 	LDL_RenderOpenGL1 RenderOpenGL1;
 	LDL_RenderOpenGL2 RenderOpenGL2;
 	LDL_RenderOpenGL3 RenderOpenGL3;
-} LDL_Render;
+};
 
 LDL_Render* LDL_RenderNew(LDL_Result* result, LDL_Context* context, LDL_Window* window)
 {
 	if (result && context && window)
 	{
 		LDL_Render* render = (LDL_Render*)malloc(sizeof(LDL_Render));
+		if (render == NULL)
+		{
+			LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+			return NULL;
+		}
 
 		if (render)
 		{

@@ -117,11 +117,10 @@ void BuildCheckerboard(std::vector<float>& vertices, std::vector<unsigned int>& 
 int main()
 {
     LDL::Result  result;
-    LDL::Context context;
+    LDL::Context context(result);
     LDL::Event   event;
-    LDL::Window  window = LDL::Window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600),
-        "LDL Example 02 - Checkerboard", LDL_WindowModeResized);
-    LDL::OpenGLLoader loader = LDL::OpenGLLoader(result, 3, 0);
+    LDL::Window  window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL Example 02 - Checkerboard", LDL_WindowModeResized);
+    LDL::OpenGLLoader loader(result, 3, 0);
 
     if (result.IsFail())
     {

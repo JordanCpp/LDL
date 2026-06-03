@@ -289,7 +289,7 @@ void createTerrain(std::vector<float>& vertices, std::vector<unsigned int>& indi
 int main()
 {
     LDL::Result  result;
-    LDL::Context context;
+    LDL::Context context(result);
     LDL::Event   event;
     LDL::Window  window = LDL::Window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(1024, 768),
         "LDL - Large terrain with flying camera", LDL_WindowModeResized);

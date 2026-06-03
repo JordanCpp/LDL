@@ -25,7 +25,7 @@ void LDL_RenderOpenGL1Init(LDL_RenderOpenGL1* render, LDL_Result* result, LDL_Wi
         render->Window = window;
 
         LDL_BaseRenderInit(&render->BaseRender, LDL_ColorRgb(0, 0, 0));
-        LDL_BufferOpenGLInit(&render->Buffer);
+        LDL_BufferOpenGLInit(&render->Buffer, render->Result);
 
         LDL_Mat4fIdentity(&render->Projection);
         LDL_Mat4fIdentity(&render->ModelView);
@@ -126,9 +126,9 @@ void LDL_RenderOpenGL1End(LDL_RenderOpenGL1* render)
             {
                 batch = &render->Buffer.Batches[i];
 
-                if (batch->textureId != 0)
+                if (batch->TextureId != 0)
                 {
-                    glBindTexture(GL_TEXTURE_2D, batch->textureId);
+                    glBindTexture(GL_TEXTURE_2D, batch->TextureId);
                     glEnable(GL_TEXTURE_2D);
                 }
                 else
@@ -136,11 +136,11 @@ void LDL_RenderOpenGL1End(LDL_RenderOpenGL1* render)
                     glDisable(GL_TEXTURE_2D);
                 }
 
-                glVertexPointer  (2, GL_FLOAT, sizeof(LDL_Vertex), &render->Buffer.VertexBuffer[batch->firstVertex].x);
-                glTexCoordPointer(2, GL_FLOAT, sizeof(LDL_Vertex), &render->Buffer.VertexBuffer[batch->firstVertex].u);
-                glColorPointer   (4, GL_FLOAT, sizeof(LDL_Vertex), &render->Buffer.VertexBuffer[batch->firstVertex].r);
+                glVertexPointer  (2, GL_FLOAT, sizeof(LDL_Vertex), &render->Buffer.VertexBuffer[batch->FirstVertex].x);
+                glTexCoordPointer(2, GL_FLOAT, sizeof(LDL_Vertex), &render->Buffer.VertexBuffer[batch->FirstVertex].u);
+                glColorPointer   (4, GL_FLOAT, sizeof(LDL_Vertex), &render->Buffer.VertexBuffer[batch->FirstVertex].r);
 
-                glDrawArrays(GL_TRIANGLES, 0, batch->vertexCount);
+                glDrawArrays(GL_TRIANGLES, 0, (GLsizei)batch->VertexCount);
             }
 
             glDisableClientState(GL_COLOR_ARRAY);

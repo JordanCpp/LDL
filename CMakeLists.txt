@@ -63,4 +63,7 @@ include_directories(${LDL_ROOT_FOLDER}/include)
 add_subdirectory("source")
 add_subdirectory("examples")
 
+add_executable(tests test/tests.c)
+target_link_libraries(tests LDL)
+
 include(InstallLdl)

@@ -62,33 +62,6 @@ namespace LDL
 	public:
 	};
 
-	class Context
-	{
-	public:
-		inline Context() :
-			_context(NULL)
-		{
-			_context = LDL_ContextNew(LDL_ContextOpenGLLegacy);
-		}
-
-		inline ~Context()
-		{
-			LDL_ContextFree(_context);
-		}
-
-		inline size_t Get()
-		{
-			return LDL_ContextGet(_context);
-		}
-
-		inline LDL_Context* Impl()
-		{
-			return _context;
-		}
-	private:
-		LDL_Context* _context;
-	};
-
 	class Result
 	{
 	public:
@@ -127,6 +100,33 @@ namespace LDL
 	private:
 		LDL_Result* _result;
 		std::string _message;
+	};
+
+	class Context
+	{
+	public:
+		inline Context(Result& result) :
+			_context(NULL)
+		{
+			_context = LDL_ContextNew(result.Impl(), LDL_ContextOpenGLLegacy);
+		}
+
+		inline ~Context()
+		{
+			LDL_ContextFree(_context);
+		}
+
+		inline size_t Get()
+		{
+			return LDL_ContextGet(_context);
+		}
+
+		inline LDL_Context* Impl()
+		{
+			return _context;
+		}
+	private:
+		LDL_Context* _context;
 	};
 
 	class Window
@@ -185,16 +185,16 @@ namespace LDL
 	class Texture
 	{
 	public:
-		inline Texture(Context& context, size_t pixelFormat, const Vec2i& size, uint8_t* pixels) :
+		inline Texture(Result& result, Context& context, size_t pixelFormat, const Vec2i& size, uint8_t* pixels) :
 			_texture(NULL)
 		{
-			_texture = LDL_TextureNewFromPixels(context.Impl(), pixelFormat, size, pixels);
+			_texture = LDL_TextureNewFromPixels(result.Impl(), context.Impl(), pixelFormat, size, pixels);
 		}
 
-		inline Texture(Context& context, size_t pixelFormat, const Vec2i& size) :
+		inline Texture(Result& result, Context& context, size_t pixelFormat, const Vec2i& size) :
 			_texture(NULL)
 		{
-			_texture = LDL_TextureNewFromSize(context.Impl(), pixelFormat, size);
+			_texture = LDL_TextureNewFromSize(result.Impl(), context.Impl(), pixelFormat, size);
 		}
 
 		inline ~Texture()
@@ -290,6 +290,16 @@ namespace LDL
 		inline void Draw(Texture* texture, const Vec2i& dstPos, const Vec2i& dstSize, const Vec2i& srcPos)
 		{
 			Draw(texture, dstPos, dstSize, srcPos, texture->GetSize());
+		}
+
+		inline size_t GetLayer()
+		{
+			return LDL_RenderGetLayer(_render);
+		}
+
+		inline void SetLayer(size_t layer)
+		{
+			LDL_RenderSetLayer(_render, layer);
 		}
 	private:
 		LDL_Render* _render;

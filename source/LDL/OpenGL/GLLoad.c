@@ -18,13 +18,13 @@ License for more details.
 #include <LDL/Win9x/GLFuncs.h>
 #include <LDL/OpenGL/GL4_6.h>
 
-typedef struct LDL_OpenGLLoader
+struct LDL_OpenGLLoader
 {
 	size_t              Major;
 	size_t              Minor;
 	LDL_Result*         Result;
 	LDL_OpenGLFunctions Functions;
-} LDL_OpenGLLoader;
+};
 
 typedef struct LDL_VersionOpenGLLoader
 {

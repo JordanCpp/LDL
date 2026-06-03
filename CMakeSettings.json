@@ -31,7 +31,7 @@
       "variables": [
         {
           "name": "LDL_BUILD_EXAMPLES",
-          "value": "False",
+          "value": "True",
           "type": "BOOL"
         }
       ]

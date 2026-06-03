@@ -16,18 +16,21 @@ License for more details.
 #define LDL_Renders_GL_TexGL_H
 
 #include <LDL/Vec2i.h>
+#include <LDL/Result.h>
+#include <LDL/Palette.h>
 #include <LDL/Context.h>
 #include <LDL/OpenGL/GLTypes.h>
 
 typedef struct LDL_TextureOpenGL
 {
 	GLuint       Id;
+	LDL_Result*  Result;
 	LDL_Vec2i    Size;
 	LDL_Vec2i    Quad;
 } LDL_TextureOpenGL;
 
-LDL_TextureOpenGL* LDL_TextureOpenGLNewFromSize(size_t pixelFormat, LDL_Vec2i size);
-LDL_TextureOpenGL* LDL_TextureOpenGLNewFromPixels(size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels);
+LDL_TextureOpenGL* LDL_TextureOpenGLNewFromSize(LDL_Result* result, size_t pixelFormat, LDL_Vec2i size);
+LDL_TextureOpenGL* LDL_TextureOpenGLNewFromPixels(LDL_Result* result, size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels);
 void LDL_TextureOpenGLFree(LDL_TextureOpenGL* texture);
 
 LDL_Vec2i LDL_TextureOpenGLGetSize(LDL_TextureOpenGL* texture);

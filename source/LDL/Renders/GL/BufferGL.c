@@ -13,33 +13,70 @@ License for more details.
 */
 
 #include <stdlib.h>
+#include <LDL/ErrorMsg.h>
 #include <LDL/Renders/GL/TexGL.h>
 #include <LDL/Renders/GL/BufferGL.h>
 
-static int CompareCommands(const void* a, const void* b)
+static int CompareCommands(const void* a, const void* b) 
 {
     const LDL_DrawCommand* cmdA = (const LDL_DrawCommand*)a;
     const LDL_DrawCommand* cmdB = (const LDL_DrawCommand*)b;
 
-    if (cmdA->layer != cmdB->layer)
+    if (cmdA->Layer < cmdB->Layer)
     {
-        return cmdA->layer - cmdB->layer;
+        return -1;
+    }
+     
+    if (cmdA->Layer > cmdB->Layer)
+    {
+        return 1;
     }
 
-    return (int)(cmdA->textureId - cmdB->textureId);
+    if (cmdA->TextureId < cmdB->TextureId)
+    {
+        return -1;
+    }
+     
+    if (cmdA->TextureId > cmdB->TextureId)
+    {
+        return 1;
+    }
+
+    return 0;
 }
 
-void LDL_BufferOpenGLInit(LDL_BufferOpenGL* buffer)
+void LDL_BufferOpenGLInit(LDL_BufferOpenGL* buffer, LDL_Result* result)
 {
     if (buffer)
     {
-        buffer->Commands     = (LDL_DrawCommand*)malloc(sizeof(LDL_DrawCommand) * MAX_COMMANDS);
+        buffer->Result = result;
+
+        buffer->Commands = (LDL_DrawCommand*)malloc(sizeof(LDL_DrawCommand) * LDL_DrawCommandMax);
+        if (buffer->Commands == NULL)
+        {
+            LDL_BufferOpenGLDeinit(buffer);
+            LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+            return;
+        }
+
+        buffer->VertexBuffer = (LDL_Vertex*)malloc(sizeof(LDL_Vertex) * LDL_VerticesMax);
+        if (buffer->VertexBuffer == NULL)
+        {
+            LDL_BufferOpenGLDeinit(buffer);
+            LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+            return;
+        }
+
+        buffer->Batches = (LDL_Batch*)malloc(sizeof(LDL_Batch) * LDL_BatchesMax);
+        if (buffer->Batches == NULL)
+        {
+            LDL_BufferOpenGLDeinit(buffer);
+            LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+            return;
+        }
+
         buffer->CommandCount = 0;
-
-        buffer->VertexBuffer = (LDL_Vertex*)malloc(sizeof(LDL_Vertex) * MAX_VERTICES);
-        buffer->VertexCount  = 0;
-
-        buffer->Batches    = (LDL_Batch*)malloc(sizeof(LDL_Batch) * MAX_BATCHES);
+        buffer->VertexCount = 0;
         buffer->BatchCount = 0;
     }
 }
@@ -77,44 +114,67 @@ void LDL_BufferOpenGLAddTexture(LDL_BufferOpenGL* buffer, size_t layer, LDL_Text
 {
     LDL_DrawCommand* cmd;
 
-    if (buffer && buffer->CommandCount < MAX_COMMANDS)
+    if (buffer && buffer->CommandCount < LDL_DrawCommandMax)
     {
         cmd            = &buffer->Commands[buffer->CommandCount++];
-        cmd->type      = LDL_CommandIsTexture;
-        cmd->layer     = layer;
-        cmd->textureId = texture->Id;
-        cmd->dstPos    = dstPos  ? *dstPos  : LDL_GetVec2i(0, 0);
-        cmd->dstSize   = dstSize ? *dstSize : texture->Size;
-        cmd->srcPos    = srcPos  ? *srcPos  : LDL_GetVec2i(0, 0);
-        cmd->srcSize   = srcSize ? *srcSize : texture->Size;
+        cmd->Type      = LDL_CommandIsTexture;
+        cmd->Layer     = layer;
+        cmd->TextureId = texture->Id;
+        cmd->DstPos    = dstPos  ? *dstPos  : LDL_GetVec2i(0, 0);
+        cmd->DstSize   = dstSize ? *dstSize : texture->Size;
+        cmd->SrcPos    = srcPos  ? *srcPos  : LDL_GetVec2i(0, 0);
+        cmd->SrcSize   = srcSize ? *srcSize : texture->Size;
     }
 }
 
 void LDL_BufferOpenGLAddLine(LDL_BufferOpenGL* buffer, LDL_Color color, size_t layer, LDL_Vec2i first, LDL_Vec2i last)
 {
+    LDL_DrawCommand* cmd;
+
+    if (buffer && buffer->CommandCount < LDL_DrawCommandMax)
+    {
+        cmd            = &buffer->Commands[buffer->CommandCount++];
+        cmd->Type      = LDL_CommandIsLine;
+        cmd->Color     = color;
+        cmd->Layer     = layer;
+        cmd->TextureId = 0;
+        cmd->DstPos    = first;
+        cmd->DstSize   = last;
+    }
 }
 
 void LDL_BufferOpenGLAddFill(LDL_BufferOpenGL* buffer, LDL_Color color, size_t layer, LDL_Vec2i first, LDL_Vec2i last)
 {
+    LDL_DrawCommand* cmd;
+
+    if (buffer && buffer->CommandCount < LDL_DrawCommandMax)
+    {
+        cmd            = &buffer->Commands[buffer->CommandCount++];
+        cmd->Type      = LDL_CommandIsLine;
+        cmd->Color     = color;
+        cmd->Layer     = layer;
+        cmd->TextureId = 0;
+        cmd->DstPos    = first;
+        cmd->DstSize   = last;
+    }
 }
 
 void LDL_BufferOpenGLCalc(LDL_BufferOpenGL* buffer)
 {
     size_t i;
-    LDL_DrawCommand* cmd;
-    LDL_Batch* batch;
-    LDL_Vertex* v;
-    LDL_Color c;
-    LDL_GLColor cl;
-    float x;
-    float y;
-    float w;
-    float h;
-    float u1;
-    float v1;
-    float u2;
-    float v2;
-
+    float  x;
+    float  y;
+    float  w;
+    float  h;
+    float  u1;
+    float  v1;
+    float  u2;
+    float  v2;
+    LDL_Batch*       batch;
+    LDL_Vertex*      vertex;
+    LDL_GLColor      color;
+    LDL_DrawCommand* command;
+    
     qsort(buffer->Commands, buffer->CommandCount, sizeof(LDL_DrawCommand), CompareCommands);
 
     buffer->VertexCount = 0;
@@ -122,99 +182,96 @@ void LDL_BufferOpenGLCalc(LDL_BufferOpenGL* buffer)
 
     for (i = 0; i < buffer->CommandCount; ++i)
     {
-        cmd = &buffer->Commands[i];
+        command = &buffer->Commands[i];
 
-        if (buffer->BatchCount == 0 || cmd->layer != buffer->Batches[buffer->BatchCount - 1].layer || cmd->textureId != buffer->Batches[buffer->BatchCount - 1].textureId)
+        if (buffer->BatchCount == 0 
+            || command->Layer != buffer->Batches[buffer->BatchCount - 1].Layer 
+            || command->TextureId != buffer->Batches[buffer->BatchCount - 1].TextureId)
         {
             buffer->BatchCount++;
-            buffer->Batches[buffer->BatchCount - 1].textureId   = cmd->textureId;
-            buffer->Batches[buffer->BatchCount - 1].layer       = cmd->layer;
-            buffer->Batches[buffer->BatchCount - 1].firstVertex = buffer->VertexCount;
-            buffer->Batches[buffer->BatchCount - 1].vertexCount = 0;
+            buffer->Batches[buffer->BatchCount - 1].TextureId   = command->TextureId;
+            buffer->Batches[buffer->BatchCount - 1].Layer       = command->Layer;
+            buffer->Batches[buffer->BatchCount - 1].FirstVertex = buffer->VertexCount;
+            buffer->Batches[buffer->BatchCount - 1].VertexCount = 0;
         }
 
-        batch = &buffer->Batches[buffer->BatchCount - 1];
-        v     = &buffer->VertexBuffer[buffer->VertexCount];
-        c     = cmd->color;
-        cl    = LDL_GLNormalize(c);
+        batch  = &buffer->Batches[buffer->BatchCount - 1];
+        vertex = &buffer->VertexBuffer[buffer->VertexCount];
+        color  = LDL_GLNormalize(command->Color);
 
-        if (cmd->type == LDL_CommandIsTexture)
+        switch (command->Type)
         {
-            x  = (float) cmd->dstPos.x;
-            y  = (float) cmd->dstPos.y;
-            w  = (float) cmd->dstSize.x;
-            h  = (float) cmd->dstSize.y;
-            u1 = (float) cmd->srcPos.x / cmd->srcSize.x;
-            v1 = (float) cmd->srcPos.y / cmd->srcSize.y;
-            u2 = (float)(cmd->srcPos.x + cmd->srcSize.x) / cmd->srcSize.x;
-            v2 = (float)(cmd->srcPos.y + cmd->srcSize.y) / cmd->srcSize.y;
+        case LDL_CommandIsLine:
+            break;
+        case LDL_CommandIsFill:
+            break;
+        case LDL_CommandIsTexture:
+            x  = (float)  command->DstPos.x;
+            y  = (float)  command->DstPos.y;
+            w  = (float)  command->DstSize.x;
+            h  = (float)  command->DstSize.y;
+            u1 = (float) (command->SrcPos.x / command->SrcSize.x);
+            v1 = (float) (command->SrcPos.y / command->SrcSize.y);
+            u2 = (float)((command->SrcPos.x + command->SrcSize.x) / command->SrcSize.x);
+            v2 = (float)((command->SrcPos.y + command->SrcSize.y) / command->SrcSize.y);
 
-            v[0].x = x;
-            v[0].y = y;
-            v[0].u = u1;
-            v[0].v = v1;
-            v[0].r = 1.0f;
-            v[0].g = 1.0f;
-            v[0].b = 1.0f;
-            v[0].a = 1.0f;
+            vertex[0].x = x;
+            vertex[0].y = y;
+            vertex[0].u = u1;
+            vertex[0].v = v1;
+            vertex[0].r = 1.0f;
+            vertex[0].g = 1.0f;
+            vertex[0].b = 1.0f;
+            vertex[0].a = 1.0f;
 
-            v[1].x = x + w;
-            v[1].y = y;
-            v[1].u = u2;
-            v[1].v = v1;
-            v[1].r = 1.0f;
-            v[1].g = 1.0f;
-            v[1].b = 1.0f;
-            v[1].a = 1.0f;
+            vertex[1].x = x + w;
+            vertex[1].y = y;
+            vertex[1].u = u2;
+            vertex[1].v = v1;
+            vertex[1].r = 1.0f;
+            vertex[1].g = 1.0f;
+            vertex[1].b = 1.0f;
+            vertex[1].a = 1.0f;
 
-            v[2].x = x + w;
-            v[2].y = y + h;
-            v[2].u = u2;
-            v[2].v = v2;
-            v[2].r = 1.0f;
-            v[2].g = 1.0f;
-            v[2].b = 1.0f;
-            v[2].a = 1.0f;
+            vertex[2].x = x + w;
+            vertex[2].y = y + h;
+            vertex[2].u = u2;
+            vertex[2].v = v2;
+            vertex[2].r = 1.0f;
+            vertex[2].g = 1.0f;
+            vertex[2].b = 1.0f;
+            vertex[2].a = 1.0f;
 
-            v[3].x = x;
-            v[3].y = y;
-            v[3].u = u1;
-            v[3].v = v1;
-            v[3].r = 1.0f;
-            v[3].g = 1.0f;
-            v[3].b = 1.0f;
-            v[3].a = 1.0f;
+            vertex[3].x = x;
+            vertex[3].y = y;
+            vertex[3].u = u1;
+            vertex[3].v = v1;
+            vertex[3].r = 1.0f;
+            vertex[3].g = 1.0f;
+            vertex[3].b = 1.0f;
+            vertex[3].a = 1.0f;
 
-            v[4].x = x + w;
-            v[4].y = y + h;
-            v[4].u = u2;
-            v[4].v = v2;
-            v[4].r = 1.0f;
-            v[4].g = 1.0f;
-            v[4].b = 1.0f;
-            v[4].a = 1.0f;
+            vertex[4].x = x + w;
+            vertex[4].y = y + h;
+            vertex[4].u = u2;
+            vertex[4].v = v2;
+            vertex[4].r = 1.0f;
+            vertex[4].g = 1.0f;
+            vertex[4].b = 1.0f;
+            vertex[4].a = 1.0f;
 
-            v[5].x = x;
-            v[5].y = y + h;
-            v[5].u = u1;
-            v[5].v = v2;
-            v[5].r = 1.0f;
-            v[5].g = 1.0f;
-            v[5].b = 1.0f;
-            v[5].a = 1.0f;
-
-
-            /*
-            v[0] = (LDL_Vertex){ x,   y,   u1, v1, 1.0f, 1.0f, 1.0f, 1.0f };
-            v[1] = (LDL_Vertex){ x + w, y,   u2, v1,1.0f, 1.0f, 1.0f, 1.0f };
-            v[2] = (LDL_Vertex){ x + w, y + h, u2, v2, 1.0f, 1.0f, 1.0f, 1.0f };
-            v[3] = (LDL_Vertex){ x,   y,   u1, v1, 1.0f, 1.0f, 1.0f, 1.0f };
-            v[4] = (LDL_Vertex){ x + w, y + h, u2, v2, 1.0f, 1.0f, 1.0f, 1.0f };
-            v[5] = (LDL_Vertex){ x,   y + h, u1, v2, 1.0f, 1.0f, 1.0f, 1.0f };
-            */
+            vertex[5].x = x;
+            vertex[5].y = y + h;
+            vertex[5].u = u1;
+            vertex[5].v = v2;
+            vertex[5].r = 1.0f;
+            vertex[5].g = 1.0f;
+            vertex[5].b = 1.0f;
+            vertex[5].a = 1.0f;
 
             buffer->VertexCount += 6;
-            batch->vertexCount += 6;
+            batch->VertexCount  += 6;
+            break;
         }
     }
 }

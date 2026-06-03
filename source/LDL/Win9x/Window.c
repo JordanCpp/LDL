@@ -17,13 +17,13 @@ License for more details.
 #include <LDL/Win9x/WinGL1.h>
 #include <LDL/Win9x/WinGL3.h>
 
-typedef struct LDL_Window
+struct LDL_Window
 {
 	LDL_Result*       Result;
 	LDL_Context*      Context;
 	LDL_WindowOpenGL1 WindowOpenGL1;
 	LDL_WindowOpenGL3 WindowOpenGL3;
-} LDL_Window;
+};
 
 LDL_Window* LDL_WindowNew(LDL_Result* result, LDL_Context* context, LDL_Vec2i pos, LDL_Vec2i size, const char* title, size_t mode)
 {
@@ -148,6 +148,40 @@ LDL_Vec2i LDL_WindowGetSize(LDL_Window* window)
 	}
 
 	return LDL_GetVec2i(0, 0);
+}
+
+const char* LDL_WindowGetTitle(LDL_Window* window)
+{
+	if (window && window->Context)
+	{
+		switch (LDL_ContextGet(window->Context))
+		{
+		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
+			return LDL_WindowOpenGL1GetTitle(&window->WindowOpenGL1);
+		case LDL_ContextOpenGLModern:
+			return LDL_WindowOpenGL3GetTitle(&window->WindowOpenGL3);
+		};
+	}
+
+	return NULL;
+}
+
+void LDL_WindowSetTitle(LDL_Window* window, const char* title)
+{
+	if (window && window->Context)
+	{
+		switch (LDL_ContextGet(window->Context))
+		{
+		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
+			LDL_WindowOpenGL1SetTitle(&window->WindowOpenGL1, title);
+			break;
+		case LDL_ContextOpenGLModern:
+			LDL_WindowOpenGL3SetTitle(&window->WindowOpenGL3, title);
+			break;
+		};
+	}
 }
 
 void LDL_WindowPresent(LDL_Window* window)

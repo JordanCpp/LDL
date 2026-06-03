@@ -27,12 +27,12 @@ typedef struct LDL_GLColor
 	GLfloat a;
 } LDL_GLColor;
 
-size_t MaxTextureSize();
+int MaxTextureSize();
 bool IsMaxTextureSize(LDL_Vec2i resolutionSize, int textureSize);
 int SelectTextureSize(LDL_Vec2i size);
-GLuint CreateTexture(GLsizei width, GLsizei height, GLint format);
+GLuint CreateTexture(GLsizei width, GLsizei height, GLenum format);
 void DeleteTexture(GLuint id);
 LDL_GLColor LDL_GLNormalize(LDL_Color color);
-void DrawQuad(LDL_Vec2i dstPos, LDL_Vec2i dstSize, LDL_Vec2i srcPos, LDL_Vec2i srcSize, size_t textureSize);
+void DrawQuad(LDL_Vec2i dstPos, LDL_Vec2i dstSize, LDL_Vec2i srcPos, LDL_Vec2i srcSize, int textureSize);
 
 #endif

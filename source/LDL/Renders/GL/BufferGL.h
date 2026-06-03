@@ -17,14 +17,16 @@ License for more details.
 
 #include <LDL/Vec2i.h>
 #include <LDL/Color.h>
+#include <LDL/Result.h>
 #include <LDL/OpenGL/GLTypes.h>
 #include <LDL/Renders/GL/GLUtils.h>
 
 enum
 {
-    MAX_COMMANDS = 10000,
-    MAX_VERTICES = 60000,
-    MAX_BATCHES  = 1024
+    LDL_VerticesCount  = 6,
+    LDL_DrawCommandMax = 20000,
+    LDL_VerticesMax    = LDL_DrawCommandMax * LDL_VerticesCount,
+    LDL_BatchesMax     = 1024
 };
 
 typedef struct LDL_Vertex
@@ -48,39 +50,36 @@ typedef enum LDL_CommandType
 
 typedef struct LDL_DrawCommand
 {
-    LDL_CommandType type;
-    size_t          layer;
-    GLuint          textureId;
-    LDL_Color       color;
-    LDL_Vec2i       dstPos;
-    LDL_Vec2i       dstSize;
-    LDL_Vec2i       srcPos;
-    LDL_Vec2i       srcSize;
-    LDL_Vec2i       p1;
-    LDL_Vec2i       p2;
+    LDL_CommandType Type;
+    size_t          Layer;
+    GLuint          TextureId;
+    LDL_Color       Color;
+    LDL_Vec2i       DstPos;
+    LDL_Vec2i       DstSize;
+    LDL_Vec2i       SrcPos;
+    LDL_Vec2i       SrcSize;
 } LDL_DrawCommand;
 
 typedef struct LDL_Batch
 {
-    GLuint textureId;
-    size_t layer;
-    size_t firstVertex;
-    size_t vertexCount;
+    GLuint TextureId;
+    size_t Layer;
+    size_t FirstVertex;
+    size_t VertexCount;
 } LDL_Batch;
-
-typedef struct LDL_TextureOpenGL LDL_TextureOpenGL;
 
 typedef struct LDL_BufferOpenGL
 {
+    LDL_Result*       Result;
     LDL_DrawCommand*  Commands;
     size_t            CommandCount;
     LDL_Vertex*       VertexBuffer;
-    size_t            VertexCount;
+    GLsizeiptr        VertexCount;
     LDL_Batch*        Batches;
     size_t            BatchCount;
 } LDL_BufferOpenGL;
 
-void LDL_BufferOpenGLInit(LDL_BufferOpenGL* buffer);
+void LDL_BufferOpenGLInit(LDL_BufferOpenGL* buffer, LDL_Result* result);
 void LDL_BufferOpenGLDeinit(LDL_BufferOpenGL* buffer);
 void LDL_BufferOpenGLClear(LDL_BufferOpenGL* buffer);
 void LDL_BufferOpenGLAddTexture(LDL_BufferOpenGL* buffer, size_t layer, LDL_TextureOpenGL* texture, LDL_Vec2i* dstPos, LDL_Vec2i* dstSize, LDL_Vec2i* srcPos, LDL_Vec2i* srcSize);
