@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <LDL/LDL.h>
 
-int random(int min, int max)
+int Random(int min, int max)
 {
     int range = max - min + 1;
 
@@ -81,18 +81,18 @@ int main(void)
         for (i = 0; i < count; i++)
         {
             LDL_RenderSetLayer(render, 1);
-            pos  = LDL_GetVec2i(random(0, LDL_WindowGetSize(window).x), random(0, LDL_WindowGetSize(window).y));
-            size = LDL_GetVec2i(random(25, 50), random(25, 50));
+            pos  = LDL_GetVec2i(Random(0, LDL_WindowGetSize(window).x), Random(0, LDL_WindowGetSize(window).y));
+            size = LDL_GetVec2i(Random(25, 50), Random(25, 50));
             LDL_RenderDraw(render, texture0, &pos, &size, NULL, NULL);
 
             LDL_RenderSetLayer(render, 2);
-            pos  = LDL_GetVec2i(random(0, LDL_WindowGetSize(window).x), random(0, LDL_WindowGetSize(window).y));
-            size = LDL_GetVec2i(random(25, 50), random(25, 50));
+            pos  = LDL_GetVec2i(Random(0, LDL_WindowGetSize(window).x), Random(0, LDL_WindowGetSize(window).y));
+            size = LDL_GetVec2i(Random(25, 50), Random(25, 50));
             LDL_RenderDraw(render, texture1, &pos, &size, NULL, NULL);
 
             LDL_RenderSetLayer(render, 2);
-            pos  = LDL_GetVec2i(random(0, LDL_WindowGetSize(window).x), random(0, LDL_WindowGetSize(window).y));
-            size = LDL_GetVec2i(random(25, 50), random(25, 50));
+            pos  = LDL_GetVec2i(Random(0, LDL_WindowGetSize(window).x), Random(0, LDL_WindowGetSize(window).y));
+            size = LDL_GetVec2i(Random(25, 50), Random(25, 50));
             LDL_RenderDraw(render, texture2, &pos, &size, NULL, NULL);
         }
 

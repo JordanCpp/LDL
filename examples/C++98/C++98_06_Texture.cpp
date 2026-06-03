@@ -8,7 +8,7 @@
 #include <iostream>
 #include <LDL/C++98/LDL.hpp>
 
-int random(int min, int max)
+int Random(int min, int max)
 {
 	int range = max - min + 1;
 
@@ -54,13 +54,13 @@ int main()
 		for (size_t i = 0; i < count; i++)
 		{
 			render.SetLayer(1);
-			render.Draw(&texture0, LDL::Vec2i(random(0, window.GetSize().x), random(0, window.GetSize().y)), LDL::Vec2i(random(25, 50), random(25, 50)));
+			render.Draw(&texture0, LDL::Vec2i(Random(0, window.GetSize().x), Random(0, window.GetSize().y)), LDL::Vec2i(Random(25, 50), Random(25, 50)));
 
 			render.SetLayer(2);
-			render.Draw(&texture1, LDL::Vec2i(random(0, window.GetSize().x), random(0, window.GetSize().y)), LDL::Vec2i(random(25, 50), random(25, 50)));
+			render.Draw(&texture1, LDL::Vec2i(Random(0, window.GetSize().x), Random(0, window.GetSize().y)), LDL::Vec2i(Random(25, 50), Random(25, 50)));
 
 			render.SetLayer(3);
-			render.Draw(&texture2, LDL::Vec2i(random(0, window.GetSize().x), random(0, window.GetSize().y)), LDL::Vec2i(random(25, 50), random(25, 50)));
+			render.Draw(&texture2, LDL::Vec2i(Random(0, window.GetSize().x), Random(0, window.GetSize().y)), LDL::Vec2i(Random(25, 50), Random(25, 50)));
 		}
 
 		render.End();
