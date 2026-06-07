@@ -13,19 +13,28 @@ int main()
 	LDL::Result  result;
 	LDL::Context context(result);
 	LDL::Event   event;
+	LDL::Formatter formatter;
+	LDL::FpsCounter fpsCounter(result);
 	LDL::Window  window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL C++98 lesson 01 - Window", LDL_WindowModeResized);
 
 	while (window.IsRunning() && result.IsOk())
 	{
+		fpsCounter.Start();
+
 		while (window.GetEvent(event))
 		{
-			if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+			if (event.Type == LDL_EventIsQuit || event.IsKeyPressed(LDL_KeyEscape))
 			{
 				window.StopEvent();
 			}
 		}
 
 		window.Present();
+
+		if (fpsCounter.Calc())
+		{
+			window.SetTitle(formatter.Format("LDL C89 lesson 06 - Texture. Fps: %d", fpsCounter.Fps()));
+		}
 	}
 
 	if (result.IsFail())

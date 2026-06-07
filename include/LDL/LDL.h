@@ -17,6 +17,7 @@ License for more details.
 
 #include <LDL/Context.h>
 #include <LDL/Result.h>
+#include <LDL/Surface.h>
 #include <LDL/Render.h>
 #include <LDL/Library.h>
 #include <LDL/Format.h>

@@ -66,6 +66,68 @@ LDL_TextureOpenGL* LDL_TextureOpenGLNewFromPixels(LDL_Result* result, size_t pix
 	return texture;
 }
 
+LDL_TextureOpenGL* LDL_TextureOpenGLNewFromSurface(LDL_Result* result, LDL_Surface* surface)
+{
+	size_t i;
+	uint8_t* src;
+	LDL_Color key;
+	bool isKeyColor;
+	uint8_t* pixels;
+	LDL_TextureOpenGL* texture;
+
+	if (!result)
+	{
+		return NULL;
+	}
+
+	if (!surface)
+	{
+		LDL_ResultAddMessage(result, LDL_ErrorInvalidArgument(), "surface");
+		return NULL;
+	}
+
+	if (LDL_SurfaceIsColorKey(surface))
+	{
+		pixels = (uint8_t*)malloc(LDL_SurfaceGetSize(surface).x * LDL_SurfaceGetSize(surface).y * 4);
+
+		if (!pixels)
+		{
+			LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+			return NULL;
+		}
+
+		src = LDL_SurfaceGetPixels(surface);
+		key = LDL_SurfaceGetColorKey(surface);
+
+		if (LDL_SurfaceGetBytesPerPixel(surface) == 3)
+		{
+			for (i = 0; i < LDL_SurfaceGetSize(surface).x * LDL_SurfaceGetSize(surface).y; i++)
+			{
+				uint8_t r = src[i * 3 + 0];
+				uint8_t g = src[i * 3 + 1];
+				uint8_t b = src[i * 3 + 2];
+
+				isKeyColor = (r == key.r && g == key.g && b == key.b);
+
+				pixels[i * 4 + 0] = r;
+				pixels[i * 4 + 1] = g;
+				pixels[i * 4 + 2] = b;
+				pixels[i * 4 + 3] = isKeyColor ? 0 : 255;
+			}
+
+			texture = LDL_TextureOpenGLNewFromPixels(result, LDL_PixelFormatRGBA32, LDL_SurfaceGetSize(surface), pixels);
+
+			free(pixels);
+		}
+	}
+	else
+	{
+		texture = LDL_TextureOpenGLNewFromPixels(result, LDL_PixelFormatRGB24, LDL_SurfaceGetSize(surface), LDL_SurfaceGetPixels(surface));
+	}
+
+	return texture;
+}
+
 void LDL_TextureOpenGLFree(LDL_TextureOpenGL* texture)
 {
 	if (texture)

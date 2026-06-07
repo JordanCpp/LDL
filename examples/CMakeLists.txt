@@ -1,4 +1,9 @@
 
+if(LDL_BUILD_EXAMPLES AND LDL_BUILD_EXAMPLES_2D_RENDER)
+    enable_language(CXX)
+    add_subdirectory("Render2D")
+endif()
+
 if(LDL_BUILD_EXAMPLES AND LDL_BUILD_EXAMPLES_CPP11)
     enable_language(CXX)
     add_subdirectory("C++11")

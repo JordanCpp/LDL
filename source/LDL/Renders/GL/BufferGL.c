@@ -12,6 +12,7 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
+#include <math.h>
 #include <stdlib.h>
 #include <LDL/ErrorMsg.h>
 #include <LDL/Renders/GL/TexGL.h>
@@ -110,7 +111,7 @@ void LDL_BufferOpenGLClear(LDL_BufferOpenGL* buffer)
     }
 }
 
-void LDL_BufferOpenGLAddTexture(LDL_BufferOpenGL* buffer, size_t layer, LDL_TextureOpenGL* texture, LDL_Vec2i* dstPos, LDL_Vec2i* dstSize, LDL_Vec2i* srcPos, LDL_Vec2i* srcSize)
+void LDL_BufferOpenGLAddTexture(LDL_BufferOpenGL* buffer, size_t layer, LDL_TextureOpenGL* texture, LDL_Vec2i* dstPos, LDL_Vec2i* dstSize, LDL_Vec2i* srcPos, LDL_Vec2i* srcSize, LDL_Vec2i quadSize)
 {
     LDL_DrawCommand* cmd;
 
@@ -124,6 +125,7 @@ void LDL_BufferOpenGLAddTexture(LDL_BufferOpenGL* buffer, size_t layer, LDL_Text
         cmd->DstSize   = dstSize ? *dstSize : texture->Size;
         cmd->SrcPos    = srcPos  ? *srcPos  : LDL_GetVec2i(0, 0);
         cmd->SrcSize   = srcSize ? *srcSize : texture->Size;
+        cmd->QuadSize  = quadSize;
     }
 }
 
@@ -150,7 +152,7 @@ void LDL_BufferOpenGLAddFill(LDL_BufferOpenGL* buffer, LDL_Color color, size_t l
     if (buffer && buffer->CommandCount < LDL_DrawCommandMax)
     {
         cmd            = &buffer->Commands[buffer->CommandCount++];
-        cmd->Type      = LDL_CommandIsLine;
+        cmd->Type      = LDL_CommandIsFill;
         cmd->Color     = color;
         cmd->Layer     = layer;
         cmd->TextureId = 0;
@@ -174,7 +176,8 @@ void LDL_BufferOpenGLCalc(LDL_BufferOpenGL* buffer)
     LDL_Vertex*      vertex;
     LDL_GLColor      color;
     LDL_DrawCommand* command;
-    
+    float  dx, dy, nx, ny, len;
+
     qsort(buffer->Commands, buffer->CommandCount, sizeof(LDL_DrawCommand), CompareCommands);
 
     buffer->VertexCount = 0;
@@ -201,19 +204,174 @@ void LDL_BufferOpenGLCalc(LDL_BufferOpenGL* buffer)
 
         switch (command->Type)
         {
-        case LDL_CommandIsLine:
-            break;
         case LDL_CommandIsFill:
+            x = (float)command->DstPos.x;
+            y = (float)command->DstPos.y;
+            w = (float)command->DstSize.x;
+            h = (float)command->DstSize.y;
+
+            vertex[0].x = x;      
+            vertex[0].y = y;      
+            vertex[0].u = 0; 
+            vertex[0].v = 0;
+
+            vertex[1].x = x + w;  
+            vertex[1].y = y;      
+            vertex[1].u = 1; 
+            vertex[1].v = 0;
+
+            vertex[2].x = x + w;  
+            vertex[2].y = y + h;  
+            vertex[2].u = 1; 
+            vertex[2].v = 1;
+
+            vertex[3].x = x;      
+            vertex[3].y = y;      
+            vertex[3].u = 0; 
+            vertex[3].v = 0;
+
+            vertex[4].x = x + w;  
+            vertex[4].y = y + h;  
+            vertex[4].u = 1; 
+            vertex[4].v = 1;
+
+            vertex[5].x = x;      
+            vertex[5].y = y + h;  
+            vertex[5].u = 0; 
+            vertex[5].v = 1;
+
+            vertex[0].r = color.r;
+            vertex[0].g = color.g;
+            vertex[0].b = color.b;
+            vertex[0].a = color.a;
+            vertex[0].u = 0;
+            vertex[0].v = 0;
+
+            vertex[1].r = color.r;
+            vertex[1].g = color.g;
+            vertex[1].b = color.b;
+            vertex[1].a = color.a;
+            vertex[1].u = 0;
+            vertex[1].v = 0;
+
+            vertex[2].r = color.r;
+            vertex[2].g = color.g;
+            vertex[2].b = color.b;
+            vertex[2].a = color.a;
+            vertex[2].u = 0;
+            vertex[2].v = 0;
+
+            vertex[3].r = color.r;
+            vertex[3].g = color.g;
+            vertex[3].b = color.b;
+            vertex[3].a = color.a;
+            vertex[3].u = 0;
+            vertex[3].v = 0;
+
+            vertex[4].r = color.r;
+            vertex[4].g = color.g;
+            vertex[4].b = color.b;
+            vertex[4].a = color.a;
+            vertex[4].u = 0;
+            vertex[4].v = 0;
+
+            vertex[5].r = color.r;
+            vertex[5].g = color.g;
+            vertex[5].b = color.b;
+            vertex[5].a = color.a;
+            vertex[5].u = 0;
+            vertex[5].v = 0;
+
+            buffer->VertexCount += 6;
+            batch->VertexCount += 6;
             break;
+
+        case LDL_CommandIsLine:
+            x = (float)command->DstPos.x;
+            y = (float)command->DstPos.y;
+            dx = (float)command->DstSize.x - x;
+            dy = (float)command->DstSize.y - y;
+
+            nx = -dy;
+            ny = dx;
+            len = sqrt(nx * nx + ny * ny);
+            if (len > 0.0f) 
+            { 
+                nx /= len; 
+                ny /= len; 
+            }
+
+            nx *= 0.5f;
+            ny *= 0.5f;
+
+            vertex[0].x = x + nx; 
+            vertex[0].y = y + ny;
+            vertex[1].x = (x + dx) + nx; 
+            vertex[1].y = (y + dy) + ny;
+            vertex[2].x = (x + dx) - nx; 
+            vertex[2].y = (y + dy) - ny;
+            vertex[3].x = x + nx; 
+            vertex[3].y = y + ny;
+            vertex[4].x = (x + dx) - nx; 
+            vertex[4].y = (y + dy) - ny;
+            vertex[5].x = x - nx; 
+            vertex[5].y = y - ny;
+
+            vertex[0].r = color.r;
+            vertex[0].g = color.g;
+            vertex[0].b = color.b;
+            vertex[0].a = color.a;
+            vertex[0].u = 0;
+            vertex[0].v = 0;
+
+            vertex[1].r = color.r;
+            vertex[1].g = color.g;
+            vertex[1].b = color.b;
+            vertex[1].a = color.a;
+            vertex[1].u = 0;
+            vertex[1].v = 0;
+
+            vertex[2].r = color.r;
+            vertex[2].g = color.g;
+            vertex[2].b = color.b;
+            vertex[2].a = color.a;
+            vertex[2].u = 0;
+            vertex[2].v = 0;
+
+            vertex[3].r = color.r;
+            vertex[3].g = color.g;
+            vertex[3].b = color.b;
+            vertex[3].a = color.a;
+            vertex[3].u = 0;
+            vertex[3].v = 0;
+
+            vertex[4].r = color.r;
+            vertex[4].g = color.g;
+            vertex[4].b = color.b;
+            vertex[4].a = color.a;
+            vertex[4].u = 0;
+            vertex[4].v = 0;
+
+            vertex[5].r = color.r;
+            vertex[5].g = color.g;
+            vertex[5].b = color.b;
+            vertex[5].a = color.a;
+            vertex[5].u = 0;
+            vertex[5].v = 0;
+
+            buffer->VertexCount += 6;
+            batch->VertexCount += 6;
+            break;
+
         case LDL_CommandIsTexture:
-            x  = (float)  command->DstPos.x;
-            y  = (float)  command->DstPos.y;
-            w  = (float)  command->DstSize.x;
-            h  = (float)  command->DstSize.y;
-            u1 = (float) (command->SrcPos.x / command->SrcSize.x);
-            v1 = (float) (command->SrcPos.y / command->SrcSize.y);
-            u2 = (float)((command->SrcPos.x + command->SrcSize.x) / command->SrcSize.x);
-            v2 = (float)((command->SrcPos.y + command->SrcSize.y) / command->SrcSize.y);
+            x  = (float)command->DstPos.x;
+            y  = (float)command->DstPos.y;
+            w  = (float)command->DstSize.x;
+            h  = (float)command->DstSize.y;
+            u1 = (float)command->SrcPos.x / (float)command->QuadSize.x;
+            v1 = (float)command->SrcPos.y / (float)command->QuadSize.y;
+            u2 = ((float)command->SrcPos.x + (float)command->SrcSize.x) / (float)command->QuadSize.x;
+            v2 = ((float)command->SrcPos.y + (float)command->SrcSize.y) / (float)command->QuadSize.y;
 
             vertex[0].x = x;
             vertex[0].y = y;

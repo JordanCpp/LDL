@@ -14,6 +14,7 @@ option(LDL_BUILD_EXAMPLES_OPENGL2 "Enable building examples for OpenGL 2" ON)
 option(LDL_BUILD_EXAMPLES_OPENGL1 "Enable building examples for OpenGL 1" ON)
 option(LDL_BUILD_EXAMPLES_OPENGL2 "Enable building examples for OpenGL 2" ON)
 option(LDL_BUILD_EXAMPLES_OPENGL3 "Enable building examples for OpenGL 3" ON)
+option(LDL_BUILD_EXAMPLES_2D_RENDER "Enable building examples for 2D render" ON)
 
 option(LDL_ENABLE_INSTALL "Enable install target for library" OFF)
 

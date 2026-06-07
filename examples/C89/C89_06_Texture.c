@@ -17,7 +17,7 @@ int Random(int min, int max)
     return min + rand() % range;
 }
 
-const int count = 100;
+const int count = 1000;
 
 int main(void)
 {
@@ -39,7 +39,7 @@ int main(void)
     srand(time(NULL));
 
     result = LDL_ResultNew();
-    context = LDL_ContextNew(result, LDL_ContextOpenGLLegacy);
+    context = LDL_ContextNew(result, LDL_ContextOpenGLModern);
     window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 06 - Texture", LDL_WindowModeResized);
     render = LDL_RenderNew(result, context, window);
     loader = LDL_BmpLoaderNew(result);

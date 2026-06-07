@@ -58,6 +58,7 @@ typedef struct LDL_DrawCommand
     LDL_Vec2i       DstSize;
     LDL_Vec2i       SrcPos;
     LDL_Vec2i       SrcSize;
+    LDL_Vec2i       QuadSize;
 } LDL_DrawCommand;
 
 typedef struct LDL_Batch
@@ -82,7 +83,7 @@ typedef struct LDL_BufferOpenGL
 void LDL_BufferOpenGLInit(LDL_BufferOpenGL* buffer, LDL_Result* result);
 void LDL_BufferOpenGLDeinit(LDL_BufferOpenGL* buffer);
 void LDL_BufferOpenGLClear(LDL_BufferOpenGL* buffer);
-void LDL_BufferOpenGLAddTexture(LDL_BufferOpenGL* buffer, size_t layer, LDL_TextureOpenGL* texture, LDL_Vec2i* dstPos, LDL_Vec2i* dstSize, LDL_Vec2i* srcPos, LDL_Vec2i* srcSize);
+void LDL_BufferOpenGLAddTexture(LDL_BufferOpenGL* buffer, size_t layer, LDL_TextureOpenGL* texture, LDL_Vec2i* dstPos, LDL_Vec2i* dstSize, LDL_Vec2i* srcPos, LDL_Vec2i* srcSize, LDL_Vec2i quadSize);
 void LDL_BufferOpenGLAddLine(LDL_BufferOpenGL* buffer, LDL_Color color, size_t layer, LDL_Vec2i first, LDL_Vec2i last);
 void LDL_BufferOpenGLAddFill(LDL_BufferOpenGL* buffer, LDL_Color color, size_t layer, LDL_Vec2i first, LDL_Vec2i last);
 void LDL_BufferOpenGLCalc(LDL_BufferOpenGL* buffer);

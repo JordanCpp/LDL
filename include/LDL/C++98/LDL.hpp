@@ -16,6 +16,7 @@ License for more details.
 #define LDL_Cpp98_hpp
 
 #include <string>
+#include <stdarg.h>
 #include <LDL/LDL.h>
 #include <LDL/OpenGL/GLLoad.h>
 
@@ -60,6 +61,10 @@ namespace LDL
 	class Event : public LDL_Event
 	{
 	public:
+		inline bool IsKeyPressed(uint8_t key)
+		{
+			return LDL_EventIsKeyPressed(this, key);
+		}
 	};
 
 	class Result
@@ -100,6 +105,98 @@ namespace LDL
 	private:
 		LDL_Result* _result;
 		std::string _message;
+	};
+
+	class Surface
+	{
+	public:
+		inline Surface(Result& result, uint8_t pixelFormat, Vec2i size) :
+			_surface(NULL)
+		{
+			_surface = LDL_SurfaceNewFromSize(result.Impl(), pixelFormat, size);
+		}
+
+		inline Surface(Result& result, uint8_t pixelFormat, Vec2i size, uint8_t* pixels) :
+			_surface(NULL)
+		{
+			_surface = LDL_SurfaceNewFromPixels(result.Impl(), pixelFormat, size, pixels);
+		}
+
+		inline ~Surface()
+		{
+			LDL_SurfaceFree(_surface);
+		}
+
+		inline LDL_Surface* Impl()
+		{
+			return _surface;
+		}
+
+		inline const Vec2i& GetCapacity()
+		{
+			LDL_Vec2i size = LDL_SurfaceGetCapacity(_surface);
+
+			_vec.x = size.x;
+			_vec.y = size.y;
+
+			return _vec;
+		}
+
+		inline const Vec2i& GetSize()
+		{
+			LDL_Vec2i size = LDL_SurfaceGetSize(_surface);
+
+			_vec.x = size.x;
+			_vec.y = size.y;
+
+			return _vec;
+		}
+
+		inline uint8_t GetBytesPerPixel()
+		{
+			return LDL_SurfaceGetBytesPerPixel(_surface);
+		}
+
+		inline uint8_t* GetPixels()
+		{
+			return LDL_SurfaceGetPixels(_surface);
+		}
+
+		inline uint8_t GetPixelFormat()
+		{
+			return LDL_SurfaceGetPixelFormat(_surface);
+		}
+
+		inline size_t GetPitch()
+		{
+			return LDL_SurfaceGetPitch(_surface);
+		}
+
+		inline const Color& GetColorKey()
+		{
+			LDL_Color color = LDL_SurfaceGetColorKey(_surface);
+
+			_color.r = color.r;
+			_color.g = color.g;
+			_color.b = color.b;
+			_color.a = color.a;
+
+			return _color;
+		}
+
+		inline bool IsColorKey()
+		{
+			return LDL_SurfaceIsColorKey(_surface);
+		}
+
+		inline void SetColorKey(const Color& color)
+		{
+			LDL_SurfaceSetColorKey(_surface, LDL_ColorRgba(color.r, color.g, color.b, color.a));
+		}
+	private:
+		Vec2i        _vec;
+		Color        _color;
+		LDL_Surface* _surface;
 	};
 
 	class Context
@@ -177,6 +274,11 @@ namespace LDL
 
 			return _vec;
 		}
+
+		inline void SetTitle(const std::string& title)
+		{
+			LDL_WindowSetTitle(_window, title.c_str());
+		}
 	private:
 		Vec2i       _vec;
 		LDL_Window* _window;
@@ -195,6 +297,12 @@ namespace LDL
 			_texture(NULL)
 		{
 			_texture = LDL_TextureNewFromSize(result.Impl(), context.Impl(), pixelFormat, size);
+		}
+
+		inline Texture(Result& result, Context& context, Surface* surface) :
+			_texture(NULL)
+		{
+			_texture = LDL_TextureNewFromSurface(result.Impl(), context.Impl(), surface->Impl());
 		}
 
 		inline ~Texture()
@@ -389,6 +497,76 @@ namespace LDL
 	{
 		LDL_Delay(count);
 	}
+
+	class Formatter
+	{
+	public:
+		inline Formatter() :
+			_formatter(NULL)
+		{
+		}
+
+		inline ~Formatter()
+		{
+			LDL_FormatterFree(_formatter);
+		}
+
+		inline LDL_Formatter* Impl()
+		{
+			return _formatter;
+		}
+
+		inline const char* Format(const char* format, ...)
+		{
+			va_list args;
+			const char* res;
+
+			va_start(args, format);
+			res = LDL_FormatterVFormat(_formatter, format, args);
+			va_end(args);
+
+			return res;
+		}
+	private:
+		LDL_Formatter* _formatter;
+	};
+
+	class FpsCounter
+	{
+	public:
+		inline FpsCounter(Result& result) :
+			_fpsCounter(NULL)
+		{
+			_fpsCounter = LDL_FpsCounterNew(result.Impl());
+		}
+
+		inline ~FpsCounter()
+		{
+			LDL_FpsCounterFree(_fpsCounter);
+		}
+
+		inline LDL_FpsCounter* Impl()
+		{
+			return _fpsCounter;
+		}
+
+		inline void Start()
+		{
+			LDL_FpsCounterStart(_fpsCounter);
+		}
+
+		inline bool Calc()
+		{
+			return LDL_FpsCounterCalc(_fpsCounter);
+		}
+
+		inline size_t Fps()
+		{
+			return LDL_FpsCounterFps(_fpsCounter);
+		}
+	private:
+		LDL_FpsCounter* _fpsCounter;
+	};
 }
 
 #endif

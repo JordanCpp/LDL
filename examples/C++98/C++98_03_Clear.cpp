@@ -5,11 +5,21 @@
  * -----------------------------------------------------------------------------
  */
 
+#include <time.h>
 #include <iostream>
 #include <LDL/C++98/LDL.hpp>
 
+int Random(int min, int max)
+{
+	int range = max - min + 1;
+
+	return min + rand() % range;
+}
+
 int main()
 {
+	srand(time(NULL));
+
 	LDL::Result  result;
 	LDL::Context context(result);
 	LDL::Event   event;
@@ -20,7 +30,7 @@ int main()
 	{
 		while (window.GetEvent(event))
 		{
-			if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+			if (event.Type == LDL_EventIsQuit || event.IsKeyPressed(LDL_KeyEscape))
 			{
 				window.StopEvent();
 			}
@@ -28,7 +38,7 @@ int main()
 
 		render.Begin();
 
-		render.SetColor(LDL::Color(0, 128, 255));
+		render.SetColor(LDL::Color(Random(0, 255), Random(0, 255), Random(0, 255)));
 		render.Clear();
 
 		render.End();

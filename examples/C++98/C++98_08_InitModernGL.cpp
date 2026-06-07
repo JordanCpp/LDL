@@ -21,7 +21,7 @@ int main()
 	{
 		while (window.GetEvent(event))
 		{
-			if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+			if (event.Type == LDL_EventIsQuit || event.IsKeyPressed(LDL_KeyEscape))
 			{
 				window.StopEvent();
 			}
