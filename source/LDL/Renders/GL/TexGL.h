@@ -19,6 +19,7 @@ License for more details.
 #include <LDL/Result.h>
 #include <LDL/Palette.h>
 #include <LDL/Context.h>
+#include <LDL/Surface.h>
 #include <LDL/OpenGL/GLTypes.h>
 
 typedef struct LDL_TextureOpenGL
@@ -31,6 +32,7 @@ typedef struct LDL_TextureOpenGL
 
 LDL_TextureOpenGL* LDL_TextureOpenGLNewFromSize(LDL_Result* result, size_t pixelFormat, LDL_Vec2i size);
 LDL_TextureOpenGL* LDL_TextureOpenGLNewFromPixels(LDL_Result* result, size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels);
+LDL_TextureOpenGL* LDL_TextureOpenGLNewFromSurface(LDL_Result* result, LDL_Surface* surface);
 void LDL_TextureOpenGLFree(LDL_TextureOpenGL* texture);
 
 LDL_Vec2i LDL_TextureOpenGLGetSize(LDL_TextureOpenGL* texture);

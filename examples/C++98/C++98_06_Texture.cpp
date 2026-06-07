@@ -15,14 +15,14 @@ int Random(int min, int max)
 	return min + rand() % range;
 }
 
-const size_t count = 100;
+int count = 10;
 
 int main()
 {
 	LDL::Result  result;
 	LDL::Context context(result);
 	LDL::Event   event;
-	LDL::Window  window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL C++98 lesson 06 - Texture", LDL_WindowModeResized);
+	LDL::Window  window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL C++98 lesson 06 - Texture. Q: +10 W: -10", LDL_WindowModeResized);
 	LDL::Render  render(result, context, window);
 
 	LDL::BmpLoader loader(result);
@@ -40,9 +40,19 @@ int main()
 	{
 		while (window.GetEvent(event))
 		{
-			if (event.Type == LDL_EventIsQuit || LDL_EventIsKeyPressed(&event, LDL_KeyEscape))
+			if (event.Type == LDL_EventIsQuit || event.IsKeyPressed(LDL_KeyEscape))
 			{
 				window.StopEvent();
+			}
+
+			if (event.IsKeyPressed(LDL_KeyQ))
+			{
+				count += 10;
+			}
+
+			if (event.IsKeyPressed(LDL_KeyW))
+			{
+				count -= 10;
 			}
 		}
 
@@ -51,16 +61,19 @@ int main()
 		render.SetColor(LDL::Color(255, 127, 39));
 		render.Clear();
 
-		for (size_t i = 0; i < count; i++)
+		if (count > 0)
 		{
-			render.SetLayer(1);
-			render.Draw(&texture0, LDL::Vec2i(Random(0, window.GetSize().x), Random(0, window.GetSize().y)), LDL::Vec2i(Random(25, 50), Random(25, 50)));
+			for (size_t i = 0; i < count; i++)
+			{
+				render.SetLayer(1);
+				render.Draw(&texture0, LDL::Vec2i(Random(0, window.GetSize().x), Random(0, window.GetSize().y)), LDL::Vec2i(Random(25, 50), Random(25, 50)));
 
-			render.SetLayer(2);
-			render.Draw(&texture1, LDL::Vec2i(Random(0, window.GetSize().x), Random(0, window.GetSize().y)), LDL::Vec2i(Random(25, 50), Random(25, 50)));
+				render.SetLayer(2);
+				render.Draw(&texture1, LDL::Vec2i(Random(0, window.GetSize().x), Random(0, window.GetSize().y)), LDL::Vec2i(Random(25, 50), Random(25, 50)));
 
-			render.SetLayer(3);
-			render.Draw(&texture2, LDL::Vec2i(Random(0, window.GetSize().x), Random(0, window.GetSize().y)), LDL::Vec2i(Random(25, 50), Random(25, 50)));
+				render.SetLayer(3);
+				render.Draw(&texture2, LDL::Vec2i(Random(0, window.GetSize().x), Random(0, window.GetSize().y)), LDL::Vec2i(Random(25, 50), Random(25, 50)));
+			}
 		}
 
 		render.End();

@@ -23,6 +23,7 @@ set(LDL_INCLUDES_API
     ${LDL_ROOT_FOLDER}/include/LDL/PixFrmt.h
     ${LDL_ROOT_FOLDER}/include/LDL/Render.h
     ${LDL_ROOT_FOLDER}/include/LDL/Result.h
+    ${LDL_ROOT_FOLDER}/include/LDL/Surface.h
     ${LDL_ROOT_FOLDER}/include/LDL/Texture.h
     ${LDL_ROOT_FOLDER}/include/LDL/Ticks.h
     ${LDL_ROOT_FOLDER}/include/LDL/Types.h
@@ -130,6 +131,7 @@ set(LDL_SOURCES_RENDERS
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Color.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Mat4f.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Render.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Surface.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Texture.c
 )
 

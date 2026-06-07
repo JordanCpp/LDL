@@ -90,6 +90,42 @@ LDL_Texture* LDL_TextureNewFromSize(LDL_Result* result, LDL_Context* context, si
 	return NULL;
 }
 
+LDL_Texture* LDL_TextureNewFromSurface(LDL_Result* result, LDL_Context* context, LDL_Surface* surface)
+{
+	LDL_Texture* texture = NULL;
+
+	if (context)
+	{
+		texture = (LDL_Texture*)malloc(sizeof(LDL_Texture));
+		if (texture == NULL)
+		{
+			LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+			return NULL;
+		}
+
+		if (texture)
+		{
+			texture->Context = context;
+
+			switch (LDL_ContextGet(context))
+			{
+			case LDL_ContextOpenGLLegacy:
+			case LDL_ContextOpenGLHybrid:
+			case LDL_ContextOpenGLModern:
+				texture->TextureOpenGL = LDL_TextureOpenGLNewFromSurface(result, surface);
+				return texture;
+			}
+		}
+	}
+
+	if (texture)
+	{
+		free(texture);
+	}
+
+	return NULL;
+}
+
 void LDL_TextureFree(LDL_Texture* texture)
 {
 	if (texture)

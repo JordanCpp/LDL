@@ -244,7 +244,7 @@ void LDL_RenderOpenGL3Draw(LDL_RenderOpenGL3* render, LDL_TextureOpenGL* texture
 {
     if (render)
     {
-        LDL_BufferOpenGLAddTexture(&render->Buffer, LDL_RenderOpenGL3GetLayer(render), texture, dstPos, dstSize, srcPos, srcSize);
+        LDL_BufferOpenGLAddTexture(&render->Buffer, LDL_RenderOpenGL3GetLayer(render), texture, dstPos, dstSize, srcPos, srcSize, texture->Quad);
     }
 }
 

@@ -159,7 +159,7 @@ void LDL_RenderOpenGL1Draw(LDL_RenderOpenGL1* render, LDL_TextureOpenGL* texture
 {
     if (render)
     {
-        LDL_BufferOpenGLAddTexture(&render->Buffer, LDL_RenderOpenGL1GetLayer(render), texture, dstPos, dstSize, srcPos, srcSize);
+        LDL_BufferOpenGLAddTexture(&render->Buffer, LDL_RenderOpenGL1GetLayer(render), texture, dstPos, dstSize, srcPos, srcSize, texture->Quad);
     }
 }
 

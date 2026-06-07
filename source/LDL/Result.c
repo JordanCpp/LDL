@@ -99,10 +99,13 @@ void LDL_ResultAddMessage(LDL_Result* result, const char* format, ...)
 {
 	if (result && result->Formatter)
 	{
-		va_list args;
-		va_start(args, format);
-		LDL_FormatterVFormat(result->Formatter, format, args);
-		va_end(args);
+		if (result->Ok)
+		{
+			va_list args;
+			va_start(args, format);
+			LDL_FormatterVFormat(result->Formatter, format, args);
+			va_end(args);
+		}
 
 		result->Ok = false;
 	}
