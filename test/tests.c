@@ -237,7 +237,7 @@ static int IsFloatEqual(float a, float b)
 	float epsilon;
 	epsilon = 0.0001f;
 
-	return (float)abs(a - b) < epsilon;
+	return (float)fabs(a - b) < epsilon;
 }
 
 /* Тест Identity: проверка единичной матрицы */
