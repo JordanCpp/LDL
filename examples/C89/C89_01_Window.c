@@ -15,9 +15,9 @@ int main(void)
     LDL_Window* window = NULL;
     LDL_Event event;
 
-    result = LDL_ResultNew();
-    context = LDL_ContextNew(result, LDL_ContextOpenGLLegacy);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 01 - Window", LDL_WindowModeResized);
+    result = LDL_ResultCreate();
+    context = LDL_ContextCreate(result, LDL_ContextOpenGLLegacy);
+    window = LDL_WindowCreate(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 01 - Window", LDL_WindowModeResized);
 
     while (LDL_WindowIsRunning(window) && LDL_ResultIsOk(result))
     {
@@ -32,15 +32,15 @@ int main(void)
         LDL_WindowPresent(window);
     }
 
-    LDL_WindowFree(window);
-    LDL_ContextFree(context);
+    LDL_WindowDestroy(window);
+    LDL_ContextDestroy(context);
 
     if (LDL_ResultIsFail(result))
     {
         printf("LDL result error: %s\n", LDL_ResultGetMessage(result));
     }
 
-    LDL_ResultFree(result);
+    LDL_ResultDestroy(result);
 
     return 0;
 }

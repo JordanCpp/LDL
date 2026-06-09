@@ -83,14 +83,14 @@ int main()
 	LDL_BmpLoader*    bmp;
 	GLuint            texture = 0;
 
-	result  = LDL_ResultNew();
-	context = LDL_ContextNew(result, LDL_ContextOpenGLLegacy);
-	window  = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL - Rectangle red (OpenGL 1.2)", LDL_WindowModeResized);
+	result  = LDL_ResultCreate();
+	context = LDL_ContextCreate(result, LDL_ContextOpenGLLegacy);
+	window  = LDL_WindowCreate(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL - Rectangle red (OpenGL 1.2)", LDL_WindowModeResized);
 
 	if (LDL_ResultIsOk(result))
 	{
 		loader = LDL_OpenGLLoaderNew(result, 1, 2);
-		bmp    = LDL_BmpLoaderNew(result);
+		bmp    = LDL_BmpLoaderCreate(result);
 
 		if (LDL_BmpLoaderLoadFromFile(bmp, "LDL_24_256.bmp"))
 		{
@@ -117,11 +117,11 @@ int main()
 			LDL_WindowPresent(window);
 		}
 
-		LDL_BmpLoaderFree(bmp);
+		LDL_BmpLoaderDestroy(bmp);
 		LDL_OpenGLLoaderFree(loader);
-		LDL_ContextFree(context);
-		LDL_WindowFree(window);
-		LDL_ResultFree(result);
+		LDL_ContextDestroy(context);
+		LDL_WindowDestroy(window);
+		LDL_ResultDestroy(result);
 	}
 
 	if (LDL_ResultIsFail(result))

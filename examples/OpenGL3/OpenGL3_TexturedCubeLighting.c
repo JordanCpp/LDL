@@ -410,9 +410,9 @@ int main(void)
     int               width = 800, height = 600;
     size_t            currentTime, delta;
 
-    result = LDL_ResultNew();
-    context = LDL_ContextNew(result, LDL_ContextOpenGLModern);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height),
+    result = LDL_ResultCreate();
+    context = LDL_ContextCreate(result, LDL_ContextOpenGLModern);
+    window = LDL_WindowCreate(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height),
         "LDL - Textured Cube with Lighting (OpenGL 3.3)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
@@ -460,9 +460,9 @@ int main(void)
         }
 
         LDL_OpenGLLoaderFree(loader);
-        LDL_WindowFree(window);
-        LDL_ContextFree(context);
-        LDL_ResultFree(result);
+        LDL_WindowDestroy(window);
+        LDL_ContextDestroy(context);
+        LDL_ResultDestroy(result);
     }
 
     if (LDL_ResultIsFail(result))

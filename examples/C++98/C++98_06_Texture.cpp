@@ -23,7 +23,7 @@ int main()
 	LDL::Context context(result);
 	LDL::Event   event;
 	LDL::Window  window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL C++98 lesson 06 - Texture. Q: +10 W: -10", LDL_WindowModeResized);
-	LDL::Render  render(result, context, window);
+	LDL::Render2D  render(result, context, window);
 
 	LDL::BmpLoader loader(result);
 

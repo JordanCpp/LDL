@@ -75,6 +75,7 @@ Seeking to comprehend the very spirit of each era and the people who shaped it.
 | **Events** | ✅ Keyboard, mouse, resize, quit, focus |
 | **Keyboard** | ✅ Full key mapping (including F1–F15, numpad, modifiers) |
 | **Mouse** | ✅ Move, click (LMB/RMB/MMB), scroll wheel |
+| **2D Render** | ✅ Draw: Line, Fill, Texture, Texture alpha |
 | **OpenGL 1.0** | ✅ Immediate mode, fixed pipeline |
 | **OpenGL 1.1–1.5** | ✅ Extensions, texture objects, VBO |
 | **OpenGL 2.0–2.1** | ✅ GLSL 1.20, shaders, FBO |
@@ -214,6 +215,21 @@ Please feel free to open issues and pull requests.
 ---
 
 ## Screenshots
+
+### 2D Render Examples
+
+| | | |
+|:-:|:-:|:-:|
+| ![Boids Simulation](Screenshots/2DRender/Boids%20Simulation.jpg) | ![Conway's Game of Life](Screenshots/2DRender/Conways%20Game%20of%20Life.jpg) | ![Firework Demo](Screenshell/2DRender/Firework%20Demo.jpg) |
+| *Boids Simulation* | *Conway's Game of Life* | *Firework Demo* |
+| ![Fog of War Demo](Screenshots/2DRender/Fog%20of%20War%20Demo.jpg) | ![Fractal Tree](Screenshots/2DRender/Fractal%20Tree.jpg) | ![Fractal Tree 2](Screenshots/2DRender/Fractal%20Tree%202.jpg) |
+| *Fog of War Demo* | *Fractal Tree* | *Fractal Tree 2* |
+| ![Kaleidoscope Demo](Screenshots/2DRender/Kaleidoscope%20Demo.jpg) | ![Particle System](Screenshots/2DRender/Particle%20System.jpg) | ![Rain Effect](Screenshots/2DRender/Rain%20Effect.jpg) |
+| *Kaleidoscope Demo* | *Particle System* | *Rain Effect* |
+| ![Spirograph](Screenshots/2DRender/Spirograph.jpg) | ![Tile map](Screenshots/2DRender/Tile%20map.jpg) | |
+| *Spirograph* | *Tile map* | |
+
+---
 
 ### OpenGL 1.2 Examples
 

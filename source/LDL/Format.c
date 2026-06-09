@@ -32,7 +32,7 @@ void LDL_FormatterClear(LDL_Formatter* formatter)
     memset(formatter->Buffer, 0, LDL_FormatterMax);
 }
 
-LDL_Formatter* LDL_FormatterNew()
+LDL_Formatter* LDL_FormatterCreate()
 {
     LDL_Formatter* formatter = (LDL_Formatter*)malloc(sizeof(LDL_Formatter));
 
@@ -46,7 +46,7 @@ LDL_Formatter* LDL_FormatterNew()
     return NULL;
 }
 
-void LDL_FormatterFree(LDL_Formatter* formatter)
+void LDL_FormatterDestroy(LDL_Formatter* formatter)
 {
     if (formatter)
     {

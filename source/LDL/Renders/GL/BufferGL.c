@@ -294,7 +294,7 @@ void LDL_BufferOpenGLCalc(LDL_BufferOpenGL* buffer)
 
             nx = -dy;
             ny = dx;
-            len = sqrt(nx * nx + ny * ny);
+            len = (float)sqrt(nx * nx + ny * ny);
             if (len > 0.0f) 
             { 
                 nx /= len; 

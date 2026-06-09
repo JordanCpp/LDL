@@ -17,9 +17,9 @@ int main(void)
     LDL_OpenGLLoader* loader = NULL;
     LDL_Event event;
 
-    result = LDL_ResultNew();
-    context = LDL_ContextNew(result, LDL_ContextOpenGLLegacy);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 07 - Init legacy GL", LDL_WindowModeResized);
+    result = LDL_ResultCreate();
+    context = LDL_ContextCreate(result, LDL_ContextOpenGLLegacy);
+    window = LDL_WindowCreate(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 07 - Init legacy GL", LDL_WindowModeResized);
     loader = LDL_OpenGLLoaderNew(result, 1, 2);
 
     while (LDL_WindowIsRunning(window) && LDL_ResultIsOk(result))
@@ -36,15 +36,15 @@ int main(void)
     }
 
     LDL_OpenGLLoaderFree(loader);
-    LDL_WindowFree(window);
-    LDL_ContextFree(context);
+    LDL_WindowDestroy(window);
+    LDL_ContextDestroy(context);
 
     if (LDL_ResultIsFail(result))
     {
         printf("LDL result error: %s\n", LDL_ResultGetMessage(result));
     }
 
-    LDL_ResultFree(result);
+    LDL_ResultDestroy(result);
 
     return 0;
 }

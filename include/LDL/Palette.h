@@ -28,8 +28,8 @@ enum
 
 typedef struct LDL_Palette LDL_Palette;
 
-LDL_LIBRARY LDL_Palette* LDL_PaletteNew();
-LDL_LIBRARY void LDL_PaletteFree(LDL_Palette* palette);
+LDL_LIBRARY LDL_Palette* LDL_PaletteCreate();
+LDL_LIBRARY void LDL_PaletteDestroy(LDL_Palette* palette);
 
 LDL_LIBRARY LDL_Color LDL_PaletteGet(LDL_Palette* palette, size_t index);
 LDL_LIBRARY void LDL_PaletteSet(LDL_Palette* palette, size_t index, LDL_Color color);

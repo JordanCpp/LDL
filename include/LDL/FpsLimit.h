@@ -28,8 +28,8 @@ enum
 
 typedef struct LDL_FpsLimiter LDL_FpsLimiter;
 
-LDL_LIBRARY LDL_FpsLimiter* LDL_FpsLimiterNew(LDL_Result* result, size_t fps);
-LDL_LIBRARY void LDL_FpsLimiterFree(LDL_FpsLimiter* fpsLimiter);
+LDL_LIBRARY LDL_FpsLimiter* LDL_FpsLimiterCreate(LDL_Result* result, size_t fps);
+LDL_LIBRARY void LDL_FpsLimiterDestroy(LDL_FpsLimiter* fpsLimiter);
 LDL_LIBRARY void LDL_FpsLimiterMark(LDL_FpsLimiter* fpsLimiter);
 LDL_LIBRARY void LDL_FpsLimiterThrottle(LDL_FpsLimiter* fpsLimiter);
 

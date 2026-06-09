@@ -26,8 +26,8 @@ extern "C" {
 
 typedef struct LDL_Window LDL_Window;
 
-LDL_LIBRARY LDL_Window* LDL_WindowNew(LDL_Result* result, LDL_Context* context, LDL_Vec2i pos, LDL_Vec2i size, const char* title, size_t mode);
-LDL_LIBRARY void LDL_WindowFree(LDL_Window* window);
+LDL_LIBRARY LDL_Window* LDL_WindowCreate(LDL_Result* result, LDL_Context* context, LDL_Vec2i pos, LDL_Vec2i size, const char* title, size_t mode);
+LDL_LIBRARY void LDL_WindowDestroy(LDL_Window* window);
 
 LDL_LIBRARY bool LDL_WindowIsRunning(LDL_Window* window);
 LDL_LIBRARY void LDL_WindowStopEvent(LDL_Window* window);

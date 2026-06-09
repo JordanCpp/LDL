@@ -27,8 +27,8 @@ extern "C" {
 
 typedef struct LDL_BmpLoader LDL_BmpLoader;
 
-LDL_LIBRARY LDL_BmpLoader* LDL_BmpLoaderNew(LDL_Result* result);
-LDL_LIBRARY void LDL_BmpLoaderFree(LDL_BmpLoader* loader);
+LDL_LIBRARY LDL_BmpLoader* LDL_BmpLoaderCreate(LDL_Result* result);
+LDL_LIBRARY void LDL_BmpLoaderDestroy(LDL_BmpLoader* loader);
 
 LDL_LIBRARY LDL_Vec2i LDL_BmpLoaderGetSize(LDL_BmpLoader* loader);
 LDL_LIBRARY uint8_t* LDL_BmpLoaderGetPixels(LDL_BmpLoader* loader);

@@ -20,14 +20,14 @@ struct LDL_Palette
 	LDL_Color Colors[LDL_PaletteMax];
 };
 
-LDL_Palette* LDL_PaletteNew()
+LDL_Palette* LDL_PaletteCreate()
 {
 	LDL_Palette* palette = (LDL_Palette*)malloc(sizeof(LDL_Palette));
 
 	return palette;
 }
 
-void LDL_PaletteFree(LDL_Palette* palette)
+void LDL_PaletteDestroy(LDL_Palette* palette)
 {
 	if (palette)
 	{

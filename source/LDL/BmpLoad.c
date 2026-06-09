@@ -53,7 +53,7 @@ struct LDL_BmpLoader
     LDL_Vec2i   Size;
 };
 
-LDL_BmpLoader* LDL_BmpLoaderNew(LDL_Result* result) 
+LDL_BmpLoader* LDL_BmpLoaderCreate(LDL_Result* result) 
 {
     LDL_BmpLoader* loader = (LDL_BmpLoader*)malloc(sizeof(LDL_BmpLoader));
 
@@ -78,7 +78,7 @@ LDL_BmpLoader* LDL_BmpLoaderNew(LDL_Result* result)
     return NULL;
 }
 
-void LDL_BmpLoaderFree(LDL_BmpLoader* loader) 
+void LDL_BmpLoaderDestroy(LDL_BmpLoader* loader) 
 {
     if (loader) 
     {

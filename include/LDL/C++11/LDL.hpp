@@ -67,7 +67,7 @@ namespace LDL
     {
     public:
         inline Result() :
-            _result(LDL_ResultNew(), LDL_ResultFree)
+            _result(LDL_ResultCreate(), LDL_ResultDestroy)
         {
         }
 
@@ -93,7 +93,7 @@ namespace LDL
         }
 
     private:
-        std::unique_ptr<LDL_Result, decltype(&LDL_ResultFree)> _result;
+        std::unique_ptr<LDL_Result, decltype(&LDL_ResultDestroy)> _result;
         std::string _message;
     };
 
@@ -104,7 +104,7 @@ namespace LDL
     {
     public:
         inline Context(Result& result) :
-            _context(LDL_ContextNew(result.Impl(), LDL_ContextOpenGLLegacy), LDL_ContextFree)
+            _context(LDL_ContextCreate(result.Impl(), LDL_ContextOpenGLLegacy), LDL_ContextDestroy)
         {
             if (!_context) 
             { 
@@ -121,14 +121,14 @@ namespace LDL
             return _context.get(); 
         }
     private:
-        std::unique_ptr<LDL_Context, decltype(&LDL_ContextFree)> _context;
+        std::unique_ptr<LDL_Context, decltype(&LDL_ContextDestroy)> _context;
     };
 
     class Window
     {
     public:
         inline Window(Result& result, Context& context, const Vec2i& pos, const Vec2i& size, const std::string& title, size_t mode) :
-            _window(LDL_WindowNew(result.Impl(), context.Impl(), pos, size, title.c_str(), mode), LDL_WindowFree)
+            _window(LDL_WindowCreate(result.Impl(), context.Impl(), pos, size, title.c_str(), mode), LDL_WindowDestroy)
         {
         }
 
@@ -164,19 +164,19 @@ namespace LDL
         }
 
     private:
-        std::unique_ptr<LDL_Window, decltype(&LDL_WindowFree)> _window;
+        std::unique_ptr<LDL_Window, decltype(&LDL_WindowDestroy)> _window;
     };
 
     class Texture
     {
     public:
         inline Texture(Result& result, Context& context, size_t pixelFormat, const Vec2i& size, uint8_t* pixels)
-            : _texture(LDL_TextureNewFromPixels(result.Impl(), context.Impl(), pixelFormat, size, pixels), LDL_TextureFree)
+            : _texture(LDL_TextureCreateFromPixels(result.Impl(), context.Impl(), pixelFormat, size, pixels), LDL_TextureDestroy)
         {
         }
 
         inline Texture(Result& result, Context& context, size_t pixelFormat, const Vec2i& size)
-            : _texture(LDL_TextureNewFromSize(result.Impl(), context.Impl(), pixelFormat, size), LDL_TextureFree)
+            : _texture(LDL_TextureCreateFromSize(result.Impl(), context.Impl(), pixelFormat, size), LDL_TextureDestroy)
         {
         }
 
@@ -192,55 +192,55 @@ namespace LDL
         }
 
     private:
-        std::unique_ptr<LDL_Texture, decltype(&LDL_TextureFree)> _texture;
+        std::unique_ptr<LDL_Texture, decltype(&LDL_TextureDestroy)> _texture;
     };
 
-    class Render
+    class Render2D
     {
     public:
-        inline Render(Result& result, Context& context, Window& window)
-            : _render(LDL_RenderNew(result.Impl(), context.Impl(), window.Impl()), LDL_RenderFree)
+        inline Render2D(Result& result, Context& context, Window& window)
+            : _render(LDL_2DRenderCreate(result.Impl(), context.Impl(), window.Impl()), LDL_2DRenderDestroy)
         {
         }
 
-        inline LDL_Render* Impl() const
+        inline LDL_2DRender* Impl() const
         {
             return _render.get(); 
         }
 
         inline void Begin()
         { 
-            LDL_RenderBegin(_render.get());
+            LDL_2DRenderBegin(_render.get());
         }
 
         inline void End()
         { 
-            LDL_RenderEnd(_render.get());
+            LDL_2DRenderEnd(_render.get());
         }
 
         inline void SetColor(const Color& color)
         { 
-            LDL_RenderSetColor(_render.get(), color); 
+            LDL_2DRenderSetColor(_render.get(), color); 
         }
 
         inline void Clear()
         { 
-            LDL_RenderClear(_render.get());
+            LDL_2DRenderClear(_render.get());
         }
 
         inline void Line(const Vec2i& first, const Vec2i& last)
         { 
-            LDL_RenderLine2i(_render.get(), first, last); 
+            LDL_2DRenderLine(_render.get(), first, last); 
         }
 
         inline void Fill(const Vec2i& pos, const Vec2i& size)
         { 
-            LDL_RenderFill2i(_render.get(), pos, size); 
+            LDL_2DRenderFill(_render.get(), pos, size); 
         }
 
         inline void Draw(Texture* texture, const Vec2i& dstPos, const Vec2i& dstSize, const Vec2i& srcPos, const Vec2i& srcSize)
         {
-            LDL_RenderDraw(_render.get(), texture->Impl(), (LDL_Vec2i*)(&dstPos), (LDL_Vec2i*)(&dstSize), (LDL_Vec2i*)(&srcPos), (LDL_Vec2i*)(&srcSize));
+            LDL_2DRenderDraw(_render.get(), texture->Impl(), (LDL_Vec2i*)(&dstPos), (LDL_Vec2i*)(&dstSize), (LDL_Vec2i*)(&srcPos), (LDL_Vec2i*)(&srcSize));
         }
 
         inline void Draw(Texture* texture, const Vec2i& dstPos)
@@ -259,14 +259,14 @@ namespace LDL
         }
 
     private:
-        std::unique_ptr<LDL_Render, decltype(&LDL_RenderFree)> _render;
+        std::unique_ptr<LDL_2DRender, decltype(&LDL_2DRenderDestroy)> _render;
     };
 
     class BmpLoader
     {
     public:
         inline BmpLoader(Result& result) :
-            _loader(LDL_BmpLoaderNew(result.Impl()), LDL_BmpLoaderFree) 
+            _loader(LDL_BmpLoaderCreate(result.Impl()), LDL_BmpLoaderDestroy) 
         {
         }
 
@@ -296,7 +296,7 @@ namespace LDL
             return LDL_BmpLoaderLoadFromFile(_loader.get(), path.c_str()); 
         }
     private:
-        std::unique_ptr<LDL_BmpLoader, decltype(&LDL_BmpLoaderFree)> _loader;
+        std::unique_ptr<LDL_BmpLoader, decltype(&LDL_BmpLoaderDestroy)> _loader;
     };
 
     inline size_t Ticks()
