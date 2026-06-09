@@ -23,7 +23,7 @@ typedef struct LDL_Window
 	LDL_WindowOpenGL WindowOpenGL;
 } LDL_Window;
 
-LDL_Window* LDL_WindowNew(LDL_Result* result, LDL_Context* context, LDL_Vec2i pos, LDL_Vec2i size, const char* title, size_t mode)
+LDL_Window* LDL_WindowCreate(LDL_Result* result, LDL_Context* context, LDL_Vec2i pos, LDL_Vec2i size, const char* title, size_t mode)
 {
 	LDL_Window* window = (LDL_Window*)malloc(sizeof(LDL_Window));
 
@@ -52,7 +52,7 @@ LDL_Window* LDL_WindowNew(LDL_Result* result, LDL_Context* context, LDL_Vec2i po
 	return NULL;
 }
 
-void LDL_WindowFree(LDL_Window* window)
+void LDL_WindowDestroy(LDL_Window* window)
 {
 	if (window)
 	{

@@ -13,13 +13,13 @@ int main(void)
     LDL_Result* result;
     LDL_Context* context;
     LDL_Window* window;
-    LDL_Render* render;
+    LDL_2DRender* render;
     LDL_Event event;
 
-    result = LDL_ResultNew();
-    context = LDL_ContextNew(result, LDL_ContextOpenGLLegacy);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 04 - Line", LDL_WindowModeResized);
-    render = LDL_RenderNew(result, context, window);
+    result = LDL_ResultCreate();
+    context = LDL_ContextCreate(result, LDL_ContextOpenGLLegacy);
+    window = LDL_WindowCreate(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 04 - Line", LDL_WindowModeResized);
+    render = LDL_2DRenderCreate(result, context, window);
 
     while (LDL_WindowIsRunning(window) && LDL_ResultIsOk(result))
     {
@@ -31,27 +31,27 @@ int main(void)
             }
         }
 
-        LDL_RenderSetColor(render, LDL_ColorRgb(0, 162, 232));
-        LDL_RenderClear(render);
+        LDL_2DRenderSetColor(render, LDL_ColorRgb(0, 162, 232));
+        LDL_2DRenderClear(render);
 
-        LDL_RenderBegin(render);
+        LDL_2DRenderBegin(render);
 
-        LDL_RenderSetColor(render, LDL_ColorRgb(237, 28, 36));
-        LDL_RenderLine2i(render, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600));
+        LDL_2DRenderSetColor(render, LDL_ColorRgb(237, 28, 36));
+        LDL_2DRenderLine(render, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600));
 
-        LDL_RenderEnd(render);
+        LDL_2DRenderEnd(render);
     }
 
-    LDL_RenderFree(render);
-    LDL_WindowFree(window);
-    LDL_ContextFree(context);
+    LDL_2DRenderDestroy(render);
+    LDL_WindowDestroy(window);
+    LDL_ContextDestroy(context);
 
     if (LDL_ResultIsFail(result))
     {
         printf("LDL result error: %s\n", LDL_ResultGetMessage(result));
     }
 
-    LDL_ResultFree(result);
+    LDL_ResultDestroy(result);
 
     return 0;
 }

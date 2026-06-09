@@ -29,7 +29,7 @@ struct LDL_Surface
 	uint8_t*    Pixels;
 };
 
-void LDL_SurfaceFree(LDL_Surface* surface)
+void LDL_SurfaceDestroy(LDL_Surface* surface)
 {
 	if (surface)
 	{
@@ -42,7 +42,7 @@ void LDL_SurfaceFree(LDL_Surface* surface)
 	}
 }
 
-LDL_Surface* LDL_SurfaceNewFromCapacity(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i capacity)
+LDL_Surface* LDL_SurfaceCreateFromCapacity(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i capacity)
 {
 	size_t total;
 	LDL_Surface* surface;
@@ -79,9 +79,9 @@ LDL_Surface* LDL_SurfaceNewFromCapacity(LDL_Result* result, uint8_t pixelFormat,
 	return surface;
 }
 
-LDL_Surface* LDL_SurfaceNewFromSize(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size)
+LDL_Surface* LDL_SurfaceCreateFromSize(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size)
 {
-	LDL_Surface* surface = LDL_SurfaceNewFromCapacity(result, pixelFormat, size);
+	LDL_Surface* surface = LDL_SurfaceCreateFromCapacity(result, pixelFormat, size);
 
 	if (surface)
 	{
@@ -91,9 +91,9 @@ LDL_Surface* LDL_SurfaceNewFromSize(LDL_Result* result, uint8_t pixelFormat, LDL
 	return surface;
 }
 
-LDL_Surface* LDL_SurfaceNewFromPixels(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
+LDL_Surface* LDL_SurfaceCreateFromPixels(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
 {
-	LDL_Surface* surface = LDL_SurfaceNewFromSize(result, pixelFormat, size);
+	LDL_Surface* surface = LDL_SurfaceCreateFromSize(result, pixelFormat, size);
 
 	if (surface)
 	{

@@ -22,7 +22,7 @@ typedef struct LDL_Library
 	void*       Library;
 } LDL_Library;
 
-LDL_Library* LDL_LibraryNew(LDL_Result* result)
+LDL_Library* LDL_LibraryCreate(LDL_Result* result)
 {
 	LDL_Library* library = (LDL_Library*)malloc(sizeof(LDL_Library));
 
@@ -37,7 +37,7 @@ LDL_Library* LDL_LibraryNew(LDL_Result* result)
 	return NULL;
 }
 
-void LDL_LibraryFree(LDL_Library* library)
+void LDL_LibraryDestroy(LDL_Library* library)
 {
 	if (library)
 	{

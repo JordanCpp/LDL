@@ -21,7 +21,8 @@ set(LDL_INCLUDES_API
     ${LDL_ROOT_FOLDER}/include/LDL/Mat4f.h
     ${LDL_ROOT_FOLDER}/include/LDL/Palette.h
     ${LDL_ROOT_FOLDER}/include/LDL/PixFrmt.h
-    ${LDL_ROOT_FOLDER}/include/LDL/Render.h
+    ${LDL_ROOT_FOLDER}/include/LDL/2DRender.h
+    ${LDL_ROOT_FOLDER}/include/LDL/3DRender.h
     ${LDL_ROOT_FOLDER}/include/LDL/Result.h
     ${LDL_ROOT_FOLDER}/include/LDL/Surface.h
     ${LDL_ROOT_FOLDER}/include/LDL/Texture.h
@@ -113,9 +114,12 @@ set(LDL_INCLUDES_RENDERS
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/BufferGL.h
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/GLUtils.h
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/TexGL.h
-    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/RndrGL1.h
-    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/RndrGL2.h
-    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/RndrGL3.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/2DRGL1.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/2DRGL2.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/2DRGL3.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/3DRGL1.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/3DRGL2.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/3DRGL3.h
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/BaseRndr.h
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Texture.h
 )
@@ -124,15 +128,19 @@ set(LDL_SOURCES_RENDERS
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/BufferGL.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/GLUtils.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/TexGL.c
-    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/RndrGL1.c
-    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/RndrGL2.c
-    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/RndrGL3.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/2DRGL1.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/2DRGL2.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/2DRGL3.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/3DRGL1.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/3DRGL2.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/3DRGL3.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/BaseRndr.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Color.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Mat4f.c
-    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Render.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/2DRender.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Surface.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Texture.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/3DRender.c
 )
 
 if(WIN32)

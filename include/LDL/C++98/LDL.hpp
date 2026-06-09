@@ -73,12 +73,12 @@ namespace LDL
 		inline Result() :
 			_result(NULL)
 		{
-			_result = LDL_ResultNew();
+			_result = LDL_ResultCreate();
 		}
 
 		inline ~Result()
 		{
-			LDL_ResultFree(_result);
+			LDL_ResultDestroy(_result);
 		}
 
 		inline bool IsOk()
@@ -113,18 +113,18 @@ namespace LDL
 		inline Surface(Result& result, uint8_t pixelFormat, Vec2i size) :
 			_surface(NULL)
 		{
-			_surface = LDL_SurfaceNewFromSize(result.Impl(), pixelFormat, size);
+			_surface = LDL_SurfaceCreateFromSize(result.Impl(), pixelFormat, size);
 		}
 
 		inline Surface(Result& result, uint8_t pixelFormat, Vec2i size, uint8_t* pixels) :
 			_surface(NULL)
 		{
-			_surface = LDL_SurfaceNewFromPixels(result.Impl(), pixelFormat, size, pixels);
+			_surface = LDL_SurfaceCreateFromPixels(result.Impl(), pixelFormat, size, pixels);
 		}
 
 		inline ~Surface()
 		{
-			LDL_SurfaceFree(_surface);
+			LDL_SurfaceDestroy(_surface);
 		}
 
 		inline LDL_Surface* Impl()
@@ -205,12 +205,12 @@ namespace LDL
 		inline Context(Result& result) :
 			_context(NULL)
 		{
-			_context = LDL_ContextNew(result.Impl(), LDL_ContextOpenGLLegacy);
+			_context = LDL_ContextCreate(result.Impl(), LDL_ContextOpenGLLegacy);
 		}
 
 		inline ~Context()
 		{
-			LDL_ContextFree(_context);
+			LDL_ContextDestroy(_context);
 		}
 
 		inline size_t Get()
@@ -232,12 +232,12 @@ namespace LDL
 		inline Window(Result& result, Context& context, const Vec2i& pos, const Vec2i& size, const std::string& title, size_t mode) :
 			_window(NULL)
 		{
-			_window = LDL_WindowNew(result.Impl(), context.Impl(), pos, size, title.c_str(), mode);
+			_window = LDL_WindowCreate(result.Impl(), context.Impl(), pos, size, title.c_str(), mode);
 		}
 
 		inline ~Window()
 		{
-			LDL_WindowFree(_window);
+			LDL_WindowDestroy(_window);
 		}
 
 		inline LDL_Window* Impl()
@@ -290,24 +290,24 @@ namespace LDL
 		inline Texture(Result& result, Context& context, size_t pixelFormat, const Vec2i& size, uint8_t* pixels) :
 			_texture(NULL)
 		{
-			_texture = LDL_TextureNewFromPixels(result.Impl(), context.Impl(), pixelFormat, size, pixels);
+			_texture = LDL_TextureCreateFromPixels(result.Impl(), context.Impl(), pixelFormat, size, pixels);
 		}
 
 		inline Texture(Result& result, Context& context, size_t pixelFormat, const Vec2i& size) :
 			_texture(NULL)
 		{
-			_texture = LDL_TextureNewFromSize(result.Impl(), context.Impl(), pixelFormat, size);
+			_texture = LDL_TextureCreateFromSize(result.Impl(), context.Impl(), pixelFormat, size);
 		}
 
 		inline Texture(Result& result, Context& context, Surface* surface) :
 			_texture(NULL)
 		{
-			_texture = LDL_TextureNewFromSurface(result.Impl(), context.Impl(), surface->Impl());
+			_texture = LDL_TextureCreateFromSurface(result.Impl(), context.Impl(), surface->Impl());
 		}
 
 		inline ~Texture()
 		{
-			LDL_TextureFree(_texture);
+			LDL_TextureDestroy(_texture);
 		}
 
 		inline LDL_Texture* Impl()
@@ -329,60 +329,60 @@ namespace LDL
 		LDL_Texture* _texture;
 	};
 
-	class Render
+	class Render2D
 	{
 	public:
-		inline Render(Result& result, Context& context, Window& window) :
+		inline Render2D(Result& result, Context& context, Window& window) :
 			_render(NULL)
 		{
-			_render = LDL_RenderNew(result.Impl(), context.Impl(), window.Impl());
+			_render = LDL_2DRenderCreate(result.Impl(), context.Impl(), window.Impl());
 		}
 
-		inline ~Render()
+		inline ~Render2D()
 		{
-			LDL_RenderFree(_render);
+			LDL_2DRenderDestroy(_render);
 		}
 
-		inline LDL_Render* Impl()
+		inline LDL_2DRender* Impl()
 		{
 			return _render;
 		}
 
 		inline void Begin()
 		{
-			LDL_RenderBegin(_render);
+			LDL_2DRenderBegin(_render);
 		}
 
 		inline void End()
 		{
-			LDL_RenderEnd(_render);
+			LDL_2DRenderEnd(_render);
 		}
 
 		inline void SetColor(const Color& color)
 		{
 			LDL_Color clr = color;
 
-			LDL_RenderSetColor(_render, clr);
+			LDL_2DRenderSetColor(_render, clr);
 		}
 
 		inline void Clear()
 		{
-			LDL_RenderClear(_render);
+			LDL_2DRenderClear(_render);
 		}
 
 		inline void Line(const Vec2i& first, const Vec2i& last)
 		{
-			LDL_RenderLine2i(_render, first, last);
+			LDL_2DRenderLine(_render, first, last);
 		}
 
 		inline void Fill(const Vec2i& pos, const Vec2i& size)
 		{
-			LDL_RenderFill2i(_render, pos, size);
+			LDL_2DRenderFill(_render, pos, size);
 		}
 
 		inline void Draw(Texture* texture, const Vec2i& dstPos, const Vec2i& dstSize, const Vec2i& srcPos, const Vec2i& srcSize)
 		{
-			LDL_RenderDraw(_render, texture->Impl(), (LDL_Vec2i*)&dstPos, (LDL_Vec2i*)&dstSize, (LDL_Vec2i*)&srcPos, (LDL_Vec2i*)&srcSize);
+			LDL_2DRenderDraw(_render, texture->Impl(), (LDL_Vec2i*)&dstPos, (LDL_Vec2i*)&dstSize, (LDL_Vec2i*)&srcPos, (LDL_Vec2i*)&srcSize);
 		}
 
 		inline void Draw(Texture* texture, const Vec2i& dstPos)
@@ -402,15 +402,15 @@ namespace LDL
 
 		inline size_t GetLayer()
 		{
-			return LDL_RenderGetLayer(_render);
+			return LDL_2DRenderGetLayer(_render);
 		}
 
 		inline void SetLayer(size_t layer)
 		{
-			LDL_RenderSetLayer(_render, layer);
+			LDL_2DRenderSetLayer(_render, layer);
 		}
 	private:
-		LDL_Render* _render;
+		LDL_2DRender* _render;
 	};
 
 	class OpenGLLoader
@@ -441,12 +441,12 @@ namespace LDL
 		inline BmpLoader(Result& result) :
 			_loader(NULL)
 		{
-			_loader = LDL_BmpLoaderNew(result.Impl());
+			_loader = LDL_BmpLoaderCreate(result.Impl());
 		}
 
 		inline ~BmpLoader()
 		{
-			LDL_BmpLoaderFree(_loader);
+			LDL_BmpLoaderDestroy(_loader);
 		}
 
 		inline LDL_BmpLoader* Impl()
@@ -508,7 +508,7 @@ namespace LDL
 
 		inline ~Formatter()
 		{
-			LDL_FormatterFree(_formatter);
+			LDL_FormatterDestroy(_formatter);
 		}
 
 		inline LDL_Formatter* Impl()
@@ -537,12 +537,12 @@ namespace LDL
 		inline FpsCounter(Result& result) :
 			_fpsCounter(NULL)
 		{
-			_fpsCounter = LDL_FpsCounterNew(result.Impl());
+			_fpsCounter = LDL_FpsCounterCreate(result.Impl());
 		}
 
 		inline ~FpsCounter()
 		{
-			LDL_FpsCounterFree(_fpsCounter);
+			LDL_FpsCounterDestroy(_fpsCounter);
 		}
 
 		inline LDL_FpsCounter* Impl()
@@ -566,6 +566,72 @@ namespace LDL
 		}
 	private:
 		LDL_FpsCounter* _fpsCounter;
+	};
+
+	class VertexBuffer
+	{
+	public:
+		inline VertexBuffer(Context& context, size_t fvf) :
+			_buffer(NULL)
+		{
+			_buffer = LDL_VertexBufferNew(context.Impl(), fvf);
+		}
+
+		inline ~VertexBuffer()
+		{
+			LDL_VertexBufferFree(_buffer);
+		}
+
+		inline LDL_VertexBuffer* Impl()
+		{
+			return _buffer;
+		}
+
+		inline void Copy(size_t size, size_t count, void* source)
+		{
+			LDL_VertexBufferCopy(_buffer, size, count, source);
+		}
+
+	private:
+		LDL_VertexBuffer* _buffer;
+	};
+
+	class Render3D
+	{
+	public:
+		inline Render3D(Result& result, Context& context, Window& window) :
+			_render(NULL)
+		{
+			_render = LDL_3DRenderCreate(result.Impl(), context.Impl(), window.Impl());
+		}
+
+		inline ~Render3D()
+		{
+			LDL_3DRenderDestroy(_render);
+		}
+
+		inline LDL_3DRender* Impl()
+		{
+			return _render;
+		}
+
+		inline void Begin()
+		{
+			LDL_3DRenderBegin(_render);
+		}
+
+		inline void End()
+		{
+			LDL_3DRenderEnd(_render);
+		}
+
+		inline void Draw(VertexBuffer* buffer)
+		{
+			LDL_3DRenderDraw(_render, buffer->Impl());
+		}
+
+	private:
+		LDL_3DRender* _render;
 	};
 }
 

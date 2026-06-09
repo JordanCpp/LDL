@@ -24,7 +24,7 @@ GLenum BppToFormat(uint8_t bpp)
 	return bpp == 3 ? GL_RGB : GL_RGBA;
 }
 
-LDL_TextureOpenGL* LDL_TextureOpenGLNewFromSize(LDL_Result* result, size_t pixelFormat, LDL_Vec2i size)
+LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSize(LDL_Result* result, size_t pixelFormat, LDL_Vec2i size)
 {
 	GLenum format = 0;
 	int quadSize;
@@ -51,11 +51,11 @@ LDL_TextureOpenGL* LDL_TextureOpenGLNewFromSize(LDL_Result* result, size_t pixel
 	return NULL;
 }
 
-LDL_TextureOpenGL* LDL_TextureOpenGLNewFromPixels(LDL_Result* result, size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
+LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromPixels(LDL_Result* result, size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
 {
 	GLenum format = 0;
 	uint8_t bpp  = LDL_BytesPerPixelFromPixelFormat(pixelFormat);
-	LDL_TextureOpenGL* texture = LDL_TextureOpenGLNewFromSize(result, pixelFormat, size);
+	LDL_TextureOpenGL* texture = LDL_TextureOpenGLCreateFromSize(result, pixelFormat, size);
 
 	if (texture)
 	{
@@ -66,7 +66,7 @@ LDL_TextureOpenGL* LDL_TextureOpenGLNewFromPixels(LDL_Result* result, size_t pix
 	return texture;
 }
 
-LDL_TextureOpenGL* LDL_TextureOpenGLNewFromSurface(LDL_Result* result, LDL_Surface* surface)
+LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSurface(LDL_Result* result, LDL_Surface* surface)
 {
 	size_t i;
 	uint8_t* src;
@@ -115,20 +115,20 @@ LDL_TextureOpenGL* LDL_TextureOpenGLNewFromSurface(LDL_Result* result, LDL_Surfa
 				pixels[i * 4 + 3] = isKeyColor ? 0 : 255;
 			}
 
-			texture = LDL_TextureOpenGLNewFromPixels(result, LDL_PixelFormatRGBA32, LDL_SurfaceGetSize(surface), pixels);
+			texture = LDL_TextureOpenGLCreateFromPixels(result, LDL_PixelFormatRGBA32, LDL_SurfaceGetSize(surface), pixels);
 
 			free(pixels);
 		}
 	}
 	else
 	{
-		texture = LDL_TextureOpenGLNewFromPixels(result, LDL_PixelFormatRGB24, LDL_SurfaceGetSize(surface), LDL_SurfaceGetPixels(surface));
+		texture = LDL_TextureOpenGLCreateFromPixels(result, LDL_PixelFormatRGB24, LDL_SurfaceGetSize(surface), LDL_SurfaceGetPixels(surface));
 	}
 
 	return texture;
 }
 
-void LDL_TextureOpenGLFree(LDL_TextureOpenGL* texture)
+void LDL_TextureOpenGLDestroy(LDL_TextureOpenGL* texture)
 {
 	if (texture)
 	{

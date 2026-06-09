@@ -25,7 +25,7 @@ struct LDL_FpsCounter
 	size_t LastFps;
 };
 
-LDL_FpsCounter* LDL_FpsCounterNew(LDL_Result* result)
+LDL_FpsCounter* LDL_FpsCounterCreate(LDL_Result* result)
 {
 	LDL_FpsCounter* fpsCounter = (LDL_FpsCounter*)malloc(sizeof(LDL_FpsCounter));
 	if (fpsCounter == NULL)
@@ -46,7 +46,7 @@ LDL_FpsCounter* LDL_FpsCounterNew(LDL_Result* result)
 	return NULL;
 }
 
-void LDL_FpsCounterFree(LDL_FpsCounter* fpsCounter)
+void LDL_FpsCounterDestroy(LDL_FpsCounter* fpsCounter)
 {
 	if (fpsCounter)
 	{

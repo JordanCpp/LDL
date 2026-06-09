@@ -24,7 +24,7 @@ int main(void)
     LDL_Result* result;
     LDL_Context* context;
     LDL_Window* window;
-    LDL_Render* render;
+    LDL_2DRender* render;
     LDL_BmpLoader* loader;
     LDL_Formatter* formatter;
     LDL_FpsCounter* counter;
@@ -38,27 +38,27 @@ int main(void)
 
     srand(time(NULL));
 
-    result = LDL_ResultNew();
-    context = LDL_ContextNew(result, LDL_ContextOpenGLModern);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 06 - Texture", LDL_WindowModeResized);
-    render = LDL_RenderNew(result, context, window);
-    loader = LDL_BmpLoaderNew(result);
-    formatter = LDL_FormatterNew();
-    counter = LDL_FpsCounterNew(result);
+    result = LDL_ResultCreate();
+    context = LDL_ContextCreate(result, LDL_ContextOpenGLModern);
+    window = LDL_WindowCreate(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(800, 600), "LDL C89 lesson 06 - Texture", LDL_WindowModeResized);
+    render = LDL_2DRenderCreate(result, context, window);
+    loader = LDL_BmpLoaderCreate(result);
+    formatter = LDL_FormatterCreate();
+    counter = LDL_FpsCounterCreate(result);
 
     if (LDL_BmpLoaderLoadFromFile(loader, "LDL_24_256_0.bmp"))
     {
-        texture0 = LDL_TextureNewFromPixels(result, context, LDL_BmpLoaderGetPixelFormat(loader), LDL_BmpLoaderGetSize(loader), LDL_BmpLoaderGetPixels(loader));
+        texture0 = LDL_TextureCreateFromPixels(result, context, LDL_BmpLoaderGetPixelFormat(loader), LDL_BmpLoaderGetSize(loader), LDL_BmpLoaderGetPixels(loader));
     }
 
     if (LDL_BmpLoaderLoadFromFile(loader, "LDL_24_256_1.bmp"))
     {
-        texture1 = LDL_TextureNewFromPixels(result, context, LDL_BmpLoaderGetPixelFormat(loader), LDL_BmpLoaderGetSize(loader), LDL_BmpLoaderGetPixels(loader));
+        texture1 = LDL_TextureCreateFromPixels(result, context, LDL_BmpLoaderGetPixelFormat(loader), LDL_BmpLoaderGetSize(loader), LDL_BmpLoaderGetPixels(loader));
     }
 
     if (LDL_BmpLoaderLoadFromFile(loader, "LDL_24_256_2.bmp"))
     {
-        texture2 = LDL_TextureNewFromPixels(result, context, LDL_BmpLoaderGetPixelFormat(loader), LDL_BmpLoaderGetSize(loader), LDL_BmpLoaderGetPixels(loader));
+        texture2 = LDL_TextureCreateFromPixels(result, context, LDL_BmpLoaderGetPixelFormat(loader), LDL_BmpLoaderGetSize(loader), LDL_BmpLoaderGetPixels(loader));
     }
 
     while (LDL_WindowIsRunning(window) && LDL_ResultIsOk(result))
@@ -73,30 +73,30 @@ int main(void)
             }
         }
 
-        LDL_RenderSetColor(render, LDL_ColorRgb(255, 127, 39));
-        LDL_RenderClear(render);
+        LDL_2DRenderSetColor(render, LDL_ColorRgb(255, 127, 39));
+        LDL_2DRenderClear(render);
 
-        LDL_RenderBegin(render);
+        LDL_2DRenderBegin(render);
 
         for (i = 0; i < count; i++)
         {
-            LDL_RenderSetLayer(render, 1);
+            LDL_2DRenderSetLayer(render, 1);
             pos  = LDL_GetVec2i(Random(0, LDL_WindowGetSize(window).x), Random(0, LDL_WindowGetSize(window).y));
             size = LDL_GetVec2i(Random(25, 50), Random(25, 50));
-            LDL_RenderDraw(render, texture0, &pos, &size, NULL, NULL);
+            LDL_2DRenderDraw(render, texture0, &pos, &size, NULL, NULL);
 
-            LDL_RenderSetLayer(render, 2);
+            LDL_2DRenderSetLayer(render, 2);
             pos  = LDL_GetVec2i(Random(0, LDL_WindowGetSize(window).x), Random(0, LDL_WindowGetSize(window).y));
             size = LDL_GetVec2i(Random(25, 50), Random(25, 50));
-            LDL_RenderDraw(render, texture1, &pos, &size, NULL, NULL);
+            LDL_2DRenderDraw(render, texture1, &pos, &size, NULL, NULL);
 
-            LDL_RenderSetLayer(render, 2);
+            LDL_2DRenderSetLayer(render, 2);
             pos  = LDL_GetVec2i(Random(0, LDL_WindowGetSize(window).x), Random(0, LDL_WindowGetSize(window).y));
             size = LDL_GetVec2i(Random(25, 50), Random(25, 50));
-            LDL_RenderDraw(render, texture2, &pos, &size, NULL, NULL);
+            LDL_2DRenderDraw(render, texture2, &pos, &size, NULL, NULL);
         }
 
-        LDL_RenderEnd(render);
+        LDL_2DRenderEnd(render);
 
         if (LDL_FpsCounterCalc(counter))
         {
@@ -104,21 +104,21 @@ int main(void)
         }
     }
 
-    LDL_FpsCounterFree(counter);
-    LDL_TextureFree(texture0);
-    LDL_TextureFree(texture1);
-    LDL_TextureFree(texture2);
-    LDL_BmpLoaderFree(loader);
-    LDL_RenderFree(render);
-    LDL_WindowFree(window);
-    LDL_ContextFree(context);
+    LDL_FpsCounterDestroy(counter);
+    LDL_TextureDestroy(texture0);
+    LDL_TextureDestroy(texture1);
+    LDL_TextureDestroy(texture2);
+    LDL_BmpLoaderDestroy(loader);
+    LDL_2DRenderDestroy(render);
+    LDL_WindowDestroy(window);
+    LDL_ContextDestroy(context);
 
     if (LDL_ResultIsFail(result))
     {
         printf("LDL result error: %s\n", LDL_ResultGetMessage(result));
     }
 
-    LDL_ResultFree(result);
+    LDL_ResultDestroy(result);
 
     return 0;
 }

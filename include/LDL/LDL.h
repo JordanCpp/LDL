@@ -18,7 +18,7 @@ License for more details.
 #include <LDL/Context.h>
 #include <LDL/Result.h>
 #include <LDL/Surface.h>
-#include <LDL/Render.h>
+#include <LDL/2DRender.h>
 #include <LDL/Library.h>
 #include <LDL/Format.h>
 #include <LDL/Ticks.h>
@@ -26,5 +26,6 @@ License for more details.
 #include <LDL/Texture.h>
 #include <LDL/FpsLimit.h>
 #include <LDL/FpsCount.h>
+#include <LDL/3DRender.h>
 
 #endif

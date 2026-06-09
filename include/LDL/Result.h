@@ -25,8 +25,8 @@ extern "C" {
 
 typedef struct LDL_Result LDL_Result;
 
-LDL_LIBRARY LDL_Result* LDL_ResultNew();
-LDL_LIBRARY void LDL_ResultFree(LDL_Result* result);
+LDL_LIBRARY LDL_Result* LDL_ResultCreate();
+LDL_LIBRARY void LDL_ResultDestroy(LDL_Result* result);
 LDL_LIBRARY bool LDL_ResultIsOk(LDL_Result* result);
 LDL_LIBRARY bool LDL_ResultIsFail(LDL_Result* result);
 LDL_LIBRARY const char* LDL_ResultGetMessage(LDL_Result* result);

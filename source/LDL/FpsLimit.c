@@ -23,7 +23,7 @@ struct LDL_FpsLimiter
 	size_t Start;
 };
 
-LDL_FpsLimiter* LDL_FpsLimiterNew(LDL_Result* result, size_t fps)
+LDL_FpsLimiter* LDL_FpsLimiterCreate(LDL_Result* result, size_t fps)
 {
 	LDL_FpsLimiter* fpsLimiter = (LDL_FpsLimiter*)malloc(sizeof(LDL_FpsLimiter));
 	if (fpsLimiter == NULL)
@@ -39,7 +39,7 @@ LDL_FpsLimiter* LDL_FpsLimiterNew(LDL_Result* result, size_t fps)
 	return fpsLimiter;
 }
 
-void LDL_FpsLimiterFree(LDL_FpsLimiter* fpsLimiter)
+void LDL_FpsLimiterDestroy(LDL_FpsLimiter* fpsLimiter)
 {
 	if (fpsLimiter)
 	{

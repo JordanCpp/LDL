@@ -1,7 +1,7 @@
 
-if(LDL_BUILD_EXAMPLES AND LDL_BUILD_EXAMPLES_2D_RENDER)
+if(LDL_BUILD_EXAMPLES AND LDL_BUILD_EXAMPLES_2D_RENDER_CPP)
     enable_language(CXX)
-    add_subdirectory("Render2D")
+    add_subdirectory("2DRenderC++")
 endif()
 
 if(LDL_BUILD_EXAMPLES AND LDL_BUILD_EXAMPLES_CPP11)
@@ -33,4 +33,12 @@ endif()
 
 if(LDL_BUILD_EXAMPLES AND LDL_BUILD_EXAMPLES_OPENGL3)
     add_subdirectory("OpenGL3")
+endif()
+
+if(LDL_BUILD_EXAMPLES AND LDL_BUILD_EXAMPLES_3D_RENDER_CPP)
+    add_subdirectory("3DRenderC++")
+endif()
+
+if(LDL_BUILD_EXAMPLES AND LDL_BUILD_EXAMPLES_3D_RENDER_C89)
+    add_subdirectory("3DRenderC89")
 endif()

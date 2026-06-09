@@ -21,7 +21,7 @@ struct LDL_Context
 	size_t Mode;
 };
 
-LDL_Context* LDL_ContextNew(LDL_Result* result, size_t mode)
+LDL_Context* LDL_ContextCreate(LDL_Result* result, size_t mode)
 {
 	if (result)
 	{
@@ -42,7 +42,7 @@ LDL_Context* LDL_ContextNew(LDL_Result* result, size_t mode)
 	return NULL;
 }
 
-void LDL_ContextFree(LDL_Context* context)
+void LDL_ContextDestroy(LDL_Context* context)
 {
 	if (context)
 	{

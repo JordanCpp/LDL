@@ -23,8 +23,8 @@ extern "C" {
 
 typedef struct LDL_Context LDL_Context;
 
-LDL_LIBRARY LDL_Context* LDL_ContextNew(LDL_Result* result, size_t mode);
-LDL_LIBRARY void LDL_ContextFree(LDL_Context* context);
+LDL_LIBRARY LDL_Context* LDL_ContextCreate(LDL_Result* result, size_t mode);
+LDL_LIBRARY void LDL_ContextDestroy(LDL_Context* context);
 LDL_LIBRARY size_t LDL_ContextGet(LDL_Context* context);
 
 #ifdef __cplusplus

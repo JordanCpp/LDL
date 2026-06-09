@@ -25,10 +25,10 @@ extern "C" {
 
 typedef struct LDL_Surface LDL_Surface;
 
-LDL_LIBRARY void LDL_SurfaceFree(LDL_Surface* surface);
-LDL_LIBRARY LDL_Surface* LDL_SurfaceNewFromCapacity(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i capacity);
-LDL_LIBRARY LDL_Surface* LDL_SurfaceNewFromSize(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size);
-LDL_LIBRARY LDL_Surface* LDL_SurfaceNewFromPixels(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size, uint8_t* pixels);
+LDL_LIBRARY void LDL_SurfaceDestroy(LDL_Surface* surface);
+LDL_LIBRARY LDL_Surface* LDL_SurfaceCreateFromCapacity(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i capacity);
+LDL_LIBRARY LDL_Surface* LDL_SurfaceCreateFromSize(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size);
+LDL_LIBRARY LDL_Surface* LDL_SurfaceCreateFromPixels(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size, uint8_t* pixels);
 
 LDL_LIBRARY LDL_Vec2i LDL_SurfaceGetCapacity(LDL_Surface* surface);
 LDL_LIBRARY LDL_Vec2i LDL_SurfaceGetSize(LDL_Surface* surface);

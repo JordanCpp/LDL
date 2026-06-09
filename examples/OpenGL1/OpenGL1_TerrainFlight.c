@@ -284,9 +284,9 @@ int main(void)
     float camZ;
     float camY;
 
-    result = LDL_ResultNew();
-    context = LDL_ContextNew(result, LDL_ContextOpenGLLegacy);
-    window = LDL_WindowNew(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height), "LDL - Terrain Flight (OpenGL 1.2)", LDL_WindowModeResized);
+    result = LDL_ResultCreate();
+    context = LDL_ContextCreate(result, LDL_ContextOpenGLLegacy);
+    window = LDL_WindowCreate(result, context, LDL_GetVec2i(0, 0), LDL_GetVec2i(width, height), "LDL - Terrain Flight (OpenGL 1.2)", LDL_WindowModeResized);
 
     if (LDL_ResultIsOk(result))
     {
@@ -353,9 +353,9 @@ int main(void)
         LDL_OpenGLLoaderFree(loader);
     }
 
-    LDL_ContextFree(context);
-    LDL_WindowFree(window);
-    LDL_ResultFree(result);
+    LDL_ContextDestroy(context);
+    LDL_WindowDestroy(window);
+    LDL_ResultDestroy(result);
 
     if (LDL_ResultIsFail(result))
         printf("LDL error: %s\n", LDL_ResultGetMessage(result));

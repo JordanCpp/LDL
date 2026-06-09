@@ -33,7 +33,7 @@ void LDL_ResultReset(LDL_Result* result)
 	}
 }
 
-LDL_Result* LDL_ResultNew()
+LDL_Result* LDL_ResultCreate()
 {
 	LDL_Result* result = (LDL_Result*)malloc(sizeof(LDL_Result));
 
@@ -41,7 +41,7 @@ LDL_Result* LDL_ResultNew()
 	{
 		LDL_ResultReset(result);
 
-		result->Formatter = LDL_FormatterNew();
+		result->Formatter = LDL_FormatterCreate();
 
 		return result;
 	}
@@ -49,13 +49,13 @@ LDL_Result* LDL_ResultNew()
 	return NULL;
 }
 
-void LDL_ResultFree(LDL_Result* result)
+void LDL_ResultDestroy(LDL_Result* result)
 {
 	if (result)
 	{
 		if (result->Formatter)
 		{
-			LDL_FormatterFree(result->Formatter);
+			LDL_FormatterDestroy(result->Formatter);
 		}
 
 		free(result);

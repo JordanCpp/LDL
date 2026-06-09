@@ -24,8 +24,8 @@ extern "C" {
 
 typedef struct LDL_FpsCounter LDL_FpsCounter;
 
-LDL_LIBRARY LDL_FpsCounter* LDL_FpsCounterNew(LDL_Result* result);
-LDL_LIBRARY void LDL_FpsCounterFree(LDL_FpsCounter* fpsCounter);
+LDL_LIBRARY LDL_FpsCounter* LDL_FpsCounterCreate(LDL_Result* result);
+LDL_LIBRARY void LDL_FpsCounterDestroy(LDL_FpsCounter* fpsCounter);
 LDL_LIBRARY void LDL_FpsCounterStart(LDL_FpsCounter* fpsCounter);
 LDL_LIBRARY bool LDL_FpsCounterCalc(LDL_FpsCounter* fpsCounter);
 LDL_LIBRARY size_t LDL_FpsCounterFps(LDL_FpsCounter* fpsCounter);

@@ -27,7 +27,7 @@ int main()
 	LDL::Context context(result);
 	LDL::Event event;
 	LDL::Window window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL C++98 lesson 09 - Tile map", LDL_WindowModeResized);
-	LDL::Render render(result, context, window);
+	LDL::Render2D render(result, context, window);
 	LDL::OpenGLLoader loader(result, 3, 0);
 	LDL::BmpLoader bmpLoader(result);
 	
