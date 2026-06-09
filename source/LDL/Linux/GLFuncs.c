@@ -20,7 +20,7 @@ void LDL_OpenGLFunctionsInit(LDL_OpenGLFunctions* openGLFunctions, LDL_Result* r
 	if (openGLFunctions)
 	{
 		openGLFunctions->Result  = result;
-		openGLFunctions->Library = LDL_LibraryNew(result);
+		openGLFunctions->Library = LDL_LibraryCreate(result);
 	}
 }
 
@@ -28,7 +28,7 @@ void LDL_OpenGLFunctionsDeinit(LDL_OpenGLFunctions* openGLFunctions)
 {
 	if (openGLFunctions && openGLFunctions->Library)
 	{
-		LDL_LibraryFree(openGLFunctions->Library);
+		LDL_LibraryDestroy(openGLFunctions->Library);
 	}
 }
 
