@@ -1,11 +1,7 @@
 /*
  * -----------------------------------------------------------------------------
- * Example 05 - Bezier Curve with Interactive Control Points
- * Renders a cubic Bezier curve with 4 draggable control points.
- * Left mouse button drags the nearest control point.
- * Demonstrates dynamic VBO updates, mouse input handling,
- * and parametric curve evaluation.
- * Public domain (CC0 1.0 Universal)
+ * This example is in the public domain (CC0 1.0 Universal).
+ * You can copy, modify, use, and distribute it for any purpose.
  * -----------------------------------------------------------------------------
  */
 

@@ -1,10 +1,7 @@
 /*
  * -----------------------------------------------------------------------------
- * Example 02 - Checkerboard
- * Renders an 8x8 grid of colored quads using index buffer.
- * Demonstrates element rendering (glDrawElements), index buffers,
- * and procedural geometry generation without textures.
- * Public domain (CC0 1.0 Universal)
+ * This example is in the public domain (CC0 1.0 Universal).
+ * You can copy, modify, use, and distribute it for any purpose.
  * -----------------------------------------------------------------------------
  */
 

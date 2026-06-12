@@ -46,17 +46,17 @@ int main(void)
     formatter = LDL_FormatterCreate();
     counter = LDL_FpsCounterCreate(result);
 
-    if (LDL_BmpLoaderLoadFromFile(loader, "LDL_24_256_0.bmp"))
+    if (LDL_BmpLoaderLoadFromFile(loader, "Files/LDL_24_256_0.bmp"))
     {
         texture0 = LDL_TextureCreateFromPixels(result, context, LDL_BmpLoaderGetPixelFormat(loader), LDL_BmpLoaderGetSize(loader), LDL_BmpLoaderGetPixels(loader));
     }
 
-    if (LDL_BmpLoaderLoadFromFile(loader, "LDL_24_256_1.bmp"))
+    if (LDL_BmpLoaderLoadFromFile(loader, "Files/LDL_24_256_1.bmp"))
     {
         texture1 = LDL_TextureCreateFromPixels(result, context, LDL_BmpLoaderGetPixelFormat(loader), LDL_BmpLoaderGetSize(loader), LDL_BmpLoaderGetPixels(loader));
     }
 
-    if (LDL_BmpLoaderLoadFromFile(loader, "LDL_24_256_2.bmp"))
+    if (LDL_BmpLoaderLoadFromFile(loader, "Files/LDL_24_256_2.bmp"))
     {
         texture2 = LDL_TextureCreateFromPixels(result, context, LDL_BmpLoaderGetPixelFormat(loader), LDL_BmpLoaderGetSize(loader), LDL_BmpLoaderGetPixels(loader));
     }

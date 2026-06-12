@@ -1,7 +1,8 @@
 
 set(LDL_EXAMPLES
-    "3DRenderC++_TriangleVertex"
     "3DRenderC++_TriangleColor"
+    "3DRenderC++_TriangleRotate"
+    "3DRenderC++_TriangleVertex"
 )
 
 foreach(EXE_NAME ${LDL_EXAMPLES})

@@ -11,7 +11,7 @@
 
 #include <LDL/C++98/LDL.hpp>
 #include <LDL/OpenGL/GL3_0.h>
-#include "GlmLite.hpp"
+#include <LDL/C++98/GlmLite.hpp>
 
 const char* vertexShaderSource =
 "#version 330 core\n"

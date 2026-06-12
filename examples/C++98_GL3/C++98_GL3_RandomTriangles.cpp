@@ -1,3 +1,10 @@
+/*
+ * -----------------------------------------------------------------------------
+ * This example is in the public domain (CC0 1.0 Universal).
+ * You can copy, modify, use, and distribute it for any purpose.
+ * -----------------------------------------------------------------------------
+ */
+
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -6,11 +13,11 @@
 
 #define STBI_NO_SIMD
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include <LDL/Ext/stb_image.h>
 
 #include <LDL/C++98/LDL.hpp>
 #include <LDL/OpenGL/GL3_0.h>
-#include "GlmLite.hpp"
+#include <LDL/C++98/GlmLite.hpp>
 
 // --- Шейдеры (Исправлено: удалены лишние строки) ---
 const char* vertexShaderSource =
@@ -139,7 +146,7 @@ int main()
         glDeleteShader(fragmentShader);
 
         // 2. Текстура
-        GLuint texture = LoadTexture("ba_rock_hm.jpg");
+        GLuint texture = LoadTexture("Files/ba_rock_hm.jpg");
 
         // 3. Геометрия
         float vertices[] =

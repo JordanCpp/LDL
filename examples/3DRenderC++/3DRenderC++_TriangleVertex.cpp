@@ -10,11 +10,10 @@
 
 size_t fvf = LDL_FVF_XYZ;
 
-typedef struct
+struct Vertex
 {
 	float x, y, z;
-	float r, g, b;
-} Vertex;
+};
 
 Vertex data[] =
 {
@@ -25,17 +24,20 @@ Vertex data[] =
 
 int main()
 {
-	LDL::Result   result;
-	LDL::Context  context(result);
-	LDL::Event    event;
-	LDL::Window   window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL 3D Render - Triangle", LDL_WindowModeResized);
-	LDL::Render3D render(result, context, window);
+	LDL::Result       result;
+	LDL::Context      context(result, LDL::Context::GLModern);
+	LDL::FpsLimiter   limiter(result);
+	LDL::Event        event;
+	LDL::Window       window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL 3D Render - Triangle vertex", LDL_WindowModeResized);
+	LDL::Render3D     render(result, context, window);
 	LDL::VertexBuffer vertexBuffer(context, fvf);
 
 	vertexBuffer.Copy(sizeof(Vertex), 3, data);
 
 	while (window.IsRunning() && result.IsOk())
 	{
+		limiter.Mark();
+
 		while (window.GetEvent(event))
 		{
 			if (event.Type == LDL_EventIsQuit || event.IsKeyPressed(LDL_KeyEscape))
@@ -49,6 +51,8 @@ int main()
 		render.Draw(&vertexBuffer);
 
 		render.End();
+
+		limiter.Throttle();
 	}
 
 	if (result.IsFail())

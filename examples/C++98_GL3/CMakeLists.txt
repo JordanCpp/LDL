@@ -19,6 +19,3 @@ foreach(EXE_NAME ${LDL_EXAMPLES})
     add_executable(${EXE_NAME} ${EXE_NAME}.cpp)
     target_link_libraries(${EXE_NAME} LDL)
 endforeach()
-
-file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/ba_rock_hm.jpg" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
-file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/ba_rock_hm.jpg" DESTINATION "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
