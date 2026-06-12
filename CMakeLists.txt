@@ -17,6 +17,7 @@ option(LDL_BUILD_EXAMPLES_OPENGL3 "Enable building examples for OpenGL 3" ON)
 option(LDL_BUILD_EXAMPLES_2D_RENDER_CPP "Enable building examples for 2D render for C++" ON)
 option(LDL_BUILD_EXAMPLES_3D_RENDER_CPP "Enable building examples for 3D render for C++" ON)
 option(LDL_BUILD_EXAMPLES_3D_RENDER_C89 "Enable building examples for 3D render for C89" ON)
+option(LDL_BUILD_DEMO_FALLOUT "Enable building demo fallout" ON)
 
 option(LDL_ENABLE_INSTALL "Enable install target for library" OFF)
 
@@ -65,8 +66,9 @@ include_directories(${LDL_ROOT_FOLDER}/include)
 
 add_subdirectory("source")
 add_subdirectory("examples")
+add_subdirectory("demos")
 
-add_executable(tests test/tests.c "include/LDL/3DRender.h")
+add_executable(tests test/tests.c)
 target_link_libraries(tests LDL)
 
 include(InstallLdl)

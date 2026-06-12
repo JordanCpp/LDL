@@ -43,6 +43,7 @@ LDL_LIBRARY void LDL_3DRenderEnd(LDL_3DRender* render);
 
 LDL_LIBRARY void LDL_3DRenderClear(LDL_3DRender* render, float r, float g, float b);
 LDL_LIBRARY void LDL_3DRenderDraw(LDL_3DRender* render, LDL_VertexBuffer* vertexBuffer);
+LDL_LIBRARY void LDL_3DRenderBindTexture(LDL_3DRender* render, LDL_Texture* texture);
 
 LDL_LIBRARY LDL_VertexBuffer* LDL_VertexBufferNew(LDL_Context* context, size_t fvf);
 LDL_LIBRARY void LDL_VertexBufferFree(LDL_VertexBuffer* vertexBuffer);

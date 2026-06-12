@@ -17,31 +17,48 @@ License for more details.
 
 #include <LDL/3DRender.h>
 #include <LDL/OpenGL/GLLoad.h>
+#include <LDL/Renders/GL/TexGL.h>
 
 typedef struct LDL_3DRenderOpenGL2VertexBuffer
 {
-    size_t       Format;
-    size_t       Count;
-    size_t       Size;
-    void* Data;
+    GLuint VBO;
+    size_t Format;
+    size_t Count;
+    size_t Stride;
+    void*  Data;
 } LDL_3DRenderOpenGL2VertexBuffer;
+
+typedef struct LDL_ShaderProgram
+{
+    GLuint ID;
+    GLint  uProjLoc;
+    GLint  uViewLoc;
+    GLint  uWorldLoc;
+    GLint  uTextureLoc;
+} LDL_ShaderProgram;
 
 typedef struct LDL_3DRenderOpenGL2
 {
-    LDL_Result* Result;
-    LDL_Window* Window;
+    LDL_Result*       Result;
+    LDL_Window*       Window;
     LDL_OpenGLLoader* Loader;
+    LDL_ShaderProgram Shader;
 } LDL_3DRenderOpenGL2;
 
 void LDL_3DRenderOpenGL2Init(LDL_3DRenderOpenGL2* render, LDL_Result* result, LDL_Window* window);
 void LDL_3DRenderOpenGL2Deinit(LDL_3DRenderOpenGL2* render);
 void LDL_3DRenderOpenGL2Begin(LDL_3DRenderOpenGL2* render);
 void LDL_3DRenderOpenGL2End(LDL_3DRenderOpenGL2* render);
+void LDL_3DRenderOpenGL2Clear(LDL_3DRenderOpenGL2* render, float r, float g, float b);
 void LDL_3DRenderOpenGL2VertexDraw(LDL_3DRenderOpenGL2* render, LDL_3DRenderOpenGL2VertexBuffer* vertexBuffer);
+void LDL_3DRenderOpenGL2BindTexture(LDL_3DRenderOpenGL2* render, LDL_TextureOpenGL* texture);
 
 LDL_3DRenderOpenGL2VertexBuffer* LDL_3DRenderOpenGL2VertexBufferNew(size_t fvf);
 void LDL_3DRenderOpenGL2VertexBufferFree(LDL_3DRenderOpenGL2VertexBuffer* vertexBuffer);
 void LDL_3DRenderOpenGL2VertexBufferCopy(LDL_3DRenderOpenGL2VertexBuffer* vertexBuffer, size_t size, size_t count, void* source);
 
+void LDL_3DRenderOpenGL2SetWorld(LDL_3DRenderOpenGL2* render, const float* matrix);
+void LDL_3DRenderOpenGL2SetView(LDL_3DRenderOpenGL2* render, const float* matrix);
+void LDL_3DRenderOpenGL2SetProjection(LDL_3DRenderOpenGL2* render, const float* matrix);
 
 #endif

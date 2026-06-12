@@ -1,12 +1,7 @@
 /*
  * -----------------------------------------------------------------------------
- * Example 06 - Texture Atlas Animation
- * Animates a sprite character using sub-regions of a texture atlas.
- * The atlas contains 4 frames in a 2x2 grid.
- * Since we generate the atlas procedurally, no external file is needed.
- * Demonstrates texture loading, UV coordinate manipulation,
- * and frame-based animation timing.
- * Public domain (CC0 1.0 Universal)
+ * This example is in the public domain (CC0 1.0 Universal).
+ * You can copy, modify, use, and distribute it for any purpose.
  * -----------------------------------------------------------------------------
  */
 
@@ -17,7 +12,7 @@
 #include <LDL/OpenGL/GL3_0.h>
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "stb_image_write.h"
+#include <LDL/Ext/stb_image_write.h>
 
 const char* vertexShaderSource =
 "#version 130\n"

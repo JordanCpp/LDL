@@ -92,7 +92,7 @@ int main()
 		loader = LDL_OpenGLLoaderNew(result, 1, 2);
 		bmp    = LDL_BmpLoaderCreate(result);
 
-		if (LDL_BmpLoaderLoadFromFile(bmp, "LDL_24_256.bmp"))
+		if (LDL_BmpLoaderLoadFromFile(bmp, "Files/LDL_24_256.bmp"))
 		{
 			texture = CreateTexture(LDL_BmpLoaderGetPixels(bmp), LDL_BmpLoaderGetSize(bmp), LDL_BmpLoaderGetBytesPerPixels(bmp));
 		}

@@ -18,23 +18,29 @@ License for more details.
 #include <LDL/3DRender.h>
 #include <LDL/OpenGL/GLLoad.h>
 #include <LDL/OpenGL/GLTypes.h>
+#include <LDL/Renders/GL/TexGL.h>
 
-typedef struct LDL_ShaderProgram
+typedef struct LDL_3DRenderOpenGL3ShaderProgram
 {
     GLuint ID;
-} LDL_ShaderProgram;
+    GLint  uProjLoc;
+    GLint  uViewLoc;
+    GLint  uWorldLoc;
+    GLint  uTextureLoc;
+} LDL_3DRenderOpenGL3ShaderProgram;
 
 typedef struct LDL_3DRenderOpenGL3VertexBuffer
 {
+    GLuint VAO;
+    GLuint VBO;
     size_t Format;
     size_t Count;
-    size_t Size;
-    void*  Data;
+    size_t Stride;
 } LDL_3DRenderOpenGL3VertexBuffer;
 
 typedef struct LDL_3DRenderOpenGL3
 {
-    LDL_ShaderProgram Shader;
+    LDL_3DRenderOpenGL3ShaderProgram Shader;
     LDL_Result*       Result;
     LDL_Window*       Window;
     LDL_OpenGLLoader* Loader;
@@ -44,11 +50,16 @@ void LDL_3DRenderOpenGL3Init(LDL_3DRenderOpenGL3* render, LDL_Result* result, LD
 void LDL_3DRenderOpenGL3Deinit(LDL_3DRenderOpenGL3* render);
 void LDL_3DRenderOpenGL3Begin(LDL_3DRenderOpenGL3* render);
 void LDL_3DRenderOpenGL3End(LDL_3DRenderOpenGL3* render);
+void LDL_3DRenderOpenGL3Clear(LDL_3DRenderOpenGL3* render, float r, float g, float b);
 void LDL_3DRenderOpenGL3VertexDraw(LDL_3DRenderOpenGL3* render, LDL_3DRenderOpenGL3VertexBuffer* vertexBuffer);
+void LDL_3DRenderOpenGL3BindTexture(LDL_3DRenderOpenGL3* render, LDL_TextureOpenGL* texture);
 
 LDL_3DRenderOpenGL3VertexBuffer* LDL_3DRenderOpenGL3VertexBufferNew(size_t fvf);
 void LDL_3DRenderOpenGL3VertexBufferFree(LDL_3DRenderOpenGL3VertexBuffer* vertexBuffer);
-void LDL_3DRenderOpenGL3VertexBufferCopy(LDL_3DRenderOpenGL3VertexBuffer* vertexBuffer, size_t size, size_t count, void* source);
+void LDL_3DRenderOpenGL3VertexBufferCopy(LDL_3DRenderOpenGL3VertexBuffer* vertexBuffer, size_t stride, size_t count, void* source);
 
+void LDL_3DRenderOpenGL3SetWorld(LDL_3DRenderOpenGL3* render, const float* matrix);
+void LDL_3DRenderOpenGL3SetView(LDL_3DRenderOpenGL3* render, const float* matrix);
+void LDL_3DRenderOpenGL3SetProjection(LDL_3DRenderOpenGL3* render, const float* matrix);
 
 #endif

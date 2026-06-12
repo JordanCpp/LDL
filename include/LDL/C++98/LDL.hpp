@@ -202,10 +202,18 @@ namespace LDL
 	class Context
 	{
 	public:
-		inline Context(Result& result) :
+		enum
+		{
+			Software = LDL_ContextSoftware,
+			GLLegacy = LDL_ContextOpenGLLegacy,
+			GLHybrid = LDL_ContextOpenGLHybrid,
+			GLModern = LDL_ContextOpenGLModern
+		};
+
+		inline Context(Result& result, size_t mode = LDL_ContextOpenGLLegacy) :
 			_context(NULL)
 		{
-			_context = LDL_ContextCreate(result.Impl(), LDL_ContextOpenGLLegacy);
+			_context = LDL_ContextCreate(result.Impl(), mode);
 		}
 
 		inline ~Context()
@@ -229,6 +237,16 @@ namespace LDL
 	class Window
 	{
 	public:
+		enum
+		{
+			FullScreen = LDL_WindowModeFullScreen,
+			Resized    = LDL_WindowModeResized ,
+			Fixed      = LDL_WindowModeFixed,
+			Minimized  = LDL_WindowModeMinimized,
+			Maximized  = LDL_WindowModeMaximized,
+			Centered   = LDL_WindowModeCentered
+		};
+
 		inline Window(Result& result, Context& context, const Vec2i& pos, const Vec2i& size, const std::string& title, size_t mode) :
 			_window(NULL)
 		{
@@ -568,6 +586,38 @@ namespace LDL
 		LDL_FpsCounter* _fpsCounter;
 	};
 
+	class FpsLimiter
+	{
+	public:
+		inline FpsLimiter(Result& result, size_t fps = LDL_FpsLimiterDefault) :
+			_fpsLimiter(NULL)
+		{
+			_fpsLimiter = LDL_FpsLimiterCreate(result.Impl(), fps);
+		}
+
+		inline ~FpsLimiter()
+		{
+			LDL_FpsLimiterDestroy(_fpsLimiter);
+		}
+
+		inline LDL_FpsLimiter* Impl()
+		{
+			return _fpsLimiter;
+		}
+
+		inline void Mark()
+		{
+			LDL_FpsLimiterMark(_fpsLimiter);
+		}
+
+		inline void Throttle()
+		{
+			LDL_FpsLimiterThrottle(_fpsLimiter);
+		}
+	private:
+		LDL_FpsLimiter* _fpsLimiter;
+	};
+
 	class VertexBuffer
 	{
 	public:
@@ -625,9 +675,29 @@ namespace LDL
 			LDL_3DRenderEnd(_render);
 		}
 
+		inline void Clear(float r, float g, float b)
+		{
+			LDL_3DRenderClear(_render, r, g, b);
+		}
+
 		inline void Draw(VertexBuffer* buffer)
 		{
 			LDL_3DRenderDraw(_render, buffer->Impl());
+		}
+
+		inline void SetWorld(const float* matrix)
+		{
+			LDL_3DRenderSetWorld(_render, matrix);
+		}
+
+		inline void SetView(const float* matrix)
+		{
+			LDL_3DRenderSetView(_render, matrix);
+		}
+
+		inline void SetProjection(const float* matrix)
+		{
+			LDL_3DRenderSetProjection(_render, matrix);
 		}
 
 	private:

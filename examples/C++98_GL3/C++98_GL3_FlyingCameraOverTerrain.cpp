@@ -10,12 +10,11 @@
 #include <cmath>
 #include <LDL/C++98/LDL.hpp>
 #include <LDL/OpenGL/GL3_0.h>
-
-#include "GlmLite.hpp"
+#include <LDL/C++98/GlmLite.hpp>
 
 #define STBI_NO_SIMD
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include <LDL/Ext/stb_image.h>
 
  // Простой шейдер для текстурированного ландшафта
 const char* vertexShaderSource =
@@ -226,7 +225,7 @@ int main()
         GLint textureLocation = glGetUniformLocation(shaderProgram, "textureSampler");
 
         // Загрузка текстуры
-        GLuint terrainTexture = loadTexture("ba_rock_hm.jpg");
+        GLuint terrainTexture = loadTexture("Files/ba_rock_hm.jpg");
         if (!terrainTexture)
         {
             std::cerr << "Place earth.png texture in the same directory as executable" << std::endl;

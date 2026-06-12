@@ -1,10 +1,7 @@
 /*
  * -----------------------------------------------------------------------------
- * Example 04 - Star with Alpha Blending
- * Renders a translucent rotating star over a checkered background.
- * Demonstrates alpha blending, draw order (background first),
- * and transparency sorting.
- * Public domain (CC0 1.0 Universal)
+ * This example is in the public domain (CC0 1.0 Universal).
+ * You can copy, modify, use, and distribute it for any purpose.
  * -----------------------------------------------------------------------------
  */
 

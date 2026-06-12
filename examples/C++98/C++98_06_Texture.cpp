@@ -27,13 +27,13 @@ int main()
 
 	LDL::BmpLoader loader(result);
 
-	loader.Load("LDL_24_256_0.bmp");
+	loader.Load("Files/LDL_24_256_0.bmp");
 	LDL::Texture texture0(result, context, loader.GetPixelFormat(), loader.GetSize(), loader.GetPixels());
 
-	loader.Load("LDL_24_256_1.bmp");
+	loader.Load("Files/LDL_24_256_1.bmp");
 	LDL::Texture texture1(result, context, loader.GetPixelFormat(), loader.GetSize(), loader.GetPixels());
 
-	loader.Load("LDL_24_256_2.bmp");
+	loader.Load("Files/LDL_24_256_2.bmp");
 	LDL::Texture texture2(result, context, loader.GetPixelFormat(), loader.GetSize(), loader.GetPixels());
 
 	while (window.IsRunning() && result.IsOk())

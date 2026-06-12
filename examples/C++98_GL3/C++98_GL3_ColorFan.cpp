@@ -1,9 +1,7 @@
 /*
  * -----------------------------------------------------------------------------
- * Example 01 - Color Fan
- * Renders a rotating fan of colored triangles using basic vertex attributes
- * and uniforms. Demonstrates VBO, VAO, shader program, and matrix uniform.
- * Public domain (CC0 1.0 Universal)
+ * This example is in the public domain (CC0 1.0 Universal).
+ * You can copy, modify, use, and distribute it for any purpose.
  * -----------------------------------------------------------------------------
  */
 

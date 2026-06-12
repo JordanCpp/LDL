@@ -12,6 +12,7 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
+#include <LDL/Result.h>
 #include <LDL/OpenGL/GL1_2.h>
 #include <LDL/Renders/GL/GLUtils.h>
 

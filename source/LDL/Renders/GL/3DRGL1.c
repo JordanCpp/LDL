@@ -55,19 +55,20 @@ void LDL_3DRenderOpenGL1Begin(LDL_3DRenderOpenGL1* render)
 {
     LDL_Vec2i size;
     LDL_Mat4f modelView;
-    
-    size = LDL_WindowGetSize(render->Window);
-    glViewport(0, 0, (GLsizei)size.x, (GLsizei)size.y);
 
-    LDL_Mat4fMultiply(&modelView, (const LDL_Mat4f*)&render->View, (const LDL_Mat4f*)&render->World);
+    if (render && render->Window)
+    {
+        size = LDL_WindowGetSize(render->Window);
+        glViewport(0, 0, (GLsizei)size.x, (GLsizei)size.y);
 
-    glMatrixMode(GL_PROJECTION);
-    glLoadMatrixf(render->Projection);
+        LDL_Mat4fMultiply(&modelView, (const LDL_Mat4f*)&render->View, (const LDL_Mat4f*)&render->World);
 
-    /*
-    glMatrixMode(GL_MODELVIEW);
-    glLoadMatrixf(modelView);
-    */
+        glMatrixMode(GL_PROJECTION);
+        glLoadMatrixf(render->Projection);
+
+        glMatrixMode(GL_MODELVIEW);
+        glLoadMatrixf(LDL_Mat4fGetValues(&modelView));
+    }
 }
 
 void LDL_3DRenderOpenGL1End(LDL_3DRenderOpenGL1* render)
@@ -76,6 +77,12 @@ void LDL_3DRenderOpenGL1End(LDL_3DRenderOpenGL1* render)
     {
         LDL_WindowPresent(render->Window);
     }
+}
+
+void LDL_3DRenderOpenGL1Clear(LDL_3DRenderOpenGL1* render, float r, float g, float b)
+{
+    glClearColor(r, g, b, 0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void LDL_3DRenderOpenGL1VertexDraw(LDL_3DRenderOpenGL1* render, LDL_3DRenderOpenGL1VertexBuffer* vertexBuffer)
@@ -132,6 +139,15 @@ void LDL_3DRenderOpenGL1VertexDraw(LDL_3DRenderOpenGL1* render, LDL_3DRenderOpen
     }
 }
 
+void LDL_3DRenderOpenGL1BindTexture(LDL_3DRenderOpenGL1* render, LDL_TextureOpenGL* texture)
+{
+    if (render && texture && texture->Id > 0)
+    {
+        glBindTexture(GL_TEXTURE_2D, texture->Id);
+        glEnable(GL_TEXTURE_2D);
+    }
+}
+
 LDL_3DRenderOpenGL1VertexBuffer* LDL_3DRenderOpenGL1VertexBufferNew(size_t fvf)
 {
     LDL_3DRenderOpenGL1VertexBuffer* vertexBuffer = (LDL_3DRenderOpenGL1VertexBuffer*)malloc(sizeof(LDL_3DRenderOpenGL1VertexBuffer));
@@ -181,7 +197,7 @@ void LDL_3DRenderOpenGL1SetWorld(LDL_3DRenderOpenGL1* render, const float* matri
 {
     if (render && matrix)
     {
-        memcpy(render->World, matrix, 16 * sizeof(float));
+        memcpy(render->World, matrix, sizeof(render->World));
     }
 }
 
@@ -189,7 +205,7 @@ void LDL_3DRenderOpenGL1SetView(LDL_3DRenderOpenGL1* render, const float* matrix
 {
     if (render && matrix)
     {
-        memcpy(render->View, matrix, 16 * sizeof(float));
+        memcpy(render->View, matrix, sizeof(render->View));
     }
 }
 
@@ -197,6 +213,6 @@ void LDL_3DRenderOpenGL1SetProjection(LDL_3DRenderOpenGL1* render, const float* 
 {
     if (render && matrix)
     {
-        memcpy(render->Projection, matrix, 16 * sizeof(float));
+        memcpy(render->Projection, matrix, sizeof(render->Projection));
     }
 }
