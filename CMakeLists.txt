@@ -68,6 +68,9 @@ add_subdirectory("source")
 add_subdirectory("examples")
 add_subdirectory("demos")
 
+set(LIBTOOL_CURRENT "26" CACHE STRING "Forced FreeType current version" FORCE)
+set(LIBTOOL_AGE "20" CACHE STRING "Forced FreeType age version" FORCE)
+set(LIBTOOL_REVISION "3" CACHE STRING "Forced FreeType revision version" FORCE)
 add_subdirectory("dependencies/freetype-2.14.3")
 include_directories("dependencies/freetype-2.14.3/include")
 
