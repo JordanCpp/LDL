@@ -28,5 +28,6 @@ License for more details.
 #include <LDL/FpsCount.h>
 #include <LDL/3DRender.h>
 #include <LDL/Image.h>
+#include <LDL/Ttf.h>
 
 #endif

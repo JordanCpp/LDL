@@ -68,6 +68,13 @@ add_subdirectory("source")
 add_subdirectory("examples")
 add_subdirectory("demos")
 
+if(WIN32 AND MSVC)
+    add_subdirectory("dependencies/freetype-2.14.3")
+    include_directories("dependencies/freetype-2.14.3/include")
+else()
+    find_package(Freetype REQUIRED)
+endif()
+
 add_executable(tests test/tests.c)
 target_link_libraries(tests LDL)
 

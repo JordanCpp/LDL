@@ -31,7 +31,7 @@ enum
     LDL_PixelFormatBGR24
 };
 
-uint8_t LDL_BytesPerPixelFromPixelFormat(size_t pixelFormat);
+LDL_LIBRARY uint8_t LDL_BytesPerPixelFromPixelFormat(size_t pixelFormat);
 
 #ifdef __cplusplus
 }

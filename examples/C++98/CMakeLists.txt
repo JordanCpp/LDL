@@ -9,9 +9,10 @@ set(LDL_EXAMPLES
     "C++98_07_InitLegacyGL"
     "C++98_08_InitModernGL"
     "C++98_09_TileMap"
+    "C++98_10_Font"
 )
 
 foreach(EXE_NAME ${LDL_EXAMPLES})
     add_executable(${EXE_NAME} ${EXE_NAME}.cpp)
-    target_link_libraries(${EXE_NAME} LDL LDL_Image)
+    target_link_libraries(${EXE_NAME} LDL LDL_Image LDL_Ttf)
 endforeach()

@@ -16,6 +16,7 @@ License for more details.
 #define LDL_Mat4f_H
 
 #include <LDL/Types.h>
+#include <LDL/Config.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,15 +27,15 @@ typedef struct LDL_Mat4f
 	float Values[16];
 } LDL_Mat4f;
 
-float* LDL_Mat4fGetValues(LDL_Mat4f* mat);
-void LDL_Mat4fIdentity(LDL_Mat4f* mat);
-void LDL_Mat4fOrtho(LDL_Mat4f* mat, float left, float right, float bottom, float top, float farv, float nearv);
-void LDL_Mat4fTranslate(LDL_Mat4f* mat, float x, float y, float z);
-void LDL_Mat4fMultiply(LDL_Mat4f* result, const LDL_Mat4f* a, const LDL_Mat4f* b);
-void LDL_Mat4fRotate(LDL_Mat4f* mat, float angle, float x, float y, float z);
-void LDL_Mat4fCross(LDL_Mat4f* result, const LDL_Mat4f* a, const LDL_Mat4f* b);
-void LDL_Mat4fLookAt(LDL_Mat4f* mat, float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ);
-void LDL_Mat4fPerspective(LDL_Mat4f* mat, float fovy, float aspect, float nearv, float farv);
+LDL_LIBRARY float* LDL_Mat4fGetValues(LDL_Mat4f* mat);
+LDL_LIBRARY void LDL_Mat4fIdentity(LDL_Mat4f* mat);
+LDL_LIBRARY void LDL_Mat4fOrtho(LDL_Mat4f* mat, float left, float right, float bottom, float top, float farv, float nearv);
+LDL_LIBRARY void LDL_Mat4fTranslate(LDL_Mat4f* mat, float x, float y, float z);
+LDL_LIBRARY void LDL_Mat4fMultiply(LDL_Mat4f* result, const LDL_Mat4f* a, const LDL_Mat4f* b);
+LDL_LIBRARY void LDL_Mat4fRotate(LDL_Mat4f* mat, float angle, float x, float y, float z);
+LDL_LIBRARY void LDL_Mat4fCross(LDL_Mat4f* result, const LDL_Mat4f* a, const LDL_Mat4f* b);
+LDL_LIBRARY void LDL_Mat4fLookAt(LDL_Mat4f* mat, float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ);
+LDL_LIBRARY void LDL_Mat4fPerspective(LDL_Mat4f* mat, float fovy, float aspect, float nearv, float farv);
 
 #ifdef __cplusplus
 }
