@@ -27,5 +27,6 @@ License for more details.
 #include <LDL/FpsLimit.h>
 #include <LDL/FpsCount.h>
 #include <LDL/3DRender.h>
+#include <LDL/Image.h>
 
 #endif

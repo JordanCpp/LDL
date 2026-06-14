@@ -33,7 +33,7 @@ namespace Fallout
 		LDL::Context  _context;
 		LDL::Window   _window;
 		LDL::Render2D _render;
-		ImageLoader   _imageLoader;
+		SpriteLoader  _imageLoader;
 		SpriteManager _spriteManager;
 		Location      _location;
 	};

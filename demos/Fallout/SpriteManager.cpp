@@ -17,8 +17,8 @@ License for more details.
 using namespace LDL;
 using namespace Fallout;
 
-SpriteManager::SpriteManager(ImageLoader& imageLoader) :
-	_imageLoader(imageLoader)
+SpriteManager::SpriteManager(SpriteLoader& spriteLoader) :
+	_spriteLoader(spriteLoader)
 {
 }
 
@@ -36,7 +36,7 @@ Sprite* SpriteManager::GetSprite(const std::string& path)
 
 	if (i == _sprites.end())
 	{
-		Sprite* sprite = _imageLoader.LoadSprite(path);
+		Sprite* sprite = _spriteLoader.LoadSprite(path);
 		_sprites.insert(std::make_pair(path, sprite));
 
 		return sprite;

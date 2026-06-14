@@ -3,7 +3,7 @@ add_executable(fallout
     "Fallout.cpp" 
     "Engine.cpp" 
     "Config.cpp" 
-    "ImageLoader.cpp" 
+    "SpriteLoader.cpp" 
     "SpriteManager.cpp" 
     "Tile.cpp" 
     "Location.cpp"

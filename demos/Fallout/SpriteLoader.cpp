@@ -12,19 +12,19 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#include "ImageLoader.hpp"
+#include "SpriteLoader.hpp"
 
 using namespace LDL;
 using namespace Fallout;
 
-ImageLoader::ImageLoader(Result& result, Context& context) :
+SpriteLoader::SpriteLoader(Result& result, Context& context) :
 	_result(result),
 	_context(context),
 	_loader(_result)
 {
 }
 
-Texture* ImageLoader::Load(const std::string& path)
+Texture* SpriteLoader::Load(const std::string& path)
 {
 	_loader.Load(path);
 
@@ -34,7 +34,7 @@ Texture* ImageLoader::Load(const std::string& path)
 	return new Texture(_result, _context, &surface);
 }
 
-Sprite* ImageLoader::LoadSprite(const std::string& path)
+Sprite* SpriteLoader::LoadSprite(const std::string& path)
 {
 	_loader.Load(path);
 

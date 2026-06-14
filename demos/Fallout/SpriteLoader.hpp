@@ -12,8 +12,8 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#ifndef Fallout_ImageLoader_hpp
-#define Fallout_ImageLoader_hpp
+#ifndef Fallout_SpriteLoader_hpp
+#define Fallout_SpriteLoader_hpp
 
 #include "Config.hpp"
 #include "Sprite.hpp"
@@ -21,10 +21,10 @@ License for more details.
 
 namespace Fallout
 {
-	class ImageLoader
+	class SpriteLoader
 	{
 	public:
-		ImageLoader(LDL::Result& result, LDL::Context& context);
+		SpriteLoader(LDL::Result& result, LDL::Context& context);
 		LDL::Texture* Load(const std::string& path);
 		Sprite* LoadSprite(const std::string& path);
 	private:
