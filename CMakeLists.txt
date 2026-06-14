@@ -68,7 +68,6 @@ add_subdirectory("source")
 add_subdirectory("examples")
 add_subdirectory("demos")
 
-set(FT_DISABLE_UNIX_CONFIG ON CACHE BOOL "" FORCE)
 add_subdirectory("dependencies/freetype-2.14.3")
 include_directories("dependencies/freetype-2.14.3/include")
 
