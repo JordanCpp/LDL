@@ -68,6 +68,14 @@ add_subdirectory("source")
 add_subdirectory("examples")
 add_subdirectory("demos")
 
+set(FT_DISABLE_ZLIB TRUE CACHE BOOL "Disable ZLIB support" FORCE)
+set(FT_DISABLE_BZIP2 TRUE CACHE BOOL "Disable BZip2 support" FORCE)
+set(FT_DISABLE_PNG TRUE CACHE BOOL "Disable PNG support" FORCE)
+set(FT_DISABLE_HARFBUZZ TRUE CACHE BOOL "Disable HarfBuzz support" FORCE)
+set(FT_DISABLE_BROTLI TRUE CACHE BOOL "Disable Brotli support" FORCE)
+add_subdirectory("dependencies/freetype-2.14.3")
+include_directories("dependencies/freetype-2.14.3/include")
+
 add_executable(tests test/tests.c)
 target_link_libraries(tests LDL)
 

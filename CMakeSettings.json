@@ -74,6 +74,16 @@
           "name": "LDL_BUILD_EXAMPLES",
           "value": "False",
           "type": "BOOL"
+        },
+        {
+          "name": "LDL_BUILD_LIBRARY_STATIC",
+          "value": "True",
+          "type": "BOOL"
+        },
+        {
+          "name": "LDL_BUILD_LIBRARY_SHARED",
+          "value": "False",
+          "type": "BOOL"
         }
       ]
     }

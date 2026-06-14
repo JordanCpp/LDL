@@ -757,6 +757,77 @@ namespace LDL
 		Vec2i            _size;
 		LDL_ImageLoader* _loader;
 	};
+
+	class Font
+	{
+	public:
+		inline Font(Result& result, const std::string& path, int size) :
+			_font(NULL)
+		{
+			_font = LDL_FontLoad(result.Impl(), path.c_str(), size);
+		}
+
+		inline ~Font()
+		{
+			LDL_FontDestroy(_font);
+		}
+
+		inline LDL_Font* Impl()
+		{
+			return _font;
+		}
+	private:
+		LDL_Font* _font;
+	};
+
+	class Rasterizer
+	{
+	public:
+		inline Rasterizer(Result& result) :
+			_rasterizer(NULL)
+		{
+			_rasterizer = LDL_RasterizerCreate(result.Impl());
+		}
+
+		inline ~Rasterizer()
+		{
+			LDL_RasterizerDestroy(_rasterizer);
+		}
+
+		inline LDL_Rasterizer* Impl()
+		{
+			return _rasterizer;
+		}
+
+		inline void Text(Font* font, Color color, const std::string& text)
+		{
+			LDL_RasterizerText(_rasterizer, font->Impl(), color, text.c_str());
+		}
+
+		inline const Vec2i& GetSize()
+		{
+			LDL_Vec2i size = LDL_RasterizerGetSize(_rasterizer);
+
+			_size.x = size.x;
+			_size.y = size.y;
+
+			return _size;
+		}
+
+		inline uint8_t* GetPixels()
+		{
+			return LDL_RasterizerGetPixels(_rasterizer);
+		}
+
+		inline uint8_t GetPixelFormat()
+		{
+			return LDL_RasterizerGetPixelFormat(_rasterizer);
+		}
+
+	private:
+		Vec2i           _size;
+		LDL_Rasterizer* _rasterizer;
+	};
 }
 
 #endif
