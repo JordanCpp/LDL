@@ -13,5 +13,5 @@ set(LDL_EXAMPLES
 
 foreach(EXE_NAME ${LDL_EXAMPLES})
     add_executable(${EXE_NAME} ${EXE_NAME}.cpp)
-    target_link_libraries(${EXE_NAME} LDL)
+    target_link_libraries(${EXE_NAME} LDL LDL_Image)
 endforeach()

@@ -16,18 +16,18 @@ License for more details.
 #define Fallout_SpriteManager_hpp
 
 #include <map>
-#include "ImageLoader.hpp"
+#include "SpriteLoader.hpp"
 
 namespace Fallout
 {
 	class SpriteManager
 	{
 	public:
-		SpriteManager(ImageLoader& imageLoader);
+		SpriteManager(SpriteLoader& spriteLoader);
 		~SpriteManager();
 		Sprite* GetSprite(const std::string& path);
 	private:
-		ImageLoader&                   _imageLoader;
+		SpriteLoader&                  _spriteLoader;
 		std::map<std::string, Sprite*> _sprites;
 	};
 }

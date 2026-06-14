@@ -703,6 +703,60 @@ namespace LDL
 	private:
 		LDL_3DRender* _render;
 	};
+
+	class ImageLoader
+	{
+	public:
+		inline ImageLoader(Result& result) :
+			_loader(NULL)
+		{
+			_loader = LDL_ImageLoaderCreate(result.Impl());
+		}
+
+		inline ~ImageLoader()
+		{
+			LDL_ImageLoaderDestroy(_loader);
+		}
+
+		inline LDL_ImageLoader* Impl()
+		{
+			return _loader;
+		}
+
+		inline void Clear()
+		{
+			LDL_ImageLoaderClear(_loader);
+		}
+
+		inline void LoadFromFile(const std::string& path)
+		{
+			return LDL_ImageLoaderLoadFromFile(_loader, path.c_str());
+		}
+
+		inline const Vec2i& GetSize()
+		{
+			LDL_Vec2i size = LDL_ImageLoaderGetSize(_loader);
+
+			_size.x = size.x;
+			_size.y = size.y;
+
+			return _size;
+		}
+
+		inline uint8_t* GetPixels()
+		{
+			return LDL_ImageLoaderGetPixels(_loader);
+		}
+
+		inline uint8_t GetPixelFormat()
+		{
+			return LDL_ImageLoaderGetPixelFormat(_loader);
+		}
+
+	private:
+		Vec2i            _size;
+		LDL_ImageLoader* _loader;
+	};
 }
 
 #endif

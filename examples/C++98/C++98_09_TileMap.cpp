@@ -28,8 +28,7 @@ int main()
 	LDL::Event event;
 	LDL::Window window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL C++98 lesson 09 - Tile map", LDL_WindowModeResized);
 	LDL::Render2D render(result, context, window);
-	LDL::OpenGLLoader loader(result, 3, 0);
-	LDL::BmpLoader bmpLoader(result);
+	LDL::ImageLoader loader(result);
 	
 	LDL::Vec2i start = LDL::Vec2i(550, 0);
 	LDL::Vec2i mapSize = LDL::Vec2i(9, 9);
@@ -53,11 +52,8 @@ int main()
 
 	int count = 0;
 
-	bmpLoader.Load("Files/seasons_tiles.bmp");
-	LDL::Surface surface(result, bmpLoader.GetPixelFormat(), bmpLoader.GetSize(), bmpLoader.GetPixels());
-	surface.SetColorKey(LDL::Color(255, 255, 255));
-
-	LDL::Texture texture(result, context, &surface);
+	loader.LoadFromFile("Files/seasons_tiles.png");
+	LDL::Texture texture(result, context, loader.GetPixelFormat(), loader.GetSize(), loader.GetPixels());
 
 	while (window.IsRunning() && result.IsOk())
 	{
