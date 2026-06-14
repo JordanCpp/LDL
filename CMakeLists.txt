@@ -73,7 +73,7 @@ if(WIN32 AND MSVC)
     include_directories("dependencies/freetype-2.14.3/include")
 else()
     find_package(Freetype REQUIRED)
-    include_directories(${FREETYPE_INCLUDE_DIRS})
+    include_directories(${Freetype_INCLUDE_DIRS})
 endif()
 
 add_executable(tests test/tests.c)
