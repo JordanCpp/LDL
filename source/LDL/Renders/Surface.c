@@ -105,62 +105,32 @@ LDL_Surface* LDL_SurfaceCreateFromPixels(LDL_Result* result, uint8_t pixelFormat
 
 LDL_Vec2i LDL_SurfaceGetCapacity(LDL_Surface* surface)
 {
-	if (surface)
-	{
-		return surface->Capacity;
-	}
-
-	return LDL_GetVec2i(0, 0);
+	return surface ? surface->Capacity : LDL_GetVec2i(0, 0);
 }
 
 LDL_Vec2i LDL_SurfaceGetSize(LDL_Surface* surface)
 {
-	if (surface)
-	{
-		return surface->Size;
-	}
-
-	return LDL_GetVec2i(0, 0);
+	return surface ? surface->Size : LDL_GetVec2i(0, 0);
 }
 
 uint8_t LDL_SurfaceGetBytesPerPixel(LDL_Surface* surface)
 {
-	if (surface)
-	{
-		return LDL_BytesPerPixelFromPixelFormat(surface->PixelFormat);
-	}
-
-	return 0;
+	return surface ? LDL_BytesPerPixelFromPixelFormat(surface->PixelFormat) : 0;
 }
 
 uint8_t* LDL_SurfaceGetPixels(LDL_Surface* surface)
 {
-	if (surface)
-	{
-		return surface->Pixels;
-	}
-
-	return NULL;
+	return surface ? surface->Pixels : NULL;
 }
 
 uint8_t LDL_SurfaceGetPixelFormat(LDL_Surface* surface)
 {
-	if (surface)
-	{
-		return surface->PixelFormat;
-	}
-
-	return 0;
+	return surface ? surface->PixelFormat : 0;
 }
 
 size_t LDL_SurfaceGetPitch(LDL_Surface* surface)
 {
-	if (surface)
-	{
-		return LDL_SurfaceGetBytesPerPixel(surface) * LDL_SurfaceGetSize(surface).x;
-	}
-
-	return 0;
+	return surface ? LDL_SurfaceGetBytesPerPixel(surface) * LDL_SurfaceGetSize(surface).x : 0;
 }
 
 void LDL_SurfaceSetColorKey(LDL_Surface* surface, LDL_Color color)
@@ -174,20 +144,10 @@ void LDL_SurfaceSetColorKey(LDL_Surface* surface, LDL_Color color)
 
 LDL_Color LDL_SurfaceGetColorKey(LDL_Surface* surface)
 {
-	if (surface && surface->Enabled)
-	{
-		return surface->ColorKey;
-	}
-
-	return LDL_ColorRgb(0, 0, 0);
+	return surface && surface->Enabled ? surface->ColorKey : LDL_ColorRgb(0, 0, 0);
 }
 
 bool LDL_SurfaceIsColorKey(LDL_Surface* surface)
 {
-	if (surface)
-	{
-		return surface->Enabled;
-	}
-
-	return false;
+	return surface ? surface->Enabled : false;
 }

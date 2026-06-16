@@ -18,10 +18,10 @@ License for more details.
 
 struct LDL_Context
 {
-	size_t Mode;
+	size_t Type;
 };
 
-LDL_Context* LDL_ContextCreate(LDL_Result* result, size_t mode)
+LDL_Context* LDL_ContextCreate(LDL_Result* result, LDL_ContextType type)
 {
 	if (result)
 	{
@@ -33,7 +33,7 @@ LDL_Context* LDL_ContextCreate(LDL_Result* result, size_t mode)
 
 		if (context)
 		{
-			context->Mode = mode;
+			context->Type = type;
 
 			return context;
 		}
@@ -52,10 +52,5 @@ void LDL_ContextDestroy(LDL_Context* context)
 
 size_t LDL_ContextGet(LDL_Context* context)
 {
-	if (context)
-	{
-		return context->Mode;
-	}
-
-	return 0;
+	return context ? context->Type : 0;
 }

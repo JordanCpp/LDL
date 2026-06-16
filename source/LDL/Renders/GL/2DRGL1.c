@@ -52,12 +52,7 @@ void LDL_2DRenderOpenGL1Deinit(LDL_2DRenderOpenGL1* render)
 
 size_t LDL_2DRenderOpenGL1GetLayer(LDL_2DRenderOpenGL1* render)
 {
-    if (render)
-    {
-        return LDL_BaseRenderGetLayer(&render->BaseRender);
-    }
-
-    return 0;
+    return render ? LDL_BaseRenderGetLayer(&render->BaseRender) : 0;
 }
 
 void LDL_2DRenderOpenGL1SetLayer(LDL_2DRenderOpenGL1* render, size_t layer)
@@ -70,12 +65,7 @@ void LDL_2DRenderOpenGL1SetLayer(LDL_2DRenderOpenGL1* render, size_t layer)
 
 LDL_Color LDL_2DRenderOpenGL1GetColor(LDL_2DRenderOpenGL1* render)
 {
-    if (render)
-    {
-        return LDL_BaseRenderGetColor(&render->BaseRender);
-    }
-
-    return LDL_ColorRgb(0, 0, 0);
+    return render ? LDL_BaseRenderGetColor(&render->BaseRender) : LDL_ColorRgb(0, 0, 0);
 }
 
 void LDL_2DRenderOpenGL1SetColor(LDL_2DRenderOpenGL1* render, LDL_Color color)

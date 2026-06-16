@@ -33,9 +33,9 @@ LDL_Texture* LDL_TextureCreateFromPixels(LDL_Result* result, LDL_Context* contex
 
 		if (texture)
 		{
-			texture->Context = context;
+			texture->ContextType = LDL_ContextGet(context);
 
-			switch (LDL_ContextGet(context))
+			switch (texture->ContextType)
 			{
 			case LDL_ContextOpenGLLegacy:
 			case LDL_ContextOpenGLHybrid:
@@ -69,9 +69,9 @@ LDL_Texture* LDL_TextureCreateFromSize(LDL_Result* result, LDL_Context* context,
 
 		if (texture)
 		{
-			texture->Context = context;
+			texture->ContextType = LDL_ContextGet(context);
 
-			switch (LDL_ContextGet(context))
+			switch (texture->ContextType)
 			{
 			case LDL_ContextOpenGLLegacy:
 			case LDL_ContextOpenGLHybrid:
@@ -105,9 +105,9 @@ LDL_Texture* LDL_TextureCreateFromSurface(LDL_Result* result, LDL_Context* conte
 
 		if (texture)
 		{
-			texture->Context = context;
+			texture->ContextType = LDL_ContextGet(context);
 
-			switch (LDL_ContextGet(context))
+			switch (texture->ContextType)
 			{
 			case LDL_ContextOpenGLLegacy:
 			case LDL_ContextOpenGLHybrid:
@@ -130,16 +130,14 @@ void LDL_TextureDestroy(LDL_Texture* texture)
 {
 	if (texture)
 	{
-		if (texture->Context)
+
+		switch (texture->ContextType)
 		{
-			switch (LDL_ContextGet(texture->Context))
-			{
-			case LDL_ContextOpenGLLegacy:
-			case LDL_ContextOpenGLHybrid:
-			case LDL_ContextOpenGLModern:
-				LDL_TextureOpenGLDestroy(texture->TextureOpenGL);
-				break;
-			}
+		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
+		case LDL_ContextOpenGLModern:
+			LDL_TextureOpenGLDestroy(texture->TextureOpenGL);
+			break;
 		}
 	}
 }
@@ -148,15 +146,12 @@ LDL_Vec2i LDL_TextureGetSize(LDL_Texture* texture)
 {
 	if (texture)
 	{
-		if (texture->Context)
+		switch (texture->ContextType)
 		{
-			switch (LDL_ContextGet(texture->Context))
-			{
-			case LDL_ContextOpenGLLegacy:
-			case LDL_ContextOpenGLHybrid:
-			case LDL_ContextOpenGLModern:
-				return LDL_TextureOpenGLGetSize(texture->TextureOpenGL);
-			}
+		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
+		case LDL_ContextOpenGLModern:
+			return LDL_TextureOpenGLGetSize(texture->TextureOpenGL);
 		}
 	}
 

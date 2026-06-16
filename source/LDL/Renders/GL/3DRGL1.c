@@ -148,7 +148,7 @@ void LDL_3DRenderOpenGL1BindTexture(LDL_3DRenderOpenGL1* render, LDL_TextureOpen
     }
 }
 
-LDL_3DRenderOpenGL1VertexBuffer* LDL_3DRenderOpenGL1VertexBufferNew(size_t fvf)
+LDL_3DRenderOpenGL1VertexBuffer* LDL_3DRenderOpenGL1VertexBufferCreate(size_t fvf)
 {
     LDL_3DRenderOpenGL1VertexBuffer* vertexBuffer = (LDL_3DRenderOpenGL1VertexBuffer*)malloc(sizeof(LDL_3DRenderOpenGL1VertexBuffer));
 
@@ -165,7 +165,7 @@ LDL_3DRenderOpenGL1VertexBuffer* LDL_3DRenderOpenGL1VertexBufferNew(size_t fvf)
     return NULL;
 }
 
-void LDL_3DRenderOpenGL1VertexBufferFree(LDL_3DRenderOpenGL1VertexBuffer* vertexBuffer)
+void LDL_3DRenderOpenGL1VertexBufferDestroy(LDL_3DRenderOpenGL1VertexBuffer* vertexBuffer)
 {
     if (vertexBuffer)
     {

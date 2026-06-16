@@ -25,20 +25,10 @@ void LDL_KeyMapInit(LDL_KeyMap* keyMap, uint32_t code, uint8_t key)
 
 uint8_t LDL_KeyMapGetKey(LDL_KeyMap* keyMap)
 {
-	if (keyMap)
-	{
-		return keyMap->Key;
-	}
-
-	return LDL_KeyUnknown;
+	return keyMap ? keyMap->Key : LDL_KeyUnknown;
 }
 
 uint32_t LDL_KeyMapGetCode(LDL_KeyMap* keyMap)
 {
-	if (keyMap)
-	{
-		return keyMap->Code;
-	}
-
-	return LDL_KeyUnknown;
+	return keyMap ? keyMap->Code : LDL_KeyUnknown;
 }

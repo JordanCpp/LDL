@@ -23,8 +23,8 @@ License for more details.
 
 struct LDL_2DRender
 {
+	LDL_ContextType     ContextType;
 	LDL_Result*         Result;
-	LDL_Context*        Context;
 	LDL_Window*         Window;
 	LDL_2DRenderOpenGL1 RenderOpenGL1;
 	LDL_2DRenderOpenGL2 RenderOpenGL2;
@@ -44,11 +44,11 @@ LDL_2DRender* LDL_2DRenderCreate(LDL_Result* result, LDL_Context* context, LDL_W
 
 		if (render)
 		{
-			render->Result  = result;
-			render->Context = context;
-			render->Window  = window;
+			render->Result      = result;
+			render->Window      = window;
+			render->ContextType = LDL_ContextGet(context);
 
-			switch (LDL_ContextGet(render->Context))
+			switch (render->ContextType)
 			{
 			case LDL_ContextOpenGLLegacy:
 				LDL_2DRenderOpenGL1Init(&render->RenderOpenGL1, result, window);
@@ -70,9 +70,9 @@ LDL_2DRender* LDL_2DRenderCreate(LDL_Result* result, LDL_Context* context, LDL_W
 
 void LDL_2DRenderDestroy(LDL_2DRender* render)
 {
-	if (render && render->Context)
+	if (render)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_2DRenderOpenGL1Deinit(&render->RenderOpenGL1);
@@ -93,7 +93,7 @@ size_t LDL_2DRenderGetLayer(LDL_2DRender* render)
 {
 	if (render)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			return LDL_2DRenderOpenGL1GetLayer(&render->RenderOpenGL1);
@@ -109,9 +109,9 @@ size_t LDL_2DRenderGetLayer(LDL_2DRender* render)
 
 void LDL_2DRenderSetLayer(LDL_2DRender* render, size_t layer)
 {
-	if (render && render->Context)
+	if (render)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_2DRenderOpenGL1SetLayer(&render->RenderOpenGL1, layer);
@@ -130,7 +130,7 @@ LDL_Color LDL_2DRenderGetColor(LDL_2DRender* render)
 {
 	if (render)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			return LDL_2DRenderOpenGL1GetColor(&render->RenderOpenGL1);
@@ -148,7 +148,7 @@ void LDL_2DRenderSetColor(LDL_2DRender* render, LDL_Color color)
 {
 	if (render)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_2DRenderOpenGL1SetColor(&render->RenderOpenGL1, color);
@@ -167,7 +167,7 @@ void LDL_2DRenderClear(LDL_2DRender* render)
 {
 	if (render)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_2DRenderOpenGL1Clear(&render->RenderOpenGL1);
@@ -186,7 +186,7 @@ void LDL_2DRenderLine(LDL_2DRender* render, LDL_Vec2i first, LDL_Vec2i last)
 {
 	if (render)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_2DRenderOpenGL1Line2i(&render->RenderOpenGL1, first, last);
@@ -205,7 +205,7 @@ void LDL_2DRenderFill(LDL_2DRender* render, LDL_Vec2i first, LDL_Vec2i last)
 {
 	if (render)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_2DRenderOpenGL1Fill2i(&render->RenderOpenGL1, first, last);
@@ -224,7 +224,7 @@ void LDL_2DRenderBegin(LDL_2DRender* render)
 {
 	if (render)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_2DRenderOpenGL1Begin(&render->RenderOpenGL1);
@@ -243,7 +243,7 @@ void LDL_2DRenderEnd(LDL_2DRender* render)
 {
 	if (render)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_2DRenderOpenGL1End(&render->RenderOpenGL1);
@@ -262,7 +262,7 @@ void LDL_2DRenderDraw(LDL_2DRender* render, LDL_Texture* texture, LDL_Vec2i* dst
 {
 	if (render && texture)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_2DRenderOpenGL1Draw(&render->RenderOpenGL1, texture->TextureOpenGL, dstPos, dstSize, srcPos, srcSize);

@@ -21,8 +21,8 @@ License for more details.
 
 struct LDL_Texture
 {
+	LDL_ContextType    ContextType;
 	LDL_Result*        Result;
-	LDL_Context*       Context;
 	LDL_TextureOpenGL* TextureOpenGL;
 };
 

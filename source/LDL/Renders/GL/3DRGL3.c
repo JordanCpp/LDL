@@ -151,7 +151,7 @@ void LDL_3DRenderOpenGL3BindTexture(LDL_3DRenderOpenGL3* render, LDL_TextureOpen
     }
 }
 
-LDL_3DRenderOpenGL3VertexBuffer* LDL_3DRenderOpenGL3VertexBufferNew(size_t fvf)
+LDL_3DRenderOpenGL3VertexBuffer* LDL_3DRenderOpenGL3VertexBufferCreate(size_t fvf)
 {
     LDL_3DRenderOpenGL3VertexBuffer* vertexBuffer = (LDL_3DRenderOpenGL3VertexBuffer*)malloc(sizeof(LDL_3DRenderOpenGL3VertexBuffer));
 
@@ -170,7 +170,7 @@ LDL_3DRenderOpenGL3VertexBuffer* LDL_3DRenderOpenGL3VertexBufferNew(size_t fvf)
     return NULL;
 }
 
-void LDL_3DRenderOpenGL3VertexBufferFree(LDL_3DRenderOpenGL3VertexBuffer* vertexBuffer)
+void LDL_3DRenderOpenGL3VertexBufferDestroy(LDL_3DRenderOpenGL3VertexBuffer* vertexBuffer)
 {
     if (vertexBuffer)
     {
@@ -190,7 +190,7 @@ void LDL_3DRenderOpenGL3VertexBufferFree(LDL_3DRenderOpenGL3VertexBuffer* vertex
 
 void LDL_3DRenderOpenGL3VertexBufferCopy(LDL_3DRenderOpenGL3VertexBuffer* vertexBuffer, size_t stride, size_t count, void* source)
 {
-    size_t totalSize;
+    GLsizeiptr totalSize;
     size_t currentOffset;
 
     if (vertexBuffer && source)

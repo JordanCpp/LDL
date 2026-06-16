@@ -19,8 +19,8 @@ License for more details.
 
 struct LDL_Window
 {
+	LDL_ContextType   ContextType;
 	LDL_Result*       Result;
-	LDL_Context*      Context;
 	LDL_WindowOpenGL1 WindowOpenGL1;
 	LDL_WindowOpenGL3 WindowOpenGL3;
 };
@@ -31,10 +31,10 @@ LDL_Window* LDL_WindowCreate(LDL_Result* result, LDL_Context* context, LDL_Vec2i
 
 	if (window && result && context)
 	{
-		window->Context = context;
-		window->Result  = result;
+		window->ContextType = LDL_ContextGet(context);
+		window->Result      = result;
 
-		switch (LDL_ContextGet(window->Context))
+		switch (window->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 		case LDL_ContextOpenGLHybrid:
@@ -60,19 +60,16 @@ void LDL_WindowDestroy(LDL_Window* window)
 {
 	if (window)
 	{
-		if (window->Context)
+		switch (window->ContextType)
 		{
-			switch (LDL_ContextGet(window->Context))
-			{
-			case LDL_ContextOpenGLLegacy:
-			case LDL_ContextOpenGLHybrid:
-				LDL_WindowOpenGL1Deinit(&window->WindowOpenGL1);
-				break;
-			case LDL_ContextOpenGLModern:
-				LDL_WindowOpenGL3Deinit(&window->WindowOpenGL3);
-				break;
-			};
-		}
+		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
+			LDL_WindowOpenGL1Deinit(&window->WindowOpenGL1);
+			break;
+		case LDL_ContextOpenGLModern:
+			LDL_WindowOpenGL3Deinit(&window->WindowOpenGL3);
+			break;
+		};
 
 		free(window);
 	}
@@ -80,9 +77,9 @@ void LDL_WindowDestroy(LDL_Window* window)
 
 bool LDL_WindowIsRunning(LDL_Window* window)
 {
-	if (window && window->Context)
+	if (window)
 	{
-		switch (LDL_ContextGet(window->Context))
+		switch (window->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 		case LDL_ContextOpenGLHybrid:
@@ -99,9 +96,9 @@ bool LDL_WindowIsRunning(LDL_Window* window)
 
 void LDL_WindowStopEvent(LDL_Window* window)
 {
-	if (window && window->Context)
+	if (window)
 	{
-		switch (LDL_ContextGet(window->Context))
+		switch (window->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 		case LDL_ContextOpenGLHybrid:
@@ -116,9 +113,9 @@ void LDL_WindowStopEvent(LDL_Window* window)
 
 bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event)
 {
-	if (window && window->Context && event)
+	if (window && event)
 	{
-		switch (LDL_ContextGet(window->Context))
+		switch (window->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 		case LDL_ContextOpenGLHybrid:
@@ -135,9 +132,9 @@ bool LDL_WindowGetEvent(LDL_Window* window, LDL_Event* event)
 
 LDL_Vec2i LDL_WindowGetSize(LDL_Window* window)
 {
-	if (window && window->Context)
+	if (window)
 	{
-		switch (LDL_ContextGet(window->Context))
+		switch (window->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 		case LDL_ContextOpenGLHybrid:
@@ -152,9 +149,9 @@ LDL_Vec2i LDL_WindowGetSize(LDL_Window* window)
 
 const char* LDL_WindowGetTitle(LDL_Window* window)
 {
-	if (window && window->Context)
+	if (window)
 	{
-		switch (LDL_ContextGet(window->Context))
+		switch (window->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 		case LDL_ContextOpenGLHybrid:
@@ -169,9 +166,9 @@ const char* LDL_WindowGetTitle(LDL_Window* window)
 
 void LDL_WindowSetTitle(LDL_Window* window, const char* title)
 {
-	if (window && window->Context)
+	if (window)
 	{
-		switch (LDL_ContextGet(window->Context))
+		switch (window->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 		case LDL_ContextOpenGLHybrid:
@@ -186,9 +183,9 @@ void LDL_WindowSetTitle(LDL_Window* window, const char* title)
 
 void LDL_WindowPresent(LDL_Window* window)
 {
-	if (window && window->Context)
+	if (window)
 	{
-		switch (LDL_ContextGet(window->Context))
+		switch (window->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 		case LDL_ContextOpenGLHybrid:

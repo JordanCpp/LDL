@@ -22,7 +22,7 @@ License for more details.
 
 struct LDL_VertexBuffer
 {
-	LDL_Context*                     Context;
+	LDL_ContextType                  ContextType;
 	LDL_3DRenderOpenGL1VertexBuffer* OpenGL1VertexBuffer;
 	LDL_3DRenderOpenGL2VertexBuffer* OpenGL2VertexBuffer;
 	LDL_3DRenderOpenGL3VertexBuffer* OpenGL3VertexBuffer;
@@ -30,8 +30,8 @@ struct LDL_VertexBuffer
 
 struct LDL_3DRender
 {
+	LDL_ContextType     ContextType;
 	LDL_Result*         Result;
-	LDL_Context*        Context;
 	LDL_Window*         Window;
 	LDL_3DRenderOpenGL1 RenderOpenGL1;
 	LDL_3DRenderOpenGL2 RenderOpenGL2;
@@ -52,11 +52,11 @@ LDL_3DRender* LDL_3DRenderCreate(LDL_Result* result, LDL_Context* context, LDL_W
 
 		if (render)
 		{
-			render->Result  = result;
-			render->Context = context;
-			render->Window  = window;
+			render->ContextType = LDL_ContextGet(context);
+			render->Result      = result;
+			render->Window      = window;
 
-			switch (LDL_ContextGet(render->Context))
+			switch (render->ContextType)
 			{
 			case LDL_ContextOpenGLLegacy:
 				LDL_3DRenderOpenGL1Init(&render->RenderOpenGL1, result, window);
@@ -78,9 +78,9 @@ LDL_3DRender* LDL_3DRenderCreate(LDL_Result* result, LDL_Context* context, LDL_W
 
 void LDL_3DRenderDestroy(LDL_3DRender* render)
 {
-	if (render && render->Context)
+	if (render)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_3DRenderOpenGL1Deinit(&render->RenderOpenGL1);
@@ -101,7 +101,7 @@ void LDL_3DRenderBegin(LDL_3DRender* render)
 {
 	if (render)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_3DRenderOpenGL1Begin(&render->RenderOpenGL1);
@@ -120,7 +120,7 @@ void LDL_3DRenderEnd(LDL_3DRender* render)
 {
 	if (render)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_3DRenderOpenGL1End(&render->RenderOpenGL1);
@@ -139,7 +139,7 @@ void LDL_3DRenderClear(LDL_3DRender* render, float r, float g, float b)
 {
 	if (render)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_3DRenderOpenGL1Clear(&render->RenderOpenGL1, r, g, b);
@@ -158,7 +158,7 @@ void LDL_3DRenderDraw(LDL_3DRender* render, LDL_VertexBuffer* vertexBuffer)
 {
 	if (render && vertexBuffer)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_3DRenderOpenGL1VertexDraw(&render->RenderOpenGL1, vertexBuffer->OpenGL1VertexBuffer);
@@ -177,7 +177,7 @@ void LDL_3DRenderBindTexture(LDL_3DRender* render, LDL_Texture* texture)
 {
 	if (render && texture)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_3DRenderOpenGL1BindTexture(&render->RenderOpenGL1, texture->TextureOpenGL);
@@ -192,24 +192,24 @@ void LDL_3DRenderBindTexture(LDL_3DRender* render, LDL_Texture* texture)
 	}
 }
 
-LDL_VertexBuffer* LDL_VertexBufferNew(LDL_Context* context, size_t fvf)
+LDL_VertexBuffer* LDL_VertexBufferCreate(LDL_Context* context, size_t fvf)
 {
 	LDL_VertexBuffer* vertexBuffer = (LDL_VertexBuffer*)malloc(sizeof(LDL_VertexBuffer*));
 
 	if (vertexBuffer && context)
 	{
-		vertexBuffer->Context = context;
+		vertexBuffer->ContextType = LDL_ContextGet(context);
 
-		switch (LDL_ContextGet(context))
+		switch (vertexBuffer->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
-			vertexBuffer->OpenGL1VertexBuffer = LDL_3DRenderOpenGL1VertexBufferNew(fvf);
+			vertexBuffer->OpenGL1VertexBuffer = LDL_3DRenderOpenGL1VertexBufferCreate(fvf);
 			return vertexBuffer;
 		case LDL_ContextOpenGLHybrid:
-			vertexBuffer->OpenGL2VertexBuffer = LDL_3DRenderOpenGL2VertexBufferNew(fvf);
+			vertexBuffer->OpenGL2VertexBuffer = LDL_3DRenderOpenGL2VertexBufferCreate(fvf);
 			return vertexBuffer;
 		case LDL_ContextOpenGLModern:
-			vertexBuffer->OpenGL3VertexBuffer = LDL_3DRenderOpenGL3VertexBufferNew(fvf);
+			vertexBuffer->OpenGL3VertexBuffer = LDL_3DRenderOpenGL3VertexBufferCreate(fvf);
 			return vertexBuffer;
 		};
 	}
@@ -217,20 +217,20 @@ LDL_VertexBuffer* LDL_VertexBufferNew(LDL_Context* context, size_t fvf)
 	return NULL;
 }
 
-void LDL_VertexBufferFree(LDL_VertexBuffer* vertexBuffer)
+void LDL_VertexBufferDestroy(LDL_VertexBuffer* vertexBuffer)
 {
-	if (vertexBuffer && vertexBuffer->Context)
+	if (vertexBuffer)
 	{
-		switch (LDL_ContextGet(vertexBuffer->Context))
+		switch (vertexBuffer->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
-			LDL_3DRenderOpenGL1VertexBufferFree(vertexBuffer->OpenGL1VertexBuffer);
+			LDL_3DRenderOpenGL1VertexBufferDestroy(vertexBuffer->OpenGL1VertexBuffer);
 			break;
 		case LDL_ContextOpenGLHybrid:
-			LDL_3DRenderOpenGL2VertexBufferFree(vertexBuffer->OpenGL2VertexBuffer);
+			LDL_3DRenderOpenGL2VertexBufferDestroy(vertexBuffer->OpenGL2VertexBuffer);
 			break;
 		case LDL_ContextOpenGLModern:
-			LDL_3DRenderOpenGL3VertexBufferFree(vertexBuffer->OpenGL3VertexBuffer);
+			LDL_3DRenderOpenGL3VertexBufferDestroy(vertexBuffer->OpenGL3VertexBuffer);
 			break;
 		};
 
@@ -242,7 +242,7 @@ void LDL_VertexBufferCopy(LDL_VertexBuffer* vertexBuffer, size_t size, size_t co
 {
 	if (vertexBuffer)
 	{
-		switch (LDL_ContextGet(vertexBuffer->Context))
+		switch (vertexBuffer->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_3DRenderOpenGL1VertexBufferCopy(vertexBuffer->OpenGL1VertexBuffer, size, count, source);
@@ -261,7 +261,7 @@ void LDL_3DRenderSetWorld(LDL_3DRender* render, const float* matrix)
 {
 	if (render && matrix)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_3DRenderOpenGL1SetWorld(&render->RenderOpenGL1, matrix);
@@ -280,7 +280,7 @@ void LDL_3DRenderSetView(LDL_3DRender* render, const float* matrix)
 {
 	if (render && matrix)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_3DRenderOpenGL1SetView(&render->RenderOpenGL1, matrix);
@@ -299,7 +299,7 @@ void LDL_3DRenderSetProjection(LDL_3DRender* render, const float* matrix)
 {
 	if (render && matrix)
 	{
-		switch (LDL_ContextGet(render->Context))
+		switch (render->ContextType)
 		{
 		case LDL_ContextOpenGLLegacy:
 			LDL_3DRenderOpenGL1SetProjection(&render->RenderOpenGL1, matrix);

@@ -20,12 +20,12 @@ typedef BOOL(WINAPI* PFNWGLDELETECONTEXT)(HGLRC);
 
 typedef HGLRC(WINAPI* PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareContext, const int* attribList);
 
-const int WGL_CONTEXT_MAJOR_VERSION_ARB = 0x2091;
-const int WGL_CONTEXT_MINOR_VERSION_ARB = 0x2092;
-const int WGL_CONTEXT_FLAGS_ARB = 0x2094;
-const int WGL_CONTEXT_PROFILE_MASK_ARB = 0x9126;
-const int WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB = 0x00000002;
-const int WGL_CONTEXT_CORE_PROFILE_BIT_ARB = 0x00000001;
+const int WGL_CONTEXT_MAJOR_VERSION_ARB             = 0x2091;
+const int WGL_CONTEXT_MINOR_VERSION_ARB             = 0x2092;
+const int WGL_CONTEXT_FLAGS_ARB                     = 0x2094;
+const int WGL_CONTEXT_PROFILE_MASK_ARB              = 0x9126;
+const int WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB    = 0x00000002;
+const int WGL_CONTEXT_CORE_PROFILE_BIT_ARB          = 0x00000001;
 const int WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB = 0x00000002;
 
 void LDL_WindowOpenGL3Init(LDL_WindowOpenGL3* window, LDL_Result* result, LDL_Vec2i pos, LDL_Vec2i size, const char* title, size_t mode)
@@ -155,32 +155,17 @@ void LDL_WindowOpenGL3Deinit(LDL_WindowOpenGL3* window)
 
 LDL_Vec2i LDL_WindowOpenGL3GetPos(LDL_WindowOpenGL3* window)
 {
-    if (window)
-    {
-        return LDL_MainWindowGetPos(&window->MainWindow);
-    }
-
-    return LDL_GetVec2i(0, 0);
+    return window ? LDL_MainWindowGetPos(&window->MainWindow) : LDL_GetVec2i(0, 0);
 }
 
 LDL_Vec2i LDL_WindowOpenGL3GetSize(LDL_WindowOpenGL3* window)
 {
-    if (window)
-    {
-        return LDL_MainWindowGetSize(&window->MainWindow);
-    }
-
-    return LDL_GetVec2i(0, 0);
+    return window ? LDL_MainWindowGetSize(&window->MainWindow) : LDL_GetVec2i(0, 0);
 }
 
 const char* LDL_WindowOpenGL3GetTitle(LDL_WindowOpenGL3* window)
 {
-    if (window)
-    {
-        return LDL_MainWindowGetTitle(&window->MainWindow);
-    }
-
-    return NULL;
+    return window ? LDL_MainWindowGetTitle(&window->MainWindow) : NULL;
 }
 
 void LDL_WindowOpenGL3SetTitle(LDL_WindowOpenGL3* window, const char* title)
@@ -193,12 +178,7 @@ void LDL_WindowOpenGL3SetTitle(LDL_WindowOpenGL3* window, const char* title)
 
 bool LDL_WindowOpenGL3GetEvent(LDL_WindowOpenGL3* window, LDL_Event* event)
 {
-    if (window && event)
-    {
-        return LDL_MainWindowGetEvent(&window->MainWindow, event);
-    }
-
-    return false;
+    return window && event ? LDL_MainWindowGetEvent(&window->MainWindow, event) : false;
 }
 
 void LDL_WindowOpenGL3Present(LDL_WindowOpenGL3* window)
@@ -219,10 +199,5 @@ void LDL_WindowOpenGL3StopEvent(LDL_WindowOpenGL3* window)
 
 bool LDL_WindowOpenGL3IsRunning(LDL_WindowOpenGL3* window)
 {
-    if (window)
-    {
-        return LDL_MainWindowIsRunning(&window->MainWindow);
-    }
-
-    return false;
+    return window ? LDL_MainWindowIsRunning(&window->MainWindow) : false;
 }

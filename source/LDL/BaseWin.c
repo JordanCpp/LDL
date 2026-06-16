@@ -33,32 +33,17 @@ void LDL_BaseWindowInit(LDL_BaseWindow* baseWindow, LDL_Vec2i pos, LDL_Vec2i siz
 
 bool LDL_BaseWindowHasMode(LDL_BaseWindow* baseWindow, size_t mode)
 {
-	if (baseWindow)
-	{
-		return (baseWindow->Mode & mode) != 0;
-	}
-
-	return false;
+	return baseWindow ? (baseWindow->Mode & mode) != 0 : false;
 }
 
 LDL_Vec2i LDL_BaseWindowGetPos(LDL_BaseWindow* baseWindow)
 {
-	if (baseWindow)
-	{
-		return baseWindow->Pos;
-	}
-
-	return LDL_GetVec2i(0, 0);
+	return baseWindow ? baseWindow->Pos : LDL_GetVec2i(0, 0);
 }
 
 LDL_Vec2i LDL_BaseWindowGetSize(LDL_BaseWindow* baseWindow)
 {
-	if (baseWindow)
-	{
-		return baseWindow->Size;
-	}
-
-	return LDL_GetVec2i(0, 0);
+	return baseWindow ? baseWindow->Size : LDL_GetVec2i(0, 0);
 }
 
 void LDL_BaseWindowSetSize(LDL_BaseWindow* baseWindow, LDL_Vec2i size)
@@ -71,12 +56,7 @@ void LDL_BaseWindowSetSize(LDL_BaseWindow* baseWindow, LDL_Vec2i size)
 
 const char* LDL_BaseWindowGetTitle(LDL_BaseWindow* baseWindow)
 {
-	if (baseWindow)
-	{
-		return baseWindow->Title;
-	}
-
-	return NULL;
+	return baseWindow ? baseWindow->Title : NULL;
 }
 
 void LDL_BaseWindowSetTitle(LDL_BaseWindow* baseWindow, const char* title)
@@ -92,60 +72,30 @@ void LDL_BaseWindowSetTitle(LDL_BaseWindow* baseWindow, const char* title)
 
 bool LDL_BaseWindowIsFullscreen(LDL_BaseWindow* baseWindow)
 {
-	if (baseWindow)
-	{
-		return (baseWindow->Mode & LDL_WindowModeFullScreen) != 0;
-	}
-	
-	return false;
+	return baseWindow ? (baseWindow->Mode & LDL_WindowModeFullScreen) != 0 : false;
 }
 
 bool LDL_BaseWindowIsResized(LDL_BaseWindow* baseWindow)
 {
-	if (baseWindow)
-	{
-		return (baseWindow->Mode & LDL_WindowModeResized) != 0;
-	}
-	
-	return false;
+	return baseWindow ? (baseWindow->Mode & LDL_WindowModeResized) != 0 : false;
 }
 
 bool LDL_BaseWindowIsFixed(LDL_BaseWindow* baseWindow)
 {
-	if (baseWindow)
-	{
-		return (baseWindow->Mode & LDL_WindowModeFixed) != 0;
-	}
-	
-	return false;
+	return baseWindow ? (baseWindow->Mode & LDL_WindowModeFixed) != 0 : false;
 }
 
 bool LDL_BaseWindowIsMinimized(LDL_BaseWindow* baseWindow)
 {
-	if (baseWindow)
-	{
-		return (baseWindow->Mode & LDL_WindowModeMinimized) != 0;
-	}
-	
-	return false;
+	return baseWindow ? (baseWindow->Mode & LDL_WindowModeMinimized) != 0 : false;
 }
 
 bool LDL_BaseWindowIsMaximized(LDL_BaseWindow* baseWindow)
 {
-	if (baseWindow)
-	{
-		return (baseWindow->Mode & LDL_WindowModeMaximized) != 0;
-	}
-	
-	return false;
+	return baseWindow ? (baseWindow->Mode & LDL_WindowModeMaximized) != 0 : false;
 }
 
 bool LDL_BaseWindowIsCentered(LDL_BaseWindow* baseWindow)
 {
-	if (baseWindow)
-	{
-		return (baseWindow->Mode & LDL_WindowModeCentered) != 0;
-	}
-	
-	return false;
+	return baseWindow ? (baseWindow->Mode & LDL_WindowModeCentered) != 0 : false;
 }

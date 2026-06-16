@@ -210,10 +210,10 @@ namespace LDL
 			GLModern = LDL_ContextOpenGLModern
 		};
 
-		inline Context(Result& result, size_t mode = LDL_ContextOpenGLLegacy) :
+		inline Context(Result& result, int type = LDL_ContextOpenGLLegacy) :
 			_context(NULL)
 		{
-			_context = LDL_ContextCreate(result.Impl(), mode);
+			_context = LDL_ContextCreate(result.Impl(), (LDL_ContextType)type);
 		}
 
 		inline ~Context()
@@ -624,12 +624,12 @@ namespace LDL
 		inline VertexBuffer(Context& context, size_t fvf) :
 			_buffer(NULL)
 		{
-			_buffer = LDL_VertexBufferNew(context.Impl(), fvf);
+			_buffer = LDL_VertexBufferCreate(context.Impl(), fvf);
 		}
 
 		inline ~VertexBuffer()
 		{
-			LDL_VertexBufferFree(_buffer);
+			LDL_VertexBufferDestroy(_buffer);
 		}
 
 		inline LDL_VertexBuffer* Impl()
@@ -730,7 +730,7 @@ namespace LDL
 
 		inline void LoadFromFile(const std::string& path)
 		{
-			return LDL_ImageLoaderLoadFromFile(_loader, path.c_str());
+			LDL_ImageLoaderLoadFromFile(_loader, path.c_str());
 		}
 
 		inline const Vec2i& GetSize()

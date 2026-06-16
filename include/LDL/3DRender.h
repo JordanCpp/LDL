@@ -45,8 +45,8 @@ LDL_LIBRARY void LDL_3DRenderClear(LDL_3DRender* render, float r, float g, float
 LDL_LIBRARY void LDL_3DRenderDraw(LDL_3DRender* render, LDL_VertexBuffer* vertexBuffer);
 LDL_LIBRARY void LDL_3DRenderBindTexture(LDL_3DRender* render, LDL_Texture* texture);
 
-LDL_LIBRARY LDL_VertexBuffer* LDL_VertexBufferNew(LDL_Context* context, size_t fvf);
-LDL_LIBRARY void LDL_VertexBufferFree(LDL_VertexBuffer* vertexBuffer);
+LDL_LIBRARY LDL_VertexBuffer* LDL_VertexBufferCreate(LDL_Context* context, size_t fvf);
+LDL_LIBRARY void LDL_VertexBufferDestroy(LDL_VertexBuffer* vertexBuffer);
 LDL_LIBRARY void LDL_VertexBufferSet(LDL_VertexBuffer* vertexBuffer);
 LDL_LIBRARY void LDL_VertexBufferCopy(LDL_VertexBuffer* vertexBuffer, size_t size, size_t count, void* source);
 

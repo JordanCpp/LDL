@@ -25,12 +25,7 @@ void LDL_EventHandlerInit(LDL_EventHandler* eventHandler)
 
 bool LDL_EventHandlerEmpty(LDL_EventHandler* eventHandler)
 {
-    if (eventHandler)
-    {
-        return LDL_EventQueueEmpty(&eventHandler->Queue);
-    }
-
-    return true;
+    return eventHandler ? LDL_EventQueueEmpty(&eventHandler->Queue) : true;
 }
 
 void LDL_EventHandlerPush(LDL_EventHandler* eventHandler, const LDL_Event* event)
@@ -43,22 +38,12 @@ void LDL_EventHandlerPush(LDL_EventHandler* eventHandler, const LDL_Event* event
 
 bool LDL_EventHandlerPop(LDL_EventHandler* eventHandler, LDL_Event* event)
 {
-    if (eventHandler && event && !LDL_EventHandlerEmpty(eventHandler))
-    {
-        return LDL_EventQueueDequeue(&eventHandler->Queue, event);
-    }
-
-    return false;
+    return eventHandler && event && !LDL_EventHandlerEmpty(eventHandler) ? LDL_EventQueueDequeue(&eventHandler->Queue, event) : false;
 }
 
 bool LDL_EventHandlerRunning(LDL_EventHandler* eventHandler)
 {
-    if (eventHandler)
-    {
-        return eventHandler->Running;
-    }
-
-    return false;
+    return eventHandler ? eventHandler->Running : false;
 }
 
 void LDL_EventHandlerStop(LDL_EventHandler* eventHandler)
