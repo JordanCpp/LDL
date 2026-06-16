@@ -7,9 +7,10 @@
 
 #include <vector>
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <cmath>
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
+#include <string.h>
 #include <algorithm>
 #include <LDL/C++98/LDL.hpp>
 
