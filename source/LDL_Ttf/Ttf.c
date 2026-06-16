@@ -12,9 +12,10 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#include <PixFrmt.h>
+#include <LDL/PixFrmt.h>
 #include <LDL/Ttf.h>
 
+#undef FT_INT64
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include <stdlib.h>
@@ -164,6 +165,16 @@ void LDL_RasterizerText(LDL_Rasterizer* rasterizer, LDL_Font* font, LDL_Color co
 	int total_width = 0, max_bearing_y = 0, max_descent = 0, total_height = 0;
 	int current_x = 0;
 	const char* p;
+	uint32_t code;
+	int descent;
+	FT_Bitmap bitmap;
+	int bearing_x;
+	int start_y;
+	int row, col;
+	uint8_t alpha;
+	int target_x;
+	int target_y;
+	int idx;
 
 	if (!font || !utf8_text)
 	{
@@ -175,7 +186,7 @@ void LDL_RasterizerText(LDL_Rasterizer* rasterizer, LDL_Font* font, LDL_Color co
 
 	while (*p)
 	{
-		uint32_t code = LDL_Utf8Decode(&p);
+		code = LDL_Utf8Decode(&p);
 		if (code == 0) continue;
 		if (FT_Load_Char(font->Face, code, FT_LOAD_RENDER)) continue;
 
@@ -185,7 +196,7 @@ void LDL_RasterizerText(LDL_Rasterizer* rasterizer, LDL_Font* font, LDL_Color co
 			max_bearing_y = font->Face->glyph->bitmap_top;
 		}
 
-		int descent = font->Face->glyph->bitmap.rows - font->Face->glyph->bitmap_top;
+		descent = font->Face->glyph->bitmap.rows - font->Face->glyph->bitmap_top;
 		if (descent > max_descent)
 		{
 			max_descent = descent;
@@ -209,7 +220,7 @@ void LDL_RasterizerText(LDL_Rasterizer* rasterizer, LDL_Font* font, LDL_Color co
 
 	while (*p)
 	{
-		uint32_t code = LDL_Utf8Decode(&p);
+		code = LDL_Utf8Decode(&p);
 
 		if (code == 0)
 		{
@@ -221,28 +232,27 @@ void LDL_RasterizerText(LDL_Rasterizer* rasterizer, LDL_Font* font, LDL_Color co
 			continue;
 		}
 
-		FT_Bitmap bitmap = font->Face->glyph->bitmap;
-		int bearing_x = font->Face->glyph->bitmap_left;
-		int start_y = max_bearing_y - font->Face->glyph->bitmap_top;
-		int row, col;
+		bitmap = font->Face->glyph->bitmap;
+		bearing_x = font->Face->glyph->bitmap_left;
+		start_y = max_bearing_y - font->Face->glyph->bitmap_top;
 
 		for (row = 0; row < bitmap.rows; row++)
 		{
 			for (col = 0; col < bitmap.width; col++)
 			{
-				uint8_t alpha = bitmap.buffer[row * bitmap.width + col];
+				alpha = bitmap.buffer[row * bitmap.width + col];
 
 				if (alpha == 0) continue;
 
-				int target_x = current_x + bearing_x + col;
-				int target_y = start_y + row;
+				target_x = current_x + bearing_x + col;
+				target_y = start_y + row;
 
 				if (target_x >= total_width || target_y >= total_height || target_x < 0 || target_y < 0)
 				{
 					continue;
 				}
 
-				int idx = (target_y * total_width + target_x) * 4;
+				idx = (target_y * total_width + target_x) * 4;
 				rasterizer->pixels[idx + 0] = color.r;
 				rasterizer->pixels[idx + 1] = color.g;
 				rasterizer->pixels[idx + 2] = color.b;

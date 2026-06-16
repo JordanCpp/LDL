@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 :: Список папок для обработки (через пробел)
-set "FOLDERS=C++98 C++98_GL3 C89 OpenGL1 OpenGL2 OpenGL3 2DRenderC++ 3DRenderC++ 3DRenderC89"
+set "FOLDERS=C++98\Lessons C++98\Points C++98\2DRender C++98\3DRender C++98\OpenGL3"
 
 :: Перебираем каждую папку из списка
 for %%d in (%FOLDERS%) do (

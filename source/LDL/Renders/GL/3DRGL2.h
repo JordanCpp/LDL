@@ -53,8 +53,8 @@ void LDL_3DRenderOpenGL2Clear(LDL_3DRenderOpenGL2* render, float r, float g, flo
 void LDL_3DRenderOpenGL2VertexDraw(LDL_3DRenderOpenGL2* render, LDL_3DRenderOpenGL2VertexBuffer* vertexBuffer);
 void LDL_3DRenderOpenGL2BindTexture(LDL_3DRenderOpenGL2* render, LDL_TextureOpenGL* texture);
 
-LDL_3DRenderOpenGL2VertexBuffer* LDL_3DRenderOpenGL2VertexBufferNew(size_t fvf);
-void LDL_3DRenderOpenGL2VertexBufferFree(LDL_3DRenderOpenGL2VertexBuffer* vertexBuffer);
+LDL_3DRenderOpenGL2VertexBuffer* LDL_3DRenderOpenGL2VertexBufferCreate(size_t fvf);
+void LDL_3DRenderOpenGL2VertexBufferDestroy(LDL_3DRenderOpenGL2VertexBuffer* vertexBuffer);
 void LDL_3DRenderOpenGL2VertexBufferCopy(LDL_3DRenderOpenGL2VertexBuffer* vertexBuffer, size_t size, size_t count, void* source);
 
 void LDL_3DRenderOpenGL2SetWorld(LDL_3DRenderOpenGL2* render, const float* matrix);

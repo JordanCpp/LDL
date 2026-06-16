@@ -90,10 +90,5 @@ bool LDL_FpsCounterCalc(LDL_FpsCounter* fpsCounter)
 
 size_t LDL_FpsCounterFps(LDL_FpsCounter* fpsCounter)
 {
-	if (fpsCounter)
-	{
-		return fpsCounter->LastFps;
-	}
-
-	return 0;
+	return fpsCounter ? fpsCounter->LastFps : 0;
 }

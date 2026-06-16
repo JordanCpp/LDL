@@ -37,11 +37,11 @@ License for more details.
 #endif
 
 #if defined(_WIN32)
-    #define LDL_API_CALL __stdcall
-#elif defined(__unix__)
-    #define LDL_API_CALL
+    #define LDL_API_CALL __cdecl
+    #define LDL_GL_CALL  __stdcall
 #else
     #define LDL_API_CALL
+    #define LDL_GL_CALL
 #endif
 
 #define LDL_API_ENTRY LDL_LIBRARY extern

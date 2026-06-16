@@ -98,42 +98,22 @@ void LDL_BmpLoaderDestroy(LDL_BmpLoader* loader)
 
 LDL_Vec2i LDL_BmpLoaderGetSize(LDL_BmpLoader* loader)
 {
-    if (loader)
-    {
-        return loader->Size;
-    }
-
-    return LDL_GetVec2i(0, 0);
+    return loader ? loader->Size : LDL_GetVec2i(0, 0);
 }
 
 uint8_t* LDL_BmpLoaderGetPixels(LDL_BmpLoader* loader) 
 {
-    if (loader)
-    {
-        return loader->Pixels;
-    }
-
-    return NULL;
+    return loader ? loader->Pixels : NULL;
 }
 
 uint8_t LDL_BmpLoaderGetPixelFormat(LDL_BmpLoader* loader)
 {
-    if (loader)
-    {
-        return loader->Format;
-    }
-
-    return LDL_PixelFormatUnknown;
+    return loader ? loader->Format : LDL_PixelFormatUnknown;
 }
 
 uint8_t LDL_BmpLoaderGetBytesPerPixels(LDL_BmpLoader* loader)
 {
-    if (loader)
-    {
-        return loader->Bpp;
-    }
-
-    return 0;
+    return loader ? loader->Bpp : 0;
 }
 
 bool LDL_BmpLoaderLoadFromFile(LDL_BmpLoader* loader, const char* path) 

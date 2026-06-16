@@ -216,6 +216,21 @@ Please feel free to open issues and pull requests.
 
 ## Screenshots
 
+### Fonts examples
+
+| | | |
+|:-:|:-:|:-:|
+| ![fireworksshow](Screenshots/fonts/fireworksshow.png) | ![font1](Screenshots/fonts/font1.png) | ![font2](Screenshots/fonts/font2.png) |
+| *fireworksshow* | *font1* | *font2* |
+| ![fontsizegallery](Screenshots/fonts/fontsizegallery.png) | ![fontstylemixer](Screenshots/fonts/fontstylemixer.png) | ![fontstylemixer2](Screenshots/fonts/fontstylemixer2.png) |
+| *fontsizegallery* | *fontstylemixer* | *fontstylemixer2* |
+| ![fontstylemixer3](Screenshots/fonts/fontstylemixer3.png) | ![fontstylemixer4](Screenshots/fonts/fontstylemixer4.png) | ![fontstylemixer5](Screenshots/fonts/fontstylemixer5.png) |
+| *fontstylemixer3* | *fontstylemixer4* | *fontstylemixer5* |
+| ![fontstylemixer6](Screenshots/fonts/fontstylemixer6.png) | ![fontstylemixer7](Screenshots/fonts/fontstylemixer7.png) | ![fontstylemixer8](Screenshots/fonts/fontstylemixer8.png) |
+| *fontstylemixer6* | *fontstylemixer7* | *fontstylemixer8* |
+
+---
+
 ### 2D Render Examples
 
 | | | |

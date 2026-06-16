@@ -45,8 +45,8 @@ void LDL_3DRenderOpenGL1Clear(LDL_3DRenderOpenGL1* render, float r, float g, flo
 void LDL_3DRenderOpenGL1VertexDraw(LDL_3DRenderOpenGL1* render, LDL_3DRenderOpenGL1VertexBuffer* vertexBuffer);
 void LDL_3DRenderOpenGL1BindTexture(LDL_3DRenderOpenGL1* render, LDL_TextureOpenGL* texture);
 
-LDL_3DRenderOpenGL1VertexBuffer* LDL_3DRenderOpenGL1VertexBufferNew(size_t fvf);
-void LDL_3DRenderOpenGL1VertexBufferFree(LDL_3DRenderOpenGL1VertexBuffer* vertexBuffer);
+LDL_3DRenderOpenGL1VertexBuffer* LDL_3DRenderOpenGL1VertexBufferCreate(size_t fvf);
+void LDL_3DRenderOpenGL1VertexBufferDestroy(LDL_3DRenderOpenGL1VertexBuffer* vertexBuffer);
 void LDL_3DRenderOpenGL1VertexBufferCopy(LDL_3DRenderOpenGL1VertexBuffer* vertexBuffer, size_t size, size_t count, void* source);
 
 void LDL_3DRenderOpenGL1SetWorld(LDL_3DRenderOpenGL1* render, const float* matrix);

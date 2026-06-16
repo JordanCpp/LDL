@@ -26,15 +26,15 @@ extern "C" {
 typedef struct LDL_Font LDL_Font;
 typedef struct LDL_Rasterizer LDL_Rasterizer;
 
-LDL_Font* LDL_FontLoad(LDL_Result* result, const char* path, int size);
-void LDL_FontDestroy(LDL_Font* font);
+LDL_LIBRARY LDL_Font* LDL_FontLoad(LDL_Result* result, const char* path, int size);
+LDL_LIBRARY void LDL_FontDestroy(LDL_Font* font);
 
-LDL_Rasterizer* LDL_RasterizerCreate(LDL_Result* result);
-void LDL_RasterizerDestroy(LDL_Rasterizer* rasterizer);
-void LDL_RasterizerText(LDL_Rasterizer* rasterizer, LDL_Font* font, LDL_Color color, const char* utf8_text);
-LDL_Vec2i LDL_RasterizerGetSize(LDL_Rasterizer* rasterizer);
-uint8_t* LDL_RasterizerGetPixels(LDL_Rasterizer* rasterizer);
-uint8_t LDL_RasterizerGetPixelFormat(LDL_Rasterizer* rasterizer);
+LDL_LIBRARY LDL_Rasterizer* LDL_RasterizerCreate(LDL_Result* result);
+LDL_LIBRARY void LDL_RasterizerDestroy(LDL_Rasterizer* rasterizer);
+LDL_LIBRARY void LDL_RasterizerText(LDL_Rasterizer* rasterizer, LDL_Font* font, LDL_Color color, const char* utf8_text);
+LDL_LIBRARY LDL_Vec2i LDL_RasterizerGetSize(LDL_Rasterizer* rasterizer);
+LDL_LIBRARY uint8_t* LDL_RasterizerGetPixels(LDL_Rasterizer* rasterizer);
+LDL_LIBRARY uint8_t LDL_RasterizerGetPixelFormat(LDL_Rasterizer* rasterizer);
 
 #ifdef __cplusplus
 }

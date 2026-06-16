@@ -121,10 +121,5 @@ void LDL_KeyMapperInit(LDL_KeyMapper* keyMapper)
 
 uint8_t LDL_KeyMapperConvertKey(LDL_KeyMapper* keyMapper, uint32_t key)
 {
-    if (keyMapper)
-    {
-        return LDL_KeyMappingFindKey(&keyMapper->Mapping, key);
-    }
-
-    return LDL_KeyUnknown;
+    return keyMapper ? LDL_KeyMappingFindKey(&keyMapper->Mapping, key) : LDL_KeyUnknown;
 }

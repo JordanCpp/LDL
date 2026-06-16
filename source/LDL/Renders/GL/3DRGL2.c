@@ -37,25 +37,29 @@ const char* vShaderSrcGL2 =
 const char* fShaderSrcGL2 =
 "#version 120\n"
 "varying vec3 vColor;\n"
-"varying vec2 vTexTcoord;\n" // В GLSL 1.20 нужно быть внимательным с именами
+"varying vec2 vTexTcoord;\n"
 "uniform sampler2D uTexture;\n"
 "uniform bool uHasTexture;\n"
 "void main() {\n"
-"   vec4 texColor = uHasTexture ? texture2D(uTexture, vTexCoord) : vec4(1.0);\n" // В 2.0 используем texture2D
+"   vec4 texColor = uHasTexture ? texture2D(uTexture, vTexCoord) : vec4(1.0);\n"
 "   gl_FragColor = vec4(vColor, 1.0) * texColor;\n"
 "}\n";
 
 static GLuint CompileShaderFull(const char* vSource, const char* fSource)
 {
-    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+    GLuint vs;
+    GLuint fs;
+    GLuint prog;
+
+    vs = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vs, 1, &vSource, NULL);
     glCompileShader(vs);
 
-    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+    fs = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fs, 1, &fSource, NULL);
     glCompileShader(fs);
 
-    GLuint prog = glCreateProgram();
+    prog = glCreateProgram();
     glAttachShader(prog, vs);
     glAttachShader(prog, fs);
     glLinkProgram(prog);
@@ -124,50 +128,51 @@ void LDL_3DRenderOpenGL2Clear(LDL_3DRenderOpenGL2* render, float r, float g, flo
 
 void LDL_3DRenderOpenGL2VertexDraw(LDL_3DRenderOpenGL2* render, LDL_3DRenderOpenGL2VertexBuffer* vertexBuffer)
 {
+    size_t offset;
+    size_t stride;
+
     if (render && vertexBuffer && vertexBuffer->VBO > 0)
     {
         glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer->VBO);
 
-        size_t offset = 0;
-        size_t stride = vertexBuffer->Stride;
+        offset = 0;
+        stride = vertexBuffer->Stride;
 
         if (vertexBuffer->Format & LDL_FVF_XYZ)
         {
-            glEnableVertexAttribArray(0); // aPos
+            glEnableVertexAttribArray(0);
             glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, (GLsizei)stride, (void*)offset);
             offset += sizeof(float) * 3;
         }
         if (vertexBuffer->Format & LDL_FVF_XYZW)
         {
-            glEnableVertexAttribArray(0); // aPos
+            glEnableVertexAttribArray(0);
             glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, (GLsizei)stride, (void*)offset);
             offset += sizeof(float) * 4;
         }
 
         if (vertexBuffer->Format & LDL_FVF_COLOR)
         {
-            glEnableVertexAttribArray(1); // aColor
+            glEnableVertexAttribArray(1);
             glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, (GLsizei)stride, (void*)offset);
             offset += sizeof(float) * 3;
         }
 
         if (vertexBuffer->Format & LDL_FVF_NORMAL)
         {
-            glEnableVertexAttribArray(2); // aNormal
+            glEnableVertexAttribArray(2);
             glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, (GLsizei)stride, (void*)offset);
             offset += sizeof(float) * 3;
         }
 
         if (vertexBuffer->Format & LDL_FVF_TEXCOORD)
         {
-            glEnableVertexAttribArray(3); // aTexCoord
+            glEnableVertexAttribArray(3);
             glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, (GLsizei)stride, (void*)offset);
             offset += sizeof(float) * 2;
         }
 
         glDrawArrays(GL_TRIANGLES, 0, (GLsizei)vertexBuffer->Count);
-
-        // Сброс состояний
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
 }
@@ -182,7 +187,7 @@ void LDL_3DRenderOpenGL2BindTexture(LDL_3DRenderOpenGL2* render, LDL_TextureOpen
     }
 }
 
-LDL_3DRenderOpenGL2VertexBuffer* LDL_3DRenderOpenGL2VertexBufferNew(size_t fvf)
+LDL_3DRenderOpenGL2VertexBuffer* LDL_3DRenderOpenGL2VertexBufferCreate(size_t fvf)
 {
     LDL_3DRenderOpenGL2VertexBuffer* vBuffer = (LDL_3DRenderOpenGL2VertexBuffer*)malloc(sizeof(LDL_3DRenderOpenGL2VertexBuffer));
 
@@ -200,7 +205,7 @@ LDL_3DRenderOpenGL2VertexBuffer* LDL_3DRenderOpenGL2VertexBufferNew(size_t fvf)
     return NULL;
 }
 
-void LDL_3DRenderOpenGL2VertexBufferFree(LDL_3DRenderOpenGL2VertexBuffer* vertexBuffer)
+void LDL_3DRenderOpenGL2VertexBufferDestroy(LDL_3DRenderOpenGL2VertexBuffer* vertexBuffer)
 {
     if (vertexBuffer)
     {
@@ -217,7 +222,7 @@ void LDL_3DRenderOpenGL2VertexBufferCopy(LDL_3DRenderOpenGL2VertexBuffer* vertex
 {
     if (vertexBuffer && source && count > 0)
     {
-        size_t dataSize = count * vertexBuffer->Stride;
+        GLsizeiptr dataSize = count * vertexBuffer->Stride;
 
         glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer->VBO);
 

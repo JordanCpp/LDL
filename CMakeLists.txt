@@ -5,19 +5,12 @@ project(LDL)
 option(LDL_BUILD_LIBRARY_STATIC "Enable building static library" ON)
 option(LDL_BUILD_LIBRARY_SHARED "Enable building shared library" OFF)
 
-option(LDL_BUILD_EXAMPLES "Enable building examples" OFF)
-option(LDL_BUILD_EXAMPLES_C89 "Enable building examples for С89" ON)
+option(LDL_BUILD_EXAMPLES       "Enable building examples" OFF)
+
+option(LDL_BUILD_EXAMPLES_C89   "Enable building examples for С89" ON)
 option(LDL_BUILD_EXAMPLES_CPP98 "Enable building examples for С++ 98" ON)
-option(LDL_BUILD_EXAMPLES_CPP98_GL3 "Enable building examples for С++ 98 OpenGl 3.x" ON)
 option(LDL_BUILD_EXAMPLES_CPP11 "Enable building examples for С++ 11" ON)
-option(LDL_BUILD_EXAMPLES_OPENGL2 "Enable building examples for OpenGL 2" ON)
-option(LDL_BUILD_EXAMPLES_OPENGL1 "Enable building examples for OpenGL 1" ON)
-option(LDL_BUILD_EXAMPLES_OPENGL2 "Enable building examples for OpenGL 2" ON)
-option(LDL_BUILD_EXAMPLES_OPENGL3 "Enable building examples for OpenGL 3" ON)
-option(LDL_BUILD_EXAMPLES_2D_RENDER_CPP "Enable building examples for 2D render for C++" ON)
-option(LDL_BUILD_EXAMPLES_3D_RENDER_CPP "Enable building examples for 3D render for C++" ON)
-option(LDL_BUILD_EXAMPLES_3D_RENDER_C89 "Enable building examples for 3D render for C89" ON)
-option(LDL_BUILD_DEMO_FALLOUT "Enable building demo fallout" ON)
+option(LDL_BUILD_DEMO_FALLOUT   "Enable building demo fallout" ON)
 
 option(LDL_ENABLE_INSTALL "Enable install target for library" OFF)
 
