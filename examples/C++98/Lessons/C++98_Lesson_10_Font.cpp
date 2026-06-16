@@ -7,7 +7,7 @@
 
 #include <vector>
 #include <iostream>
-#include <cmath>
+#include <math.h>
 #include <LDL/C++98/LDL.hpp>
 
  // Простая замена Clock на системное время

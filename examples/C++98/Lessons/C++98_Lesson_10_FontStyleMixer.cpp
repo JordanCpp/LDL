@@ -7,8 +7,9 @@
 
 #include <vector>
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
 #include <LDL/C++98/LDL.hpp>
 
 #ifdef _WIN32
