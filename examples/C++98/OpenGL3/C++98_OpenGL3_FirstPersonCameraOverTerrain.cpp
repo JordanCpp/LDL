@@ -14,10 +14,6 @@
 #include <LDL/OpenGL/GL3_0.h>
 #include <LDL/C++98/GlmLite.hpp>
 
-#define STBI_NO_SIMD
-#define STB_IMAGE_IMPLEMENTATION
-#include <LDL/Ext/stb_image.h>
-
  // Шейдеры
 const char* vertexShaderSource =
 "#version 130\n"
@@ -197,34 +193,26 @@ GLuint createShaderProgram()
     return program;
 }
 
-GLuint loadTexture(const char* filename)
+GLuint LoadTexture(LDL::ImageLoader& imageLoader, const char* path)
 {
-    int width, height, channels;
-    unsigned char* data = stbi_load(filename, &width, &height, &channels, 3);
+    GLuint textureID;
+    glGenTextures(1, &textureID);
 
-    if (!data)
-    {
-        std::cerr << "Failed to load texture: " << filename << std::endl;
-        return 0;
-    }
+    imageLoader.LoadFromFile(path);
 
-    std::cout << "Texture loaded: " << width << "x" << height << std::endl;
 
-    GLuint texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    GLenum format = imageLoader.GetPixelFormat() == LDL_PixelFormatRGB24 ? GL_RGB : GL_RGBA;
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    glTexImage2D(GL_TEXTURE_2D, 0, format, imageLoader.GetSize().x, imageLoader.GetSize().y, 0, format, GL_UNSIGNED_BYTE, imageLoader.GetPixels());
+    glGenerateMipmap(GL_TEXTURE_2D);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    glGenerateMipmap(GL_TEXTURE_2D);
-
-    stbi_image_free(data);
-    return texture;
+    return textureID;
 }
 
 GLuint createDefaultTexture()
@@ -325,9 +313,9 @@ int main()
     LDL::Result  result;
     LDL::Context context(result);
     LDL::Event   event;
-    LDL::Window  window = LDL::Window(result, context, LDL::Vec2i(100, 100), LDL::Vec2i(1024, 768),
-        "LDL - First Person Camera over Terrain", LDL_WindowModeResized);
+    LDL::Window  window = LDL::Window(result, context, LDL::Vec2i(100, 100), LDL::Vec2i(1024, 768), "LDL - First Person Camera over Terrain", LDL_WindowModeResized);
     LDL::OpenGLLoader loader = LDL::OpenGLLoader(result, 3, 0);
+    LDL::ImageLoader imageLoader(result);
 
     if (result.IsOk())
     {
@@ -340,7 +328,7 @@ int main()
         GLint textureLocation = glGetUniformLocation(shaderProgram, "textureSampler");
 
         // Текстура
-        GLuint terrainTexture = loadTexture("Files/ba_rock_hm.jpg");
+        GLuint terrainTexture = LoadTexture(imageLoader, "Files/ba_rock_hm.jpg");
         if (!terrainTexture)
         {
             std::cout << "Creating default texture..." << std::endl;

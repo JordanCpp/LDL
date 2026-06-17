@@ -53,9 +53,8 @@ GLuint CreateProgram(const char* vsSource, const char* fsSource)
     return program;
 }
 
-// Build checkered background quads
-void BuildCheckerboard(std::vector<float>& vertices, std::vector<unsigned int>& indices,
-    int gridSize, float cellSize)
+
+void BuildCheckerboard(std::vector<float>& vertices, std::vector<unsigned int>& indices, int gridSize, float cellSize)
 {
     const int vertsPerSide = gridSize + 1;
 
@@ -106,11 +105,7 @@ void BuildCheckerboard(std::vector<float>& vertices, std::vector<unsigned int>& 
     }
 }
 
-// Generate a 5-pointed star with alpha gradient from center to tips
-// Center is fully opaque, outer tips are more transparent
-void GenerateStar(std::vector<float>& vertices,
-    float outerRadius, float innerRadius, int points,
-    float centerAlpha, float tipAlpha)
+void GenerateStar(std::vector<float>& vertices, float outerRadius, float innerRadius, int points, float centerAlpha, float tipAlpha)
 {
     // Center vertex
     vertices.push_back(0.0f);
@@ -148,8 +143,7 @@ int main()
     LDL::Result  result;
     LDL::Context context(result);
     LDL::Event   event;
-    LDL::Window  window = LDL::Window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600),
-        "LDL Example 04 - Star with Alpha Blending", LDL_WindowModeResized);
+    LDL::Window  window = LDL::Window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL Example 04 - Star with Alpha Blending", LDL_WindowModeResized);
     LDL::OpenGLLoader loader = LDL::OpenGLLoader(result, 3, 0);
 
     if (result.IsFail())
