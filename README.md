@@ -235,7 +235,7 @@ Please feel free to open issues and pull requests.
 
 | | | |
 |:-:|:-:|:-:|
-| ![Boids Simulation](Screenshots/2DRender/Boids%20Simulation.jpg) | ![Conway's Game of Life](Screenshots/2DRender/Conways%20Game%20of%20Life.jpg) | ![Firework Demo](Screenshell/2DRender/Firework%20Demo.jpg) |
+| ![Boids Simulation](Screenshots/2DRender/Boids%20Simulation.jpg) | ![Conway's Game of Life](Screenshots/2DRender/Conways%20Game%20of%20Life.jpg) | ![Firework Demo](Screenshots/2DRender/Firework%20Demo.jpg) |
 | *Boids Simulation* | *Conway's Game of Life* | *Firework Demo* |
 | ![Fog of War Demo](Screenshots/2DRender/Fog%20of%20War%20Demo.jpg) | ![Fractal Tree](Screenshots/2DRender/Fractal%20Tree.jpg) | ![Fractal Tree 2](Screenshots/2DRender/Fractal%20Tree%202.jpg) |
 | *Fog of War Demo* | *Fractal Tree* | *Fractal Tree 2* |
