@@ -220,7 +220,7 @@ Please feel free to open issues and pull requests.
 
 | | | |
 |:-:|:-:|:-:|
-| ![fireworksshow](Screenshots/fonts/fireworksshow.png) | ![font1](Screenshots/Fonts/Font1.png) | ![font2](Screenshots/Fonts/Font2.png) |
+| ![fireworksshow](Screenshots/Fonts/FireworksShow.png) | ![font1](Screenshots/Fonts/Font1.png) | ![font2](Screenshots/Fonts/Font2.png) |
 | *fireworksshow* | *font1* | *font2* |
 | ![fontsizegallery](Screenshots/Fonts/FontSizeGallery.png) | ![fontstylemixer](Screenshots/Fonts/FontStyleMixer.png) | ![fontstylemixer2](Screenshots/Fonts/FontStyleMixer2.png) |
 | *fontsizegallery* | *fontstylemixer* | *fontstylemixer2* |
