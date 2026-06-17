@@ -5,11 +5,12 @@
  * -----------------------------------------------------------------------------
  */
 
-#include <iostream>
 #include <vector>
-#include <cmath>
-#include <cstdlib>
-#include <ctime>
+#include <math.h>
+#include <time.h>
+#include <stdlib.h>
+#include <string.h>
+#include <iostream>
 #include <LDL/C++98/LDL.hpp>
 #include <LDL/OpenGL/GL3_0.h>
 #include <LDL/C++98/GlmLite.hpp>
