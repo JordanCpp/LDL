@@ -5,9 +5,9 @@
  * -----------------------------------------------------------------------------
  */
 
-#include <iostream>
+#include <math.h>
 #include <vector>
-#include <cmath>
+#include <iostream>
 #include <LDL/C++98/LDL.hpp>
 #include <LDL/OpenGL/GL3_0.h>
 
@@ -53,17 +53,14 @@ GLuint CreateProgram(const char* vsSource, const char* fsSource)
     return program;
 }
 
-// Archimedean spiral: r = a + b * theta
-// Returns interleaved [x, y, r, g, b] vertices
-void GenerateSpiral(std::vector<float>& vertices,
-    float a, float b, float maxTheta, int steps)
+void GenerateSpiral(std::vector<float>& vertices, float a, float b, float maxTheta, int steps)
 {
     vertices.clear();
     vertices.reserve(steps * 5);
 
     for (int i = 0; i < steps; ++i)
     {
-        float t = (float)i / (steps - 1);          // 0..1
+        float t = (float)i / (steps - 1);
         float theta = t * maxTheta;
         float r = a + b * theta;
         float x = r * cosf(theta);
@@ -72,13 +69,12 @@ void GenerateSpiral(std::vector<float>& vertices,
         vertices.push_back(x);
         vertices.push_back(y);
 
-        // Color gradient: hue shifts from red to violet along spiral
-        float hue = t; // 0..1
+        float hue = t;
         float red, green, blue;
-        // Simple hue-to-RGB (rainbow)
         int segment = int(hue * 6.0f) % 6;
         float frac = hue * 6.0f - segment;
         float q = 1.0f - frac;
+
         switch (segment)
         {
         case 0: red = 1.0f; green = frac; blue = 0.0f; break;
@@ -89,6 +85,7 @@ void GenerateSpiral(std::vector<float>& vertices,
         case 5: red = 1.0f; green = 0.0f; blue = q;    break;
         default: red = green = blue = 0.0f; break;
         }
+
         vertices.push_back(red);
         vertices.push_back(green);
         vertices.push_back(blue);

@@ -7,11 +7,7 @@
 
 #include <iostream>
 #include <vector>
-#include <cmath>
-
-#define STBI_NO_SIMD
-#define STB_IMAGE_IMPLEMENTATION
-#include <LDL/Ext/stb_image.h>
+#include <math.h>
 
 #include <LDL/C++98/LDL.hpp>
 #include <LDL/OpenGL/GL3_0.h>
@@ -54,46 +50,38 @@ GLuint CompileShader(LDL::Result& result, const char* source, GLenum type)
     return shader;
 }
 
-GLuint LoadTexture(const char* path)
+GLuint LoadTexture(LDL::ImageLoader& imageLoader, const char* path)
 {
     GLuint textureID;
     glGenTextures(1, &textureID);
 
-    int width, height, nrChannels;
+    imageLoader.LoadFromFile(path);
 
-    stbi_set_flip_vertically_on_load(true);
-    unsigned char* data = stbi_load(path, &width, &height, &nrChannels, 0);
 
-    if (data)
-    {
-        GLenum format;
-        if (nrChannels == 1) format = GL_RED;
-        else if (nrChannels == 3) format = GL_RGB;
-        else if (nrChannels == 4) format = GL_RGBA;
-        else format = GL_RGB;
+    GLenum format = imageLoader.GetPixelFormat() == LDL_PixelFormatRGB24 ? GL_RGB : GL_RGBA;
 
-        glBindTexture(GL_TEXTURE_2D, textureID);
-        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    glTexImage2D(GL_TEXTURE_2D, 0, format, imageLoader.GetSize().x, imageLoader.GetSize().y, 0, format, GL_UNSIGNED_BYTE, imageLoader.GetPixels());
+    glGenerateMipmap(GL_TEXTURE_2D);
 
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-        stbi_image_free(data);
-        std::cout << "Texture loaded successfully: " << path << std::endl;
-    }
-    else
-    {
-        std::cerr << "Failed to load texture at: " << path << std::endl;
-        stbi_image_free(data);
-        
-        return 0;
-    }
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     return textureID;
 }
+
+class Painter
+{
+public:
+    Painter()
+    {
+
+    }
+private:
+
+};
 
 int main()
 {
@@ -103,6 +91,7 @@ int main()
 
     LDL::Window  window = LDL::Window(result, context, LDL::Vec2i(0, 0), LDL::Vec2i(800, 600), "LDL OpenGL Texture Example", LDL_WindowModeResized);
     LDL::OpenGLLoader loader = LDL::OpenGLLoader(result, 3, 0);
+    LDL::ImageLoader imageLoader(result);
 
     if (result.IsOk())
     {
@@ -117,7 +106,7 @@ int main()
         glDeleteShader(fragmentShader);
 
         GLuint texture;
-        texture = LoadTexture("Files/ba_rock_hm.jpg");
+        texture = LoadTexture(imageLoader, "Files/ba_rock_hm.jpg");
 
         float vertices[] = 
         {
