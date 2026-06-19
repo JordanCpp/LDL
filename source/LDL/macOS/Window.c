@@ -180,3 +180,8 @@ void LDL_WindowPresent(LDL_Window* window)
         }
     }
 }
+
+LDL_Surface* LDL_WindowGetScreen(LDL_Window* window)
+{
+    return NULL;
+}
