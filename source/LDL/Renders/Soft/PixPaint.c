@@ -13,6 +13,7 @@ License for more details.
 */
 
 #include <math.h>
+#include <stdlib.h>
 #include <LDL/PixFrmt.h>
 #include <LDL/Renders/Soft/PixPaint.h>
 
