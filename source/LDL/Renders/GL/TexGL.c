@@ -24,7 +24,7 @@ GLenum BppToFormat(uint8_t bpp)
 	return bpp == 3 ? GL_RGB : GL_RGBA;
 }
 
-LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSize(LDL_Result* result, size_t pixelFormat, LDL_Vec2i size)
+LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSize(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size)
 {
 	GLenum format = 0;
 	int quadSize;
@@ -51,7 +51,7 @@ LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSize(LDL_Result* result, size_t pi
 	return NULL;
 }
 
-LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromPixels(LDL_Result* result, size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
+LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromPixels(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
 {
 	GLenum format = 0;
 	uint8_t bpp  = LDL_BytesPerPixelFromPixelFormat(pixelFormat);

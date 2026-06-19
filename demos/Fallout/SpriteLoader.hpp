@@ -28,9 +28,9 @@ namespace Fallout
 		LDL::Texture* Load(const std::string& path);
 		Sprite* LoadSprite(const std::string& path);
 	private:
-		LDL::Result&   _result;
-		LDL::Context&  _context;
-		LDL::BmpLoader _loader;
+		LDL::Result&     _result;
+		LDL::Context&    _context;
+		LDL::ImageLoader _loader;
 	};
 }
 

@@ -120,6 +120,11 @@ set(LDL_INCLUDES_RENDERS
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/3DRGL1.h
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/3DRGL2.h
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/3DRGL3.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Soft/BufSoft.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Soft/PixCopy.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Soft/PixPaint.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Soft/RndrSoft.h
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Soft/TexSoft.h
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/BaseRndr.h
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Texture.h
 )
@@ -134,6 +139,11 @@ set(LDL_SOURCES_RENDERS
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/3DRGL1.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/3DRGL2.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/GL/3DRGL3.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Soft/BufSoft.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Soft/PixCopy.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Soft/PixPaint.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Soft/RndrSoft.c
+    ${LDL_ROOT_FOLDER}/source/LDL/Renders/Soft/TexSoft.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/BaseRndr.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Color.c
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/Mat4f.c
@@ -151,6 +161,7 @@ if(WIN32)
         ${LDL_ROOT_FOLDER}/source/LDL/Win9x/WinError.h
         ${LDL_ROOT_FOLDER}/source/LDL/Win9x/WinGL1.h
         ${LDL_ROOT_FOLDER}/source/LDL/Win9x/WinGL3.h
+        ${LDL_ROOT_FOLDER}/source/LDL/Win9x/WinSoft.h
         ${LDL_ROOT_FOLDER}/source/LDL/Win9x/WinX.h
     )
     set(LDL_SOURCES_PLATFORM
@@ -163,6 +174,7 @@ if(WIN32)
         ${LDL_ROOT_FOLDER}/source/LDL/Win9x/WinError.c
         ${LDL_ROOT_FOLDER}/source/LDL/Win9x/WinGL1.c
         ${LDL_ROOT_FOLDER}/source/LDL/Win9x/WinGL3.c
+        ${LDL_ROOT_FOLDER}/source/LDL/Win9x/WinSoft.c
     )
 elseif(UNIX AND NOT APPLE)
     set(LDL_INCLUDES_PLATFORM

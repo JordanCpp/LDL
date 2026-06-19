@@ -12,7 +12,22 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#include "Location.hpp"
+#ifndef Fallout_Math_hpp
+#define Fallout_Math_hpp
 
-using namespace LDL;
-using namespace Fallout;
+#include <vector>
+#include <LDL/C++98/LDL.hpp>
+
+namespace Fallout
+{
+    const int Stx = 16;
+    const int Sty = 12;
+
+    LDL::Vec2i TileIndexToScreen(int index, int cols);
+    int ScreenToTileIndex(int screenX, int screenY, int cols);
+
+    LDL::Vec2i HexIndexToScreen(int index, int cols);
+    int ScreenToHexIndex(int screenX, int screenY, int cols);
+}
+
+#endif

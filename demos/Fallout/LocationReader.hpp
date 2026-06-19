@@ -12,7 +12,22 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
+#ifndef Fallout_LocationReader_hpp
+#define Fallout_LocationReader_hpp
+
 #include "Location.hpp"
 
-using namespace LDL;
-using namespace Fallout;
+namespace Fallout
+{
+	class LocationReader
+	{
+	public:
+		LocationReader(LDL::Result& result);
+		bool Load(const std::string& path, LocationData& locationData);
+	private:
+		LDL::Result& _result;
+		FILE*        _file;
+	};
+}
+
+#endif

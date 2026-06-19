@@ -13,6 +13,7 @@ License for more details.
 */
 
 #include "Engine.hpp"
+#include <iostream>
 
 using namespace LDL;
 using namespace Fallout;
@@ -26,6 +27,11 @@ int main()
 
 	Engine engine(config);
 	engine.Run();
+
+	if (engine.GetResult().IsFail())
+	{
+		std::cout << "Fallout error: " << engine.GetResult().Message() << std::endl;
+	}
 
 	return 0;
 }

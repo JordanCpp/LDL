@@ -18,12 +18,14 @@ License for more details.
 #include <LDL/Texture.h>
 #include <LDL/Context.h>
 #include <LDL/Renders/GL/TexGL.h>
+#include <LDL/Renders/Soft/TexSoft.h>
 
 struct LDL_Texture
 {
-	LDL_ContextType    ContextType;
-	LDL_Result*        Result;
-	LDL_TextureOpenGL* TextureOpenGL;
+	LDL_ContextType      ContextType;
+	LDL_Result*          Result;
+	LDL_TextureOpenGL*   TextureOpenGL;
+	LDL_TextureSoftware* TextureSoftware;
 };
 
 #endif

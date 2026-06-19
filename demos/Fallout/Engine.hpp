@@ -15,6 +15,7 @@ License for more details.
 #ifndef Fallout_Engine_hpp
 #define Fallout_Engine_hpp
 
+#include "Camera.hpp"
 #include "Config.hpp"
 #include "Location.hpp"
 #include "SpriteManager.hpp"
@@ -27,15 +28,19 @@ namespace Fallout
 	public:
 		Engine(Config& config);
 		~Engine();
+		void Input(LDL::Event& event);
 		void Run();
+		LDL::Result& GetResult();
 	private:
+		Camera        _camera;
 		LDL::Result   _result;
 		LDL::Context  _context;
 		LDL::Window   _window;
 		LDL::Render2D _render;
 		SpriteLoader  _imageLoader;
 		SpriteManager _spriteManager;
-		Location      _location;
+		LocationData  _location;
+		
 	};
 }
 

@@ -6,6 +6,7 @@ CL /O2 /FeLDL.dll -LD -GX /DLDL_SHARED_LIBRARY ^
 ..\source\LDL\OpenGL\*.c ^
 ..\source\LDL\Renders\*.c ^
 ..\source\LDL\Renders\GL\*.c ^
+..\source\LDL\Renders\Soft\*.c ^
 ..\source\LDL\Win9x\*.c ^
 /I..\include\ ^
 /I..\source\ ^

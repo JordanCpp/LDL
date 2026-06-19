@@ -29,8 +29,8 @@ extern "C" {
 
 typedef struct LDL_Texture LDL_Texture;
 
-LDL_LIBRARY LDL_Texture* LDL_TextureCreateFromPixels(LDL_Result* result, LDL_Context* context, size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels);
-LDL_LIBRARY LDL_Texture* LDL_TextureCreateFromSize(LDL_Result* result, LDL_Context* context, size_t pixelFormat, LDL_Vec2i size);
+LDL_LIBRARY LDL_Texture* LDL_TextureCreateFromPixels(LDL_Result* result, LDL_Context* context, uint8_t pixelFormat, LDL_Vec2i size, uint8_t* pixels);
+LDL_LIBRARY LDL_Texture* LDL_TextureCreateFromSize(LDL_Result* result, LDL_Context* context, uint8_t pixelFormat, LDL_Vec2i size);
 LDL_LIBRARY LDL_Texture* LDL_TextureCreateFromSurface(LDL_Result* result, LDL_Context* context, LDL_Surface* surface);
 LDL_LIBRARY void LDL_TextureDestroy(LDL_Texture* texture);
 
