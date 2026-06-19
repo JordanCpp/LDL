@@ -12,7 +12,25 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#include "Location.hpp"
+#ifndef Fallout_Camera_hpp
+#define Fallout_Camera_hpp
 
-using namespace LDL;
-using namespace Fallout;
+#include <vector>
+#include <LDL/C++98/LDL.hpp>
+
+namespace Fallout
+{
+	class Camera
+	{
+	public:
+		void Up();
+		void Down();
+		void Left();
+		void Right();
+		const LDL::Vec2i& GetPos();
+	private:
+		LDL::Vec2i _pos;
+	};
+}
+
+#endif

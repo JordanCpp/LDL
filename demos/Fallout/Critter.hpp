@@ -12,7 +12,16 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#include "Location.hpp"
+#ifndef Fallout_Critter_hpp
+#define Fallout_Critter_hpp
 
-using namespace LDL;
-using namespace Fallout;
+namespace Fallout
+{
+	class Critter
+	{
+	public:
+	private:
+	};
+}
+
+#endif

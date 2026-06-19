@@ -13,28 +13,56 @@ License for more details.
 */
 
 #include "Engine.hpp"
+#include "LocationPainter.hpp"
+#include "LocationReader.hpp"
 
 using namespace LDL;
 using namespace Fallout;
 
 Engine::Engine(Config& config) :
-	_context(_result),
+	_context(_result, LDL::Context::Software),
 	_window(_result, _context, Vec2i(0, 0), config.Size, config.Title, config.Mode),
 	_render(_result, _context, _window),
 	_imageLoader(_result, _context),
 	_spriteManager(_imageLoader),
-	_location(_render, _spriteManager)
+	_location()
 {
+
+	LocationReader reader(_result);
+	reader.Load("data/Locations/test.txt", _location);
 }
 
 Engine::~Engine()
 {
 }
 
+void Engine::Input(LDL::Event& event)
+{
+	if (event.IsKeyPressed(LDL_KeyD))
+	{
+		_camera.Right();
+	}
+
+	if (event.IsKeyPressed(LDL_KeyA))
+	{
+		_camera.Left();
+	}
+
+	if (event.IsKeyPressed(LDL_KeyW))
+	{
+		_camera.Up();
+	}
+
+	if (event.IsKeyPressed(LDL_KeyS))
+	{
+		_camera.Down();
+	}
+}
+
 void Engine::Run()
 {
 	Event event;
-	Vec2i pos;
+	LocationPainter locationPainter(_location, _render, _spriteManager);
 
 	while (_window.IsRunning() && _result.IsOk())
 	{
@@ -45,34 +73,21 @@ void Engine::Run()
 				_window.StopEvent();
 			}
 
-			if (event.IsKeyPressed(LDL_KeyD))
-			{
-				pos.x += Tile::Width;
-			}
-
-			if (event.IsKeyPressed(LDL_KeyA))
-			{
-				pos.x -= Tile::Width;
-			}
-
-			if (event.IsKeyPressed(LDL_KeyW))
-			{
-				pos.y += Tile::Width;
-			}
-
-			if (event.IsKeyPressed(LDL_KeyS))
-			{
-				pos.y -= Tile::Width;
-			}
+			Input(event);
 
 			_render.Begin();
 
 			_render.SetColor(Color(255, 127, 39));
 			_render.Clear();
 
-			_location.Draw(pos);
+			locationPainter.Draw(_camera.GetPos());
 
 			_render.End();
 		}
 	}
+}
+
+LDL::Result& Engine::GetResult()
+{
+	return _result;
 }

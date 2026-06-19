@@ -12,7 +12,4 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#include "Location.hpp"
-
-using namespace LDL;
-using namespace Fallout;
+#include <LDL/Renders/Soft/BufSoft.h>

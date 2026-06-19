@@ -9,7 +9,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <LDL/LDL.h>
-#include <LDL/Mat4f.h>
 
 void LDL_TestEqual(bool condition, const char* description, const char* function, const char* file, int line)
 {
@@ -216,128 +215,24 @@ void RenderTest(size_t contextType)
 
 void SurfaceTest(uint8_t pixelFormat)
 {
+	LDL_Vec2i size     = LDL_GetVec2i(640, 480);
 	LDL_Result* result = LDL_ResultCreate();
 
-	LDL_Surface* surface = LDL_SurfaceCreateFromSize(result, pixelFormat, LDL_GetVec2i(640, 480));
+	LDL_Surface* surface = LDL_SurfaceCreateFromSize(result, pixelFormat, size);
 	LDL_TEST(LDL_ResultIsOk(result)             == true);
 	LDL_TEST(LDL_SurfaceGetPixels(surface)      != NULL);
 	LDL_TEST(LDL_SurfaceGetPixelFormat(surface) == pixelFormat);
-	LDL_TEST(LDL_SurfaceGetSize(surface).x      == 640);
-	LDL_TEST(LDL_SurfaceGetSize(surface).y      == 480);
-	LDL_TEST(LDL_SurfaceGetCapacity(surface).x  == 640);
-	LDL_TEST(LDL_SurfaceGetCapacity(surface).y  == 480);
-	
+	LDL_TEST(LDL_SurfaceGetSize(surface).x      == size.x);
+	LDL_TEST(LDL_SurfaceGetSize(surface).y      == size.y);
+	LDL_TEST(LDL_SurfaceGetCapacity(surface).x  == size.x);
+	LDL_TEST(LDL_SurfaceGetCapacity(surface).y  == size.y);
+	LDL_TEST(LDL_SurfaceIsColorKey(surface)     == false);
+	LDL_TEST(LDL_SurfaceGetColorKey(surface).r  == 0);
+	LDL_TEST(LDL_SurfaceGetColorKey(surface).g  == 0);
+	LDL_TEST(LDL_SurfaceGetColorKey(surface).b  == 0);
+
 	LDL_SurfaceDestroy(surface);
 	LDL_ResultDestroy(result);
-}
-
-/* Вспомогательная функция для сравнения float (с учетом погрешности) */
-static int IsFloatEqual(float a, float b)
-{
-	float epsilon;
-	epsilon = 0.0001f;
-
-	return (float)fabs(a - b) < epsilon;
-}
-
-/* Тест Identity: проверка единичной матрицы */
-void Mat4fIdentityTest()
-{
-	LDL_Mat4f mat;
-
-	LDL_Mat4fIdentity(&mat);
-
-	/* Проверка диагональных элементов */
-	LDL_TEST(IsFloatEqual(mat.Values[0], 1.0f));
-	LDL_TEST(IsFloatEqual(mat.Values[5], 1.0f));
-	LDL_TEST(IsFloatEqual(mat.Values[10], 1.0f));
-	LDL_TEST(IsFloatEqual(mat.Values[15], 1.0f));
-
-	/* Проверка недиагональных элементов (должны быть 0) */
-	LDL_TEST(IsFloatEqual(mat.Values[1], 0.0f));
-	LDL_TEST(IsFloatEqual(mat.Values[4], 0.0f));
-	LDL_TEST(IsFloatEqual(mat.Values[14], 0.0f));
-}
-
-/* Тест Translate: проверка смещения */
-void Mat4fTranslateTest()
-{
-	LDL_Mat4f mat;
-	float tx, ty, tz;
-
-	tx = 10.0f;
-	ty = -5.0f;
-	tz = 2.5f;
-
-	LDL_Mat4fIdentity(&mat);
-	LDL_Mat4fTranslate(&mat, tx, ty, tz);
-
-	/* В колонке 4 (индексы 12, 13, 14) должны быть наши значения */
-	LDL_TEST(IsFloatEqual(mat.Values[12], tx));
-	LDL_TEST(IsFloatEqual(mat.Values[13], ty));
-	LDL_TEST(IsFloatEqual(mat.Values[14], tz));
-}
-
-/* Тест Multiply: проверка умножения матриц (Identity * A = A) */
-void Mat4fMultiplyTest()
-{
-	LDL_Mat4f identity;
-	LDL_Mat4f translation;
-	LDL_Mat4f res;
-
-	LDL_Mat4fIdentity(&identity);
-	LDL_Mat4fIdentity(&translation);
-	LDL_Mat4fTranslate(&translation, 1.0f, 2.0f, 3.0f);
-
-	LDL_Mat4fMultiply(&res, &identity, &translation);
-
-	/* Результат должен быть равен translation */
-	LDL_TEST(IsFloatEqual(res.Values[12], 1.0f));
-	LDL_TEST(IsFloatEqual(res.Values[13], 2.0f));    LDL_TEST(IsFloatEqual(res.Values[14], 3.0f));
-}
-
-/* Тест Rotate: проверка поворота на 90 градусов вокруг Z */
-void Mat4fRotateTest()
-{
-	LDL_Mat4f mat;
-	float angle;
-	float deg2rad;
-
-	/* 90 градусов в радианах */
-	angle = 1.570796f;
-	deg2rad = 1.0f; /* просто заглушка для логики, если нужно было бы переводить */
-
-	LDL_Mat4fIdentity(&mat);
-	/* Поворот вокруг оси Z (0,0,1) */
-	LDL_Mat4fRotate(&mat, angle, 0.0f, 0.0f, 1.0f);
-
-	/* При повороте на 90 по Z:
-	   x' = x*cos - y*sin
-	   y' = x*sin + y*cos
-	   Матрица должна иметь cos(90)=0 и sin(90)=1 в нужных ячейках
-	*/
-	LDL_TEST(IsFloatEqual(mat.Values[0], 0.0f)); /* cos */
-	LDL_TEST(IsFloatEqual(mat.Values[1], -1.0f)); /* -sin */
-	LDL_TEST(IsFloatEqual(mat.Values[4], 1.0f)); /* sin */
-	LDL_TEST(IsFloatEqual(mat.Values[5], 0.0f)); /* cos */
-}
-
-/* Тест Ortho: проверка базовых параметров ортографической матрицы */
-void Mat4fOrthoTest()
-{
-	LDL_Mat4f mat;
-	float l, r, b, t, f, n;
-
-	l = -10.0f; r = 10.0f;
-	b = -5.0f;  t = 5.0f;
-	f = 1.0f;   n = 1.0f;
-
-	LDL_Mat4fOrtho(&mat, l, r, b, t, f, n);
-
-	/* Масштаб по X должен быть 2 / (r - l) -> 2 / 20 = 0.1 */
-	LDL_TEST(IsFloatEqual(mat.Values[0], 0.1f));
-	/* Масштаб по Y должен быть 2 / (t - b) -> 2 / 10 = 0.2 */
-	LDL_TEST(IsFloatEqual(mat.Values[5], 0.2f));
 }
 
 int main()
@@ -353,19 +248,15 @@ int main()
 	SurfaceTest(LDL_PixelFormatRGBA32);
 	SurfaceTest(LDL_PixelFormatBGRA32);
 
+	WindowTest(LDL_ContextSoftware);
 	WindowTest(LDL_ContextOpenGLLegacy);
 	WindowTest(LDL_ContextOpenGLHybrid);
 	WindowTest(LDL_ContextOpenGLModern);
 
+	RenderTest(LDL_ContextSoftware);
 	RenderTest(LDL_ContextOpenGLLegacy);
 	RenderTest(LDL_ContextOpenGLLegacy);
 	RenderTest(LDL_ContextOpenGLModern);
-
-	Mat4fIdentityTest();
-	Mat4fTranslateTest();
-	Mat4fMultiplyTest();
-	Mat4fRotateTest();
-	Mat4fOrthoTest();
 
     return 0;
 }

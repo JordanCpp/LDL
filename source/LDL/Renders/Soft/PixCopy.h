@@ -12,7 +12,12 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#include "Location.hpp"
+#ifndef LDL_Renders_Soft_PixCopy_H
+#define LDL_Renders_Soft_PixCopy_H
 
-using namespace LDL;
-using namespace Fallout;
+#include <LDL/Vec2i.h>
+#include <LDL/Color.h>
+
+void LDL_PixelCopy(uint8_t* dstPixels, size_t dstFormat, LDL_Vec2i dstArea, LDL_Vec2i dstPos, LDL_Vec2i dstSize, uint8_t* srcPixels, size_t srcFormat, LDL_Vec2i srcArea, LDL_Vec2i srcPos, LDL_Vec2i srcSize, bool isColorKey, LDL_Color colorKey);
+
+#endif

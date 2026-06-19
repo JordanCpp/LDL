@@ -68,6 +68,7 @@ LDL_Surface* LDL_SurfaceCreateFromCapacity(LDL_Result* result, uint8_t pixelForm
 	total = capacity.x * capacity.y * LDL_BytesPerPixelFromPixelFormat(pixelFormat);
 
 	surface->Pixels = (uint8_t*)malloc(total);
+
 	if (surface->Pixels == NULL)
 	{
 		free(surface);
@@ -75,6 +76,7 @@ LDL_Surface* LDL_SurfaceCreateFromCapacity(LDL_Result* result, uint8_t pixelForm
 		return NULL;
 	}
 
+	memset(surface->Pixels, 0, total);
 
 	return surface;
 }

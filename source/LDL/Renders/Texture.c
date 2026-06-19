@@ -18,7 +18,7 @@ License for more details.
 #include <LDL/Renders/Texture.h>
 #include <LDL/Renders/GL/TexGL.h>
 
-LDL_Texture* LDL_TextureCreateFromPixels(LDL_Result* result, LDL_Context* context, size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
+LDL_Texture* LDL_TextureCreateFromPixels(LDL_Result* result, LDL_Context* context, uint8_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
 {
 	LDL_Texture* texture = NULL;
 
@@ -42,6 +42,9 @@ LDL_Texture* LDL_TextureCreateFromPixels(LDL_Result* result, LDL_Context* contex
 			case LDL_ContextOpenGLModern:
 				texture->TextureOpenGL = LDL_TextureOpenGLCreateFromPixels(result, pixelFormat, size, pixels);
 				return texture;
+			case LDL_ContextSoftware:
+				texture->TextureSoftware = LDL_TextureSoftwareCreateFromPixels(result, pixelFormat, size, pixels);
+				return texture;
 			}
 		}
 	}
@@ -54,7 +57,7 @@ LDL_Texture* LDL_TextureCreateFromPixels(LDL_Result* result, LDL_Context* contex
 	return NULL;
 }
 
-LDL_Texture* LDL_TextureCreateFromSize(LDL_Result* result, LDL_Context* context, size_t pixelFormat, LDL_Vec2i size)
+LDL_Texture* LDL_TextureCreateFromSize(LDL_Result* result, LDL_Context* context, uint8_t pixelFormat, LDL_Vec2i size)
 {
 	LDL_Texture* texture = NULL;
 
@@ -77,6 +80,9 @@ LDL_Texture* LDL_TextureCreateFromSize(LDL_Result* result, LDL_Context* context,
 			case LDL_ContextOpenGLHybrid:
 			case LDL_ContextOpenGLModern:
 				texture->TextureOpenGL = LDL_TextureOpenGLCreateFromSize(result, pixelFormat, size);
+				return texture;
+			case LDL_ContextSoftware:
+				texture->TextureSoftware = LDL_TextureSoftwareCreateFromSize(result, pixelFormat, size);
 				return texture;
 			}
 		}
@@ -114,6 +120,9 @@ LDL_Texture* LDL_TextureCreateFromSurface(LDL_Result* result, LDL_Context* conte
 			case LDL_ContextOpenGLModern:
 				texture->TextureOpenGL = LDL_TextureOpenGLCreateFromSurface(result, surface);
 				return texture;
+			case LDL_ContextSoftware:
+				texture->TextureSoftware = LDL_TextureSoftwareCreateFromSurface(result, surface);
+				return texture;
 			}
 		}
 	}
@@ -138,6 +147,9 @@ void LDL_TextureDestroy(LDL_Texture* texture)
 		case LDL_ContextOpenGLModern:
 			LDL_TextureOpenGLDestroy(texture->TextureOpenGL);
 			break;
+		case LDL_ContextSoftware:
+			LDL_TextureSoftwareDestroy(texture->TextureSoftware);
+			break;
 		}
 	}
 }
@@ -152,6 +164,8 @@ LDL_Vec2i LDL_TextureGetSize(LDL_Texture* texture)
 		case LDL_ContextOpenGLHybrid:
 		case LDL_ContextOpenGLModern:
 			return LDL_TextureOpenGLGetSize(texture->TextureOpenGL);
+		case LDL_ContextSoftware:
+			return LDL_TextureSoftwareGetSize(texture->TextureSoftware);
 		}
 	}
 

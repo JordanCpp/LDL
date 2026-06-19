@@ -26,7 +26,7 @@ SpriteLoader::SpriteLoader(Result& result, Context& context) :
 
 Texture* SpriteLoader::Load(const std::string& path)
 {
-	_loader.Load(path);
+	_loader.LoadFromFile(path);
 
 	Surface surface(_result, _loader.GetPixelFormat(), _loader.GetSize(), _loader.GetPixels());
 	surface.SetColorKey(Color(11, 0, 11));
@@ -36,7 +36,7 @@ Texture* SpriteLoader::Load(const std::string& path)
 
 Sprite* SpriteLoader::LoadSprite(const std::string& path)
 {
-	_loader.Load(path);
+	_loader.LoadFromFile(path);
 
 	Surface surface(_result, _loader.GetPixelFormat(), _loader.GetSize(), _loader.GetPixels());
 	surface.SetColorKey(Color(11, 0, 11));

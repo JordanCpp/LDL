@@ -12,7 +12,6 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#include "Location.hpp"
+#include "Critter.hpp"
 
-using namespace LDL;
 using namespace Fallout;

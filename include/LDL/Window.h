@@ -19,6 +19,7 @@ License for more details.
 #include <LDL/Vec2i.h>
 #include <LDL/Events.h>
 #include <LDL/Context.h>
+#include <LDL/Surface.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -39,6 +40,8 @@ LDL_LIBRARY const char* LDL_WindowGetTitle(LDL_Window* window);
 LDL_LIBRARY void LDL_WindowSetTitle(LDL_Window* window, const char* title);
 
 LDL_LIBRARY void LDL_WindowPresent(LDL_Window* window);
+
+LDL_LIBRARY LDL_Surface* LDL_WindowGetScreen(LDL_Window* window);
 
 #ifdef __cplusplus
 }

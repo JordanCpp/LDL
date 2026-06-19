@@ -27,7 +27,8 @@ namespace Fallout
 			Width  = 80,
 			Height = 36
 		};
-		Sprite* _sprite;
+		std::string _spriteName;
+		Sprite*     _sprite;
 	};
 }
 

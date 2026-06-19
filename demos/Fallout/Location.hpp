@@ -16,19 +16,14 @@ License for more details.
 #define Fallout_Location_hpp
 
 #include "Tile.hpp"
-#include "SpriteManager.hpp"
 
 namespace Fallout
 {
-	class Location
+	class LocationData
 	{
 	public:
-		Location(LDL::Render2D& render, SpriteManager& spriteManager);
-		void Draw(const LDL::Vec2i& start);
-		LDL::Render2D     _render;
-		SpriteManager&    _spriteManager;
-		LDL::Vec2i        _size;
-		std::vector<Tile> _tiles;
+		LDL::Vec2i        Size;
+		std::vector<Tile> Tiles;
 	};
 }
 

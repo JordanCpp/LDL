@@ -81,6 +81,11 @@ namespace LDL
 			LDL_ResultDestroy(_result);
 		}
 
+		inline LDL_Result* Impl()
+		{
+			return _result;
+		}
+
 		inline bool IsOk()
 		{
 			return LDL_ResultIsOk(_result);
@@ -98,10 +103,11 @@ namespace LDL
 			return _message;
 		}
 
-		inline LDL_Result* Impl()
+		void AddMessage(const std::string& message)
 		{
-			return _result;
+			LDL_ResultAddMessage(_result, "%s\n", message.c_str());
 		}
+
 	private:
 		LDL_Result* _result;
 		std::string _message;

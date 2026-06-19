@@ -20,15 +20,17 @@ License for more details.
 #include <LDL/Renders/GL/2DRGL1.h>
 #include <LDL/Renders/GL/2DRGL2.h>
 #include <LDL/Renders/GL/2DRGL3.h>
+#include <LDL/Renders/Soft/RndrSoft.h>
 
 struct LDL_2DRender
 {
-	LDL_ContextType     ContextType;
-	LDL_Result*         Result;
-	LDL_Window*         Window;
-	LDL_2DRenderOpenGL1 RenderOpenGL1;
-	LDL_2DRenderOpenGL2 RenderOpenGL2;
-	LDL_2DRenderOpenGL3 RenderOpenGL3;
+	LDL_ContextType      ContextType;
+	LDL_Result*          Result;
+	LDL_Window*          Window;
+	LDL_2DRenderOpenGL1  RenderOpenGL1;
+	LDL_2DRenderOpenGL2  RenderOpenGL2;
+	LDL_2DRenderOpenGL3  RenderOpenGL3;
+	LDL_2DRenderSoftware RenderSoftware;
 };
 
 LDL_2DRender* LDL_2DRenderCreate(LDL_Result* result, LDL_Context* context, LDL_Window* window)
@@ -59,6 +61,9 @@ LDL_2DRender* LDL_2DRenderCreate(LDL_Result* result, LDL_Context* context, LDL_W
 			case LDL_ContextOpenGLModern:
 				LDL_2DRenderOpenGL3Init(&render->RenderOpenGL3, result, window);
 				break;
+			case LDL_ContextSoftware:
+				LDL_2DRenderSoftwareInit(&render->RenderSoftware, result, window);
+				break;
 			};
 			
 			return render;
@@ -83,6 +88,9 @@ void LDL_2DRenderDestroy(LDL_2DRender* render)
 		case LDL_ContextOpenGLModern:
 			LDL_2DRenderOpenGL3Deinit(&render->RenderOpenGL3);
 			break;
+		case LDL_ContextSoftware:
+			LDL_2DRenderSoftwareDeinit(&render->RenderSoftware);
+			break;
 		};
 		
 		free(render);
@@ -101,6 +109,8 @@ size_t LDL_2DRenderGetLayer(LDL_2DRender* render)
 			return LDL_2DRenderOpenGL2GetLayer(&render->RenderOpenGL2);
 		case LDL_ContextOpenGLModern:
 			return LDL_2DRenderOpenGL3GetLayer(&render->RenderOpenGL3);
+		case LDL_ContextSoftware:
+			return LDL_2DRenderSoftwareGetLayer(&render->RenderSoftware);
 		};
 	}
 
@@ -122,6 +132,9 @@ void LDL_2DRenderSetLayer(LDL_2DRender* render, size_t layer)
 		case LDL_ContextOpenGLModern:
 			LDL_2DRenderOpenGL3SetLayer(&render->RenderOpenGL3, layer);
 			break;
+		case LDL_ContextSoftware:
+			LDL_2DRenderSoftwareSetLayer(&render->RenderSoftware, layer);
+			break;
 		};
 	}
 }
@@ -138,6 +151,8 @@ LDL_Color LDL_2DRenderGetColor(LDL_2DRender* render)
 			return LDL_2DRenderOpenGL2GetColor(&render->RenderOpenGL2);
 		case LDL_ContextOpenGLModern:
 			return LDL_2DRenderOpenGL3GetColor(&render->RenderOpenGL3);
+		case LDL_ContextSoftware:
+			return LDL_2DRenderSoftwareGetColor(&render->RenderSoftware);
 		};
 	}
 
@@ -159,6 +174,9 @@ void LDL_2DRenderSetColor(LDL_2DRender* render, LDL_Color color)
 		case LDL_ContextOpenGLModern:
 			LDL_2DRenderOpenGL3SetColor(&render->RenderOpenGL3, color);
 			break;
+		case LDL_ContextSoftware:
+			LDL_2DRenderSoftwareSetColor(&render->RenderSoftware, color);
+			break;
 		};
 	}
 }
@@ -177,6 +195,9 @@ void LDL_2DRenderClear(LDL_2DRender* render)
 			break;
 		case LDL_ContextOpenGLModern:
 			LDL_2DRenderOpenGL3Clear(&render->RenderOpenGL3);
+			break;
+		case LDL_ContextSoftware:
+			LDL_2DRenderSoftwareClear(&render->RenderSoftware);
 			break;
 		};
 	}
@@ -197,6 +218,9 @@ void LDL_2DRenderLine(LDL_2DRender* render, LDL_Vec2i first, LDL_Vec2i last)
 		case LDL_ContextOpenGLModern:
 			LDL_2DRenderOpenGL3Line2i(&render->RenderOpenGL3, first, last);
 			break;
+		case LDL_ContextSoftware:
+			LDL_2DRenderSoftwareLine2i(&render->RenderSoftware, first, last);
+			break;
 		};	
 	}
 }
@@ -215,6 +239,9 @@ void LDL_2DRenderFill(LDL_2DRender* render, LDL_Vec2i first, LDL_Vec2i last)
 			break;
 		case LDL_ContextOpenGLModern:
 			LDL_2DRenderOpenGL3Fill2i(&render->RenderOpenGL3, first, last);
+			break;
+		case LDL_ContextSoftware:
+			LDL_2DRenderSoftwareFill2i(&render->RenderSoftware, first, last);
 			break;
 		};
 	}
@@ -235,6 +262,9 @@ void LDL_2DRenderBegin(LDL_2DRender* render)
 		case LDL_ContextOpenGLModern:
 			LDL_2DRenderOpenGL3Begin(&render->RenderOpenGL3);
 			break;
+		case LDL_ContextSoftware:
+			LDL_2DRenderSoftwareBegin(&render->RenderSoftware);
+			break;
 		};
 	}
 }
@@ -254,6 +284,9 @@ void LDL_2DRenderEnd(LDL_2DRender* render)
 		case LDL_ContextOpenGLModern:
 			LDL_2DRenderOpenGL3End(&render->RenderOpenGL3);
 			break;
+		case LDL_ContextSoftware:
+			LDL_2DRenderSoftwareEnd(&render->RenderSoftware);
+			break;
 		};
 	}
 }
@@ -272,6 +305,9 @@ void LDL_2DRenderDraw(LDL_2DRender* render, LDL_Texture* texture, LDL_Vec2i* dst
 			break;
 		case LDL_ContextOpenGLModern:
 			LDL_2DRenderOpenGL3Draw(&render->RenderOpenGL3, texture->TextureOpenGL, dstPos, dstSize, srcPos, srcSize);
+			break;
+		case LDL_ContextSoftware:
+			LDL_2DRenderSoftwareDraw(&render->RenderSoftware, texture->TextureSoftware->Surface, dstPos, dstSize, srcPos, srcSize);
 			break;
 		};
 	}

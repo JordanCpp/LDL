@@ -12,7 +12,33 @@ or FITNESS FOR A PARTICULAR PURPOSE.See the GNU Lesser General Public
 License for more details.
 */
 
-#include "Location.hpp"
+#include "Tile.hpp"
+#include "Camera.hpp"
 
 using namespace LDL;
 using namespace Fallout;
+
+void Camera::Up()
+{
+	_pos.y += Tile::Width;
+}
+
+void Camera::Down()
+{
+	_pos.y -= Tile::Width;
+}
+
+void Camera::Left()
+{
+	_pos.x -= Tile::Width;
+}
+
+void Camera::Right()
+{
+	_pos.x += Tile::Width;
+}
+
+const LDL::Vec2i& Camera::GetPos()
+{
+	return _pos;
+}

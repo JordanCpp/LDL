@@ -30,8 +30,8 @@ typedef struct LDL_TextureOpenGL
 	LDL_Vec2i    Quad;
 } LDL_TextureOpenGL;
 
-LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSize(LDL_Result* result, size_t pixelFormat, LDL_Vec2i size);
-LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromPixels(LDL_Result* result, size_t pixelFormat, LDL_Vec2i size, uint8_t* pixels);
+LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSize(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size);
+LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromPixels(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size, uint8_t* pixels);
 LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSurface(LDL_Result* result, LDL_Surface* surface);
 void LDL_TextureOpenGLDestroy(LDL_TextureOpenGL* texture);
 
