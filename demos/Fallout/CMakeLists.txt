@@ -14,7 +14,7 @@ add_executable(fallout
     "Critter.cpp"
     "Math.cpp"
 
-    "Scripts/TestScript.cpp" )
+    "Scripts/TestScript.cpp"  "MapObject.cpp")
 
 target_link_libraries(fallout LDL LDL_Image)
 

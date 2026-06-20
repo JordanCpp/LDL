@@ -18,7 +18,7 @@ License for more details.
 using namespace LDL;
 using namespace Fallout;
 
-LocationPainter::LocationPainter(LocationData& location, Render2D& render, SpriteManager& spriteManager) :
+LocationPainter::LocationPainter(Location& location, Render2D& render, SpriteManager& spriteManager) :
 	_location(location),
 	_render(render),
 	_spriteManager(spriteManager)
@@ -65,24 +65,29 @@ void LocationPainter::DrawObjects(const LDL::Vec2i& pos)
 {
     int cols = _location.Size.x;
 
-    Vec2i hexOffset = HexIndexToScreen(154, cols);
-
-    Sprite* treeSprite = _spriteManager.GetSprite("data/Shina001.bmp");
-
-    if (treeSprite)
+    for (size_t i = 0; i < _location.Objects.size(); i++)
     {
-        Vec2i spriteSize = treeSprite->Single()->GetSize();
+        MapObject& object = _location.Objects[i];
 
-        int drawX = pos.x + hexOffset.x - (spriteSize.x / 2);
-        int drawY = pos.y + hexOffset.y - spriteSize.y;
+        Vec2i hexOffset = HexIndexToScreen(object._hex, cols);
 
-        _render.Draw(treeSprite->Single(), Vec2i(drawX, drawY));
+        Sprite* sprite = _spriteManager.GetSprite(object._spriteName);
+
+        if (sprite)
+        {
+            Vec2i spriteSize = sprite->Single()->GetSize();
+
+            int drawX = pos.x + hexOffset.x - (spriteSize.x / 2);
+            int drawY = pos.y + hexOffset.y - spriteSize.y;
+
+            _render.Draw(sprite->Single(), Vec2i(drawX, drawY));
+        }
     }
 }
 
 void LocationPainter::Draw(const LDL::Vec2i& pos)
 {
 	DrawTiles(pos);
-	DrawHexs(pos);
+	//DrawHexs(pos);
     DrawObjects(pos);
 }

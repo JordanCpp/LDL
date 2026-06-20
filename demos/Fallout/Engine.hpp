@@ -39,7 +39,7 @@ namespace Fallout
 		LDL::Render2D _render;
 		SpriteLoader  _imageLoader;
 		SpriteManager _spriteManager;
-		LocationData  _location;
+		Location  _location;
 		
 	};
 }
