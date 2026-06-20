@@ -1,5 +1,6 @@
 Width 10
 Height 10
+Objects 2
 Tile data/HOLA096.bmp
 Tile data/HOLA096.bmp
 Tile data/HOLA096.bmp
@@ -100,3 +101,7 @@ Tile data/HOLA096.bmp
 Tile data/HOLA096.bmp
 Tile data/HOLA096.bmp
 Tile data/HOLA096.bmp
+Object data/TREE013_002.bmp
+Hex 230
+Object data/CACTUS02.bmp
+Hex 325

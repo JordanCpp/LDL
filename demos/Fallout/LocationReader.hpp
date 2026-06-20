@@ -23,7 +23,7 @@ namespace Fallout
 	{
 	public:
 		LocationReader(LDL::Result& result);
-		bool Load(const std::string& path, LocationData& locationData);
+		bool Load(const std::string& path, Location& location);
 	private:
 		LDL::Result& _result;
 		FILE*        _file;

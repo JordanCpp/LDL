@@ -16,14 +16,16 @@ License for more details.
 #define Fallout_Location_hpp
 
 #include "Tile.hpp"
+#include "MapObject.hpp"
 
 namespace Fallout
 {
-	class LocationData
+	class Location
 	{
 	public:
-		LDL::Vec2i        Size;
-		std::vector<Tile> Tiles;
+		LDL::Vec2i             Size;
+		std::vector<Tile>      Tiles;
+		std::vector<MapObject> Objects;
 	};
 }
 

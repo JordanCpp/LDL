@@ -24,13 +24,13 @@ namespace Fallout
 	class LocationPainter
 	{
 	public:
-		LocationPainter(LocationData& location, LDL::Render2D& render, SpriteManager& spriteManager);
+		LocationPainter(Location& location, LDL::Render2D& render, SpriteManager& spriteManager);
 		void DrawTiles(const LDL::Vec2i& pos);
 		void DrawHexs(const LDL::Vec2i& pos);
 		void DrawObjects(const LDL::Vec2i& pos);
 		void Draw(const LDL::Vec2i& pos);
 	private:
-		LocationData&  _location;
+		Location&      _location;
 		LDL::Render2D  _render;
 		SpriteManager& _spriteManager;
 	};

@@ -23,41 +23,80 @@ LocationReader::LocationReader(LDL::Result& result) :
 {
 }
 
-bool LocationReader::Load(const std::string& path, LocationData& locationData)
+bool LocationReader::Load(const std::string& path, Location& location)
 {
 	_file = fopen(path.c_str(), "r");
 
 	if (!_file)
 	{
 		_result.AddMessage("Error load file: " + path);
-		return _result.IsOk();
+		return false;
 	}
 
-	if (fscanf(_file, "Width %d\n", &locationData.Size.x) != 1)
+	if (fscanf(_file, "Width %d\n", &location.Size.x) != 1)
 	{
 		_result.AddMessage("Error read: Width " + path);
-		return _result.IsOk();
+		fclose(_file);
+		return false;
 	}
 
-	if (fscanf(_file, "Height %d\n", &locationData.Size.y) != 1)
+	if (fscanf(_file, "Height %d\n", &location.Size.y) != 1)
 	{
 		_result.AddMessage("Error read: Height " + path);
-		return _result.IsOk();
+		fclose(_file);
+		return false;
 	}
 
-	locationData.Tiles.resize(locationData.Size.x * locationData.Size.y);
+	location.Tiles.resize(location.Size.x * location.Size.y);
 
-	for (size_t i = 0; i < locationData.Size.x * locationData.Size.y; i++)
+	size_t objects = 0;
+
+	if (fscanf(_file, "Objects %d\n", &objects) != 1)
+	{
+		_result.AddMessage("Error read: Objects " + path);
+		fclose(_file);
+		return false;
+	}
+
+	for (size_t i = 0; i < location.Size.x * location.Size.y; i++)
 	{
 		char pathString[256] = { 0 };
 
 		if (fscanf(_file, "Tile %s\n", pathString) != 1)
 		{
 			_result.AddMessage("Error read: Tile " + path);
-			return _result.IsOk();
+			fclose(_file);
+			return false;
 		}
 
-		locationData.Tiles[i]._spriteName = pathString;
+		location.Tiles[i]._spriteName = pathString;
+	}
+
+	for (size_t j = 0; j < objects; j++)
+	{
+		char pathString[256] = { 0 };
+
+		if (fscanf(_file, "Object %s\n", pathString) != 1)
+		{
+			_result.AddMessage("Error read: Object " + path);
+			fclose(_file);
+			return false;
+		}
+
+		int hex = 0;
+
+		if (fscanf(_file, "Hex %d\n", &hex) != 1)
+		{
+			_result.AddMessage("Error read: Hex " + path);
+			fclose(_file);
+			return false;
+		}
+
+		MapObject object;
+		object._hex        = hex;
+		object._spriteName = pathString;
+
+		location.Objects.push_back(object);
 	}
 
 	fclose(_file);
