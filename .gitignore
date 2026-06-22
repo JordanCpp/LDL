@@ -361,3 +361,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 #build*/
+.DS_Store
+build-wasm
