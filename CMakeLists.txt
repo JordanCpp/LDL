@@ -41,7 +41,12 @@ if(WIN32 AND MSVC)
     set(LDL_BUILD_DEFINES ${LDL_BUILD_DEFINES} -D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_DEPRECATE)
 endif()
 
-if(UNIX AND NOT APPLE)
+if(EMSCRIPTEN)
+    # Emscripten provides its own GL/HTML5 headers; no find_package needed.
+    # NOTE: EMSCRIPTEN must be checked BEFORE UNIX/APPLE because emcmake
+    # keeps APPLE=TRUE (and UNIX=TRUE) on macOS when cross-compiling.
+    message(STATUS "LDL: building for Emscripten/WebAssembly")
+elseif(UNIX AND NOT APPLE)
     find_package(LibM REQUIRED)
     find_package(LibDl REQUIRED)
     find_package(X11 REQUIRED)
