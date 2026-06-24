@@ -153,7 +153,26 @@ set(LDL_SOURCES_RENDERS
     ${LDL_ROOT_FOLDER}/source/LDL/Renders/3DRender.c
 )
 
-if(WIN32)
+if(EMSCRIPTEN)
+    # IMPORTANT: EMSCRIPTEN must be checked first because emcmake leaves
+    # WIN32/APPLE/UNIX set to the host platform values, so checking
+    # them first would pick the wrong backend when cross-compiling.
+    set(LDL_INCLUDES_PLATFORM
+        ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/GLFuncs.h
+        ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/KMapper.h
+        ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/MainWin.h
+        ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/WinGL.h
+    )
+    set(LDL_SOURCES_PLATFORM
+        ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/GLFuncs.c
+        ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/KMapper.c
+        ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/Library.c
+        ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/MainWin.c
+        ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/Ticks.c
+        ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/Window.c
+        ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/WinGL.c
+    )
+elseif(WIN32)
     set(LDL_INCLUDES_PLATFORM
         ${LDL_ROOT_FOLDER}/source/LDL/Win9x/GLFuncs.h
         ${LDL_ROOT_FOLDER}/source/LDL/Win9x/KMapper.h
@@ -252,7 +271,12 @@ set_target_properties(${PROJECT_NAME}
     PROPERTIES
         ENABLE_EXPORTS TRUE
 )
-if(WIN32 AND MSVC)
+if(EMSCRIPTEN)
+    set_target_properties(${PROJECT_NAME}
+        PROPERTIES
+            OUTPUT_NAME LDL
+    )
+elseif(WIN32 AND MSVC)
     set_target_properties(${PROJECT_NAME}
         PROPERTIES
             OUTPUT_NAME LDL
@@ -279,7 +303,9 @@ target_include_directories(${PROJECT_NAME}
 )
 target_include_directories(${PROJECT_NAME} PRIVATE ${LDL_ROOT_FOLDER}/source)
 target_include_directories(${PROJECT_NAME} PRIVATE ${LDL_ROOT_FOLDER}/source/LDL)
-if(WIN32)
+if(EMSCRIPTEN)
+    target_include_directories(${PROJECT_NAME} PRIVATE ${LDL_ROOT_FOLDER}/source/LDL/Emscripten)
+elseif(WIN32)
     target_include_directories(${PROJECT_NAME} PRIVATE ${LDL_ROOT_FOLDER}/source/LDL/Win9x)
 elseif(UNIX AND NOT APPLE)
     target_include_directories(${PROJECT_NAME} PRIVATE ${LDL_ROOT_FOLDER}/source/LDL/Linux)
@@ -290,11 +316,37 @@ endif()
 target_compile_options(${PROJECT_NAME} PUBLIC ${LDL_BUILD_FLAGS})
 target_compile_definitions(${PROJECT_NAME} PUBLIC ${LDL_BUILD_DEFINES})
 
-if(APPLE)
+if(APPLE AND NOT EMSCRIPTEN)
+    # NOTE: AND NOT EMSCRIPTEN - emcmake leaves APPLE=TRUE on macOS hosts
+    # when cross-compiling, so this guard prevents a macOS-only warning
+    # flag from leaking into the wasm build.
     target_compile_options(${PROJECT_NAME} PRIVATE -Wno-deprecated-declarations)
 endif()
 
-if(WIN32)
+if(EMSCRIPTEN)
+    # Emscripten links WebGL/HTML5 through compiler/linker flags; GL is
+    # the emulated OpenGL ES stub provided by the toolchain.
+    #
+    # These are PUBLIC, so they propagate as usage requirements to every
+    # executable that links LDL::Library (see cmake/emscripten/
+    # EmscriptenTarget.cmake, which sets its own copy of the same flags
+    # for clarity/standalone use).
+    #
+    # IMPORTANT: fused "-sNAME=VALUE" form (no space), not "SHELL:-s
+    # NAME=VALUE" or separate "-s"/"NAME=VALUE" list elements - either
+    # of those produces two independent argv tokens by the time emcc's
+    # argument parser sees them, which makes emcc treat the bare
+    # "NAME=VALUE" half as a stray input filename and fail with e.g.
+    # "emcc: error: FULL_ES3=1: No such file or directory".
+    target_link_options(${PROJECT_NAME} PUBLIC
+        "-sUSE_WEBGL2=1"
+        "-sFULL_ES3=1"
+        "-sMIN_WEBGL_VERSION=1"
+        "-sMAX_WEBGL_VERSION=2"
+        "-sALLOW_MEMORY_GROWTH=1"
+    )
+    target_link_libraries(${PROJECT_NAME} PUBLIC GL)
+elseif(WIN32)
     target_link_libraries(${PROJECT_NAME} PUBLIC winmm gdi32 user32 opengl32)
 elseif(UNIX AND NOT APPLE)
     target_link_libraries(${PROJECT_NAME} PUBLIC LibM::Library)

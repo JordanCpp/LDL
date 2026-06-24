@@ -1,5 +1,6 @@
 /*
 Copyright(C) 2026 Evgeny Zoshchuk (JordanCpp)
+Copyright(C) 2026 AslanD (Ztry8)
 
 This library is free software; you can redistribute it and /or modify it
 under the terms of the GNU Lesser General Public License as published by
@@ -17,15 +18,15 @@ License for more details.
 
 #include <stddef.h>
 
-#if (_MSC_VER >= 1900)
+#if !defined(_MSC_VER) || (_MSC_VER >= 1900)
     #include <stdbool.h>
 #endif
 
-#if (_MSC_VER == 1000)
+#if defined(_MSC_VER) && (_MSC_VER == 1000)
     typedef int bool;
     #define true  1
     #define false 0
-#elif (_MSC_VER <= 1200) && (!__cplusplus)
+#elif defined(_MSC_VER) && (_MSC_VER <= 1200) && (!__cplusplus)
     #define bool  char
     #define true  1
     #define false 0

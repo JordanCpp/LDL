@@ -1,0 +1,109 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: "Build web (Emscripten)"
+
+on:
+    push:
+        branches:
+            - "**"
+        paths:
+            - ".github/workflows/build-web.yml"
+            - "cmake/**"
+            - "examples/Emscripten/**"
+            - "include/**"
+            - "source/**"
+            - "**/CMakeLists.txt"
+    pull_request:
+        branches:
+            - "**"
+        paths:
+            - ".github/workflows/build-web.yml"
+            - "cmake/**"
+            - "examples/Emscripten/**"
+            - "include/**"
+            - "source/**"
+            - "**/CMakeLists.txt"
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    build-web:
+        name: "Build web (${{ matrix.config }})"
+        runs-on: ubuntu-22.04
+        strategy:
+            fail-fast: false
+            matrix:
+                config:
+                    - Debug
+                    - Release
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Setup Emscripten SDK
+              uses: mymindstorm/setup-emsdk@v14
+              with:
+                  version: latest
+                  actions-cache-folder: .emsdk-cache
+
+            - name: Verify emcc
+              run: emcc --version
+
+            - name: Configure project
+              run: |
+                  emcmake cmake \
+                      -S ${{ github.workspace }} \
+                      -B ${{ github.workspace }}/build \
+                      -G "Ninja" \
+                      -D CMAKE_BUILD_TYPE=${{ matrix.config }} \
+                      -D LDL_BUILD_LIBRARY_STATIC=ON \
+                      -D LDL_BUILD_LIBRARY_SHARED=OFF \
+                      -D LDL_BUILD_EXAMPLES=ON \
+                      -D LDL_BUILD_TTF=OFF \
+                      -D LDL_ENABLE_INSTALL=OFF
+
+            - name: Build project
+              run: |
+                  cmake \
+                      --build ${{ github.workspace }}/build \
+                      --config ${{ matrix.config }} \
+                      --parallel
+
+            - name: Verify wasm artifacts
+              run: |
+                  echo "=== build/bin contents ==="
+                  ls -lh ${{ github.workspace }}/build/bin/
+
+                  # Fail the step if any of the three required files are missing
+                  for ext in html js wasm; do
+                      file="${{ github.workspace }}/build/bin/Emscripten_Triangle.${ext}"
+                      if [ ! -f "$file" ]; then
+                          echo "ERROR: missing $file"
+                          exit 1
+                      fi
+                      echo "OK: Emscripten_Triangle.${ext} ($(du -h "$file" | cut -f1))"
+                  done
+
+                  # .data is generated only when FILES is passed (MEMFS preload)
+                  data="${{ github.workspace }}/build/bin/Emscripten_Triangle.data"
+                  if [ -f "$data" ]; then
+                      echo "OK: Emscripten_Triangle.data ($(du -h "$data" | cut -f1)) — MEMFS preload"
+                  else
+                      echo "WARNING: Emscripten_Triangle.data not found (no FILES preloaded?)"
+                  fi
+
+            - name: Upload web artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: ${{ github.event.repository.name }}-web-${{ matrix.config }}-${{ github.sha }}
+                  path: |
+                      ${{ github.workspace }}/build/bin/Emscripten_Triangle.html
+                      ${{ github.workspace }}/build/bin/Emscripten_Triangle.js
+                      ${{ github.workspace }}/build/bin/Emscripten_Triangle.wasm
+                      ${{ github.workspace }}/build/bin/Emscripten_Triangle.data
+                  if-no-files-found: error
