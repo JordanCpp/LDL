@@ -1,9 +1,9 @@
 function(LDL_AddEmscriptenTarget)
     cmake_parse_arguments(
-        ARG                        
-        "ASYNCIFY"                 
-        "TARGET;SHELL"             
-        "SOURCES;LINK_FLAGS"      
+        ARG
+        "ASYNCIFY"
+        "TARGET;SHELL"
+        "SOURCES;FILES;LINK_FLAGS"
         ${ARGN}
     )
 
@@ -44,6 +44,21 @@ function(LDL_AddEmscriptenTarget)
         # Set to 0 in final production builds to reduce output size
         "-sASSERTIONS=2"
     )
+
+    if(ARG_FILES)
+        foreach(_file_dir ${ARG_FILES})
+            if(IS_ABSOLUTE "${_file_dir}")
+                set(_abs_dir "${_file_dir}")
+            else()
+                set(_abs_dir "${CMAKE_CURRENT_SOURCE_DIR}/${_file_dir}")
+            endif()
+
+            get_filename_component(_dir_name "${_abs_dir}" NAME)
+            list(APPEND _EM_FLAGS "--preload-file" "${_abs_dir}@${_dir_name}")
+
+            message(STATUS "LDL Emscripten MEMFS: preloading '${_abs_dir}' -> '/${_dir_name}'")
+        endforeach()
+    endif()
 
     if(ARG_ASYNCIFY)
         list(APPEND _EM_FLAGS "-sASYNCIFY=1")
