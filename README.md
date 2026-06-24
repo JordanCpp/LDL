@@ -8,6 +8,7 @@
 [![Linux](https://img.shields.io/badge/Linux-✅%20Supported-0078D6?logo=linux)](https://kernel.org)
 [![FreeBSD](https://img.shields.io/badge/FreeBSD-✅%20Supported-0078D6?logo=freebsd)](https://freebsd.org)
 [![macOS](https://img.shields.io/badge/macOS-✅%20Supported-000000?logo=apple)](https://www.apple.com/macos/)
+[![Web](https://img.shields.io/badge/Web-✅%20Supported-F7DF1E?logo=webassembly)](https://emscripten.org)
 
 LDL is not just a cross-platform library, but a **bridge between different development eras**. We provide compatible APIs for popular multimedia libraries, allowing modern code to run on legacy platforms and vice versa.
 
@@ -81,6 +82,8 @@ Seeking to comprehend the very spirit of each era and the people who shaped it.
 | **OpenGL 2.0–2.1** | ✅ GLSL 1.20, shaders, FBO |
 | **OpenGL 3.0–3.3** | ✅ GLSL 3.30, VAO, geometry shaders |
 | **OpenGL 4.0–4.6** | ✅ GLSL 4.60, compute shaders, tessellation |
+| **WebGL 1.0** | ✅ GLSL ES 1.00, shaders, VBO (via Emscripten) |
+| **WebGL 2.0** | ✅ GLSL ES 3.00, VAO, instancing (via Emscripten) |
 
 ---
 
@@ -94,8 +97,11 @@ Seeking to comprehend the very spirit of each era and the people who shaped it.
 | **macOS** | 10.12-10.15, 11-26 (2016-present) | ✅ Full support* |
 | **OS X** | 10.8–10.11 (2012–2015) | ✅ Full support |
 | **Mac OS X** | 10.6, 10.7 (2009-2011) | ✅ Full support |
+| **Web (Browser)** | Chrome 56+, Firefox 51+, Safari 15+, Edge 79+ | ✅ Full support** |
 
-> *Note: due to [Apple's policy](https://developer.apple.com/documentation/scenekit/scnview/openglcontext), macOS does not support OpenGL 4.1+ 
+> *Note: due to [Apple's policy](https://developer.apple.com/documentation/scenekit/scnview/openglcontext), macOS does not support OpenGL 4.1+
+
+> **Note: OpenGL 4.x features (compute shaders, tessellation, GLSL 4.x) [are unavailable in the browser by design](https://github.com/JordanCpp/LDL/pull/32#issuecomment-4778360131).
 
 ---
 
@@ -103,6 +109,7 @@ Seeking to comprehend the very spirit of each era and the people who shaped it.
 
 - **Classic systems:** Windows 95/98/ME, old Linux kernels, legacy FreeBSD, OSX
 - **Modern systems:** Windows 10/11, modern Linux distributions, latest FreeBSD, macOS
+- **Web:** Any modern browser via [Emscripten](https://emscripten.org/), same source code, zero browser-specific changes
 
 ---
 
@@ -114,6 +121,7 @@ Seeking to comprehend the very spirit of each era and the people who shaped it.
 | Linux | GCC 2.95–14, Clang 3.0–18 |
 | FreeBSD | GCC (system default), Clang |
 | macOS | Apple clang version 14.0.0 |
+| Web | Emscripten (emcc) |
 
 ---
 
@@ -122,10 +130,10 @@ Seeking to comprehend the very spirit of each era and the people who shaped it.
 *   **🌉 Bridge, Not Replacement** - we complement the ecosystem, don't compete with it
 *   **🆓 Free for Everyone** - completely free for any use
 *   **💡 Open to Ideas** - we consider and welcome all community ideas
-*   **🔄 Old & New Platform Support** - from Windows 95 to modern systems
+*   **🔄 Old & New Platform Support** - from Windows 95 to modern systems and browsers
 *   **🏛️ Legacy Preservation** - let old code live in the new world
 *   **🔧 Developer Freedom** - we don't restrict the developer
-*   **🌍 Cross-Platform** - work across multiple operating systems
+*   **🌍 Cross-Platform** - work across multiple operating systems and the web
 *   **📚 Static & Dynamic Linking** - developer chooses the build method
 
 ---
@@ -178,6 +186,49 @@ You can customize the build using the following CMake options:
    ```bash
    sudo cmake --install build
    ```
+
+## Building for Web (WebAssembly)
+
+LDL supports compilation to WebAssembly via [Emscripten](https://emscripten.org/), producing `.html` + `.js` + `.wasm` output that runs directly in any modern browser.    
+The same C source code compiles for both native and web targets without modification.
+
+### Prerequisites
+
+Install and activate the Emscripten SDK:
+```bash
+git clone https://github.com/emscripten-core/emsdk.git
+cd emsdk
+./emsdk install latest
+./emsdk activate latest
+source ./emsdk_env.sh
+```
+
+### Build
+
+```bash
+mkdir build-wasm && cd build-wasm
+emcmake cmake .. \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DLDL_BUILD_EXAMPLES=ON
+cmake --build . -j$(nproc)
+```
+
+### Run
+
+```bash
+cd bin
+python3 -m http.server 8080
+# open http://localhost:8080/Emscripten_Triangle.html
+```
+
+### Web platform notes
+
+| | Native | Web (Emscripten) |
+|---|---|---|
+| Main loop | `while (LDL_WindowIsRunning(...))` | `emscripten_set_main_loop(frame, 0, 1)` |
+| File I/O | Real filesystem | MEMFS via `--preload-file` (`FILES` param) |
+| OpenGL | 1.0–4.6 | WebGL 1 (ES 2.0) / WebGL 2 (ES 3.0) |
+| Fixed pipeline | ✅ `glBegin/glEnd` | ❌ Not available in WebGL |
 
 ## Example: Building with Specific OpenGL Versions
 If you want to build specific examples, you can toggle them:
@@ -283,6 +334,15 @@ Please feel free to open issues and pull requests.
 
 ---
 
+### Emscripten / WebAssembly Examples
+
+| | |
+|:-:|:-:|
+| ![Textured Triangle](Screenshots/Emscripten_Triangle.png) | |
+| *Textured Triangle (WebGL 1, GLSL ES 1.00)* | |
+
+---
+
 ### Legend
 
 | Icon | Meaning |
@@ -290,6 +350,7 @@ Please feel free to open issues and pull requests.
 | 🟢 OpenGL 1.2 | Immediate mode, fixed pipeline, retro style |
 | 🔵 OpenGL 2.1 | VBO, shaders, modern pipeline foundations |
 | 🔴 OpenGL 3.3 | Core profile, VAO, advanced shaders |
+| 🟡 WebGL 1.0  | GLSL ES 1.00, runs in any modern browser |
 
 ---
 
