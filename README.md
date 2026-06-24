@@ -338,7 +338,7 @@ Please feel free to open issues and pull requests.
 
 | | |
 |:-:|:-:|
-| ![Textured Triangle](Screenshots/Emscripten_Triangle.png) | |
+| ![Textured Triangle](Screenshots/Emscripten_Triangle.PNG) | |
 | *Textured Triangle (WebGL 1, GLSL ES 1.00)* | |
 
 ---
