@@ -65,6 +65,21 @@ namespace LDL
 		{
 			return LDL_EventIsKeyPressed(this, key);
 		}
+
+		inline bool IsKeyReleased(uint8_t key)
+		{
+			return LDL_EventIsKeyReleased(this, key);
+		}
+
+		inline bool IsMousePressed(uint8_t key)
+		{
+			return LDL_EventIsMousePressed(this, key);
+		}
+
+		inline bool IsMouseReleased(uint8_t key)
+		{
+			return LDL_EventIsMouseReleased(this, key);
+		}
 	};
 
 	class Result
