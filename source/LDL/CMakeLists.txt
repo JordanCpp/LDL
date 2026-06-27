@@ -30,6 +30,7 @@ set(LDL_INCLUDES_API
     ${LDL_ROOT_FOLDER}/include/LDL/Types.h
     ${LDL_ROOT_FOLDER}/include/LDL/Vec2i.h
     ${LDL_ROOT_FOLDER}/include/LDL/Window.h
+    ${LDL_ROOT_FOLDER}/include/LDL/Mouse.h
 )
 
 set(LDL_INCLUDES_API_OPENGL
@@ -171,6 +172,7 @@ if(EMSCRIPTEN)
         ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/Ticks.c
         ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/Window.c
         ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/WinGL.c
+        ${LDL_ROOT_FOLDER}/source/LDL/Emscripten/Mouse.c
     )
 elseif(WIN32)
     set(LDL_INCLUDES_PLATFORM
@@ -194,6 +196,7 @@ elseif(WIN32)
         ${LDL_ROOT_FOLDER}/source/LDL/Win9x/WinGL1.c
         ${LDL_ROOT_FOLDER}/source/LDL/Win9x/WinGL3.c
         ${LDL_ROOT_FOLDER}/source/LDL/Win9x/WinSoft.c
+        ${LDL_ROOT_FOLDER}/source/LDL/Win9x/Mouse.c
     )
 elseif(UNIX AND NOT APPLE)
     set(LDL_INCLUDES_PLATFORM
@@ -211,6 +214,7 @@ elseif(UNIX AND NOT APPLE)
         ${LDL_ROOT_FOLDER}/source/LDL/Linux/Ticks.c
         ${LDL_ROOT_FOLDER}/source/LDL/Linux/Window.c
         ${LDL_ROOT_FOLDER}/source/LDL/Linux/WinGL.c
+        ${LDL_ROOT_FOLDER}/source/LDL/Linux/Mouse.c
     )
 elseif(APPLE)
     enable_language(OBJC)
@@ -228,6 +232,7 @@ elseif(APPLE)
         ${LDL_ROOT_FOLDER}/source/LDL/macOS/Ticks.c
         ${LDL_ROOT_FOLDER}/source/LDL/macOS/Window.c
         ${LDL_ROOT_FOLDER}/source/LDL/macOS/WinGL.m
+        ${LDL_ROOT_FOLDER}/source/LDL/macOS/Mouse.c
     )
 endif()
 
