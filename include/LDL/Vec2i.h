@@ -29,50 +29,50 @@
 extern "C" {
 #endif
 
-    /**
-     * @struct LDL_Vec2i
-     * @brief A structure representing a 2D integer vector.
-     *
-     * This structure is used to represent points, positions, dimensions, or
-     * direction vectors in a 2D space using signed integer coordinates.
-     * It is commonly used for window coordinates, pixel positions, and
-     * image dimensions.
-     *
-     * The coordinates are stored as signed 32-bit integers, providing a range
-     * of approximately -2.1 billion to 2.1 billion, which is sufficient for
-     * most graphics and computational applications.
-     */
-    typedef struct LDL_Vec2i
-    {
-        int x; /**< X-coordinate or horizontal component (signed 32-bit integer). */
-        int y; /**< Y-coordinate or vertical component (signed 32-bit integer). */
-    } LDL_Vec2i;
+/**
+* @struct LDL_Vec2i
+* @brief A structure representing a 2D integer vector.
+*
+* This structure is used to represent points, positions, dimensions, or
+* direction vectors in a 2D space using signed integer coordinates.
+* It is commonly used for window coordinates, pixel positions, and
+* image dimensions.
+*
+* The coordinates are stored as signed 32-bit integers, providing a range
+* of approximately -2.1 billion to 2.1 billion, which is sufficient for
+* most graphics and computational applications.
+*/
+typedef struct LDL_Vec2i
+{
+    int x; /**< X-coordinate or horizontal component (signed 32-bit integer). */
+    int y; /**< Y-coordinate or vertical component (signed 32-bit integer). */
+} LDL_Vec2i;
 
-    /**
-     * @brief Creates a 2D integer vector with the specified components.
-     *
-     * This convenience function initializes an LDL_Vec2i structure with
-     * the provided x and y values. It provides a simple and readable way
-     * to create vector instances without manual structure initialization.
-     *
-     * @param x The X-coordinate or horizontal component value.
-     * @param y The Y-coordinate or vertical component value.
-     * @return An LDL_Vec2i structure initialized with the specified x and y values.
-     *
-     * @note This function is useful for creating vectors inline, especially
-     *       in function calls or expressions where temporary vectors are needed.
-     * @note The return value is passed by value, making it efficient for
-     *       use in C and C++ code.
-     *
-     * @code
-     * // Example usage:
-     * LDL_Vec2i position = LDL_GetVec2i(100, 200);
-     * LDL_Vec2i size = LDL_GetVec2i(640, 480);
-     * @endcode
-     *
-     * @see LDL_Vec2i
-     */
-    LDL_LIBRARY LDL_Vec2i LDL_GetVec2i(int x, int y);
+/**
+* @brief Creates a 2D integer vector with the specified components.
+*
+* This convenience function initializes an LDL_Vec2i structure with
+* the provided x and y values. It provides a simple and readable way
+* to create vector instances without manual structure initialization.
+*
+* @param x The X-coordinate or horizontal component value.
+* @param y The Y-coordinate or vertical component value.
+* @return An LDL_Vec2i structure initialized with the specified x and y values.
+*
+* @note This function is useful for creating vectors inline, especially
+*       in function calls or expressions where temporary vectors are needed.
+* @note The return value is passed by value, making it efficient for
+*       use in C and C++ code.
+*
+* @code
+* // Example usage:
+* LDL_Vec2i position = LDL_GetVec2i(100, 200);
+* LDL_Vec2i size = LDL_GetVec2i(640, 480);
+* @endcode
+*
+* @see LDL_Vec2i
+*/
+LDL_LIBRARY LDL_Vec2i LDL_GetVec2i(int x, int y);
 
 #ifdef __cplusplus
 }

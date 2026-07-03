@@ -23,7 +23,7 @@ License for more details.
 #endif
 
 #if defined(_MSC_VER) && (_MSC_VER == 1000)
-    typedef int bool;
+typedef int bool;
     #define true  1
     #define false 0
 #elif defined(_MSC_VER) && (_MSC_VER <= 1200) && (!__cplusplus)
