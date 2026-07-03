@@ -1,0 +1,41 @@
+\doxysection{LDL\+\_\+\+Bmp\+Loader Struct Reference}
+\hypertarget{struct_l_d_l___bmp_loader}{}\label{struct_l_d_l___bmp_loader}\index{LDL\_BmpLoader@{LDL\_BmpLoader}}
+
+
+Opaque structure representing a BMP image loader.  
+
+
+
+
+{\ttfamily \+\#include $<$Bmp\+Load.\+h$>$}
+
+
+
+\doxysubsection{Detailed Description}
+Opaque structure representing a BMP image loader. 
+
+This structure encapsulates the state and data required for loading and parsing BMP (Bitmap) image files. It provides functionality to load BMP files from disk, extract pixel data, and retrieve image properties such as dimensions and format.
+
+Key features:\+
+\begin{DoxyItemize}
+\item BMP file loading and parsing
+\item Support for various BMP formats (24-\/bit, 32-\/bit, etc.)
+\item Pixel data extraction
+\item Error handling through \doxylink{struct_l_d_l___result}{LDL\+\_\+\+Result} mechanism
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+The BMP loader handles both compressed and uncompressed BMP files. 
+
+The loader manages its own memory for pixel data. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_bmp_load_8h_a80a54cd08152f5cd52a012d3888b4a82}{LDL\+\_\+\+Bmp\+Loader\+Create} 
+
+\doxylink{_bmp_load_8h_a3ea2a4af2addbe23b35b9d25599778a4}{LDL\+\_\+\+Bmp\+Loader\+Destroy} 
+\end{DoxySeeAlso}
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+include/\+\+LDL/\+\doxymbox{\hyperlink{_bmp_load_8h}{Bmp\+Load.\+h}}\end{DoxyCompactItemize}

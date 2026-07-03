@@ -1,0 +1,168 @@
+\doxysection{include/\+\+LDL/\+\+Context.h File Reference}
+\hypertarget{_context_8h}{}\label{_context_8h}\index{include/LDL/Context.h@{include/LDL/Context.h}}
+{\ttfamily \+\#include $<$LDL/\+\+Result.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Enums.\+h$>$}\newline
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct LDL\+\_\+\+Context \doxymbox{\hyperlink{_context_8h_afbed0f4d0c0a95d688666db6b2b05c7d}{LDL\+\_\+\+Context}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___context}{LDL\+\_\+\+Context}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_context_8h_ab61f4689d4f5476999e0ee01ac2ecb33}{LDL\+\_\+\+Context\+Create}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result, \doxymbox{\hyperlink{_enums_8h_a98ef414875933cb07078294ce28b48d5}{LDL\+\_\+\+Context\+Type}} type)
+\begin{DoxyCompactList}\small\item\em Creates and initializes a new rendering context. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_context_8h_af60bd13668daceb85b176d2689554540}{LDL\+\_\+\+Context\+Destroy}} (\doxymbox{\hyperlink{struct_l_d_l___context}{LDL\+\_\+\+Context}} \texorpdfstring{$\ast$}{*}context)
+\begin{DoxyCompactList}\small\item\em Destroys an existing rendering context and releases all associated resources. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} size\+\_\+t \doxymbox{\hyperlink{_context_8h_a1a9e4713861de8532d70e46b7458f5dd}{LDL\+\_\+\+Context\+Get}} (\doxymbox{\hyperlink{struct_l_d_l___context}{LDL\+\_\+\+Context}} \texorpdfstring{$\ast$}{*}context)
+\begin{DoxyCompactList}\small\item\em Retrieves a specific value or size associated with the provided context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{_context_8h_doc-typedef-members}
+\Hypertarget{_context_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{_context_8h_afbed0f4d0c0a95d688666db6b2b05c7d}\index{Context.h@{Context.h}!LDL\_Context@{LDL\_Context}}
+\index{LDL\_Context@{LDL\_Context}!Context.h@{Context.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_Context}{LDL\_Context}}
+{\footnotesize\ttfamily \label{_context_8h_afbed0f4d0c0a95d688666db6b2b05c7d} 
+typedef struct LDL\+\_\+\+Context LDL\+\_\+\+Context}
+
+
+
+Definition at line \doxymbox{\hyperlink{_context_8h_source_l00049}{49}} of file \doxymbox{\hyperlink{_context_8h_source}{Context.\+h}}.
+
+
+
+\label{_context_8h_doc-func-members}
+\Hypertarget{_context_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_context_8h_ab61f4689d4f5476999e0ee01ac2ecb33}\index{Context.h@{Context.h}!LDL\_ContextCreate@{LDL\_ContextCreate}}
+\index{LDL\_ContextCreate@{LDL\_ContextCreate}!Context.h@{Context.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_ContextCreate()}{LDL\_ContextCreate()}}
+{\footnotesize\ttfamily \label{_context_8h_ab61f4689d4f5476999e0ee01ac2ecb33} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___context}{LDL\+\_\+\+Context}} \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Context\+Create (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\doxymbox{\hyperlink{_enums_8h_a98ef414875933cb07078294ce28b48d5}{LDL\+\_\+\+Context\+Type}}}]{type}{}\end{DoxyParamCaption})}
+
+
+
+Creates and initializes a new rendering context. 
+
+This function allocates memory for a new context object and configures it according to the specified type. The context is responsible for managing the rendering state and providing access to the graphics subsystem.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to an \doxylink{struct_l_d_l___result}{LDL\+\_\+\+Result} variable that will receive the operation status. If the operation succeeds, the result will be set to success state. If an error occurs, the result will contain an appropriate error message. \\
+\hline
+{\em type} & The specific type of rendering context to be created, as defined by the \doxylink{_enums_8h_a98ef414875933cb07078294ce28b48d5}{LDL\+\_\+\+Context\+Type} enumeration. Valid types include:\+
+\begin{DoxyItemize}
+\item LDL\+\_\+\+Context\+Software:\+ CPU-\/based rendering
+\item LDL\+\_\+\+Context\+Open\+GLLegacy:\+ Legacy Open\+GL (fixed-\/function)
+\item LDL\+\_\+\+Context\+Open\+GLHybrid:\+ Hybrid Open\+GL (mixed features)
+\item LDL\+\_\+\+Context\+Open\+GLModern:\+ Modern Open\+GL (core profile) 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \doxylink{struct_l_d_l___context}{LDL\+\_\+\+Context} instance if the operation was successful; otherwise, a NULL pointer is returned.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The context type determines which rendering functions are available. 
+
+Some context types may not be supported on all platforms or systems. 
+
+The returned context must be freed using LDL\+\_\+\+Context\+Destroy when no longer needed.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Create\ a\ modern\ OpenGL\ context}}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\_Result}}*\ result\ =\ \doxymbox{\hyperlink{_result_8h_a25877c5d6fdf1b36ac87beb9a2aacdcb}{LDL\_ResultCreate}}();}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___context}{LDL\_Context}}*\ context\ =\ \doxymbox{\hyperlink{_context_8h_ab61f4689d4f5476999e0ee01ac2ecb33}{LDL\_ContextCreate}}(result,\ \doxymbox{\hyperlink{_enums_8h_a98ef414875933cb07078294ce28b48d5a9a8a146cf8dcff505ab54233ccb685d1}{LDL\_ContextOpenGLModern}});}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (context\ ==\ NULL)\ \{}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}Failed\ to\ create\ context:\ \%s\(\backslash\)n"{}},\ \doxymbox{\hyperlink{_result_8h_ab773feda8bcd3ac762578ea5d6779e38}{LDL\_ResultGetMessage}}(result));}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{_context_8h_af60bd13668daceb85b176d2689554540}{LDL\+\_\+\+Context\+Destroy} 
+
+\doxylink{_enums_8h_a98ef414875933cb07078294ce28b48d5}{LDL\+\_\+\+Context\+Type} 
+
+\doxylink{_context_8h_a1a9e4713861de8532d70e46b7458f5dd}{LDL\+\_\+\+Context\+Get} 
+\end{DoxySeeAlso}
+\Hypertarget{_context_8h_af60bd13668daceb85b176d2689554540}\index{Context.h@{Context.h}!LDL\_ContextDestroy@{LDL\_ContextDestroy}}
+\index{LDL\_ContextDestroy@{LDL\_ContextDestroy}!Context.h@{Context.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_ContextDestroy()}{LDL\_ContextDestroy()}}
+{\footnotesize\ttfamily \label{_context_8h_af60bd13668daceb85b176d2689554540} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Context\+Destroy (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___context}{LDL\+\_\+\+Context}} \texorpdfstring{$\ast$}{*}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Destroys an existing rendering context and releases all associated resources. 
+
+This function performs the necessary cleanup for the specified context object, including the deallocation of any memory that was reserved during its creation. All textures, surfaces, and other resources associated with the context are automatically freed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & Pointer to the \doxylink{struct_l_d_l___context}{LDL\+\_\+\+Context} instance to be destroyed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+It is safe to pass NULL to this function; it will simply do nothing. 
+
+After this function is called, the pointer to the context becomes invalid. 
+
+All graphics resources (textures, render targets) must be destroyed before or with the context. 
+
+If the context is associated with a window, the window should be destroyed after the context.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_context_8h_ab61f4689d4f5476999e0ee01ac2ecb33}{LDL\+\_\+\+Context\+Create} 
+
+\doxylink{_texture_8h_a28fc314fff84fc4f111b4a1f9c7b0508}{LDL\+\_\+\+Texture\+Destroy} 
+\end{DoxySeeAlso}
+\Hypertarget{_context_8h_a1a9e4713861de8532d70e46b7458f5dd}\index{Context.h@{Context.h}!LDL\_ContextGet@{LDL\_ContextGet}}
+\index{LDL\_ContextGet@{LDL\_ContextGet}!Context.h@{Context.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_ContextGet()}{LDL\_ContextGet()}}
+{\footnotesize\ttfamily \label{_context_8h_a1a9e4713861de8532d70e46b7458f5dd} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} size\+\_\+t LDL\+\_\+\+Context\+Get (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___context}{LDL\+\_\+\+Context}} \texorpdfstring{$\ast$}{*}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves a specific value or size associated with the provided context. 
+
+This function accesses the internal properties of the specified context and returns a numerical value representing a characteristic of that context. The exact meaning of the return value depends on the context type and state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & Pointer to the \doxylink{struct_l_d_l___context}{LDL\+\_\+\+Context} from which the information is being retrieved. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value of type size\+\_\+t representing the size or property associated with the given context instance.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned value may represent different properties depending on the context type:\+
+\begin{DoxyItemize}
+\item For software context:\+ may return buffer size or memory usage
+\item For Open\+GL context:\+ may return GPU memory usage or other metrics 
+\end{DoxyItemize}
+
+This function is primarily intended for diagnostic and debugging purposes. 
+
+The exact interpretation of the return value should be documented in the implementation-\/specific documentation.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Query\ context\ property}}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t}\ value\ =\ \doxymbox{\hyperlink{_context_8h_a1a9e4713861de8532d70e46b7458f5dd}{LDL\_ContextGet}}(context);}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}Context\ property\ value:\ \%zu\(\backslash\)n"{}},\ value);}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{_context_8h_ab61f4689d4f5476999e0ee01ac2ecb33}{LDL\+\_\+\+Context\+Create} 
+
+\doxylink{_enums_8h_a98ef414875933cb07078294ce28b48d5}{LDL\+\_\+\+Context\+Type} 
+\end{DoxySeeAlso}

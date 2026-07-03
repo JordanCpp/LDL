@@ -1,0 +1,54 @@
+\doxysection{LDL\+\_\+\+Palette Struct Reference}
+\hypertarget{struct_l_d_l___palette}{}\label{struct_l_d_l___palette}\index{LDL\_Palette@{LDL\_Palette}}
+
+
+Opaque structure representing a color palette.  
+
+
+
+
+{\ttfamily \+\#include $<$Palette.\+h$>$}
+
+
+
+\doxysubsection{Detailed Description}
+Opaque structure representing a color palette. 
+
+This structure encapsulates an array of colors that can be used for indexed color operations. A palette maps indices to actual RGBA colors, allowing efficient color management and lookup.
+
+Key features:\+
+\begin{DoxyItemize}
+\item Stores up to 256 colors (LDL\+\_\+\+Palette\+Max)
+\item RGBA color support for each entry
+\item Index-\/based color access
+\item Memory-\/efficient color management
+\end{DoxyItemize}
+
+Common use cases:\+
+\begin{DoxyItemize}
+\item 8-\/bit image rendering
+\item Palette-\/based animation
+\item Color lookup tables (CLUTs)
+\item Legacy graphics formats
+\item Color quantization
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+The palette is initialized with default colors when created. 
+
+Each color entry stores 8-\/bit RGBA components. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_palette_8h_a4f950587dfd752352fa6295071a59fdf}{LDL\+\_\+\+Palette\+Create} 
+
+\doxylink{_palette_8h_ae6149ded7fdb011c71da472f2cd35b2d}{LDL\+\_\+\+Palette\+Destroy} 
+
+\doxylink{_palette_8h_ae230f5966102ea9b07f69ee06b7232c4}{LDL\+\_\+\+Palette\+Get} 
+
+\doxylink{_palette_8h_adba7c2f215575f7b5d11492513e893c5}{LDL\+\_\+\+Palette\+Set} 
+\end{DoxySeeAlso}
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+include/\+\+LDL/\+\doxymbox{\hyperlink{_palette_8h}{Palette.\+h}}\end{DoxyCompactItemize}

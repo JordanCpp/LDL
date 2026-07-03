@@ -1,0 +1,73 @@
+\doxysection{include/\+\+LDL/\+\+Vec2i.h File Reference}
+\hypertarget{_vec2i_8h}{}\label{_vec2i_8h}\index{include/LDL/Vec2i.h@{include/LDL/Vec2i.h}}
+{\ttfamily \+\#include $<$LDL/\+\+Config.\+h$>$}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}}
+\begin{DoxyCompactList}\small\item\em A structure representing a 2D integer vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct LDL\+\_\+\+Vec2i \doxymbox{\hyperlink{_vec2i_8h_ab0165a0b4d9d48e470b630b3d5fd64ae}{LDL\+\_\+\+Vec2i}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} \doxymbox{\hyperlink{_vec2i_8h_abf13b53646162aaa6eaf4cf59da99371}{LDL\+\_\+\+Get\+Vec2i}} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Creates a 2D integer vector with the specified components. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{_vec2i_8h_doc-typedef-members}
+\Hypertarget{_vec2i_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{_vec2i_8h_ab0165a0b4d9d48e470b630b3d5fd64ae}\index{Vec2i.h@{Vec2i.h}!LDL\_Vec2i@{LDL\_Vec2i}}
+\index{LDL\_Vec2i@{LDL\_Vec2i}!Vec2i.h@{Vec2i.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_Vec2i}{LDL\_Vec2i}}
+{\footnotesize\ttfamily \label{_vec2i_8h_ab0165a0b4d9d48e470b630b3d5fd64ae} 
+typedef struct LDL\+\_\+\+Vec2i LDL\+\_\+\+Vec2i}
+
+
+
+\label{_vec2i_8h_doc-func-members}
+\Hypertarget{_vec2i_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_vec2i_8h_abf13b53646162aaa6eaf4cf59da99371}\index{Vec2i.h@{Vec2i.h}!LDL\_GetVec2i@{LDL\_GetVec2i}}
+\index{LDL\_GetVec2i@{LDL\_GetVec2i}!Vec2i.h@{Vec2i.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_GetVec2i()}{LDL\_GetVec2i()}}
+{\footnotesize\ttfamily \label{_vec2i_8h_abf13b53646162aaa6eaf4cf59da99371} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} LDL\+\_\+\+Get\+Vec2i (\begin{DoxyParamCaption}\item[{int}]{x}{, }\item[{int}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Creates a 2D integer vector with the specified components. 
+
+This convenience function initializes an \doxylink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i} structure with the provided x and y values. It provides a simple and readable way to create vector instances without manual structure initialization.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The X-\/coordinate or horizontal component value. \\
+\hline
+{\em y} & The Y-\/coordinate or vertical component value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \doxylink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i} structure initialized with the specified x and y values.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function is useful for creating vectors inline, especially in function calls or expressions where temporary vectors are needed. 
+
+The return value is passed by value, making it efficient for use in C and C++ code.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example\ usage:}}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\_Vec2i}}\ position\ =\ \doxymbox{\hyperlink{_vec2i_8h_abf13b53646162aaa6eaf4cf59da99371}{LDL\_GetVec2i}}(100,\ 200);}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\_Vec2i}}\ size\ =\ \doxymbox{\hyperlink{_vec2i_8h_abf13b53646162aaa6eaf4cf59da99371}{LDL\_GetVec2i}}(640,\ 480);}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i} 
+\end{DoxySeeAlso}

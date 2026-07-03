@@ -1,0 +1,38 @@
+\doxysection{LDL\+\_\+\+Result Struct Reference}
+\hypertarget{struct_l_d_l___result}{}\label{struct_l_d_l___result}\index{LDL\_Result@{LDL\_Result}}
+
+
+Opaque structure representing a result object for error handling.  
+
+
+
+
+{\ttfamily \+\#include $<$Result.\+h$>$}
+
+
+
+\doxysubsection{Detailed Description}
+Opaque structure representing a result object for error handling. 
+
+This structure encapsulates error state and diagnostic information for operations performed by the library. It provides a mechanism to track whether operations succeeded or failed, along with descriptive error messages that can be used for debugging and user feedback.
+
+The result object maintains:\+
+\begin{DoxyItemize}
+\item A success/\+failure state
+\item A formatted message string describing the outcome
+\item The ability to accumulate multiple messages
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+The result object is designed to be created once and reused across multiple operations to minimize memory allocation overhead. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_result_8h_a25877c5d6fdf1b36ac87beb9a2aacdcb}{LDL\+\_\+\+Result\+Create} 
+
+\doxylink{_result_8h_ab8492c6687dfcab35ba5dc3cfc528a64}{LDL\+\_\+\+Result\+Destroy} 
+\end{DoxySeeAlso}
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+include/\+\+LDL/\+\doxymbox{\hyperlink{_result_8h}{Result.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,279 @@
+\doxysection{include/\+\+LDL/\+\+Result.h File Reference}
+\hypertarget{_result_8h}{}\label{_result_8h}\index{include/LDL/Result.h@{include/LDL/Result.h}}
+{\ttfamily \+\#include $<$LDL/\+\+Config.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Types.\+h$>$}\newline
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct LDL\+\_\+\+Result \doxymbox{\hyperlink{_result_8h_a949632fa8fe80f25faba59541ee98bf9}{LDL\+\_\+\+Result}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_result_8h_a25877c5d6fdf1b36ac87beb9a2aacdcb}{LDL\+\_\+\+Result\+Create}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new result object. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_result_8h_ab8492c6687dfcab35ba5dc3cfc528a64}{LDL\+\_\+\+Result\+Destroy}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result)
+\begin{DoxyCompactList}\small\item\em Destroys a result object and frees all associated resources. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool \doxymbox{\hyperlink{_result_8h_af48ed2dba1a6c183eac15ad83052e403}{LDL\+\_\+\+Result\+Is\+Ok}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result)
+\begin{DoxyCompactList}\small\item\em Checks whether the result indicates success. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool \doxymbox{\hyperlink{_result_8h_a2238e5679cdf269669908b9b71684f18}{LDL\+\_\+\+Result\+Is\+Fail}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result)
+\begin{DoxyCompactList}\small\item\em Checks whether the result indicates failure. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} const char \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_result_8h_ab773feda8bcd3ac762578ea5d6779e38}{LDL\+\_\+\+Result\+Get\+Message}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result)
+\begin{DoxyCompactList}\small\item\em Retrieves the current error message from the result object. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_result_8h_a9167161b99c5c000793a87ae82c3d2b3}{LDL\+\_\+\+Result\+Add\+Message}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result, const char \texorpdfstring{$\ast$}{*}format,...)
+\begin{DoxyCompactList}\small\item\em Adds a formatted error message to the result object. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_result_8h_aeedd1630a29824fb9965ba5cf441cb37}{LDL\+\_\+\+Result\+Reset}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result)
+\begin{DoxyCompactList}\small\item\em Resets the result object to its initial state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{_result_8h_doc-typedef-members}
+\Hypertarget{_result_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{_result_8h_a949632fa8fe80f25faba59541ee98bf9}\index{Result.h@{Result.h}!LDL\_Result@{LDL\_Result}}
+\index{LDL\_Result@{LDL\_Result}!Result.h@{Result.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_Result}{LDL\_Result}}
+{\footnotesize\ttfamily \label{_result_8h_a949632fa8fe80f25faba59541ee98bf9} 
+typedef struct LDL\+\_\+\+Result LDL\+\_\+\+Result}
+
+
+
+Definition at line \doxymbox{\hyperlink{_result_8h_source_l00047}{47}} of file \doxymbox{\hyperlink{_result_8h_source}{Result.\+h}}.
+
+
+
+\label{_result_8h_doc-func-members}
+\Hypertarget{_result_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_result_8h_a9167161b99c5c000793a87ae82c3d2b3}\index{Result.h@{Result.h}!LDL\_ResultAddMessage@{LDL\_ResultAddMessage}}
+\index{LDL\_ResultAddMessage@{LDL\_ResultAddMessage}!Result.h@{Result.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_ResultAddMessage()}{LDL\_ResultAddMessage()}}
+{\footnotesize\ttfamily \label{_result_8h_a9167161b99c5c000793a87ae82c3d2b3} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Result\+Add\+Message (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{format}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+
+
+
+Adds a formatted error message to the result object. 
+
+This function appends a formatted message to the result object\textquotesingle{}s internal message buffer. When a message is added, the result state is automatically set to a failure state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to the result object. \\
+\hline
+{\em format} & A printf-\/style format string followed by additional arguments. \\
+\hline
+{\em ...} & Variable arguments to be formatted according to the format string.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function uses variable arguments (variadic) similar to printf. 
+
+The message is appended to any existing messages, allowing for accumulation of multiple error diagnostics. 
+
+After calling this function, LDL\+\_\+\+Result\+Is\+Fail will return true. 
+
+The format string must be compatible with the standard printf formatting specifiers.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example\ usage:}}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\_Result}}*\ result\ =\ \doxymbox{\hyperlink{_result_8h_a25877c5d6fdf1b36ac87beb9a2aacdcb}{LDL\_ResultCreate}}();}
+\DoxyCodeLine{\doxymbox{\hyperlink{_result_8h_a9167161b99c5c000793a87ae82c3d2b3}{LDL\_ResultAddMessage}}(result,\ \textcolor{stringliteral}{"{}Failed\ to\ open\ file:\ \%s"{}},\ filename);}
+\DoxyCodeLine{\doxymbox{\hyperlink{_result_8h_a9167161b99c5c000793a87ae82c3d2b3}{LDL\_ResultAddMessage}}(result,\ \textcolor{stringliteral}{"{}Error\ code:\ \%d"{}},\ errno);}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{_result_8h_ab773feda8bcd3ac762578ea5d6779e38}{LDL\+\_\+\+Result\+Get\+Message} 
+
+\doxylink{_result_8h_aeedd1630a29824fb9965ba5cf441cb37}{LDL\+\_\+\+Result\+Reset} 
+\end{DoxySeeAlso}
+\Hypertarget{_result_8h_a25877c5d6fdf1b36ac87beb9a2aacdcb}\index{Result.h@{Result.h}!LDL\_ResultCreate@{LDL\_ResultCreate}}
+\index{LDL\_ResultCreate@{LDL\_ResultCreate}!Result.h@{Result.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_ResultCreate()}{LDL\_ResultCreate()}}
+{\footnotesize\ttfamily \label{_result_8h_a25877c5d6fdf1b36ac87beb9a2aacdcb} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Result\+Create (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Creates a new result object. 
+
+This function allocates and initializes a new \doxylink{struct_l_d_l___result}{LDL\+\_\+\+Result} object in a default state (success with no messages). The object can be used to track the success or failure of operations throughout the library.
+
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \doxylink{struct_l_d_l___result}{LDL\+\_\+\+Result} instance, or NULL on allocation failure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned result object must be freed using LDL\+\_\+\+Result\+Destroy when it is no longer needed to avoid memory leaks. 
+
+Initially, the result object is in a success state with no messages. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_result_8h_ab8492c6687dfcab35ba5dc3cfc528a64}{LDL\+\_\+\+Result\+Destroy} 
+
+\doxylink{_result_8h_aeedd1630a29824fb9965ba5cf441cb37}{LDL\+\_\+\+Result\+Reset} 
+\end{DoxySeeAlso}
+\Hypertarget{_result_8h_ab8492c6687dfcab35ba5dc3cfc528a64}\index{Result.h@{Result.h}!LDL\_ResultDestroy@{LDL\_ResultDestroy}}
+\index{LDL\_ResultDestroy@{LDL\_ResultDestroy}!Result.h@{Result.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_ResultDestroy()}{LDL\_ResultDestroy()}}
+{\footnotesize\ttfamily \label{_result_8h_ab8492c6687dfcab35ba5dc3cfc528a64} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Result\+Destroy (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{}\end{DoxyParamCaption})}
+
+
+
+Destroys a result object and frees all associated resources. 
+
+This function releases all memory and resources associated with the specified result object, including any stored messages.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to the result object to destroy.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+It is safe to pass NULL to this function; it will simply do nothing. 
+
+After destruction, any pointers to the result object become invalid. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_result_8h_a25877c5d6fdf1b36ac87beb9a2aacdcb}{LDL\+\_\+\+Result\+Create} 
+\end{DoxySeeAlso}
+\Hypertarget{_result_8h_ab773feda8bcd3ac762578ea5d6779e38}\index{Result.h@{Result.h}!LDL\_ResultGetMessage@{LDL\_ResultGetMessage}}
+\index{LDL\_ResultGetMessage@{LDL\_ResultGetMessage}!Result.h@{Result.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_ResultGetMessage()}{LDL\_ResultGetMessage()}}
+{\footnotesize\ttfamily \label{_result_8h_ab773feda8bcd3ac762578ea5d6779e38} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} const char \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Result\+Get\+Message (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the current error message from the result object. 
+
+This function returns a pointer to a string containing the accumulated error messages from the result object. The message provides diagnostic information about why an operation failed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to the result object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to a constant string containing the error message, or NULL if no message is available.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned string is owned by the result object and should not be modified or freed by the caller. 
+
+The message may contain multiple lines or formatted diagnostic information depending on what was added. 
+
+If the result is in a success state, this may return NULL or a generic success message. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_result_8h_a9167161b99c5c000793a87ae82c3d2b3}{LDL\+\_\+\+Result\+Add\+Message} 
+\end{DoxySeeAlso}
+\Hypertarget{_result_8h_a2238e5679cdf269669908b9b71684f18}\index{Result.h@{Result.h}!LDL\_ResultIsFail@{LDL\_ResultIsFail}}
+\index{LDL\_ResultIsFail@{LDL\_ResultIsFail}!Result.h@{Result.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_ResultIsFail()}{LDL\_ResultIsFail()}}
+{\footnotesize\ttfamily \label{_result_8h_a2238e5679cdf269669908b9b71684f18} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool LDL\+\_\+\+Result\+Is\+Fail (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{}\end{DoxyParamCaption})}
+
+
+
+Checks whether the result indicates failure. 
+
+This function returns true if the result object is in a failure state, indicating that the last operation performed encountered an error.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to the result object to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the result indicates failure, false otherwise.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+A newly created result object starts in a success state (not failure). 
+
+Failure state is typically set when an operation encounters an error and error messages are added to describe the problem. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_result_8h_af48ed2dba1a6c183eac15ad83052e403}{LDL\+\_\+\+Result\+Is\+Ok} 
+
+\doxylink{_result_8h_a9167161b99c5c000793a87ae82c3d2b3}{LDL\+\_\+\+Result\+Add\+Message} 
+
+\doxylink{_result_8h_aeedd1630a29824fb9965ba5cf441cb37}{LDL\+\_\+\+Result\+Reset} 
+\end{DoxySeeAlso}
+\Hypertarget{_result_8h_af48ed2dba1a6c183eac15ad83052e403}\index{Result.h@{Result.h}!LDL\_ResultIsOk@{LDL\_ResultIsOk}}
+\index{LDL\_ResultIsOk@{LDL\_ResultIsOk}!Result.h@{Result.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_ResultIsOk()}{LDL\_ResultIsOk()}}
+{\footnotesize\ttfamily \label{_result_8h_af48ed2dba1a6c183eac15ad83052e403} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool LDL\+\_\+\+Result\+Is\+Ok (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{}\end{DoxyParamCaption})}
+
+
+
+Checks whether the result indicates success. 
+
+This function returns true if the result object is in a success state, indicating that the last operation performed completed successfully without errors.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to the result object to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the result indicates success, false otherwise.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+A newly created result object starts in a success state. 
+
+The result state can be modified by various operations that set failure states and messages. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_result_8h_a2238e5679cdf269669908b9b71684f18}{LDL\+\_\+\+Result\+Is\+Fail} 
+
+\doxylink{_result_8h_a9167161b99c5c000793a87ae82c3d2b3}{LDL\+\_\+\+Result\+Add\+Message} 
+
+\doxylink{_result_8h_aeedd1630a29824fb9965ba5cf441cb37}{LDL\+\_\+\+Result\+Reset} 
+\end{DoxySeeAlso}
+\Hypertarget{_result_8h_aeedd1630a29824fb9965ba5cf441cb37}\index{Result.h@{Result.h}!LDL\_ResultReset@{LDL\_ResultReset}}
+\index{LDL\_ResultReset@{LDL\_ResultReset}!Result.h@{Result.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_ResultReset()}{LDL\_ResultReset()}}
+{\footnotesize\ttfamily \label{_result_8h_aeedd1630a29824fb9965ba5cf441cb37} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Result\+Reset (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{}\end{DoxyParamCaption})}
+
+
+
+Resets the result object to its initial state. 
+
+This function clears all stored messages and resets the result state back to success. This allows the same result object to be reused for multiple operations without allocating a new one.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to the result object to reset.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+After reset, LDL\+\_\+\+Result\+Is\+Ok will return true and LDL\+\_\+\+Result\+Get\+Message will return NULL or an empty string. 
+
+This function is useful for reusing a result object across multiple operations in a loop or sequential processing. 
+
+Any previously stored messages are freed and no longer accessible.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Reuse\ result\ object}}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\_Result}}*\ result\ =\ \doxymbox{\hyperlink{_result_8h_a25877c5d6fdf1b36ac87beb9a2aacdcb}{LDL\_ResultCreate}}();}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 10;\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{_result_8h_aeedd1630a29824fb9965ba5cf441cb37}{LDL\_ResultReset}}(result);}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Perform\ operation\ with\ result\ tracking...}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{_result_8h_a2238e5679cdf269669908b9b71684f18}{LDL\_ResultIsFail}}(result))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Operation\ \%d\ failed:\ \%s\(\backslash\)n"{}},\ i,\ \doxymbox{\hyperlink{_result_8h_ab773feda8bcd3ac762578ea5d6779e38}{LDL\_ResultGetMessage}}(result));}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{_result_8h_a25877c5d6fdf1b36ac87beb9a2aacdcb}{LDL\+\_\+\+Result\+Create} 
+
+\doxylink{_result_8h_a9167161b99c5c000793a87ae82c3d2b3}{LDL\+\_\+\+Result\+Add\+Message} 
+\end{DoxySeeAlso}

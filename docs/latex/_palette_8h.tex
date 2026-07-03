@@ -1,0 +1,255 @@
+\doxysection{include/\+\+LDL/\+\+Palette.h File Reference}
+\hypertarget{_palette_8h}{}\label{_palette_8h}\index{include/LDL/Palette.h@{include/LDL/Palette.h}}
+{\ttfamily \+\#include $<$LDL/\+\+Color.\+h$>$}\newline
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct LDL\+\_\+\+Palette \doxymbox{\hyperlink{_palette_8h_a3d87c052ca933cb9d7cded5e5dd1957a}{LDL\+\_\+\+Palette}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \doxymbox{\hyperlink{_palette_8h_a2b9dce514fe5801500e5183e57a5440ea4d0fe4cc8a4e0beb6056489288cf9722}{LDL\+\_\+\+Palette\+Max}} = 256
+ \}
+\begin{DoxyCompactList}\small\item\em Maximum number of colors that can be stored in a palette. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___palette}{LDL\+\_\+\+Palette}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_palette_8h_a4f950587dfd752352fa6295071a59fdf}{LDL\+\_\+\+Palette\+Create}} ()
+\begin{DoxyCompactList}\small\item\em Creates and initializes a new palette instance. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_palette_8h_ae6149ded7fdb011c71da472f2cd35b2d}{LDL\+\_\+\+Palette\+Destroy}} (\doxymbox{\hyperlink{struct_l_d_l___palette}{LDL\+\_\+\+Palette}} \texorpdfstring{$\ast$}{*}palette)
+\begin{DoxyCompactList}\small\item\em Destroys a palette instance and releases all associated resources. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___color}{LDL\+\_\+\+Color}} \doxymbox{\hyperlink{_palette_8h_ae230f5966102ea9b07f69ee06b7232c4}{LDL\+\_\+\+Palette\+Get}} (\doxymbox{\hyperlink{struct_l_d_l___palette}{LDL\+\_\+\+Palette}} \texorpdfstring{$\ast$}{*}palette, size\+\_\+t index)
+\begin{DoxyCompactList}\small\item\em Retrieves a color from the palette at the specified index. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_palette_8h_adba7c2f215575f7b5d11492513e893c5}{LDL\+\_\+\+Palette\+Set}} (\doxymbox{\hyperlink{struct_l_d_l___palette}{LDL\+\_\+\+Palette}} \texorpdfstring{$\ast$}{*}palette, size\+\_\+t index, \doxymbox{\hyperlink{struct_l_d_l___color}{LDL\+\_\+\+Color}} color)
+\begin{DoxyCompactList}\small\item\em Sets a color in the palette at the specified index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{_palette_8h_doc-typedef-members}
+\Hypertarget{_palette_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{_palette_8h_a3d87c052ca933cb9d7cded5e5dd1957a}\index{Palette.h@{Palette.h}!LDL\_Palette@{LDL\_Palette}}
+\index{LDL\_Palette@{LDL\_Palette}!Palette.h@{Palette.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_Palette}{LDL\_Palette}}
+{\footnotesize\ttfamily \label{_palette_8h_a3d87c052ca933cb9d7cded5e5dd1957a} 
+typedef struct LDL\+\_\+\+Palette LDL\+\_\+\+Palette}
+
+
+
+Definition at line \doxymbox{\hyperlink{_palette_8h_source_l00071}{71}} of file \doxymbox{\hyperlink{_palette_8h_source}{Palette.\+h}}.
+
+
+
+\label{_palette_8h_doc-enum-members}
+\Hypertarget{_palette_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_palette_8h_a2b9dce514fe5801500e5183e57a5440e}\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily \label{_palette_8h_a2b9dce514fe5801500e5183e57a5440e} 
+anonymous enum}
+
+
+
+Maximum number of colors that can be stored in a palette. 
+
+This constant defines the maximum capacity of a palette, which is 256 colors. This is a common size for indexed color palettes used in many graphics formats (e.\+g., 8-\/bit BMP, GIF, and other indexed image formats).
+
+\begin{DoxyNote}{Note}
+The valid index range for palette operations is 0 to (LDL\+\_\+\+Palette\+Max -\/ 1). 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_palette_8h_ae230f5966102ea9b07f69ee06b7232c4}{LDL\+\_\+\+Palette\+Get} 
+
+\doxylink{_palette_8h_adba7c2f215575f7b5d11492513e893c5}{LDL\+\_\+\+Palette\+Set} 
+\end{DoxySeeAlso}
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LDL\_PaletteMax@{LDL\_PaletteMax}!Palette.h@{Palette.h}}
+\index{Palette.h@{Palette.h}!LDL\_PaletteMax@{LDL\_PaletteMax}}
+}\Hypertarget{_palette_8h_a2b9dce514fe5801500e5183e57a5440ea4d0fe4cc8a4e0beb6056489288cf9722}\label{_palette_8h_a2b9dce514fe5801500e5183e57a5440ea4d0fe4cc8a4e0beb6056489288cf9722} 
+LDL\+\_\+\+Palette\+Max&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \doxymbox{\hyperlink{_palette_8h_source_l00038}{38}} of file \doxymbox{\hyperlink{_palette_8h_source}{Palette.\+h}}.
+
+
+
+\label{_palette_8h_doc-func-members}
+\Hypertarget{_palette_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_palette_8h_a4f950587dfd752352fa6295071a59fdf}\index{Palette.h@{Palette.h}!LDL\_PaletteCreate@{LDL\_PaletteCreate}}
+\index{LDL\_PaletteCreate@{LDL\_PaletteCreate}!Palette.h@{Palette.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_PaletteCreate()}{LDL\_PaletteCreate()}}
+{\footnotesize\ttfamily \label{_palette_8h_a4f950587dfd752352fa6295071a59fdf} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___palette}{LDL\+\_\+\+Palette}} \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Palette\+Create (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Creates and initializes a new palette instance. 
+
+This function allocates memory for a new palette object and initializes it with default colors. The palette can hold up to LDL\+\_\+\+Palette\+Max colors (256 entries).
+
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \doxylink{struct_l_d_l___palette}{LDL\+\_\+\+Palette} instance if the allocation was successful; otherwise, a NULL pointer is returned.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned palette must be freed using LDL\+\_\+\+Palette\+Destroy when it is no longer needed to avoid memory leaks. 
+
+The palette is initialized with default colors (typically black or a grayscale ramp) but can be customized using LDL\+\_\+\+Palette\+Set. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_palette_8h_ae6149ded7fdb011c71da472f2cd35b2d}{LDL\+\_\+\+Palette\+Destroy} 
+
+\doxylink{_palette_8h_adba7c2f215575f7b5d11492513e893c5}{LDL\+\_\+\+Palette\+Set} 
+
+\doxylink{_palette_8h_ae230f5966102ea9b07f69ee06b7232c4}{LDL\+\_\+\+Palette\+Get}
+\end{DoxySeeAlso}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Create\ and\ use\ a\ palette}}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___palette}{LDL\_Palette}}*\ palette\ =\ \doxymbox{\hyperlink{_palette_8h_a4f950587dfd752352fa6295071a59fdf}{LDL\_PaletteCreate}}();}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ (palette)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Set\ custom\ colors}}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{_palette_8h_adba7c2f215575f7b5d11492513e893c5}{LDL\_PaletteSet}}(palette,\ 0,\ \doxymbox{\hyperlink{_color_8h_a61a61a2c28ecc4f2ca0af01e6bf2469c}{LDL\_ColorRgb}}(255,\ 0,\ 0));\ \ \ \textcolor{comment}{//\ Red}}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{_palette_8h_adba7c2f215575f7b5d11492513e893c5}{LDL\_PaletteSet}}(palette,\ 1,\ \doxymbox{\hyperlink{_color_8h_a61a61a2c28ecc4f2ca0af01e6bf2469c}{LDL\_ColorRgb}}(0,\ 255,\ 0));\ \ \ \textcolor{comment}{//\ Green}}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{_palette_8h_adba7c2f215575f7b5d11492513e893c5}{LDL\_PaletteSet}}(palette,\ 2,\ \doxymbox{\hyperlink{_color_8h_a61a61a2c28ecc4f2ca0af01e6bf2469c}{LDL\_ColorRgb}}(0,\ 0,\ 255));\ \ \ \textcolor{comment}{//\ Blue}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Use\ palette...}}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{_palette_8h_ae6149ded7fdb011c71da472f2cd35b2d}{LDL\_PaletteDestroy}}(palette);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \Hypertarget{_palette_8h_ae6149ded7fdb011c71da472f2cd35b2d}\index{Palette.h@{Palette.h}!LDL\_PaletteDestroy@{LDL\_PaletteDestroy}}
+\index{LDL\_PaletteDestroy@{LDL\_PaletteDestroy}!Palette.h@{Palette.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_PaletteDestroy()}{LDL\_PaletteDestroy()}}
+{\footnotesize\ttfamily \label{_palette_8h_ae6149ded7fdb011c71da472f2cd35b2d} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Palette\+Destroy (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___palette}{LDL\+\_\+\+Palette}} \texorpdfstring{$\ast$}{*}}]{palette}{}\end{DoxyParamCaption})}
+
+
+
+Destroys a palette instance and releases all associated resources. 
+
+This function performs the necessary cleanup for the specified palette, including the deallocation of all color data. After this call, the pointer to the palette becomes invalid.
+
+
+\begin{DoxyParams}{Parameters}
+{\em palette} & A pointer to the \doxylink{struct_l_d_l___palette}{LDL\+\_\+\+Palette} instance that is intended to be destroyed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+It is safe to pass NULL to this function; it will simply do nothing. 
+
+All color data is lost when the palette is destroyed. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_palette_8h_a4f950587dfd752352fa6295071a59fdf}{LDL\+\_\+\+Palette\+Create} 
+\end{DoxySeeAlso}
+\Hypertarget{_palette_8h_ae230f5966102ea9b07f69ee06b7232c4}\index{Palette.h@{Palette.h}!LDL\_PaletteGet@{LDL\_PaletteGet}}
+\index{LDL\_PaletteGet@{LDL\_PaletteGet}!Palette.h@{Palette.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_PaletteGet()}{LDL\_PaletteGet()}}
+{\footnotesize\ttfamily \label{_palette_8h_ae230f5966102ea9b07f69ee06b7232c4} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___color}{LDL\+\_\+\+Color}} LDL\+\_\+\+Palette\+Get (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___palette}{LDL\+\_\+\+Palette}} \texorpdfstring{$\ast$}{*}}]{palette}{, }\item[{size\+\_\+t}]{index}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves a color from the palette at the specified index. 
+
+This function returns the color stored at the given index in the palette. The color is returned as an \doxylink{struct_l_d_l___color}{LDL\+\_\+\+Color} structure containing the RGBA values.
+
+
+\begin{DoxyParams}{Parameters}
+{\em palette} & A pointer to the \doxylink{struct_l_d_l___palette}{LDL\+\_\+\+Palette} instance. \\
+\hline
+{\em index} & The index of the color to retrieve (0 to LDL\+\_\+\+Palette\+Max -\/ 1). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \doxylink{struct_l_d_l___color}{LDL\+\_\+\+Color} structure containing the color at the specified index. If the index is out of range or the palette is invalid, returns a default color (typically black:\+ r=0, g=0, b=0, a=255).
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The valid index range is 0 to 255 inclusive. 
+
+This function is commonly used when rendering indexed images or performing color lookups.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Get\ color\ at\ index\ 42}}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___color}{LDL\_Color}}\ color\ =\ \doxymbox{\hyperlink{_palette_8h_ae230f5966102ea9b07f69ee06b7232c4}{LDL\_PaletteGet}}(palette,\ 42);}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}Color\ at\ index\ 42:\ R=\%d,\ G=\%d,\ B=\%d,\ A=\%d\(\backslash\)n"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ color.\doxymbox{\hyperlink{struct_l_d_l___color_a4c5c6ceb8ed33456261fa907136e0c3a}{r}},\ color.\doxymbox{\hyperlink{struct_l_d_l___color_a1673907d4d89d763bb7b94ec1eeb7b60}{g}},\ color.\doxymbox{\hyperlink{struct_l_d_l___color_a4313c9563516f94387762ab05763456b}{b}},\ color.\doxymbox{\hyperlink{struct_l_d_l___color_af4007aacd75b22aee32dba9ea96082c0}{a}});}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{_palette_8h_adba7c2f215575f7b5d11492513e893c5}{LDL\+\_\+\+Palette\+Set} 
+
+\doxylink{struct_l_d_l___color}{LDL\+\_\+\+Color} 
+
+\doxylink{_palette_8h_a2b9dce514fe5801500e5183e57a5440ea4d0fe4cc8a4e0beb6056489288cf9722}{LDL\+\_\+\+Palette\+Max} 
+\end{DoxySeeAlso}
+\Hypertarget{_palette_8h_adba7c2f215575f7b5d11492513e893c5}\index{Palette.h@{Palette.h}!LDL\_PaletteSet@{LDL\_PaletteSet}}
+\index{LDL\_PaletteSet@{LDL\_PaletteSet}!Palette.h@{Palette.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_PaletteSet()}{LDL\_PaletteSet()}}
+{\footnotesize\ttfamily \label{_palette_8h_adba7c2f215575f7b5d11492513e893c5} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Palette\+Set (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___palette}{LDL\+\_\+\+Palette}} \texorpdfstring{$\ast$}{*}}]{palette}{, }\item[{size\+\_\+t}]{index}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___color}{LDL\+\_\+\+Color}}}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Sets a color in the palette at the specified index. 
+
+This function stores a color at the given index in the palette. The color is specified as an \doxylink{struct_l_d_l___color}{LDL\+\_\+\+Color} structure containing the RGBA values.
+
+
+\begin{DoxyParams}{Parameters}
+{\em palette} & A pointer to the \doxylink{struct_l_d_l___palette}{LDL\+\_\+\+Palette} instance. \\
+\hline
+{\em index} & The index where the color should be stored (0 to LDL\+\_\+\+Palette\+Max -\/ 1). \\
+\hline
+{\em color} & The \doxylink{struct_l_d_l___color}{LDL\+\_\+\+Color} structure containing the color to store.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The valid index range is 0 to 255 inclusive. 
+
+If the index is out of range, the function has no effect. 
+
+Setting a color automatically updates the palette entry. 
+
+The color is stored as 8-\/bit RGBA values.
+\end{DoxyNote}
+Use cases:\+
+\begin{DoxyItemize}
+\item Loading custom color palettes from files
+\item Creating gradient palettes
+\item Implementing color cycling animations
+\item Converting images to indexed color
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Create\ a\ grayscale\ palette}}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___palette}{LDL\_Palette}}*\ palette\ =\ \doxymbox{\hyperlink{_palette_8h_a4f950587dfd752352fa6295071a59fdf}{LDL\_PaletteCreate}}();}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ 256;\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\_t}}\ value\ =\ (\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\_t}})i;}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{struct_l_d_l___color}{LDL\_Color}}\ color\ =\ \doxymbox{\hyperlink{_color_8h_a61a61a2c28ecc4f2ca0af01e6bf2469c}{LDL\_ColorRgb}}(value,\ value,\ value);}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{_palette_8h_adba7c2f215575f7b5d11492513e893c5}{LDL\_PaletteSet}}(palette,\ i,\ color);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Set\ a\ specific\ color}}
+\DoxyCodeLine{\doxymbox{\hyperlink{_palette_8h_adba7c2f215575f7b5d11492513e893c5}{LDL\_PaletteSet}}(palette,\ 128,\ \doxymbox{\hyperlink{_color_8h_a61a61a2c28ecc4f2ca0af01e6bf2469c}{LDL\_ColorRgb}}(255,\ 128,\ 64));}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{_palette_8h_ae230f5966102ea9b07f69ee06b7232c4}{LDL\+\_\+\+Palette\+Get} 
+
+\doxylink{struct_l_d_l___color}{LDL\+\_\+\+Color} 
+
+\doxylink{_color_8h_a61a61a2c28ecc4f2ca0af01e6bf2469c}{LDL\+\_\+\+Color\+Rgb} 
+
+\doxylink{_color_8h_a8c75c2ce44780647a34360151ed60954}{LDL\+\_\+\+Color\+Rgba} 
+
+\doxylink{_palette_8h_a2b9dce514fe5801500e5183e57a5440ea4d0fe4cc8a4e0beb6056489288cf9722}{LDL\+\_\+\+Palette\+Max} 
+\end{DoxySeeAlso}

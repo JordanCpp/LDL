@@ -14,6 +14,14 @@ LDL is not just a cross-platform library, but a **bridge between different devel
 
 ---
 
+## Documentation
+
+The full project documentation is located in the [docs](docs) folder.
+
+- [API Reference](docs/html/index.html)
+
+---
+
 <details>
 <summary><b>The Philosophy of the LDL Library (Click to expand)</b></summary>
 🕰️ The Human Story Behind the Code
@@ -77,6 +85,9 @@ Seeking to comprehend the very spirit of each era and the people who shaped it.
 | **Keyboard** | ✅ Full key mapping (including F1–F15, numpad, modifiers) |
 | **Mouse** | ✅ Move, click (LMB/RMB/MMB), scroll wheel |
 | **2D Render** | ✅ Draw: Line, Fill, Texture, Texture alpha |
+| **3D Render** | ✅ OpenGL: 1.2, 2.0, 3.0 |
+| **Image support** | ✅ Load: JPEG, PNG, TGA, BMP, PSD, GIF, HDR, PIC, PNM |
+| **TTF support** | ✅ ttf: load, color, draw |
 | **OpenGL 1.0** | ✅ Immediate mode, fixed pipeline |
 | **OpenGL 1.1–1.5** | ✅ Extensions, texture objects, VBO |
 | **OpenGL 2.0–2.1** | ✅ GLSL 1.20, shaders, FBO |

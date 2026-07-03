@@ -1,0 +1,307 @@
+\doxysection{include/\+\+LDL/\+\+Open\+GL/\+\+GL3\+\_\+1.h File Reference}
+\hypertarget{_g_l3__1_8h}{}\label{_g_l3__1_8h}\index{include/LDL/OpenGL/GL3\_1.h@{include/LDL/OpenGL/GL3\_1.h}}
+{\ttfamily \+\#include $<$LDL/\+\+Open\+GL/\+\+GL3\+\_\+0.\+h$>$}\newline
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l3__1_8h_a5c9fee395c63572703563068b8e3eb50}{PFNGLDRAWARRAYSINSTANCEDPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} first, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} instancecount)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l3__1_8h_a31fcc473166b002793ced1911f4efc6d}{PFNGLDRAWELEMENTSINSTANCEDPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} type, const void \texorpdfstring{$\ast$}{*}indices, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} instancecount)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l3__1_8h_ada76fe1cfa3423c9cfc14acacacb5bcf}{PFNGLTEXBUFFERPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} target, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} internalformat, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} buffer)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l3__1_8h_a1be51dfcc0e9072be5e698dc046e456c}{PFNGLPRIMITIVERESTARTINDEXPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} index)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l3__1_8h_a0a21993ff52b655d600eba463e1f0815}{PFNGLCOPYBUFFERSUBDATAPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} read\+Target, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} write\+Target, \doxymbox{\hyperlink{_g_l_types_8h_a5b8fb66e84bc13bed80fc9a03287acb1}{GLintptr}} read\+Offset, \doxymbox{\hyperlink{_g_l_types_8h_a5b8fb66e84bc13bed80fc9a03287acb1}{GLintptr}} write\+Offset, \doxymbox{\hyperlink{_g_l_types_8h_a2dfc0d399cd69b8cc92452c4f75485c2}{GLsizeiptr}} size)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l3__1_8h_ac0db36b0a646001da7baae83cba1a7bb}{PFNGLGETUNIFORMINDICESPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} uniform\+Count, const \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}uniform\+Names, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} \texorpdfstring{$\ast$}{*}uniform\+Indices)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l3__1_8h_ae385a7c11cf74d21690bbf76cf4a8f72}{PFNGLGETACTIVEUNIFORMSIVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} uniform\+Count, const \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} \texorpdfstring{$\ast$}{*}uniform\+Indices, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} pname, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} \texorpdfstring{$\ast$}{*}params)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l3__1_8h_aa8822dfc7b64eef7e247445943d945dc}{PFNGLGETACTIVEUNIFORMNAMEPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} uniform\+Index, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} buf\+Size, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} \texorpdfstring{$\ast$}{*}length, \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}uniform\+Name)
+\item 
+typedef \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}}(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l3__1_8h_a67a03ba9edce091cfc29d9bf11cd4437}{PFNGLGETUNIFORMBLOCKINDEXPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, const \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}uniform\+Block\+Name)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l3__1_8h_ae8eb5c8cf567e82ea78d8bc33911315d}{PFNGLGETACTIVEUNIFORMBLOCKIVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} uniform\+Block\+Index, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} pname, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} \texorpdfstring{$\ast$}{*}params)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l3__1_8h_af5eb2fe07d15425b21464dd299a536ae}{PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} uniform\+Block\+Index, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} buf\+Size, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} \texorpdfstring{$\ast$}{*}length, \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}uniform\+Block\+Name)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l3__1_8h_a41883f05594acfa1980028878d4256d2}{PFNGLUNIFORMBLOCKBINDINGPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} uniform\+Block\+Index, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} uniform\+Block\+Binding)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_a5c9fee395c63572703563068b8e3eb50}{PFNGLDRAWARRAYSINSTANCEDPROC}} \doxymbox{\hyperlink{_g_l3__1_8h_a65c0329165e8839fb5667bc93667db39}{gl\+Draw\+Arrays\+Instanced}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_a31fcc473166b002793ced1911f4efc6d}{PFNGLDRAWELEMENTSINSTANCEDPROC}} \doxymbox{\hyperlink{_g_l3__1_8h_aede43b8fc25d8b9bcbe5beb37cc70f4d}{gl\+Draw\+Elements\+Instanced}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_ada76fe1cfa3423c9cfc14acacacb5bcf}{PFNGLTEXBUFFERPROC}} \doxymbox{\hyperlink{_g_l3__1_8h_a403fe9ed2e8cd34043bd31c2784edb02}{gl\+Tex\+Buffer}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_a1be51dfcc0e9072be5e698dc046e456c}{PFNGLPRIMITIVERESTARTINDEXPROC}} \doxymbox{\hyperlink{_g_l3__1_8h_a5593f220f5dbb03e8ec3d747e0f386b7}{gl\+Primitive\+Restart\+Index}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_a0a21993ff52b655d600eba463e1f0815}{PFNGLCOPYBUFFERSUBDATAPROC}} \doxymbox{\hyperlink{_g_l3__1_8h_ae1c0b7595ed8215add3a3b3233bf8b3b}{gl\+Copy\+Buffer\+Sub\+Data}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_ac0db36b0a646001da7baae83cba1a7bb}{PFNGLGETUNIFORMINDICESPROC}} \doxymbox{\hyperlink{_g_l3__1_8h_af405bd6aab4d6e3e3267b379a60c5d1d}{gl\+Get\+Uniform\+Indices}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_ae385a7c11cf74d21690bbf76cf4a8f72}{PFNGLGETACTIVEUNIFORMSIVPROC}} \doxymbox{\hyperlink{_g_l3__1_8h_ac1ef86dfd8c151c205176240c000d6c3}{gl\+Get\+Active\+Uniformsiv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_aa8822dfc7b64eef7e247445943d945dc}{PFNGLGETACTIVEUNIFORMNAMEPROC}} \doxymbox{\hyperlink{_g_l3__1_8h_a21363c0f6160830d721b97cc64f22aae}{gl\+Get\+Active\+Uniform\+Name}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_a67a03ba9edce091cfc29d9bf11cd4437}{PFNGLGETUNIFORMBLOCKINDEXPROC}} \doxymbox{\hyperlink{_g_l3__1_8h_a6873819e2f5311cced7ed0d9909b99d1}{gl\+Get\+Uniform\+Block\+Index}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_ae8eb5c8cf567e82ea78d8bc33911315d}{PFNGLGETACTIVEUNIFORMBLOCKIVPROC}} \doxymbox{\hyperlink{_g_l3__1_8h_aed6c57efae83322147e34dc1c5a79b13}{gl\+Get\+Active\+Uniform\+Blockiv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_af5eb2fe07d15425b21464dd299a536ae}{PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC}} \doxymbox{\hyperlink{_g_l3__1_8h_a9f957bf5528f4271d0150966ef69537d}{gl\+Get\+Active\+Uniform\+Block\+Name}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_a41883f05594acfa1980028878d4256d2}{PFNGLUNIFORMBLOCKBINDINGPROC}} \doxymbox{\hyperlink{_g_l3__1_8h_aefa792cb9a36d617afdf42bb77e54125}{gl\+Uniform\+Block\+Binding}}
+\end{DoxyCompactItemize}
+
+
+\label{_g_l3__1_8h_doc-typedef-members}
+\Hypertarget{_g_l3__1_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{_g_l3__1_8h_a0a21993ff52b655d600eba463e1f0815}\index{GL3\_1.h@{GL3\_1.h}!PFNGLCOPYBUFFERSUBDATAPROC@{PFNGLCOPYBUFFERSUBDATAPROC}}
+\index{PFNGLCOPYBUFFERSUBDATAPROC@{PFNGLCOPYBUFFERSUBDATAPROC}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLCOPYBUFFERSUBDATAPROC}{PFNGLCOPYBUFFERSUBDATAPROC}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_a0a21993ff52b655d600eba463e1f0815} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLCOPYBUFFERSUBDATAPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} read\+Target, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} write\+Target, \doxymbox{\hyperlink{_g_l_types_8h_a5b8fb66e84bc13bed80fc9a03287acb1}{GLintptr}} read\+Offset, \doxymbox{\hyperlink{_g_l_types_8h_a5b8fb66e84bc13bed80fc9a03287acb1}{GLintptr}} write\+Offset, \doxymbox{\hyperlink{_g_l_types_8h_a2dfc0d399cd69b8cc92452c4f75485c2}{GLsizeiptr}} size)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00028}{28}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_a5c9fee395c63572703563068b8e3eb50}\index{GL3\_1.h@{GL3\_1.h}!PFNGLDRAWARRAYSINSTANCEDPROC@{PFNGLDRAWARRAYSINSTANCEDPROC}}
+\index{PFNGLDRAWARRAYSINSTANCEDPROC@{PFNGLDRAWARRAYSINSTANCEDPROC}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLDRAWARRAYSINSTANCEDPROC}{PFNGLDRAWARRAYSINSTANCEDPROC}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_a5c9fee395c63572703563068b8e3eb50} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLDRAWARRAYSINSTANCEDPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} first, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} instancecount)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00024}{24}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_a31fcc473166b002793ced1911f4efc6d}\index{GL3\_1.h@{GL3\_1.h}!PFNGLDRAWELEMENTSINSTANCEDPROC@{PFNGLDRAWELEMENTSINSTANCEDPROC}}
+\index{PFNGLDRAWELEMENTSINSTANCEDPROC@{PFNGLDRAWELEMENTSINSTANCEDPROC}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLDRAWELEMENTSINSTANCEDPROC}{PFNGLDRAWELEMENTSINSTANCEDPROC}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_a31fcc473166b002793ced1911f4efc6d} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLDRAWELEMENTSINSTANCEDPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} type, const void \texorpdfstring{$\ast$}{*}indices, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} instancecount)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00025}{25}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_ae8eb5c8cf567e82ea78d8bc33911315d}\index{GL3\_1.h@{GL3\_1.h}!PFNGLGETACTIVEUNIFORMBLOCKIVPROC@{PFNGLGETACTIVEUNIFORMBLOCKIVPROC}}
+\index{PFNGLGETACTIVEUNIFORMBLOCKIVPROC@{PFNGLGETACTIVEUNIFORMBLOCKIVPROC}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETACTIVEUNIFORMBLOCKIVPROC}{PFNGLGETACTIVEUNIFORMBLOCKIVPROC}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_ae8eb5c8cf567e82ea78d8bc33911315d} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETACTIVEUNIFORMBLOCKIVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} uniform\+Block\+Index, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} pname, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} \texorpdfstring{$\ast$}{*}params)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00033}{33}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_af5eb2fe07d15425b21464dd299a536ae}\index{GL3\_1.h@{GL3\_1.h}!PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC@{PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC}}
+\index{PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC@{PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC}{PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_af5eb2fe07d15425b21464dd299a536ae} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} uniform\+Block\+Index, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} buf\+Size, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} \texorpdfstring{$\ast$}{*}length, \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}uniform\+Block\+Name)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00034}{34}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_aa8822dfc7b64eef7e247445943d945dc}\index{GL3\_1.h@{GL3\_1.h}!PFNGLGETACTIVEUNIFORMNAMEPROC@{PFNGLGETACTIVEUNIFORMNAMEPROC}}
+\index{PFNGLGETACTIVEUNIFORMNAMEPROC@{PFNGLGETACTIVEUNIFORMNAMEPROC}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETACTIVEUNIFORMNAMEPROC}{PFNGLGETACTIVEUNIFORMNAMEPROC}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_aa8822dfc7b64eef7e247445943d945dc} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETACTIVEUNIFORMNAMEPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} uniform\+Index, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} buf\+Size, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} \texorpdfstring{$\ast$}{*}length, \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}uniform\+Name)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00031}{31}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_ae385a7c11cf74d21690bbf76cf4a8f72}\index{GL3\_1.h@{GL3\_1.h}!PFNGLGETACTIVEUNIFORMSIVPROC@{PFNGLGETACTIVEUNIFORMSIVPROC}}
+\index{PFNGLGETACTIVEUNIFORMSIVPROC@{PFNGLGETACTIVEUNIFORMSIVPROC}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETACTIVEUNIFORMSIVPROC}{PFNGLGETACTIVEUNIFORMSIVPROC}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_ae385a7c11cf74d21690bbf76cf4a8f72} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETACTIVEUNIFORMSIVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} uniform\+Count, const \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} \texorpdfstring{$\ast$}{*}uniform\+Indices, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} pname, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} \texorpdfstring{$\ast$}{*}params)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00030}{30}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_a67a03ba9edce091cfc29d9bf11cd4437}\index{GL3\_1.h@{GL3\_1.h}!PFNGLGETUNIFORMBLOCKINDEXPROC@{PFNGLGETUNIFORMBLOCKINDEXPROC}}
+\index{PFNGLGETUNIFORMBLOCKINDEXPROC@{PFNGLGETUNIFORMBLOCKINDEXPROC}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETUNIFORMBLOCKINDEXPROC}{PFNGLGETUNIFORMBLOCKINDEXPROC}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_a67a03ba9edce091cfc29d9bf11cd4437} 
+typedef \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}}(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETUNIFORMBLOCKINDEXPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, const \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}uniform\+Block\+Name)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00032}{32}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_ac0db36b0a646001da7baae83cba1a7bb}\index{GL3\_1.h@{GL3\_1.h}!PFNGLGETUNIFORMINDICESPROC@{PFNGLGETUNIFORMINDICESPROC}}
+\index{PFNGLGETUNIFORMINDICESPROC@{PFNGLGETUNIFORMINDICESPROC}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETUNIFORMINDICESPROC}{PFNGLGETUNIFORMINDICESPROC}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_ac0db36b0a646001da7baae83cba1a7bb} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETUNIFORMINDICESPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} uniform\+Count, const \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}const  \texorpdfstring{$\ast$}{*}uniform\+Names, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} \texorpdfstring{$\ast$}{*}uniform\+Indices)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00029}{29}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_a1be51dfcc0e9072be5e698dc046e456c}\index{GL3\_1.h@{GL3\_1.h}!PFNGLPRIMITIVERESTARTINDEXPROC@{PFNGLPRIMITIVERESTARTINDEXPROC}}
+\index{PFNGLPRIMITIVERESTARTINDEXPROC@{PFNGLPRIMITIVERESTARTINDEXPROC}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLPRIMITIVERESTARTINDEXPROC}{PFNGLPRIMITIVERESTARTINDEXPROC}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_a1be51dfcc0e9072be5e698dc046e456c} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLPRIMITIVERESTARTINDEXPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} index)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00027}{27}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_ada76fe1cfa3423c9cfc14acacacb5bcf}\index{GL3\_1.h@{GL3\_1.h}!PFNGLTEXBUFFERPROC@{PFNGLTEXBUFFERPROC}}
+\index{PFNGLTEXBUFFERPROC@{PFNGLTEXBUFFERPROC}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLTEXBUFFERPROC}{PFNGLTEXBUFFERPROC}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_ada76fe1cfa3423c9cfc14acacacb5bcf} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLTEXBUFFERPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} target, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} internalformat, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} buffer)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00026}{26}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_a41883f05594acfa1980028878d4256d2}\index{GL3\_1.h@{GL3\_1.h}!PFNGLUNIFORMBLOCKBINDINGPROC@{PFNGLUNIFORMBLOCKBINDINGPROC}}
+\index{PFNGLUNIFORMBLOCKBINDINGPROC@{PFNGLUNIFORMBLOCKBINDINGPROC}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORMBLOCKBINDINGPROC}{PFNGLUNIFORMBLOCKBINDINGPROC}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_a41883f05594acfa1980028878d4256d2} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORMBLOCKBINDINGPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} uniform\+Block\+Index, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} uniform\+Block\+Binding)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00035}{35}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+
+
+\label{_g_l3__1_8h_doc-var-members}
+\Hypertarget{_g_l3__1_8h_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_g_l3__1_8h_ae1c0b7595ed8215add3a3b3233bf8b3b}\index{GL3\_1.h@{GL3\_1.h}!glCopyBufferSubData@{glCopyBufferSubData}}
+\index{glCopyBufferSubData@{glCopyBufferSubData}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{glCopyBufferSubData}{glCopyBufferSubData}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_ae1c0b7595ed8215add3a3b3233bf8b3b} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_a0a21993ff52b655d600eba463e1f0815}{PFNGLCOPYBUFFERSUBDATAPROC}} gl\+Copy\+Buffer\+Sub\+Data}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00041}{41}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_a65c0329165e8839fb5667bc93667db39}\index{GL3\_1.h@{GL3\_1.h}!glDrawArraysInstanced@{glDrawArraysInstanced}}
+\index{glDrawArraysInstanced@{glDrawArraysInstanced}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{glDrawArraysInstanced}{glDrawArraysInstanced}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_a65c0329165e8839fb5667bc93667db39} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_a5c9fee395c63572703563068b8e3eb50}{PFNGLDRAWARRAYSINSTANCEDPROC}} gl\+Draw\+Arrays\+Instanced}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00037}{37}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_aede43b8fc25d8b9bcbe5beb37cc70f4d}\index{GL3\_1.h@{GL3\_1.h}!glDrawElementsInstanced@{glDrawElementsInstanced}}
+\index{glDrawElementsInstanced@{glDrawElementsInstanced}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{glDrawElementsInstanced}{glDrawElementsInstanced}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_aede43b8fc25d8b9bcbe5beb37cc70f4d} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_a31fcc473166b002793ced1911f4efc6d}{PFNGLDRAWELEMENTSINSTANCEDPROC}} gl\+Draw\+Elements\+Instanced}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00038}{38}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_aed6c57efae83322147e34dc1c5a79b13}\index{GL3\_1.h@{GL3\_1.h}!glGetActiveUniformBlockiv@{glGetActiveUniformBlockiv}}
+\index{glGetActiveUniformBlockiv@{glGetActiveUniformBlockiv}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{glGetActiveUniformBlockiv}{glGetActiveUniformBlockiv}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_aed6c57efae83322147e34dc1c5a79b13} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_ae8eb5c8cf567e82ea78d8bc33911315d}{PFNGLGETACTIVEUNIFORMBLOCKIVPROC}} gl\+Get\+Active\+Uniform\+Blockiv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00046}{46}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_a9f957bf5528f4271d0150966ef69537d}\index{GL3\_1.h@{GL3\_1.h}!glGetActiveUniformBlockName@{glGetActiveUniformBlockName}}
+\index{glGetActiveUniformBlockName@{glGetActiveUniformBlockName}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{glGetActiveUniformBlockName}{glGetActiveUniformBlockName}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_a9f957bf5528f4271d0150966ef69537d} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_af5eb2fe07d15425b21464dd299a536ae}{PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC}} gl\+Get\+Active\+Uniform\+Block\+Name}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00047}{47}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_a21363c0f6160830d721b97cc64f22aae}\index{GL3\_1.h@{GL3\_1.h}!glGetActiveUniformName@{glGetActiveUniformName}}
+\index{glGetActiveUniformName@{glGetActiveUniformName}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{glGetActiveUniformName}{glGetActiveUniformName}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_a21363c0f6160830d721b97cc64f22aae} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_aa8822dfc7b64eef7e247445943d945dc}{PFNGLGETACTIVEUNIFORMNAMEPROC}} gl\+Get\+Active\+Uniform\+Name}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00044}{44}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_ac1ef86dfd8c151c205176240c000d6c3}\index{GL3\_1.h@{GL3\_1.h}!glGetActiveUniformsiv@{glGetActiveUniformsiv}}
+\index{glGetActiveUniformsiv@{glGetActiveUniformsiv}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{glGetActiveUniformsiv}{glGetActiveUniformsiv}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_ac1ef86dfd8c151c205176240c000d6c3} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_ae385a7c11cf74d21690bbf76cf4a8f72}{PFNGLGETACTIVEUNIFORMSIVPROC}} gl\+Get\+Active\+Uniformsiv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00043}{43}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_a6873819e2f5311cced7ed0d9909b99d1}\index{GL3\_1.h@{GL3\_1.h}!glGetUniformBlockIndex@{glGetUniformBlockIndex}}
+\index{glGetUniformBlockIndex@{glGetUniformBlockIndex}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{glGetUniformBlockIndex}{glGetUniformBlockIndex}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_a6873819e2f5311cced7ed0d9909b99d1} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_a67a03ba9edce091cfc29d9bf11cd4437}{PFNGLGETUNIFORMBLOCKINDEXPROC}} gl\+Get\+Uniform\+Block\+Index}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00045}{45}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_af405bd6aab4d6e3e3267b379a60c5d1d}\index{GL3\_1.h@{GL3\_1.h}!glGetUniformIndices@{glGetUniformIndices}}
+\index{glGetUniformIndices@{glGetUniformIndices}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{glGetUniformIndices}{glGetUniformIndices}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_af405bd6aab4d6e3e3267b379a60c5d1d} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_ac0db36b0a646001da7baae83cba1a7bb}{PFNGLGETUNIFORMINDICESPROC}} gl\+Get\+Uniform\+Indices}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00042}{42}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_a5593f220f5dbb03e8ec3d747e0f386b7}\index{GL3\_1.h@{GL3\_1.h}!glPrimitiveRestartIndex@{glPrimitiveRestartIndex}}
+\index{glPrimitiveRestartIndex@{glPrimitiveRestartIndex}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{glPrimitiveRestartIndex}{glPrimitiveRestartIndex}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_a5593f220f5dbb03e8ec3d747e0f386b7} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_a1be51dfcc0e9072be5e698dc046e456c}{PFNGLPRIMITIVERESTARTINDEXPROC}} gl\+Primitive\+Restart\+Index}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00040}{40}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_a403fe9ed2e8cd34043bd31c2784edb02}\index{GL3\_1.h@{GL3\_1.h}!glTexBuffer@{glTexBuffer}}
+\index{glTexBuffer@{glTexBuffer}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{glTexBuffer}{glTexBuffer}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_a403fe9ed2e8cd34043bd31c2784edb02} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_ada76fe1cfa3423c9cfc14acacacb5bcf}{PFNGLTEXBUFFERPROC}} gl\+Tex\+Buffer}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00039}{39}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+
+\Hypertarget{_g_l3__1_8h_aefa792cb9a36d617afdf42bb77e54125}\index{GL3\_1.h@{GL3\_1.h}!glUniformBlockBinding@{glUniformBlockBinding}}
+\index{glUniformBlockBinding@{glUniformBlockBinding}!GL3\_1.h@{GL3\_1.h}}
+\doxysubsubsection{\texorpdfstring{glUniformBlockBinding}{glUniformBlockBinding}}
+{\footnotesize\ttfamily \label{_g_l3__1_8h_aefa792cb9a36d617afdf42bb77e54125} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l3__1_8h_a41883f05594acfa1980028878d4256d2}{PFNGLUNIFORMBLOCKBINDINGPROC}} gl\+Uniform\+Block\+Binding}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l3__1_8h_source_l00048}{48}} of file \doxymbox{\hyperlink{_g_l3__1_8h_source}{GL3\+\_\+1.\+h}}.
+

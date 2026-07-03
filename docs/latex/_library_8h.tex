@@ -1,0 +1,195 @@
+\doxysection{include/\+\+LDL/\+\+Library.h File Reference}
+\hypertarget{_library_8h}{}\label{_library_8h}\index{include/LDL/Library.h@{include/LDL/Library.h}}
+{\ttfamily \+\#include $<$LDL/\+\+Result.\+h$>$}\newline
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct LDL\+\_\+\+Library \doxymbox{\hyperlink{_library_8h_af4293cd150030eab543802c4f5c6ac3e}{LDL\+\_\+\+Library}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___library}{LDL\+\_\+\+Library}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_library_8h_a0f0e5f6f3b06bd2813af309d4b84dc6a}{LDL\+\_\+\+Library\+Create}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result)
+\begin{DoxyCompactList}\small\item\em Creates a new library manager instance. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_library_8h_a35f1d2ddcff03bbdd880a5f6598ed81e}{LDL\+\_\+\+Library\+Destroy}} (\doxymbox{\hyperlink{struct_l_d_l___library}{LDL\+\_\+\+Library}} \texorpdfstring{$\ast$}{*}library)
+\begin{DoxyCompactList}\small\item\em Destroys a library manager instance and frees all associated resources. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool \doxymbox{\hyperlink{_library_8h_aecabf76b349574271f32c6975f5ed3af}{LDL\+\_\+\+Library\+Open}} (\doxymbox{\hyperlink{struct_l_d_l___library}{LDL\+\_\+\+Library}} \texorpdfstring{$\ast$}{*}library, const char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Opens a dynamic library from the specified file path. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_library_8h_a0e3ef3f98613714dfb753379750ad145}{LDL\+\_\+\+Library\+Close}} (\doxymbox{\hyperlink{struct_l_d_l___library}{LDL\+\_\+\+Library}} \texorpdfstring{$\ast$}{*}library)
+\begin{DoxyCompactList}\small\item\em Closes an open dynamic library. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{_types_8h_aedb4cac4e550febf73721ed8abc73288}{LDL\+\_\+\+Void\+Func\+Ptr}} \doxymbox{\hyperlink{_library_8h_a98107b6155e7c4148fdd849ed2f0142f}{LDL\+\_\+\+Library\+Get\+Function}} (\doxymbox{\hyperlink{struct_l_d_l___library}{LDL\+\_\+\+Library}} \texorpdfstring{$\ast$}{*}library, const char \texorpdfstring{$\ast$}{*}name)
+\begin{DoxyCompactList}\small\item\em Retrieves a function pointer from the loaded library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{_library_8h_doc-typedef-members}
+\Hypertarget{_library_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{_library_8h_af4293cd150030eab543802c4f5c6ac3e}\index{Library.h@{Library.h}!LDL\_Library@{LDL\_Library}}
+\index{LDL\_Library@{LDL\_Library}!Library.h@{Library.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_Library}{LDL\_Library}}
+{\footnotesize\ttfamily \label{_library_8h_af4293cd150030eab543802c4f5c6ac3e} 
+typedef struct LDL\+\_\+\+Library LDL\+\_\+\+Library}
+
+
+
+Definition at line \doxymbox{\hyperlink{_library_8h_source_l00041}{41}} of file \doxymbox{\hyperlink{_library_8h_source}{Library.\+h}}.
+
+
+
+\label{_library_8h_doc-func-members}
+\Hypertarget{_library_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_library_8h_a0e3ef3f98613714dfb753379750ad145}\index{Library.h@{Library.h}!LDL\_LibraryClose@{LDL\_LibraryClose}}
+\index{LDL\_LibraryClose@{LDL\_LibraryClose}!Library.h@{Library.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_LibraryClose()}{LDL\_LibraryClose()}}
+{\footnotesize\ttfamily \label{_library_8h_a0e3ef3f98613714dfb753379750ad145} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Library\+Close (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___library}{LDL\+\_\+\+Library}} \texorpdfstring{$\ast$}{*}}]{library}{}\end{DoxyParamCaption})}
+
+
+
+Closes an open dynamic library. 
+
+This function unloads the currently opened dynamic library and releases all associated resources. After closing, function pointers obtained from this library become invalid and should not be used.
+
+
+\begin{DoxyParams}{Parameters}
+{\em library} & Pointer to the library manager instance.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function has no effect if no library is currently open. 
+
+It is safe to call this function multiple times; subsequent calls will have no effect. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_library_8h_aecabf76b349574271f32c6975f5ed3af}{LDL\+\_\+\+Library\+Open} 
+\end{DoxySeeAlso}
+\Hypertarget{_library_8h_a0f0e5f6f3b06bd2813af309d4b84dc6a}\index{Library.h@{Library.h}!LDL\_LibraryCreate@{LDL\_LibraryCreate}}
+\index{LDL\_LibraryCreate@{LDL\_LibraryCreate}!Library.h@{Library.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_LibraryCreate()}{LDL\_LibraryCreate()}}
+{\footnotesize\ttfamily \label{_library_8h_a0f0e5f6f3b06bd2813af309d4b84dc6a} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___library}{LDL\+\_\+\+Library}} \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Library\+Create (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{}\end{DoxyParamCaption})}
+
+
+
+Creates a new library manager instance. 
+
+This function allocates and initializes a new \doxylink{struct_l_d_l___library}{LDL\+\_\+\+Library} object. The instance can be used to open dynamic libraries and retrieve function pointers from them.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to an \doxylink{struct_l_d_l___result}{LDL\+\_\+\+Result} variable that will receive the operation status. If the operation succeeds, the result will be set to LDL\+\_\+\+RESULT\+\_\+\+SUCCESS. If an error occurs, the result will contain an appropriate error code. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \doxylink{struct_l_d_l___library}{LDL\+\_\+\+Library} instance, or NULL on failure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned library manager must be freed using LDL\+\_\+\+Library\+Destroy when it is no longer needed to avoid memory leaks. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_library_8h_a35f1d2ddcff03bbdd880a5f6598ed81e}{LDL\+\_\+\+Library\+Destroy} 
+
+\doxylink{_library_8h_aecabf76b349574271f32c6975f5ed3af}{LDL\+\_\+\+Library\+Open} 
+\end{DoxySeeAlso}
+\Hypertarget{_library_8h_a35f1d2ddcff03bbdd880a5f6598ed81e}\index{Library.h@{Library.h}!LDL\_LibraryDestroy@{LDL\_LibraryDestroy}}
+\index{LDL\_LibraryDestroy@{LDL\_LibraryDestroy}!Library.h@{Library.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_LibraryDestroy()}{LDL\_LibraryDestroy()}}
+{\footnotesize\ttfamily \label{_library_8h_a35f1d2ddcff03bbdd880a5f6598ed81e} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Library\+Destroy (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___library}{LDL\+\_\+\+Library}} \texorpdfstring{$\ast$}{*}}]{library}{}\end{DoxyParamCaption})}
+
+
+
+Destroys a library manager instance and frees all associated resources. 
+
+This function releases all memory and resources associated with the specified library manager. If a library is currently open, it will be automatically closed before destruction.
+
+
+\begin{DoxyParams}{Parameters}
+{\em library} & Pointer to the library manager instance to destroy.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+It is safe to pass NULL to this function; it will simply do nothing. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_library_8h_a0f0e5f6f3b06bd2813af309d4b84dc6a}{LDL\+\_\+\+Library\+Create} 
+
+\doxylink{_library_8h_a0e3ef3f98613714dfb753379750ad145}{LDL\+\_\+\+Library\+Close} 
+\end{DoxySeeAlso}
+\Hypertarget{_library_8h_a98107b6155e7c4148fdd849ed2f0142f}\index{Library.h@{Library.h}!LDL\_LibraryGetFunction@{LDL\_LibraryGetFunction}}
+\index{LDL\_LibraryGetFunction@{LDL\_LibraryGetFunction}!Library.h@{Library.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_LibraryGetFunction()}{LDL\_LibraryGetFunction()}}
+{\footnotesize\ttfamily \label{_library_8h_a98107b6155e7c4148fdd849ed2f0142f} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{_types_8h_aedb4cac4e550febf73721ed8abc73288}{LDL\+\_\+\+Void\+Func\+Ptr}} LDL\+\_\+\+Library\+Get\+Function (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___library}{LDL\+\_\+\+Library}} \texorpdfstring{$\ast$}{*}}]{library}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{name}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves a function pointer from the loaded library. 
+
+This function looks up a function symbol by name in the currently loaded dynamic library and returns a pointer to it. The returned pointer can be cast to the appropriate function type for calling.
+
+
+\begin{DoxyParams}{Parameters}
+{\em library} & Pointer to the library manager instance. \\
+\hline
+{\em name} & The name of the function to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A function pointer to the requested symbol, or NULL if the symbol cannot be found or no library is currently open.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned pointer should be cast to the appropriate function signature before being called. 
+
+Function name matching may be case-\/sensitive depending on the platform and compiler used to build the library. 
+
+This function may return NULL if the symbol is not exported or if name mangling is used. 
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+Function pointers become invalid after the library is closed or destroyed. 
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_library_8h_aecabf76b349574271f32c6975f5ed3af}{LDL\+\_\+\+Library\+Open} 
+
+\doxylink{_library_8h_a0e3ef3f98613714dfb753379750ad145}{LDL\+\_\+\+Library\+Close} 
+\end{DoxySeeAlso}
+\Hypertarget{_library_8h_aecabf76b349574271f32c6975f5ed3af}\index{Library.h@{Library.h}!LDL\_LibraryOpen@{LDL\_LibraryOpen}}
+\index{LDL\_LibraryOpen@{LDL\_LibraryOpen}!Library.h@{Library.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_LibraryOpen()}{LDL\_LibraryOpen()}}
+{\footnotesize\ttfamily \label{_library_8h_aecabf76b349574271f32c6975f5ed3af} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool LDL\+\_\+\+Library\+Open (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___library}{LDL\+\_\+\+Library}} \texorpdfstring{$\ast$}{*}}]{library}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Opens a dynamic library from the specified file path. 
+
+This function loads a dynamic library from the given file path and makes its symbols available for function retrieval. The library remains loaded until explicitly closed or the library manager is destroyed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em library} & Pointer to the library manager instance. \\
+\hline
+{\em path} & Path to the dynamic library file to open.
+\begin{DoxyItemize}
+\item On Windows:\+ Typically a .dll file
+\item On Linux/\+\+Unix:\+ Typically a .so file
+\item On mac\+OS:\+ Typically a .dylib or .bundle file 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the library was successfully opened, false otherwise.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+If a library is already open, it will be automatically closed before opening the new one. 
+
+The path can be absolute or relative. On some platforms, the system library search path may also be used. 
+
+Use LDL\+\_\+\+Library\+Get\+Function to retrieve function pointers from the opened library. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_library_8h_a98107b6155e7c4148fdd849ed2f0142f}{LDL\+\_\+\+Library\+Get\+Function} 
+
+\doxylink{_library_8h_a0e3ef3f98613714dfb753379750ad145}{LDL\+\_\+\+Library\+Close} 
+\end{DoxySeeAlso}

@@ -1,0 +1,43 @@
+\doxysection{LDL\+\_\+\+Context Struct Reference}
+\hypertarget{struct_l_d_l___context}{}\label{struct_l_d_l___context}\index{LDL\_Context@{LDL\_Context}}
+
+
+Opaque structure representing a rendering context instance.  
+
+
+
+
+{\ttfamily \+\#include $<$Context.\+h$>$}
+
+
+
+\doxysubsection{Detailed Description}
+Opaque structure representing a rendering context instance. 
+
+This structure encapsulates all state and resources required for rendering operations. The context manages the rendering pipeline, including the drawing surface, rendering API state, and graphics resources.
+
+Key responsibilities:\+
+\begin{DoxyItemize}
+\item Manages rendering state (Open\+GL context or software renderer)
+\item Handles drawing operations
+\item Owns textures and other GPU resources
+\item Coordinates with window system for presentation
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+The internal details are hidden to ensure encapsulation. 
+
+Interaction with this structure should only occur through the provided API functions. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_context_8h_ab61f4689d4f5476999e0ee01ac2ecb33}{LDL\+\_\+\+Context\+Create} 
+
+\doxylink{_context_8h_af60bd13668daceb85b176d2689554540}{LDL\+\_\+\+Context\+Destroy} 
+
+\doxylink{_enums_8h_a98ef414875933cb07078294ce28b48d5}{LDL\+\_\+\+Context\+Type} 
+\end{DoxySeeAlso}
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+include/\+\+LDL/\+\doxymbox{\hyperlink{_context_8h}{Context.\+h}}\end{DoxyCompactItemize}

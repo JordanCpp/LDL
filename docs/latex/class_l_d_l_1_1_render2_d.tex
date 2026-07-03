@@ -1,0 +1,356 @@
+\doxysection{Render2D Class Reference}
+\hypertarget{class_l_d_l_1_1_render2_d}{}\label{class_l_d_l_1_1_render2_d}\index{Render2D@{Render2D}}
+
+
+{\ttfamily \+\#include $<$LDL.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_ae71f4117dab97b892238debfd4f40074}{Render2D}} (\doxymbox{\hyperlink{class_l_d_l_1_1_result}{Result}} \&result, \doxymbox{\hyperlink{class_l_d_l_1_1_context}{Context}} \&context, \doxymbox{\hyperlink{class_l_d_l_1_1_window}{Window}} \&window)
+\item 
+\doxymbox{\hyperlink{struct_l_d_l__2_d_render}{LDL\+\_\+2\+DRender}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a30a5910d2df30250163b3a2444fe4f43}{Impl}} () const
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a1149e1e7da0129dfcc98c047dcdf9c79}{Begin}} ()
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_afc12d18e19e10b35d361fbb09c7c1d54}{End}} ()
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a5fdcf9cade0451550d7ff40c519e399b}{Set\+Color}} (const \doxymbox{\hyperlink{struct_l_d_l_1_1_color}{Color}} \&color)
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_aa71d36872f416feaa853788a7a7a7ef8}{Clear}} ()
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a1fe6dcea59bdb328d586592cb201191c}{Line}} (const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&first, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&last)
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a7fb2c10ec4cf247ee59d818484d74580}{Fill}} (const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&pos, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&size)
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a7cbcbf087536fce0d114ab521a90b63c}{Draw}} (\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}texture, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&dst\+Pos, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&dst\+Size, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&src\+Pos, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&src\+Size)
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a78f9297d9c18ce324184a9b5a63bbc19}{Draw}} (\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}texture, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&dst\+Pos)
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a8f1c3bc6a34c8f8c9d06b0e4a8c2685b}{Draw}} (\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}texture, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&dst\+Pos, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&dst\+Size)
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a97c000e3c360e7c9bc12c5fbe5bfaf18}{Draw}} (\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}texture, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&dst\+Pos, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&dst\+Size, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&src\+Pos)
+\item 
+\doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_ae71f4117dab97b892238debfd4f40074}{Render2D}} (\doxymbox{\hyperlink{class_l_d_l_1_1_result}{Result}} \&result, \doxymbox{\hyperlink{class_l_d_l_1_1_context}{Context}} \&context, \doxymbox{\hyperlink{class_l_d_l_1_1_window}{Window}} \&window)
+\item 
+\doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a82aae7f55a473dda9a88b9708e4b695e}{\texorpdfstring{$\sim$}{\string~}\+Render2D}} ()
+\item 
+\doxymbox{\hyperlink{struct_l_d_l__2_d_render}{LDL\+\_\+2\+DRender}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a4cf7a4f8a480fad6c35b6f9ba92b5fd9}{Impl}} ()
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a1149e1e7da0129dfcc98c047dcdf9c79}{Begin}} ()
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_afc12d18e19e10b35d361fbb09c7c1d54}{End}} ()
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a5fdcf9cade0451550d7ff40c519e399b}{Set\+Color}} (const \doxymbox{\hyperlink{struct_l_d_l_1_1_color}{Color}} \&color)
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_aa71d36872f416feaa853788a7a7a7ef8}{Clear}} ()
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a1fe6dcea59bdb328d586592cb201191c}{Line}} (const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&first, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&last)
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a7fb2c10ec4cf247ee59d818484d74580}{Fill}} (const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&pos, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&size)
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a7cbcbf087536fce0d114ab521a90b63c}{Draw}} (\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}texture, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&dst\+Pos, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&dst\+Size, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&src\+Pos, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&src\+Size)
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a78f9297d9c18ce324184a9b5a63bbc19}{Draw}} (\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}texture, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&dst\+Pos)
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a8f1c3bc6a34c8f8c9d06b0e4a8c2685b}{Draw}} (\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}texture, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&dst\+Pos, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&dst\+Size)
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a97c000e3c360e7c9bc12c5fbe5bfaf18}{Draw}} (\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}texture, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&dst\+Pos, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&dst\+Size, const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&src\+Pos)
+\item 
+size\+\_\+t \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_ad332f4402444896265ac9152935f4dcd}{Get\+Layer}} ()
+\item 
+void \doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_a6992411b07dbcd1299cee57145d66cd1}{Set\+Layer}} (size\+\_\+t layer)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00217}{217}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+
+
+\label{class_l_d_l_1_1_render2_d_doc-constructors}
+\Hypertarget{class_l_d_l_1_1_render2_d_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_l_d_l_1_1_render2_d_ae71f4117dab97b892238debfd4f40074}\index{Render2D@{Render2D}!Render2D@{Render2D}}
+\index{Render2D@{Render2D}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Render2D()}{Render2D()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_ae71f4117dab97b892238debfd4f40074} 
+Render2D (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_l_d_l_1_1_result}{Result}} \&}]{result}{, }\item[{\doxymbox{\hyperlink{class_l_d_l_1_1_context}{Context}} \&}]{context}{, }\item[{\doxymbox{\hyperlink{class_l_d_l_1_1_window}{Window}} \&}]{window}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00220}{220}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_ae71f4117dab97b892238debfd4f40074}\index{Render2D@{Render2D}!Render2D@{Render2D}}
+\index{Render2D@{Render2D}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Render2D()}{Render2D()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_ae71f4117dab97b892238debfd4f40074} 
+Render2D (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_l_d_l_1_1_result}{Result}} \&}]{result}{, }\item[{\doxymbox{\hyperlink{class_l_d_l_1_1_context}{Context}} \&}]{context}{, }\item[{\doxymbox{\hyperlink{class_l_d_l_1_1_window}{Window}} \&}]{window}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00374}{374}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a82aae7f55a473dda9a88b9708e4b695e}\index{Render2D@{Render2D}!````~Render2D@{\texorpdfstring{$\sim$}{\string~}Render2D}}
+\index{````~Render2D@{\texorpdfstring{$\sim$}{\string~}Render2D}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Render2D()}{\string~Render2D()}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a82aae7f55a473dda9a88b9708e4b695e} 
+\texorpdfstring{$\sim$}{\string~}\doxymbox{\hyperlink{class_l_d_l_1_1_render2_d_ae71f4117dab97b892238debfd4f40074}{Render2D}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00380}{380}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+
+
+\label{class_l_d_l_1_1_render2_d_doc-func-members}
+\Hypertarget{class_l_d_l_1_1_render2_d_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_l_d_l_1_1_render2_d_a1149e1e7da0129dfcc98c047dcdf9c79}\index{Render2D@{Render2D}!Begin@{Begin}}
+\index{Begin@{Begin}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Begin()}{Begin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a1149e1e7da0129dfcc98c047dcdf9c79} 
+void Begin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00230}{230}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a1149e1e7da0129dfcc98c047dcdf9c79}\index{Render2D@{Render2D}!Begin@{Begin}}
+\index{Begin@{Begin}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Begin()}{Begin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a1149e1e7da0129dfcc98c047dcdf9c79} 
+void Begin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00390}{390}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_aa71d36872f416feaa853788a7a7a7ef8}\index{Render2D@{Render2D}!Clear@{Clear}}
+\index{Clear@{Clear}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Clear()}{Clear()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_aa71d36872f416feaa853788a7a7a7ef8} 
+void Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00245}{245}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_aa71d36872f416feaa853788a7a7a7ef8}\index{Render2D@{Render2D}!Clear@{Clear}}
+\index{Clear@{Clear}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Clear()}{Clear()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_aa71d36872f416feaa853788a7a7a7ef8} 
+void Clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00407}{407}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a78f9297d9c18ce324184a9b5a63bbc19}\index{Render2D@{Render2D}!Draw@{Draw}}
+\index{Draw@{Draw}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}\hspace{0.1cm}{\footnotesize\ttfamily [1/8]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a78f9297d9c18ce324184a9b5a63bbc19} 
+void Draw (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}}]{texture}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{dst\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00265}{265}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a78f9297d9c18ce324184a9b5a63bbc19}\index{Render2D@{Render2D}!Draw@{Draw}}
+\index{Draw@{Draw}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}\hspace{0.1cm}{\footnotesize\ttfamily [2/8]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a78f9297d9c18ce324184a9b5a63bbc19} 
+void Draw (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}}]{texture}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{dst\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00427}{427}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a8f1c3bc6a34c8f8c9d06b0e4a8c2685b}\index{Render2D@{Render2D}!Draw@{Draw}}
+\index{Draw@{Draw}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}\hspace{0.1cm}{\footnotesize\ttfamily [3/8]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a8f1c3bc6a34c8f8c9d06b0e4a8c2685b} 
+void Draw (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}}]{texture}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{dst\+Pos}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{dst\+Size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00270}{270}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a8f1c3bc6a34c8f8c9d06b0e4a8c2685b}\index{Render2D@{Render2D}!Draw@{Draw}}
+\index{Draw@{Draw}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}\hspace{0.1cm}{\footnotesize\ttfamily [4/8]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a8f1c3bc6a34c8f8c9d06b0e4a8c2685b} 
+void Draw (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}}]{texture}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{dst\+Pos}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{dst\+Size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00432}{432}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a97c000e3c360e7c9bc12c5fbe5bfaf18}\index{Render2D@{Render2D}!Draw@{Draw}}
+\index{Draw@{Draw}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}\hspace{0.1cm}{\footnotesize\ttfamily [5/8]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a97c000e3c360e7c9bc12c5fbe5bfaf18} 
+void Draw (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}}]{texture}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{dst\+Pos}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{dst\+Size}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{src\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00275}{275}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a97c000e3c360e7c9bc12c5fbe5bfaf18}\index{Render2D@{Render2D}!Draw@{Draw}}
+\index{Draw@{Draw}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}\hspace{0.1cm}{\footnotesize\ttfamily [6/8]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a97c000e3c360e7c9bc12c5fbe5bfaf18} 
+void Draw (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}}]{texture}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{dst\+Pos}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{dst\+Size}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{src\+Pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00437}{437}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a7cbcbf087536fce0d114ab521a90b63c}\index{Render2D@{Render2D}!Draw@{Draw}}
+\index{Draw@{Draw}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}\hspace{0.1cm}{\footnotesize\ttfamily [7/8]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a7cbcbf087536fce0d114ab521a90b63c} 
+void Draw (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}}]{texture}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{dst\+Pos}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{dst\+Size}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{src\+Pos}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{src\+Size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00260}{260}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a7cbcbf087536fce0d114ab521a90b63c}\index{Render2D@{Render2D}!Draw@{Draw}}
+\index{Draw@{Draw}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}\hspace{0.1cm}{\footnotesize\ttfamily [8/8]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a7cbcbf087536fce0d114ab521a90b63c} 
+void Draw (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{class_l_d_l_1_1_texture}{Texture}} \texorpdfstring{$\ast$}{*}}]{texture}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{dst\+Pos}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{dst\+Size}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{src\+Pos}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{src\+Size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00422}{422}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_afc12d18e19e10b35d361fbb09c7c1d54}\index{Render2D@{Render2D}!End@{End}}
+\index{End@{End}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{End()}{End()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_afc12d18e19e10b35d361fbb09c7c1d54} 
+void End (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00235}{235}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_afc12d18e19e10b35d361fbb09c7c1d54}\index{Render2D@{Render2D}!End@{End}}
+\index{End@{End}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{End()}{End()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_afc12d18e19e10b35d361fbb09c7c1d54} 
+void End (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00395}{395}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a7fb2c10ec4cf247ee59d818484d74580}\index{Render2D@{Render2D}!Fill@{Fill}}
+\index{Fill@{Fill}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Fill()}{Fill()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a7fb2c10ec4cf247ee59d818484d74580} 
+void Fill (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{pos}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00255}{255}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a7fb2c10ec4cf247ee59d818484d74580}\index{Render2D@{Render2D}!Fill@{Fill}}
+\index{Fill@{Fill}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Fill()}{Fill()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a7fb2c10ec4cf247ee59d818484d74580} 
+void Fill (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{pos}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00417}{417}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_ad332f4402444896265ac9152935f4dcd}\index{Render2D@{Render2D}!GetLayer@{GetLayer}}
+\index{GetLayer@{GetLayer}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{GetLayer()}{GetLayer()}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_ad332f4402444896265ac9152935f4dcd} 
+size\+\_\+t Get\+Layer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00442}{442}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a4cf7a4f8a480fad6c35b6f9ba92b5fd9}\index{Render2D@{Render2D}!Impl@{Impl}}
+\index{Impl@{Impl}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Impl()}{Impl()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a4cf7a4f8a480fad6c35b6f9ba92b5fd9} 
+\doxymbox{\hyperlink{struct_l_d_l__2_d_render}{LDL\+\_\+2\+DRender}} \texorpdfstring{$\ast$}{*} Impl (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00385}{385}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a30a5910d2df30250163b3a2444fe4f43}\index{Render2D@{Render2D}!Impl@{Impl}}
+\index{Impl@{Impl}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Impl()}{Impl()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a30a5910d2df30250163b3a2444fe4f43} 
+\doxymbox{\hyperlink{struct_l_d_l__2_d_render}{LDL\+\_\+2\+DRender}} \texorpdfstring{$\ast$}{*} Impl (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00225}{225}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a1fe6dcea59bdb328d586592cb201191c}\index{Render2D@{Render2D}!Line@{Line}}
+\index{Line@{Line}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Line()}{Line()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a1fe6dcea59bdb328d586592cb201191c} 
+void Line (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{first}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{last}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00250}{250}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a1fe6dcea59bdb328d586592cb201191c}\index{Render2D@{Render2D}!Line@{Line}}
+\index{Line@{Line}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{Line()}{Line()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a1fe6dcea59bdb328d586592cb201191c} 
+void Line (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{first}{, }\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_vec2i}{Vec2i}} \&}]{last}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00412}{412}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a5fdcf9cade0451550d7ff40c519e399b}\index{Render2D@{Render2D}!SetColor@{SetColor}}
+\index{SetColor@{SetColor}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{SetColor()}{SetColor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a5fdcf9cade0451550d7ff40c519e399b} 
+void Set\+Color (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_color}{Color}} \&}]{color}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00240}{240}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a5fdcf9cade0451550d7ff40c519e399b}\index{Render2D@{Render2D}!SetColor@{SetColor}}
+\index{SetColor@{SetColor}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{SetColor()}{SetColor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a5fdcf9cade0451550d7ff40c519e399b} 
+void Set\+Color (\begin{DoxyParamCaption}\item[{const \doxymbox{\hyperlink{struct_l_d_l_1_1_color}{Color}} \&}]{color}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00400}{400}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_render2_d_a6992411b07dbcd1299cee57145d66cd1}\index{Render2D@{Render2D}!SetLayer@{SetLayer}}
+\index{SetLayer@{SetLayer}!Render2D@{Render2D}}
+\doxysubsubsection{\texorpdfstring{SetLayer()}{SetLayer()}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_render2_d_a6992411b07dbcd1299cee57145d66cd1} 
+void Set\+Layer (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{layer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00447}{447}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+include/\+\+LDL/\+\+C++11/\+\doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp}{LDL.\+hpp}}\item 
+include/\+\+LDL/\+\+C++98/\+\doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp}{LDL.\+hpp}}\end{DoxyCompactItemize}

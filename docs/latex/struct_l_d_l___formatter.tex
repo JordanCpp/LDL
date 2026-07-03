@@ -1,0 +1,42 @@
+\doxysection{LDL\+\_\+\+Formatter Struct Reference}
+\hypertarget{struct_l_d_l___formatter}{}\label{struct_l_d_l___formatter}\index{LDL\_Formatter@{LDL\_Formatter}}
+
+
+An opaque structure representing a string formatter instance.  
+
+
+
+
+{\ttfamily \+\#include $<$Format.\+h$>$}
+
+
+
+\doxysubsection{Detailed Description}
+An opaque structure representing a string formatter instance. 
+
+This structure encapsulates a dynamic string buffer and state for printf-\/style string formatting. It provides efficient string construction by accumulating formatted output in an internal buffer.
+
+Key features:\+
+\begin{DoxyItemize}
+\item Dynamic buffer management
+\item printf-\/style format specifiers
+\item Support for variable arguments (va\+\_\+list)
+\item Reusable formatter instance
+\item Automatic memory management
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+The internal implementation details are encapsulated to prevent direct manipulation. All interactions with this object must be performed through the provided API functions. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_format_8h_a8eb476349947a56be1977045605066ca}{LDL\+\_\+\+Formatter\+Create} 
+
+\doxylink{_format_8h_ab9ecc483e941ccad0e15e6b5a14cc783}{LDL\+\_\+\+Formatter\+Destroy} 
+
+\doxylink{_format_8h_a58e6fbf35178d449ef88d84831a48a72}{LDL\+\_\+\+Formatter\+Format} 
+\end{DoxySeeAlso}
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+include/\+\+LDL/\+\doxymbox{\hyperlink{_format_8h}{Format.\+h}}\end{DoxyCompactItemize}

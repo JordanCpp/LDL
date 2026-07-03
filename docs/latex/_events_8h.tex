@@ -1,0 +1,222 @@
+\doxysection{include/\+\+LDL/\+\+Events.h File Reference}
+\hypertarget{_events_8h}{}\label{_events_8h}\index{include/LDL/Events.h@{include/LDL/Events.h}}
+{\ttfamily \+\#include $<$LDL/\+\+Config.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Types.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Enums.\+h$>$}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \doxymbox{\hyperlink{struct_l_d_l___event_gained_focus}{LDL\+\_\+\+Event\+Gained\+Focus}}
+\begin{DoxyCompactList}\small\item\em Represents an event triggered when a window or application gains input focus. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_l_d_l___event_keyboard}{LDL\+\_\+\+Event\+Keyboard}}
+\begin{DoxyCompactList}\small\item\em Represents an event related to keyboard input, such as key presses or releases. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_l_d_l___event_lost_focus}{LDL\+\_\+\+Event\+Lost\+Focus}}
+\begin{DoxyCompactList}\small\item\em Represents an event triggered when a window or application loses input focus. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_l_d_l___event_mouse}{LDL\+\_\+\+Event\+Mouse}}
+\begin{DoxyCompactList}\small\item\em Represents an event related to mouse movement, button clicks, or scroll wheel interaction. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_l_d_l___event_quit}{LDL\+\_\+\+Event\+Quit}}
+\begin{DoxyCompactList}\small\item\em Represents an event signaling that the application or window has requested to terminate. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_l_d_l___event_resize}{LDL\+\_\+\+Event\+Resize}}
+\begin{DoxyCompactList}\small\item\em Represents an event triggered when the dimensions of a window are changed. \end{DoxyCompactList}\item 
+struct \doxymbox{\hyperlink{struct_l_d_l___event}{LDL\+\_\+\+Event}}
+\begin{DoxyCompactList}\small\item\em A unified structure that encapsulates all possible event types within a single object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct LDL\+\_\+\+Event\+Gained\+Focus \doxymbox{\hyperlink{_events_8h_a36212d637e48ddd73988b71c5aa45d5b}{LDL\+\_\+\+Event\+Gained\+Focus}}
+\item 
+typedef struct LDL\+\_\+\+Event\+Keyboard \doxymbox{\hyperlink{_events_8h_ae5ac041df38d0c80ed221ecf3058f5ad}{LDL\+\_\+\+Event\+Keyboard}}
+\item 
+typedef struct LDL\+\_\+\+Event\+Lost\+Focus \doxymbox{\hyperlink{_events_8h_ac1731821a30e7699fa2c7bf065af97f6}{LDL\+\_\+\+Event\+Lost\+Focus}}
+\item 
+typedef struct LDL\+\_\+\+Event\+Mouse \doxymbox{\hyperlink{_events_8h_a8fdb2907481af968104f8e8910e30a6a}{LDL\+\_\+\+Event\+Mouse}}
+\item 
+typedef struct LDL\+\_\+\+Event\+Quit \doxymbox{\hyperlink{_events_8h_a29f086dd4a7689f7231d4d7227338c14}{LDL\+\_\+\+Event\+Quit}}
+\item 
+typedef struct LDL\+\_\+\+Event\+Resize \doxymbox{\hyperlink{_events_8h_a1abe690e3c7268650c198a24381a37d7}{LDL\+\_\+\+Event\+Resize}}
+\item 
+typedef struct LDL\+\_\+\+Event \doxymbox{\hyperlink{_events_8h_abad1707eb3b02746e4f80eb4207e00f3}{LDL\+\_\+\+Event}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool \doxymbox{\hyperlink{_events_8h_a17d6af777055a0f372fda5d037ed65d9}{LDL\+\_\+\+Event\+Is\+Key\+Pressed}} (\doxymbox{\hyperlink{struct_l_d_l___event}{LDL\+\_\+\+Event}} \texorpdfstring{$\ast$}{*}event, \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} key)
+\begin{DoxyCompactList}\small\item\em Checks if a specific keyboard key is currently in a pressed state within the provided event. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool \doxymbox{\hyperlink{_events_8h_a2f56332cc5d38a79d743e3b7d1259904}{LDL\+\_\+\+Event\+Is\+Key\+Released}} (\doxymbox{\hyperlink{struct_l_d_l___event}{LDL\+\_\+\+Event}} \texorpdfstring{$\ast$}{*}event, \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} key)
+\begin{DoxyCompactList}\small\item\em Checks if a specific keyboard key is currently in a released state within the provided event. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool \doxymbox{\hyperlink{_events_8h_a3220f4e922670caeaa9975af4736443a}{LDL\+\_\+\+Event\+Is\+Mouse\+Pressed}} (\doxymbox{\hyperlink{struct_l_d_l___event}{LDL\+\_\+\+Event}} \texorpdfstring{$\ast$}{*}event, \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} key)
+\begin{DoxyCompactList}\small\item\em Checks if a specific mouse button is currently in a pressed state within the provided event. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool \doxymbox{\hyperlink{_events_8h_a48b4c61a66f2d96b4b065842ab63cba7}{LDL\+\_\+\+Event\+Is\+Mouse\+Released}} (\doxymbox{\hyperlink{struct_l_d_l___event}{LDL\+\_\+\+Event}} \texorpdfstring{$\ast$}{*}event, \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} key)
+\begin{DoxyCompactList}\small\item\em Checks if a specific mouse button is currently in a released state within the provided event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{_events_8h_doc-typedef-members}
+\Hypertarget{_events_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{_events_8h_abad1707eb3b02746e4f80eb4207e00f3}\index{Events.h@{Events.h}!LDL\_Event@{LDL\_Event}}
+\index{LDL\_Event@{LDL\_Event}!Events.h@{Events.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_Event}{LDL\_Event}}
+{\footnotesize\ttfamily \label{_events_8h_abad1707eb3b02746e4f80eb4207e00f3} 
+typedef struct LDL\+\_\+\+Event LDL\+\_\+\+Event}
+
+\Hypertarget{_events_8h_a36212d637e48ddd73988b71c5aa45d5b}\index{Events.h@{Events.h}!LDL\_EventGainedFocus@{LDL\_EventGainedFocus}}
+\index{LDL\_EventGainedFocus@{LDL\_EventGainedFocus}!Events.h@{Events.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_EventGainedFocus}{LDL\_EventGainedFocus}}
+{\footnotesize\ttfamily \label{_events_8h_a36212d637e48ddd73988b71c5aa45d5b} 
+typedef struct LDL\+\_\+\+Event\+Gained\+Focus LDL\+\_\+\+Event\+Gained\+Focus}
+
+\Hypertarget{_events_8h_ae5ac041df38d0c80ed221ecf3058f5ad}\index{Events.h@{Events.h}!LDL\_EventKeyboard@{LDL\_EventKeyboard}}
+\index{LDL\_EventKeyboard@{LDL\_EventKeyboard}!Events.h@{Events.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_EventKeyboard}{LDL\_EventKeyboard}}
+{\footnotesize\ttfamily \label{_events_8h_ae5ac041df38d0c80ed221ecf3058f5ad} 
+typedef struct LDL\+\_\+\+Event\+Keyboard LDL\+\_\+\+Event\+Keyboard}
+
+\Hypertarget{_events_8h_ac1731821a30e7699fa2c7bf065af97f6}\index{Events.h@{Events.h}!LDL\_EventLostFocus@{LDL\_EventLostFocus}}
+\index{LDL\_EventLostFocus@{LDL\_EventLostFocus}!Events.h@{Events.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_EventLostFocus}{LDL\_EventLostFocus}}
+{\footnotesize\ttfamily \label{_events_8h_ac1731821a30e7699fa2c7bf065af97f6} 
+typedef struct LDL\+\_\+\+Event\+Lost\+Focus LDL\+\_\+\+Event\+Lost\+Focus}
+
+\Hypertarget{_events_8h_a8fdb2907481af968104f8e8910e30a6a}\index{Events.h@{Events.h}!LDL\_EventMouse@{LDL\_EventMouse}}
+\index{LDL\_EventMouse@{LDL\_EventMouse}!Events.h@{Events.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_EventMouse}{LDL\_EventMouse}}
+{\footnotesize\ttfamily \label{_events_8h_a8fdb2907481af968104f8e8910e30a6a} 
+typedef struct LDL\+\_\+\+Event\+Mouse LDL\+\_\+\+Event\+Mouse}
+
+\Hypertarget{_events_8h_a29f086dd4a7689f7231d4d7227338c14}\index{Events.h@{Events.h}!LDL\_EventQuit@{LDL\_EventQuit}}
+\index{LDL\_EventQuit@{LDL\_EventQuit}!Events.h@{Events.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_EventQuit}{LDL\_EventQuit}}
+{\footnotesize\ttfamily \label{_events_8h_a29f086dd4a7689f7231d4d7227338c14} 
+typedef struct LDL\+\_\+\+Event\+Quit LDL\+\_\+\+Event\+Quit}
+
+\Hypertarget{_events_8h_a1abe690e3c7268650c198a24381a37d7}\index{Events.h@{Events.h}!LDL\_EventResize@{LDL\_EventResize}}
+\index{LDL\_EventResize@{LDL\_EventResize}!Events.h@{Events.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_EventResize}{LDL\_EventResize}}
+{\footnotesize\ttfamily \label{_events_8h_a1abe690e3c7268650c198a24381a37d7} 
+typedef struct LDL\+\_\+\+Event\+Resize LDL\+\_\+\+Event\+Resize}
+
+
+
+\label{_events_8h_doc-func-members}
+\Hypertarget{_events_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_events_8h_a17d6af777055a0f372fda5d037ed65d9}\index{Events.h@{Events.h}!LDL\_EventIsKeyPressed@{LDL\_EventIsKeyPressed}}
+\index{LDL\_EventIsKeyPressed@{LDL\_EventIsKeyPressed}!Events.h@{Events.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_EventIsKeyPressed()}{LDL\_EventIsKeyPressed()}}
+{\footnotesize\ttfamily \label{_events_8h_a17d6af777055a0f372fda5d037ed65d9} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool LDL\+\_\+\+Event\+Is\+Key\+Pressed (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___event}{LDL\+\_\+\+Event}} \texorpdfstring{$\ast$}{*}}]{event}{, }\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Checks if a specific keyboard key is currently in a pressed state within the provided event. 
+
+This function validates that the event is a keyboard event and that the specified key is in the pressed state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & A pointer to the \doxylink{struct_l_d_l___event}{LDL\+\_\+\+Event} structure that contains the event data to be inspected. \\
+\hline
+{\em key} & The identifier of the keyboard key to check (from LDL\+\_\+\+Key enumeration). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value that is true if the specified key is in a pressed state; otherwise, false.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The event must be of type LDL\+\_\+\+Event\+Is\+Keyboard for this function to return true. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_events_8h_a2f56332cc5d38a79d743e3b7d1259904}{LDL\+\_\+\+Event\+Is\+Key\+Released} 
+
+LDL\+\_\+\+Key enumeration 
+\end{DoxySeeAlso}
+\Hypertarget{_events_8h_a2f56332cc5d38a79d743e3b7d1259904}\index{Events.h@{Events.h}!LDL\_EventIsKeyReleased@{LDL\_EventIsKeyReleased}}
+\index{LDL\_EventIsKeyReleased@{LDL\_EventIsKeyReleased}!Events.h@{Events.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_EventIsKeyReleased()}{LDL\_EventIsKeyReleased()}}
+{\footnotesize\ttfamily \label{_events_8h_a2f56332cc5d38a79d743e3b7d1259904} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool LDL\+\_\+\+Event\+Is\+Key\+Released (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___event}{LDL\+\_\+\+Event}} \texorpdfstring{$\ast$}{*}}]{event}{, }\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Checks if a specific keyboard key is currently in a released state within the provided event. 
+
+This function validates that the event is a keyboard event and that the specified key is in the released state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & A pointer to the \doxylink{struct_l_d_l___event}{LDL\+\_\+\+Event} structure that contains the event data to be inspected. \\
+\hline
+{\em key} & The identifier of the keyboard key to check (from LDL\+\_\+\+Key enumeration). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value that is true if the specified key is in a released state; otherwise, false.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The event must be of type LDL\+\_\+\+Event\+Is\+Keyboard for this function to return true. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_events_8h_a17d6af777055a0f372fda5d037ed65d9}{LDL\+\_\+\+Event\+Is\+Key\+Pressed} 
+
+LDL\+\_\+\+Key enumeration 
+\end{DoxySeeAlso}
+\Hypertarget{_events_8h_a3220f4e922670caeaa9975af4736443a}\index{Events.h@{Events.h}!LDL\_EventIsMousePressed@{LDL\_EventIsMousePressed}}
+\index{LDL\_EventIsMousePressed@{LDL\_EventIsMousePressed}!Events.h@{Events.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_EventIsMousePressed()}{LDL\_EventIsMousePressed()}}
+{\footnotesize\ttfamily \label{_events_8h_a3220f4e922670caeaa9975af4736443a} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool LDL\+\_\+\+Event\+Is\+Mouse\+Pressed (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___event}{LDL\+\_\+\+Event}} \texorpdfstring{$\ast$}{*}}]{event}{, }\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Checks if a specific mouse button is currently in a pressed state within the provided event. 
+
+This function validates that the event is a mouse event and that the specified mouse button is in the pressed state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & A pointer to the \doxylink{struct_l_d_l___event}{LDL\+\_\+\+Event} structure that contains the event data to be inspected. \\
+\hline
+{\em key} & The identifier of the mouse button to check (LDL\+\_\+\+Mouse\+Button\+Left, LDL\+\_\+\+Mouse\+Button\+Right, or LDL\+\_\+\+Mouse\+Button\+Middle). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value that is true if the specified mouse button is in a pressed state; otherwise, false.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The event must be of type LDL\+\_\+\+Event\+Is\+Mouse\+Click for this function to return true. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_events_8h_a48b4c61a66f2d96b4b065842ab63cba7}{LDL\+\_\+\+Event\+Is\+Mouse\+Released} 
+
+LDL\+\_\+\+Mouse\+Button identifiers 
+\end{DoxySeeAlso}
+\Hypertarget{_events_8h_a48b4c61a66f2d96b4b065842ab63cba7}\index{Events.h@{Events.h}!LDL\_EventIsMouseReleased@{LDL\_EventIsMouseReleased}}
+\index{LDL\_EventIsMouseReleased@{LDL\_EventIsMouseReleased}!Events.h@{Events.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_EventIsMouseReleased()}{LDL\_EventIsMouseReleased()}}
+{\footnotesize\ttfamily \label{_events_8h_a48b4c61a66f2d96b4b065842ab63cba7} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool LDL\+\_\+\+Event\+Is\+Mouse\+Released (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___event}{LDL\+\_\+\+Event}} \texorpdfstring{$\ast$}{*}}]{event}{, }\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Checks if a specific mouse button is currently in a released state within the provided event. 
+
+This function validates that the event is a mouse event and that the specified mouse button is in the released state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & A pointer to the \doxylink{struct_l_d_l___event}{LDL\+\_\+\+Event} structure that contains the event data to be inspected. \\
+\hline
+{\em key} & The identifier of the mouse button to check (LDL\+\_\+\+Mouse\+Button\+Left, LDL\+\_\+\+Mouse\+Button\+Right, or LDL\+\_\+\+Mouse\+Button\+Middle). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value that is true if the specified mouse button is in a released state; otherwise, false.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The event must be of type LDL\+\_\+\+Event\+Is\+Mouse\+Click for this function to return true. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_events_8h_a3220f4e922670caeaa9975af4736443a}{LDL\+\_\+\+Event\+Is\+Mouse\+Pressed} 
+
+LDL\+\_\+\+Mouse\+Button identifiers 
+\end{DoxySeeAlso}

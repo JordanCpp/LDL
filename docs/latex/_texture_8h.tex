@@ -1,0 +1,232 @@
+\doxysection{include/\+\+LDL/\+\+Texture.h File Reference}
+\hypertarget{_texture_8h}{}\label{_texture_8h}\index{include/LDL/Texture.h@{include/LDL/Texture.h}}
+{\ttfamily \+\#include $<$LDL/\+\+Vec2i.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Enums.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Result.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Palette.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Context.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Pix\+Frmt.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Surface.\+h$>$}\newline
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct LDL\+\_\+\+Texture \doxymbox{\hyperlink{_texture_8h_a0bfde7f30ffb1afeac928a1fc099a91e}{LDL\+\_\+\+Texture}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___texture}{LDL\+\_\+\+Texture}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_texture_8h_ad34713718b5cdb528c0a531840332ed8}{LDL\+\_\+\+Texture\+Create\+From\+Pixels}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result, \doxymbox{\hyperlink{struct_l_d_l___context}{LDL\+\_\+\+Context}} \texorpdfstring{$\ast$}{*}context, \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} pixel\+Format, \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} size, \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} \texorpdfstring{$\ast$}{*}pixels)
+\begin{DoxyCompactList}\small\item\em Creates a texture from pixel data. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___texture}{LDL\+\_\+\+Texture}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_texture_8h_a876298c5df7f71ad9ad40c56e7be04df}{LDL\+\_\+\+Texture\+Create\+From\+Size}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result, \doxymbox{\hyperlink{struct_l_d_l___context}{LDL\+\_\+\+Context}} \texorpdfstring{$\ast$}{*}context, \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} pixel\+Format, \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} size)
+\begin{DoxyCompactList}\small\item\em Creates an empty texture of the specified size. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___texture}{LDL\+\_\+\+Texture}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_texture_8h_a00e0757ae3cb692648c8de3d48e623bd}{LDL\+\_\+\+Texture\+Create\+From\+Surface}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result, \doxymbox{\hyperlink{struct_l_d_l___context}{LDL\+\_\+\+Context}} \texorpdfstring{$\ast$}{*}context, \doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}surface)
+\begin{DoxyCompactList}\small\item\em Creates a texture from a surface. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_texture_8h_a28fc314fff84fc4f111b4a1f9c7b0508}{LDL\+\_\+\+Texture\+Destroy}} (\doxymbox{\hyperlink{struct_l_d_l___texture}{LDL\+\_\+\+Texture}} \texorpdfstring{$\ast$}{*}texture)
+\begin{DoxyCompactList}\small\item\em Destroys a texture and frees all associated GPU resources. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} \doxymbox{\hyperlink{_texture_8h_a0df5dc9cc6191f3a2ff03a36b5829b93}{LDL\+\_\+\+Texture\+Get\+Size}} (\doxymbox{\hyperlink{struct_l_d_l___texture}{LDL\+\_\+\+Texture}} \texorpdfstring{$\ast$}{*}texture)
+\begin{DoxyCompactList}\small\item\em Retrieves the dimensions of the texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{_texture_8h_doc-typedef-members}
+\Hypertarget{_texture_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{_texture_8h_a0bfde7f30ffb1afeac928a1fc099a91e}\index{Texture.h@{Texture.h}!LDL\_Texture@{LDL\_Texture}}
+\index{LDL\_Texture@{LDL\_Texture}!Texture.h@{Texture.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_Texture}{LDL\_Texture}}
+{\footnotesize\ttfamily \label{_texture_8h_a0bfde7f30ffb1afeac928a1fc099a91e} 
+typedef struct LDL\+\_\+\+Texture LDL\+\_\+\+Texture}
+
+
+
+Definition at line \doxymbox{\hyperlink{_texture_8h_source_l00053}{53}} of file \doxymbox{\hyperlink{_texture_8h_source}{Texture.\+h}}.
+
+
+
+\label{_texture_8h_doc-func-members}
+\Hypertarget{_texture_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_texture_8h_ad34713718b5cdb528c0a531840332ed8}\index{Texture.h@{Texture.h}!LDL\_TextureCreateFromPixels@{LDL\_TextureCreateFromPixels}}
+\index{LDL\_TextureCreateFromPixels@{LDL\_TextureCreateFromPixels}!Texture.h@{Texture.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_TextureCreateFromPixels()}{LDL\_TextureCreateFromPixels()}}
+{\footnotesize\ttfamily \label{_texture_8h_ad34713718b5cdb528c0a531840332ed8} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___texture}{LDL\+\_\+\+Texture}} \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Texture\+Create\+From\+Pixels (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___context}{LDL\+\_\+\+Context}} \texorpdfstring{$\ast$}{*}}]{context}{, }\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{pixel\+Format}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}}}]{size}{, }\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{pixels}{}\end{DoxyParamCaption})}
+
+
+
+Creates a texture from pixel data. 
+
+This function allocates a new texture in GPU memory and initializes it with the provided pixel data. The texture is created with the specified dimensions and pixel format, and is associated with the given rendering context.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to an \doxylink{struct_l_d_l___result}{LDL\+\_\+\+Result} variable that will receive the operation status. If the operation succeeds, the result will be set to success state. If an error occurs, the result will contain an appropriate error message. \\
+\hline
+{\em context} & Pointer to the rendering context that will own this texture. \\
+\hline
+{\em pixel\+Format} & The pixel format of the texture (from LDL\+\_\+\+Pixel\+Format enumeration). \\
+\hline
+{\em size} & The dimensions of the texture in pixels. \\
+\hline
+{\em pixels} & Pointer to the pixel data buffer. Must be large enough to hold size.\+x \texorpdfstring{$\ast$}{*} size.\+y \texorpdfstring{$\ast$}{*} bytes\+\_\+per\+\_\+pixel bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \doxylink{struct_l_d_l___texture}{LDL\+\_\+\+Texture} instance, or NULL on failure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The texture copies the pixel data into GPU memory; the original buffer can be freed after this call. 
+
+The context must be valid and initialized before creating textures. 
+
+The pixel format must be supported by the underlying graphics system. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_texture_8h_a876298c5df7f71ad9ad40c56e7be04df}{LDL\+\_\+\+Texture\+Create\+From\+Size} 
+
+\doxylink{_texture_8h_a00e0757ae3cb692648c8de3d48e623bd}{LDL\+\_\+\+Texture\+Create\+From\+Surface} 
+
+\doxylink{_texture_8h_a28fc314fff84fc4f111b4a1f9c7b0508}{LDL\+\_\+\+Texture\+Destroy} 
+\end{DoxySeeAlso}
+\Hypertarget{_texture_8h_a876298c5df7f71ad9ad40c56e7be04df}\index{Texture.h@{Texture.h}!LDL\_TextureCreateFromSize@{LDL\_TextureCreateFromSize}}
+\index{LDL\_TextureCreateFromSize@{LDL\_TextureCreateFromSize}!Texture.h@{Texture.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_TextureCreateFromSize()}{LDL\_TextureCreateFromSize()}}
+{\footnotesize\ttfamily \label{_texture_8h_a876298c5df7f71ad9ad40c56e7be04df} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___texture}{LDL\+\_\+\+Texture}} \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Texture\+Create\+From\+Size (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___context}{LDL\+\_\+\+Context}} \texorpdfstring{$\ast$}{*}}]{context}{, }\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{pixel\+Format}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}}}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Creates an empty texture of the specified size. 
+
+This function allocates a new texture in GPU memory with the specified dimensions and pixel format, but does not initialize the pixel data. The texture content is undefined until filled with data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to an \doxylink{struct_l_d_l___result}{LDL\+\_\+\+Result} variable that will receive the operation status. If the operation succeeds, the result will be set to success state. If an error occurs, the result will contain an appropriate error message. \\
+\hline
+{\em context} & Pointer to the rendering context that will own this texture. \\
+\hline
+{\em pixel\+Format} & The pixel format of the texture (from LDL\+\_\+\+Pixel\+Format enumeration). \\
+\hline
+{\em size} & The dimensions of the texture in pixels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \doxylink{struct_l_d_l___texture}{LDL\+\_\+\+Texture} instance, or NULL on failure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function is useful for creating render targets or textures that will be filled later. 
+
+The texture memory is allocated in GPU memory but not initialized. 
+
+The context must be valid and initialized before creating textures. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_texture_8h_ad34713718b5cdb528c0a531840332ed8}{LDL\+\_\+\+Texture\+Create\+From\+Pixels} 
+
+\doxylink{_texture_8h_a00e0757ae3cb692648c8de3d48e623bd}{LDL\+\_\+\+Texture\+Create\+From\+Surface} 
+
+\doxylink{_texture_8h_a28fc314fff84fc4f111b4a1f9c7b0508}{LDL\+\_\+\+Texture\+Destroy} 
+\end{DoxySeeAlso}
+\Hypertarget{_texture_8h_a00e0757ae3cb692648c8de3d48e623bd}\index{Texture.h@{Texture.h}!LDL\_TextureCreateFromSurface@{LDL\_TextureCreateFromSurface}}
+\index{LDL\_TextureCreateFromSurface@{LDL\_TextureCreateFromSurface}!Texture.h@{Texture.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_TextureCreateFromSurface()}{LDL\_TextureCreateFromSurface()}}
+{\footnotesize\ttfamily \label{_texture_8h_a00e0757ae3cb692648c8de3d48e623bd} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___texture}{LDL\+\_\+\+Texture}} \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Texture\+Create\+From\+Surface (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___context}{LDL\+\_\+\+Context}} \texorpdfstring{$\ast$}{*}}]{context}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}}]{surface}{}\end{DoxyParamCaption})}
+
+
+
+Creates a texture from a surface. 
+
+This function creates a new texture in GPU memory by copying the pixel data from an existing \doxylink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}. The texture inherits the pixel format and dimensions of the surface.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to an \doxylink{struct_l_d_l___result}{LDL\+\_\+\+Result} variable that will receive the operation status. If the operation succeeds, the result will be set to success state. If an error occurs, the result will contain an appropriate error message. \\
+\hline
+{\em context} & Pointer to the rendering context that will own this texture. \\
+\hline
+{\em surface} & Pointer to the source surface containing the pixel data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \doxylink{struct_l_d_l___texture}{LDL\+\_\+\+Texture} instance, or NULL on failure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The surface data is copied to GPU memory; the surface remains unchanged and can be destroyed separately. 
+
+This is the recommended way to convert surfaces to textures for accelerated rendering. 
+
+The surface\textquotesingle{}s pixel format must be supported by the texture system. 
+
+Color key information from the surface is preserved. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_texture_8h_ad34713718b5cdb528c0a531840332ed8}{LDL\+\_\+\+Texture\+Create\+From\+Pixels} 
+
+\doxylink{_texture_8h_a876298c5df7f71ad9ad40c56e7be04df}{LDL\+\_\+\+Texture\+Create\+From\+Size} 
+
+\doxylink{struct_l_d_l___surface}{LDL\+\_\+\+Surface} 
+
+\doxylink{_texture_8h_a28fc314fff84fc4f111b4a1f9c7b0508}{LDL\+\_\+\+Texture\+Destroy} 
+\end{DoxySeeAlso}
+\Hypertarget{_texture_8h_a28fc314fff84fc4f111b4a1f9c7b0508}\index{Texture.h@{Texture.h}!LDL\_TextureDestroy@{LDL\_TextureDestroy}}
+\index{LDL\_TextureDestroy@{LDL\_TextureDestroy}!Texture.h@{Texture.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_TextureDestroy()}{LDL\_TextureDestroy()}}
+{\footnotesize\ttfamily \label{_texture_8h_a28fc314fff84fc4f111b4a1f9c7b0508} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Texture\+Destroy (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___texture}{LDL\+\_\+\+Texture}} \texorpdfstring{$\ast$}{*}}]{texture}{}\end{DoxyParamCaption})}
+
+
+
+Destroys a texture and frees all associated GPU resources. 
+
+This function releases all GPU memory and resources associated with the specified texture. After destruction, the texture pointer becomes invalid and should not be used.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & Pointer to the texture to destroy.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+It is safe to pass NULL to this function; it will simply do nothing. 
+
+GPU memory is automatically released when the texture is destroyed. 
+
+All references to this texture in rendering operations become invalid. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_texture_8h_ad34713718b5cdb528c0a531840332ed8}{LDL\+\_\+\+Texture\+Create\+From\+Pixels} 
+
+\doxylink{_texture_8h_a876298c5df7f71ad9ad40c56e7be04df}{LDL\+\_\+\+Texture\+Create\+From\+Size} 
+
+\doxylink{_texture_8h_a00e0757ae3cb692648c8de3d48e623bd}{LDL\+\_\+\+Texture\+Create\+From\+Surface} 
+\end{DoxySeeAlso}
+\Hypertarget{_texture_8h_a0df5dc9cc6191f3a2ff03a36b5829b93}\index{Texture.h@{Texture.h}!LDL\_TextureGetSize@{LDL\_TextureGetSize}}
+\index{LDL\_TextureGetSize@{LDL\_TextureGetSize}!Texture.h@{Texture.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_TextureGetSize()}{LDL\_TextureGetSize()}}
+{\footnotesize\ttfamily \label{_texture_8h_a0df5dc9cc6191f3a2ff03a36b5829b93} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} LDL\+\_\+\+Texture\+Get\+Size (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___texture}{LDL\+\_\+\+Texture}} \texorpdfstring{$\ast$}{*}}]{texture}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the dimensions of the texture. 
+
+This function returns the width and height of the specified texture in pixels.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture} & Pointer to the texture. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The dimensions of the texture as an \doxylink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i} structure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The size is determined at texture creation time and cannot be changed. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_texture_8h_ad34713718b5cdb528c0a531840332ed8}{LDL\+\_\+\+Texture\+Create\+From\+Pixels} 
+
+\doxylink{_texture_8h_a876298c5df7f71ad9ad40c56e7be04df}{LDL\+\_\+\+Texture\+Create\+From\+Size} 
+
+\doxylink{_texture_8h_a00e0757ae3cb692648c8de3d48e623bd}{LDL\+\_\+\+Texture\+Create\+From\+Surface} 
+\end{DoxySeeAlso}

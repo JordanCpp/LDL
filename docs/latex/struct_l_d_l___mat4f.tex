@@ -1,0 +1,73 @@
+\doxysection{LDL\+\_\+\+Mat4f Struct Reference}
+\hypertarget{struct_l_d_l___mat4f}{}\label{struct_l_d_l___mat4f}\index{LDL\_Mat4f@{LDL\_Mat4f}}
+
+
+A 4x4 matrix structure for 3D transformations.  
+
+
+
+
+{\ttfamily \+\#include $<$Mat4f.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+float \doxymbox{\hyperlink{struct_l_d_l___mat4f_ad72a04a5a1d455443b72c17160429e0f}{Values}} \+[16]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A 4x4 matrix structure for 3D transformations. 
+
+This structure represents a 4x4 matrix stored as an array of 16 floating-\/point values in column-\/major order. Column-\/major layout is used for compatibility with Open\+GL and other graphics APIs.
+
+Memory layout:\+ Values\+[0..15]\+ represents:\+ \+[ m00, m10, m20, m30 ]\+ (column 0) \+[ m01, m11, m21, m31 ]\+ (column 1) \+[ m02, m12, m22, m32 ]\+ (column 2) \+[ m03, m13, m23, m33 ]\+ (column 3)
+
+Common matrix types supported:\+
+\begin{DoxyItemize}
+\item Identity matrix
+\item Translation matrices
+\item Rotation matrices (X, Y, Z axes)
+\item Scaling matrices
+\item Orthographic projection
+\item Perspective projection
+\item Look-\/at view matrices
+\item Matrix multiplication
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+All matrix operations modify the matrix in-\/place unless otherwise specified. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_mat4f_8h_a65172151417f92ad889c57b57ae91fef}{LDL\+\_\+\+Mat4f\+Identity} 
+
+\doxylink{_mat4f_8h_a970d676449056dbcd2e0c67e0821c00b}{LDL\+\_\+\+Mat4f\+Translate} 
+
+\doxylink{_mat4f_8h_ab913bd2e5c180a14e0252e6dadfcf84c}{LDL\+\_\+\+Mat4f\+Rotate} 
+
+\doxylink{_mat4f_8h_a92e3218b40e42264dba06636f0ca3f1b}{LDL\+\_\+\+Mat4f\+Multiply} 
+\end{DoxySeeAlso}
+
+
+Definition at line \doxymbox{\hyperlink{_mat4f_8h_source_l00059}{59}} of file \doxymbox{\hyperlink{_mat4f_8h_source}{Mat4f.\+h}}.
+
+
+
+\label{struct_l_d_l___mat4f_doc-variable-members}
+\Hypertarget{struct_l_d_l___mat4f_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_l_d_l___mat4f_ad72a04a5a1d455443b72c17160429e0f}\index{LDL\_Mat4f@{LDL\_Mat4f}!Values@{Values}}
+\index{Values@{Values}!LDL\_Mat4f@{LDL\_Mat4f}}
+\doxysubsubsection{\texorpdfstring{Values}{Values}}
+{\footnotesize\ttfamily \label{struct_l_d_l___mat4f_ad72a04a5a1d455443b72c17160429e0f} 
+float Values\+[16]\+}
+
+16 floating-\/point values in column-\/major order. 
+
+Definition at line \doxymbox{\hyperlink{_mat4f_8h_source_l00061}{61}} of file \doxymbox{\hyperlink{_mat4f_8h_source}{Mat4f.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+include/\+\+LDL/\+\doxymbox{\hyperlink{_mat4f_8h}{Mat4f.\+h}}\end{DoxyCompactItemize}

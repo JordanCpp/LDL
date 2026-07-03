@@ -1,0 +1,197 @@
+\doxysection{LDL\+\_\+\+Event Struct Reference}
+\hypertarget{struct_l_d_l___event}{}\label{struct_l_d_l___event}\index{LDL\_Event@{LDL\_Event}}
+
+
+A unified structure that encapsulates all possible event types within a single object.  
+
+
+
+
+{\ttfamily \+\#include $<$Events.\+h$>$}
+
+Inheritance diagram for LDL\+\_\+\+Event:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_l_d_l___event}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} \doxymbox{\hyperlink{struct_l_d_l___event_aeff746a68ed515a1d9f0c40a38dd200b}{Type}}
+\begin{DoxyCompactList}\small\item\em An unsigned eight-\/bit integer identifying the specific type of event contained in the union. \end{DoxyCompactList}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\doxymbox{\hyperlink{struct_l_d_l___event_quit}{LDL\_EventQuit}} \doxymbox{\hyperlink{struct_l_d_l___event_a2a667939f39551dc46e9c6e6c5a989e9}{Quit}}\\
+\>\>{\em Data for a quit event (LDL\_EventIsQuit). }\\
+\>\doxymbox{\hyperlink{struct_l_d_l___event_mouse}{LDL\_EventMouse}} \doxymbox{\hyperlink{struct_l_d_l___event_abeb7a12d651fb4e69a0735c60c96a751}{Mouse}}\\
+\>\>{\em Data for a mouse movement or button event (LDL\_EventIsMouseMove, LDL\_EventIsMouseClick, LDL\_EventIsMouseScroll). }\\
+\>\doxymbox{\hyperlink{struct_l_d_l___event_resize}{LDL\_EventResize}} \doxymbox{\hyperlink{struct_l_d_l___event_a2e1fc2dfe40d85e4fdbea21cf0160faf}{Resize}}\\
+\>\>{\em Data for a window resizing event (LDL\_EventIsResize). }\\
+\>\doxymbox{\hyperlink{struct_l_d_l___event_keyboard}{LDL\_EventKeyboard}} \doxymbox{\hyperlink{struct_l_d_l___event_add1cfe27941e12eb12ad52e55b5bf80b}{Keyboard}}\\
+\>\>{\em Data for a keyboard input event (LDL\_EventIsKeyboard). }\\
+\>\doxymbox{\hyperlink{struct_l_d_l___event_gained_focus}{LDL\_EventGainedFocus}} \doxymbox{\hyperlink{struct_l_d_l___event_ab1ac4b921271b562dfe9a5f9edf3a79e}{GainedFocus}}\\
+\>\>{\em Data for a gained focus event (LDL\_EventIsGainedFocus). }\\
+\>\doxymbox{\hyperlink{struct_l_d_l___event_lost_focus}{LDL\_EventLostFocus}} \doxymbox{\hyperlink{struct_l_d_l___event_ab31fb9805653bc317d59623e9e946809}{LostFocus}}\\
+\>\>{\em Data for a lost focus event (LDL\_EventIsLostFocus). }\\
+\} \doxymbox{\hyperlink{struct_l_d_l___event_ac7eed879db249be22f0c0bfd7ff28d1c}{u}}\\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em A union containing the specialized structures for each unique event type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A unified structure that encapsulates all possible event types within a single object. 
+
+This structure uses a type identifier to determine which member of the internal union is currently active and contains valid event data. This design allows for efficient event handling through a single event type while supporting multiple event variants.
+
+Event types:\+
+\begin{DoxyItemize}
+\item LDL\+\_\+\+Event\+Is\+Quit:\+ Application quit request
+\item LDL\+\_\+\+Event\+Is\+Mouse\+Move:\+ Mouse movement
+\item LDL\+\_\+\+Event\+Is\+Mouse\+Click:\+ Mouse button click
+\item LDL\+\_\+\+Event\+Is\+Resize:\+ Window resize
+\item LDL\+\_\+\+Event\+Is\+Keyboard:\+ Keyboard input
+\item LDL\+\_\+\+Event\+Is\+Gained\+Focus:\+ Window gained focus
+\item LDL\+\_\+\+Event\+Is\+Lost\+Focus:\+ Window lost focus
+\item LDL\+\_\+\+Event\+Is\+Mouse\+Scroll:\+ Mouse scroll wheel
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Always check the Type field before accessing union members to ensure valid data. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{struct_l_d_l___event_quit}{LDL\+\_\+\+Event\+Quit} 
+
+\doxylink{struct_l_d_l___event_mouse}{LDL\+\_\+\+Event\+Mouse} 
+
+\doxylink{struct_l_d_l___event_resize}{LDL\+\_\+\+Event\+Resize} 
+
+\doxylink{struct_l_d_l___event_keyboard}{LDL\+\_\+\+Event\+Keyboard} 
+
+\doxylink{struct_l_d_l___event_gained_focus}{LDL\+\_\+\+Event\+Gained\+Focus} 
+
+\doxylink{struct_l_d_l___event_lost_focus}{LDL\+\_\+\+Event\+Lost\+Focus} 
+\end{DoxySeeAlso}
+
+
+Definition at line \doxymbox{\hyperlink{_events_8h_source_l00153}{153}} of file \doxymbox{\hyperlink{_events_8h_source}{Events.\+h}}.
+
+
+
+\label{struct_l_d_l___event_doc-variable-members}
+\Hypertarget{struct_l_d_l___event_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_l_d_l___event_ab1ac4b921271b562dfe9a5f9edf3a79e}\index{LDL\_Event@{LDL\_Event}!GainedFocus@{GainedFocus}}
+\index{GainedFocus@{GainedFocus}!LDL\_Event@{LDL\_Event}}
+\doxysubsubsection{\texorpdfstring{GainedFocus}{GainedFocus}}
+{\footnotesize\ttfamily \label{struct_l_d_l___event_ab1ac4b921271b562dfe9a5f9edf3a79e} 
+\doxymbox{\hyperlink{struct_l_d_l___event_gained_focus}{LDL\+\_\+\+Event\+Gained\+Focus}} Gained\+Focus}
+
+
+
+Data for a gained focus event (LDL\+\_\+\+Event\+Is\+Gained\+Focus). 
+
+
+
+Definition at line \doxymbox{\hyperlink{_events_8h_source_l00174}{174}} of file \doxymbox{\hyperlink{_events_8h_source}{Events.\+h}}.
+
+\Hypertarget{struct_l_d_l___event_add1cfe27941e12eb12ad52e55b5bf80b}\index{LDL\_Event@{LDL\_Event}!Keyboard@{Keyboard}}
+\index{Keyboard@{Keyboard}!LDL\_Event@{LDL\_Event}}
+\doxysubsubsection{\texorpdfstring{Keyboard}{Keyboard}}
+{\footnotesize\ttfamily \label{struct_l_d_l___event_add1cfe27941e12eb12ad52e55b5bf80b} 
+\doxymbox{\hyperlink{struct_l_d_l___event_keyboard}{LDL\+\_\+\+Event\+Keyboard}} Keyboard}
+
+
+
+Data for a keyboard input event (LDL\+\_\+\+Event\+Is\+Keyboard). 
+
+
+
+Definition at line \doxymbox{\hyperlink{_events_8h_source_l00172}{172}} of file \doxymbox{\hyperlink{_events_8h_source}{Events.\+h}}.
+
+\Hypertarget{struct_l_d_l___event_ab31fb9805653bc317d59623e9e946809}\index{LDL\_Event@{LDL\_Event}!LostFocus@{LostFocus}}
+\index{LostFocus@{LostFocus}!LDL\_Event@{LDL\_Event}}
+\doxysubsubsection{\texorpdfstring{LostFocus}{LostFocus}}
+{\footnotesize\ttfamily \label{struct_l_d_l___event_ab31fb9805653bc317d59623e9e946809} 
+\doxymbox{\hyperlink{struct_l_d_l___event_lost_focus}{LDL\+\_\+\+Event\+Lost\+Focus}} Lost\+Focus}
+
+
+
+Data for a lost focus event (LDL\+\_\+\+Event\+Is\+Lost\+Focus). 
+
+
+
+Definition at line \doxymbox{\hyperlink{_events_8h_source_l00176}{176}} of file \doxymbox{\hyperlink{_events_8h_source}{Events.\+h}}.
+
+\Hypertarget{struct_l_d_l___event_abeb7a12d651fb4e69a0735c60c96a751}\index{LDL\_Event@{LDL\_Event}!Mouse@{Mouse}}
+\index{Mouse@{Mouse}!LDL\_Event@{LDL\_Event}}
+\doxysubsubsection{\texorpdfstring{Mouse}{Mouse}}
+{\footnotesize\ttfamily \label{struct_l_d_l___event_abeb7a12d651fb4e69a0735c60c96a751} 
+\doxymbox{\hyperlink{struct_l_d_l___event_mouse}{LDL\+\_\+\+Event\+Mouse}} Mouse}
+
+
+
+Data for a mouse movement or button event (LDL\+\_\+\+Event\+Is\+Mouse\+Move, LDL\+\_\+\+Event\+Is\+Mouse\+Click, LDL\+\_\+\+Event\+Is\+Mouse\+Scroll). 
+
+
+
+Definition at line \doxymbox{\hyperlink{_events_8h_source_l00168}{168}} of file \doxymbox{\hyperlink{_events_8h_source}{Events.\+h}}.
+
+\Hypertarget{struct_l_d_l___event_a2a667939f39551dc46e9c6e6c5a989e9}\index{LDL\_Event@{LDL\_Event}!Quit@{Quit}}
+\index{Quit@{Quit}!LDL\_Event@{LDL\_Event}}
+\doxysubsubsection{\texorpdfstring{Quit}{Quit}}
+{\footnotesize\ttfamily \label{struct_l_d_l___event_a2a667939f39551dc46e9c6e6c5a989e9} 
+\doxymbox{\hyperlink{struct_l_d_l___event_quit}{LDL\+\_\+\+Event\+Quit}} Quit}
+
+
+
+Data for a quit event (LDL\+\_\+\+Event\+Is\+Quit). 
+
+
+
+Definition at line \doxymbox{\hyperlink{_events_8h_source_l00166}{166}} of file \doxymbox{\hyperlink{_events_8h_source}{Events.\+h}}.
+
+\Hypertarget{struct_l_d_l___event_a2e1fc2dfe40d85e4fdbea21cf0160faf}\index{LDL\_Event@{LDL\_Event}!Resize@{Resize}}
+\index{Resize@{Resize}!LDL\_Event@{LDL\_Event}}
+\doxysubsubsection{\texorpdfstring{Resize}{Resize}}
+{\footnotesize\ttfamily \label{struct_l_d_l___event_a2e1fc2dfe40d85e4fdbea21cf0160faf} 
+\doxymbox{\hyperlink{struct_l_d_l___event_resize}{LDL\+\_\+\+Event\+Resize}} Resize}
+
+
+
+Data for a window resizing event (LDL\+\_\+\+Event\+Is\+Resize). 
+
+
+
+Definition at line \doxymbox{\hyperlink{_events_8h_source_l00170}{170}} of file \doxymbox{\hyperlink{_events_8h_source}{Events.\+h}}.
+
+\Hypertarget{struct_l_d_l___event_aeff746a68ed515a1d9f0c40a38dd200b}\index{LDL\_Event@{LDL\_Event}!Type@{Type}}
+\index{Type@{Type}!LDL\_Event@{LDL\_Event}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily \label{struct_l_d_l___event_aeff746a68ed515a1d9f0c40a38dd200b} 
+\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} Type}
+
+
+
+An unsigned eight-\/bit integer identifying the specific type of event contained in the union. 
+
+
+
+Definition at line \doxymbox{\hyperlink{_events_8h_source_l00156}{156}} of file \doxymbox{\hyperlink{_events_8h_source}{Events.\+h}}.
+
+\Hypertarget{struct_l_d_l___event_ac7eed879db249be22f0c0bfd7ff28d1c}\index{LDL\_Event@{LDL\_Event}!u@{u}}
+\index{u@{u}!LDL\_Event@{LDL\_Event}}
+\doxysubsubsection{\texorpdfstring{[union]}{[union]}}
+{\footnotesize\ttfamily \label{struct_l_d_l___event_ac7eed879db249be22f0c0bfd7ff28d1c} 
+union  \{ ... \}  u}
+
+
+
+A union containing the specialized structures for each unique event type. 
+
+Only one member of this union is valid at a time, determined by the Type field. 
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+include/\+\+LDL/\+\doxymbox{\hyperlink{_events_8h}{Events.\+h}}\end{DoxyCompactItemize}

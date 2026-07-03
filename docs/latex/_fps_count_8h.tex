@@ -1,0 +1,217 @@
+\doxysection{include/\+\+LDL/\+\+Fps\+Count.h File Reference}
+\hypertarget{_fps_count_8h}{}\label{_fps_count_8h}\index{include/LDL/FpsCount.h@{include/LDL/FpsCount.h}}
+{\ttfamily \+\#include $<$LDL/\+\+Result.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Config.\+h$>$}\newline
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct LDL\+\_\+\+Fps\+Counter \doxymbox{\hyperlink{_fps_count_8h_a62b0b8e77085635154b35006807c59db}{LDL\+\_\+\+Fps\+Counter}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_fps_count_8h_a137e195b1001751f9ab70f2fbc465838}{LDL\+\_\+\+Fps\+Counter\+Create}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result)
+\begin{DoxyCompactList}\small\item\em Creates and initializes a new instance of an \doxylink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_fps_count_8h_ad1b4d767ad948a8c248092fb68696b31}{LDL\+\_\+\+Fps\+Counter\+Destroy}} (\doxymbox{\hyperlink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter}} \texorpdfstring{$\ast$}{*}fps\+Counter)
+\begin{DoxyCompactList}\small\item\em Destroys an existing FPS counter and releases all associated memory resources. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_fps_count_8h_a1f9909bc4e7f61e54e315f299d908ca3}{LDL\+\_\+\+Fps\+Counter\+Start}} (\doxymbox{\hyperlink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter}} \texorpdfstring{$\ast$}{*}fps\+Counter)
+\begin{DoxyCompactList}\small\item\em Starts or resets the internal timer of the FPS counter. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool \doxymbox{\hyperlink{_fps_count_8h_aad9a4ec3737e57743b7b8ade1e95efea}{LDL\+\_\+\+Fps\+Counter\+Calc}} (\doxymbox{\hyperlink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter}} \texorpdfstring{$\ast$}{*}fps\+Counter)
+\begin{DoxyCompactList}\small\item\em Performs a calculation step to update the current Frames Per Second value. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} size\+\_\+t \doxymbox{\hyperlink{_fps_count_8h_a63294a0cba566ead5f52323ad4637bbc}{LDL\+\_\+\+Fps\+Counter\+Fps}} (\doxymbox{\hyperlink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter}} \texorpdfstring{$\ast$}{*}fps\+Counter)
+\begin{DoxyCompactList}\small\item\em Retrieves the most recently calculated Frames Per Second (FPS) value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{_fps_count_8h_doc-typedef-members}
+\Hypertarget{_fps_count_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{_fps_count_8h_a62b0b8e77085635154b35006807c59db}\index{FpsCount.h@{FpsCount.h}!LDL\_FpsCounter@{LDL\_FpsCounter}}
+\index{LDL\_FpsCounter@{LDL\_FpsCounter}!FpsCount.h@{FpsCount.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_FpsCounter}{LDL\_FpsCounter}}
+{\footnotesize\ttfamily \label{_fps_count_8h_a62b0b8e77085635154b35006807c59db} 
+typedef struct LDL\+\_\+\+Fps\+Counter LDL\+\_\+\+Fps\+Counter}
+
+
+
+Definition at line \doxymbox{\hyperlink{_fps_count_8h_source_l00050}{50}} of file \doxymbox{\hyperlink{_fps_count_8h_source}{Fps\+Count.\+h}}.
+
+
+
+\label{_fps_count_8h_doc-func-members}
+\Hypertarget{_fps_count_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_fps_count_8h_aad9a4ec3737e57743b7b8ade1e95efea}\index{FpsCount.h@{FpsCount.h}!LDL\_FpsCounterCalc@{LDL\_FpsCounterCalc}}
+\index{LDL\_FpsCounterCalc@{LDL\_FpsCounterCalc}!FpsCount.h@{FpsCount.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_FpsCounterCalc()}{LDL\_FpsCounterCalc()}}
+{\footnotesize\ttfamily \label{_fps_count_8h_aad9a4ec3737e57743b7b8ade1e95efea} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool LDL\+\_\+\+Fps\+Counter\+Calc (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter}} \texorpdfstring{$\ast$}{*}}]{fps\+Counter}{}\end{DoxyParamCaption})}
+
+
+
+Performs a calculation step to update the current Frames Per Second value. 
+
+This function processes the elapsed time since the last calculation or since the start of the timer to compute the updated frames per second metric. It increments the internal frame counter and calculates the FPS value at regular intervals.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fps\+Counter} & A pointer to the \doxylink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter} instance for which the calculation is being performed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value that returns true if the calculation was successfully performed; otherwise, returns false.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function should be called once per frame, typically at the end of each frame rendering cycle. 
+
+The FPS value is updated at regular intervals (typically once per second) to provide stable readings. 
+
+The returned value indicates whether the FPS counter is ready to provide updated FPS data. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_fps_count_8h_a1f9909bc4e7f61e54e315f299d908ca3}{LDL\+\_\+\+Fps\+Counter\+Start} 
+
+\doxylink{_fps_count_8h_a63294a0cba566ead5f52323ad4637bbc}{LDL\+\_\+\+Fps\+Counter\+Fps} 
+\end{DoxySeeAlso}
+\Hypertarget{_fps_count_8h_a137e195b1001751f9ab70f2fbc465838}\index{FpsCount.h@{FpsCount.h}!LDL\_FpsCounterCreate@{LDL\_FpsCounterCreate}}
+\index{LDL\_FpsCounterCreate@{LDL\_FpsCounterCreate}!FpsCount.h@{FpsCount.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_FpsCounterCreate()}{LDL\_FpsCounterCreate()}}
+{\footnotesize\ttfamily \label{_fps_count_8h_a137e195b1001751f9ab70f2fbc465838} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter}} \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Fps\+Counter\+Create (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{}\end{DoxyParamCaption})}
+
+
+
+Creates and initializes a new instance of an \doxylink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter}. 
+
+This function allocates memory for a new FPS counter object and prepares its internal state for tracking frames per second. The outcome of the allocation and initialization process is recorded in the provided result pointer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & A pointer to an \doxylink{struct_l_d_l___result}{LDL\+\_\+\+Result} structure that will receive the status code indicating whether the creation was successful or failed. If the operation succeeds, the result will be set to success state. If an error occurs, the result will contain an appropriate error message. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \doxylink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter} instance if the operation succeeded; otherwise, a NULL pointer is returned.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned FPS counter must be freed using LDL\+\_\+\+Fps\+Counter\+Destroy when it is no longer needed to avoid memory leaks. 
+
+The counter is initialized with zero frames and a reset timer. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_fps_count_8h_ad1b4d767ad948a8c248092fb68696b31}{LDL\+\_\+\+Fps\+Counter\+Destroy} 
+
+\doxylink{_fps_count_8h_a1f9909bc4e7f61e54e315f299d908ca3}{LDL\+\_\+\+Fps\+Counter\+Start} 
+\end{DoxySeeAlso}
+\Hypertarget{_fps_count_8h_ad1b4d767ad948a8c248092fb68696b31}\index{FpsCount.h@{FpsCount.h}!LDL\_FpsCounterDestroy@{LDL\_FpsCounterDestroy}}
+\index{LDL\_FpsCounterDestroy@{LDL\_FpsCounterDestroy}!FpsCount.h@{FpsCount.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_FpsCounterDestroy()}{LDL\_FpsCounterDestroy()}}
+{\footnotesize\ttfamily \label{_fps_count_8h_ad1b4d767ad948a8c248092fb68696b31} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Fps\+Counter\+Destroy (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter}} \texorpdfstring{$\ast$}{*}}]{fps\+Counter}{}\end{DoxyParamCaption})}
+
+
+
+Destroys an existing FPS counter and releases all associated memory resources. 
+
+This function performs the necessary cleanup for the specified FPS counter instance, including the deallocation of any internal buffers or timing information used by the object. After this call, the pointer to the FPS counter becomes invalid.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fps\+Counter} & A pointer to the \doxylink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter} instance that is intended to be destroyed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+It is safe to pass NULL to this function; it will simply do nothing. 
+
+All timing and frame count data is lost when the counter is destroyed. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_fps_count_8h_a137e195b1001751f9ab70f2fbc465838}{LDL\+\_\+\+Fps\+Counter\+Create} 
+\end{DoxySeeAlso}
+\Hypertarget{_fps_count_8h_a63294a0cba566ead5f52323ad4637bbc}\index{FpsCount.h@{FpsCount.h}!LDL\_FpsCounterFps@{LDL\_FpsCounterFps}}
+\index{LDL\_FpsCounterFps@{LDL\_FpsCounterFps}!FpsCount.h@{FpsCount.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_FpsCounterFps()}{LDL\_FpsCounterFps()}}
+{\footnotesize\ttfamily \label{_fps_count_8h_a63294a0cba566ead5f52323ad4637bbc} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} size\+\_\+t LDL\+\_\+\+Fps\+Counter\+Fps (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter}} \texorpdfstring{$\ast$}{*}}]{fps\+Counter}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the most recently calculated Frames Per Second (FPS) value. 
+
+This function provides access to the numerical result of the latest calculation performed by the FPS counter instance. The value represents the number of frames rendered in the last second.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fps\+Counter} & A pointer to the \doxylink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter} instance from which the FPS value is being retrieved. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A value of type size\+\_\+t representing the number of frames per second calculated for the current period.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned value is only updated after calls to LDL\+\_\+\+Fps\+Counter\+Calc. 
+
+If no calculation has been performed yet, the returned value will be 0. 
+
+The value is stable and represents the average FPS over the measurement period.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Display\ FPS\ in\ a\ window\ title}}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t}\ fps\ =\ \doxymbox{\hyperlink{_fps_count_8h_a63294a0cba566ead5f52323ad4637bbc}{LDL\_FpsCounterFps}}(fpsCounter);}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ title[256];}
+\DoxyCodeLine{snprintf(title,\ \textcolor{keyword}{sizeof}(title),\ \textcolor{stringliteral}{"{}My\ Application\ -\/\ FPS:\ \%zu"{}},\ fps);}
+\DoxyCodeLine{SetWindowTitle(title);}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{_fps_count_8h_aad9a4ec3737e57743b7b8ade1e95efea}{LDL\+\_\+\+Fps\+Counter\+Calc} 
+
+\doxylink{_fps_count_8h_a1f9909bc4e7f61e54e315f299d908ca3}{LDL\+\_\+\+Fps\+Counter\+Start} 
+\end{DoxySeeAlso}
+\Hypertarget{_fps_count_8h_a1f9909bc4e7f61e54e315f299d908ca3}\index{FpsCount.h@{FpsCount.h}!LDL\_FpsCounterStart@{LDL\_FpsCounterStart}}
+\index{LDL\_FpsCounterStart@{LDL\_FpsCounterStart}!FpsCount.h@{FpsCount.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_FpsCounterStart()}{LDL\_FpsCounterStart()}}
+{\footnotesize\ttfamily \label{_fps_count_8h_a1f9909bc4e7f61e54e315f299d908ca3} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Fps\+Counter\+Start (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter}} \texorpdfstring{$\ast$}{*}}]{fps\+Counter}{}\end{DoxyParamCaption})}
+
+
+
+Starts or resets the internal timer of the FPS counter. 
+
+This function marks the beginning of a new measurement period by resetting the internal timestamp and frame counter. It is typically called at the start of a frame or before starting the main application loop.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fps\+Counter} & A pointer to the \doxylink{struct_l_d_l___fps_counter}{LDL\+\_\+\+Fps\+Counter} instance whose timer is being started or reset.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+After calling this function, the FPS counter will begin counting frames from zero. 
+
+This function should be called before the first frame or when resetting the measurement period is desired. 
+
+The timer uses the system\textquotesingle{}s high-\/resolution timer for accurate measurements. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_fps_count_8h_aad9a4ec3737e57743b7b8ade1e95efea}{LDL\+\_\+\+Fps\+Counter\+Calc} 
+
+\doxylink{_fps_count_8h_a63294a0cba566ead5f52323ad4637bbc}{LDL\+\_\+\+Fps\+Counter\+Fps}
+\end{DoxySeeAlso}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Initialize\ and\ start\ FPS\ counter}}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\_Result}}*\ result\ =\ \doxymbox{\hyperlink{_result_8h_a25877c5d6fdf1b36ac87beb9a2aacdcb}{LDL\_ResultCreate}}();}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___fps_counter}{LDL\_FpsCounter}}*\ fpsCounter\ =\ \doxymbox{\hyperlink{_fps_count_8h_a137e195b1001751f9ab70f2fbc465838}{LDL\_FpsCounterCreate}}(result);}
+\DoxyCodeLine{\doxymbox{\hyperlink{_fps_count_8h_a1f9909bc4e7f61e54e315f299d908ca3}{LDL\_FpsCounterStart}}(fpsCounter);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordflow}{while}\ (running)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Render\ frame...}}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{_fps_count_8h_aad9a4ec3737e57743b7b8ade1e95efea}{LDL\_FpsCounterCalc}}(fpsCounter);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{size\_t}\ fps\ =\ \doxymbox{\hyperlink{_fps_count_8h_a63294a0cba566ead5f52323ad4637bbc}{LDL\_FpsCounterFps}}(fpsCounter);}
+\DoxyCodeLine{\ \ \ \ printf(\textcolor{stringliteral}{"{}FPS:\ \%zu\(\backslash\)n"{}},\ fps);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

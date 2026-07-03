@@ -1,0 +1,65 @@
+\doxysection{3DRender.\+h}
+\hypertarget{3_d_render_8h_source}{}\label{3_d_render_8h_source}\index{include/LDL/3DRender.h@{include/LDL/3DRender.h}}
+\doxymbox{\hyperlink{3_d_render_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00018}00018\ \textcolor{preprocessor}{\#ifndef\ LDL\_3DRender\_H}}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00019}00019\ \textcolor{preprocessor}{\#define\ LDL\_3DRender\_H}}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <\doxymbox{\hyperlink{_color_8h}{LDL/Color.h}}>}}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <\doxymbox{\hyperlink{_window_8h}{LDL/Window.h}}>}}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <\doxymbox{\hyperlink{_texture_8h}{LDL/Texture.h}}>}}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00025}00025\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00026}00026\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00027}00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00038}00038\ \ \ \ \ \textcolor{keyword}{enum}}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00039}00039\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00040}\doxymbox{\hyperlink{3_d_render_8h_a7a473db20983444d69f50cbb329184cfab7f40509be252c9cb0ca9cd26913f431}{00040}}\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{3_d_render_8h_a7a473db20983444d69f50cbb329184cfab7f40509be252c9cb0ca9cd26913f431}{LDL\_FVF\_XYZ}}\ =\ (1\ <<\ 0),\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00041}\doxymbox{\hyperlink{3_d_render_8h_a7a473db20983444d69f50cbb329184cfa9685f702190766469d067ce68cc29fd6}{00041}}\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{3_d_render_8h_a7a473db20983444d69f50cbb329184cfa9685f702190766469d067ce68cc29fd6}{LDL\_FVF\_XYZW}}\ =\ (1\ <<\ 1),\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00042}\doxymbox{\hyperlink{3_d_render_8h_a7a473db20983444d69f50cbb329184cfac2e7b8220a2385acb7f101c6b7eed5ed}{00042}}\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{3_d_render_8h_a7a473db20983444d69f50cbb329184cfac2e7b8220a2385acb7f101c6b7eed5ed}{LDL\_FVF\_COLOR}}\ =\ (1\ <<\ 2),\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00043}\doxymbox{\hyperlink{3_d_render_8h_a7a473db20983444d69f50cbb329184cfabf0e3f33764eef3d2467eccbfcee9f9d}{00043}}\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{3_d_render_8h_a7a473db20983444d69f50cbb329184cfabf0e3f33764eef3d2467eccbfcee9f9d}{LDL\_FVF\_NORMAL}}\ =\ (1\ <<\ 3),\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00044}\doxymbox{\hyperlink{3_d_render_8h_a7a473db20983444d69f50cbb329184cfad117d541beeb9e0dbac52a4d64fa21fb}{00044}}\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{3_d_render_8h_a7a473db20983444d69f50cbb329184cfad117d541beeb9e0dbac52a4d64fa21fb}{LDL\_FVF\_TEXCOORD}}\ =\ (1\ <<\ 4)\ \ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00045}00045\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00068}\doxymbox{\hyperlink{3_d_render_8h_a439abef7452a8ed54b589c31f0a291da}{00068}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_l_d_l__3_d_render}{LDL\_3DRender}}\ \doxymbox{\hyperlink{struct_l_d_l__3_d_render}{LDL\_3DRender}};}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00088}\doxymbox{\hyperlink{3_d_render_8h_a85cd7859421d9a4c8190b9b609cb21dd}{00088}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct_l_d_l___vertex_buffer}{LDL\_VertexBuffer}}\ \doxymbox{\hyperlink{struct_l_d_l___vertex_buffer}{LDL\_VertexBuffer}};}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00112}\doxymbox{\hyperlink{3_d_render_8h_aad8ae04eddf975e0998b5bce61fd8560}{00112}}\ \ \ \ \ \doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\_LIBRARY}}\ \doxymbox{\hyperlink{struct_l_d_l__3_d_render}{LDL\_3DRender}}*\ \doxymbox{\hyperlink{3_d_render_8h_aad8ae04eddf975e0998b5bce61fd8560}{LDL\_3DRenderCreate}}(\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\_Result}}*\ result,\ \doxymbox{\hyperlink{struct_l_d_l___context}{LDL\_Context}}*\ context,\ \doxymbox{\hyperlink{struct_l_d_l___window}{LDL\_Window}}*\ window);}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00127}\doxymbox{\hyperlink{3_d_render_8h_ae9252c6a38062964e48d8a73c06529ef}{00127}}\ \ \ \ \ \doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\_LIBRARY}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{3_d_render_8h_ae9252c6a38062964e48d8a73c06529ef}{LDL\_3DRenderDestroy}}(\doxymbox{\hyperlink{struct_l_d_l__3_d_render}{LDL\_3DRender}}*\ render);}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00142}\doxymbox{\hyperlink{3_d_render_8h_a7185bea349e596422cde19a06dce7fb3}{00142}}\ \ \ \ \ \doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\_LIBRARY}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{3_d_render_8h_a7185bea349e596422cde19a06dce7fb3}{LDL\_3DRenderBegin}}(\doxymbox{\hyperlink{struct_l_d_l__3_d_render}{LDL\_3DRender}}*\ render);}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00155}\doxymbox{\hyperlink{3_d_render_8h_a9ba247eb13944f58324bf8c02fe7b01a}{00155}}\ \ \ \ \ \doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\_LIBRARY}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{3_d_render_8h_a9ba247eb13944f58324bf8c02fe7b01a}{LDL\_3DRenderEnd}}(\doxymbox{\hyperlink{struct_l_d_l__3_d_render}{LDL\_3DRender}}*\ render);}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00174}\doxymbox{\hyperlink{3_d_render_8h_ae52bc9001e46105040626ca2b4cb2dc6}{00174}}\ \ \ \ \ \doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\_LIBRARY}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{3_d_render_8h_ae52bc9001e46105040626ca2b4cb2dc6}{LDL\_3DRenderClear}}(\doxymbox{\hyperlink{struct_l_d_l__3_d_render}{LDL\_3DRender}}*\ render,\ \textcolor{keywordtype}{float}\ r,\ \textcolor{keywordtype}{float}\ g,\ \textcolor{keywordtype}{float}\ b);}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00194}\doxymbox{\hyperlink{3_d_render_8h_ad3efee2b7cb395a7de88ddd4add00d16}{00194}}\ \ \ \ \ \doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\_LIBRARY}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{3_d_render_8h_ad3efee2b7cb395a7de88ddd4add00d16}{LDL\_3DRenderDraw}}(\doxymbox{\hyperlink{struct_l_d_l__3_d_render}{LDL\_3DRender}}*\ render,\ \doxymbox{\hyperlink{struct_l_d_l___vertex_buffer}{LDL\_VertexBuffer}}*\ vertexBuffer);}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00211}\doxymbox{\hyperlink{3_d_render_8h_a2b656e072e32f5ef8f43841ffdf991c4}{00211}}\ \ \ \ \ \doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\_LIBRARY}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{3_d_render_8h_a2b656e072e32f5ef8f43841ffdf991c4}{LDL\_3DRenderBindTexture}}(\doxymbox{\hyperlink{struct_l_d_l__3_d_render}{LDL\_3DRender}}*\ render,\ \doxymbox{\hyperlink{struct_l_d_l___texture}{LDL\_Texture}}*\ texture);}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00244}\doxymbox{\hyperlink{3_d_render_8h_a35ce488e0f7a829049abc61b1ec4461a}{00244}}\ \ \ \ \ \doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\_LIBRARY}}\ \doxymbox{\hyperlink{struct_l_d_l___vertex_buffer}{LDL\_VertexBuffer}}*\ \doxymbox{\hyperlink{3_d_render_8h_a35ce488e0f7a829049abc61b1ec4461a}{LDL\_VertexBufferCreate}}(\doxymbox{\hyperlink{struct_l_d_l___context}{LDL\_Context}}*\ context,\ \textcolor{keywordtype}{size\_t}\ fvf);}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00245}00245\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00258}\doxymbox{\hyperlink{3_d_render_8h_a9e7e3d8fed9c2b225f9a0f2acb18e0c5}{00258}}\ \ \ \ \ \doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\_LIBRARY}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{3_d_render_8h_a9e7e3d8fed9c2b225f9a0f2acb18e0c5}{LDL\_VertexBufferDestroy}}(\doxymbox{\hyperlink{struct_l_d_l___vertex_buffer}{LDL\_VertexBuffer}}*\ vertexBuffer);}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00270}\doxymbox{\hyperlink{3_d_render_8h_a722a7e4a65e20a4f2ef3289697652e84}{00270}}\ \ \ \ \ \doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\_LIBRARY}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{3_d_render_8h_a722a7e4a65e20a4f2ef3289697652e84}{LDL\_VertexBufferSet}}(\doxymbox{\hyperlink{struct_l_d_l___vertex_buffer}{LDL\_VertexBuffer}}*\ vertexBuffer);}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00306}\doxymbox{\hyperlink{3_d_render_8h_ad8e057dded726c29c7b09363f1c03edc}{00306}}\ \ \ \ \ \doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\_LIBRARY}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{3_d_render_8h_ad8e057dded726c29c7b09363f1c03edc}{LDL\_VertexBufferCopy}}(\doxymbox{\hyperlink{struct_l_d_l___vertex_buffer}{LDL\_VertexBuffer}}*\ vertexBuffer,\ \textcolor{keywordtype}{size\_t}\ size,\ \textcolor{keywordtype}{size\_t}\ count,\ \textcolor{keywordtype}{void}*\ source);}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00307}00307\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00322}\doxymbox{\hyperlink{3_d_render_8h_a26837497ef0bbd1758b7a4c959a17e0c}{00322}}\ \ \ \ \ \doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\_LIBRARY}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{3_d_render_8h_a26837497ef0bbd1758b7a4c959a17e0c}{LDL\_3DRenderSetWorld}}(\doxymbox{\hyperlink{struct_l_d_l__3_d_render}{LDL\_3DRender}}*\ render,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ matrix);}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00338}\doxymbox{\hyperlink{3_d_render_8h_aef43dcce63c4c3d0e02096df87a897a6}{00338}}\ \ \ \ \ \doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\_LIBRARY}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{3_d_render_8h_aef43dcce63c4c3d0e02096df87a897a6}{LDL\_3DRenderSetView}}(\doxymbox{\hyperlink{struct_l_d_l__3_d_render}{LDL\_3DRender}}*\ render,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ matrix);}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00339}00339\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00362}\doxymbox{\hyperlink{3_d_render_8h_aaede18e98c34ef432a030bb1ee397629}{00362}}\ \ \ \ \ \doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\_LIBRARY}}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{3_d_render_8h_aaede18e98c34ef432a030bb1ee397629}{LDL\_3DRenderSetProjection}}(\doxymbox{\hyperlink{struct_l_d_l__3_d_render}{LDL\_3DRender}}*\ render,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}*\ matrix);}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00363}00363\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00364}00364\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00365}00365\ \}}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00366}00366\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00367}00367\ }
+\DoxyCodeLine{\Hypertarget{3_d_render_8h_source_l00368}00368\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LDL\_3DRender\_H}}
+
+\end{DoxyCode}

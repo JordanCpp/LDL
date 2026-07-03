@@ -1,0 +1,44 @@
+\doxysection{LDL\+\_\+\+Fps\+Limiter Struct Reference}
+\hypertarget{struct_l_d_l___fps_limiter}{}\label{struct_l_d_l___fps_limiter}\index{LDL\_FpsLimiter@{LDL\_FpsLimiter}}
+
+
+An opaque structure representing an instance of the FPS limiter.  
+
+
+
+
+{\ttfamily \+\#include $<$Fps\+Limit.\+h$>$}
+
+
+
+\doxysubsection{Detailed Description}
+An opaque structure representing an instance of the FPS limiter. 
+
+This structure encapsulates the timing state and configuration required to regulate frame rates. It tracks elapsed time between frames and introduces delays when necessary to maintain a consistent frame rate.
+
+Key features:\+
+\begin{DoxyItemize}
+\item Frame rate regulation through throttling
+\item Configurable target FPS
+\item Automatic delay calculation
+\item CPU usage reduction
+\item Consistent frame timing
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+The internal implementation details of this structure are hidden to ensure encapsulation. All operations involving the regulation of frame rates must be performed through the provided API functions. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_fps_limit_8h_a2a030b431bd9ca8eb30eeddf14c2b62d}{LDL\+\_\+\+Fps\+Limiter\+Create} 
+
+\doxylink{_fps_limit_8h_a861b872148850b8dab5ecfe53235a0de}{LDL\+\_\+\+Fps\+Limiter\+Destroy} 
+
+\doxylink{_fps_limit_8h_a74f1a9709178aab070401f0b561aacf2}{LDL\+\_\+\+Fps\+Limiter\+Mark} 
+
+\doxylink{_fps_limit_8h_a801c98da4e808b77f1a0449dbbd5800f}{LDL\+\_\+\+Fps\+Limiter\+Throttle} 
+\end{DoxySeeAlso}
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+include/\+\+LDL/\+\doxymbox{\hyperlink{_fps_limit_8h}{Fps\+Limit.\+h}}\end{DoxyCompactItemize}

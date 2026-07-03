@@ -1,0 +1,41 @@
+\doxysection{LDL\+\_\+\+Texture Struct Reference}
+\hypertarget{struct_l_d_l___texture}{}\label{struct_l_d_l___texture}\index{LDL\_Texture@{LDL\_Texture}}
+
+
+Opaque structure representing a GPU texture.  
+
+
+
+
+{\ttfamily \+\#include $<$Texture.\+h$>$}
+
+
+
+\doxysubsection{Detailed Description}
+Opaque structure representing a GPU texture. 
+
+This structure encapsulates a texture object stored in GPU memory, optimized for fast rendering operations. Textures are created from pixel data, surfaces, or allocated directly, and are used as rendering resources in the graphics pipeline.
+
+Key features:\+
+\begin{DoxyItemize}
+\item GPU memory storage for optimal performance
+\item Various pixel format support
+\item Creation from multiple sources (pixels, surfaces, size)
+\item Context-\/aware management
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Textures are bound to a specific rendering context. 
+
+GPU memory is managed automatically when the texture is destroyed. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{struct_l_d_l___context}{LDL\+\_\+\+Context} 
+
+\doxylink{struct_l_d_l___surface}{LDL\+\_\+\+Surface} 
+\end{DoxySeeAlso}
+
+
+The documentation for this struct was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+include/\+\+LDL/\+\doxymbox{\hyperlink{_texture_8h}{Texture.\+h}}\end{DoxyCompactItemize}

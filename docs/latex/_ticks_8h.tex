@@ -1,0 +1,117 @@
+\doxysection{include/\+\+LDL/\+\+Ticks.h File Reference}
+\hypertarget{_ticks_8h}{}\label{_ticks_8h}\index{include/LDL/Ticks.h@{include/LDL/Ticks.h}}
+{\ttfamily \+\#include $<$LDL/\+\+Config.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Types.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} size\+\_\+t \doxymbox{\hyperlink{_ticks_8h_a5b3a0e1a906f72fdb3e1fe91b81b5e26}{LDL\+\_\+\+Ticks}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the current system uptime in milliseconds. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_ticks_8h_ab913f9a14a77f1c8aa63564bd3b75d85}{LDL\+\_\+\+Delay}} (size\+\_\+t count)
+\begin{DoxyCompactList}\small\item\em Pauses program execution for a specified number of milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{_ticks_8h_doc-func-members}
+\Hypertarget{_ticks_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_ticks_8h_ab913f9a14a77f1c8aa63564bd3b75d85}\index{Ticks.h@{Ticks.h}!LDL\_Delay@{LDL\_Delay}}
+\index{LDL\_Delay@{LDL\_Delay}!Ticks.h@{Ticks.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_Delay()}{LDL\_Delay()}}
+{\footnotesize\ttfamily \label{_ticks_8h_ab913f9a14a77f1c8aa63564bd3b75d85} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Delay (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{count}{}\end{DoxyParamCaption})}
+
+
+
+Pauses program execution for a specified number of milliseconds. 
+
+This function suspends the current thread\textquotesingle{}s execution for approximately the specified number of milliseconds. It is useful for implementing timing loops, animations, and controlling execution speed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em count} & The number of milliseconds to delay. Must be a non-\/negative value.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The actual delay may be slightly longer than requested due to system scheduling granularity and overhead. 
+
+On some platforms, the minimum delay resolution may be higher than 1 millisecond (typically around 15-\/16ms on Windows). 
+
+Calling this function with a value of 0 will typically yield the current thread\textquotesingle{}s remaining time slice to the operating system. 
+
+This function blocks the calling thread, so use with caution in performance-\/critical sections or real-\/time applications. 
+
+Common use cases include:\+
+\begin{DoxyItemize}
+\item Creating frame rate limits (e.\+g., 60 FPS cap)
+\item Animation timing control
+\item Simple polling loops with reduced CPU usage
+\item Simulating delays in game loops
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+This function is not suitable for precise timing or real-\/time applications due to OS scheduling variations. 
+
+Do not use this function in performance-\/critical loops that require precise timing.
+\end{DoxyWarning}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Frame\ rate\ limiting\ to\ 60\ FPS\ (approximately\ 16.67ms\ per\ frame)}}
+\DoxyCodeLine{\textcolor{keywordflow}{while}\ (running)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Render\ frame...}}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{_ticks_8h_ab913f9a14a77f1c8aa63564bd3b75d85}{LDL\_Delay}}(16);\ \textcolor{comment}{//\ Delay\ approximately\ 16ms\ to\ achieve\ \string~60\ FPS}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{_ticks_8h_a5b3a0e1a906f72fdb3e1fe91b81b5e26}{LDL\+\_\+\+Ticks} 
+\end{DoxySeeAlso}
+\Hypertarget{_ticks_8h_a5b3a0e1a906f72fdb3e1fe91b81b5e26}\index{Ticks.h@{Ticks.h}!LDL\_Ticks@{LDL\_Ticks}}
+\index{LDL\_Ticks@{LDL\_Ticks}!Ticks.h@{Ticks.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_Ticks()}{LDL\_Ticks()}}
+{\footnotesize\ttfamily \label{_ticks_8h_a5b3a0e1a906f72fdb3e1fe91b81b5e26} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} size\+\_\+t LDL\+\_\+\+Ticks (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the current system uptime in milliseconds. 
+
+This function returns the number of milliseconds that have elapsed since the system was started or since an arbitrary starting point (typically system boot time). The value is monotonically increasing and is suitable for measuring time intervals and performance timing.
+
+\begin{DoxyReturn}{Returns}
+The current time value in milliseconds as a size\+\_\+t integer.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The actual start point (epoch) depends on the platform:\+
+\begin{DoxyItemize}
+\item On Windows:\+ Typically returns the time since system start (Get\+Tick\+Count)
+\item On Linux/\+\+Unix:\+ Typically returns the time since system boot
+\item On mac\+OS:\+ Returns the time since system boot 
+\end{DoxyItemize}
+
+The value may wrap around after approximately 49.\+7 days on some platforms if using a 32-\/bit counter. For longer durations, consider using higher-\/precision timers. 
+
+This function is useful for:\+
+\begin{DoxyItemize}
+\item Frame timing and delta time calculations
+\item Animation timing and interpolation
+\item Performance profiling and benchmarking
+\item Timeout and interval management
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Measure\ elapsed\ time}}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t}\ startTime\ =\ \doxymbox{\hyperlink{_ticks_8h_a5b3a0e1a906f72fdb3e1fe91b81b5e26}{LDL\_Ticks}}();}
+\DoxyCodeLine{\textcolor{comment}{//\ ...\ perform\ some\ operation\ ...}}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t}\ endTime\ =\ \doxymbox{\hyperlink{_ticks_8h_a5b3a0e1a906f72fdb3e1fe91b81b5e26}{LDL\_Ticks}}();}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t}\ elapsedMs\ =\ endTime\ -\/\ startTime;}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}Operation\ took\ \%zu\ milliseconds\(\backslash\)n"{}},\ elapsedMs);}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{_ticks_8h_ab913f9a14a77f1c8aa63564bd3b75d85}{LDL\+\_\+\+Delay} 
+\end{DoxySeeAlso}

@@ -1,0 +1,153 @@
+\doxysection{Event Class Reference}
+\hypertarget{class_l_d_l_1_1_event}{}\label{class_l_d_l_1_1_event}\index{Event@{Event}}
+
+
+{\ttfamily \+\#include $<$LDL.\+hpp$>$}
+
+Inheritance diagram for Event:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_l_d_l_1_1_event}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_l_d_l_1_1_event_ae435b5ca5272cad4c4d274d33e110cd4}{Is\+Key\+Pressed}} (\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} key)
+\item 
+bool \doxymbox{\hyperlink{class_l_d_l_1_1_event_addb382119391b3f2a0de52c2195a3e93}{Is\+Key\+Released}} (\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} key)
+\item 
+bool \doxymbox{\hyperlink{class_l_d_l_1_1_event_a9efd31000221e13519a5227d3853b225}{Is\+Mouse\+Pressed}} (\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} key)
+\item 
+bool \doxymbox{\hyperlink{class_l_d_l_1_1_event_a01ffc81c2ff216c5b2145b937aea47e8}{Is\+Mouse\+Released}} (\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} key)
+\item 
+bool \doxymbox{\hyperlink{class_l_d_l_1_1_event_ae435b5ca5272cad4c4d274d33e110cd4}{Is\+Key\+Pressed}} (\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} key)
+\item 
+bool \doxymbox{\hyperlink{class_l_d_l_1_1_event_addb382119391b3f2a0de52c2195a3e93}{Is\+Key\+Released}} (\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} key)
+\item 
+bool \doxymbox{\hyperlink{class_l_d_l_1_1_event_a9efd31000221e13519a5227d3853b225}{Is\+Mouse\+Pressed}} (\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} key)
+\item 
+bool \doxymbox{\hyperlink{class_l_d_l_1_1_event_a01ffc81c2ff216c5b2145b937aea47e8}{Is\+Mouse\+Released}} (\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} key)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Data Fields inherited from \doxymbox{\hyperlink{struct_l_d_l___event}{LDL\+\_\+\+Event}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} \doxymbox{\hyperlink{struct_l_d_l___event_aeff746a68ed515a1d9f0c40a38dd200b}{Type}}
+\begin{DoxyCompactList}\small\item\em An unsigned eight-\/bit integer identifying the specific type of event contained in the union. \end{DoxyCompactList}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\doxymbox{\hyperlink{struct_l_d_l___event_quit}{LDL\_EventQuit}} \doxymbox{\hyperlink{struct_l_d_l___event_a2a667939f39551dc46e9c6e6c5a989e9}{Quit}}\\
+\>\>{\em Data for a quit event (LDL\_EventIsQuit). }\\
+\>\doxymbox{\hyperlink{struct_l_d_l___event_mouse}{LDL\_EventMouse}} \doxymbox{\hyperlink{struct_l_d_l___event_abeb7a12d651fb4e69a0735c60c96a751}{Mouse}}\\
+\>\>{\em Data for a mouse movement or button event (LDL\_EventIsMouseMove, LDL\_EventIsMouseClick, LDL\_EventIsMouseScroll). }\\
+\>\doxymbox{\hyperlink{struct_l_d_l___event_resize}{LDL\_EventResize}} \doxymbox{\hyperlink{struct_l_d_l___event_a2e1fc2dfe40d85e4fdbea21cf0160faf}{Resize}}\\
+\>\>{\em Data for a window resizing event (LDL\_EventIsResize). }\\
+\>\doxymbox{\hyperlink{struct_l_d_l___event_keyboard}{LDL\_EventKeyboard}} \doxymbox{\hyperlink{struct_l_d_l___event_add1cfe27941e12eb12ad52e55b5bf80b}{Keyboard}}\\
+\>\>{\em Data for a keyboard input event (LDL\_EventIsKeyboard). }\\
+\>\doxymbox{\hyperlink{struct_l_d_l___event_gained_focus}{LDL\_EventGainedFocus}} \doxymbox{\hyperlink{struct_l_d_l___event_ab1ac4b921271b562dfe9a5f9edf3a79e}{GainedFocus}}\\
+\>\>{\em Data for a gained focus event (LDL\_EventIsGainedFocus). }\\
+\>\doxymbox{\hyperlink{struct_l_d_l___event_lost_focus}{LDL\_EventLostFocus}} \doxymbox{\hyperlink{struct_l_d_l___event_ab31fb9805653bc317d59623e9e946809}{LostFocus}}\\
+\>\>{\em Data for a lost focus event (LDL\_EventIsLostFocus). }\\
+\} \doxymbox{\hyperlink{struct_l_d_l___event_ac7eed879db249be22f0c0bfd7ff28d1c}{u}}\\
+
+\end{tabbing}\begin{DoxyCompactList}\small\item\em A union containing the specialized structures for each unique event type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00061}{61}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+
+
+\label{class_l_d_l_1_1_event_doc-func-members}
+\Hypertarget{class_l_d_l_1_1_event_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_l_d_l_1_1_event_ae435b5ca5272cad4c4d274d33e110cd4}\index{Event@{Event}!IsKeyPressed@{IsKeyPressed}}
+\index{IsKeyPressed@{IsKeyPressed}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{IsKeyPressed()}{IsKeyPressed()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_event_ae435b5ca5272cad4c4d274d33e110cd4} 
+bool Is\+Key\+Pressed (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00064}{64}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_event_ae435b5ca5272cad4c4d274d33e110cd4}\index{Event@{Event}!IsKeyPressed@{IsKeyPressed}}
+\index{IsKeyPressed@{IsKeyPressed}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{IsKeyPressed()}{IsKeyPressed()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_event_ae435b5ca5272cad4c4d274d33e110cd4} 
+bool Is\+Key\+Pressed (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00064}{64}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_event_addb382119391b3f2a0de52c2195a3e93}\index{Event@{Event}!IsKeyReleased@{IsKeyReleased}}
+\index{IsKeyReleased@{IsKeyReleased}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{IsKeyReleased()}{IsKeyReleased()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_event_addb382119391b3f2a0de52c2195a3e93} 
+bool Is\+Key\+Released (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00069}{69}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_event_addb382119391b3f2a0de52c2195a3e93}\index{Event@{Event}!IsKeyReleased@{IsKeyReleased}}
+\index{IsKeyReleased@{IsKeyReleased}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{IsKeyReleased()}{IsKeyReleased()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_event_addb382119391b3f2a0de52c2195a3e93} 
+bool Is\+Key\+Released (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00069}{69}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_event_a9efd31000221e13519a5227d3853b225}\index{Event@{Event}!IsMousePressed@{IsMousePressed}}
+\index{IsMousePressed@{IsMousePressed}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{IsMousePressed()}{IsMousePressed()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_event_a9efd31000221e13519a5227d3853b225} 
+bool Is\+Mouse\+Pressed (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00074}{74}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_event_a9efd31000221e13519a5227d3853b225}\index{Event@{Event}!IsMousePressed@{IsMousePressed}}
+\index{IsMousePressed@{IsMousePressed}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{IsMousePressed()}{IsMousePressed()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_event_a9efd31000221e13519a5227d3853b225} 
+bool Is\+Mouse\+Pressed (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00074}{74}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_event_a01ffc81c2ff216c5b2145b937aea47e8}\index{Event@{Event}!IsMouseReleased@{IsMouseReleased}}
+\index{IsMouseReleased@{IsMouseReleased}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{IsMouseReleased()}{IsMouseReleased()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_event_a01ffc81c2ff216c5b2145b937aea47e8} 
+bool Is\+Mouse\+Released (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source_l00079}{79}} of file \doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+\Hypertarget{class_l_d_l_1_1_event_a01ffc81c2ff216c5b2145b937aea47e8}\index{Event@{Event}!IsMouseReleased@{IsMouseReleased}}
+\index{IsMouseReleased@{IsMouseReleased}!Event@{Event}}
+\doxysubsubsection{\texorpdfstring{IsMouseReleased()}{IsMouseReleased()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_l_d_l_1_1_event_a01ffc81c2ff216c5b2145b937aea47e8} 
+bool Is\+Mouse\+Released (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source_l00079}{79}} of file \doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp_source}{LDL.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+include/\+\+LDL/\+\+C++11/\+\doxymbox{\hyperlink{_c_09_0911_2_l_d_l_8hpp}{LDL.\+hpp}}\item 
+include/\+\+LDL/\+\+C++98/\+\doxymbox{\hyperlink{_c_09_0998_2_l_d_l_8hpp}{LDL.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,448 @@
+\doxysection{include/\+\+LDL/\+\+Window.h File Reference}
+\hypertarget{_window_8h}{}\label{_window_8h}\index{include/LDL/Window.h@{include/LDL/Window.h}}
+{\ttfamily \+\#include $<$LDL/\+\+Result.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Vec2i.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Events.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Context.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Surface.\+h$>$}\newline
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct LDL\+\_\+\+Window \doxymbox{\hyperlink{_window_8h_ab9c704c6c2048a28d0d1b23d8230cf3c}{LDL\+\_\+\+Window}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_window_8h_ab67a2630941bf3aeb481afc80186b22d}{LDL\+\_\+\+Window\+Create}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result, \doxymbox{\hyperlink{struct_l_d_l___context}{LDL\+\_\+\+Context}} \texorpdfstring{$\ast$}{*}context, \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} pos, \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} size, const char \texorpdfstring{$\ast$}{*}title, size\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Creates and initializes a new window instance. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_window_8h_a7478aaaaf389d00059fa5fa970346d31}{LDL\+\_\+\+Window\+Destroy}} (\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Destroys a window instance and releases all associated resources. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool \doxymbox{\hyperlink{_window_8h_a8979531dbe60d56a8226a2c2d7ba2f4b}{LDL\+\_\+\+Window\+Is\+Running}} (\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Checks if the window is still running. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_window_8h_a3fa302dbbfa62a5020770bb1af12766f}{LDL\+\_\+\+Window\+Stop\+Event}} (\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Stops the window event loop. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool \doxymbox{\hyperlink{_window_8h_a548250bdfafc069923c060f6b2a5bbaa}{LDL\+\_\+\+Window\+Get\+Event}} (\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}window, \doxymbox{\hyperlink{struct_l_d_l___event}{LDL\+\_\+\+Event}} \texorpdfstring{$\ast$}{*}event)
+\begin{DoxyCompactList}\small\item\em Retrieves the next event from the window\textquotesingle{}s event queue. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} \doxymbox{\hyperlink{_window_8h_a24d4a14c15951fe34d48421a12eb0ab5}{LDL\+\_\+\+Window\+Get\+Size}} (\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Retrieves the current size of the window. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} const char \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_window_8h_a6fd8cfc7c49d01d0e36d8d9d557bdee2}{LDL\+\_\+\+Window\+Get\+Title}} (\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Retrieves the current title of the window. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_window_8h_a6c4614d39a5890ee8aa841c9b52c5a31}{LDL\+\_\+\+Window\+Set\+Title}} (\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}window, const char \texorpdfstring{$\ast$}{*}title)
+\begin{DoxyCompactList}\small\item\em Sets the title of the window. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_window_8h_a7d393f03811e9fe3aef727196589a0d6}{LDL\+\_\+\+Window\+Present}} (\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Presents the window\textquotesingle{}s screen surface to the display. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_window_8h_aebec1312228c93d8ec5c79a7b4b3e615}{LDL\+\_\+\+Window\+Get\+Screen}} (\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}window)
+\begin{DoxyCompactList}\small\item\em Retrieves the screen surface of the window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{_window_8h_doc-typedef-members}
+\Hypertarget{_window_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{_window_8h_ab9c704c6c2048a28d0d1b23d8230cf3c}\index{Window.h@{Window.h}!LDL\_Window@{LDL\_Window}}
+\index{LDL\_Window@{LDL\_Window}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_Window}{LDL\_Window}}
+{\footnotesize\ttfamily \label{_window_8h_ab9c704c6c2048a28d0d1b23d8230cf3c} 
+typedef struct LDL\+\_\+\+Window LDL\+\_\+\+Window}
+
+
+
+Definition at line \doxymbox{\hyperlink{_window_8h_source_l00055}{55}} of file \doxymbox{\hyperlink{_window_8h_source}{Window.\+h}}.
+
+
+
+\label{_window_8h_doc-func-members}
+\Hypertarget{_window_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_window_8h_ab67a2630941bf3aeb481afc80186b22d}\index{Window.h@{Window.h}!LDL\_WindowCreate@{LDL\_WindowCreate}}
+\index{LDL\_WindowCreate@{LDL\_WindowCreate}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_WindowCreate()}{LDL\_WindowCreate()}}
+{\footnotesize\ttfamily \label{_window_8h_ab67a2630941bf3aeb481afc80186b22d} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Window\+Create (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___context}{LDL\+\_\+\+Context}} \texorpdfstring{$\ast$}{*}}]{context}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}}}]{pos}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}}}]{size}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{title}{, }\item[{size\+\_\+t}]{mode}{}\end{DoxyParamCaption})}
+
+
+
+Creates and initializes a new window instance. 
+
+This function allocates memory for a new window object and initializes it with the specified parameters. The window is created with a rendering context and an associated screen surface.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to an \doxylink{struct_l_d_l___result}{LDL\+\_\+\+Result} variable that will receive the operation status. If the operation succeeds, the result will be set to success state. If an error occurs, the result will contain an appropriate error message. \\
+\hline
+{\em context} & Pointer to the rendering context that will be associated with this window. \\
+\hline
+{\em pos} & The initial position of the window (x, y coordinates) in screen space. \\
+\hline
+{\em size} & The initial dimensions of the window (width, height) in pixels. \\
+\hline
+{\em title} & The title string to display in the window title bar. \\
+\hline
+{\em mode} & Bitwise combination of window mode flags (from LDL\+\_\+\+Window\+Mode enumeration):\+
+\begin{DoxyItemize}
+\item LDL\+\_\+\+Window\+Mode\+Full\+Screen:\+ Fullscreen mode
+\item LDL\+\_\+\+Window\+Mode\+Resized:\+ Allow resizing
+\item LDL\+\_\+\+Window\+Mode\+Fixed:\+ Fixed size (non-\/resizable)
+\item LDL\+\_\+\+Window\+Mode\+Centered:\+ Center window on screen
+\item LDL\+\_\+\+Window\+Mode\+Minimized:\+ Start minimized
+\item LDL\+\_\+\+Window\+Mode\+Maximized:\+ Start maximized 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \doxylink{struct_l_d_l___window}{LDL\+\_\+\+Window} instance if the operation was successful; otherwise, a NULL pointer is returned.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned window must be freed using LDL\+\_\+\+Window\+Destroy when no longer needed. 
+
+The context must be valid and initialized before creating the window. 
+
+If mode is 0, default window settings are used. 
+
+The window\textquotesingle{}s screen surface can be accessed via LDL\+\_\+\+Window\+Get\+Screen.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Create\ a\ centered\ window}}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\_Vec2i}}\ pos\ =\ \doxymbox{\hyperlink{_vec2i_8h_abf13b53646162aaa6eaf4cf59da99371}{LDL\_GetVec2i}}(0,\ 0);}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\_Vec2i}}\ size\ =\ \doxymbox{\hyperlink{_vec2i_8h_abf13b53646162aaa6eaf4cf59da99371}{LDL\_GetVec2i}}(800,\ 600);}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\_Window}}*\ window\ =\ \doxymbox{\hyperlink{_window_8h_ab67a2630941bf3aeb481afc80186b22d}{LDL\_WindowCreate}}(result,\ context,\ pos,\ size,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}My\ Application"{}},\ \doxymbox{\hyperlink{_enums_8h_ae66032aa0edd81cfd9231c99d65a18dfa77016631a8d898e44cc85bdacccb1369}{LDL\_WindowModeCentered}});}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{_window_8h_a7478aaaaf389d00059fa5fa970346d31}{LDL\+\_\+\+Window\+Destroy} 
+
+LDL\+\_\+\+Window\+Mode flags 
+
+\doxylink{_window_8h_aebec1312228c93d8ec5c79a7b4b3e615}{LDL\+\_\+\+Window\+Get\+Screen} 
+\end{DoxySeeAlso}
+\Hypertarget{_window_8h_a7478aaaaf389d00059fa5fa970346d31}\index{Window.h@{Window.h}!LDL\_WindowDestroy@{LDL\_WindowDestroy}}
+\index{LDL\_WindowDestroy@{LDL\_WindowDestroy}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_WindowDestroy()}{LDL\_WindowDestroy()}}
+{\footnotesize\ttfamily \label{_window_8h_a7478aaaaf389d00059fa5fa970346d31} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Window\+Destroy (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}}]{window}{}\end{DoxyParamCaption})}
+
+
+
+Destroys a window instance and releases all associated resources. 
+
+This function performs the necessary cleanup for the specified window, including the deallocation of the window handle, screen surface, and any associated resources. After this call, the pointer to the window becomes invalid.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & A pointer to the \doxylink{struct_l_d_l___window}{LDL\+\_\+\+Window} instance that is intended to be destroyed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+It is safe to pass NULL to this function; it will simply do nothing. 
+
+The window\textquotesingle{}s screen surface is automatically destroyed. 
+
+The rendering context associated with the window should be destroyed separately after the window is destroyed. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_window_8h_ab67a2630941bf3aeb481afc80186b22d}{LDL\+\_\+\+Window\+Create} 
+\end{DoxySeeAlso}
+\Hypertarget{_window_8h_a548250bdfafc069923c060f6b2a5bbaa}\index{Window.h@{Window.h}!LDL\_WindowGetEvent@{LDL\_WindowGetEvent}}
+\index{LDL\_WindowGetEvent@{LDL\_WindowGetEvent}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_WindowGetEvent()}{LDL\_WindowGetEvent()}}
+{\footnotesize\ttfamily \label{_window_8h_a548250bdfafc069923c060f6b2a5bbaa} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool LDL\+\_\+\+Window\+Get\+Event (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}}]{window}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___event}{LDL\+\_\+\+Event}} \texorpdfstring{$\ast$}{*}}]{event}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the next event from the window\textquotesingle{}s event queue. 
+
+This function polls the window\textquotesingle{}s event queue and returns the next pending event. If no events are available, the function returns false and the event structure is not modified.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & A pointer to the \doxylink{struct_l_d_l___window}{LDL\+\_\+\+Window} instance. \\
+\hline
+{\em event} & A pointer to an \doxylink{struct_l_d_l___event}{LDL\+\_\+\+Event} structure that will receive the event data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if an event was retrieved and stored in the event structure; false if no events are pending.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function should be called in the main application loop to process all window and input events. 
+
+The event structure\textquotesingle{}s Type field indicates the specific event type. 
+
+Common usage pattern:\+
+\begin{DoxyItemize}
+\item Call LDL\+\_\+\+Window\+Get\+Event in a loop until it returns false
+\item Process each event based on its Type
+\item Handle quit events by calling LDL\+\_\+\+Window\+Stop\+Event
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Event\ processing\ loop}}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___event}{LDL\_Event}}\ event;}
+\DoxyCodeLine{\textcolor{keywordflow}{while}\ (\doxymbox{\hyperlink{_window_8h_a548250bdfafc069923c060f6b2a5bbaa}{LDL\_WindowGetEvent}}(window,\ \&event))\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{switch}\ (event.\doxymbox{\hyperlink{struct_l_d_l___event_aeff746a68ed515a1d9f0c40a38dd200b}{Type}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_enums_8h_a46ae884fbef51caad9231cf952a79723a7fb1e0aff3f27df4bc0af1c091baeddd}{LDL\_EventIsQuit}}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{_window_8h_a3fa302dbbfa62a5020770bb1af12766f}{LDL\_WindowStopEvent}}(window);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_enums_8h_a46ae884fbef51caad9231cf952a79723a8fe0e9632c5d7acb23fe8a3fd27cbd83}{LDL\_EventIsKeyboard}}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ keyboard\ input...}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \doxymbox{\hyperlink{_enums_8h_a46ae884fbef51caad9231cf952a79723ad68ab870409d659461629c214ad37f86}{LDL\_EventIsMouseClick}}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ mouse\ input...}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...\ handle\ other\ event\ types}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{_window_8h_a8979531dbe60d56a8226a2c2d7ba2f4b}{LDL\+\_\+\+Window\+Is\+Running} 
+
+\doxylink{_window_8h_a3fa302dbbfa62a5020770bb1af12766f}{LDL\+\_\+\+Window\+Stop\+Event} 
+
+\doxylink{struct_l_d_l___event}{LDL\+\_\+\+Event} 
+\end{DoxySeeAlso}
+\Hypertarget{_window_8h_aebec1312228c93d8ec5c79a7b4b3e615}\index{Window.h@{Window.h}!LDL\_WindowGetScreen@{LDL\_WindowGetScreen}}
+\index{LDL\_WindowGetScreen@{LDL\_WindowGetScreen}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_WindowGetScreen()}{LDL\_WindowGetScreen()}}
+{\footnotesize\ttfamily \label{_window_8h_aebec1312228c93d8ec5c79a7b4b3e615} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Window\+Get\+Screen (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}}]{window}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the screen surface of the window. 
+
+This function returns a pointer to the window\textquotesingle{}s screen surface, which can be used for direct pixel manipulation and rendering. The surface represents the window\textquotesingle{}s drawing area.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & A pointer to the \doxylink{struct_l_d_l___window}{LDL\+\_\+\+Window} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the \doxylink{struct_l_d_l___surface}{LDL\+\_\+\+Surface} representing the window\textquotesingle{}s screen.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The surface is owned by the window and should not be destroyed separately. It will be automatically destroyed when the window is destroyed. 
+
+Modifying the surface pixels allows custom rendering directly to the window. 
+
+For software rendering, drawing directly to this surface is the primary method of rendering.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Clear\ screen\ with\ a\ color}}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\_Surface}}*\ screen\ =\ \doxymbox{\hyperlink{_window_8h_aebec1312228c93d8ec5c79a7b4b3e615}{LDL\_WindowGetScreen}}(window);}
+\DoxyCodeLine{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\_t}}*\ pixels\ =\ \doxymbox{\hyperlink{_surface_8h_a0ceb2537e15cbc0f9c1b9dc5993e690c}{LDL\_SurfaceGetPixels}}(screen);}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t}\ pitch\ =\ \doxymbox{\hyperlink{_surface_8h_a1a2fc28f688765624a021a3df70fcf9e}{LDL\_SurfaceGetPitch}}(screen);}
+\DoxyCodeLine{\doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\_Vec2i}}\ size\ =\ \doxymbox{\hyperlink{_surface_8h_a8f3ab4f9ab7498499da0fbda5e88e607}{LDL\_SurfaceGetSize}}(screen);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Fill\ with\ blue}}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ y\ =\ 0;\ y\ <\ size.\doxymbox{\hyperlink{struct_l_d_l___vec2i_a0a2f84ed7838f07779ae24c5a9086d33}{y}};\ y++)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ size.\doxymbox{\hyperlink{struct_l_d_l___vec2i_a6150e0515f7202e2fb518f7206ed97dc}{x}};\ x++)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ index\ =\ y\ *\ pitch\ +\ x\ *\ 4;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ pixels[index\ +\ 0]\ =\ 0;\ \ \ \ \ \textcolor{comment}{//\ R}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ pixels[index\ +\ 1]\ =\ 0;\ \ \ \ \ \textcolor{comment}{//\ G}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ pixels[index\ +\ 2]\ =\ 255;\ \ \ \textcolor{comment}{//\ B}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ pixels[index\ +\ 3]\ =\ 255;\ \ \ \textcolor{comment}{//\ A}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{struct_l_d_l___surface}{LDL\+\_\+\+Surface} 
+
+\doxylink{_window_8h_a7d393f03811e9fe3aef727196589a0d6}{LDL\+\_\+\+Window\+Present} 
+\end{DoxySeeAlso}
+\Hypertarget{_window_8h_a24d4a14c15951fe34d48421a12eb0ab5}\index{Window.h@{Window.h}!LDL\_WindowGetSize@{LDL\_WindowGetSize}}
+\index{LDL\_WindowGetSize@{LDL\_WindowGetSize}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_WindowGetSize()}{LDL\_WindowGetSize()}}
+{\footnotesize\ttfamily \label{_window_8h_a24d4a14c15951fe34d48421a12eb0ab5} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} LDL\+\_\+\+Window\+Get\+Size (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}}]{window}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the current size of the window. 
+
+This function returns the current dimensions of the window in pixels. The size may change if the window is resized by the user.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & A pointer to the \doxylink{struct_l_d_l___window}{LDL\+\_\+\+Window} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \doxylink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i} structure containing the window\textquotesingle{}s width and height.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned size reflects the current window size, which may be different from the initial size if the window has been resized. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_window_8h_ab67a2630941bf3aeb481afc80186b22d}{LDL\+\_\+\+Window\+Create} 
+
+\doxylink{struct_l_d_l___event_resize}{LDL\+\_\+\+Event\+Resize} 
+\end{DoxySeeAlso}
+\Hypertarget{_window_8h_a6fd8cfc7c49d01d0e36d8d9d557bdee2}\index{Window.h@{Window.h}!LDL\_WindowGetTitle@{LDL\_WindowGetTitle}}
+\index{LDL\_WindowGetTitle@{LDL\_WindowGetTitle}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_WindowGetTitle()}{LDL\_WindowGetTitle()}}
+{\footnotesize\ttfamily \label{_window_8h_a6fd8cfc7c49d01d0e36d8d9d557bdee2} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} const char \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Window\+Get\+Title (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}}]{window}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the current title of the window. 
+
+This function returns a pointer to the string currently displayed in the window\textquotesingle{}s title bar.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & A pointer to the \doxylink{struct_l_d_l___window}{LDL\+\_\+\+Window} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to a constant string containing the window title.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned string is owned by the window and should not be freed. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_window_8h_a6c4614d39a5890ee8aa841c9b52c5a31}{LDL\+\_\+\+Window\+Set\+Title} 
+\end{DoxySeeAlso}
+\Hypertarget{_window_8h_a8979531dbe60d56a8226a2c2d7ba2f4b}\index{Window.h@{Window.h}!LDL\_WindowIsRunning@{LDL\_WindowIsRunning}}
+\index{LDL\_WindowIsRunning@{LDL\_WindowIsRunning}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_WindowIsRunning()}{LDL\_WindowIsRunning()}}
+{\footnotesize\ttfamily \label{_window_8h_a8979531dbe60d56a8226a2c2d7ba2f4b} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool LDL\+\_\+\+Window\+Is\+Running (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}}]{window}{}\end{DoxyParamCaption})}
+
+
+
+Checks if the window is still running. 
+
+This function returns true if the window has not received a quit event and is still active. It is typically used as the condition for the main application loop.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & A pointer to the \doxylink{struct_l_d_l___window}{LDL\+\_\+\+Window} instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the window is running and active; false if a quit event has been received or the window is closed.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The window is considered running until LDL\+\_\+\+Window\+Stop\+Event is called or the user closes the window. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_window_8h_a3fa302dbbfa62a5020770bb1af12766f}{LDL\+\_\+\+Window\+Stop\+Event} 
+
+\doxylink{_window_8h_a548250bdfafc069923c060f6b2a5bbaa}{LDL\+\_\+\+Window\+Get\+Event} 
+\end{DoxySeeAlso}
+\Hypertarget{_window_8h_a7d393f03811e9fe3aef727196589a0d6}\index{Window.h@{Window.h}!LDL\_WindowPresent@{LDL\_WindowPresent}}
+\index{LDL\_WindowPresent@{LDL\_WindowPresent}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_WindowPresent()}{LDL\_WindowPresent()}}
+{\footnotesize\ttfamily \label{_window_8h_a7d393f03811e9fe3aef727196589a0d6} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Window\+Present (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}}]{window}{}\end{DoxyParamCaption})}
+
+
+
+Presents the window\textquotesingle{}s screen surface to the display. 
+
+This function swaps the back buffer with the front buffer, making the rendered content visible on the screen. It is typically called once per frame after all rendering operations are complete.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & A pointer to the \doxylink{struct_l_d_l___window}{LDL\+\_\+\+Window} instance.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function is essential for double-\/buffered rendering. 
+
+For software rendering, this updates the window content. 
+
+For Open\+GL rendering, this performs a buffer swap. 
+
+This function should be called at the end of each frame.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Render\ loop}}
+\DoxyCodeLine{\textcolor{keywordflow}{while}\ (\doxymbox{\hyperlink{_window_8h_a8979531dbe60d56a8226a2c2d7ba2f4b}{LDL\_WindowIsRunning}}(window))\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Process\ events...}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Clear\ screen...}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Render\ content...}}
+\DoxyCodeLine{\ \ \ \ \doxymbox{\hyperlink{_window_8h_a7d393f03811e9fe3aef727196589a0d6}{LDL\_WindowPresent}}(window);\ \ \textcolor{comment}{//\ Display\ the\ rendered\ frame}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{_window_8h_aebec1312228c93d8ec5c79a7b4b3e615}{LDL\+\_\+\+Window\+Get\+Screen} 
+\end{DoxySeeAlso}
+\Hypertarget{_window_8h_a6c4614d39a5890ee8aa841c9b52c5a31}\index{Window.h@{Window.h}!LDL\_WindowSetTitle@{LDL\_WindowSetTitle}}
+\index{LDL\_WindowSetTitle@{LDL\_WindowSetTitle}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_WindowSetTitle()}{LDL\_WindowSetTitle()}}
+{\footnotesize\ttfamily \label{_window_8h_a6c4614d39a5890ee8aa841c9b52c5a31} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Window\+Set\+Title (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}}]{window}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{title}{}\end{DoxyParamCaption})}
+
+
+
+Sets the title of the window. 
+
+This function changes the text displayed in the window\textquotesingle{}s title bar to the specified string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & A pointer to the \doxylink{struct_l_d_l___window}{LDL\+\_\+\+Window} instance. \\
+\hline
+{\em title} & The new title string to display.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The title string is copied internally, so it can be freed after this call if it was dynamically allocated. 
+
+The title is immediately updated and visible to the user. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_window_8h_a6fd8cfc7c49d01d0e36d8d9d557bdee2}{LDL\+\_\+\+Window\+Get\+Title}
+\end{DoxySeeAlso}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ Example:\ Update\ window\ title\ with\ FPS}}
+\DoxyCodeLine{\textcolor{keywordtype}{char}\ title[256];}
+\DoxyCodeLine{snprintf(title,\ \textcolor{keyword}{sizeof}(title),\ \textcolor{stringliteral}{"{}Game\ -\/\ FPS:\ \%zu"{}},\ fps);}
+\DoxyCodeLine{\doxymbox{\hyperlink{_window_8h_a6c4614d39a5890ee8aa841c9b52c5a31}{LDL\_WindowSetTitle}}(window,\ title);}
+
+\end{DoxyCode}
+ \Hypertarget{_window_8h_a3fa302dbbfa62a5020770bb1af12766f}\index{Window.h@{Window.h}!LDL\_WindowStopEvent@{LDL\_WindowStopEvent}}
+\index{LDL\_WindowStopEvent@{LDL\_WindowStopEvent}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_WindowStopEvent()}{LDL\_WindowStopEvent()}}
+{\footnotesize\ttfamily \label{_window_8h_a3fa302dbbfa62a5020770bb1af12766f} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Window\+Stop\+Event (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___window}{LDL\+\_\+\+Window}} \texorpdfstring{$\ast$}{*}}]{window}{}\end{DoxyParamCaption})}
+
+
+
+Stops the window event loop. 
+
+This function signals the window to stop processing events, effectively causing LDL\+\_\+\+Window\+Is\+Running to return false and the application loop to exit.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & A pointer to the \doxylink{struct_l_d_l___window}{LDL\+\_\+\+Window} instance.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function is typically called in response to a quit event or when the application wants to exit gracefully. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_window_8h_a8979531dbe60d56a8226a2c2d7ba2f4b}{LDL\+\_\+\+Window\+Is\+Running} 
+
+\doxylink{_window_8h_a548250bdfafc069923c060f6b2a5bbaa}{LDL\+\_\+\+Window\+Get\+Event} 
+\end{DoxySeeAlso}

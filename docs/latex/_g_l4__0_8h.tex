@@ -1,0 +1,1123 @@
+\doxysection{include/\+\+LDL/\+\+Open\+GL/\+\+GL4\+\_\+0.h File Reference}
+\hypertarget{_g_l4__0_8h}{}\label{_g_l4__0_8h}\index{include/LDL/OpenGL/GL4\_0.h@{include/LDL/OpenGL/GL4\_0.h}}
+{\ttfamily \+\#include $<$LDL/\+\+Open\+GL/\+\+GL3\+\_\+3.\+h$>$}\newline
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_ae7047805b3470f1b033a0f4da0cb0287}{PFNGLMINSAMPLESHADINGPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a31aeedaeef29442c9c015ab355c8f5ab}{GLfloat}} value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_ab428a2212d203b6aa72397a6a0d9092b}{PFNGLBLENDEQUATIONIPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} buf, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_aada4999d8bf6062f6abbdb1896fb4acd}{PFNGLBLENDEQUATIONSEPARATEIPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} buf, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode\+RGB, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode\+Alpha)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_ae4f65c850f6e2e6c7b8fdfbb0fe2a83c}{PFNGLBLENDFUNCIPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} buf, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} src, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} dst)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a01becd9614f583ade7253f9c4461d1f1}{PFNGLBLENDFUNCSEPARATEIPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} buf, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} src\+RGB, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} dst\+RGB, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} src\+Alpha, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} dst\+Alpha)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_ad82190ae8cefb02ff3abb2091f575e0b}{PFNGLDRAWARRAYSINDIRECTPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode, const void \texorpdfstring{$\ast$}{*}indirect)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_ac662de5511b3a02ecd9b6e91e171ee23}{PFNGLDRAWELEMENTSINDIRECTPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} type, const void \texorpdfstring{$\ast$}{*}indirect)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a79d779e3e509f239a8db4d5613dff27d}{PFNGLUNIFORM1\+DPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} x)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_aceba01c456c6aa7ea984c61647dfd08c}{PFNGLUNIFORM2\+DPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} x, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} y)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a1283fc05a95e500b7e6b574b5e50555a}{PFNGLUNIFORM3\+DPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} x, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} y, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} z)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a37d22a3143a7f70a29f108404562f20a}{PFNGLUNIFORM4\+DPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} x, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} y, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} z, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} w)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a19b9efe0a8948d63e8e08adb10c83aa2}{PFNGLUNIFORM1\+DVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a0047daf20cdf4825dfade20a7c9758ef}{PFNGLUNIFORM2\+DVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_ae57bab508f740907db16992778da1f48}{PFNGLUNIFORM3\+DVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a8fd23d8e5aa2c328c0bad521d26824b5}{PFNGLUNIFORM4\+DVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a6c26891a92e211f881354585f22c44d2}{PFNGLUNIFORMMATRIX2\+DVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_aac07e7516ae3d2563f44699e616b199f}{PFNGLUNIFORMMATRIX3\+DVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a0c4fcf69f3fa279a1328e4b974eefc99}{PFNGLUNIFORMMATRIX4\+DVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_adc619817a69f8926edd1d87b14a7325d}{PFNGLUNIFORMMATRIX2\+X3\+DVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a74d04c9ccd29acdd83e11dc95dde0161}{PFNGLUNIFORMMATRIX2\+X4\+DVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a86bf8d5baa281a704b3c20c705497d28}{PFNGLUNIFORMMATRIX3\+X2\+DVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a91f99e0f84f763437240892279274ed7}{PFNGLUNIFORMMATRIX3\+X4\+DVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_aa5ab69a2e1438e190e12583a6eab0abb}{PFNGLUNIFORMMATRIX4\+X2\+DVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a984ca1cee0e492fda3dc963c824efca2}{PFNGLUNIFORMMATRIX4\+X3\+DVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_ac3f52983967ed409a4ef38d5f20a208a}{PFNGLGETUNIFORMDVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}params)
+\item 
+typedef \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}}(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a0e6a06772a356fa9d43710a20edac3aa}{PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, const \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}name)
+\item 
+typedef \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}}(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a8fdf0fd2327c1d1dd657f0cc0d66d5b4}{PFNGLGETSUBROUTINEINDEXPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, const \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}name)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_aed153bf86a8cc304fa9c363b29e03518}{PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} index, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} pname, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} \texorpdfstring{$\ast$}{*}values)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a0d92a103f41489b19e54895968991466}{PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} index, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} buf\+Size, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} \texorpdfstring{$\ast$}{*}length, \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}name)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_aa4267e9073ac557799f5ed70082738c8}{PFNGLGETACTIVESUBROUTINENAMEPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} index, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} buf\+Size, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} \texorpdfstring{$\ast$}{*}length, \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}name)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_af5ea8f1eec63df8901326627a8ce793a}{PFNGLUNIFORMSUBROUTINESUIVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, const \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} \texorpdfstring{$\ast$}{*}indices)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a5e8a366ef2264b5c5a1a080821bf5fad}{PFNGLGETUNIFORMSUBROUTINEUIVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} \texorpdfstring{$\ast$}{*}params)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a8e08d95150416e947773877cce0781ae}{PFNGLGETPROGRAMSTAGEIVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} pname, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} \texorpdfstring{$\ast$}{*}values)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_ac04e271049b17da0ac128c0163441048}{PFNGLPATCHPARAMETERIPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} pname, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} value)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_ac639588d0484369c6b35e4b8b10b2730}{PFNGLPATCHPARAMETERFVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} pname, const \doxymbox{\hyperlink{_g_l_types_8h_a31aeedaeef29442c9c015ab355c8f5ab}{GLfloat}} \texorpdfstring{$\ast$}{*}values)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a77f17064ab9ee378465d044990560b66}{PFNGLBINDTRANSFORMFEEDBACKPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} target, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} id)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_aae40d595f6d94e2b82c2d695df358aca}{PFNGLDELETETRANSFORMFEEDBACKSPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} n, const \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} \texorpdfstring{$\ast$}{*}ids)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a2c1292829e1ffd13faece6ea24a3153d}{PFNGLGENTRANSFORMFEEDBACKSPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} n, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} \texorpdfstring{$\ast$}{*}ids)
+\item 
+typedef \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}}(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a358861185aedd7cceca484dd2df7b2e6}{PFNGLISTRANSFORMFEEDBACKPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} id)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_ad7a9563a320217cb8fc938f27334a31d}{PFNGLPAUSETRANSFORMFEEDBACKPROC}}) (void)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a423a3383bebd4399859d18a52c1f9423}{PFNGLRESUMETRANSFORMFEEDBACKPROC}}) (void)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a11b33db38a1eef2874c2cd79655dd32d}{PFNGLDRAWTRANSFORMFEEDBACKPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} id)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a953e31c12d5b11cc8a07977e1f4d6e99}{PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} id, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} stream)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a33575f871097fa8ba9a8497f0e1791c4}{PFNGLBEGINQUERYINDEXEDPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} target, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} index, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} id)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_af258ffc12d46801d03ad639b195e43fd}{PFNGLENDQUERYINDEXEDPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} target, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} index)
+\item 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_g_l4__0_8h_a291ee1023a3cb69701c0e07a661bae8a}{PFNGLGETQUERYINDEXEDIVPROC}}) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} target, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} index, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} pname, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} \texorpdfstring{$\ast$}{*}params)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ae7047805b3470f1b033a0f4da0cb0287}{PFNGLMINSAMPLESHADINGPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a46d2a7fd0969e8745a2e0114290f48e3}{gl\+Min\+Sample\+Shading}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ab428a2212d203b6aa72397a6a0d9092b}{PFNGLBLENDEQUATIONIPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a03a17fec3150f682285bbcb104729439}{gl\+Blend\+Equationi}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_aada4999d8bf6062f6abbdb1896fb4acd}{PFNGLBLENDEQUATIONSEPARATEIPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_aabb5e431c1a54d5f9a73122b02583789}{gl\+Blend\+Equation\+Separatei}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ae4f65c850f6e2e6c7b8fdfbb0fe2a83c}{PFNGLBLENDFUNCIPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a114fff272cb6de0ca7aacd08440426a4}{gl\+Blend\+Funci}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a01becd9614f583ade7253f9c4461d1f1}{PFNGLBLENDFUNCSEPARATEIPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_aa787334b8a57d1b1f191606bb8445e0c}{gl\+Blend\+Func\+Separatei}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ad82190ae8cefb02ff3abb2091f575e0b}{PFNGLDRAWARRAYSINDIRECTPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a7216afde9d7f176ee86c1a4fcfbf55d7}{gl\+Draw\+Arrays\+Indirect}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ac662de5511b3a02ecd9b6e91e171ee23}{PFNGLDRAWELEMENTSINDIRECTPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a6c3c349149cc27275d30181cc0e48d10}{gl\+Draw\+Elements\+Indirect}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a79d779e3e509f239a8db4d5613dff27d}{PFNGLUNIFORM1\+DPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a8dfcc6baf2756ddd269ac5f9c602a8cf}{gl\+Uniform1d}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_aceba01c456c6aa7ea984c61647dfd08c}{PFNGLUNIFORM2\+DPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_aad293ddf1369977749c0dd5837ab7da2}{gl\+Uniform2d}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a1283fc05a95e500b7e6b574b5e50555a}{PFNGLUNIFORM3\+DPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_aa94d985c3f9c8d5038f90955ec3be9fa}{gl\+Uniform3d}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a37d22a3143a7f70a29f108404562f20a}{PFNGLUNIFORM4\+DPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_aa6cd4cfc476a5ea4dffe06beb11c08ca}{gl\+Uniform4d}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a19b9efe0a8948d63e8e08adb10c83aa2}{PFNGLUNIFORM1\+DVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_ac02a7006db6cd95b0e3ac834d7e5bc96}{gl\+Uniform1dv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a0047daf20cdf4825dfade20a7c9758ef}{PFNGLUNIFORM2\+DVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a4e4d6a64f5337e75639c9fa3c3fabb0d}{gl\+Uniform2dv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ae57bab508f740907db16992778da1f48}{PFNGLUNIFORM3\+DVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a6a38db69b66e75cb9a2ff9e83e9ba351}{gl\+Uniform3dv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a8fd23d8e5aa2c328c0bad521d26824b5}{PFNGLUNIFORM4\+DVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a1c5918f70fcabc3072c67151e06b6aeb}{gl\+Uniform4dv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a6c26891a92e211f881354585f22c44d2}{PFNGLUNIFORMMATRIX2\+DVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a7502fe87442a73b269bbdf00fe052c5d}{gl\+Uniform\+Matrix2dv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_aac07e7516ae3d2563f44699e616b199f}{PFNGLUNIFORMMATRIX3\+DVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_ae84296ee86acc8f870a7ff272b62335f}{gl\+Uniform\+Matrix3dv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a0c4fcf69f3fa279a1328e4b974eefc99}{PFNGLUNIFORMMATRIX4\+DVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a45c66c3d7d80daba37382df03f7f14ef}{gl\+Uniform\+Matrix4dv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_adc619817a69f8926edd1d87b14a7325d}{PFNGLUNIFORMMATRIX2\+X3\+DVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_aca1ff1dd87e62ea049b55ba6d780b792}{gl\+Uniform\+Matrix2x3dv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a74d04c9ccd29acdd83e11dc95dde0161}{PFNGLUNIFORMMATRIX2\+X4\+DVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_ae502cbec6670ec147ec1ac2e2f295aec}{gl\+Uniform\+Matrix2x4dv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a86bf8d5baa281a704b3c20c705497d28}{PFNGLUNIFORMMATRIX3\+X2\+DVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a936d95ccbc62ccbe0792b3ef09a36f77}{gl\+Uniform\+Matrix3x2dv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a91f99e0f84f763437240892279274ed7}{PFNGLUNIFORMMATRIX3\+X4\+DVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a2e6479053df5a4926e800325f456b114}{gl\+Uniform\+Matrix3x4dv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_aa5ab69a2e1438e190e12583a6eab0abb}{PFNGLUNIFORMMATRIX4\+X2\+DVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a553453083353764073ef7ffaa61b4e99}{gl\+Uniform\+Matrix4x2dv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a984ca1cee0e492fda3dc963c824efca2}{PFNGLUNIFORMMATRIX4\+X3\+DVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a3e45f8dbc07b399f212fc25e1a65bfd2}{gl\+Uniform\+Matrix4x3dv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ac3f52983967ed409a4ef38d5f20a208a}{PFNGLGETUNIFORMDVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_ab84860fd39e7fb8c63148454720eafe5}{gl\+Get\+Uniformdv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a0e6a06772a356fa9d43710a20edac3aa}{PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a591ae880be231d0bf7393195846c666b}{gl\+Get\+Subroutine\+Uniform\+Location}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a8fdf0fd2327c1d1dd657f0cc0d66d5b4}{PFNGLGETSUBROUTINEINDEXPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a5d7c30e2deb9653747f3f22ef66e1fde}{gl\+Get\+Subroutine\+Index}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_aed153bf86a8cc304fa9c363b29e03518}{PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a897fdc28a07ea0c8829d87ba37a019bd}{gl\+Get\+Active\+Subroutine\+Uniformiv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a0d92a103f41489b19e54895968991466}{PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a591c03d224a05412b55a0b6c78a8a39c}{gl\+Get\+Active\+Subroutine\+Uniform\+Name}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_aa4267e9073ac557799f5ed70082738c8}{PFNGLGETACTIVESUBROUTINENAMEPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a2a4b0123357268405f310bf33ebf054a}{gl\+Get\+Active\+Subroutine\+Name}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_af5ea8f1eec63df8901326627a8ce793a}{PFNGLUNIFORMSUBROUTINESUIVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_ad83251a37a98c78cb8ab689bd5dbde6a}{gl\+Uniform\+Subroutinesuiv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a5e8a366ef2264b5c5a1a080821bf5fad}{PFNGLGETUNIFORMSUBROUTINEUIVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_aad271a7fe67b46ece35bdc300f34b367}{gl\+Get\+Uniform\+Subroutineuiv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a8e08d95150416e947773877cce0781ae}{PFNGLGETPROGRAMSTAGEIVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a9eee11ab366f07354ab51c15982fb638}{gl\+Get\+Program\+Stageiv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ac04e271049b17da0ac128c0163441048}{PFNGLPATCHPARAMETERIPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_ae1f1201ad8cde22a9332643611d99716}{gl\+Patch\+Parameteri}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ac639588d0484369c6b35e4b8b10b2730}{PFNGLPATCHPARAMETERFVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_ab4f2501c6b0f94685f924005caa36e9d}{gl\+Patch\+Parameterfv}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a77f17064ab9ee378465d044990560b66}{PFNGLBINDTRANSFORMFEEDBACKPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a7c17b92b75c4aea6b929d6f0237724c5}{gl\+Bind\+Transform\+Feedback}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_aae40d595f6d94e2b82c2d695df358aca}{PFNGLDELETETRANSFORMFEEDBACKSPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a0ab48a67ea7d580a7f31558973d8e33a}{gl\+Delete\+Transform\+Feedbacks}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a2c1292829e1ffd13faece6ea24a3153d}{PFNGLGENTRANSFORMFEEDBACKSPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a39b8ad30c6d5e20597d903be0018dc18}{gl\+Gen\+Transform\+Feedbacks}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a358861185aedd7cceca484dd2df7b2e6}{PFNGLISTRANSFORMFEEDBACKPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a050f454a60ef075a451b97b5845b1d72}{gl\+Is\+Transform\+Feedback}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ad7a9563a320217cb8fc938f27334a31d}{PFNGLPAUSETRANSFORMFEEDBACKPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a197e54a5b89ed0c26ed3b739df8a6897}{gl\+Pause\+Transform\+Feedback}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a423a3383bebd4399859d18a52c1f9423}{PFNGLRESUMETRANSFORMFEEDBACKPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a6d91028d878fb5d1afcdb82f6edb8bed}{gl\+Resume\+Transform\+Feedback}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a11b33db38a1eef2874c2cd79655dd32d}{PFNGLDRAWTRANSFORMFEEDBACKPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a0bc61c16e39347322c544f5df4f1dcaa}{gl\+Draw\+Transform\+Feedback}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a953e31c12d5b11cc8a07977e1f4d6e99}{PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_ad244ab93a5e2d69440d1e04b3293652a}{gl\+Draw\+Transform\+Feedback\+Stream}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a33575f871097fa8ba9a8497f0e1791c4}{PFNGLBEGINQUERYINDEXEDPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_acf75ff4dce30ca5218910ca99f096a0c}{gl\+Begin\+Query\+Indexed}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_af258ffc12d46801d03ad639b195e43fd}{PFNGLENDQUERYINDEXEDPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a040c2ec37f4ef1decdd39f2ecc9ad21b}{gl\+End\+Query\+Indexed}}
+\item 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a291ee1023a3cb69701c0e07a661bae8a}{PFNGLGETQUERYINDEXEDIVPROC}} \doxymbox{\hyperlink{_g_l4__0_8h_a155f39cbd17aa9d4abd8cb92780a866f}{gl\+Get\+Query\+Indexediv}}
+\end{DoxyCompactItemize}
+
+
+\label{_g_l4__0_8h_doc-typedef-members}
+\Hypertarget{_g_l4__0_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{_g_l4__0_8h_a33575f871097fa8ba9a8497f0e1791c4}\index{GL4\_0.h@{GL4\_0.h}!PFNGLBEGINQUERYINDEXEDPROC@{PFNGLBEGINQUERYINDEXEDPROC}}
+\index{PFNGLBEGINQUERYINDEXEDPROC@{PFNGLBEGINQUERYINDEXEDPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLBEGINQUERYINDEXEDPROC}{PFNGLBEGINQUERYINDEXEDPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a33575f871097fa8ba9a8497f0e1791c4} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLBEGINQUERYINDEXEDPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} target, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} index, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} id)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00067}{67}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a77f17064ab9ee378465d044990560b66}\index{GL4\_0.h@{GL4\_0.h}!PFNGLBINDTRANSFORMFEEDBACKPROC@{PFNGLBINDTRANSFORMFEEDBACKPROC}}
+\index{PFNGLBINDTRANSFORMFEEDBACKPROC@{PFNGLBINDTRANSFORMFEEDBACKPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLBINDTRANSFORMFEEDBACKPROC}{PFNGLBINDTRANSFORMFEEDBACKPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a77f17064ab9ee378465d044990560b66} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLBINDTRANSFORMFEEDBACKPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} target, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} id)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00059}{59}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ab428a2212d203b6aa72397a6a0d9092b}\index{GL4\_0.h@{GL4\_0.h}!PFNGLBLENDEQUATIONIPROC@{PFNGLBLENDEQUATIONIPROC}}
+\index{PFNGLBLENDEQUATIONIPROC@{PFNGLBLENDEQUATIONIPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLBLENDEQUATIONIPROC}{PFNGLBLENDEQUATIONIPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ab428a2212d203b6aa72397a6a0d9092b} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLBLENDEQUATIONIPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} buf, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00025}{25}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_aada4999d8bf6062f6abbdb1896fb4acd}\index{GL4\_0.h@{GL4\_0.h}!PFNGLBLENDEQUATIONSEPARATEIPROC@{PFNGLBLENDEQUATIONSEPARATEIPROC}}
+\index{PFNGLBLENDEQUATIONSEPARATEIPROC@{PFNGLBLENDEQUATIONSEPARATEIPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLBLENDEQUATIONSEPARATEIPROC}{PFNGLBLENDEQUATIONSEPARATEIPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_aada4999d8bf6062f6abbdb1896fb4acd} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLBLENDEQUATIONSEPARATEIPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} buf, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode\+RGB, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode\+Alpha)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00026}{26}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ae4f65c850f6e2e6c7b8fdfbb0fe2a83c}\index{GL4\_0.h@{GL4\_0.h}!PFNGLBLENDFUNCIPROC@{PFNGLBLENDFUNCIPROC}}
+\index{PFNGLBLENDFUNCIPROC@{PFNGLBLENDFUNCIPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLBLENDFUNCIPROC}{PFNGLBLENDFUNCIPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ae4f65c850f6e2e6c7b8fdfbb0fe2a83c} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLBLENDFUNCIPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} buf, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} src, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} dst)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00027}{27}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a01becd9614f583ade7253f9c4461d1f1}\index{GL4\_0.h@{GL4\_0.h}!PFNGLBLENDFUNCSEPARATEIPROC@{PFNGLBLENDFUNCSEPARATEIPROC}}
+\index{PFNGLBLENDFUNCSEPARATEIPROC@{PFNGLBLENDFUNCSEPARATEIPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLBLENDFUNCSEPARATEIPROC}{PFNGLBLENDFUNCSEPARATEIPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a01becd9614f583ade7253f9c4461d1f1} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLBLENDFUNCSEPARATEIPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} buf, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} src\+RGB, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} dst\+RGB, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} src\+Alpha, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} dst\+Alpha)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00028}{28}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_aae40d595f6d94e2b82c2d695df358aca}\index{GL4\_0.h@{GL4\_0.h}!PFNGLDELETETRANSFORMFEEDBACKSPROC@{PFNGLDELETETRANSFORMFEEDBACKSPROC}}
+\index{PFNGLDELETETRANSFORMFEEDBACKSPROC@{PFNGLDELETETRANSFORMFEEDBACKSPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLDELETETRANSFORMFEEDBACKSPROC}{PFNGLDELETETRANSFORMFEEDBACKSPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_aae40d595f6d94e2b82c2d695df358aca} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLDELETETRANSFORMFEEDBACKSPROC) (\doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} n, const \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} \texorpdfstring{$\ast$}{*}ids)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00060}{60}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ad82190ae8cefb02ff3abb2091f575e0b}\index{GL4\_0.h@{GL4\_0.h}!PFNGLDRAWARRAYSINDIRECTPROC@{PFNGLDRAWARRAYSINDIRECTPROC}}
+\index{PFNGLDRAWARRAYSINDIRECTPROC@{PFNGLDRAWARRAYSINDIRECTPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLDRAWARRAYSINDIRECTPROC}{PFNGLDRAWARRAYSINDIRECTPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ad82190ae8cefb02ff3abb2091f575e0b} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLDRAWARRAYSINDIRECTPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode, const void \texorpdfstring{$\ast$}{*}indirect)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00029}{29}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ac662de5511b3a02ecd9b6e91e171ee23}\index{GL4\_0.h@{GL4\_0.h}!PFNGLDRAWELEMENTSINDIRECTPROC@{PFNGLDRAWELEMENTSINDIRECTPROC}}
+\index{PFNGLDRAWELEMENTSINDIRECTPROC@{PFNGLDRAWELEMENTSINDIRECTPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLDRAWELEMENTSINDIRECTPROC}{PFNGLDRAWELEMENTSINDIRECTPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ac662de5511b3a02ecd9b6e91e171ee23} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLDRAWELEMENTSINDIRECTPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} type, const void \texorpdfstring{$\ast$}{*}indirect)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00030}{30}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a11b33db38a1eef2874c2cd79655dd32d}\index{GL4\_0.h@{GL4\_0.h}!PFNGLDRAWTRANSFORMFEEDBACKPROC@{PFNGLDRAWTRANSFORMFEEDBACKPROC}}
+\index{PFNGLDRAWTRANSFORMFEEDBACKPROC@{PFNGLDRAWTRANSFORMFEEDBACKPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLDRAWTRANSFORMFEEDBACKPROC}{PFNGLDRAWTRANSFORMFEEDBACKPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a11b33db38a1eef2874c2cd79655dd32d} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLDRAWTRANSFORMFEEDBACKPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} id)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00065}{65}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a953e31c12d5b11cc8a07977e1f4d6e99}\index{GL4\_0.h@{GL4\_0.h}!PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC@{PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC}}
+\index{PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC@{PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC}{PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a953e31c12d5b11cc8a07977e1f4d6e99} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} mode, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} id, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} stream)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00066}{66}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_af258ffc12d46801d03ad639b195e43fd}\index{GL4\_0.h@{GL4\_0.h}!PFNGLENDQUERYINDEXEDPROC@{PFNGLENDQUERYINDEXEDPROC}}
+\index{PFNGLENDQUERYINDEXEDPROC@{PFNGLENDQUERYINDEXEDPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLENDQUERYINDEXEDPROC}{PFNGLENDQUERYINDEXEDPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_af258ffc12d46801d03ad639b195e43fd} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLENDQUERYINDEXEDPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} target, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} index)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00068}{68}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a2c1292829e1ffd13faece6ea24a3153d}\index{GL4\_0.h@{GL4\_0.h}!PFNGLGENTRANSFORMFEEDBACKSPROC@{PFNGLGENTRANSFORMFEEDBACKSPROC}}
+\index{PFNGLGENTRANSFORMFEEDBACKSPROC@{PFNGLGENTRANSFORMFEEDBACKSPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGENTRANSFORMFEEDBACKSPROC}{PFNGLGENTRANSFORMFEEDBACKSPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a2c1292829e1ffd13faece6ea24a3153d} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGENTRANSFORMFEEDBACKSPROC) (\doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} n, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} \texorpdfstring{$\ast$}{*}ids)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00061}{61}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_aa4267e9073ac557799f5ed70082738c8}\index{GL4\_0.h@{GL4\_0.h}!PFNGLGETACTIVESUBROUTINENAMEPROC@{PFNGLGETACTIVESUBROUTINENAMEPROC}}
+\index{PFNGLGETACTIVESUBROUTINENAMEPROC@{PFNGLGETACTIVESUBROUTINENAMEPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETACTIVESUBROUTINENAMEPROC}{PFNGLGETACTIVESUBROUTINENAMEPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_aa4267e9073ac557799f5ed70082738c8} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETACTIVESUBROUTINENAMEPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} index, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} buf\+Size, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} \texorpdfstring{$\ast$}{*}length, \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}name)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00053}{53}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_aed153bf86a8cc304fa9c363b29e03518}\index{GL4\_0.h@{GL4\_0.h}!PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC@{PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC}}
+\index{PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC@{PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC}{PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_aed153bf86a8cc304fa9c363b29e03518} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} index, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} pname, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} \texorpdfstring{$\ast$}{*}values)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00051}{51}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a0d92a103f41489b19e54895968991466}\index{GL4\_0.h@{GL4\_0.h}!PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC@{PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC}}
+\index{PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC@{PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC}{PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a0d92a103f41489b19e54895968991466} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} index, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} buf\+Size, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} \texorpdfstring{$\ast$}{*}length, \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}name)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00052}{52}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a8e08d95150416e947773877cce0781ae}\index{GL4\_0.h@{GL4\_0.h}!PFNGLGETPROGRAMSTAGEIVPROC@{PFNGLGETPROGRAMSTAGEIVPROC}}
+\index{PFNGLGETPROGRAMSTAGEIVPROC@{PFNGLGETPROGRAMSTAGEIVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETPROGRAMSTAGEIVPROC}{PFNGLGETPROGRAMSTAGEIVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a8e08d95150416e947773877cce0781ae} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETPROGRAMSTAGEIVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} pname, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} \texorpdfstring{$\ast$}{*}values)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00056}{56}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a291ee1023a3cb69701c0e07a661bae8a}\index{GL4\_0.h@{GL4\_0.h}!PFNGLGETQUERYINDEXEDIVPROC@{PFNGLGETQUERYINDEXEDIVPROC}}
+\index{PFNGLGETQUERYINDEXEDIVPROC@{PFNGLGETQUERYINDEXEDIVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETQUERYINDEXEDIVPROC}{PFNGLGETQUERYINDEXEDIVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a291ee1023a3cb69701c0e07a661bae8a} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETQUERYINDEXEDIVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} target, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} index, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} pname, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} \texorpdfstring{$\ast$}{*}params)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00069}{69}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a8fdf0fd2327c1d1dd657f0cc0d66d5b4}\index{GL4\_0.h@{GL4\_0.h}!PFNGLGETSUBROUTINEINDEXPROC@{PFNGLGETSUBROUTINEINDEXPROC}}
+\index{PFNGLGETSUBROUTINEINDEXPROC@{PFNGLGETSUBROUTINEINDEXPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETSUBROUTINEINDEXPROC}{PFNGLGETSUBROUTINEINDEXPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a8fdf0fd2327c1d1dd657f0cc0d66d5b4} 
+typedef \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}}(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETSUBROUTINEINDEXPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, const \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}name)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00050}{50}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a0e6a06772a356fa9d43710a20edac3aa}\index{GL4\_0.h@{GL4\_0.h}!PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC@{PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC}}
+\index{PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC@{PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC}{PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a0e6a06772a356fa9d43710a20edac3aa} 
+typedef \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}}(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, const \doxymbox{\hyperlink{_g_l_types_8h_af7575655ac056b187ea385966b95a22d}{GLchar}} \texorpdfstring{$\ast$}{*}name)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00049}{49}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ac3f52983967ed409a4ef38d5f20a208a}\index{GL4\_0.h@{GL4\_0.h}!PFNGLGETUNIFORMDVPROC@{PFNGLGETUNIFORMDVPROC}}
+\index{PFNGLGETUNIFORMDVPROC@{PFNGLGETUNIFORMDVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETUNIFORMDVPROC}{PFNGLGETUNIFORMDVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ac3f52983967ed409a4ef38d5f20a208a} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETUNIFORMDVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} program, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}params)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00048}{48}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a5e8a366ef2264b5c5a1a080821bf5fad}\index{GL4\_0.h@{GL4\_0.h}!PFNGLGETUNIFORMSUBROUTINEUIVPROC@{PFNGLGETUNIFORMSUBROUTINEUIVPROC}}
+\index{PFNGLGETUNIFORMSUBROUTINEUIVPROC@{PFNGLGETUNIFORMSUBROUTINEUIVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLGETUNIFORMSUBROUTINEUIVPROC}{PFNGLGETUNIFORMSUBROUTINEUIVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a5e8a366ef2264b5c5a1a080821bf5fad} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLGETUNIFORMSUBROUTINEUIVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} \texorpdfstring{$\ast$}{*}params)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00055}{55}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a358861185aedd7cceca484dd2df7b2e6}\index{GL4\_0.h@{GL4\_0.h}!PFNGLISTRANSFORMFEEDBACKPROC@{PFNGLISTRANSFORMFEEDBACKPROC}}
+\index{PFNGLISTRANSFORMFEEDBACKPROC@{PFNGLISTRANSFORMFEEDBACKPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLISTRANSFORMFEEDBACKPROC}{PFNGLISTRANSFORMFEEDBACKPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a358861185aedd7cceca484dd2df7b2e6} 
+typedef \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}}(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLISTRANSFORMFEEDBACKPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} id)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00062}{62}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ae7047805b3470f1b033a0f4da0cb0287}\index{GL4\_0.h@{GL4\_0.h}!PFNGLMINSAMPLESHADINGPROC@{PFNGLMINSAMPLESHADINGPROC}}
+\index{PFNGLMINSAMPLESHADINGPROC@{PFNGLMINSAMPLESHADINGPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLMINSAMPLESHADINGPROC}{PFNGLMINSAMPLESHADINGPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ae7047805b3470f1b033a0f4da0cb0287} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLMINSAMPLESHADINGPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a31aeedaeef29442c9c015ab355c8f5ab}{GLfloat}} value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00024}{24}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ac639588d0484369c6b35e4b8b10b2730}\index{GL4\_0.h@{GL4\_0.h}!PFNGLPATCHPARAMETERFVPROC@{PFNGLPATCHPARAMETERFVPROC}}
+\index{PFNGLPATCHPARAMETERFVPROC@{PFNGLPATCHPARAMETERFVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLPATCHPARAMETERFVPROC}{PFNGLPATCHPARAMETERFVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ac639588d0484369c6b35e4b8b10b2730} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLPATCHPARAMETERFVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} pname, const \doxymbox{\hyperlink{_g_l_types_8h_a31aeedaeef29442c9c015ab355c8f5ab}{GLfloat}} \texorpdfstring{$\ast$}{*}values)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00058}{58}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ac04e271049b17da0ac128c0163441048}\index{GL4\_0.h@{GL4\_0.h}!PFNGLPATCHPARAMETERIPROC@{PFNGLPATCHPARAMETERIPROC}}
+\index{PFNGLPATCHPARAMETERIPROC@{PFNGLPATCHPARAMETERIPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLPATCHPARAMETERIPROC}{PFNGLPATCHPARAMETERIPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ac04e271049b17da0ac128c0163441048} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLPATCHPARAMETERIPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} pname, \doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00057}{57}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ad7a9563a320217cb8fc938f27334a31d}\index{GL4\_0.h@{GL4\_0.h}!PFNGLPAUSETRANSFORMFEEDBACKPROC@{PFNGLPAUSETRANSFORMFEEDBACKPROC}}
+\index{PFNGLPAUSETRANSFORMFEEDBACKPROC@{PFNGLPAUSETRANSFORMFEEDBACKPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLPAUSETRANSFORMFEEDBACKPROC}{PFNGLPAUSETRANSFORMFEEDBACKPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ad7a9563a320217cb8fc938f27334a31d} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLPAUSETRANSFORMFEEDBACKPROC) (void)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00063}{63}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a423a3383bebd4399859d18a52c1f9423}\index{GL4\_0.h@{GL4\_0.h}!PFNGLRESUMETRANSFORMFEEDBACKPROC@{PFNGLRESUMETRANSFORMFEEDBACKPROC}}
+\index{PFNGLRESUMETRANSFORMFEEDBACKPROC@{PFNGLRESUMETRANSFORMFEEDBACKPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLRESUMETRANSFORMFEEDBACKPROC}{PFNGLRESUMETRANSFORMFEEDBACKPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a423a3383bebd4399859d18a52c1f9423} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLRESUMETRANSFORMFEEDBACKPROC) (void)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00064}{64}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a79d779e3e509f239a8db4d5613dff27d}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORM1DPROC@{PFNGLUNIFORM1DPROC}}
+\index{PFNGLUNIFORM1DPROC@{PFNGLUNIFORM1DPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORM1DPROC}{PFNGLUNIFORM1DPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a79d779e3e509f239a8db4d5613dff27d} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORM1\+DPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} x)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00031}{31}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a19b9efe0a8948d63e8e08adb10c83aa2}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORM1DVPROC@{PFNGLUNIFORM1DVPROC}}
+\index{PFNGLUNIFORM1DVPROC@{PFNGLUNIFORM1DVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORM1DVPROC}{PFNGLUNIFORM1DVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a19b9efe0a8948d63e8e08adb10c83aa2} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORM1\+DVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00035}{35}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_aceba01c456c6aa7ea984c61647dfd08c}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORM2DPROC@{PFNGLUNIFORM2DPROC}}
+\index{PFNGLUNIFORM2DPROC@{PFNGLUNIFORM2DPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORM2DPROC}{PFNGLUNIFORM2DPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_aceba01c456c6aa7ea984c61647dfd08c} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORM2\+DPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} x, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} y)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00032}{32}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a0047daf20cdf4825dfade20a7c9758ef}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORM2DVPROC@{PFNGLUNIFORM2DVPROC}}
+\index{PFNGLUNIFORM2DVPROC@{PFNGLUNIFORM2DVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORM2DVPROC}{PFNGLUNIFORM2DVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a0047daf20cdf4825dfade20a7c9758ef} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORM2\+DVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00036}{36}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a1283fc05a95e500b7e6b574b5e50555a}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORM3DPROC@{PFNGLUNIFORM3DPROC}}
+\index{PFNGLUNIFORM3DPROC@{PFNGLUNIFORM3DPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORM3DPROC}{PFNGLUNIFORM3DPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a1283fc05a95e500b7e6b574b5e50555a} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORM3\+DPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} x, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} y, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} z)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00033}{33}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ae57bab508f740907db16992778da1f48}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORM3DVPROC@{PFNGLUNIFORM3DVPROC}}
+\index{PFNGLUNIFORM3DVPROC@{PFNGLUNIFORM3DVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORM3DVPROC}{PFNGLUNIFORM3DVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ae57bab508f740907db16992778da1f48} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORM3\+DVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00037}{37}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a37d22a3143a7f70a29f108404562f20a}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORM4DPROC@{PFNGLUNIFORM4DPROC}}
+\index{PFNGLUNIFORM4DPROC@{PFNGLUNIFORM4DPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORM4DPROC}{PFNGLUNIFORM4DPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a37d22a3143a7f70a29f108404562f20a} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORM4\+DPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} x, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} y, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} z, \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} w)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00034}{34}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a8fd23d8e5aa2c328c0bad521d26824b5}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORM4DVPROC@{PFNGLUNIFORM4DVPROC}}
+\index{PFNGLUNIFORM4DVPROC@{PFNGLUNIFORM4DVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORM4DVPROC}{PFNGLUNIFORM4DVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a8fd23d8e5aa2c328c0bad521d26824b5} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORM4\+DVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00038}{38}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a6c26891a92e211f881354585f22c44d2}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORMMATRIX2DVPROC@{PFNGLUNIFORMMATRIX2DVPROC}}
+\index{PFNGLUNIFORMMATRIX2DVPROC@{PFNGLUNIFORMMATRIX2DVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORMMATRIX2DVPROC}{PFNGLUNIFORMMATRIX2DVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a6c26891a92e211f881354585f22c44d2} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORMMATRIX2\+DVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00039}{39}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_adc619817a69f8926edd1d87b14a7325d}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORMMATRIX2X3DVPROC@{PFNGLUNIFORMMATRIX2X3DVPROC}}
+\index{PFNGLUNIFORMMATRIX2X3DVPROC@{PFNGLUNIFORMMATRIX2X3DVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORMMATRIX2X3DVPROC}{PFNGLUNIFORMMATRIX2X3DVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_adc619817a69f8926edd1d87b14a7325d} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORMMATRIX2\+X3\+DVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00042}{42}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a74d04c9ccd29acdd83e11dc95dde0161}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORMMATRIX2X4DVPROC@{PFNGLUNIFORMMATRIX2X4DVPROC}}
+\index{PFNGLUNIFORMMATRIX2X4DVPROC@{PFNGLUNIFORMMATRIX2X4DVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORMMATRIX2X4DVPROC}{PFNGLUNIFORMMATRIX2X4DVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a74d04c9ccd29acdd83e11dc95dde0161} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORMMATRIX2\+X4\+DVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00043}{43}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_aac07e7516ae3d2563f44699e616b199f}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORMMATRIX3DVPROC@{PFNGLUNIFORMMATRIX3DVPROC}}
+\index{PFNGLUNIFORMMATRIX3DVPROC@{PFNGLUNIFORMMATRIX3DVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORMMATRIX3DVPROC}{PFNGLUNIFORMMATRIX3DVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_aac07e7516ae3d2563f44699e616b199f} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORMMATRIX3\+DVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00040}{40}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a86bf8d5baa281a704b3c20c705497d28}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORMMATRIX3X2DVPROC@{PFNGLUNIFORMMATRIX3X2DVPROC}}
+\index{PFNGLUNIFORMMATRIX3X2DVPROC@{PFNGLUNIFORMMATRIX3X2DVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORMMATRIX3X2DVPROC}{PFNGLUNIFORMMATRIX3X2DVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a86bf8d5baa281a704b3c20c705497d28} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORMMATRIX3\+X2\+DVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00044}{44}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a91f99e0f84f763437240892279274ed7}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORMMATRIX3X4DVPROC@{PFNGLUNIFORMMATRIX3X4DVPROC}}
+\index{PFNGLUNIFORMMATRIX3X4DVPROC@{PFNGLUNIFORMMATRIX3X4DVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORMMATRIX3X4DVPROC}{PFNGLUNIFORMMATRIX3X4DVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a91f99e0f84f763437240892279274ed7} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORMMATRIX3\+X4\+DVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00045}{45}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a0c4fcf69f3fa279a1328e4b974eefc99}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORMMATRIX4DVPROC@{PFNGLUNIFORMMATRIX4DVPROC}}
+\index{PFNGLUNIFORMMATRIX4DVPROC@{PFNGLUNIFORMMATRIX4DVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORMMATRIX4DVPROC}{PFNGLUNIFORMMATRIX4DVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a0c4fcf69f3fa279a1328e4b974eefc99} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORMMATRIX4\+DVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00041}{41}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_aa5ab69a2e1438e190e12583a6eab0abb}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORMMATRIX4X2DVPROC@{PFNGLUNIFORMMATRIX4X2DVPROC}}
+\index{PFNGLUNIFORMMATRIX4X2DVPROC@{PFNGLUNIFORMMATRIX4X2DVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORMMATRIX4X2DVPROC}{PFNGLUNIFORMMATRIX4X2DVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_aa5ab69a2e1438e190e12583a6eab0abb} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORMMATRIX4\+X2\+DVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00046}{46}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a984ca1cee0e492fda3dc963c824efca2}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORMMATRIX4X3DVPROC@{PFNGLUNIFORMMATRIX4X3DVPROC}}
+\index{PFNGLUNIFORMMATRIX4X3DVPROC@{PFNGLUNIFORMMATRIX4X3DVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORMMATRIX4X3DVPROC}{PFNGLUNIFORMMATRIX4X3DVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a984ca1cee0e492fda3dc963c824efca2} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORMMATRIX4\+X3\+DVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a32184aa2711ba18b1dff27e6b6aa5aa8}{GLint}} location, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, \doxymbox{\hyperlink{_g_l_types_8h_a3f8a4e123e5dcfd23096e9350af7e553}{GLboolean}} transpose, const \doxymbox{\hyperlink{_g_l_types_8h_a4f86c02824a01bb647d89449b9a8eacc}{GLdouble}} \texorpdfstring{$\ast$}{*}value)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00047}{47}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_af5ea8f1eec63df8901326627a8ce793a}\index{GL4\_0.h@{GL4\_0.h}!PFNGLUNIFORMSUBROUTINESUIVPROC@{PFNGLUNIFORMSUBROUTINESUIVPROC}}
+\index{PFNGLUNIFORMSUBROUTINESUIVPROC@{PFNGLUNIFORMSUBROUTINESUIVPROC}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{PFNGLUNIFORMSUBROUTINESUIVPROC}{PFNGLUNIFORMSUBROUTINESUIVPROC}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_af5ea8f1eec63df8901326627a8ce793a} 
+typedef void(\doxymbox{\hyperlink{_config_8h_a295e4a4e480005a652b59d0c072918bc}{LDL\+\_\+\+GL\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} PFNGLUNIFORMSUBROUTINESUIVPROC) (\doxymbox{\hyperlink{_g_l_types_8h_a7ba224516f30734b9117e875a189b8a0}{GLenum}} shadertype, \doxymbox{\hyperlink{_g_l_types_8h_ae5e80459d23cf8bb64a01e8d3ffbdbf3}{GLsizei}} count, const \doxymbox{\hyperlink{_g_l_types_8h_a273c4f22e526c71bc82ae6dfb582a9bf}{GLuint}} \texorpdfstring{$\ast$}{*}indices)}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00054}{54}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+
+
+\label{_g_l4__0_8h_doc-var-members}
+\Hypertarget{_g_l4__0_8h_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_g_l4__0_8h_acf75ff4dce30ca5218910ca99f096a0c}\index{GL4\_0.h@{GL4\_0.h}!glBeginQueryIndexed@{glBeginQueryIndexed}}
+\index{glBeginQueryIndexed@{glBeginQueryIndexed}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glBeginQueryIndexed}{glBeginQueryIndexed}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_acf75ff4dce30ca5218910ca99f096a0c} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a33575f871097fa8ba9a8497f0e1791c4}{PFNGLBEGINQUERYINDEXEDPROC}} gl\+Begin\+Query\+Indexed}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00114}{114}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a7c17b92b75c4aea6b929d6f0237724c5}\index{GL4\_0.h@{GL4\_0.h}!glBindTransformFeedback@{glBindTransformFeedback}}
+\index{glBindTransformFeedback@{glBindTransformFeedback}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glBindTransformFeedback}{glBindTransformFeedback}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a7c17b92b75c4aea6b929d6f0237724c5} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a77f17064ab9ee378465d044990560b66}{PFNGLBINDTRANSFORMFEEDBACKPROC}} gl\+Bind\+Transform\+Feedback}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00106}{106}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a03a17fec3150f682285bbcb104729439}\index{GL4\_0.h@{GL4\_0.h}!glBlendEquationi@{glBlendEquationi}}
+\index{glBlendEquationi@{glBlendEquationi}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glBlendEquationi}{glBlendEquationi}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a03a17fec3150f682285bbcb104729439} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ab428a2212d203b6aa72397a6a0d9092b}{PFNGLBLENDEQUATIONIPROC}} gl\+Blend\+Equationi}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00072}{72}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_aabb5e431c1a54d5f9a73122b02583789}\index{GL4\_0.h@{GL4\_0.h}!glBlendEquationSeparatei@{glBlendEquationSeparatei}}
+\index{glBlendEquationSeparatei@{glBlendEquationSeparatei}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glBlendEquationSeparatei}{glBlendEquationSeparatei}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_aabb5e431c1a54d5f9a73122b02583789} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_aada4999d8bf6062f6abbdb1896fb4acd}{PFNGLBLENDEQUATIONSEPARATEIPROC}} gl\+Blend\+Equation\+Separatei}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00073}{73}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a114fff272cb6de0ca7aacd08440426a4}\index{GL4\_0.h@{GL4\_0.h}!glBlendFunci@{glBlendFunci}}
+\index{glBlendFunci@{glBlendFunci}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glBlendFunci}{glBlendFunci}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a114fff272cb6de0ca7aacd08440426a4} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ae4f65c850f6e2e6c7b8fdfbb0fe2a83c}{PFNGLBLENDFUNCIPROC}} gl\+Blend\+Funci}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00074}{74}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_aa787334b8a57d1b1f191606bb8445e0c}\index{GL4\_0.h@{GL4\_0.h}!glBlendFuncSeparatei@{glBlendFuncSeparatei}}
+\index{glBlendFuncSeparatei@{glBlendFuncSeparatei}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glBlendFuncSeparatei}{glBlendFuncSeparatei}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_aa787334b8a57d1b1f191606bb8445e0c} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a01becd9614f583ade7253f9c4461d1f1}{PFNGLBLENDFUNCSEPARATEIPROC}} gl\+Blend\+Func\+Separatei}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00075}{75}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a0ab48a67ea7d580a7f31558973d8e33a}\index{GL4\_0.h@{GL4\_0.h}!glDeleteTransformFeedbacks@{glDeleteTransformFeedbacks}}
+\index{glDeleteTransformFeedbacks@{glDeleteTransformFeedbacks}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glDeleteTransformFeedbacks}{glDeleteTransformFeedbacks}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a0ab48a67ea7d580a7f31558973d8e33a} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_aae40d595f6d94e2b82c2d695df358aca}{PFNGLDELETETRANSFORMFEEDBACKSPROC}} gl\+Delete\+Transform\+Feedbacks}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00107}{107}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a7216afde9d7f176ee86c1a4fcfbf55d7}\index{GL4\_0.h@{GL4\_0.h}!glDrawArraysIndirect@{glDrawArraysIndirect}}
+\index{glDrawArraysIndirect@{glDrawArraysIndirect}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glDrawArraysIndirect}{glDrawArraysIndirect}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a7216afde9d7f176ee86c1a4fcfbf55d7} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ad82190ae8cefb02ff3abb2091f575e0b}{PFNGLDRAWARRAYSINDIRECTPROC}} gl\+Draw\+Arrays\+Indirect}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00076}{76}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a6c3c349149cc27275d30181cc0e48d10}\index{GL4\_0.h@{GL4\_0.h}!glDrawElementsIndirect@{glDrawElementsIndirect}}
+\index{glDrawElementsIndirect@{glDrawElementsIndirect}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glDrawElementsIndirect}{glDrawElementsIndirect}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a6c3c349149cc27275d30181cc0e48d10} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ac662de5511b3a02ecd9b6e91e171ee23}{PFNGLDRAWELEMENTSINDIRECTPROC}} gl\+Draw\+Elements\+Indirect}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00077}{77}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a0bc61c16e39347322c544f5df4f1dcaa}\index{GL4\_0.h@{GL4\_0.h}!glDrawTransformFeedback@{glDrawTransformFeedback}}
+\index{glDrawTransformFeedback@{glDrawTransformFeedback}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glDrawTransformFeedback}{glDrawTransformFeedback}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a0bc61c16e39347322c544f5df4f1dcaa} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a11b33db38a1eef2874c2cd79655dd32d}{PFNGLDRAWTRANSFORMFEEDBACKPROC}} gl\+Draw\+Transform\+Feedback}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00112}{112}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ad244ab93a5e2d69440d1e04b3293652a}\index{GL4\_0.h@{GL4\_0.h}!glDrawTransformFeedbackStream@{glDrawTransformFeedbackStream}}
+\index{glDrawTransformFeedbackStream@{glDrawTransformFeedbackStream}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glDrawTransformFeedbackStream}{glDrawTransformFeedbackStream}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ad244ab93a5e2d69440d1e04b3293652a} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a953e31c12d5b11cc8a07977e1f4d6e99}{PFNGLDRAWTRANSFORMFEEDBACKSTREAMPROC}} gl\+Draw\+Transform\+Feedback\+Stream}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00113}{113}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a040c2ec37f4ef1decdd39f2ecc9ad21b}\index{GL4\_0.h@{GL4\_0.h}!glEndQueryIndexed@{glEndQueryIndexed}}
+\index{glEndQueryIndexed@{glEndQueryIndexed}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glEndQueryIndexed}{glEndQueryIndexed}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a040c2ec37f4ef1decdd39f2ecc9ad21b} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_af258ffc12d46801d03ad639b195e43fd}{PFNGLENDQUERYINDEXEDPROC}} gl\+End\+Query\+Indexed}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00115}{115}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a39b8ad30c6d5e20597d903be0018dc18}\index{GL4\_0.h@{GL4\_0.h}!glGenTransformFeedbacks@{glGenTransformFeedbacks}}
+\index{glGenTransformFeedbacks@{glGenTransformFeedbacks}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glGenTransformFeedbacks}{glGenTransformFeedbacks}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a39b8ad30c6d5e20597d903be0018dc18} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a2c1292829e1ffd13faece6ea24a3153d}{PFNGLGENTRANSFORMFEEDBACKSPROC}} gl\+Gen\+Transform\+Feedbacks}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00108}{108}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a2a4b0123357268405f310bf33ebf054a}\index{GL4\_0.h@{GL4\_0.h}!glGetActiveSubroutineName@{glGetActiveSubroutineName}}
+\index{glGetActiveSubroutineName@{glGetActiveSubroutineName}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glGetActiveSubroutineName}{glGetActiveSubroutineName}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a2a4b0123357268405f310bf33ebf054a} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_aa4267e9073ac557799f5ed70082738c8}{PFNGLGETACTIVESUBROUTINENAMEPROC}} gl\+Get\+Active\+Subroutine\+Name}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00100}{100}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a897fdc28a07ea0c8829d87ba37a019bd}\index{GL4\_0.h@{GL4\_0.h}!glGetActiveSubroutineUniformiv@{glGetActiveSubroutineUniformiv}}
+\index{glGetActiveSubroutineUniformiv@{glGetActiveSubroutineUniformiv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glGetActiveSubroutineUniformiv}{glGetActiveSubroutineUniformiv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a897fdc28a07ea0c8829d87ba37a019bd} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_aed153bf86a8cc304fa9c363b29e03518}{PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC}} gl\+Get\+Active\+Subroutine\+Uniformiv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00098}{98}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a591c03d224a05412b55a0b6c78a8a39c}\index{GL4\_0.h@{GL4\_0.h}!glGetActiveSubroutineUniformName@{glGetActiveSubroutineUniformName}}
+\index{glGetActiveSubroutineUniformName@{glGetActiveSubroutineUniformName}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glGetActiveSubroutineUniformName}{glGetActiveSubroutineUniformName}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a591c03d224a05412b55a0b6c78a8a39c} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a0d92a103f41489b19e54895968991466}{PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC}} gl\+Get\+Active\+Subroutine\+Uniform\+Name}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00099}{99}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a9eee11ab366f07354ab51c15982fb638}\index{GL4\_0.h@{GL4\_0.h}!glGetProgramStageiv@{glGetProgramStageiv}}
+\index{glGetProgramStageiv@{glGetProgramStageiv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glGetProgramStageiv}{glGetProgramStageiv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a9eee11ab366f07354ab51c15982fb638} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a8e08d95150416e947773877cce0781ae}{PFNGLGETPROGRAMSTAGEIVPROC}} gl\+Get\+Program\+Stageiv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00103}{103}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a155f39cbd17aa9d4abd8cb92780a866f}\index{GL4\_0.h@{GL4\_0.h}!glGetQueryIndexediv@{glGetQueryIndexediv}}
+\index{glGetQueryIndexediv@{glGetQueryIndexediv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glGetQueryIndexediv}{glGetQueryIndexediv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a155f39cbd17aa9d4abd8cb92780a866f} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a291ee1023a3cb69701c0e07a661bae8a}{PFNGLGETQUERYINDEXEDIVPROC}} gl\+Get\+Query\+Indexediv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00116}{116}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a5d7c30e2deb9653747f3f22ef66e1fde}\index{GL4\_0.h@{GL4\_0.h}!glGetSubroutineIndex@{glGetSubroutineIndex}}
+\index{glGetSubroutineIndex@{glGetSubroutineIndex}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glGetSubroutineIndex}{glGetSubroutineIndex}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a5d7c30e2deb9653747f3f22ef66e1fde} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a8fdf0fd2327c1d1dd657f0cc0d66d5b4}{PFNGLGETSUBROUTINEINDEXPROC}} gl\+Get\+Subroutine\+Index}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00097}{97}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a591ae880be231d0bf7393195846c666b}\index{GL4\_0.h@{GL4\_0.h}!glGetSubroutineUniformLocation@{glGetSubroutineUniformLocation}}
+\index{glGetSubroutineUniformLocation@{glGetSubroutineUniformLocation}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glGetSubroutineUniformLocation}{glGetSubroutineUniformLocation}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a591ae880be231d0bf7393195846c666b} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a0e6a06772a356fa9d43710a20edac3aa}{PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC}} gl\+Get\+Subroutine\+Uniform\+Location}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00096}{96}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ab84860fd39e7fb8c63148454720eafe5}\index{GL4\_0.h@{GL4\_0.h}!glGetUniformdv@{glGetUniformdv}}
+\index{glGetUniformdv@{glGetUniformdv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glGetUniformdv}{glGetUniformdv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ab84860fd39e7fb8c63148454720eafe5} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ac3f52983967ed409a4ef38d5f20a208a}{PFNGLGETUNIFORMDVPROC}} gl\+Get\+Uniformdv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00095}{95}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_aad271a7fe67b46ece35bdc300f34b367}\index{GL4\_0.h@{GL4\_0.h}!glGetUniformSubroutineuiv@{glGetUniformSubroutineuiv}}
+\index{glGetUniformSubroutineuiv@{glGetUniformSubroutineuiv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glGetUniformSubroutineuiv}{glGetUniformSubroutineuiv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_aad271a7fe67b46ece35bdc300f34b367} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a5e8a366ef2264b5c5a1a080821bf5fad}{PFNGLGETUNIFORMSUBROUTINEUIVPROC}} gl\+Get\+Uniform\+Subroutineuiv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00102}{102}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a050f454a60ef075a451b97b5845b1d72}\index{GL4\_0.h@{GL4\_0.h}!glIsTransformFeedback@{glIsTransformFeedback}}
+\index{glIsTransformFeedback@{glIsTransformFeedback}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glIsTransformFeedback}{glIsTransformFeedback}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a050f454a60ef075a451b97b5845b1d72} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a358861185aedd7cceca484dd2df7b2e6}{PFNGLISTRANSFORMFEEDBACKPROC}} gl\+Is\+Transform\+Feedback}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00109}{109}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a46d2a7fd0969e8745a2e0114290f48e3}\index{GL4\_0.h@{GL4\_0.h}!glMinSampleShading@{glMinSampleShading}}
+\index{glMinSampleShading@{glMinSampleShading}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glMinSampleShading}{glMinSampleShading}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a46d2a7fd0969e8745a2e0114290f48e3} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ae7047805b3470f1b033a0f4da0cb0287}{PFNGLMINSAMPLESHADINGPROC}} gl\+Min\+Sample\+Shading}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00071}{71}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ab4f2501c6b0f94685f924005caa36e9d}\index{GL4\_0.h@{GL4\_0.h}!glPatchParameterfv@{glPatchParameterfv}}
+\index{glPatchParameterfv@{glPatchParameterfv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glPatchParameterfv}{glPatchParameterfv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ab4f2501c6b0f94685f924005caa36e9d} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ac639588d0484369c6b35e4b8b10b2730}{PFNGLPATCHPARAMETERFVPROC}} gl\+Patch\+Parameterfv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00105}{105}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ae1f1201ad8cde22a9332643611d99716}\index{GL4\_0.h@{GL4\_0.h}!glPatchParameteri@{glPatchParameteri}}
+\index{glPatchParameteri@{glPatchParameteri}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glPatchParameteri}{glPatchParameteri}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ae1f1201ad8cde22a9332643611d99716} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ac04e271049b17da0ac128c0163441048}{PFNGLPATCHPARAMETERIPROC}} gl\+Patch\+Parameteri}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00104}{104}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a197e54a5b89ed0c26ed3b739df8a6897}\index{GL4\_0.h@{GL4\_0.h}!glPauseTransformFeedback@{glPauseTransformFeedback}}
+\index{glPauseTransformFeedback@{glPauseTransformFeedback}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glPauseTransformFeedback}{glPauseTransformFeedback}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a197e54a5b89ed0c26ed3b739df8a6897} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ad7a9563a320217cb8fc938f27334a31d}{PFNGLPAUSETRANSFORMFEEDBACKPROC}} gl\+Pause\+Transform\+Feedback}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00110}{110}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a6d91028d878fb5d1afcdb82f6edb8bed}\index{GL4\_0.h@{GL4\_0.h}!glResumeTransformFeedback@{glResumeTransformFeedback}}
+\index{glResumeTransformFeedback@{glResumeTransformFeedback}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glResumeTransformFeedback}{glResumeTransformFeedback}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a6d91028d878fb5d1afcdb82f6edb8bed} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a423a3383bebd4399859d18a52c1f9423}{PFNGLRESUMETRANSFORMFEEDBACKPROC}} gl\+Resume\+Transform\+Feedback}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00111}{111}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a8dfcc6baf2756ddd269ac5f9c602a8cf}\index{GL4\_0.h@{GL4\_0.h}!glUniform1d@{glUniform1d}}
+\index{glUniform1d@{glUniform1d}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniform1d}{glUniform1d}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a8dfcc6baf2756ddd269ac5f9c602a8cf} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a79d779e3e509f239a8db4d5613dff27d}{PFNGLUNIFORM1\+DPROC}} gl\+Uniform1d}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00078}{78}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ac02a7006db6cd95b0e3ac834d7e5bc96}\index{GL4\_0.h@{GL4\_0.h}!glUniform1dv@{glUniform1dv}}
+\index{glUniform1dv@{glUniform1dv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniform1dv}{glUniform1dv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ac02a7006db6cd95b0e3ac834d7e5bc96} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a19b9efe0a8948d63e8e08adb10c83aa2}{PFNGLUNIFORM1\+DVPROC}} gl\+Uniform1dv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00082}{82}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_aad293ddf1369977749c0dd5837ab7da2}\index{GL4\_0.h@{GL4\_0.h}!glUniform2d@{glUniform2d}}
+\index{glUniform2d@{glUniform2d}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniform2d}{glUniform2d}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_aad293ddf1369977749c0dd5837ab7da2} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_aceba01c456c6aa7ea984c61647dfd08c}{PFNGLUNIFORM2\+DPROC}} gl\+Uniform2d}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00079}{79}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a4e4d6a64f5337e75639c9fa3c3fabb0d}\index{GL4\_0.h@{GL4\_0.h}!glUniform2dv@{glUniform2dv}}
+\index{glUniform2dv@{glUniform2dv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniform2dv}{glUniform2dv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a4e4d6a64f5337e75639c9fa3c3fabb0d} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a0047daf20cdf4825dfade20a7c9758ef}{PFNGLUNIFORM2\+DVPROC}} gl\+Uniform2dv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00083}{83}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_aa94d985c3f9c8d5038f90955ec3be9fa}\index{GL4\_0.h@{GL4\_0.h}!glUniform3d@{glUniform3d}}
+\index{glUniform3d@{glUniform3d}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniform3d}{glUniform3d}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_aa94d985c3f9c8d5038f90955ec3be9fa} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a1283fc05a95e500b7e6b574b5e50555a}{PFNGLUNIFORM3\+DPROC}} gl\+Uniform3d}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00080}{80}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a6a38db69b66e75cb9a2ff9e83e9ba351}\index{GL4\_0.h@{GL4\_0.h}!glUniform3dv@{glUniform3dv}}
+\index{glUniform3dv@{glUniform3dv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniform3dv}{glUniform3dv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a6a38db69b66e75cb9a2ff9e83e9ba351} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_ae57bab508f740907db16992778da1f48}{PFNGLUNIFORM3\+DVPROC}} gl\+Uniform3dv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00084}{84}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_aa6cd4cfc476a5ea4dffe06beb11c08ca}\index{GL4\_0.h@{GL4\_0.h}!glUniform4d@{glUniform4d}}
+\index{glUniform4d@{glUniform4d}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniform4d}{glUniform4d}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_aa6cd4cfc476a5ea4dffe06beb11c08ca} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a37d22a3143a7f70a29f108404562f20a}{PFNGLUNIFORM4\+DPROC}} gl\+Uniform4d}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00081}{81}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a1c5918f70fcabc3072c67151e06b6aeb}\index{GL4\_0.h@{GL4\_0.h}!glUniform4dv@{glUniform4dv}}
+\index{glUniform4dv@{glUniform4dv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniform4dv}{glUniform4dv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a1c5918f70fcabc3072c67151e06b6aeb} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a8fd23d8e5aa2c328c0bad521d26824b5}{PFNGLUNIFORM4\+DVPROC}} gl\+Uniform4dv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00085}{85}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a7502fe87442a73b269bbdf00fe052c5d}\index{GL4\_0.h@{GL4\_0.h}!glUniformMatrix2dv@{glUniformMatrix2dv}}
+\index{glUniformMatrix2dv@{glUniformMatrix2dv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniformMatrix2dv}{glUniformMatrix2dv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a7502fe87442a73b269bbdf00fe052c5d} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a6c26891a92e211f881354585f22c44d2}{PFNGLUNIFORMMATRIX2\+DVPROC}} gl\+Uniform\+Matrix2dv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00086}{86}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_aca1ff1dd87e62ea049b55ba6d780b792}\index{GL4\_0.h@{GL4\_0.h}!glUniformMatrix2x3dv@{glUniformMatrix2x3dv}}
+\index{glUniformMatrix2x3dv@{glUniformMatrix2x3dv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniformMatrix2x3dv}{glUniformMatrix2x3dv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_aca1ff1dd87e62ea049b55ba6d780b792} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_adc619817a69f8926edd1d87b14a7325d}{PFNGLUNIFORMMATRIX2\+X3\+DVPROC}} gl\+Uniform\+Matrix2x3dv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00089}{89}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ae502cbec6670ec147ec1ac2e2f295aec}\index{GL4\_0.h@{GL4\_0.h}!glUniformMatrix2x4dv@{glUniformMatrix2x4dv}}
+\index{glUniformMatrix2x4dv@{glUniformMatrix2x4dv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniformMatrix2x4dv}{glUniformMatrix2x4dv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ae502cbec6670ec147ec1ac2e2f295aec} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a74d04c9ccd29acdd83e11dc95dde0161}{PFNGLUNIFORMMATRIX2\+X4\+DVPROC}} gl\+Uniform\+Matrix2x4dv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00090}{90}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ae84296ee86acc8f870a7ff272b62335f}\index{GL4\_0.h@{GL4\_0.h}!glUniformMatrix3dv@{glUniformMatrix3dv}}
+\index{glUniformMatrix3dv@{glUniformMatrix3dv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniformMatrix3dv}{glUniformMatrix3dv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ae84296ee86acc8f870a7ff272b62335f} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_aac07e7516ae3d2563f44699e616b199f}{PFNGLUNIFORMMATRIX3\+DVPROC}} gl\+Uniform\+Matrix3dv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00087}{87}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a936d95ccbc62ccbe0792b3ef09a36f77}\index{GL4\_0.h@{GL4\_0.h}!glUniformMatrix3x2dv@{glUniformMatrix3x2dv}}
+\index{glUniformMatrix3x2dv@{glUniformMatrix3x2dv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniformMatrix3x2dv}{glUniformMatrix3x2dv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a936d95ccbc62ccbe0792b3ef09a36f77} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a86bf8d5baa281a704b3c20c705497d28}{PFNGLUNIFORMMATRIX3\+X2\+DVPROC}} gl\+Uniform\+Matrix3x2dv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00091}{91}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a2e6479053df5a4926e800325f456b114}\index{GL4\_0.h@{GL4\_0.h}!glUniformMatrix3x4dv@{glUniformMatrix3x4dv}}
+\index{glUniformMatrix3x4dv@{glUniformMatrix3x4dv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniformMatrix3x4dv}{glUniformMatrix3x4dv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a2e6479053df5a4926e800325f456b114} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a91f99e0f84f763437240892279274ed7}{PFNGLUNIFORMMATRIX3\+X4\+DVPROC}} gl\+Uniform\+Matrix3x4dv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00092}{92}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a45c66c3d7d80daba37382df03f7f14ef}\index{GL4\_0.h@{GL4\_0.h}!glUniformMatrix4dv@{glUniformMatrix4dv}}
+\index{glUniformMatrix4dv@{glUniformMatrix4dv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniformMatrix4dv}{glUniformMatrix4dv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a45c66c3d7d80daba37382df03f7f14ef} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a0c4fcf69f3fa279a1328e4b974eefc99}{PFNGLUNIFORMMATRIX4\+DVPROC}} gl\+Uniform\+Matrix4dv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00088}{88}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a553453083353764073ef7ffaa61b4e99}\index{GL4\_0.h@{GL4\_0.h}!glUniformMatrix4x2dv@{glUniformMatrix4x2dv}}
+\index{glUniformMatrix4x2dv@{glUniformMatrix4x2dv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniformMatrix4x2dv}{glUniformMatrix4x2dv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a553453083353764073ef7ffaa61b4e99} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_aa5ab69a2e1438e190e12583a6eab0abb}{PFNGLUNIFORMMATRIX4\+X2\+DVPROC}} gl\+Uniform\+Matrix4x2dv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00093}{93}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_a3e45f8dbc07b399f212fc25e1a65bfd2}\index{GL4\_0.h@{GL4\_0.h}!glUniformMatrix4x3dv@{glUniformMatrix4x3dv}}
+\index{glUniformMatrix4x3dv@{glUniformMatrix4x3dv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniformMatrix4x3dv}{glUniformMatrix4x3dv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_a3e45f8dbc07b399f212fc25e1a65bfd2} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_a984ca1cee0e492fda3dc963c824efca2}{PFNGLUNIFORMMATRIX4\+X3\+DVPROC}} gl\+Uniform\+Matrix4x3dv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00094}{94}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+
+\Hypertarget{_g_l4__0_8h_ad83251a37a98c78cb8ab689bd5dbde6a}\index{GL4\_0.h@{GL4\_0.h}!glUniformSubroutinesuiv@{glUniformSubroutinesuiv}}
+\index{glUniformSubroutinesuiv@{glUniformSubroutinesuiv}!GL4\_0.h@{GL4\_0.h}}
+\doxysubsubsection{\texorpdfstring{glUniformSubroutinesuiv}{glUniformSubroutinesuiv}}
+{\footnotesize\ttfamily \label{_g_l4__0_8h_ad83251a37a98c78cb8ab689bd5dbde6a} 
+\doxymbox{\hyperlink{_config_8h_afa93e40a7130563fa0d8dcb5ebac57ac}{LDL\+\_\+\+API\+\_\+\+ENTRY}} \doxymbox{\hyperlink{_g_l4__0_8h_af5ea8f1eec63df8901326627a8ce793a}{PFNGLUNIFORMSUBROUTINESUIVPROC}} gl\+Uniform\+Subroutinesuiv}
+
+
+
+Definition at line \doxymbox{\hyperlink{_g_l4__0_8h_source_l00101}{101}} of file \doxymbox{\hyperlink{_g_l4__0_8h_source}{GL4\+\_\+0.\+h}}.
+

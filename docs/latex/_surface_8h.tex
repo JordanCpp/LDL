@@ -1,0 +1,448 @@
+\doxysection{include/\+\+LDL/\+\+Surface.h File Reference}
+\hypertarget{_surface_8h}{}\label{_surface_8h}\index{include/LDL/Surface.h@{include/LDL/Surface.h}}
+{\ttfamily \+\#include $<$LDL/\+\+Vec2i.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Color.\+h$>$}\newline
+{\ttfamily \+\#include $<$LDL/\+\+Result.\+h$>$}\newline
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct LDL\+\_\+\+Surface \doxymbox{\hyperlink{_surface_8h_a58c640b67a95135e6bf5f84b1466f87b}{LDL\+\_\+\+Surface}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_surface_8h_ade86c8d4586a4a8e15683b4c2d9ca01b}{LDL\+\_\+\+Surface\+Destroy}} (\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}surface)
+\begin{DoxyCompactList}\small\item\em Destroys a surface and frees all associated resources. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_surface_8h_a2a944408c5875c973e489f008e9d7a7b}{LDL\+\_\+\+Surface\+Create\+From\+Capacity}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result, \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} pixel\+Format, \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} capacity)
+\begin{DoxyCompactList}\small\item\em Creates a surface with a specified capacity. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_surface_8h_a5dc38168318d96efbf107b417b18f8a5}{LDL\+\_\+\+Surface\+Create\+From\+Size}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result, \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} pixel\+Format, \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} size)
+\begin{DoxyCompactList}\small\item\em Creates a surface with a specified size. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_surface_8h_ad1a45331f611b44b554c2ba40262cad2}{LDL\+\_\+\+Surface\+Create\+From\+Pixels}} (\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}result, \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} pixel\+Format, \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} size, \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} \texorpdfstring{$\ast$}{*}pixels)
+\begin{DoxyCompactList}\small\item\em Creates a surface from existing pixel data. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} \doxymbox{\hyperlink{_surface_8h_a9016963c1f839ac7fd72c36d1c714c83}{LDL\+\_\+\+Surface\+Get\+Capacity}} (\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}surface)
+\begin{DoxyCompactList}\small\item\em Retrieves the maximum capacity of the surface. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} \doxymbox{\hyperlink{_surface_8h_a8f3ab4f9ab7498499da0fbda5e88e607}{LDL\+\_\+\+Surface\+Get\+Size}} (\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}surface)
+\begin{DoxyCompactList}\small\item\em Retrieves the current size of the surface. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} \doxymbox{\hyperlink{_surface_8h_ac79f4851a97fa58efedbeba9ead23786}{LDL\+\_\+\+Surface\+Get\+Bytes\+Per\+Pixel}} (\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}surface)
+\begin{DoxyCompactList}\small\item\em Retrieves the number of bytes per pixel for the surface. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{_surface_8h_a0ceb2537e15cbc0f9c1b9dc5993e690c}{LDL\+\_\+\+Surface\+Get\+Pixels}} (\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}surface)
+\begin{DoxyCompactList}\small\item\em Retrieves a pointer to the surface\textquotesingle{}s pixel data. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} \doxymbox{\hyperlink{_surface_8h_a1cc4dbca6e54d3a9074f484fbce001c5}{LDL\+\_\+\+Surface\+Get\+Pixel\+Format}} (\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}surface)
+\begin{DoxyCompactList}\small\item\em Retrieves the pixel format of the surface. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} size\+\_\+t \doxymbox{\hyperlink{_surface_8h_a1a2fc28f688765624a021a3df70fcf9e}{LDL\+\_\+\+Surface\+Get\+Pitch}} (\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}surface)
+\begin{DoxyCompactList}\small\item\em Retrieves the pitch (stride) of the surface. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void \doxymbox{\hyperlink{_surface_8h_a25a09e47a2b62845a53ff7694e075f68}{LDL\+\_\+\+Surface\+Set\+Color\+Key}} (\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}surface, \doxymbox{\hyperlink{struct_l_d_l___color}{LDL\+\_\+\+Color}} color)
+\begin{DoxyCompactList}\small\item\em Sets a color key for transparency. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___color}{LDL\+\_\+\+Color}} \doxymbox{\hyperlink{_surface_8h_a0fc12d8895a951395a9054b9e440e809}{LDL\+\_\+\+Surface\+Get\+Color\+Key}} (\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}surface)
+\begin{DoxyCompactList}\small\item\em Retrieves the current color key. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool \doxymbox{\hyperlink{_surface_8h_acf29d0fe8166dd2d312c2430f743fa18}{LDL\+\_\+\+Surface\+Is\+Color\+Key}} (\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}surface)
+\begin{DoxyCompactList}\small\item\em Checks whether a color key is set for the surface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{_surface_8h_doc-typedef-members}
+\Hypertarget{_surface_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{_surface_8h_a58c640b67a95135e6bf5f84b1466f87b}\index{Surface.h@{Surface.h}!LDL\_Surface@{LDL\_Surface}}
+\index{LDL\_Surface@{LDL\_Surface}!Surface.h@{Surface.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_Surface}{LDL\_Surface}}
+{\footnotesize\ttfamily \label{_surface_8h_a58c640b67a95135e6bf5f84b1466f87b} 
+typedef struct LDL\+\_\+\+Surface LDL\+\_\+\+Surface}
+
+
+
+Definition at line \doxymbox{\hyperlink{_surface_8h_source_l00048}{48}} of file \doxymbox{\hyperlink{_surface_8h_source}{Surface.\+h}}.
+
+
+
+\label{_surface_8h_doc-func-members}
+\Hypertarget{_surface_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_surface_8h_a2a944408c5875c973e489f008e9d7a7b}\index{Surface.h@{Surface.h}!LDL\_SurfaceCreateFromCapacity@{LDL\_SurfaceCreateFromCapacity}}
+\index{LDL\_SurfaceCreateFromCapacity@{LDL\_SurfaceCreateFromCapacity}!Surface.h@{Surface.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_SurfaceCreateFromCapacity()}{LDL\_SurfaceCreateFromCapacity()}}
+{\footnotesize\ttfamily \label{_surface_8h_a2a944408c5875c973e489f008e9d7a7b} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Surface\+Create\+From\+Capacity (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{pixel\+Format}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}}}]{capacity}{}\end{DoxyParamCaption})}
+
+
+
+Creates a surface with a specified capacity. 
+
+This function allocates a new surface with a buffer large enough to hold the specified capacity of pixels. The surface size is initially set to match the capacity, but can be modified later. Memory is allocated for the pixel data based on the pixel format.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to an \doxylink{struct_l_d_l___result}{LDL\+\_\+\+Result} variable that will receive the operation status. If the operation succeeds, the result will be set to success state. If an error occurs, the result will contain an appropriate error message. \\
+\hline
+{\em pixel\+Format} & The pixel format to use for the surface (from LDL\+\_\+\+Pixel\+Format enumeration). \\
+\hline
+{\em capacity} & The maximum number of pixels in each dimension. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \doxylink{struct_l_d_l___surface}{LDL\+\_\+\+Surface} instance, or NULL on failure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The capacity determines the maximum dimensions the surface can hold. 
+
+The actual size can be smaller than the capacity. 
+
+Memory is allocated as:\+ capacity.\+x \texorpdfstring{$\ast$}{*} capacity.\+y \texorpdfstring{$\ast$}{*} bytes\+\_\+per\+\_\+pixel. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_surface_8h_a5dc38168318d96efbf107b417b18f8a5}{LDL\+\_\+\+Surface\+Create\+From\+Size} 
+
+\doxylink{_surface_8h_ad1a45331f611b44b554c2ba40262cad2}{LDL\+\_\+\+Surface\+Create\+From\+Pixels} 
+
+\doxylink{_surface_8h_a9016963c1f839ac7fd72c36d1c714c83}{LDL\+\_\+\+Surface\+Get\+Capacity} 
+
+\doxylink{_surface_8h_a8f3ab4f9ab7498499da0fbda5e88e607}{LDL\+\_\+\+Surface\+Get\+Size} 
+\end{DoxySeeAlso}
+\Hypertarget{_surface_8h_ad1a45331f611b44b554c2ba40262cad2}\index{Surface.h@{Surface.h}!LDL\_SurfaceCreateFromPixels@{LDL\_SurfaceCreateFromPixels}}
+\index{LDL\_SurfaceCreateFromPixels@{LDL\_SurfaceCreateFromPixels}!Surface.h@{Surface.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_SurfaceCreateFromPixels()}{LDL\_SurfaceCreateFromPixels()}}
+{\footnotesize\ttfamily \label{_surface_8h_ad1a45331f611b44b554c2ba40262cad2} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Surface\+Create\+From\+Pixels (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{pixel\+Format}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}}}]{size}{, }\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{pixels}{}\end{DoxyParamCaption})}
+
+
+
+Creates a surface from existing pixel data. 
+
+This function creates a new surface that uses the provided pixel data without copying it. The surface takes ownership of the pixel data and will free it when destroyed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to an \doxylink{struct_l_d_l___result}{LDL\+\_\+\+Result} variable that will receive the operation status. If the operation succeeds, the result will be set to success state. If an error occurs, the result will contain an appropriate error message. \\
+\hline
+{\em pixel\+Format} & The pixel format of the provided data (from LDL\+\_\+\+Pixel\+Format enumeration). \\
+\hline
+{\em size} & The dimensions of the pixel data in pixels. \\
+\hline
+{\em pixels} & Pointer to the pixel data buffer. Must be large enough to hold size.\+x \texorpdfstring{$\ast$}{*} size.\+y \texorpdfstring{$\ast$}{*} bytes\+\_\+per\+\_\+pixel bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \doxylink{struct_l_d_l___surface}{LDL\+\_\+\+Surface} instance, or NULL on failure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The surface takes ownership of the pixel data and will free it. 
+
+Do not free or modify the pixel data after passing it to this function. 
+
+The buffer must be properly aligned for the pixel format. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_surface_8h_a5dc38168318d96efbf107b417b18f8a5}{LDL\+\_\+\+Surface\+Create\+From\+Size} 
+
+\doxylink{_surface_8h_a0ceb2537e15cbc0f9c1b9dc5993e690c}{LDL\+\_\+\+Surface\+Get\+Pixels} 
+\end{DoxySeeAlso}
+\Hypertarget{_surface_8h_a5dc38168318d96efbf107b417b18f8a5}\index{Surface.h@{Surface.h}!LDL\_SurfaceCreateFromSize@{LDL\_SurfaceCreateFromSize}}
+\index{LDL\_SurfaceCreateFromSize@{LDL\_SurfaceCreateFromSize}!Surface.h@{Surface.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_SurfaceCreateFromSize()}{LDL\_SurfaceCreateFromSize()}}
+{\footnotesize\ttfamily \label{_surface_8h_a5dc38168318d96efbf107b417b18f8a5} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Surface\+Create\+From\+Size (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___result}{LDL\+\_\+\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}]{pixel\+Format}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}}}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Creates a surface with a specified size. 
+
+This function allocates a new surface with dimensions exactly matching the specified size. Memory is allocated for the pixel data based on the pixel format and dimensions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Pointer to an \doxylink{struct_l_d_l___result}{LDL\+\_\+\+Result} variable that will receive the operation status. If the operation succeeds, the result will be set to success state. If an error occurs, the result will contain an appropriate error message. \\
+\hline
+{\em pixel\+Format} & The pixel format to use for the surface (from LDL\+\_\+\+Pixel\+Format enumeration). \\
+\hline
+{\em size} & The dimensions of the surface in pixels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the newly created \doxylink{struct_l_d_l___surface}{LDL\+\_\+\+Surface} instance, or NULL on failure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The capacity is set equal to the size. 
+
+This is the most commonly used creation function for new surfaces. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_surface_8h_a2a944408c5875c973e489f008e9d7a7b}{LDL\+\_\+\+Surface\+Create\+From\+Capacity} 
+
+\doxylink{_surface_8h_ad1a45331f611b44b554c2ba40262cad2}{LDL\+\_\+\+Surface\+Create\+From\+Pixels} 
+\end{DoxySeeAlso}
+\Hypertarget{_surface_8h_ade86c8d4586a4a8e15683b4c2d9ca01b}\index{Surface.h@{Surface.h}!LDL\_SurfaceDestroy@{LDL\_SurfaceDestroy}}
+\index{LDL\_SurfaceDestroy@{LDL\_SurfaceDestroy}!Surface.h@{Surface.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_SurfaceDestroy()}{LDL\_SurfaceDestroy()}}
+{\footnotesize\ttfamily \label{_surface_8h_ade86c8d4586a4a8e15683b4c2d9ca01b} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Surface\+Destroy (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}}]{surface}{}\end{DoxyParamCaption})}
+
+
+
+Destroys a surface and frees all associated resources. 
+
+This function releases all memory and resources associated with the specified surface, including the pixel data buffer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & Pointer to the surface to destroy.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+It is safe to pass NULL to this function; it will simply do nothing. 
+
+After destruction, the surface pointer becomes invalid. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_surface_8h_a2a944408c5875c973e489f008e9d7a7b}{LDL\+\_\+\+Surface\+Create\+From\+Capacity} 
+
+\doxylink{_surface_8h_a5dc38168318d96efbf107b417b18f8a5}{LDL\+\_\+\+Surface\+Create\+From\+Size} 
+
+\doxylink{_surface_8h_ad1a45331f611b44b554c2ba40262cad2}{LDL\+\_\+\+Surface\+Create\+From\+Pixels} 
+\end{DoxySeeAlso}
+\Hypertarget{_surface_8h_ac79f4851a97fa58efedbeba9ead23786}\index{Surface.h@{Surface.h}!LDL\_SurfaceGetBytesPerPixel@{LDL\_SurfaceGetBytesPerPixel}}
+\index{LDL\_SurfaceGetBytesPerPixel@{LDL\_SurfaceGetBytesPerPixel}!Surface.h@{Surface.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_SurfaceGetBytesPerPixel()}{LDL\_SurfaceGetBytesPerPixel()}}
+{\footnotesize\ttfamily \label{_surface_8h_ac79f4851a97fa58efedbeba9ead23786} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} LDL\+\_\+\+Surface\+Get\+Bytes\+Per\+Pixel (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}}]{surface}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the number of bytes per pixel for the surface. 
+
+This function returns the memory footprint of a single pixel based on the surface\textquotesingle{}s pixel format.
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & Pointer to the surface. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of bytes per pixel (e.\+g., 3 for RGB24, 4 for RGBA32).
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This value is determined by the pixel format of the surface. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_surface_8h_a1cc4dbca6e54d3a9074f484fbce001c5}{LDL\+\_\+\+Surface\+Get\+Pixel\+Format} 
+
+\doxylink{_pix_frmt_8h_a55ace4684c32ef0c8137c58a58bca16a}{LDL\+\_\+\+Bytes\+Per\+Pixel\+From\+Pixel\+Format} 
+\end{DoxySeeAlso}
+\Hypertarget{_surface_8h_a9016963c1f839ac7fd72c36d1c714c83}\index{Surface.h@{Surface.h}!LDL\_SurfaceGetCapacity@{LDL\_SurfaceGetCapacity}}
+\index{LDL\_SurfaceGetCapacity@{LDL\_SurfaceGetCapacity}!Surface.h@{Surface.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_SurfaceGetCapacity()}{LDL\_SurfaceGetCapacity()}}
+{\footnotesize\ttfamily \label{_surface_8h_a9016963c1f839ac7fd72c36d1c714c83} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} LDL\+\_\+\+Surface\+Get\+Capacity (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}}]{surface}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the maximum capacity of the surface. 
+
+This function returns the maximum dimensions that the surface can hold. The capacity may be larger than the current size, allowing for future expansion.
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & Pointer to the surface. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The capacity of the surface as an \doxylink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i} structure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The capacity is fixed when the surface is created. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_surface_8h_a8f3ab4f9ab7498499da0fbda5e88e607}{LDL\+\_\+\+Surface\+Get\+Size} 
+
+\doxylink{_surface_8h_a2a944408c5875c973e489f008e9d7a7b}{LDL\+\_\+\+Surface\+Create\+From\+Capacity} 
+\end{DoxySeeAlso}
+\Hypertarget{_surface_8h_a0fc12d8895a951395a9054b9e440e809}\index{Surface.h@{Surface.h}!LDL\_SurfaceGetColorKey@{LDL\_SurfaceGetColorKey}}
+\index{LDL\_SurfaceGetColorKey@{LDL\_SurfaceGetColorKey}!Surface.h@{Surface.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_SurfaceGetColorKey()}{LDL\_SurfaceGetColorKey()}}
+{\footnotesize\ttfamily \label{_surface_8h_a0fc12d8895a951395a9054b9e440e809} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___color}{LDL\+\_\+\+Color}} LDL\+\_\+\+Surface\+Get\+Color\+Key (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}}]{surface}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the current color key. 
+
+This function returns the color key that is currently set for the surface.
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & Pointer to the surface. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The current color key as an \doxylink{struct_l_d_l___color}{LDL\+\_\+\+Color} structure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+If no color key is set, the returned color is undefined. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_surface_8h_a25a09e47a2b62845a53ff7694e075f68}{LDL\+\_\+\+Surface\+Set\+Color\+Key} 
+
+\doxylink{_surface_8h_acf29d0fe8166dd2d312c2430f743fa18}{LDL\+\_\+\+Surface\+Is\+Color\+Key} 
+\end{DoxySeeAlso}
+\Hypertarget{_surface_8h_a1a2fc28f688765624a021a3df70fcf9e}\index{Surface.h@{Surface.h}!LDL\_SurfaceGetPitch@{LDL\_SurfaceGetPitch}}
+\index{LDL\_SurfaceGetPitch@{LDL\_SurfaceGetPitch}!Surface.h@{Surface.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_SurfaceGetPitch()}{LDL\_SurfaceGetPitch()}}
+{\footnotesize\ttfamily \label{_surface_8h_a1a2fc28f688765624a021a3df70fcf9e} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} size\+\_\+t LDL\+\_\+\+Surface\+Get\+Pitch (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}}]{surface}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the pitch (stride) of the surface. 
+
+This function returns the number of bytes in each row of the surface, which may be larger than the width \texorpdfstring{$\ast$}{*} bytes\+\_\+per\+\_\+pixel due to alignment. The pitch is useful for performing efficient row-\/wise operations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & Pointer to the surface. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The pitch of the surface in bytes.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The pitch is at least:\+ size.\+x \texorpdfstring{$\ast$}{*} bytes\+\_\+per\+\_\+pixel. 
+
+The pitch may include padding for performance optimization. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_surface_8h_a8f3ab4f9ab7498499da0fbda5e88e607}{LDL\+\_\+\+Surface\+Get\+Size} 
+
+\doxylink{_surface_8h_ac79f4851a97fa58efedbeba9ead23786}{LDL\+\_\+\+Surface\+Get\+Bytes\+Per\+Pixel} 
+\end{DoxySeeAlso}
+\Hypertarget{_surface_8h_a1cc4dbca6e54d3a9074f484fbce001c5}\index{Surface.h@{Surface.h}!LDL\_SurfaceGetPixelFormat@{LDL\_SurfaceGetPixelFormat}}
+\index{LDL\_SurfaceGetPixelFormat@{LDL\_SurfaceGetPixelFormat}!Surface.h@{Surface.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_SurfaceGetPixelFormat()}{LDL\_SurfaceGetPixelFormat()}}
+{\footnotesize\ttfamily \label{_surface_8h_a1cc4dbca6e54d3a9074f484fbce001c5} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} LDL\+\_\+\+Surface\+Get\+Pixel\+Format (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}}]{surface}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the pixel format of the surface. 
+
+This function returns the pixel format identifier for the surface, which describes the memory layout and channel arrangement of the pixel data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & Pointer to the surface. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The pixel format identifier (from LDL\+\_\+\+Pixel\+Format enumeration).
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_surface_8h_ac79f4851a97fa58efedbeba9ead23786}{LDL\+\_\+\+Surface\+Get\+Bytes\+Per\+Pixel} 
+
+LDL\+\_\+\+Pixel\+Format 
+\end{DoxySeeAlso}
+\Hypertarget{_surface_8h_a0ceb2537e15cbc0f9c1b9dc5993e690c}\index{Surface.h@{Surface.h}!LDL\_SurfaceGetPixels@{LDL\_SurfaceGetPixels}}
+\index{LDL\_SurfaceGetPixels@{LDL\_SurfaceGetPixels}!Surface.h@{Surface.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_SurfaceGetPixels()}{LDL\_SurfaceGetPixels()}}
+{\footnotesize\ttfamily \label{_surface_8h_a0ceb2537e15cbc0f9c1b9dc5993e690c} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{_types_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} \texorpdfstring{$\ast$}{*} LDL\+\_\+\+Surface\+Get\+Pixels (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}}]{surface}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves a pointer to the surface\textquotesingle{}s pixel data. 
+
+This function returns a pointer to the raw pixel data buffer of the surface. The data can be read or modified directly.
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & Pointer to the surface. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the pixel data buffer, or NULL if the surface is invalid.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned pointer is owned by the surface and should not be freed. 
+
+The data format corresponds to the surface\textquotesingle{}s pixel format. 
+
+Modifying the pixel data directly affects the surface content. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_surface_8h_ac79f4851a97fa58efedbeba9ead23786}{LDL\+\_\+\+Surface\+Get\+Bytes\+Per\+Pixel} 
+
+\doxylink{_surface_8h_a1cc4dbca6e54d3a9074f484fbce001c5}{LDL\+\_\+\+Surface\+Get\+Pixel\+Format} 
+\end{DoxySeeAlso}
+\Hypertarget{_surface_8h_a8f3ab4f9ab7498499da0fbda5e88e607}\index{Surface.h@{Surface.h}!LDL\_SurfaceGetSize@{LDL\_SurfaceGetSize}}
+\index{LDL\_SurfaceGetSize@{LDL\_SurfaceGetSize}!Surface.h@{Surface.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_SurfaceGetSize()}{LDL\_SurfaceGetSize()}}
+{\footnotesize\ttfamily \label{_surface_8h_a8f3ab4f9ab7498499da0fbda5e88e607} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} \doxymbox{\hyperlink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i}} LDL\+\_\+\+Surface\+Get\+Size (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}}]{surface}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves the current size of the surface. 
+
+This function returns the actual dimensions of the surface in pixels. The size may be less than or equal to the capacity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & Pointer to the surface. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The current size of the surface as an \doxylink{struct_l_d_l___vec2i}{LDL\+\_\+\+Vec2i} structure.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_surface_8h_a9016963c1f839ac7fd72c36d1c714c83}{LDL\+\_\+\+Surface\+Get\+Capacity} 
+\end{DoxySeeAlso}
+\Hypertarget{_surface_8h_acf29d0fe8166dd2d312c2430f743fa18}\index{Surface.h@{Surface.h}!LDL\_SurfaceIsColorKey@{LDL\_SurfaceIsColorKey}}
+\index{LDL\_SurfaceIsColorKey@{LDL\_SurfaceIsColorKey}!Surface.h@{Surface.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_SurfaceIsColorKey()}{LDL\_SurfaceIsColorKey()}}
+{\footnotesize\ttfamily \label{_surface_8h_acf29d0fe8166dd2d312c2430f743fa18} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} bool LDL\+\_\+\+Surface\+Is\+Color\+Key (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}}]{surface}{}\end{DoxyParamCaption})}
+
+
+
+Checks whether a color key is set for the surface. 
+
+This function returns true if a color key has been set for the surface, indicating that transparency is enabled.
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & Pointer to the surface. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if a color key is set, false otherwise.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_surface_8h_a25a09e47a2b62845a53ff7694e075f68}{LDL\+\_\+\+Surface\+Set\+Color\+Key} 
+
+\doxylink{_surface_8h_a0fc12d8895a951395a9054b9e440e809}{LDL\+\_\+\+Surface\+Get\+Color\+Key} 
+\end{DoxySeeAlso}
+\Hypertarget{_surface_8h_a25a09e47a2b62845a53ff7694e075f68}\index{Surface.h@{Surface.h}!LDL\_SurfaceSetColorKey@{LDL\_SurfaceSetColorKey}}
+\index{LDL\_SurfaceSetColorKey@{LDL\_SurfaceSetColorKey}!Surface.h@{Surface.h}}
+\doxysubsubsection{\texorpdfstring{LDL\_SurfaceSetColorKey()}{LDL\_SurfaceSetColorKey()}}
+{\footnotesize\ttfamily \label{_surface_8h_a25a09e47a2b62845a53ff7694e075f68} 
+\doxymbox{\hyperlink{_config_8h_aa0c2fb7abd798275d319ca4ded0bcd94}{LDL\+\_\+\+LIBRARY}} void LDL\+\_\+\+Surface\+Set\+Color\+Key (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_l_d_l___surface}{LDL\+\_\+\+Surface}} \texorpdfstring{$\ast$}{*}}]{surface}{, }\item[{\doxymbox{\hyperlink{struct_l_d_l___color}{LDL\+\_\+\+Color}}}]{color}{}\end{DoxyParamCaption})}
+
+
+
+Sets a color key for transparency. 
+
+This function sets a color key for the surface. Pixels matching this color will be treated as transparent during rendering operations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em surface} & Pointer to the surface. \\
+\hline
+{\em color} & The color to use as a color key.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Color key is commonly used for sprite transparency. 
+
+The color key is enabled after setting it. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_surface_8h_a0fc12d8895a951395a9054b9e440e809}{LDL\+\_\+\+Surface\+Get\+Color\+Key} 
+
+\doxylink{_surface_8h_acf29d0fe8166dd2d312c2430f743fa18}{LDL\+\_\+\+Surface\+Is\+Color\+Key} 
+\end{DoxySeeAlso}
