@@ -9,6 +9,72 @@ namespace glm
 
     const f32 PI = 3.14159265358979323846f;
 
+    struct vec2
+    {
+        f32 x, y;
+
+        vec2() : x(0), y(0) {}
+        vec2(f32 _x, f32 _y) : x(_x), y(_y) {}
+
+        vec2 operator+(const vec2& v) const { return vec2(x + v.x, y + v.y); }
+        vec2 operator-(const vec2& v) const { return vec2(x - v.x, y - v.y); }
+        vec2 operator*(const vec2& v) const { return vec2(x * v.x, y * v.y); }
+        vec2 operator/(const vec2& v) const { return vec2(x / v.x, y / v.y); }
+
+        vec2 operator+(f32 scalar) const { return vec2(x + scalar, y + scalar); }
+        vec2 operator-(f32 scalar) const { return vec2(x - scalar, y - scalar); }
+        vec2 operator*(f32 scalar) const { return vec2(x * scalar, y * scalar); }
+        vec2 operator/(f32 scalar) const { return vec2(x / scalar, y / scalar); }
+
+        vec2& operator+=(const vec2& v)
+        {
+            x += v.x; y += v.y;
+            return *this;
+        }
+
+        vec2& operator-=(const vec2& v)
+        {
+            x -= v.x; y -= v.y;
+            return *this;
+        }
+
+        vec2& operator*=(const vec2& v)
+        {
+            x *= v.x; y *= v.y;
+            return *this;
+        }
+
+        vec2& operator/=(const vec2& v)
+        {
+            x /= v.x; y /= v.y;
+            return *this;
+        }
+
+        vec2& operator+=(f32 scalar)
+        {
+            x += scalar; y += scalar;
+            return *this;
+        }
+
+        vec2& operator-=(f32 scalar)
+        {
+            x -= scalar; y -= scalar;
+            return *this;
+        }
+
+        vec2& operator*=(f32 scalar)
+        {
+            x *= scalar; y *= scalar;
+            return *this;
+        }
+
+        vec2& operator/=(f32 scalar)
+        {
+            x /= scalar; y /= scalar;
+            return *this;
+        }
+    };
+
     struct vec3
     {
         f32 x, y, z;
@@ -374,6 +440,21 @@ namespace glm
         res.col[3][2] = dot(f, eye);
 
         return res;
+    }
+
+    inline mat4 ortho(f32 left, f32 right, f32 bottom, f32 top, f32 zNear, f32 zFar)
+    {
+        mat4 Result(1.0f);
+
+        Result.col[0][0] = 2.0f / (right - left);
+        Result.col[1][1] = 2.0f / (top - bottom);
+        Result.col[2][2] = -2.0f / (zFar - zNear);
+
+        Result.col[3][0] = -(right + left) / (right - left);
+        Result.col[3][1] = -(top + bottom) / (top - bottom);
+        Result.col[3][2] = -(zFar + zNear) / (zFar - zNear);
+
+        return Result;
     }
 
     template <typename T>
