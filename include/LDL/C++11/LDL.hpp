@@ -46,7 +46,7 @@ namespace LDL
             r = 0;
             g = 0;
             b = 0;
-            a = 26;
+            a = 255;
         }
 
         inline Color(uint8_t rv, uint8_t gv, uint8_t bv, uint8_t av = 255)
