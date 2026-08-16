@@ -38,7 +38,7 @@ void LDL_EventHandlerPush(LDL_EventHandler* eventHandler, const LDL_Event* event
 
 bool LDL_EventHandlerPop(LDL_EventHandler* eventHandler, LDL_Event* event)
 {
-    return eventHandler && event && !LDL_EventHandlerEmpty(eventHandler) ? LDL_EventQueueDequeue(&eventHandler->Queue, event) : false;
+    return (eventHandler && event) ? LDL_EventQueueDequeue(&eventHandler->Queue, event) : false;
 }
 
 bool LDL_EventHandlerRunning(LDL_EventHandler* eventHandler)

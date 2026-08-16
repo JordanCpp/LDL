@@ -19,7 +19,7 @@ LDL_StringSpan LDL_GetStringSpan(char* data, size_t capacity)
 {
     LDL_StringSpan span;
 
-    span.Data     = data;
+    span.Data = data;
     span.Capacity = capacity;
 
     return span;
@@ -27,9 +27,20 @@ LDL_StringSpan LDL_GetStringSpan(char* data, size_t capacity)
 
 void LDL_StringSpanCopy(LDL_StringSpan* span, const char* source)
 {
-    if (span && span->Data && source)
+    if (span && span->Data && source && span->Capacity > 0)
     {
-        strncpy(span->Data, source, span->Capacity - 1);
-        span->Data[span->Capacity - 1] = '\0';
+        size_t i = 0;
+        size_t max_len = span->Capacity - 1;
+
+        while (i < max_len && source[i] != '\0')
+        {
+            span->Data[i] = source[i];
+            i++;
+        }
+        span->Data[i] = '\0';
+    }
+    else if (span && span->Data && span->Capacity > 0)
+    {
+        span->Data[0] = '\0';
     }
 }
