@@ -543,6 +543,7 @@ namespace LDL
 		inline Formatter() :
 			_formatter(NULL)
 		{
+			_formatter = LDL_FormatterCreate();
 		}
 
 		inline ~Formatter()

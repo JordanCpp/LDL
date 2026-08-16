@@ -15,11 +15,12 @@ License for more details.
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 #include <LDL/Format.h>
 
 enum
 {
-	LDL_FormatterMax = 512
+    LDL_FormatterMax = 512
 };
 
 struct LDL_Formatter
@@ -29,7 +30,10 @@ struct LDL_Formatter
 
 void LDL_FormatterClear(LDL_Formatter* formatter)
 {
-    memset(formatter->Buffer, 0, LDL_FormatterMax);
+    if (formatter)
+    {
+        memset(formatter->Buffer, 0, LDL_FormatterMax);
+    }
 }
 
 LDL_Formatter* LDL_FormatterCreate()
@@ -77,17 +81,19 @@ int LDL_FormatterItoa(int num, char* str)
 {
     int i = 0;
     unsigned int n;
+    int isNegative = 0;
 
     if (num < 0)
     {
-        n = (unsigned int)(-(num + 1)) + 1;
+        isNegative = 1;
+        n = (num == INT_MIN) ? (unsigned int)-(num + 1) + 1 : (unsigned int)-num;
     }
     else
     {
         n = (unsigned int)num;
     }
 
-    if (num == 0)
+    if (n == 0)
     {
         str[i++] = '0';
     }
@@ -99,7 +105,10 @@ int LDL_FormatterItoa(int num, char* str)
             n /= 10;
         }
 
-        if (num < 0) str[i++] = '-';
+        if (isNegative)
+        {
+            str[i++] = '-';
+        }
     }
 
     str[i] = '\0';
@@ -109,66 +118,90 @@ int LDL_FormatterItoa(int num, char* str)
     return i;
 }
 
-const char* LDL_FormatterVFormat(LDL_Formatter* formatter, const char* format, va_list args) 
+const char* LDL_FormatterVFormat(LDL_Formatter* formatter, const char* format, va_list args)
 {
     char* dst, * end, * p;
     const char* src;
     char numBuf[32];
 
-    if (!formatter || !format)
+    if (!formatter)
     {
-        return (formatter ? formatter->Buffer : NULL);
+        return "";
+    }
+
+    if (!format)
+    {
+        formatter->Buffer[0] = '\0';
+        return formatter->Buffer;
     }
 
     dst = formatter->Buffer;
     end = formatter->Buffer + LDL_FormatterMax - 1;
     src = format;
 
-    while (*src != '\0' && dst < end) 
+    while (*src != '\0' && dst < end)
     {
-        if (*src == '%') 
+        if (*src == '%')
         {
+            if (*(src + 1) == '\0')
+            {
+                *dst++ = *src++;
+                break;
+            }
+
             src++;
             switch (*src)
             {
             case 's':
             {
-                char* s = va_arg(args, char*);
+                const char* s = va_arg(args, const char*);
                 if (!s) s = "(null)";
-                while (*s && dst < end) *dst++ = *s++;
+
+                while (*s && dst < end)
+                {
+                    *dst++ = *s++;
+                }
                 break;
             }
-            case 'd': 
+            case 'd':
             {
                 LDL_FormatterItoa(va_arg(args, int), numBuf);
                 p = numBuf;
-                while (*p && dst < end) *dst++ = *p++;
+                while (*p && dst < end)
+                {
+                    *dst++ = *p++;
+                }
                 break;
             }
             case 'c':
             {
-                if (dst < end) *dst++ = (char)va_arg(args, int);
+                if (dst < end)
+                {
+                    *dst++ = (char)va_arg(args, int);
+                }
                 break;
             }
-            case '%': 
+            case '%':
             {
-                *dst++ = '%';
+                if (dst < end)
+                {
+                    *dst++ = '%';
+                }
                 break;
             }
-            default: 
+            default:
             {
                 if (dst < end) *dst++ = '%';
                 if (dst < end) *dst++ = *src;
                 break;
             }
             }
+            src++;
         }
-        else 
+        else
         {
-            *dst++ = *src;
+            *dst++ = *src++;
         }
-
-        src++;
     }
 
     *dst = '\0';
@@ -176,7 +209,7 @@ const char* LDL_FormatterVFormat(LDL_Formatter* formatter, const char* format, v
     return formatter->Buffer;
 }
 
-const char* LDL_FormatterFormat(LDL_Formatter* formatter, const char* format, ...) 
+const char* LDL_FormatterFormat(LDL_Formatter* formatter, const char* format, ...)
 {
     va_list args;
     const char* res;
