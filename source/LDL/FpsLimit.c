@@ -25,56 +25,72 @@ struct LDL_FpsLimiter
 
 LDL_FpsLimiter* LDL_FpsLimiterCreate(LDL_Result* result, size_t fps)
 {
-	LDL_FpsLimiter* fpsLimiter = (LDL_FpsLimiter*)malloc(sizeof(LDL_FpsLimiter));
-	if (fpsLimiter == NULL)
-	{
-		LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
-	}
-	else
-	{
-		fpsLimiter->Fps   = fps;
-		fpsLimiter->Start = 0;
-	}
+    LDL_FpsLimiter* fpsLimiter;
 
-	return fpsLimiter;
+    if (fps == 0)
+    {
+        if (result)
+        {
+            LDL_ResultAddMessage(result, "FPS cannot be zero"); /* или ваш аналог ошибки */
+        }
+
+        return NULL;
+    }
+
+    fpsLimiter = (LDL_FpsLimiter*)malloc(sizeof(LDL_FpsLimiter));
+
+    if (fpsLimiter == NULL)
+    {
+        if (result)
+        {
+            LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+        }
+    }
+    else
+    {
+        fpsLimiter->Fps = fps;
+        fpsLimiter->Start = 0;
+    }
+
+    return fpsLimiter;
 }
 
 void LDL_FpsLimiterDestroy(LDL_FpsLimiter* fpsLimiter)
 {
-	if (fpsLimiter)
-	{
-		free(fpsLimiter);
-	}
+    if (fpsLimiter)
+    {
+        free(fpsLimiter);
+    }
 }
 
 void LDL_FpsLimiterMark(LDL_FpsLimiter* fpsLimiter)
 {
-	if (fpsLimiter)
-	{
-		fpsLimiter->Start = LDL_Ticks();
-	}
+    if (fpsLimiter)
+    {
+        fpsLimiter->Start = LDL_Ticks();
+    }
 }
 
 void LDL_FpsLimiterThrottle(LDL_FpsLimiter* fpsLimiter)
 {
-	size_t sleepMs;
-	size_t elapsed;
-	size_t frameTimeMs;
+    size_t sleepMs;
+    size_t elapsed;
+    size_t frameTimeMs;
 
-	if (fpsLimiter)
-	{
-		if (fpsLimiter->Fps == 0)
-		{
-			return;
-		}
+    if (fpsLimiter)
+    {
+        if (fpsLimiter->Fps == 0)
+        {
+            return;
+        }
 
-		frameTimeMs = 1000 / fpsLimiter->Fps;
-		elapsed     = LDL_Ticks() - fpsLimiter->Start;
+        frameTimeMs = 1000 / fpsLimiter->Fps;
+        elapsed = LDL_Ticks() - fpsLimiter->Start;
 
-		if (elapsed < frameTimeMs)
-		{
-			sleepMs = frameTimeMs - elapsed;
-			LDL_Delay(sleepMs);
-		}
-	}
+        if (elapsed < frameTimeMs)
+        {
+            sleepMs = frameTimeMs - elapsed;
+            LDL_Delay(sleepMs);
+        }
+    }
 }

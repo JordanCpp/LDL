@@ -19,36 +19,36 @@ void LDL_EventQueueInit(LDL_EventQueue* eventQueue)
 {
     if (eventQueue)
     {
-        eventQueue->Head     = 0;
-        eventQueue->Tail     = 0;
-        eventQueue->Length   = 0;
+        eventQueue->Head = 0;
+        eventQueue->Tail = 0;
+        eventQueue->Length = 0;
         eventQueue->Capacity = LDL_EventQueueMax;
     }
 }
 
 bool LDL_EventQueueEmpty(LDL_EventQueue* eventQueue)
 {
-	return eventQueue->Length == 0;
+    return eventQueue ? (eventQueue->Length == 0) : true;
 }
 
 bool LDL_EventQueueFull(LDL_EventQueue* eventQueue)
 {
-	return eventQueue->Length == eventQueue->Capacity;
+    return eventQueue ? (eventQueue->Length == eventQueue->Capacity) : false;
 }
 
 size_t LDL_EventQueueSize(LDL_EventQueue* eventQueue)
 {
-	return eventQueue->Length;
+    return eventQueue ? eventQueue->Length : 0;
 }
 
 size_t LDL_EventQueueCapacity(LDL_EventQueue* eventQueue)
 {
-	return eventQueue->Capacity;
+    return eventQueue ? eventQueue->Capacity : 0;
 }
 
 size_t LDL_EventQueueNext(LDL_EventQueue* eventQueue, size_t pos)
 {
-	return (pos + 1) % eventQueue->Capacity;
+    return eventQueue ? ((pos + 1) % eventQueue->Capacity) : 0;
 }
 
 bool LDL_EventQueueDequeue(LDL_EventQueue* eventQueue, LDL_Event* element)
@@ -67,7 +67,7 @@ bool LDL_EventQueueDequeue(LDL_EventQueue* eventQueue, LDL_Event* element)
 
 void LDL_EventQueueEnqueue(LDL_EventQueue* eventQueue, const LDL_Event* element)
 {
-    if (eventQueue && eventQueue->Capacity > 0)
+    if (eventQueue && element && eventQueue->Capacity > 0)
     {
         memcpy(&eventQueue->Content[eventQueue->Head], element, sizeof(LDL_Event));
         eventQueue->Head = LDL_EventQueueNext(eventQueue, eventQueue->Head);

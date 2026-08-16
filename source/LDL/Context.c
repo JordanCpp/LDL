@@ -23,34 +23,32 @@ struct LDL_Context
 
 LDL_Context* LDL_ContextCreate(LDL_Result* result, LDL_ContextType type)
 {
-	if (result)
-	{
-		LDL_Context* context = (LDL_Context*)malloc(sizeof(LDL_Context));
-		if (context == NULL)
-		{
-			LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
-		}
+    LDL_Context* context = (LDL_Context*)malloc(sizeof(LDL_Context));
 
-		if (context)
-		{
-			context->Type = type;
+    if (context == NULL)
+    {
+        if (result)
+        {
+            LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+        }
 
-			return context;
-		}
-	}
+        return NULL;
+    }
 
-	return NULL;
+    context->Type = (size_t)type;
+
+    return context;
 }
 
 void LDL_ContextDestroy(LDL_Context* context)
 {
-	if (context)
-	{
-		free(context);
-	}
+    if (context)
+    {
+        free(context);
+    }
 }
 
 size_t LDL_ContextGet(LDL_Context* context)
 {
-	return context ? context->Type : 0;
+    return context ? context->Type : 0;
 }

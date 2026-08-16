@@ -27,68 +27,70 @@ struct LDL_FpsCounter
 
 LDL_FpsCounter* LDL_FpsCounterCreate(LDL_Result* result)
 {
-	LDL_FpsCounter* fpsCounter = (LDL_FpsCounter*)malloc(sizeof(LDL_FpsCounter));
-	if (fpsCounter == NULL)
-	{
-		LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
-	}
+    LDL_FpsCounter* fpsCounter = (LDL_FpsCounter*)malloc(sizeof(LDL_FpsCounter));
 
-	if (fpsCounter)
-	{
-		fpsCounter->StartTime   = 0;
-		fpsCounter->Accumulator = 0;
-		fpsCounter->FrameCount  = 0;
-		fpsCounter->LastFps     = 0;
+    if (fpsCounter == NULL)
+    {
+        if (result)
+        {
+            LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+        }
 
-		return fpsCounter;
-	}
+        return NULL;
+    }
 
-	return NULL;
+    fpsCounter->StartTime   = 0;
+    fpsCounter->Accumulator = 0;
+    fpsCounter->FrameCount  = 0;
+    fpsCounter->LastFps     = 0;
+
+    return fpsCounter;
 }
 
 void LDL_FpsCounterDestroy(LDL_FpsCounter* fpsCounter)
 {
-	if (fpsCounter)
-	{
-		free(fpsCounter);
-	}
+    if (fpsCounter)
+    {
+        free(fpsCounter);
+    }
 }
 
 void LDL_FpsCounterStart(LDL_FpsCounter* fpsCounter)
 {
-	if (fpsCounter)
-	{
-		fpsCounter->StartTime = LDL_Ticks();
-	}
+    if (fpsCounter)
+    {
+        fpsCounter->StartTime = LDL_Ticks();
+    }
 }
 
 bool LDL_FpsCounterCalc(LDL_FpsCounter* fpsCounter)
 {
-	size_t curTime;
-	size_t delta;
+    size_t curTime;
+    size_t delta;
 
-	if (fpsCounter)
-	{
-		curTime = LDL_Ticks();
-		delta   = curTime - fpsCounter->StartTime;
+    if (fpsCounter)
+    {
+        curTime = LDL_Ticks();
+        delta   = curTime - fpsCounter->StartTime;
 
-		fpsCounter->Accumulator += delta;
-		fpsCounter->FrameCount++;
+        fpsCounter->StartTime    = curTime;
+        fpsCounter->Accumulator += delta;
+        fpsCounter->FrameCount++;
 
-		if (fpsCounter->Accumulator >= 1000)
-		{
-			fpsCounter->Accumulator -= 1000;
-			fpsCounter->LastFps = fpsCounter->FrameCount;
-			fpsCounter->FrameCount = 0;
+        if (fpsCounter->Accumulator >= 1000)
+        {
+            fpsCounter->Accumulator = 0;
+            fpsCounter->LastFps     = fpsCounter->FrameCount;
+            fpsCounter->FrameCount  = 0;
 
-			return true;
-		}
-	}
+            return true;
+        }
+    }
 
-	return false;
+    return false;
 }
 
 size_t LDL_FpsCounterFps(LDL_FpsCounter* fpsCounter)
 {
-	return fpsCounter ? fpsCounter->LastFps : 0;
+    return fpsCounter ? fpsCounter->LastFps : 0;
 }

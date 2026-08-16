@@ -15,6 +15,8 @@ License for more details.
 #ifndef LDL_StrSpan_H
 #define LDL_StrSpan_H
 
+#include <stddef.h>
+
 typedef struct LDL_StringSpan
 {
 	char*  Data;
