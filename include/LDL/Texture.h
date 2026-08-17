@@ -170,4 +170,4 @@ LDL_LIBRARY LDL_Vec2i LDL_TextureGetSize(LDL_Texture* texture);
 }
 #endif
 
-#endif // LDL_Texture_H
+#endif

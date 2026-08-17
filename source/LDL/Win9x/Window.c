@@ -234,6 +234,11 @@ LDL_Surface* LDL_WindowGetScreen(LDL_Window* window)
 	{
 		switch (window->ContextType)
 		{
+		case LDL_ContextOpenGLLegacy:
+		case LDL_ContextOpenGLHybrid:
+		case LDL_ContextOpenGLModern:
+			return NULL;
+			break;
 		case LDL_ContextSoftware:
 			return window->u.WindowSoftware.Screen;
 		};

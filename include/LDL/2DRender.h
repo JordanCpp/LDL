@@ -291,4 +291,4 @@ LDL_LIBRARY void LDL_2DRenderEnd(LDL_2DRender* render);
 }
 #endif
 
-#endif // LDL_2DRender_H
+#endif

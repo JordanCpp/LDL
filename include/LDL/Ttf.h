@@ -253,4 +253,4 @@ LDL_LIBRARY uint8_t LDL_RasterizerGetPixelFormat(LDL_Rasterizer* rasterizer);
 }
 #endif
 
-#endif // LDL_Ttf_H
+#endif

@@ -282,4 +282,4 @@ LDL_LIBRARY void LDL_Mat4fPerspective(LDL_Mat4f* mat, float fovy, float aspect, 
 }
 #endif
 
-#endif // LDL_Mat4f_H
+#endif

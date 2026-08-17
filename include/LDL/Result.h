@@ -201,4 +201,4 @@ LDL_LIBRARY void LDL_ResultReset(LDL_Result* result);
 }
 #endif
 
-#endif // LDL_Result_H
+#endif

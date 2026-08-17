@@ -320,4 +320,4 @@ LDL_LIBRARY LDL_Surface* LDL_WindowGetScreen(LDL_Window* window);
 }
 #endif
 
-#endif // LDL_Window_H
+#endif

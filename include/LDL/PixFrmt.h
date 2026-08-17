@@ -147,4 +147,4 @@ LDL_LIBRARY uint8_t LDL_BytesPerPixelFromPixelFormat(size_t pixelFormat);
 }
 #endif
 
-#endif // LDL_PixFrmt_H
+#endif

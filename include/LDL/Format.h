@@ -198,4 +198,4 @@ LDL_LIBRARY const char* LDL_FormatterFormat(LDL_Formatter* formatter, const char
 }
 #endif
 
-#endif // LDL_Format_H
+#endif

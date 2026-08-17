@@ -138,8 +138,7 @@ typedef enum LDL_ContextType
     LDL_ContextSoftware = 1,/**< Software-based rendering - CPU rendered.*/
     LDL_ContextOpenGLLegacy,/**< Legacy OpenGL rendering context - fixed-function pipeline.*/
     LDL_ContextOpenGLHybrid,/**< Hybrid OpenGL rendering context - mixed legacy/modern.*/
-    LDL_ContextOpenGLModern,/**< Modern OpenGL (Core Profile) rendering context - shader-based.*/
-    LDL_ContextMax          /**< Sentinel value representing the total number of contexts.*/
+    LDL_ContextOpenGLModern /**< Modern OpenGL (Core Profile) rendering context - shader-based.*/
 } LDL_ContextType;
 
 /**
@@ -265,4 +264,4 @@ enum
 };
 /** @}*/
 
-#endif // LDL_Enums_H
+#endif

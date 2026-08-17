@@ -193,4 +193,4 @@ LDL_LIBRARY void LDL_PaletteSet(LDL_Palette* palette, size_t index, LDL_Color co
 }
 #endif
 
-#endif // LDL_Palette_H
+#endif

@@ -208,7 +208,7 @@ void LDL_2DRenderOpenGL3End(LDL_2DRenderOpenGL3* render)
     {
         glBindVertexArray(render->VAO);
         glBindBuffer(GL_ARRAY_BUFFER, render->VBO);
-        glBufferData(GL_ARRAY_BUFFER, render->Buffer.VertexCount * sizeof(LDL_Vertex), render->Buffer.VertexBuffer, GL_STREAM_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, (GLsizeiptr)(render->Buffer.VertexCount * sizeof(LDL_Vertex)), render->Buffer.VertexBuffer, GL_STREAM_DRAW);
 
         glUseProgram(render->ShaderProgram);
         glUniformMatrix4fv(render->ProjLoc, 1, GL_FALSE, LDL_Mat4fGetValues(&render->Projection));

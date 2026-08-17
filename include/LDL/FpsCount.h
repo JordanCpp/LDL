@@ -178,4 +178,4 @@ LDL_LIBRARY size_t LDL_FpsCounterFps(LDL_FpsCounter* fpsCounter);
 }
 #endif
 
-#endif // LDL_FpsCount_H
+#endif

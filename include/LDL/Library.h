@@ -144,4 +144,4 @@ LDL_LIBRARY LDL_VoidFuncPtr LDL_LibraryGetFunction(LDL_Library* library, const c
 }
 #endif
 
-#endif // LDL_Library_H
+#endif
