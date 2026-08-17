@@ -101,7 +101,7 @@ int LDL_FormatterItoa(int num, char* str)
     {
         while (n != 0)
         {
-            str[i++] = (n % 10) + '0';
+            str[i++] = (char)((n % 10) + '0');
             n /= 10;
         }
 

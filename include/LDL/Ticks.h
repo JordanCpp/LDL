@@ -110,4 +110,4 @@ LDL_LIBRARY void LDL_Delay(size_t count);
 }
 #endif
 
-#endif // LDL_Ticks_H
+#endif

@@ -142,4 +142,4 @@ LDL_LIBRARY size_t LDL_ContextGet(LDL_Context* context);
 }
 #endif
 
-#endif // LDL_Context_H
+#endif

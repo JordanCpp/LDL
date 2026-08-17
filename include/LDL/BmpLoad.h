@@ -211,4 +211,4 @@ LDL_LIBRARY bool LDL_BmpLoaderLoadFromFile(LDL_BmpLoader* loader, const char* pa
 }
 #endif
 
-#endif // LDL_BmpLoad_H
+#endif

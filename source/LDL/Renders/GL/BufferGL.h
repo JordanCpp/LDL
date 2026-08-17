@@ -75,7 +75,7 @@ typedef struct LDL_BufferOpenGL
     LDL_DrawCommand*  Commands;
     size_t            CommandCount;
     LDL_Vertex*       VertexBuffer;
-    GLsizeiptr        VertexCount;
+    size_t            VertexCount;
     LDL_Batch*        Batches;
     size_t            BatchCount;
 } LDL_BufferOpenGL;

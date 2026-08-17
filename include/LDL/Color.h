@@ -75,4 +75,4 @@ LDL_LIBRARY LDL_Color LDL_ColorRgba(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 }
 #endif
 
-#endif // LDL_Color_H
+#endif

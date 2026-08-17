@@ -158,4 +158,4 @@
 
 #define LDL_API_ENTRY LDL_LIBRARY extern
 
-#endif // LDL_Config_H
+#endif

@@ -365,4 +365,4 @@ LDL_LIBRARY void LDL_3DRenderSetProjection(LDL_3DRender* render, const float* ma
 }
 #endif
 
-#endif // LDL_3DRender_H
+#endif

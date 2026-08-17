@@ -37,24 +37,19 @@ LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSize(LDL_Result* result, uint8_t p
 		return NULL;
 	}
 
-	if (texture)
-	{
-		texture->Size  = size;
-		format         = BppToFormat(bpp);
-		quadSize       = SelectTextureSize(texture->Size);
-		texture->Quad  = LDL_GetVec2i(quadSize, quadSize);
-		texture->Id    = CreateTexture((GLsizei)texture->Quad.x, (GLsizei)texture->Quad.y, format);
+	texture->Size = size;
+	format        = BppToFormat(bpp);
+	quadSize      = SelectTextureSize(texture->Size);
+	texture->Quad = LDL_GetVec2i(quadSize, quadSize);
+	texture->Id   = CreateTexture((GLsizei)texture->Quad.x, (GLsizei)texture->Quad.y, format);
 
-		return texture;
-	}
-
-	return NULL;
+	return texture;
 }
 
 LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromPixels(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
 {
-	GLenum format = 0;
-	uint8_t bpp  = LDL_BytesPerPixelFromPixelFormat(pixelFormat);
+	GLenum format              = 0;
+	uint8_t bpp                = LDL_BytesPerPixelFromPixelFormat(pixelFormat);
 	LDL_TextureOpenGL* texture = LDL_TextureOpenGLCreateFromSize(result, pixelFormat, size);
 
 	if (texture)
@@ -69,11 +64,12 @@ LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromPixels(LDL_Result* result, uint8_t
 LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSurface(LDL_Result* result, LDL_Surface* surface)
 {
 	size_t i;
+	size_t totalPixels;
 	uint8_t* src;
 	LDL_Color key;
 	bool isKeyColor;
 	uint8_t* pixels;
-	LDL_TextureOpenGL* texture;
+	LDL_TextureOpenGL* texture = NULL;
 
 	if (!result)
 	{
@@ -88,7 +84,10 @@ LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSurface(LDL_Result* result, LDL_Su
 
 	if (LDL_SurfaceIsColorKey(surface))
 	{
-		pixels = (uint8_t*)malloc(LDL_SurfaceGetSize(surface).x * LDL_SurfaceGetSize(surface).y * 4);
+		size_t width  = (size_t)LDL_SurfaceGetSize(surface).x;
+		size_t height = (size_t)LDL_SurfaceGetSize(surface).y;
+
+		pixels = (uint8_t*)malloc(width * height * 4);
 
 		if (!pixels)
 		{
@@ -96,12 +95,13 @@ LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSurface(LDL_Result* result, LDL_Su
 			return NULL;
 		}
 
-		src = LDL_SurfaceGetPixels(surface);
-		key = LDL_SurfaceGetColorKey(surface);
+		src         = LDL_SurfaceGetPixels(surface);
+		key         = LDL_SurfaceGetColorKey(surface);
+		totalPixels = width * height;
 
 		if (LDL_SurfaceGetBytesPerPixel(surface) == 3)
 		{
-			for (i = 0; i < LDL_SurfaceGetSize(surface).x * LDL_SurfaceGetSize(surface).y; i++)
+			for (i = 0; i < totalPixels; i++)
 			{
 				uint8_t r = src[i * 3 + 0];
 				uint8_t g = src[i * 3 + 1];
@@ -117,6 +117,10 @@ LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSurface(LDL_Result* result, LDL_Su
 
 			texture = LDL_TextureOpenGLCreateFromPixels(result, LDL_PixelFormatRGBA32, LDL_SurfaceGetSize(surface), pixels);
 
+			free(pixels);
+		}
+		else
+		{
 			free(pixels);
 		}
 	}

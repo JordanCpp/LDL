@@ -245,4 +245,4 @@ LDL_LIBRARY bool LDL_EventIsMouseReleased(LDL_Event* event, uint8_t key);
 }
 #endif
 
-#endif // LDL_Events_H
+#endif

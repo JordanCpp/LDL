@@ -205,4 +205,4 @@
 #include <LDL/Image.h>
 #include <LDL/Ttf.h>
 
-#endif // LDL_H
+#endif

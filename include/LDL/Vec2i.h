@@ -78,4 +78,4 @@ LDL_LIBRARY LDL_Vec2i LDL_GetVec2i(int x, int y);
 }
 #endif
 
-#endif // LDL_Vec2i_H
+#endif

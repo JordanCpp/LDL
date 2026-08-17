@@ -190,4 +190,4 @@ LDL_LIBRARY void LDL_FpsLimiterThrottle(LDL_FpsLimiter* fpsLimiter);
 }
 #endif
 
-#endif // LDL_FpsLimit_H
+#endif

@@ -167,4 +167,4 @@ LDL_LIBRARY uint8_t LDL_ImageLoaderGetPixelFormat(LDL_ImageLoader* imageLoader);
 }
 #endif
 
-#endif // LDL_Image_H
+#endif

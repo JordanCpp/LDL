@@ -273,4 +273,4 @@ LDL_LIBRARY bool LDL_SurfaceIsColorKey(LDL_Surface* surface);
 }
 #endif
 
-#endif // LDL_Surface_H
+#endif

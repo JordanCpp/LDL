@@ -187,15 +187,15 @@ bool LDL_BmpLoaderLoadFromFile(LDL_BmpLoader* loader, const char* path)
         }
 
         loader->Size = LDL_GetVec2i(width, height);
-        loader->Bpp  = infoHeader.bit_count / 8;
+        loader->Bpp  = (uint8_t)infoHeader.bit_count / 8;
 
         if (loader->Bpp == 0) 
         {
             loader->Bpp = 1;
         }
 
-        row_stride      = (loader->Size.x * infoHeader.bit_count + 31) / 32 * 4;
-        pixel_data_size = row_stride * loader->Size.y;
+        row_stride      = ((uint32_t)loader->Size.x * (uint32_t)infoHeader.bit_count + 31) / 32 * 4;
+        pixel_data_size = row_stride * (uint32_t)loader->Size.y;
 
         loader->Pixels = (uint8_t*)malloc(pixel_data_size);
 
@@ -205,13 +205,13 @@ bool LDL_BmpLoaderLoadFromFile(LDL_BmpLoader* loader, const char* path)
             return false;
         }
 
-        fseek(loader->File, fileHeader.offset_data, SEEK_SET);
+        fseek(loader->File, (long)fileHeader.offset_data, SEEK_SET);
 
         if (isTopDown)
         {
             for (y = 0; y < loader->Size.y; ++y) 
             {
-                if (fread(loader->Pixels + y * row_stride, row_stride, 1, loader->File) != 1)
+                if (fread(loader->Pixels + (uint32_t)y * row_stride, row_stride, 1, loader->File) != 1)
                 {
                     LDL_ResultAddMessage(loader->Result, "Failed to read pixel data: %s", path);
                     return false;
@@ -222,7 +222,7 @@ bool LDL_BmpLoaderLoadFromFile(LDL_BmpLoader* loader, const char* path)
         {
             for (y = loader->Size.y - 1; y >= 0; --y) 
             {
-                if (fread(loader->Pixels + y * row_stride, row_stride, 1, loader->File) != 1) 
+                if (fread(loader->Pixels + (uint32_t)y * row_stride, row_stride, 1, loader->File) != 1)
                 {
                     LDL_ResultAddMessage(loader->Result, "Failed to read pixel data: %s", path);
                     return false;
@@ -236,7 +236,7 @@ bool LDL_BmpLoaderLoadFromFile(LDL_BmpLoader* loader, const char* path)
 
             for (y = 0; y < loader->Size.y; ++y)
             {
-                row = loader->Pixels + y * row_stride;
+                row = loader->Pixels + (uint32_t)y * row_stride;
 
                 for (x = 0; x < loader->Size.x; ++x)
                 {
