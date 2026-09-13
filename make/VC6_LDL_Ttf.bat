@@ -1,5 +1,5 @@
 
-call "C:\VC6\VC98\Bin\VCVARS32.BAT"
+call "C:\VC98\Bin\VCVARS32.BAT"
 
 CL /O2 /FeLDL_Ttf.dll -LD -GX /I..\include /I../source /I..\dependencies\freetype-2.14.3\include /Dinline=__inline /D_WIN32_WINNT=0x0300 /DFT2_BUILD_LIBRARY /DLDL_SHARED_LIBRARY ^
 ..\source\LDL_Ttf\*.c ^

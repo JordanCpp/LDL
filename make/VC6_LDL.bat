@@ -1,5 +1,5 @@
 
-call "C:\VC6\VC98\Bin\VCVARS32.BAT"
+call "C:\VC98\Bin\VCVARS32.BAT"
 
 CL /O2 /FeLDL.dll -LD -GX /DLDL_SHARED_LIBRARY ^
 ..\source\LDL\*.c ^

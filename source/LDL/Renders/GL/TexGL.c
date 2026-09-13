@@ -13,6 +13,7 @@ License for more details.
 */
 
 #include <stdlib.h>
+#include <string.h>
 #include <LDL/ErrorMsg.h>
 #include <LDL/PixFrmt.h>
 #include <LDL/OpenGL/GL1_2.h>
@@ -24,6 +25,96 @@ GLenum BppToFormat(uint8_t bpp)
 	return bpp == 3 ? GL_RGB : GL_RGBA;
 }
 
+uint8_t* ExpandRGB24WithColorKey(LDL_Surface* surface, LDL_Color key)
+{
+	size_t i;
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
+	bool isKey;
+	const size_t width = (size_t)LDL_SurfaceGetSize(surface).x;
+	const size_t height = (size_t)LDL_SurfaceGetSize(surface).y;
+	const size_t total = width * height;
+	const uint8_t* src = LDL_SurfaceGetPixels(surface);
+	uint8_t* pixels = (uint8_t*)malloc(total * 4);
+
+	if (pixels == NULL)
+	{
+		return NULL;
+	}
+
+	for (i = 0; i < total; ++i)
+	{
+		r = src[i * 3 + 0];
+		g = src[i * 3 + 1];
+		b = src[i * 3 + 2];
+
+		isKey = (r == key.r && g == key.g && b == key.b);
+
+		pixels[i * 4 + 0] = r;
+		pixels[i * 4 + 1] = g;
+		pixels[i * 4 + 2] = b;
+		pixels[i * 4 + 3] = isKey ? 0 : 255;
+	}
+
+	return pixels;
+}
+
+void ApplyColorKeyRGBA(uint8_t* pixels, size_t totalPixels, LDL_Color key)
+{
+	size_t i;
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
+
+	for (i = 0; i < totalPixels; ++i)
+	{
+		r = pixels[i * 4 + 0];
+		g = pixels[i * 4 + 1];
+		b = pixels[i * 4 + 2];
+
+		if (r == key.r && g == key.g && b == key.b)
+		{
+			pixels[i * 4 + 3] = 0;
+		}
+	}
+}
+
+void SwapRedBlue(uint8_t* pixels, size_t totalPixels)
+{
+	size_t i;
+	uint8_t r;
+	uint8_t b;
+
+	for (i = 0; i < totalPixels; ++i)
+	{
+		b = pixels[i * 4 + 0];
+		r = pixels[i * 4 + 2];
+
+		pixels[i * 4 + 0] = r;
+		pixels[i * 4 + 2] = b;
+	}
+}
+
+uint8_t* CopyWithColorKeyRGBA(LDL_Surface* surface, LDL_Color key)
+{
+	const size_t width  = (size_t)LDL_SurfaceGetSize(surface).x;
+	const size_t height = (size_t)LDL_SurfaceGetSize(surface).y;
+	const size_t total  = width * height;
+
+	uint8_t* pixels = (uint8_t*)malloc(total * 4);
+
+	if (pixels == NULL)
+	{
+		return NULL;
+	}
+
+	memcpy(pixels, LDL_SurfaceGetPixels(surface), total * 4);
+	ApplyColorKeyRGBA(pixels, total, key);
+
+	return pixels;
+}
+
 LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSize(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size)
 {
 	GLenum format = 0;
@@ -31,6 +122,7 @@ LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSize(LDL_Result* result, uint8_t p
 	uint8_t bpp = LDL_BytesPerPixelFromPixelFormat(pixelFormat);
 
 	LDL_TextureOpenGL* texture = (LDL_TextureOpenGL*)malloc(sizeof(LDL_TextureOpenGL));
+
 	if (texture == NULL)
 	{
 		LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
@@ -38,95 +130,134 @@ LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSize(LDL_Result* result, uint8_t p
 	}
 
 	texture->Size = size;
-	format        = BppToFormat(bpp);
-	quadSize      = SelectTextureSize(texture->Size);
+	format = BppToFormat(bpp);
+	quadSize = SelectTextureSize(texture->Size);
 	texture->Quad = LDL_GetVec2i(quadSize, quadSize);
-	texture->Id   = CreateTexture((GLsizei)texture->Quad.x, (GLsizei)texture->Quad.y, format);
+	texture->Id = CreateTexture((GLsizei)texture->Quad.x, (GLsizei)texture->Quad.y, format);
 
 	return texture;
 }
 
 LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromPixels(LDL_Result* result, uint8_t pixelFormat, LDL_Vec2i size, uint8_t* pixels)
 {
-	GLenum format              = 0;
-	uint8_t bpp                = LDL_BytesPerPixelFromPixelFormat(pixelFormat);
+	GLenum format = 0;
+	uint8_t bpp = LDL_BytesPerPixelFromPixelFormat(pixelFormat);
+
 	LDL_TextureOpenGL* texture = LDL_TextureOpenGLCreateFromSize(result, pixelFormat, size);
 
-	if (texture)
+	if (texture == NULL)
 	{
-		format = BppToFormat(bpp);
-		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, (GLsizei)texture->Size.x, (GLsizei)texture->Size.y, format, GL_UNSIGNED_BYTE, pixels);
+		return NULL;
 	}
+
+	if (pixels == NULL)
+	{
+		LDL_ResultAddMessage(result, LDL_ErrorInvalidArgument(), "pixels");
+		LDL_TextureOpenGLDestroy(texture);
+		return NULL;
+	}
+
+	format = BppToFormat(bpp);
+
+	glTexSubImage2D(
+		GL_TEXTURE_2D, 0, 0, 0,
+		(GLsizei)texture->Size.x,
+		(GLsizei)texture->Size.y,
+		format,
+		GL_UNSIGNED_BYTE,
+		pixels);
 
 	return texture;
 }
 
 LDL_TextureOpenGL* LDL_TextureOpenGLCreateFromSurface(LDL_Result* result, LDL_Surface* surface)
 {
-	size_t i;
-	size_t totalPixels;
-	uint8_t* src;
+	uint8_t   pixelFormat;
+	uint8_t   bpp;
+	LDL_Vec2i size;
+	size_t    totalPixels;
 	LDL_Color key;
-	bool isKeyColor;
 	uint8_t* pixels;
 	LDL_TextureOpenGL* texture = NULL;
 
-	if (!result)
+	if (result == NULL)
 	{
 		return NULL;
 	}
 
-	if (!surface)
+	if (surface == NULL)
 	{
 		LDL_ResultAddMessage(result, LDL_ErrorInvalidArgument(), "surface");
 		return NULL;
 	}
 
+	pixelFormat = LDL_SurfaceGetPixelFormat(surface);
+	bpp = LDL_SurfaceGetBytesPerPixel(surface);
+	size = LDL_SurfaceGetSize(surface);
+	totalPixels = (size_t)size.x * (size_t)size.y;
+
 	if (LDL_SurfaceIsColorKey(surface))
 	{
-		size_t width  = (size_t)LDL_SurfaceGetSize(surface).x;
-		size_t height = (size_t)LDL_SurfaceGetSize(surface).y;
+		key = LDL_SurfaceGetColorKey(surface);
+		pixels = NULL;
 
-		pixels = (uint8_t*)malloc(width * height * 4);
-
-		if (!pixels)
+		if (bpp == 3)
 		{
-			LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
-			return NULL;
-		}
+			pixels = ExpandRGB24WithColorKey(surface, key);
 
-		src         = LDL_SurfaceGetPixels(surface);
-		key         = LDL_SurfaceGetColorKey(surface);
-		totalPixels = width * height;
-
-		if (LDL_SurfaceGetBytesPerPixel(surface) == 3)
-		{
-			for (i = 0; i < totalPixels; i++)
+			if (pixels == NULL)
 			{
-				uint8_t r = src[i * 3 + 0];
-				uint8_t g = src[i * 3 + 1];
-				uint8_t b = src[i * 3 + 2];
-
-				isKeyColor = (r == key.r && g == key.g && b == key.b);
-
-				pixels[i * 4 + 0] = r;
-				pixels[i * 4 + 1] = g;
-				pixels[i * 4 + 2] = b;
-				pixels[i * 4 + 3] = isKeyColor ? 0 : 255;
+				LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+				return NULL;
 			}
 
-			texture = LDL_TextureOpenGLCreateFromPixels(result, LDL_PixelFormatRGBA32, LDL_SurfaceGetSize(surface), pixels);
+			texture = LDL_TextureOpenGLCreateFromPixels(result, LDL_PixelFormatRGBA32, size, pixels);
+
+			free(pixels);
+		}
+		else if (bpp == 4)
+		{
+			pixels = CopyWithColorKeyRGBA(surface, key);
+
+			if (pixels == NULL)
+			{
+				LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+				return NULL;
+			}
+
+			texture = LDL_TextureOpenGLCreateFromPixels(result, pixelFormat, size, pixels);
 
 			free(pixels);
 		}
 		else
 		{
-			free(pixels);
+			LDL_ResultAddMessage(result, LDL_ErrorInvalidArgument(), "unsupported pixel format");
+			return NULL;
 		}
+
+		return texture;
+	}
+
+	if (pixelFormat == LDL_PixelFormatBGRA32)
+	{
+		pixels = (uint8_t*)malloc(totalPixels * 4);
+
+		if (pixels == NULL)
+		{
+			LDL_ResultAddMessage(result, LDL_ErrorOutOfMemory());
+			return NULL;
+		}
+
+		memcpy(pixels, LDL_SurfaceGetPixels(surface), totalPixels * 4);
+		SwapRedBlue(pixels, totalPixels);
+
+		texture = LDL_TextureOpenGLCreateFromPixels(result, LDL_PixelFormatRGBA32, size, pixels);
+
+		free(pixels);
 	}
 	else
 	{
-		texture = LDL_TextureOpenGLCreateFromPixels(result, LDL_PixelFormatRGB24, LDL_SurfaceGetSize(surface), LDL_SurfaceGetPixels(surface));
+		texture = LDL_TextureOpenGLCreateFromPixels(result, pixelFormat, size, LDL_SurfaceGetPixels(surface));
 	}
 
 	return texture;

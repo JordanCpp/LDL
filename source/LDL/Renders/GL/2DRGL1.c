@@ -140,7 +140,6 @@ void LDL_2DRenderOpenGL1End(LDL_2DRenderOpenGL1* render)
 
             glDisableClientState(GL_COLOR_ARRAY);
             glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-            glEnableClientState(GL_TEXTURE_2D);
         }
 
         if (render->Window)

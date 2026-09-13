@@ -189,12 +189,12 @@ namespace LDL
     class Texture
     {
     public:
-        inline Texture(Result& result, Context& context, size_t pixelFormat, const Vec2i& size, uint8_t* pixels)
+        inline Texture(Result& result, Context& context, uint8_t pixelFormat, const Vec2i& size, uint8_t* pixels)
             : _texture(LDL_TextureCreateFromPixels(result.Impl(), context.Impl(), pixelFormat, size, pixels), LDL_TextureDestroy)
         {
         }
 
-        inline Texture(Result& result, Context& context, size_t pixelFormat, const Vec2i& size)
+        inline Texture(Result& result, Context& context, uint8_t pixelFormat, const Vec2i& size)
             : _texture(LDL_TextureCreateFromSize(result.Impl(), context.Impl(), pixelFormat, size), LDL_TextureDestroy)
         {
         }

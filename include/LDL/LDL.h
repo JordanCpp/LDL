@@ -48,7 +48,7 @@
 * @see LDL_Window.h
 */
 
-/** @}*/ // End of LDL_Core
+/** @}*/ /* End of LDL_Core */
 
 /**
 * @defgroup LDL_Rendering Rendering Systems
@@ -74,7 +74,7 @@
 * @see LDL_Texture.h
 */
 
-/** @}*/ // End of LDL_Rendering
+/** @}*/ /* End of LDL_Rendering */
 
 /**
 * @defgroup LDL_Input Input and Timing
@@ -106,7 +106,7 @@
 * @see LDL_Mouse.h
 */
 
-/** @}*/ // End of LDL_Input
+/** @}*/ /* End of LDL_Input */
 
 /**
 * @defgroup LDL_IO File and Library Loading
@@ -138,7 +138,7 @@
 * @see LDL_Ttf.h
 */
 
-/** @}*/ // End of LDL_IO
+/** @}*/ /* End of LDL_IO */
 
 /**
 * @defgroup LDL_Miscellaneous Miscellaneous Utilities
@@ -188,7 +188,7 @@
 * @see LDL_PixFrmt.h
 */
 
-/** @}*/ // End of LDL_Miscellaneous
+/** @}*/ /* End of LDL_Miscellaneous */
 
 #include <LDL/Context.h>
 #include <LDL/Result.h>
