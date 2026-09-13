@@ -1,5 +1,5 @@
 
-call "C:\VC6\VC98\Bin\VCVARS32.BAT"
+call "C:\VC98\Bin\VCVARS32.BAT"
 
 cl /O2 -Fe%1.exe -GX /I..\include %2\%1 /link LDL.lib LDL_Image.lib LDL_Ttf.lib
 
